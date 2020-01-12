@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 2 01 - Visual Analysis | Toolkit for the Urban Commons</title>
+  <meta name="description" content="Chapter 2 01 - Visual Analysis | Toolkit for the Urban Commons" />
+  <meta name="generator" content="bookdown 0.14 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 2 01 - Visual Analysis | Toolkit for the Urban Commons" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 2 01 - Visual Analysis | Toolkit for the Urban Commons" />
+  
+  
+  
+
+<meta name="author" content="Josiah Parry" />
+
+
+<meta name="date" content="2020-01-12" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="index.html"/>
+<link rel="next" href="reading-data.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Minimal Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Project Description</a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#outline-notes"><i class="fa fa-check"></i><b>1.1</b> outline / notes</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="visual-analysis.html"><a href="visual-analysis.html"><i class="fa fa-check"></i><b>2</b> 01 - Visual Analysis</a><ul>
+<li class="chapter" data-level="2.1" data-path="visual-analysis.html"><a href="visual-analysis.html#the-american-community-survey"><i class="fa fa-check"></i><b>2.1</b> The American Community Survey</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="reading-data.html"><a href="reading-data.html"><i class="fa fa-check"></i><b>3</b> reading data</a><ul>
+<li class="chapter" data-level="3.1" data-path="reading-data.html"><a href="reading-data.html#other-common-formats"><i class="fa fa-check"></i><b>3.1</b> Other common formats</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="general-data-manipulation.html"><a href="general-data-manipulation.html"><i class="fa fa-check"></i><b>4</b> General data manipulation</a></li>
+<li class="chapter" data-level="5" data-path="visualizing-trends-and-relationships.html"><a href="visualizing-trends-and-relationships.html"><i class="fa fa-check"></i><b>5</b> Visualizing Trends and Relationships</a><ul>
+<li class="chapter" data-level="5.1" data-path="visualizing-trends-and-relationships.html"><a href="visualizing-trends-and-relationships.html#univariate-visualizations"><i class="fa fa-check"></i><b>5.1</b> Univariate visualizations</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="visualizing-trends-and-relationships.html"><a href="visualizing-trends-and-relationships.html#histogram"><i class="fa fa-check"></i><b>5.1.1</b> histogram</a></li>
+<li class="chapter" data-level="5.1.2" data-path="visualizing-trends-and-relationships.html"><a href="visualizing-trends-and-relationships.html#density-plot"><i class="fa fa-check"></i><b>5.1.2</b> density plot</a></li>
+<li class="chapter" data-level="5.1.3" data-path="visualizing-trends-and-relationships.html"><a href="visualizing-trends-and-relationships.html#box-plot"><i class="fa fa-check"></i><b>5.1.3</b> box plot</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="visualizing-trends-and-relationships.html"><a href="visualizing-trends-and-relationships.html#bivariate-visualizations"><i class="fa fa-check"></i><b>5.2</b> Bivariate visualizations</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="visualizing-trends-and-relationships.html"><a href="visualizing-trends-and-relationships.html#barplot-1-categorical-1-continuous-discrete"><i class="fa fa-check"></i><b>5.2.1</b> barplot (1 categorical 1 continuous / discrete)</a></li>
+<li class="chapter" data-level="5.2.2" data-path="visualizing-trends-and-relationships.html"><a href="visualizing-trends-and-relationships.html#lollipop-chart"><i class="fa fa-check"></i><b>5.2.2</b> lollipop chart</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="visualizing-trends-and-relationships.html"><a href="visualizing-trends-and-relationships.html#expanding-bivariate-visualizations-to-trivariate-other-tri-variate"><i class="fa fa-check"></i><b>5.3</b> Expanding bivariate visualizations to trivariate &amp; other tri-variate</a></li>
+<li class="chapter" data-level="5.4" data-path="visualizing-trends-and-relationships.html"><a href="visualizing-trends-and-relationships.html#the-grammar-of-layered-graphics"><i class="fa fa-check"></i><b>5.4</b> The Grammar of Layered Graphics</a><ul>
+<li class="chapter" data-level="5.4.1" data-path="visualizing-trends-and-relationships.html"><a href="visualizing-trends-and-relationships.html#revisiting-the-cartesian-plane"><i class="fa fa-check"></i><b>5.4.1</b> revisiting the cartesian plane</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="summary-statistics.html"><a href="summary-statistics.html"><i class="fa fa-check"></i><b>6</b> Summary statistics</a></li>
+<li class="chapter" data-level="7" data-path="the-pipe.html"><a href="the-pipe.html"><i class="fa fa-check"></i><b>7</b> The pipe <code>%&gt;%</code></a></li>
+<li class="chapter" data-level="8" data-path="summarizing-the-tidy-way.html"><a href="summarizing-the-tidy-way.html"><i class="fa fa-check"></i><b>8</b> summarizing the tidy way</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Toolkit for the Urban Commons</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="visual-analysis" class="section level1">
+<h1><span class="header-section-number">Chapter 2</span> 01 - Visual Analysis</h1>
+<div id="the-american-community-survey" class="section level2">
+<h2><span class="header-section-number">2.1</span> The American Community Survey</h2>
+<ul>
+<li>lets begin by visualizing relationships</li>
+<li>we’ll work with data from the american community survey.
+<ul>
+<li>this is data you will get really familiar with</li>
+</ul></li>
+<li>what is the acs and why do we love it?
+<ul>
+<li><a href="https://www.vox.com/explainers/2015/12/3/9845152/acs-survey-defunded" class="uri">https://www.vox.com/explainers/2015/12/3/9845152/acs-survey-defunded</a></li>
+<li>random sample of individuals across the us
+<ul>
+<li>random samples are used as they representative and statistically non-biased</li>
+</ul></li>
+<li>the information is used to determine funding</li>
+<li>tells us about age, ethnicity, country of origin, occupation, education, voting behavior, etc.</li>
+<li>this information is available in the decennial census (in the constitution)</li>
+<li>ACS tells us about rates rather than the actual number of people in a thing</li>
+<li>one of the major problems is that some populations are under-represented
+<ul>
+<li><a href="https://prospect.org/economy/insidious-way-underrepresent-minorities/" class="uri">https://prospect.org/economy/insidious-way-underrepresent-minorities/</a></li>
+</ul></li>
+</ul></li>
+<li>this one line of code will install the packages that we need to do this work. Don’t be too concerned about <em>what</em> a package is. We will go over this in more detail later. Very simply, a package is a collection of functions that make certain things possible or easier to do in R. We like to use packages because reinventing the wheel is never fun.</li>
+</ul>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">install.packages</span>(<span class="st">&quot;tidyverse&quot;</span>)</a></code></pre></div>
+<blockquote>
+<p>What is the relationship between education and income?</p>
+</blockquote>
+<p>we have a data frame loaded
+this is very similar to a table in excel
+each column is a variable</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">acs_edu</a></code></pre></div>
+<pre><code>## # A tibble: 1,456 x 7
+##    med_house_income less_than_hs hs_grad some_coll  bach white   black
+##               &lt;dbl&gt;        &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;
+##  1           105735       0.0252   0.196     0.221 0.325 0.897 0.0122 
+##  2            69625       0.0577   0.253     0.316 0.262 0.885 0.0171 
+##  3            70679       0.0936   0.173     0.273 0.267 0.733 0.0795 
+##  4            74528       0.0843   0.253     0.353 0.231 0.824 0.0306 
+##  5            52885       0.145    0.310     0.283 0.168 0.737 0.0605 
+##  6            64100       0.0946   0.294     0.317 0.192 0.966 0.00256
+##  7            37093       0.253    0.394     0.235 0.101 0.711 0.0770 
+##  8            87750       0.0768   0.187     0.185 0.272 0.759 0.0310 
+##  9            97417       0.0625   0.254     0.227 0.284 0.969 0.00710
+## 10            43384       0.207    0.362     0.262 0.124 0.460 0.105  
+## # … with 1,446 more rows</code></pre>
+<p>we can visualize the relationship to get a better understanding. we can look at income and college grad rates</p>
+<p>start building a visualization with <code>ggplot()</code> <strong>function</strong> with the <code>acs_edu</code> <strong>object</strong>.
+Functions are characterised by the parentheses at the end of them. Functions do things. Objects hold information.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw">ggplot</span>(acs_edu)</a></code></pre></div>
+<p><img src="urban-commons-toolkit_files/figure-html/unnamed-chunk-39-1.png" width="672" /></p>
+<p>we add to this plot
+determine what we want to plot with the aesthetics <code>aes()</code> function inside of the ggplot().
+want to specify x and y. These are called arguments. To set argument we use the <code>=</code> sign.
+set <code>x</code> to <code>bach</code> and <code>y</code> to <code>med_house_income</code></p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw">ggplot</span>(acs_edu, <span class="kw">aes</span>(<span class="dt">x =</span> bach, <span class="dt">y =</span> med_house_income))</a></code></pre></div>
+<p><img src="urban-commons-toolkit_files/figure-html/unnamed-chunk-40-1.png" width="672" /></p>
+<ul>
+<li>notice how the plot is being filled a bit more?</li>
+<li>now we need to specify what type of plot we will be creating.</li>
+<li>add geometry, or geoms. We use the plus sign <code>+</code> to signify that we are adding on top of the basic graph</li>
+<li>there are many different kinds of charts we can use we will get into these a bit more later.</li>
+<li>a common way of visualizing a relationship between two variables is with a scatterplot</li>
+<li>a scatter plot graphs points for each x and y pair. you’ve likely made a few of these in your primary education</li>
+<li>to add points to the graph we use <code>geom_point()</code>, remember, we are <em>adding</em> a layer so we use the plus sign</li>
+<li>for legibility we add each new layer on a new line. R will indent for you. Good style is important. We’ll get into this later</li>
+</ul>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw">ggplot</span>(acs_edu, <span class="kw">aes</span>(<span class="dt">x =</span> bach, <span class="dt">y =</span> med_house_income)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb6-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>()</a></code></pre></div>
+<p><img src="urban-commons-toolkit_files/figure-html/unnamed-chunk-41-1.png" width="672" /></p>
+<ul>
+<li>notice that there is a positive linear trend.</li>
+<li>lets break that down:
+<ul>
+<li>when the point point up to the right, that is positive, down to the left is negative.
+<ul>
+<li>for each unit we go up on the x (bach) we tend to go up on the y (hh income)</li>
+</ul></li>
+<li>linear means it resembles a line</li>
+</ul></li>
+<li>to finish this up we can add some informative labels</li>
+<li>we will add a labels layer with the function <code>labs()</code></li>
+<li>give them more legible labels. we will give each axis a better name and give the plot a title</li>
+<li>the arguments we will set to the labs function are <code>x</code>, <code>y</code> and <code>title</code>. Rather intuitive, huh?
+<ul>
+<li>x = “% of population with a Bachelor’s Degree”</li>
+<li>y = “Median Household Income”</li>
+<li>title = “Relationship between Education and Income”</li>
+</ul></li>
+<li>note that for each argument I have a new line. again, this helps with legibility</li>
+</ul>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw">ggplot</span>(acs_edu, <span class="kw">aes</span>(<span class="dt">x =</span> bach, <span class="dt">y =</span> med_house_income)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb7-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb7-3" data-line-number="3"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;% of population with a Bachelor&#39;s Degree&quot;</span>,</a>
+<a class="sourceLine" id="cb7-4" data-line-number="4">       <span class="dt">y =</span> <span class="st">&quot;Median Household Income&quot;</span>,</a>
+<a class="sourceLine" id="cb7-5" data-line-number="5">       <span class="dt">title =</span> <span class="st">&quot;Relationship between Education and Income&quot;</span>)</a></code></pre></div>
+<p><img src="urban-commons-toolkit_files/figure-html/unnamed-chunk-42-1.png" width="672" /></p>
+<ul>
+<li>what can we determine from this graph?</li>
+<li>in the sociology literature there is a lot about the education gap between white and black folks</li>
+<li>can we see this in a graph?</li>
+<li>we can modify our existing plot to illustrate this too.</li>
+<li>we can map the % white to the color of the chart</li>
+<li>we add to this within the aesthetics. The <code>aes()</code>thetics is where we will determine things like size, group, shape, etc.</li>
+<li>set the <code>color</code> argument to the <code>white</code> column</li>
+<li>while we’re at it, we can add a subtitle to inform that we’re also coloring by % white</li>
+</ul>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="kw">ggplot</span>(acs_edu, <span class="kw">aes</span>(<span class="dt">x =</span> bach, <span class="dt">y =</span> med_house_income, <span class="dt">color =</span> white)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb8-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb8-3" data-line-number="3"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;% of population with a Bachelor&#39;s Degree&quot;</span>,</a>
+<a class="sourceLine" id="cb8-4" data-line-number="4">       <span class="dt">y =</span> <span class="st">&quot;Median Household Income&quot;</span>,</a>
+<a class="sourceLine" id="cb8-5" data-line-number="5">       <span class="dt">title =</span> <span class="st">&quot;Relationship between Education and Income&quot;</span>,</a>
+<a class="sourceLine" id="cb8-6" data-line-number="6">       <span class="dt">subtitle =</span> <span class="st">&quot;Colored by whiteness&quot;</span>) </a></code></pre></div>
+<p><img src="urban-commons-toolkit_files/figure-html/unnamed-chunk-43-1.png" width="672" /></p>
+<ul>
+<li>what can we conclude now?</li>
+</ul>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="reading-data.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": ["urban-commons-toolkit.pdf", "urban-commons-toolkit.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

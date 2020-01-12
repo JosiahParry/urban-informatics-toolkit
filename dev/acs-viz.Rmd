@@ -1,0 +1,46 @@
+
+- lets begin by visualizing relationships
+- we'll work with data from the american community survey. 
+  - this is data you will get really familiar with 
+- what is the acs and why do we love it?
+  - https://www.vox.com/explainers/2015/12/3/9845152/acs-survey-defunded
+  - random sample of individuals across the us 
+    - random samples are used as they representative and statistically non-biased
+  - the information is used to determine funding
+  - tells us about age, ethnicity, country of origin, occupation, education, voting behavior, etc.
+  - this information is available in the decennial census (in the constitution)
+  - ACS tells us about rates rather than the actual number of people in a thing
+  - one of the major problems is that some populations are under-represented
+    - https://prospect.org/economy/insidious-way-underrepresent-minorities/
+
+## chapter plan
+
+we're going to dive right into visualizing data. we're not going to fret too much over the particulars of things we will go over other thins more in depth at a later point.
+
+what I want you to take away from this:
+
+- feel comfortable with data frames
+- feel comfortable with exploring data visually (understanding the grammar of graphics)
+- understanding what type of visualizations are useful when
+
+- the function `glimpse()` which is in the package `dplyr` that was loaded when we loaded the tidyverse gives us an easier to consume view of our data
+  - Note: the syntax above is used for referencing an exported function from a namespace (package name). The syntax is pkgname::function().
+  - i read this as "glimpse from the dplyr package" 
+
+```{r}
+glimpse(acs)
+```
+
+- notice how we didn't 
+
+- ask a question of acs
+  - education is linked to financial outcomes. is this true?
+- create a first plot
+  - analyse it
+  - black white achievment gap. Is there a pattern along race?
+  
+-----
+
+reading data
+manipulating (creating columns) column will be quintiles or deciles or both
+  

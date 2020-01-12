@@ -1,5 +1,5 @@
 --- 
-title: "Urban Commons Toolkit"
+title: "Toolkit for the Urban Commons"
 author: "Josiah Parry"
 date: "`r Sys.Date()`"
 site: bookdown::gitbook
@@ -16,6 +16,13 @@ The study of Urban Informatics is inherently intertwined with big data. Working 
 
 An online text and accompanying exercises will be created to teach students data science in a manner that is tailored toward Urban Informatics studies. Writing this content will provide an opportunity to synthesize the learnings and skills taught in the Urban Informatics program. The manner in which it will be done will also further access to the field and assist in the cultivation of future students.
 
+------
+
+I have always struggled with overly academic writing and overly technical and obtuse descriptions of concepts, tasks, and phenomena that can be written in easy to understand ways. 
+
+my goal for this text is to provide you with a non-technical instruction to a technical topic. I want this to be friendly and not adversarial nor patronizing. I will do my best to try and explain this language and topics the way that I would to my friends over a beer.
+
+------
 
 ## outline / notes
 

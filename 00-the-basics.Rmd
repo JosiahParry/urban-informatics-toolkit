@@ -1,0 +1,8 @@
+# installing R
+
+# installing RStudio 
+
+# The RStudio IDE
+
+# R Projects
+

@@ -1,0 +1,89 @@
+# reading data
+
+outline
+- install the tidyverse
+- the tidyverse is a collection of packages that make data analysis and cleaning and everythingg else a lot easier
+
+```{r eval=FALSE}
+install.packages("tidyverse")
+```
+
+- a package is a collection of functions that make life easier. functions are bits of code that do things. we will use _a lot_ of functions throughout. we will dive into this in more depth later on. You can usually recognize a function by the parentheses at the end i.e. `function()`
+  - think about the anatomy of a function:
+    - function name and arguments
+    - i will be refering to "function arugments" a TON so please internalize this. 
+    - we will review _making_ functions later. But using functions, oof. Main stay
+    - arguments are unquoted
+- the way we load this package for use with the `library()` function (a little meta, lol)
+
+```{r}
+library(tidyverse)
+```
+
+- one of the most foundational things we will need to know how to do is to _read in_ our data so we can actually begin to analyse it.
+- side bar - data formats:
+  - we will most often work with what are called flat text files. You have most likely already seen these in the wild in the form of a `csv`.
+  - it is important to know what csv stands for because it will help you understand what it actually is. it stands for **c**omma **s**eparated **v**alues. So this is just plain text i.e.
+  - each new line is a new row of data. 
+  - you've probably opened a csv in excel
+  
+```
+column_a, column_b, column_c,
+10, "these are words", .432,
+1, "and more words", 1.11
+```
+
+-to read a csv we use the `read_csv()`. There are many arguments to this function so we can have more and more control on the process of reading data. but for now, and most of the time, we're really only concerned with getting the data into R. in order to do this we need to tell R _where_ this file lives. We will supply only the first argument `file` this will be a character string with the file path. 
+
+The file lives in the data directory and is called `acs_1317_tract.csv`. To tell R (or any computer system, really) where that file is we write `data/acs_1317_tract.csv`. R will start from where the current project is, look inside the `data` folder, then look for the csv.
+
+- `read_csv()` creates a dataframe
+
+```{r}
+read_csv(file = "data/acs_1317_tract.csv") 
+```
+
+- this is really good, but this just ran the function. we want to be able to interact with the data.
+- we do this by assigning the output to an object. 
+- In R objects are the things we interact with. 
+- Functions, on the other hand, usually manipulate or create objects. 
+- I like to think "objects are things, functions create/change things". 
+- to create or, more formally, **assign**, an object we use the assinment operator `<-` (the shortcut to create this is `option + -`).
+
+- lets store the above in a variable (or object, i'll use them interchagably) called `acs`
+
+```{r}
+acs <- read_csv(file = "data/acs_1317_tract.csv") 
+```
+
+- notice nothing was spit out to the console.
+  - This is because we stored the object. when we don't store the function results, the results are (usually) printed out
+- to print something out you can type out the name of the object in the console
+
+```{r}
+acs
+```
+
+
+## Other common formats
+
+- excel documents: we use the `readxl` package. 
+  - use `read_excel()` this will usually work.
+  - alternatively you can specify if it is an xls or xlsx doc with
+  - `read_xls()` or `read_xlsx()`
+
+- tsv: tab separated values. 
+  - for this we use a very similar function `read_tsv()`
+  
+- json: json, short for javascript object notation, is a data type that you will usually not read directly from a text file but interact with from an API. If you do happen to encounter a json flat text file, use the `jsonlite` package. `jsonlite::read_json()`. 
+  - we will hopefully get to working with json at a later point 
+  
+
+
+
+
+
+
+
+
+

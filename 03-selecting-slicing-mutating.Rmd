@@ -1,0 +1,11 @@
+# General data manipulation
+
+- select
+- slice
+- filter
+- mutate
+
+_i need to introduce measures of central tendency and summar stats in between this_
+
+- groups
+- summarizing
