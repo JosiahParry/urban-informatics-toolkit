@@ -72,12 +72,15 @@ ggplot(acs_edu, aes(x = bach, y = med_house_income)) +
   geom_point()
 ```
 
-
 - notice that there is a positive linear trend. 
 - lets break that down:
   - when the point point up to the right, that is positive, down to the left is negative. 
     - for each unit we go up on the x (bach) we tend to go up on the y (hh income)
   - linear means it resembles a line
+- what are we looking for in a scatter plot?
+  - we're looking for low variation and a consistent pattern or line
+  - we want the points to be very close
+  - imagine we drew a line going through the middle of the points, we'd want each point to be either on that line or extremely close. if the line is further away, that means there is a lot more variation
 - to finish this up we can add some informative labels
 - we will add a labels layer with the function `labs()`
 - give them more legible labels. we will give each axis a better name and give the plot a title

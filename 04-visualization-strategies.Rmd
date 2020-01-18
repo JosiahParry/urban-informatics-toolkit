@@ -26,6 +26,14 @@ acs <- acs_messy %>%
   
 ## Univariate visualizations
 
+- what are we looking for in univariate visualizations?
+- the shape of the distribution
+- measures of central tendency
+  - where do the data cluster?
+  - is there a center? more than one?
+- how much variation is in the data?
+  - is the distribution flatter or steeper?
+
 ### histogram
 
 - puts data into `n` groups or bins or buckets. ggplot calls them `bins`
@@ -86,6 +94,10 @@ ggplot(acs, aes(y = age_u18)) +
 #### understanding the box plot
 
 ## Bivariate visualizations
+
+with bi-variate relationships we're looking to answer, in general, if one variable affects the other. we usually will be comparing two numeric variables or one numeric and one categorical variable
+in the former situtation we're looking to see if there is a related trend, i.e. when one goes up does the other go down or vice versa
+in the latter scenario, we want to know if the distribution of the data changes for different groups
 
 ### scatter plot (2 continuous)
   - we made one previously

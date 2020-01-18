@@ -1,8 +1,81 @@
 # General data manipulation
 
+You may have heard of the 80/20 rule—or at least one of the many 80/20 rules.
+Data scientists are often fond of emphasising that 80% of their work is data cleaning and the other 20% is analysis and modeling
+this is all to say that you will find yourself with messy, unsanitized, gross, not fun to look at data most of the time
+because of this, it's really important that we have the skills to clean our data 
+right now we're going to go over the foundational skills we will learn how to select columns and rows, filter data, and create new columns and variables
+we will be using functions from the package dplyr which is imported from the tidyverse
+
+- recall how to load the tidyverse
+- we'll read in the `ACS_1317_TRACT.csv` file located in the `data` directory
+  - putting this together the file path is `data/ACS_1317_TRACT.csv`.
+  - store it in the variable `acs_raw`
+  
+
+```{r message=FALSE}
+library(tidyverse)
+acs_raw <- read_csv("data/ACS_1317_TRACT.csv")
+
+glimpse(acs_raw)
+```
+
+This is the dataset from which `acs_edu` was created. We will work to create the same dataset. For a refresher the columns were: "med_house_income, less_than_hs, hs_grad, some_coll, bach, white, and black.
+
+```{r message=FALSE}
+glimpse(read_csv("data/acs_edu.csv"))
+```
+
+
+to do so we use the function `select()`. Look at the help documentation by running `?select()` inside of the console. What are the arguments?
+- `.data` and `...`. We'll tackle this one by one.
+  - `.data`: "A tbl." 
+    - read this as "A tibble, or data frame". 
+    - for those of you who are curious, `tbl` is the formal object class of a tibble. a tibble is still a data frame
+    - this means that the first argument will be passed the `acs_raw` object
+- `...`: 
+
+> One or more unquoted expressions separated by commas. You can treat variable names like they are positions, so you can use expressions like x:y to select ranges of variables.
+
+- this one is a little bit more complex. `...` referred to as "dots". This really means we can pass any number of other arguments to `select()` here the `...` will be ways of referring to the columns we want. and there are a number of ways we can referrer to which columns we want we can:
+  1. write the name (unquoted) of the columns—i.e. i want the column `col_x` would be `select(.data, col_x)`
+  2. write the position of the column—i.e. i want the first column would be `select(.data, 1)`
+  3. There are also a number of _select helpers_ of which we will go over a few
+- one behavior that you should notice is that select will _always_ return a tibble, even if we don't sepcify any columns to select
+- try using the select function on `acs_raw` without passing any column specifications to `...`
+
+```{r}
+select(acs_raw)
+```
+
+- select the median house hold income column (`med_house_income`)
+
+```{r}
+select(acs_raw, med_house_income)
+```
+
+
+- as the documentation notes we can select a range of columns using `col_x:col_y`
+- select the columns relating to education from less than high school to doctoral
+
+```{r}
+select(acs_raw, less_than_hs:doc)
+```
+
+- though you will likely not use it too often, it's still important to be comfortable with column index (position) selecting
+- select the 1st, 5th, and 10th columns
+
+```{r}
+select(acs_raw, 1, 5, 10)
+```
+
+
+
 - select
+  - by position or name
 - slice
 - filter
+  - logical operators
 - mutate
 
 _i need to introduce measures of central tendency and summar stats in between this_
