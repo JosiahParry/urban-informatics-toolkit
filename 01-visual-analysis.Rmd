@@ -1,8 +1,14 @@
 # 01 - Visual Analysis 
 
+## Exploratory analysis 
+
+- https://r4ds.had.co.nz/explore-intro.html
+- iteration 
+- this chapter focuses on visualization
+- the process of exploratory anlaysis is naturally inductive
+
 ## The American Community Survey 
 
-- lets begin by visualizing relationships
 - we'll work with data from the american community survey. 
   - this is data you will get really familiar with 
 - what is the acs and why do we love it?

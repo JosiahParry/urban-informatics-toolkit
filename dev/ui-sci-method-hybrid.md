@@ -90,3 +90,11 @@ https://www.nydailynews.com/opinion/ny-oped-break-the-broken-windows-spell-20190
 - differs from the deductive approach of the scientific method
 
 https://www.npr.org/2016/11/01/500104506/broken-windows-policing-and-the-origins-of-stop-and-frisk-and-how-it-went-wrong
+
+
+-------
+
+## data exploration process
+
+[inspo](https://r4ds.had.co.nz/explore-intro.html)
+

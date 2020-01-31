@@ -1,3 +1,4 @@
+#' @export
 theme_bari <- function() {
   theme_minimal() +
     theme(

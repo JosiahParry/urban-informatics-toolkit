@@ -20,3 +20,17 @@ Do I provide a review of the Chicago School?
   - i need to have an intro to projects
   - or have at the very beginning a required reaading to get up and started
   - 
+  
+2020-01-18: after introducing the basics of vis and manipulation etc, 
+  - have 4 case studies which will cover the other stuff
+  - or intersperse the case studies?
+    - for example after the basics, have one rather basic exploration (perhaps the fed shutdown one i did?)
+    
+    
+2020-01-30
+
+build in reminders that this is difficult
+remind students to take a break
+remind students what they've done so far
+build in excersizes that review from earlier chapters that they should feel comfortable with
+reminder that r4ds.online has office hours

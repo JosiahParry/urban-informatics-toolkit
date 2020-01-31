@@ -11,6 +11,14 @@ we will be using functions from the package dplyr which is imported from the tid
 - we'll read in the `ACS_1317_TRACT.csv` file located in the `data` directory
   - putting this together the file path is `data/ACS_1317_TRACT.csv`.
   - store it in the variable `acs_raw`
+
+## scenario:
+
+a local non-profit is interested in learning about the demographic characteristics of the greater boston area. They are specifically interested to learn more about the relationship between the age, race, and economic status. They've come to you to provide them with the relevant data. you have acces to the annual BARI census data and you will curate the data for them. 
+
+They define the greater boston area as Suffolk, Middlesex, and Norfolk counties. 
+
+before we go ahead and start cleaning this data, we need to learn the tools to do so. Please bear with me! 
   
 
 ```{r message=FALSE}
@@ -69,12 +77,62 @@ select(acs_raw, less_than_hs:doc)
 select(acs_raw, 1, 5, 10)
 ```
 
+#### tidyselect helpers
+
+- we use the tidyselect helpers in the `...` argument
+- `starts_with()`: a string to search that columns start with
+  - find all columns that start with `"med"`
+
+```{r}
+select(acs_raw, starts_with("med"))
+```
+
+- `ends_with()`: a string to search that columns end with
+  - select columns that end with `"per"`
+
+```{r}
+select(acs_raw, ends_with("per"))
+```
+
+- `contains()`: a string to search for in the column headers
+  - the string that we are searching for can be at any position
+  - find any column that contains the string `"yr"`
+
+```{r}
+select(acs_raw, contains("yr"))
+```
+
+- `everything()`: helpful when you want to move some columns to the front and dont care about the order of others
+  - takes no arguments
+  - select the town, county, then everything else
+
+```{r}
+select(acs_raw, town, county, everything())
+```
+
+## Selecting Rows
+
+like we can select columns we can also select rows. however rows do not have names. we select the rows based on position
+unlike select, if we do not specify any arguments to `...` it will return the entire data frame
+
+```{r}
+slice(acs_raw)
+```
+
+positive integers
+
+```{r}
+slice(acs_raw)
+```
+
+the `n()` helper
+
+negative integers
 
 
-- select
-  - by position or name
-- slice
-- filter
+## filter
+
+
   - logical operators
 - mutate
 
@@ -82,3 +140,7 @@ _i need to introduce measures of central tendency and summar stats in between th
 
 - groups
 - summarizing
+
+
+using the `name` column I can consider introducing string methods
+  - this would probably be better done with text reviews or something

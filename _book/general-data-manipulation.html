@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<html lang="" xml:lang="">
 <head>
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 8 General data manipulation | Toolkit for the Urban Commons</title>
   <meta name="description" content="Chapter 8 General data manipulation | Toolkit for the Urban Commons" />
-  <meta name="generator" content="bookdown 0.14 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 8 General data manipulation | Toolkit for the Urban Commons" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Josiah Parry" />
 
 
-<meta name="date" content="2020-01-12" />
+<meta name="date" content="2020-01-30" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -52,6 +52,68 @@
 
 
 
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -82,7 +144,10 @@
 <li class="chapter" data-level="7" data-path="reading-data.html"><a href="reading-data.html"><i class="fa fa-check"></i><b>7</b> reading data</a><ul>
 <li class="chapter" data-level="7.1" data-path="reading-data.html"><a href="reading-data.html#other-common-formats"><i class="fa fa-check"></i><b>7.1</b> Other common formats</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="general-data-manipulation.html"><a href="general-data-manipulation.html"><i class="fa fa-check"></i><b>8</b> General data manipulation</a></li>
+<li class="chapter" data-level="8" data-path="general-data-manipulation.html"><a href="general-data-manipulation.html"><i class="fa fa-check"></i><b>8</b> General data manipulation</a><ul>
+<li class="chapter" data-level="8.1" data-path="general-data-manipulation.html"><a href="general-data-manipulation.html#selecting-rows"><i class="fa fa-check"></i><b>8.1</b> Selecting Rows</a></li>
+<li class="chapter" data-level="8.2" data-path="general-data-manipulation.html"><a href="general-data-manipulation.html#filter"><i class="fa fa-check"></i><b>8.2</b> filter</a></li>
+</ul></li>
 <li class="chapter" data-level="9" data-path="visualizing-trends-and-relationships.html"><a href="visualizing-trends-and-relationships.html"><i class="fa fa-check"></i><b>9</b> Visualizing Trends and Relationships</a><ul>
 <li class="chapter" data-level="9.1" data-path="visualizing-trends-and-relationships.html"><a href="visualizing-trends-and-relationships.html#univariate-visualizations"><i class="fa fa-check"></i><b>9.1</b> Univariate visualizations</a><ul>
 <li class="chapter" data-level="9.1.1" data-path="visualizing-trends-and-relationships.html"><a href="visualizing-trends-and-relationships.html#histogram"><i class="fa fa-check"></i><b>9.1.1</b> histogram</a></li>
@@ -128,16 +193,353 @@
             <section class="normal" id="section-">
 <div id="general-data-manipulation" class="section level1">
 <h1><span class="header-section-number">Chapter 8</span> General data manipulation</h1>
+<p>You may have heard of the 80/20 rule—or at least one of the many 80/20 rules.
+Data scientists are often fond of emphasising that 80% of their work is data cleaning and the other 20% is analysis and modeling
+this is all to say that you will find yourself with messy, unsanitized, gross, not fun to look at data most of the time
+because of this, it’s really important that we have the skills to clean our data
+right now we’re going to go over the foundational skills we will learn how to select columns and rows, filter data, and create new columns and variables
+we will be using functions from the package dplyr which is imported from the tidyverse</p>
 <ul>
-<li>select
+<li>recall how to load the tidyverse</li>
+<li>we’ll read in the <code>ACS_1317_TRACT.csv</code> file located in the <code>data</code> directory
 <ul>
-<li>by position or name</li>
+<li>putting this together the file path is <code>data/ACS_1317_TRACT.csv</code>.</li>
+<li>store it in the variable <code>acs_raw</code></li>
 </ul></li>
-<li>slice</li>
-<li>filter
+</ul>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1"><span class="kw">library</span>(tidyverse)</a>
+<a class="sourceLine" id="cb21-2" data-line-number="2">acs_raw &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data/ACS_1317_TRACT.csv&quot;</span>)</a>
+<a class="sourceLine" id="cb21-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb21-4" data-line-number="4"><span class="kw">glimpse</span>(acs_raw)</a></code></pre></div>
+<pre><code>## Observations: 1,478
+## Variables: 59
+## $ ct_id_10             &lt;dbl&gt; 25027728100, 25027729200, 25027730700, 2502…
+## $ name                 &lt;chr&gt; &quot;Census Tract 7281, Worcester County, Massa…
+## $ total_pop            &lt;dbl&gt; 4585, 2165, 6917, 7278, 5059, 6632, 3259, 2…
+## $ pop_den              &lt;dbl&gt; 332.5741, 1069.6977, 2112.9526, 1345.5905, …
+## $ sex_ratio            &lt;dbl&gt; 1.1315667, 1.3179872, 1.1329016, 1.1156977,…
+## $ age_u18              &lt;dbl&gt; 0.2340240, 0.1810624, 0.1705942, 0.2033526,…
+## $ age1834              &lt;dbl&gt; 0.2023991, 0.1510393, 0.2143993, 0.2272602,…
+## $ age3564              &lt;dbl&gt; 0.3980371, 0.4609700, 0.4371838, 0.4359714,…
+## $ age_o65              &lt;dbl&gt; 0.1655398, 0.2069284, 0.1778228, 0.1334158,…
+## $ for_born             &lt;dbl&gt; 0.04383860, 0.08729792, 0.20586960, 0.15526…
+## $ white                &lt;dbl&gt; 0.8972737, 0.8849885, 0.7328322, 0.8235779,…
+## $ black                &lt;dbl&gt; 0.012213740, 0.017090069, 0.079514240, 0.03…
+## $ asian                &lt;dbl&gt; 0.006324973, 0.021709007, 0.019950846, 0.03…
+## $ hispanic             &lt;dbl&gt; 0.070229008, 0.047575058, 0.136330779, 0.07…
+## $ two_or_more          &lt;dbl&gt; 0.012431843, 0.027713626, 0.017348562, 0.01…
+## $ eth_het              &lt;dbl&gt; -17032656, -3685242, -26905553, -36365806, …
+## $ med_house_income     &lt;dbl&gt; 105735, 69625, 70679, 74528, 52885, 64100, …
+## $ pub_assist           &lt;dbl&gt; 0.020782396, 0.004667445, 0.021067926, 0.03…
+## $ gini                 &lt;dbl&gt; 0.4084, 0.3886, 0.4693, 0.4052, 0.5327, 0.4…
+## $ fam_pov_per          &lt;dbl&gt; 0.04754601, 0.06521739, 0.05843440, 0.02486…
+## $ unemp_rate           &lt;dbl&gt; 0.03361345, 0.03127572, 0.06124498, 0.03983…
+## $ total_house_h        &lt;dbl&gt; 1636, 857, 2753, 2878, 2326, 2635, 1245, 80…
+## $ fam_house_per        &lt;dbl&gt; 0.7970660, 0.6977830, 0.6589175, 0.6567060,…
+## $ fem_head_per         &lt;dbl&gt; 0.08985330, 0.12018670, 0.11442063, 0.12126…
+## $ same_sex_coup_per    &lt;dbl&gt; 0.00000000, 0.00000000, 0.00000000, 0.00000…
+## $ grand_head_per       &lt;dbl&gt; 0.000000000, 0.005834306, 0.000000000, 0.00…
+## $ less_than_hs         &lt;dbl&gt; 0.02515518, 0.05773956, 0.09364548, 0.08426…
+## $ hs_grad              &lt;dbl&gt; 0.19568768, 0.25307125, 0.17332284, 0.25298…
+## $ some_coll            &lt;dbl&gt; 0.2211696, 0.3157248, 0.2726736, 0.3534052,…
+## $ bach                 &lt;dbl&gt; 0.32473048, 0.26167076, 0.26677159, 0.23124…
+## $ master               &lt;dbl&gt; 0.15942502, 0.09705160, 0.12059807, 0.06714…
+## $ prof                 &lt;dbl&gt; 0.0405096374, 0.0098280098, 0.0397403108, 0…
+## $ doc                  &lt;dbl&gt; 0.033322444, 0.004914005, 0.033248082, 0.00…
+## $ commute_less10       &lt;dbl&gt; 0.07874016, 0.25109361, 0.05369894, 0.14119…
+## $ commute1030          &lt;dbl&gt; 0.5131234, 0.4636920, 0.6620965, 0.3941685,…
+## $ commute3060          &lt;dbl&gt; 0.33114611, 0.18110236, 0.17709226, 0.31263…
+## $ commute6090          &lt;dbl&gt; 0.055555556, 0.082239720, 0.086832334, 0.13…
+## $ commute_over90       &lt;dbl&gt; 0.021434821, 0.021872266, 0.020279920, 0.01…
+## $ by_auto              &lt;dbl&gt; 0.9267791, 0.9704861, 0.9248285, 0.9037018,…
+## $ by_pub_trans         &lt;dbl&gt; 0.000000000, 0.004340278, 0.020301783, 0.01…
+## $ by_bike              &lt;dbl&gt; 0.002879473, 0.000000000, 0.000000000, 0.00…
+## $ by_walk              &lt;dbl&gt; 0.002468120, 0.012152778, 0.004938272, 0.02…
+## $ total_house_units    &lt;dbl&gt; 1701, 886, 2928, 3181, 2511, 2713, 1581, 85…
+## $ vacant_unit_per      &lt;dbl&gt; 0.03821282, 0.03273138, 0.05976776, 0.09525…
+## $ renters_per          &lt;dbl&gt; 0.1088020, 0.2100350, 0.2804214, 0.3425990,…
+## $ home_own_per         &lt;dbl&gt; 0.8911980, 0.7899650, 0.7195786, 0.6574010,…
+## $ med_gross_rent       &lt;dbl&gt; 1640, 894, 1454, 954, 1018, 867, 910, 1088,…
+## $ med_home_val         &lt;dbl&gt; 349000, 230200, 207200, 268400, 223200, 232…
+## $ med_yr_built_raw     &lt;dbl&gt; 1988, 1955, 1959, 1973, 1964, 1966, 1939, 1…
+## $ med_yr_built         &lt;chr&gt; &quot;1980 to 1989&quot;, &quot;1950 to 1959&quot;, &quot;1950 to 19…
+## $ med_yr_moved_inraw   &lt;dbl&gt; 2004, 2003, 2007, 2006, 2006, 2000, 2011, 2…
+## $ med_yr_rent_moved_in &lt;dbl&gt; 2012, 2010, 2012, 2011, 2011, 2009, 2012, 2…
+## $ area_acres           &lt;dbl&gt; 9407.9167, 1294.2828, 2123.4927, 3581.9026,…
+## $ town_id              &lt;dbl&gt; 134, 321, 348, 185, 153, 151, 316, 348, 28,…
+## $ town                 &lt;chr&gt; &quot;HOLDEN&quot;, &quot;WEST BOYLSTON&quot;, &quot;WORCESTER&quot;, &quot;MI…
+## $ fips_stco            &lt;dbl&gt; 25027, 25027, 25027, 25027, 25027, 25027, 2…
+## $ county               &lt;chr&gt; &quot;WORCESTER&quot;, &quot;WORCESTER&quot;, &quot;WORCESTER&quot;, &quot;WOR…
+## $ area_acr_1           &lt;dbl&gt; 23241.514, 8867.508, 24609.965, 9615.644, 1…
+## $ m_atown              &lt;chr&gt; &quot;HOLDEN&quot;, &quot;WEST BOYLSTON&quot;, &quot;WORCESTER&quot;, &quot;MI…</code></pre>
+<p>This is the dataset from which <code>acs_edu</code> was created. We will work to create the same dataset. For a refresher the columns were: &quot;med_house_income, less_than_hs, hs_grad, some_coll, bach, white, and black.</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" data-line-number="1"><span class="kw">glimpse</span>(<span class="kw">read_csv</span>(<span class="st">&quot;data/acs_edu.csv&quot;</span>))</a></code></pre></div>
+<pre><code>## Observations: 1,456
+## Variables: 7
+## $ med_house_income &lt;dbl&gt; 105735, 69625, 70679, 74528, 52885, 64100, 3709…
+## $ less_than_hs     &lt;dbl&gt; 0.02515518, 0.05773956, 0.09364548, 0.08426318,…
+## $ hs_grad          &lt;dbl&gt; 0.19568768, 0.25307125, 0.17332284, 0.25298192,…
+## $ some_coll        &lt;dbl&gt; 0.2211696, 0.3157248, 0.2726736, 0.3534052, 0.2…
+## $ bach             &lt;dbl&gt; 0.32473048, 0.26167076, 0.26677159, 0.23124279,…
+## $ white            &lt;dbl&gt; 0.8972737, 0.8849885, 0.7328322, 0.8235779, 0.7…
+## $ black            &lt;dbl&gt; 0.012213740, 0.017090069, 0.079514240, 0.030640…</code></pre>
+<p>to do so we use the function <code>select()</code>. Look at the help documentation by running <code>?select()</code> inside of the console. What are the arguments?
+- <code>.data</code> and <code>...</code>. We’ll tackle this one by one.
+- <code>.data</code>: “A tbl.”
+- read this as “A tibble, or data frame”.
+- for those of you who are curious, <code>tbl</code> is the formal object class of a tibble. a tibble is still a data frame
+- this means that the first argument will be passed the <code>acs_raw</code> object
+- <code>...</code>:</p>
+<blockquote>
+<p>One or more unquoted expressions separated by commas. You can treat variable names like they are positions, so you can use expressions like x:y to select ranges of variables.</p>
+</blockquote>
+<ul>
+<li>this one is a little bit more complex. <code>...</code> referred to as “dots”. This really means we can pass any number of other arguments to <code>select()</code> here the <code>...</code> will be ways of referring to the columns we want. and there are a number of ways we can referrer to which columns we want we can:
+<ol style="list-style-type: decimal">
+<li>write the name (unquoted) of the columns—i.e. i want the column <code>col_x</code> would be <code>select(.data, col_x)</code></li>
+<li>write the position of the column—i.e. i want the first column would be <code>select(.data, 1)</code></li>
+<li>There are also a number of <em>select helpers</em> of which we will go over a few</li>
+</ol></li>
+<li>one behavior that you should notice is that select will <em>always</em> return a tibble, even if we don’t sepcify any columns to select</li>
+<li>try using the select function on <code>acs_raw</code> without passing any column specifications to <code>...</code></li>
+</ul>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" data-line-number="1"><span class="kw">select</span>(acs_raw)</a></code></pre></div>
+<pre><code>## # A tibble: 1,478 x 0</code></pre>
+<ul>
+<li>select the median house hold income column (<code>med_house_income</code>)</li>
+</ul>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" data-line-number="1"><span class="kw">select</span>(acs_raw, med_house_income)</a></code></pre></div>
+<pre><code>## # A tibble: 1,478 x 1
+##    med_house_income
+##               &lt;dbl&gt;
+##  1           105735
+##  2            69625
+##  3            70679
+##  4            74528
+##  5            52885
+##  6            64100
+##  7            37093
+##  8            87750
+##  9            97417
+## 10            43384
+## # … with 1,468 more rows</code></pre>
+<ul>
+<li>as the documentation notes we can select a range of columns using <code>col_x:col_y</code></li>
+<li>select the columns relating to education from less than high school to doctoral</li>
+</ul>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" data-line-number="1"><span class="kw">select</span>(acs_raw, less_than_hs<span class="op">:</span>doc)</a></code></pre></div>
+<pre><code>## # A tibble: 1,478 x 7
+##    less_than_hs hs_grad some_coll  bach master     prof     doc
+##           &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt;
+##  1       0.0252   0.196     0.221 0.325 0.159  0.0405   0.0333 
+##  2       0.0577   0.253     0.316 0.262 0.0971 0.00983  0.00491
+##  3       0.0936   0.173     0.273 0.267 0.121  0.0397   0.0332 
+##  4       0.0843   0.253     0.353 0.231 0.0671 0.00616  0.00481
+##  5       0.145    0.310     0.283 0.168 0.0879 0.00343  0.00158
+##  6       0.0946   0.294     0.317 0.192 0.0858 0.0161   0      
+##  7       0.253    0.394     0.235 0.101 0.0155 0.000484 0      
+##  8       0.0768   0.187     0.185 0.272 0.145  0.0569   0.0782 
+##  9       0.0625   0.254     0.227 0.284 0.127  0.0223   0.0236 
+## 10       0.207    0.362     0.262 0.124 0.0353 0        0.00972
+## # … with 1,468 more rows</code></pre>
+<ul>
+<li>though you will likely not use it too often, it’s still important to be comfortable with column index (position) selecting</li>
+<li>select the 1st, 5th, and 10th columns</li>
+</ul>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" data-line-number="1"><span class="kw">select</span>(acs_raw, <span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">10</span>)</a></code></pre></div>
+<pre><code>## # A tibble: 1,478 x 3
+##       ct_id_10 sex_ratio for_born
+##          &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
+##  1 25027728100     1.13    0.0438
+##  2 25027729200     1.32    0.0873
+##  3 25027730700     1.13    0.206 
+##  4 25027744200     1.12    0.155 
+##  5 25027709701     1.30    0.106 
+##  6 25027735100     1.11    0.0280
+##  7 25027754300     1.25    0.188 
+##  8 25027730802     0.908   0.198 
+##  9 25027717100     0.990   0.0797
+## 10 25027732600     1.19    0.210 
+## # … with 1,468 more rows</code></pre>
+<div id="tidyselect-helpers" class="section level4">
+<h4><span class="header-section-number">8.0.0.1</span> tidyselect helpers</h4>
+<ul>
+<li>we use the tidyselect helpers in the <code>...</code> argument</li>
+<li><code>starts_with()</code>: a string to search that columns start with
+<ul>
+<li>find all columns that start with <code>&quot;med&quot;</code></li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" data-line-number="1"><span class="kw">select</span>(acs_raw, <span class="kw">starts_with</span>(<span class="st">&quot;med&quot;</span>))</a></code></pre></div>
+<pre><code>## # A tibble: 1,478 x 7
+##    med_house_income med_gross_rent med_home_val med_yr_built_raw
+##               &lt;dbl&gt;          &lt;dbl&gt;        &lt;dbl&gt;            &lt;dbl&gt;
+##  1           105735           1640       349000             1988
+##  2            69625            894       230200             1955
+##  3            70679           1454       207200             1959
+##  4            74528            954       268400             1973
+##  5            52885           1018       223200             1964
+##  6            64100            867       232700             1966
+##  7            37093            910       170900             1939
+##  8            87750           1088       270100             1939
+##  9            97417           1037       379600             1981
+## 10            43384           1017       156500             1939
+## # … with 1,468 more rows, and 3 more variables: med_yr_built &lt;chr&gt;,
+## #   med_yr_moved_inraw &lt;dbl&gt;, med_yr_rent_moved_in &lt;dbl&gt;</code></pre>
+<ul>
+<li><code>ends_with()</code>: a string to search that columns end with
+<ul>
+<li>select columns that end with <code>&quot;per&quot;</code></li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" data-line-number="1"><span class="kw">select</span>(acs_raw, <span class="kw">ends_with</span>(<span class="st">&quot;per&quot;</span>))</a></code></pre></div>
+<pre><code>## # A tibble: 1,478 x 8
+##    fam_pov_per fam_house_per fem_head_per same_sex_coup_p… grand_head_per
+##          &lt;dbl&gt;         &lt;dbl&gt;        &lt;dbl&gt;            &lt;dbl&gt;          &lt;dbl&gt;
+##  1      0.0475         0.797       0.0899            0            0      
+##  2      0.0652         0.698       0.120             0            0.00583
+##  3      0.0584         0.659       0.114             0            0      
+##  4      0.0249         0.657       0.121             0            0      
+##  5      0.198          0.531       0.158             0            0.00946
+##  6      0.0428         0.665       0.0603            0            0.0353 
+##  7      0.0762         0.632       0.227             0            0.00643
+##  8      0.101          0.636       0.0582            0.297        0.0260 
+##  9      0.0149         0.758       0.0721            0            0.00434
+## 10      0.0954         0.460       0.225             0            0.0279 
+## # … with 1,468 more rows, and 3 more variables: vacant_unit_per &lt;dbl&gt;,
+## #   renters_per &lt;dbl&gt;, home_own_per &lt;dbl&gt;</code></pre>
+<ul>
+<li><code>contains()</code>: a string to search for in the column headers
+<ul>
+<li>the string that we are searching for can be at any position</li>
+<li>find any column that contains the string <code>&quot;yr&quot;</code></li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" data-line-number="1"><span class="kw">select</span>(acs_raw, <span class="kw">contains</span>(<span class="st">&quot;yr&quot;</span>))</a></code></pre></div>
+<pre><code>## # A tibble: 1,478 x 4
+##    med_yr_built_raw med_yr_built  med_yr_moved_inraw med_yr_rent_moved_in
+##               &lt;dbl&gt; &lt;chr&gt;                      &lt;dbl&gt;                &lt;dbl&gt;
+##  1             1988 1980 to 1989                2004                 2012
+##  2             1955 1950 to 1959                2003                 2010
+##  3             1959 1950 to 1959                2007                 2012
+##  4             1973 1970 to 1979                2006                 2011
+##  5             1964 1960 to 1969                2006                 2011
+##  6             1966 1960 to 1969                2000                 2009
+##  7             1939 Prior to 1940               2011                 2012
+##  8             1939 Prior to 1940               2006                 2012
+##  9             1981 1980 to 1989                2004                 2012
+## 10             1939 Prior to 1940               2011                   NA
+## # … with 1,468 more rows</code></pre>
+<ul>
+<li><code>everything()</code>: helpful when you want to move some columns to the front and dont care about the order of others
+<ul>
+<li>takes no arguments</li>
+<li>select the town, county, then everything else</li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb39-1" data-line-number="1"><span class="kw">select</span>(acs_raw, town, county, <span class="kw">everything</span>())</a></code></pre></div>
+<pre><code>## # A tibble: 1,478 x 59
+##    town  county ct_id_10 name  total_pop pop_den sex_ratio age_u18 age1834
+##    &lt;chr&gt; &lt;chr&gt;     &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+##  1 HOLD… WORCE…  2.50e10 Cens…      4585    333.     1.13    0.234   0.202
+##  2 WEST… WORCE…  2.50e10 Cens…      2165   1070.     1.32    0.181   0.151
+##  3 WORC… WORCE…  2.50e10 Cens…      6917   2113.     1.13    0.171   0.214
+##  4 MILF… WORCE…  2.50e10 Cens…      7278   1346.     1.12    0.203   0.227
+##  5 LEOM… WORCE…  2.50e10 Cens…      5059   2894.     1.30    0.177   0.203
+##  6 LEIC… WORCE…  2.50e10 Cens…      6632    472.     1.11    0.163   0.237
+##  7 WEBS… WORCE…  2.50e10 Cens…      3259   8022.     1.25    0.191   0.326
+##  8 WORC… WORCE…  2.50e10 Cens…      2097   5191.     0.908   0.202   0.183
+##  9 BERL… WORCE…  2.50e10 Cens…      3098    239.     0.990   0.188   0.150
+## 10 WORC… WORCE…  2.50e10 Cens…      3982  17065.     1.19    0.244   0.286
+## # … with 1,468 more rows, and 50 more variables: age3564 &lt;dbl&gt;,
+## #   age_o65 &lt;dbl&gt;, for_born &lt;dbl&gt;, white &lt;dbl&gt;, black &lt;dbl&gt;, asian &lt;dbl&gt;,
+## #   hispanic &lt;dbl&gt;, two_or_more &lt;dbl&gt;, eth_het &lt;dbl&gt;,
+## #   med_house_income &lt;dbl&gt;, pub_assist &lt;dbl&gt;, gini &lt;dbl&gt;,
+## #   fam_pov_per &lt;dbl&gt;, unemp_rate &lt;dbl&gt;, total_house_h &lt;dbl&gt;,
+## #   fam_house_per &lt;dbl&gt;, fem_head_per &lt;dbl&gt;, same_sex_coup_per &lt;dbl&gt;,
+## #   grand_head_per &lt;dbl&gt;, less_than_hs &lt;dbl&gt;, hs_grad &lt;dbl&gt;,
+## #   some_coll &lt;dbl&gt;, bach &lt;dbl&gt;, master &lt;dbl&gt;, prof &lt;dbl&gt;, doc &lt;dbl&gt;,
+## #   commute_less10 &lt;dbl&gt;, commute1030 &lt;dbl&gt;, commute3060 &lt;dbl&gt;,
+## #   commute6090 &lt;dbl&gt;, commute_over90 &lt;dbl&gt;, by_auto &lt;dbl&gt;,
+## #   by_pub_trans &lt;dbl&gt;, by_bike &lt;dbl&gt;, by_walk &lt;dbl&gt;,
+## #   total_house_units &lt;dbl&gt;, vacant_unit_per &lt;dbl&gt;, renters_per &lt;dbl&gt;,
+## #   home_own_per &lt;dbl&gt;, med_gross_rent &lt;dbl&gt;, med_home_val &lt;dbl&gt;,
+## #   med_yr_built_raw &lt;dbl&gt;, med_yr_built &lt;chr&gt;, med_yr_moved_inraw &lt;dbl&gt;,
+## #   med_yr_rent_moved_in &lt;dbl&gt;, area_acres &lt;dbl&gt;, town_id &lt;dbl&gt;,
+## #   fips_stco &lt;dbl&gt;, area_acr_1 &lt;dbl&gt;, m_atown &lt;chr&gt;</code></pre>
+</div>
+<div id="selecting-rows" class="section level2">
+<h2><span class="header-section-number">8.1</span> Selecting Rows</h2>
+<p>like we can select columns we can also select rows. however rows do not have names. we select the rows based on position
+unlike select, if we do not specify any arguments to <code>...</code> it will return the entire data frame</p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb41-1" data-line-number="1"><span class="kw">slice</span>(acs_raw)</a></code></pre></div>
+<pre><code>## # A tibble: 1,478 x 59
+##    ct_id_10 name  total_pop pop_den sex_ratio age_u18 age1834 age3564
+##       &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+##  1  2.50e10 Cens…      4585    333.     1.13    0.234   0.202   0.398
+##  2  2.50e10 Cens…      2165   1070.     1.32    0.181   0.151   0.461
+##  3  2.50e10 Cens…      6917   2113.     1.13    0.171   0.214   0.437
+##  4  2.50e10 Cens…      7278   1346.     1.12    0.203   0.227   0.436
+##  5  2.50e10 Cens…      5059   2894.     1.30    0.177   0.203   0.430
+##  6  2.50e10 Cens…      6632    472.     1.11    0.163   0.237   0.439
+##  7  2.50e10 Cens…      3259   8022.     1.25    0.191   0.326   0.380
+##  8  2.50e10 Cens…      2097   5191.     0.908   0.202   0.183   0.466
+##  9  2.50e10 Cens…      3098    239.     0.990   0.188   0.150   0.462
+## 10  2.50e10 Cens…      3982  17065.     1.19    0.244   0.286   0.342
+## # … with 1,468 more rows, and 51 more variables: age_o65 &lt;dbl&gt;,
+## #   for_born &lt;dbl&gt;, white &lt;dbl&gt;, black &lt;dbl&gt;, asian &lt;dbl&gt;, hispanic &lt;dbl&gt;,
+## #   two_or_more &lt;dbl&gt;, eth_het &lt;dbl&gt;, med_house_income &lt;dbl&gt;,
+## #   pub_assist &lt;dbl&gt;, gini &lt;dbl&gt;, fam_pov_per &lt;dbl&gt;, unemp_rate &lt;dbl&gt;,
+## #   total_house_h &lt;dbl&gt;, fam_house_per &lt;dbl&gt;, fem_head_per &lt;dbl&gt;,
+## #   same_sex_coup_per &lt;dbl&gt;, grand_head_per &lt;dbl&gt;, less_than_hs &lt;dbl&gt;,
+## #   hs_grad &lt;dbl&gt;, some_coll &lt;dbl&gt;, bach &lt;dbl&gt;, master &lt;dbl&gt;, prof &lt;dbl&gt;,
+## #   doc &lt;dbl&gt;, commute_less10 &lt;dbl&gt;, commute1030 &lt;dbl&gt;, commute3060 &lt;dbl&gt;,
+## #   commute6090 &lt;dbl&gt;, commute_over90 &lt;dbl&gt;, by_auto &lt;dbl&gt;,
+## #   by_pub_trans &lt;dbl&gt;, by_bike &lt;dbl&gt;, by_walk &lt;dbl&gt;,
+## #   total_house_units &lt;dbl&gt;, vacant_unit_per &lt;dbl&gt;, renters_per &lt;dbl&gt;,
+## #   home_own_per &lt;dbl&gt;, med_gross_rent &lt;dbl&gt;, med_home_val &lt;dbl&gt;,
+## #   med_yr_built_raw &lt;dbl&gt;, med_yr_built &lt;chr&gt;, med_yr_moved_inraw &lt;dbl&gt;,
+## #   med_yr_rent_moved_in &lt;dbl&gt;, area_acres &lt;dbl&gt;, town_id &lt;dbl&gt;,
+## #   town &lt;chr&gt;, fips_stco &lt;dbl&gt;, county &lt;chr&gt;, area_acr_1 &lt;dbl&gt;,
+## #   m_atown &lt;chr&gt;</code></pre>
+<p>positive integers</p>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb43-1" data-line-number="1"><span class="kw">slice</span>(acs_raw)</a></code></pre></div>
+<pre><code>## # A tibble: 1,478 x 59
+##    ct_id_10 name  total_pop pop_den sex_ratio age_u18 age1834 age3564
+##       &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+##  1  2.50e10 Cens…      4585    333.     1.13    0.234   0.202   0.398
+##  2  2.50e10 Cens…      2165   1070.     1.32    0.181   0.151   0.461
+##  3  2.50e10 Cens…      6917   2113.     1.13    0.171   0.214   0.437
+##  4  2.50e10 Cens…      7278   1346.     1.12    0.203   0.227   0.436
+##  5  2.50e10 Cens…      5059   2894.     1.30    0.177   0.203   0.430
+##  6  2.50e10 Cens…      6632    472.     1.11    0.163   0.237   0.439
+##  7  2.50e10 Cens…      3259   8022.     1.25    0.191   0.326   0.380
+##  8  2.50e10 Cens…      2097   5191.     0.908   0.202   0.183   0.466
+##  9  2.50e10 Cens…      3098    239.     0.990   0.188   0.150   0.462
+## 10  2.50e10 Cens…      3982  17065.     1.19    0.244   0.286   0.342
+## # … with 1,468 more rows, and 51 more variables: age_o65 &lt;dbl&gt;,
+## #   for_born &lt;dbl&gt;, white &lt;dbl&gt;, black &lt;dbl&gt;, asian &lt;dbl&gt;, hispanic &lt;dbl&gt;,
+## #   two_or_more &lt;dbl&gt;, eth_het &lt;dbl&gt;, med_house_income &lt;dbl&gt;,
+## #   pub_assist &lt;dbl&gt;, gini &lt;dbl&gt;, fam_pov_per &lt;dbl&gt;, unemp_rate &lt;dbl&gt;,
+## #   total_house_h &lt;dbl&gt;, fam_house_per &lt;dbl&gt;, fem_head_per &lt;dbl&gt;,
+## #   same_sex_coup_per &lt;dbl&gt;, grand_head_per &lt;dbl&gt;, less_than_hs &lt;dbl&gt;,
+## #   hs_grad &lt;dbl&gt;, some_coll &lt;dbl&gt;, bach &lt;dbl&gt;, master &lt;dbl&gt;, prof &lt;dbl&gt;,
+## #   doc &lt;dbl&gt;, commute_less10 &lt;dbl&gt;, commute1030 &lt;dbl&gt;, commute3060 &lt;dbl&gt;,
+## #   commute6090 &lt;dbl&gt;, commute_over90 &lt;dbl&gt;, by_auto &lt;dbl&gt;,
+## #   by_pub_trans &lt;dbl&gt;, by_bike &lt;dbl&gt;, by_walk &lt;dbl&gt;,
+## #   total_house_units &lt;dbl&gt;, vacant_unit_per &lt;dbl&gt;, renters_per &lt;dbl&gt;,
+## #   home_own_per &lt;dbl&gt;, med_gross_rent &lt;dbl&gt;, med_home_val &lt;dbl&gt;,
+## #   med_yr_built_raw &lt;dbl&gt;, med_yr_built &lt;chr&gt;, med_yr_moved_inraw &lt;dbl&gt;,
+## #   med_yr_rent_moved_in &lt;dbl&gt;, area_acres &lt;dbl&gt;, town_id &lt;dbl&gt;,
+## #   town &lt;chr&gt;, fips_stco &lt;dbl&gt;, county &lt;chr&gt;, area_acr_1 &lt;dbl&gt;,
+## #   m_atown &lt;chr&gt;</code></pre>
+<p>the <code>n()</code> helper</p>
+<p>negative integers</p>
+</div>
+<div id="filter" class="section level2">
+<h2><span class="header-section-number">8.2</span> filter</h2>
 <ul>
 <li>logical operators</li>
-</ul></li>
 <li>mutate</li>
 </ul>
 <p><em>i need to introduce measures of central tendency and summar stats in between this</em></p>
@@ -146,6 +548,7 @@
 <li>summarizing</li>
 </ul>
 
+</div>
 </div>
             </section>
 
@@ -172,12 +575,11 @@ gitbook.start({
 "github": false,
 "facebook": true,
 "twitter": true,
-"google": false,
 "linkedin": false,
 "weibo": false,
 "instapaper": false,
 "vk": false,
-"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
 "theme": "white",
@@ -189,6 +591,10 @@ gitbook.start({
 "text": null
 },
 "history": {
+"link": null,
+"text": null
+},
+"view": {
 "link": null,
 "text": null
 },

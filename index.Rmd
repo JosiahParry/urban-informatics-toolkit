@@ -1,5 +1,6 @@
 --- 
-title: "Toolkit for the Urban Commons"
+title: "Urban Informatics Toolkit"
+description: "A hands on introduction approach to analyzing the urban Commons."
 author: "Josiah Parry"
 date: "`r Sys.Date()`"
 site: bookdown::gitbook
@@ -7,10 +8,35 @@ documentclass: book
 bibliography: [book.bib, packages.bib]
 biblio-style: apalike
 link-citations: yes
-description: ""
 ---
 
-# Project Description
+# Welcome
+
+Welcome to the Urban Informatics Toolkit! 
+This book will provide you with an introduction to some of the history of Urban Informatics as a field, important concepts in the field, and provide you with the skills required to jumpstart your own exploration of the urban commons.
+
+## What is Urban Informatics
+
+## What to expect
+
+- This book is partitioned into chapters where each goes over a small subset of skills that is important to know and a few case studies. 
+- the first half of the book will introduce you to the basic tools that you will need to know to become self-sufficient. From there on, we will work with case studies that also introduce new topics and further more advances skills
+- In Part II each chapter, with a few exceptions, will introduce you to a social phenomenon. We will ask a question, and use a relevant dataset to answer this question. While we work to approach each question, we will pause to learn about the tools that we are using, understand what they are doing and why. There will _always_ be a TL;DR for each chapter recapping what we covered, and links to further resources. 
+- technical chapters will be interspersed with non-techinical chapters.
+
+## Reminders
+
+Learning to program can be exceptionally difficult at times. It can be a roller coaster of emotions. It is expected that you will not understand everything the first go around. Do not get down on yourself. I encourage you to take breaks and not push yourself too hard. I understand you have deadlines, but sometimes it is better if you take a break, eat a healthy snack, go exercise, sleep, be social, etc and then come back. You will be much happier and your work will be even better and that I promise you! 
+
+Perhaps I am showing my cards a bit too much, but I have always found that with tough assignments it is better to go to bed early and finish them in the morning than it is to stay up exceptionally late. Moral of that story is, get some sleep and take care of yourself! I'll be sure to remind you from time to time.
+
+---------
+
+## Setting the Context: Big Data
+
+
+
+-----------
 
 The study of Urban Informatics is inherently intertwined with big data. Working with big data requires a set of skills that extends beyond quantitative and qualitative analysis expertise. Students need to know how to access, manipulate, analyze, communicate and share data artifacts. The intention of this practicum is to develop educational content to cultivate an expertise in data.
 
