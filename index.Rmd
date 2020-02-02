@@ -104,3 +104,8 @@ Text analysis
   * stop words
   * tokenization
 
+
+
+## Other notes 
+
+I will say _these data_ and _this data_ interchangably. I apologize for that. 

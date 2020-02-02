@@ -53,7 +53,7 @@ Central to the BARI approach to UI is the use of the generalized ecometric appro
 
 Broken windows 1980s Atlantic Article. Inductive approach. Positited that social disorder led to crime. This was adapted into public policy and led to the development of stop and frisk policies. These folks developed a theory, but didn’t evaluate it. 
 
-{bit about broken windows}
+{ bit about broken windows }
 
 > Different people have different interpretations of broken windows,”  Fisher said. “I think the original theory involved working with the community… [and] I think some departments, some other researchers or practitioners, took it as meaning zero tolerance. [They] didn’t involve the community, and they just decided they were going to arrest everyone for everything, but that wasn’t the intent of broken windows.” (https://thecisforcrank.com/2019/07/11/morning-crank-broken-windows-in-seattle-showbox-contract-suspended-and-more/)
 
