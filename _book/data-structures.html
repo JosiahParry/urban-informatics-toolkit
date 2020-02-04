@@ -24,7 +24,7 @@
 <meta name="author" content="Josiah Parry" />
 
 
-<meta name="date" content="2020-02-03" />
+<meta name="date" content="2020-02-04" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -159,16 +159,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.3" data-path="reading-data.html"><a href="reading-data.html#other-common-data-formats"><i class="fa fa-check"></i><b>5.3</b> Other common data formats</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="general-data-manipulation.html"><a href="general-data-manipulation.html"><i class="fa fa-check"></i><b>6</b> General data manipulation</a><ul>
-<li class="chapter" data-level="6.1" data-path="general-data-manipulation.html"><a href="general-data-manipulation.html#scenario"><i class="fa fa-check"></i><b>6.1</b> scenario:</a><ul>
-<li class="chapter" data-level="6.1.1" data-path="general-data-manipulation.html"><a href="general-data-manipulation.html#select-exercises"><i class="fa fa-check"></i><b>6.1.1</b> <code>select()</code> exercises</a></li>
+<li class="chapter" data-level="6.1" data-path="general-data-manipulation.html"><a href="general-data-manipulation.html#scenario"><i class="fa fa-check"></i><b>6.1</b> Scenario:</a></li>
+<li class="chapter" data-level="6.2" data-path="general-data-manipulation.html"><a href="general-data-manipulation.html#getting-physical-with-the-data"><i class="fa fa-check"></i><b>6.2</b> Getting physical with the data</a><ul>
+<li class="chapter" data-level="6.2.1" data-path="general-data-manipulation.html"><a href="general-data-manipulation.html#select-exercises"><i class="fa fa-check"></i><b>6.2.1</b> <code>select()</code> exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="6.2" data-path="general-data-manipulation.html"><a href="general-data-manipulation.html#selecting-rows"><i class="fa fa-check"></i><b>6.2</b> Selecting Rows</a></li>
-<li class="chapter" data-level="6.3" data-path="general-data-manipulation.html"><a href="general-data-manipulation.html#filter"><i class="fa fa-check"></i><b>6.3</b> filter</a><ul>
-<li class="chapter" data-level="6.3.1" data-path="general-data-manipulation.html"><a href="general-data-manipulation.html#scenario-1"><i class="fa fa-check"></i><b>6.3.1</b> scenario</a></li>
+<li class="chapter" data-level="6.3" data-path="general-data-manipulation.html"><a href="general-data-manipulation.html#selecting-rows"><i class="fa fa-check"></i><b>6.3</b> Selecting Rows</a></li>
+<li class="chapter" data-level="6.4" data-path="general-data-manipulation.html"><a href="general-data-manipulation.html#filter"><i class="fa fa-check"></i><b>6.4</b> filter</a><ul>
+<li class="chapter" data-level="6.4.1" data-path="general-data-manipulation.html"><a href="general-data-manipulation.html#scenario-1"><i class="fa fa-check"></i><b>6.4.1</b> scenario</a></li>
 </ul></li>
-<li class="chapter" data-level="6.4" data-path="general-data-manipulation.html"><a href="general-data-manipulation.html#mutate"><i class="fa fa-check"></i><b>6.4</b> mutate</a><ul>
-<li class="chapter" data-level="6.4.1" data-path="general-data-manipulation.html"><a href="general-data-manipulation.html#scenario-2"><i class="fa fa-check"></i><b>6.4.1</b> scenario</a></li>
+<li class="chapter" data-level="6.5" data-path="general-data-manipulation.html"><a href="general-data-manipulation.html#mutate"><i class="fa fa-check"></i><b>6.5</b> mutate</a><ul>
+<li class="chapter" data-level="6.5.1" data-path="general-data-manipulation.html"><a href="general-data-manipulation.html#scenario-2"><i class="fa fa-check"></i><b>6.5.1</b> scenario</a></li>
 </ul></li>
+<li class="chapter" data-level="6.6" data-path="general-data-manipulation.html"><a href="general-data-manipulation.html#asking-good-questions"><i class="fa fa-check"></i><b>6.6</b> asking good questions</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="visualizing-trends-and-relationships.html"><a href="visualizing-trends-and-relationships.html"><i class="fa fa-check"></i><b>7</b> Visualizing Trends and Relationships</a><ul>
 <li class="chapter" data-level="7.1" data-path="visualizing-trends-and-relationships.html"><a href="visualizing-trends-and-relationships.html#univariate-visualizations"><i class="fa fa-check"></i><b>7.1</b> Univariate visualizations</a><ul>
@@ -232,27 +234,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>What makes a vector a vector is that it can only be <strong>a single data type</strong> and that they are <em>one-dimensional</em>—opposed to tibbles which are two-dimensional. You may have noticed that every value of a column is of the same data type. This means that they are rather strict to work with and for good reason. Imagine you wanted to multiple a column by 10, what would happen if a few of the values in the column were actually written out as text? Let’s try exploring this idea.</p>
 <p>The most common way to create a vector in R is to use the <code>c()</code> function. This stands for <em>combine</em>. We can <code>c</code>ombine as many elements as we want into a single vector using <code>c()</code>. Each element of the vector is it’s own argument (separated by a comma).</p>
 <p>For example if we wanted to create a vector of <a href="https://data.bls.gov/timeseries/LAUMT257165000000003?amp%253bdata_tool=XGtable&amp;output_view=data&amp;include_graphs=true">Boston’s unemployment rate</a> rate for each month in 2019 that we have data for (until October as of this writing on 2019-12-18) we could write the below. We will save it in a a vector called <code>unemp</code>.</p>
-<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb51-1" data-line-number="1">unemp &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">3.2</span>, <span class="fl">2.8</span>, <span class="fl">2.8</span>, <span class="fl">2.4</span>, <span class="fl">2.8</span>, <span class="fl">2.9</span>, <span class="fl">2.7</span>, <span class="fl">2.6</span>, <span class="fl">2.7</span>, <span class="fl">2.3</span>)</a>
-<a class="sourceLine" id="cb51-2" data-line-number="2">unemp</a></code></pre></div>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb68-1" data-line-number="1">unemp &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">3.2</span>, <span class="fl">2.8</span>, <span class="fl">2.8</span>, <span class="fl">2.4</span>, <span class="fl">2.8</span>, <span class="fl">2.9</span>, <span class="fl">2.7</span>, <span class="fl">2.6</span>, <span class="fl">2.7</span>, <span class="fl">2.3</span>)</a>
+<a class="sourceLine" id="cb68-2" data-line-number="2">unemp</a></code></pre></div>
 <pre><code>##  [1] 3.2 2.8 2.8 2.4 2.8 2.9 2.7 2.6 2.7 2.3</code></pre>
 <p>What is really great about vectors is that we can perform any number of operations on them—i.e. find the sum of all the values, the average, add a value to each element, etc.</p>
 <p>If we wanted to find the average unemployment rate for Boston for Jan - Oct. 2019, we can supply the vector to the function <code>mean()</code>.</p>
-<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb53-1" data-line-number="1"><span class="kw">mean</span>(unemp)</a></code></pre></div>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb70-1" data-line-number="1"><span class="kw">mean</span>(unemp)</a></code></pre></div>
 <pre><code>## [1] 2.72</code></pre>
 <p>However, you may be thinking “there are 12 months in a year not 10 and that should be represented” and if you are, I totally agree with you. Since the data for November and December are missing, we should denote that and update <code>unemp</code> accordingly. R uses <code>NA</code> to represent missing data. To represent this we can append two <code>NA</code>s to the vector we have. There are two ways we can do this. We can either combine <code>unemp</code> with two <code>NA</code>s, or rewrite the above vector.</p>
-<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb55-1" data-line-number="1"><span class="co"># combining existing with 2 NAs</span></a>
-<a class="sourceLine" id="cb55-2" data-line-number="2"><span class="kw">c</span>(unemp, <span class="ot">NA</span>, <span class="ot">NA</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb72-1" data-line-number="1"><span class="co"># combining existing with 2 NAs</span></a>
+<a class="sourceLine" id="cb72-2" data-line-number="2"><span class="kw">c</span>(unemp, <span class="ot">NA</span>, <span class="ot">NA</span>)</a></code></pre></div>
 <pre><code>##  [1] 3.2 2.8 2.8 2.4 2.8 2.9 2.7 2.6 2.7 2.3  NA  NA</code></pre>
 <p>This works, but since we will be saving this to <code>unemp</code> again it is not best practices to use the variable you are changing in that objects assignment.</p>
-<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb57-1" data-line-number="1"><span class="co"># for example</span></a>
-<a class="sourceLine" id="cb57-2" data-line-number="2">unemp &lt;-<span class="st"> </span><span class="kw">c</span>(unemp, <span class="ot">NA</span>, <span class="ot">NA</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb74-1" data-line-number="1"><span class="co"># for example</span></a>
+<a class="sourceLine" id="cb74-2" data-line-number="2">unemp &lt;-<span class="st"> </span><span class="kw">c</span>(unemp, <span class="ot">NA</span>, <span class="ot">NA</span>)</a></code></pre></div>
 <p>The above is rather unclear and might confuse someone that will have to read your code at a later time—that person may even be you. For this reason we will redefine it.</p>
-<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb58-1" data-line-number="1">unemp &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">3.2</span>, <span class="fl">2.8</span>, <span class="fl">2.8</span>, <span class="fl">2.4</span>, <span class="fl">2.8</span>, <span class="fl">2.9</span>, <span class="fl">2.7</span>, <span class="fl">2.6</span>, <span class="fl">2.7</span>, <span class="fl">2.3</span>, <span class="ot">NA</span>, <span class="ot">NA</span>)</a>
-<a class="sourceLine" id="cb58-2" data-line-number="2">unemp</a></code></pre></div>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb75-1" data-line-number="1">unemp &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">3.2</span>, <span class="fl">2.8</span>, <span class="fl">2.8</span>, <span class="fl">2.4</span>, <span class="fl">2.8</span>, <span class="fl">2.9</span>, <span class="fl">2.7</span>, <span class="fl">2.6</span>, <span class="fl">2.7</span>, <span class="fl">2.3</span>, <span class="ot">NA</span>, <span class="ot">NA</span>)</a>
+<a class="sourceLine" id="cb75-2" data-line-number="2">unemp</a></code></pre></div>
 <pre><code>##  [1] 3.2 2.8 2.8 2.4 2.8 2.9 2.7 2.6 2.7 2.3  NA  NA</code></pre>
 <p>We know that there are 12 elements in this vector, but sometimes it is quite nice to sanity check oneself. We can always find out how long (or how many elements are in) a vector is by supplying the vector to the <code>length()</code> function.</p>
-<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb60-1" data-line-number="1"><span class="co"># how many observations are in `unemp`?</span></a>
-<a class="sourceLine" id="cb60-2" data-line-number="2"><span class="kw">length</span>(unemp)</a></code></pre></div>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb77-1" data-line-number="1"><span class="co"># how many observations are in `unemp`?</span></a>
+<a class="sourceLine" id="cb77-2" data-line-number="2"><span class="kw">length</span>(unemp)</a></code></pre></div>
 <pre><code>## [1] 12</code></pre>
 <div id="types-of-vectors" class="section level3">
 <h3><span class="header-section-number">8.1.1</span> Types of vectors</h3>
@@ -274,7 +276,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>lists are the most flexible object in R</li>
 <li>data frames are actually just lists disguised as rectangles</li>
 </ul>
-<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb62-1" data-line-number="1"><span class="kw">unclass</span>(<span class="kw">slice</span>(acs_edu, <span class="dv">1</span><span class="op">:</span><span class="dv">6</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb79-1" data-line-number="1"><span class="kw">unclass</span>(<span class="kw">slice</span>(acs_edu, <span class="dv">1</span><span class="op">:</span><span class="dv">6</span>))</a></code></pre></div>
 <pre><code>## $med_house_income
 ## [1] 105735  69625  70679  74528  52885  64100
 ## 

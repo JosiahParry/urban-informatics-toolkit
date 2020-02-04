@@ -116,6 +116,7 @@ ggplot(acs, aes(fam_house_per, age_u18)) +
 ```
 
 ### boxplot (1 continuous 1 categorical)
+
   - we can use boxplots to compare groups
   - for this, we set the categorical variable to the x aesthetic
   

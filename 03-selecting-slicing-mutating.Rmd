@@ -50,7 +50,7 @@ Wonderful! You've got the hang of reading data in which is truly no small feat. 
 Try printing out the `acs_raw` object in your console. 
 
 
-Oof, yikes, it's a bit messy! Not to mention that R did not even print out all of the columns. That's because it ran out of room. When we're working with wide data (many columns), it's generally best to view only a preview of the data. The function `glimpse()` can help us do just that. Provide `acs_raw` as the only argument to `glimpse()`.
+Oof, yikes. It's a bit messy! Not to mention that R did not even print out all of the columns. That's because it ran out of room. When we're working with wide data (many columns), it's generally best to view only a preview of the data. The function `glimpse()` can help us do just that. Provide `acs_raw` as the only argument to `glimpse()`.
 
 
 ```{r}
@@ -206,6 +206,7 @@ using the `name` column I can consider introducing string methods
 
 
 ------ 
+
 ##### old notes
 
 
