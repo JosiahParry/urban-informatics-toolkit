@@ -21,6 +21,5 @@ theme_bari <- function() {
   
 }
 
-bari_red <- "#8d0909"
 theme_set(theme_bari())
 

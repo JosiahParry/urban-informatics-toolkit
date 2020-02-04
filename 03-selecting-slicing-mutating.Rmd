@@ -1,32 +1,64 @@
 # General data manipulation
 
-You may have heard of the 80/20 rule—or at least one of the many 80/20 rules.
-Data scientists are often fond of emphasising that 80% of their work is data cleaning and the other 20% is analysis and modeling
-this is all to say that you will find yourself with messy, unsanitized, gross, not fun to look at data most of the time
-because of this, it's really important that we have the skills to clean our data 
-right now we're going to go over the foundational skills we will learn how to select columns and rows, filter data, and create new columns and variables
-we will be using functions from the package dplyr which is imported from the tidyverse
+Now that you have the ability to read in data, it is important that you get comfortable handling it. Some people call the process of rearranging, cleaning, and reshaping data massaging, plumbing, engineering, and myriad other names. Here, we will refer to this as data manipulation. This is a preferrable catch-all term that does not ilicit images of toilets or Phoebe Buffay (she was a masseuse!). 
 
-- recall how to load the tidyverse
-- we'll read in the `ACS_1317_TRACT.csv` file located in the `data` directory
-  - putting this together the file path is `data/ACS_1317_TRACT.csv`.
-  - store it in the variable `acs_raw`
+You may have heard of the 80/20 rule, or at least one of the many 80/20 rules. The 80/20 rule I'm referring to, is the idea that data scientists will spend 80% or more of their time cleaning and manipulating their data. The other 20% is the analysis part—creating statistics and models. I mention this because working with data is _mostly_ data manipulation and only _some_ statistics. Be prepared to get your hands dirty with data—euphamisms like this is probably why the phrase _data plumbing_ ever came about. 
 
-## scenario:
+In this chapter we will learn how to preview data, select columns, arrange rows, and filter rows. This is where we get hands on with our data. This is just about as physical as we will be able to get unless you want to open up the raw csv and edit the data there!
 
-a local non-profit is interested in learning about the demographic characteristics of the greater boston area. They are specifically interested to learn more about the relationship between the age, race, and economic status. They've come to you to provide them with the relevant data. you have acces to the annual BARI census data and you will curate the data for them. 
+#### CHECK THIS LATER
 
-They define the greater boston area as Suffolk, Middlesex, and Norfolk counties. 
+> Note: I do not recommend editing any csvs directly. That statement was in jest. We will cover the concept of reproducibility.
 
-before we go ahead and start cleaning this data, we need to learn the tools to do so. Please bear with me! 
-  
+
+This is all to say that you will find yourself with messy, unsanitized, gross, not fun to look at data most of the time. Because of this, it is really important that we have the skills to clean our data. Right now we're going to go over the foundational skills we will learn how to select columns and rows, filter data, and create new columns, and arrange our data. To do this, we will be using the [`dplyr`](https://dplyr.tidyverse.org) package from the tidyverse. 
+
+The data we read in in the last chapter was only a select few variables from the annual census data release that the team at the Boston Area Research Initiative (BARI) provides. These census indicators are used to provide a picture into the changing landscape of Boston and Massachussettes more gnerally. In this chapter we will work through a rather real life scenario that you may very well encounter using the BARI data. 
+
+## Scenario:
+
+A local non-profit is interested in the commuting behavior of Greater Boston residents. Your advisor suggested that you assist the non-profit in their work. You've just had coffee with the project manager to learn more about what their specific research question is. It seems that the extension of the Green Line is of great interest to them. They spoke at length about the history of the Big Dig and its impact on commuters working in the city. They look at their watch and realize they're about to miss the commuter train home. You shake their hand, thank them for their time (and the free coffee because you're a grad student), and affirm that you will email them in a week or so with some data for them to work with.
+
+https://www.mass.gov/green-line-extension-project-glx
+https://en.wikipedia.org/wiki/Big_Dig
+
+
+You're back at your apartment, french press next your laptop, though not too close, notes open, and ready to begin. You review your notes and realize, while you now have a rather good understanding of _what_ the Green Line Extensions is and the impact that the Big Dig had, you really have no idea what about commuting behavior in Greater Boston they are interested in. You realize you did not even confirm what constitutes the Greater Boston area. You push down the coffee grinds and pour your first cup of coffee. This will take at least two cups of coffee. 
+
+The above scenario sounds like something out of a stress dream. This is scenario that I have found myself in many times and I am sure that you will find yourself in at one point as well. The more comfortable you get with data analysis and asking good questions, the more guided and directed you can make these seemingly vague objectives. 
+
+> At the end of this chapter, we will expound upon ways to prevent this in the future.
+
+## Getting physical with the data 
+
+The data we used in both chapters one and two were curated from the [annual census indicator release](https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/XZXAUP) from BARI. This is the dataset from which `acs_edu` was created. We will use these data to provide relevant data relating to commuting in the Greater Boston Area.
+
+We will be using the tidyverse to read in and manipulate our data. Recall that we will load the tidyverse using `library(tidyverse)`. 
+
+> Refresher: the tidyverse is a collection of packages used for data analysis. When you load the tidyverse it loads `readr`, `ggplot2`, and `dplyr` for us, among other packages. For now, though, these are the only relevant packages. 
+
+* Load the tidyverse
+* Read in the file `ACS_1317_TRACT.csv` located in the `data` directory, store it in an object called `acs_raw`
 
 ```{r message=FALSE}
 library(tidyverse)
 acs_raw <- read_csv("data/ACS_1317_TRACT.csv")
+```
 
+Wonderful! You've got the hang of reading data in which is truly no small feat. Once we have the data accessible from R, it is important to get familiar with what the data are. This means we need to know _which_ variables are available to us and get a feel for what the values in those variables represent. 
+
+Try printing out the `acs_raw` object in your console. 
+
+
+Oof, yikes, it's a bit messy! Not to mention that R did not even print out all of the columns. That's because it ran out of room. When we're working with wide data (many columns), it's generally best to view only a preview of the data. The function `glimpse()` can help us do just that. Provide `acs_raw` as the only argument to `glimpse()`.
+
+
+```{r}
 glimpse(acs_raw)
 ```
+
+Much better, right? It is frankly still a lot of text, but the way it is presented is extremely helpful. Each variable is written followed by its data type—i.e. `<dbl>`—and then a preview of values in that column. If the `<dbl>` does not make sense yet, do not worry. We will go over data types in depth later. It's just not the fun part and I think it is important we have fun! 
+
 
 This is the dataset from which `acs_edu` was created. We will work to create the same dataset. For a refresher the columns were: "med_house_income, less_than_hs, hs_grad, some_coll, bach, white, and black.
 
@@ -50,9 +82,12 @@ to do so we use the function `select()`. Look at the help documentation by runni
   2. write the position of the column—i.e. i want the first column would be `select(.data, 1)`
   3. There are also a number of _select helpers_ of which we will go over a few
 - one behavior that you should notice is that select will _always_ return a tibble, even if we don't sepcify any columns to select
+
+### `select()` exercises
+
 - try using the select function on `acs_raw` without passing any column specifications to `...`
 
-```{r}
+```{r eval=FALSE}
 select(acs_raw)
 ```
 
@@ -129,12 +164,30 @@ the `n()` helper
 
 negative integers
 
-
 ## filter
 
 
-  - logical operators
-- mutate
+- logical operators
+
+### scenario
+
+- we have now selected the columns we need to provide
+
+## mutate
+
+### scenario
+
+- The non-profit has emailed you back and indicated that they want to report on the income quintiles and requested that you do this for them. You're a rockstar and a kickass programmer so you're like, hell yah. 
+- they also ask for:
+  - tract
+  - a combined measure of bach masters and doctoral
+  
+```{r}
+
+acs %>% 
+  mutate(hh_inc_quin = ntile(med_house_income, 5))
+
+```
 
 _i need to introduce measures of central tendency and summar stats in between this_
 
@@ -144,3 +197,28 @@ _i need to introduce measures of central tendency and summar stats in between th
 
 using the `name` column I can consider introducing string methods
   - this would probably be better done with text reviews or something
+  
+  
+
+## asking good questions 
+
+
+
+
+------ 
+##### old notes
+
+
+They define the greater boston area as Suffolk, Middlesex, and Norfolk counties. 
+
+before we go ahead and start cleaning this data, we need to learn the tools to do so. Please bear with me! 
+  
+  
+  - recall how to load the tidyverse
+- we'll read in the `ACS_1317_TRACT.csv` file located in the `data` directory
+  - putting this together the file path is `data/ACS_1317_TRACT.csv`.
+  - store it in the variable `acs_raw`
+
+
+To learn these tools we will work with a role-play / workthrough. 
+a local non-profit is interested in learning about the demographic characteristics of the greater boston area. They are specifically interested to learn more about the relationship between the age, race, and economic status. They've come to you to provide them with the relevant data. you have acces to the annual BARI census data and you will curate the data for them. 

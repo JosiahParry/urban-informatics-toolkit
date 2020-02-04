@@ -1,3 +1,5 @@
+# Data Structures 
+
 There is a topic I have been skirting around for some time now and I think it is time that we have to have a rather important conversation. It's one that is almost never fun but is quite necessary because without it, there may be many painful lessons learned in the future. We're going to spend this next chapter talking about data structures—but not all of them! We'll only cover the three most common and, by the end of this, it is my hope you will have a much stronger idea of _what_ you are working with and _why_ it behaves the way it does. 
 
 We will cover vectors, data frames rather briefly, and lists. We'll talk about some of their defining characteristics and how we can interact with them. Often the theory behind these object types are ommitted, but I am of the mind that learning this early on will pay off in dividends. Take a deep breath before we dive in and remind yourself that it ain't nothin' but a thing.
