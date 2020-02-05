@@ -10,6 +10,12 @@ biblio-style: apalike
 link-citations: yes
 ---
 
+
+```{r}
+knitr::opts_chunk$set(max.print = 20)
+```
+
+
 # Welcome
 
 Welcome to the Urban Informatics Toolkit! 

@@ -267,7 +267,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>we have a data frame loaded
 this is very similar to a table in excel
 each column is a variable</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">acs_edu</a></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">acs_edu</a></code></pre></div>
 <table class="huxtable" style="border-collapse: collapse; margin-bottom: 2em; margin-top: 2em; width: 100%; margin-left: 0%; margin-right: auto;  ">
 <col><col><col><col><col><col><col><tr>
 <td style="vertical-align: top; text-align: right; white-space: nowrap; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0.4pt; padding: 4pt 4pt 4pt 4pt; font-weight: bold;">med_house_income</td>
@@ -13387,14 +13387,14 @@ each column is a variable</p>
 <p>we can visualize the relationship to get a better understanding. we can look at income and college grad rates</p>
 <p>start building a visualization with <code>ggplot()</code> <strong>function</strong> with the <code>acs_edu</code> <strong>object</strong>.
 Functions are characterised by the parentheses at the end of them. Functions do things. Objects hold information.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw">ggplot</span>(acs_edu)</a></code></pre></div>
-<p><img src="urban-commons-toolkit_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw">ggplot</span>(acs_edu)</a></code></pre></div>
+<p><img src="urban-commons-toolkit_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
 <p>we add to this plot
 determine what we want to plot with the aesthetics <code>aes()</code> function inside of the ggplot().
 want to specify x and y. These are called arguments. To set argument we use the <code>=</code> sign.
 set <code>x</code> to <code>bach</code> and <code>y</code> to <code>med_house_income</code></p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw">ggplot</span>(acs_edu, <span class="kw">aes</span>(<span class="dt">x =</span> bach, <span class="dt">y =</span> med_house_income))</a></code></pre></div>
-<p><img src="urban-commons-toolkit_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw">ggplot</span>(acs_edu, <span class="kw">aes</span>(<span class="dt">x =</span> bach, <span class="dt">y =</span> med_house_income))</a></code></pre></div>
+<p><img src="urban-commons-toolkit_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
 <ul>
 <li>notice how the plot is being filled a bit more?</li>
 <li>now we need to specify what type of plot we will be creating.</li>
@@ -13405,9 +13405,9 @@ set <code>x</code> to <code>bach</code> and <code>y</code> to <code>med_house_in
 <li>to add points to the graph we use <code>geom_point()</code>, remember, we are <em>adding</em> a layer so we use the plus sign</li>
 <li>for legibility we add each new layer on a new line. R will indent for you. Good style is important. We’ll get into this later</li>
 </ul>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw">ggplot</span>(acs_edu, <span class="kw">aes</span>(<span class="dt">x =</span> bach, <span class="dt">y =</span> med_house_income)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb6-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>()</a></code></pre></div>
-<p><img src="urban-commons-toolkit_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw">ggplot</span>(acs_edu, <span class="kw">aes</span>(<span class="dt">x =</span> bach, <span class="dt">y =</span> med_house_income)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb7-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>()</a></code></pre></div>
+<p><img src="urban-commons-toolkit_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
 <ul>
 <li>notice that there is a positive linear trend.</li>
 <li>lets break that down:
@@ -13435,12 +13435,12 @@ set <code>x</code> to <code>bach</code> and <code>y</code> to <code>med_house_in
 </ul></li>
 <li>note that for each argument I have a new line. again, this helps with legibility</li>
 </ul>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw">ggplot</span>(acs_edu, <span class="kw">aes</span>(<span class="dt">x =</span> bach, <span class="dt">y =</span> med_house_income)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb7-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb7-3" data-line-number="3"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;% of population with a Bachelor&#39;s Degree&quot;</span>,</a>
-<a class="sourceLine" id="cb7-4" data-line-number="4">       <span class="dt">y =</span> <span class="st">&quot;Median Household Income&quot;</span>,</a>
-<a class="sourceLine" id="cb7-5" data-line-number="5">       <span class="dt">title =</span> <span class="st">&quot;Relationship between Education and Income&quot;</span>)</a></code></pre></div>
-<p><img src="urban-commons-toolkit_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="kw">ggplot</span>(acs_edu, <span class="kw">aes</span>(<span class="dt">x =</span> bach, <span class="dt">y =</span> med_house_income)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb8-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb8-3" data-line-number="3"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;% of population with a Bachelor&#39;s Degree&quot;</span>,</a>
+<a class="sourceLine" id="cb8-4" data-line-number="4">       <span class="dt">y =</span> <span class="st">&quot;Median Household Income&quot;</span>,</a>
+<a class="sourceLine" id="cb8-5" data-line-number="5">       <span class="dt">title =</span> <span class="st">&quot;Relationship between Education and Income&quot;</span>)</a></code></pre></div>
+<p><img src="urban-commons-toolkit_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
 <ul>
 <li>what can we determine from this graph?</li>
 <li>in the sociology literature there is a lot about the education gap between white and black folks</li>
@@ -13451,13 +13451,13 @@ set <code>x</code> to <code>bach</code> and <code>y</code> to <code>med_house_in
 <li>set the <code>color</code> argument to the <code>white</code> column</li>
 <li>while we’re at it, we can add a subtitle to inform that we’re also coloring by % white</li>
 </ul>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="kw">ggplot</span>(acs_edu, <span class="kw">aes</span>(<span class="dt">x =</span> bach, <span class="dt">y =</span> med_house_income, <span class="dt">color =</span> white)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb8-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb8-3" data-line-number="3"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;% of population with a Bachelor&#39;s Degree&quot;</span>,</a>
-<a class="sourceLine" id="cb8-4" data-line-number="4">       <span class="dt">y =</span> <span class="st">&quot;Median Household Income&quot;</span>,</a>
-<a class="sourceLine" id="cb8-5" data-line-number="5">       <span class="dt">title =</span> <span class="st">&quot;Relationship between Education and Income&quot;</span>,</a>
-<a class="sourceLine" id="cb8-6" data-line-number="6">       <span class="dt">subtitle =</span> <span class="st">&quot;Colored by whiteness&quot;</span>) </a></code></pre></div>
-<p><img src="urban-commons-toolkit_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="kw">ggplot</span>(acs_edu, <span class="kw">aes</span>(<span class="dt">x =</span> bach, <span class="dt">y =</span> med_house_income, <span class="dt">color =</span> white)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb9-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb9-3" data-line-number="3"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;% of population with a Bachelor&#39;s Degree&quot;</span>,</a>
+<a class="sourceLine" id="cb9-4" data-line-number="4">       <span class="dt">y =</span> <span class="st">&quot;Median Household Income&quot;</span>,</a>
+<a class="sourceLine" id="cb9-5" data-line-number="5">       <span class="dt">title =</span> <span class="st">&quot;Relationship between Education and Income&quot;</span>,</a>
+<a class="sourceLine" id="cb9-6" data-line-number="6">       <span class="dt">subtitle =</span> <span class="st">&quot;Colored by whiteness&quot;</span>) </a></code></pre></div>
+<p><img src="urban-commons-toolkit_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
 <ul>
 <li>what can we conclude now?</li>
 </ul>
