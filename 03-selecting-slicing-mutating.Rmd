@@ -33,9 +33,12 @@ The above scenario sounds like something out of a stress dream. This is scenario
 
 The data we used in both chapters one and two were curated from the [annual census indicator release](https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/XZXAUP) from BARI. This is the dataset from which `acs_edu` was created. We will use these data to provide relevant data relating to commuting in the Greater Boston Area.
 
-We will be using the tidyverse to read in and manipulate our data. Recall that we will load the tidyverse using `library(tidyverse)`. 
+To do so, we will be using the tidyverse to read in and manipulate our data (as we did last chapter). Recall that we will load the tidyverse using `library(tidyverse)`. 
 
 > Refresher: the tidyverse is a collection of packages used for data analysis. When you load the tidyverse it loads `readr`, `ggplot2`, and `dplyr` for us, among other packages. For now, though, these are the only relevant packages. 
+
+
+**Try it:**
 
 * Load the tidyverse
 * Read in the file `ACS_1317_TRACT.csv` located in the `data` directory, store it in an object called `acs_raw`
@@ -49,23 +52,79 @@ Wonderful! You've got the hang of reading data in which is truly no small feat. 
 
 Try printing out the `acs_raw` object in your console. 
 
+```{r, eval=FALSE}
+acs_raw
+```
 
-Oof, yikes. It's a bit messy! Not to mention that R did not even print out all of the columns. That's because it ran out of room. When we're working with wide data (many columns), it's generally best to view only a preview of the data. The function `glimpse()` can help us do just that. Provide `acs_raw` as the only argument to `glimpse()`.
+
+Oof, yikes. It's a bit messy! Not to mention that R did not even print out all of the columns. That's because it ran out of room. When we're working with wide data (many columns), it's generally best to view only a preview of the data. The function `dplyr::glimpse()` can help us do just that. Provide `acs_raw` as the only argument to `glimpse()`.
 
 
 ```{r}
 glimpse(acs_raw)
 ```
 
-Much better, right? It is frankly still a lot of text, but the way it is presented is extremely helpful. Each variable is written followed by its data type—i.e. `<dbl>`—and then a preview of values in that column. If the `<dbl>` does not make sense yet, do not worry. We will go over data types in depth later. It's just not the fun part and I think it is important we have fun! 
+Much better, right? It is frankly still a lot of text, but the way it is presented is rather useful. Each variable is written followed by its data type, i.e. `<dbl>`, and then a preview of values in that column. If the `<dbl>` does not make sense yet, do not worry. We will go over data types in depth later. Data types are not the most fun and I think it is important we have fun! 
 
+`acs_raw` is the dataset from which `acs_edu` was created. As you can see, there are many, many, _many_ different variables that the ACS data provide us with. These are only the tip of the iceberg. 
 
-This is the dataset from which `acs_edu` was created. We will work to create the same dataset. For a refresher the columns were: "med_house_income, less_than_hs, hs_grad, some_coll, bach, white, and black.
+**Pause**
 
-```{r message=FALSE}
-glimpse(read_csv("data/acs_edu.csv"))
+Now have a think. 
+
+Looking at the preview of these data, which columns do you think will be most useful to the non-profit for understanding commuter behavior?
+
+> Note: "all of them" is not always the best answer. By providing too much data one may moved to inaction because they now determine what variables are the most useful and how to use them. HAVE SOURCES ON PARADOX OF CHOICE AND INFORMATION OVERLOAD.
+
+If you spotted the columns `r glue::glue_collapse(names(select(acs_raw, contains("commute"))), sep = ", ", last = ", and ")`, your eyes and intuition have served you well! These variables tell us about what proportion of the sampled population in a given census tract have commute times that fall within the indicated duration range, i.e. 30-60.
+
+> PERSONAL NOTE: USE COMMUTE VARIABLES FOR PIVOTING AND THEN SEPARATING INTO NEW VARS
+
+### `select()`ing
+
+So now we have an intuition of the most important variables, but the next problem soon arises: how do we isolate just these variables? Whenever you find yourself needing to select or deselect columns from a tibble `dplyr::select()` will be the main function that you will go to. 
+
+**What does it do?**: `select()` selects variables from a tibble and always returns another tibble. 
+
+Before we work through how to use `select()`, refer to the help documentation and see if you can get somewhat of an intuition by typing `?select()` into the console. Once you press enter the documentation page should pop up in RStudio. 
+
+There are a few reasons why I am directing you towards the function documentation.
+
+1. To get you comfortable with navigating the RStudio IDE
+2. Expose you to the R vocabulary
+3. Soon you'll be too advanced for this book and will have to figure out the way functions work on your own! 
+
+Perhaps the help documentation was a little overwhelming and absolutely confusing. That's okay. It's just an exposure! With each exposure things will make more sense. Let's tackle these arguments one by one. 
+
+> `.data`: A tbl. All main verbs are S3 generics and provide methods for tbl_df(), dtplyr::tbl_dt() and dbplyr::tbl_dbi().
+
+What I want you to take away from this argument definition is `a tbl`. Whenever you read `tbl` think to your self "oh, that is just a `tibble`." If you recall, when we read rectangular data with `readr::read_csv()` or any other `readr::read_*()` function we will end up with a tibble. To verify that this is the case, we can double check our objects using the function `is.tbl()`. This function takes an object and returns a logical value (`TRUE` or `FALSE`) if the statement is true. Let's double check that `acs_raw` is infact a tbl.
+
+```{r}
+is.tbl(acs_raw)
 ```
 
+We can read the above as if we are asking R the question "is this object a `tbl`?" The resultant output of `is.tbl(acs_raw)` is `TRUE`. Now we can be doubly confident that this object can be used with `select()`. 
+
+The second argument to `select()` is a little bit more difficult to grasp, so don't feel discouraged if this isn't clicking right away. There is _a lot_ written in this argument definition and I feel that not all of it is necessary to understand from the get go. 
+
+> `...`: 	One or more unquoted expressions separated by commas. You can treat variable names like they are positions, so you can use expressions like x:y to select ranges of variables.
+
+`...`, referred to as "dots" means that we can pass any number of arguments to the function. Translating "one or more unquoted expressions separated by commas" into regular person speak reiterates that there can be multiple other arguments passed into `select()`. "Unquoted expressions" means that if we want to select a column we do not put that column name in quotes. 
+
+"You can treat variable names like they are positions" translates to "if you want the first column you can write the number `1` etc." and because of this, if you want the first through tenth variable you can pass `1:10` as an argument to `...`.
+
+The most important thing about `...` is that we **do not** assign `...` as an argument, i.e. `... = column_a`.
+
+As always, this makes more sense once we see it in practice. We will now go over the many ways in which we can select columns using `select()`. Once we have gotten the hang of selecting columns we will return back to assisting our non-profit.
+
+We will go over: 
+
+- selecting by name
+- selecting by position
+- select helpers
+
+-------
 
 to do so we use the function `select()`. Look at the help documentation by running `?select()` inside of the console. What are the arguments?
 - `.data` and `...`. We'll tackle this one by one.
@@ -201,6 +260,9 @@ using the `name` column I can consider introducing string methods
   
 
 ## asking good questions 
+
+## writing data lol
+
 
 
 
