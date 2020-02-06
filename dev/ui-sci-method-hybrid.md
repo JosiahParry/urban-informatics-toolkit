@@ -20,7 +20,7 @@ Diagram
 
 Urban Informatics is a rather interesting field. It is the product of modernization and discipline integration. There are two very different ways of developing and applying theory. Historically much of Urban Studies have been deductive where phenomenon are observed and theories are developed to explain those. We then have been turning to data to confirm these theories. 
 
-As the amount o data available to us is increasing, we are able, and perhaps even encouraged, to take a much more hybrid approach. Huge amounts of data is a rather enormous opportunity to explore and glean patterns that may have been too subtle to observe naturally or find more obscure or niche patterns. This allows us to take a much more inductive approach where we have been able to craft theories from patterns
+As the amount of data available to us is increasing, we are able, and perhaps even encouraged, to take a much more hybrid approach. Huge amounts of data is a rather enormous opportunity to explore and glean patterns that may have been too subtle to observe naturally or find more obscure or niche patterns. This allows us to take a much more inductive approach where we have been able to craft theories from patterns
 
 ---
 edited 2019-12-20
@@ -57,18 +57,15 @@ Broken windows 1980s Atlantic Article. Inductive approach. Positited that social
 
 > Different people have different interpretations of broken windows,”  Fisher said. “I think the original theory involved working with the community… [and] I think some departments, some other researchers or practitioners, took it as meaning zero tolerance. [They] didn’t involve the community, and they just decided they were going to arrest everyone for everything, but that wasn’t the intent of broken windows.” (https://thecisforcrank.com/2019/07/11/morning-crank-broken-windows-in-seattle-showbox-contract-suspended-and-more/)
 
+
+#### Random general notes 
+
 Intent vs impact is a big big deal. We need to be aware of this often. 
 
-{systematic social observation and the use of ecometrics to measure disorder and take a deductive approach to the broken windows theory to evaluate it
-this is important because it crushes it. This also illustrates how propagating untested theoris is bad. We should caution ourselr and learn from it.}
-
-
-
+systematic social observation and the use of ecometrics to measure disorder and take a deductive approach to the broken windows theory to evaluate it. this is important because it crushes it. This also illustrates how propagating untested theoris is bad. We should caution ourselr and learn from it.
 
 Example: broken windows theory. Systematic social observation 
 
-
-----
 
 - define inductive
 - systematic observation 
@@ -92,7 +89,6 @@ https://www.nydailynews.com/opinion/ny-oped-break-the-broken-windows-spell-20190
 https://www.npr.org/2016/11/01/500104506/broken-windows-policing-and-the-origins-of-stop-and-frisk-and-how-it-went-wrong
 
 
--------
 
 ## data exploration process
 

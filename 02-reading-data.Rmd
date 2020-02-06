@@ -1,5 +1,11 @@
 # Reading data
 
+
+```{r, include=FALSE}
+source("common.R")
+```
+
+
 We spent the last chapter performing our first exploratory visual analysis. From our visualizations we were able to inductively conlcude that as both median household income and the proportion of the population with a bachelors degree increases, so does the share of the population is white. This is a finding we will work to address empirically at a later point.
 
 While we were able to make wonderful visualizations, we did skip a number of steps in the exploratory analysis process! Arguably most importantly we skipped the importing of our datasets. The ACS dataset was already loaded into R for you. This almost always will not be the case. As such, we're going to spend this chapter learning about some of the common data formats that you will often work with. 
@@ -66,7 +72,7 @@ For those of you who weren't able to figure it out or just too impatient (like m
 
 Now, read the `acs_edu.csv` file!
 
-```{r}
+```{r max.print=10}
 read_csv(file = "data/acs_edu.csv") 
 ```
 
@@ -85,7 +91,7 @@ acs <- read_csv(file = "data/acs_edu.csv")
 
 Notice how now there was no data printed in the console. This is a good sign! It means that R read the data and stored it properly into the `acs` object. When we don't store the function results, the results are (usually) printed out. To print an object, we can just type it's name into the console. 
 
-```{r}
+```{r max.print=10}
 acs
 ```
 

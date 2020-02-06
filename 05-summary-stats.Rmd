@@ -1,5 +1,11 @@
 # Summary statistics 
 
+```{r, include=FALSE}
+source("common.R")
+```
+
+
+
 - what is a summary stat?
 - measures of central tendency
 - measures of spread

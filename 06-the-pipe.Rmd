@@ -1,5 +1,11 @@
 # The pipe ` %>% ` 
 
+```{r, include=FALSE}
+source("common.R")
+```
+
+
+
 - previously we have been working with one function at a time.
 - it will become necessary to perform one function after another
 - one way we could go about this is to write over the eisting object multiple times with an assignment `<-` 

@@ -1,0 +1,68 @@
+# Broken Windows and the origin of Ecometrics
+
+
+```{r, include=FALSE}
+#source("common.R")
+```
+
+To Cover:
+
+- sampson & raudenbush systematic social observation: https://www.journals.uchicago.edu/doi/abs/10.1086/210356
+- ecometrics: where was this first coined for the social sciences????
+- 
+
+-----
+
+- 1980 "Broken Windows" in the Atlantic
+- Posited that the presence of physical disorder led to crime
+- this influenced policing policies like stop and frisk
+  - led to the infamous implementation of [CompStat](https://nymag.com/intelligencer/2018/03/the-crime-fighting-program-that-changed-new-york-forever.html)
+- the simplicity of the theory was appealing to public officials. media lapped it up
+- social scientists were quick to shoot down the theory, seemed to not matter
+- come 1999 Sampson and Raudenbush seek to test this find no conclusion
+- much more work comes from it
+- most noteably is the use of ecometrics in assessing this. I say most noteably because of its approach
+  - it combines an inductive approach with a deductive one.
+  - this is the quintessence of the Boston approach, of course it comes from Dan O'Brien.
+    - why?:
+      1. big data (actually big-ish which is rare in social science)
+      2. The development and use of ecometrics (induction)
+      3. deliberately testing an existing theory (deduction)
+      4. Absolutely crushing it.
+- what is an ecometric?
+  - why is it inductive?
+    - taking naturally occuring data, and extracting latent (already existing variables)
+    - 
+
+
+> Note: a case study should be recreating these ecometrics
+
+Explore what the data description from BARI looks like
+
+```{r}
+library(tidyverse)
+ecometrics <- readr::read_csv("data/911/911-ecometrics-2014-19.csv") %>% 
+  janitor::clean_names()
+
+glimpse(ecometrics)
+```
+
+Check out 
+
+```{r}
+raw_911 <- read_csv("data/911/911-raw.csv", n_max = 5000) %>% 
+  janitor::clean_names()
+```
+
+```{r rows.max=20}
+raw_911 %>% 
+  filter(str_detect(offense_description, coll("battery", T)))
+```
+
+
+
+
+### Resources:
+
+- https://www.annualreviews.org/doi/abs/10.1146/annurev-criminol-011518-024638?journalCode=criminol
+- Large-scale data use, ecometrics to assess disorder: https://journals.sagepub.com/doi/abs/10.1177/0022427815577835

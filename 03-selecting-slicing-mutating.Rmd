@@ -1,5 +1,11 @@
 # General data manipulation
 
+
+```{r, include=FALSE}
+source("common.R")
+```
+
+
 Now that you have the ability to read in data, it is important that you get comfortable handling it. Some people call the process of rearranging, cleaning, and reshaping data massaging, plumbing, engineering, and myriad other names. Here, we will refer to this as data manipulation. This is a preferrable catch-all term that does not ilicit images of toilets or Phoebe Buffay (she was a masseuse!). 
 
 You may have heard of the 80/20 rule, or at least one of the many 80/20 rules. The 80/20 rule I'm referring to, is the idea that data scientists will spend 80% or more of their time cleaning and manipulating their data. The other 20% is the analysis part—creating statistics and models. I mention this because working with data is _mostly_ data manipulation and only _some_ statistics. Be prepared to get your hands dirty with data—euphamisms like this is probably why the phrase _data plumbing_ ever came about. 
@@ -152,7 +158,7 @@ select(acs_raw)
 
 - select the median house hold income column (`med_house_income`)
 
-```{r}
+```{r max.print=10}
 select(acs_raw, med_house_income)
 ```
 
@@ -160,14 +166,14 @@ select(acs_raw, med_house_income)
 - as the documentation notes we can select a range of columns using `col_x:col_y`
 - select the columns relating to education from less than high school to doctoral
 
-```{r}
+```{r max.print=10}
 select(acs_raw, less_than_hs:doc)
 ```
 
 - though you will likely not use it too often, it's still important to be comfortable with column index (position) selecting
 - select the 1st, 5th, and 10th columns
 
-```{r}
+```{r max.print=10}
 select(acs_raw, 1, 5, 10)
 ```
 
@@ -177,14 +183,14 @@ select(acs_raw, 1, 5, 10)
 - `starts_with()`: a string to search that columns start with
   - find all columns that start with `"med"`
 
-```{r}
+```{r max.print=10}
 select(acs_raw, starts_with("med"))
 ```
 
 - `ends_with()`: a string to search that columns end with
   - select columns that end with `"per"`
 
-```{r}
+```{r max.print=10}
 select(acs_raw, ends_with("per"))
 ```
 
@@ -192,7 +198,7 @@ select(acs_raw, ends_with("per"))
   - the string that we are searching for can be at any position
   - find any column that contains the string `"yr"`
 
-```{r}
+```{r max.print=10}
 select(acs_raw, contains("yr"))
 ```
 
@@ -200,7 +206,7 @@ select(acs_raw, contains("yr"))
   - takes no arguments
   - select the town, county, then everything else
 
-```{r}
+```{r max.print=10}
 select(acs_raw, town, county, everything())
 ```
 
@@ -209,13 +215,13 @@ select(acs_raw, town, county, everything())
 like we can select columns we can also select rows. however rows do not have names. we select the rows based on position
 unlike select, if we do not specify any arguments to `...` it will return the entire data frame
 
-```{r}
+```{r max.print=10}
 slice(acs_raw)
 ```
 
 positive integers
 
-```{r}
+```{r max.print=10}
 slice(acs_raw)
 ```
 
@@ -241,7 +247,7 @@ negative integers
   - tract
   - a combined measure of bach masters and doctoral
   
-```{r}
+```{r max.print=10}
 
 acs %>% 
   mutate(hh_inc_quin = ntile(med_house_income, 5))

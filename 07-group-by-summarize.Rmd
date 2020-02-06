@@ -1,5 +1,11 @@
 # summarizing the tidy way
 
+```{r, include=FALSE}
+source("common.R")
+```
+
+
+
 - summarising data sets
 - group_by()
 - summarize()

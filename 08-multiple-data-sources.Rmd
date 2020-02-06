@@ -1,4 +1,10 @@
-# joining data
+# I have two datasets, what now?
+
+```{r, include=FALSE}
+source("common.R")
+```
+
+
 
 - multiple data sets
 - what is a join?

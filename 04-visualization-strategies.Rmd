@@ -1,5 +1,10 @@
 # Visualizing Trends and Relationships
 
+```{r, include=FALSE}
+source("common.R")
+```
+
+
 
 ```{r}
 library(tidyverse)

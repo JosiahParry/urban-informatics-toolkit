@@ -1,4 +1,10 @@
-# 01 - Visual Analysis 
+# Visual Analysis 
+
+
+```{r, include=FALSE}
+source("common.R")
+```
+
 
 ## Exploratory analysis 
 
@@ -35,7 +41,7 @@ we have a data frame loaded
 this is very similar to a table in excel
 each column is a variable
 
-```{r}
+```{r max.print=10}
 acs_edu
 ```
 
