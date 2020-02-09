@@ -139,7 +139,8 @@ outline
 - install the tidyverse
 - the tidyverse is a collection of packages that make data analysis and cleaning and everythingg else a lot easier
 
-```{r eval=FALSE}
+
+```r
 install.packages("tidyverse")
 ```
 
@@ -154,7 +155,8 @@ install.packages("tidyverse")
 
 - this one line of code will install the packages that we need to do this work. Don't be too concerned about _what_ a package is. We will go over this in more detail later. Very simply, a package is a collection of functions that make certain things possible or easier to do in R. We like to use packages because reinventing the wheel is never fun.
 
-```{r, eval = FALSE}
+
+```r
 install.packages("tidyverse")
 ```
 

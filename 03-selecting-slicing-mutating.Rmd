@@ -215,7 +215,7 @@ Try it:
 select(acs_raw, 6:9)
 ```
 
-```{r}
+```{r max.print=10}
 select(acs_raw, 9:6)
 ```
 
@@ -344,7 +344,7 @@ negative integers
   
 ```{r max.print=10}
 
-acs %>% 
+acs_raw %>% 
   mutate(hh_inc_quin = ntile(med_house_income, 5))
 
 ```

@@ -1,36 +1,6 @@
-# Broken Windows and the origin of Ecometrics
+# Creating Ecometrics
 
 
-
-
-To Cover:
-
-- sampson & raudenbush systematic social observation: https://www.journals.uchicago.edu/doi/abs/10.1086/210356
-- ecometrics: where was this first coined for the social sciences????
-- 
-
------
-
-- 1980 "Broken Windows" in the Atlantic
-- Posited that the presence of physical disorder led to crime
-- this influenced policing policies like stop and frisk
-  - led to the infamous implementation of [CompStat](https://nymag.com/intelligencer/2018/03/the-crime-fighting-program-that-changed-new-york-forever.html)
-- the simplicity of the theory was appealing to public officials. media lapped it up
-- social scientists were quick to shoot down the theory, seemed to not matter
-- come 1999 Sampson and Raudenbush seek to test this find no conclusion
-- much more work comes from it
-- most noteably is the use of ecometrics in assessing this. I say most noteably because of its approach
-  - it combines an inductive approach with a deductive one.
-  - this is the quintessence of the Boston approach, of course it comes from Dan O'Brien.
-    - why?:
-      1. big data (actually big-ish which is rare in social science)
-      2. The development and use of ecometrics (induction)
-      3. deliberately testing an existing theory (deduction)
-      4. Absolutely crushing it.
-- what is an ecometric?
-  - why is it inductive?
-    - taking naturally occuring data, and extracting latent (already existing variables)
-    - 
 
 
 > Note: a case study should be recreating these ecometrics
@@ -89,11 +59,11 @@ glimpse(ecometrics)
 ## $ last_yr          <dbl> 2019, 2018, 2019, 2019, 2019, 2019, 2019, 2019,…
 ```
 
-Check out 
+Check out the offense descriptions
 
 
 ```r
-raw_911 <- read_csv("data/911/911-raw.csv", n_max = 5000) %>% 
+raw_911 <- read_csv("data/911/911-raw.csv") %>% 
   janitor::clean_names()
 ## Parsed with column specification:
 ## cols(
@@ -120,30 +90,54 @@ raw_911 <- read_csv("data/911/911-raw.csv", n_max = 5000) %>%
 
 ```r
 raw_911 %>% 
-  filter(str_detect(offense_description, coll("battery", T)))
-## # A tibble: 342 x 17
-##    incident_number offense_code offense_code_gr… offense_descrip… district
-##    <chr>           <chr>        <chr>            <chr>            <chr>   
-##  1 I192078613      00802        Simple Assault   ASSAULT SIMPLE … A7      
-##  2 I192078603      00802        Simple Assault   ASSAULT SIMPLE … A7      
-##  3 I192078600      00413        Aggravated Assa… ASSAULT - AGGRA… C11     
-##  4 I192078573      00802        Simple Assault   ASSAULT SIMPLE … B2      
-##  5 I192078563      00413        Aggravated Assa… ASSAULT - AGGRA… B3      
-##  6 I192078563      00802        Simple Assault   ASSAULT SIMPLE … B3      
-##  7 I192078538      00802        Simple Assault   ASSAULT SIMPLE … C6      
-##  8 I192078531      00802        Simple Assault   ASSAULT SIMPLE … C11     
-##  9 I192078530      00413        Aggravated Assa… ASSAULT - AGGRA… C6      
-## 10 I192078529      00413        Aggravated Assa… ASSAULT - AGGRA… E5      
-## # … with 332 more rows, and 12 more variables: reporting_area <dbl>,
-## #   shooting <chr>, occurred_on_date <dttm>, year <dbl>, month <dbl>,
-## #   day_of_week <chr>, hour <dbl>, ucr_part <chr>, street <chr>,
-## #   lat <dbl>, long <dbl>, location <chr>
+  count(offense_code_group)
+## # A tibble: 68 x 2
+##    offense_code_group                   n
+##    <chr>                            <int>
+##  1 Aggravated Assault               10687
+##  2 Aircraft                            60
+##  3 Arson                              109
+##  4 Assembly or Gathering Violations  1143
+##  5 Auto Theft                        6211
+##  6 Auto Theft Recovery               1385
+##  7 Ballistics                        1338
+##  8 Biological Threat                    3
+##  9 Bomb Hoax                          109
+## 10 Burglary - No Property Taken         5
+## # … with 58 more rows
 ```
 
+- There are fewer types of code groups. 
+- They are rather informative.
+- 33k missing observations though
+- is the same amount of missingness present in the descriptions?
 
 
+```r
+raw_911 %>% 
+  count(offense_description)
+## # A tibble: 279 x 2
+##    offense_description                              n
+##    <chr>                                        <int>
+##  1 A&B HANDS, FEET, ETC.  - MED. ATTENTION REQ.     1
+##  2 A&B ON POLICE OFFICER                            7
+##  3 ABDUCTION - INTICING                            12
+##  4 AFFRAY                                         318
+##  5 AIRCRAFT INCIDENTS                              70
+##  6 ANIMAL ABUSE                                    89
+##  7 ANIMAL CONTROL - DOG BITES - ETC.              493
+##  8 ANIMAL INCIDENTS                               388
+##  9 ANIMAL INCIDENTS (DOG BITES, LOST DOG, ETC)     34
+## 10 ANNOYING AND ACCOSTIN                            3
+## # … with 269 more rows
+```
 
-### Resources:
-
-- https://www.annualreviews.org/doi/abs/10.1146/annurev-criminol-011518-024638?journalCode=criminol
-- Large-scale data use, ecometrics to assess disorder: https://journals.sagepub.com/doi/abs/10.1177/0022427815577835
+- no missingness
+- more types
+- what do we do?
+  - choose one of these?
+  - we can actually use both
+  - filter data set to exclude NAs from `offense_code_group`.
+  - `anti_join()` that dataset from raw
+  - now use the raw_911 remainders and hand code that.
+- reminder: we cannot automate everything. It requires long hours, dedication, and freakin' grit.
