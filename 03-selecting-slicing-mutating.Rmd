@@ -104,11 +104,13 @@ Perhaps the help documentation was a little overwhelming and absolutely confusin
 
 > `.data`: A tbl. All main verbs are S3 generics and provide methods for tbl_df(), dtplyr::tbl_dt() and dbplyr::tbl_dbi().
 
-What I want you to take away from this argument definition is `a tbl`. Whenever you read `tbl` think to your self "oh, that is just a `tibble`." If you recall, when we read rectangular data with `readr::read_csv()` or any other `readr::read_*()` function we will end up with a tibble. To verify that this is the case, we can double check our objects using the function `is.tbl()`. This function takes an object and returns a logical value (`TRUE` or `FALSE`) if the statement is true. Let's double check that `acs_raw` is infact a tbl.
+What I want you to take away from this argument definition is `a tbl`. Whenever you read `tbl` think to your self "oh, that is just a `tibble`." If you recall, when we read rectangular data with `readr::read_csv()` or any other `readr::read_*()` function we will end up with a tibble. To verify that this is the case, we can double check our objects using the function `is.tbl()`. This function takes an object and returns a logical value (`TRUE` or `FALSE`) if the statement is true. Let's double check that `acs_raw` is in fact a tbl.
 
 ```{r}
 is.tbl(acs_raw)
 ```
+
+> Aside: Each object type usually has a function that let's you test if objects are that type that follow the structure `is.obj_type()` or the occasional `is_obj_type()`. We will go over object types more later. 
 
 We can read the above as if we are asking R the question "is this object a `tbl`?" The resultant output of `is.tbl(acs_raw)` is `TRUE`. Now we can be doubly confident that this object can be used with `select()`. 
 
@@ -120,7 +122,7 @@ The second argument to `select()` is a little bit more difficult to grasp, so do
 
 "You can treat variable names like they are positions" translates to "if you want the first column you can write the number `1` etc." and because of this, if you want the first through tenth variable you can pass `1:10` as an argument to `...`.
 
-The most important thing about `...` is that we **do not** assign `...` as an argument, i.e. `... = column_a`.
+The most important thing about `...` is that we **do not** assign `...` as an argument, for example . `... = column_a` is **not** the correct notation. We provide `column_a` alone. 
 
 As always, this makes more sense once we see it in practice. We will now go over the many ways in which we can select columns using `select()`. Once we have gotten the hang of selecting columns we will return back to assisting our non-profit.
 
@@ -129,6 +131,96 @@ We will go over:
 - selecting by name
 - selecting by position
 - select helpers
+
+
+### `select()`ing exercises 
+
+`select()` enables us to choose columns from a tibble based on their names. But remember that these will be unquoted column names. 
+
+Try it:
+
+- select the column `name` from `acs_raw`
+
+```{r max.print = 10}
+select(acs_raw, name)
+```
+
+The column `name` was passed to `...`. Recall that dots allows us to pass "one ore more unquoted expressions separated by commas." To test this statement out, select `town` in addition to `name` from `acs_raw`
+
+Try it:
+
+- select `name` and `town` from `acs_raw`
+
+```{r max.print=10}
+select(acs_raw, name, town)
+```
+
+Great, you're getting the hang of it. 
+
+Now, in addition to to selecting columns solely based on their names, we can also select a range of columns using the format `col_from:col_to`. In writing this `select()` will register that you want every column from and including `col_from` up until and including `col_to`. 
+
+Let's refresh ourselves with what our data look like:
+
+```{r}
+glimpse(acs_raw)
+```
+
+
+Try it:
+
+- select the columns `age_u18` through `age_o65`.
+
+```{r max.print=10}
+select(acs_raw, age_u18:age_o65)
+```
+
+Now to really throw you off! You can even reverse the order of these ranges. 
+
+Try it:
+
+- select columns from `age_o65` to `age_u18`.
+
+```{r max.print=10}
+select(acs_raw, age_o65:age_u18)
+```
+
+> NOTE: This is an awful scenario. SOMEONE HALP
+
+Alright, so now we have gotten the hang of selecting columns based on their names. But equally important is the ability to select columns based on their position. Consider the situation in which you regularly receive georeferenced data from a research partner and the structure of the dataset is rather consistent _except_ that they frequently change the name of the coordinate columns. Sometimes the columns are `x` and `y`. Sometimes they are capitalized `X` and `Y`, `lon` and `lat`, or even `long` and `lat`. It eats you up inside! But you know that while the names may change, their positiions never do. You decide to program a solution rather than having a conversation with your research partner—though, I recommend you both level set on reproducibility standards.
+
+ > "...You can treat variable names like they are positions..."
+ 
+ The above was taken from the argument definition of dots `...`. Like providing the name of the column, we can also provide their positions (also referred to as an index). In our previous example, we selected the `name` column. We can select this column by it's position. `name` is the second column in our tibble. We select it like so:
+
+```{r max.print=10}
+select(acs_raw, 2)
+```
+
+Try it:
+
+- select `age_u18` and `age_o65` by their position
+
+```{r max.print = 10}
+select(acs_raw, 6, 9)
+```
+
+You may see where I am going with this. Just like column names, we can select a range of columns using the same method `index_from:index_to`.
+
+Try it:
+
+- select the columns from `age_u18` to `age_o65` using `:` and the column position
+- select the columns in reverse order by their indexes 
+
+```{r max.print = 10}
+select(acs_raw, 6:9)
+```
+
+```{r}
+select(acs_raw, 9:6)
+```
+
+> Base R Side Bar: To help build your intuition, I want to point out some base R functionality. Using the colon `:` with integers (whole numbers) is actually not a `select()` specific functionality. This is something that is rather handy and built directly into R. Using the colon operator, we can create ranges of numbers in the same exact way as we did above. If we want create the range of numbers from 1 to 10, we write `1:10`.
+
 
 -------
 
@@ -146,7 +238,10 @@ to do so we use the function `select()`. Look at the help documentation by runni
   1. write the name (unquoted) of the columns—i.e. i want the column `col_x` would be `select(.data, col_x)`
   2. write the position of the column—i.e. i want the first column would be `select(.data, 1)`
   3. There are also a number of _select helpers_ of which we will go over a few
+    - everything()
+    - deselecting
 - one behavior that you should notice is that select will _always_ return a tibble, even if we don't sepcify any columns to select
+
 
 ### `select()` exercises
 

@@ -11,8 +11,9 @@ link-citations: yes
 ---
 
 
-```{r}
+```{r include=FALSE}
 knitr::opts_chunk$set(max.print = 20)
+source("common.R")
 ```
 
 

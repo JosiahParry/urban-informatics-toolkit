@@ -1,14 +1,116 @@
 # The basics 
 
-## installing RStudio 
+## What is R and why do I care?
+
+What is R? R is the 18th letter of the alphabet, the fourth letter in _QWERTY_—like the keyboard—and, most importantly, a software package for statistical computing. 
+
+The R-project describes R as:
+
+> R is an integrated suite of software facilities for data manipulation, calculation and graphical display.
+https://www.r-project.org/about.html
+
+- it's like a very fancy calculator that does many things in addition to all sorts of math
+- R is produced by the R-project
+- independent non-profit organization funded by the R foundation
+- you will download R from the **C**entral **R** **A**rchival **N**etwork aka CRAN
+- R is more than just a language for statistics
+  - it is designed to be extended for further capabilities, and indeed it has been, this is done through software packages
+  - will review this very shortly
+- R when downloaded is a programming language that is interacted with through the terminal which, while some people love it, can feel like programming in the matrix
+
+![](https://media.giphy.com/media/rWY9ySfjytitq/giphy.gif)
+
+For this reason, we will download RStudio
+
+https://cran.r-project.org/
+
 
 ## The RStudio IDE
 
+- RStudio is an IDE (integrated development environment)
+- i think of R and RStudio is typesetting a printing press and using a word processor like microsoft word
+- Chester Ismay and Albert Kim's Modern Dive provide another excellent analogy of R and RStudio
+  - R is the engine
+  - RStudio is the car dashboard:
+    - https://moderndive.com/1-getting-started.html
+- rstudio gives you a place to write R, make and visualize graphics, and analyse data.
+- R and RStudio can be used to build web applications (shiny gallery), websites and blogs, and even art (generative thomas). 
+- there are (almost) no limits as to what you can do with R and RStudio
+
+Let's get familiar with RStudio. You need to know where you are when working within RStudio. There are 4 quadrants that we work with (called panes). 
+
+![](static/rstudio-editor.png)
+
+This lovely graphic was created by my colleage thomas mock. [Source](https://github.com/jthomasmock/intro-tidyverse/blob/master/intro-to-tidyverse.rmd)
+
+Let's focus on the edit, console, and output areas 
+
+### The Editor
+
+- The editor is where you will actually write your R code. 
+- R code is written in text files that have the `.R` extension
+- you can also write in what is known as an RMarkdown Document which has an extension of `.Rmd`
+  - SIDE BAR
+    - fun fact, this book is written in RMarkdown 
+    - R markdown lets you integrate prose and R code together.
+    - RMarkdown can be rendered into many formats including pdf, html, ppt
+    - we will go over this at the end of the book
+- we will work within R scripts primarily to keep things simple
+- i donkt know if youre like me at all, but when I write, I tend to have two documents up, or at least two sections of a document. One for where the finalized content and another one as scratch paper
+  - think of the editor as the place where you put the writing you want to keep
+- executing code
+  - (either with command + enter on the highlighted code or the line where your cursor is)
+  - or the run button above
+  - i recommend learning the key strokes. it will be immensely helpful
+  - this brings us to the console
+
+
+### The console
+
+- the console is where your r code is actually executed
+- so when you run a line of code from the editor 
+- i also treat the console as my scratch paper
+- you can write r code in here and it will not be saved into your R script (your word document)
+- when you produce R code that creates a visualization, the code will be executed in the console and the visualization will show up in the viewer pane (the "Output" section)
+
+### Output
+
+- This quadrant is a very versatile section. 
+- It will be used primarily for looking at things.
+- this is where you will see your visualizations
+- help documentation
+- where you can navigate your files and open things
+
+## Installing R & RStudio 
+
+It's easiest if you install R _and then_ RStudio
+
+- install R: https://cran.r-project.org/
+- install RStudio: https://rstudio.com/products/rstudio/download/#download
+- when you're ready to get started, open RStudio not R (look for the circular logo)
+
+
 ## R Projects
 
+- once you open up RStudio you will be able to get rocking and rolling
+- though, we want to instill some best practices from the get go
+- one of which is the use of R projects. This will help contain code and files in one location. By being diligent in creating R projects you will save yourself SO MUCH hair pulling. 
+- now what makes an R project and R project?
+- a folder with a special `.Rproj` file
+- the `Rproj` file lets R know that the directory (folder) you are working from is a project and will manage file paths for you. This may not be making a ton of sense, but it will once we get further through this book. 
+- how do you make a new R project?
+  - file new project
+  - name the thing something informative
+    - do NOT use spaces or periods. 
+    - use dashes or underscores
+- when should you make a new project?
+  - if the code is related to eachother
+  - i think of every general analysis as its own project
+  
+    
+- refer to rstats.wtf
+
 ## Functions and Packages
-
-
 
 outline
 - install the tidyverse

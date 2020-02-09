@@ -2,7 +2,7 @@
 
 
 ```{r, include=FALSE}
-#source("common.R")
+source("common.R")
 ```
 
 To Cover:

@@ -1,6 +1,6 @@
 book_filename: "urban-commons-toolkit"
 delete_merged_file: true
-#new_session: true
+new_session: true
 language:
   ui:
     chapter_name: "Chapter "
