@@ -5,13 +5,34 @@
 source("common.R")
 ```
 
+## Data Exploration
 
-## Exploratory analysis 
+- introduce you to the data analysis workflow and exploratory data analysis
+- in R for Data Science Garret Grolemund and Hadley Wickham define data exploration as:
 
-- https://r4ds.had.co.nz/explore-intro.html
-- iteration 
-- this chapter focuses on visualization
-- the process of exploratory anlaysis is naturally inductive
+> Data exploration is the art of looking at your data, rapidly generating hypotheses, quickly testing them, then repeating again and again and again. 
+
+- exploratory data analysis is done generally when your data were not collected as part of an experiment
+-  EDA is used for inductive scientific inquiry
+- we do not necessarily know what we are looking for at the outset
+- or we may have an idea of what is available to us
+- generally when we are performing exploratory data analysis, we did not partake too greatly in the data collection process
+- however, even if your data are the result of an experiment, you may we want to dig into it further. You never know what you may find. You may find the seedling that sprouts into your next experiment
+
+- below is an image from R for Data Science which accurately describes the data exploration process
+- there are 6 steps in this illustration, 3 of which happen in a cyclical process
+
+
+![](https://d33wubrfki0l68.cloudfront.net/795c039ba2520455d833b4034befc8cf360a70ba/558a5/diagrams/data-science-explore.png)
+
+
+- this chapter focuses on visualizing our data
+- visualization is key for this process.
+- An older National Institute of Standards and Technology (NIST) statistical manual contains this gem
+
+> The reason for the heavy reliance on graphics is that by its very nature the main role of EDA is to open-mindedly explore, and graphics gives the analysts unparalleled power to do so, enticing the data to reveal its structural secrets, and being always ready to gain some new, often unsuspected, insight into the data. In combination with the natural pattern-recognition capabilities that we all possess, graphics provides, of course, unparalleled power to carry this out.
+
+[source](https://www.itl.nist.gov/div898/handbook/eda/section1/eda11.htm)
 
 ## The American Community Survey 
 
@@ -124,3 +145,21 @@ ggplot(acs_edu, aes(x = bach, y = med_house_income, color = white)) +
 ```
 
 - what can we conclude now?
+
+
+
+-------
+
+
+#### Misc Notes:
+
+- this chapter is to introduce the concept of exploratory data analysis
+  - this should be done at a later point
+
+
+- NIST EDA: https://www.itl.nist.gov/div898/handbook/eda/section1/eda11.htm
+- https://r4ds.had.co.nz/explore-intro.html
+- iteration 
+- this chapter focuses on visualization
+- the process of exploratory anlaysis is naturally inductive
+

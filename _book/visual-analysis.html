@@ -24,7 +24,7 @@
 <meta name="author" content="Josiah Parry" />
 
 
-<meta name="date" content="2020-02-09" />
+<meta name="date" content="2020-02-10" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -162,7 +162,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="part"><span><b>I Toolkit Foundations</b></span></li>
 <li class="chapter" data-level="4" data-path="visual-analysis.html"><a href="visual-analysis.html"><i class="fa fa-check"></i><b>4</b> Visual Analysis</a><ul>
-<li class="chapter" data-level="4.1" data-path="visual-analysis.html"><a href="visual-analysis.html#exploratory-analysis"><i class="fa fa-check"></i><b>4.1</b> Exploratory analysis</a></li>
+<li class="chapter" data-level="4.1" data-path="visual-analysis.html"><a href="visual-analysis.html#data-exploration"><i class="fa fa-check"></i><b>4.1</b> Data Exploration</a></li>
 <li class="chapter" data-level="4.2" data-path="visual-analysis.html"><a href="visual-analysis.html#the-american-community-survey"><i class="fa fa-check"></i><b>4.2</b> The American Community Survey</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="schools-of-urban-informatics.html"><a href="schools-of-urban-informatics.html"><i class="fa fa-check"></i><b>5</b> Schools of Urban Informatics</a></li>
@@ -248,14 +248,35 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="visual-analysis" class="section level1">
 <h1><span class="header-section-number">Chapter 4</span> Visual Analysis</h1>
-<div id="exploratory-analysis" class="section level2">
-<h2><span class="header-section-number">4.1</span> Exploratory analysis</h2>
+<div id="data-exploration" class="section level2">
+<h2><span class="header-section-number">4.1</span> Data Exploration</h2>
 <ul>
-<li><a href="https://r4ds.had.co.nz/explore-intro.html" class="uri">https://r4ds.had.co.nz/explore-intro.html</a></li>
-<li>iteration</li>
-<li>this chapter focuses on visualization</li>
-<li>the process of exploratory anlaysis is naturally inductive</li>
+<li>introduce you to the data analysis workflow and exploratory data analysis</li>
+<li>in R for Data Science Garret Grolemund and Hadley Wickham define data exploration as:</li>
 </ul>
+<blockquote>
+<p>Data exploration is the art of looking at your data, rapidly generating hypotheses, quickly testing them, then repeating again and again and again.</p>
+</blockquote>
+<ul>
+<li>exploratory data analysis is done generally when your data were not collected as part of an experiment</li>
+<li>EDA is used for inductive scientific inquiry</li>
+<li>we do not necessarily know what we are looking for at the outset</li>
+<li>or we may have an idea of what is available to us</li>
+<li>generally when we are performing exploratory data analysis, we did not partake too greatly in the data collection process</li>
+<li><p>however, even if your data are the result of an experiment, you may we want to dig into it further. You never know what you may find. You may find the seedling that sprouts into your next experiment</p></li>
+<li>below is an image from R for Data Science which accurately describes the data exploration process</li>
+<li><p>there are 6 steps in this illustration, 3 of which happen in a cyclical process</p></li>
+</ul>
+<p><img src="https://d33wubrfki0l68.cloudfront.net/795c039ba2520455d833b4034befc8cf360a70ba/558a5/diagrams/data-science-explore.png" /></p>
+<ul>
+<li>this chapter focuses on visualizing our data</li>
+<li>visualization is key for this process.</li>
+<li>An older National Institute of Standards and Technology (NIST) statistical manual contains this gem</li>
+</ul>
+<blockquote>
+<p>The reason for the heavy reliance on graphics is that by its very nature the main role of EDA is to open-mindedly explore, and graphics gives the analysts unparalleled power to do so, enticing the data to reveal its structural secrets, and being always ready to gain some new, often unsuspected, insight into the data. In combination with the natural pattern-recognition capabilities that we all possess, graphics provides, of course, unparalleled power to carry this out.</p>
+</blockquote>
+<p><a href="https://www.itl.nist.gov/div898/handbook/eda/section1/eda11.htm">source</a></p>
 </div>
 <div id="the-american-community-survey" class="section level2">
 <h2><span class="header-section-number">4.2</span> The American Community Survey</h2>
@@ -379,7 +400,22 @@ set <code>x</code> to <code>bach</code> and <code>y</code> to <code>med_house_in
 <ul>
 <li>what can we conclude now?</li>
 </ul>
+<hr />
+<div id="misc-notes" class="section level4">
+<h4><span class="header-section-number">4.2.0.1</span> Misc Notes:</h4>
+<ul>
+<li>this chapter is to introduce the concept of exploratory data analysis
+<ul>
+<li>this should be done at a later point</li>
+</ul></li>
+<li>NIST EDA: <a href="https://www.itl.nist.gov/div898/handbook/eda/section1/eda11.htm" class="uri">https://www.itl.nist.gov/div898/handbook/eda/section1/eda11.htm</a></li>
+<li><a href="https://r4ds.had.co.nz/explore-intro.html" class="uri">https://r4ds.had.co.nz/explore-intro.html</a></li>
+<li>iteration</li>
+<li>this chapter focuses on visualization</li>
+<li>the process of exploratory anlaysis is naturally inductive</li>
+</ul>
 
+</div>
 </div>
 </div>
             </section>
