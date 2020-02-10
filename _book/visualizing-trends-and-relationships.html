@@ -148,12 +148,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="2.3" data-path="the-basics.html"><a href="the-basics.html#installing-r-rstudio"><i class="fa fa-check"></i><b>2.3</b> Installing R &amp; RStudio</a></li>
 <li class="chapter" data-level="2.4" data-path="the-basics.html"><a href="the-basics.html#r-projects"><i class="fa fa-check"></i><b>2.4</b> R Projects</a></li>
-<li class="chapter" data-level="2.5" data-path="the-basics.html"><a href="the-basics.html#extensions-to-r"><i class="fa fa-check"></i><b>2.5</b> Extensions to R</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="r-as-a-calculator.html"><a href="r-as-a-calculator.html"><i class="fa fa-check"></i><b>3</b> R as a calculator</a><ul>
 <li class="chapter" data-level="3.1" data-path="r-as-a-calculator.html"><a href="r-as-a-calculator.html#arithmetic-operators"><i class="fa fa-check"></i><b>3.1</b> Arithmetic Operators</a></li>
 <li class="chapter" data-level="3.2" data-path="r-as-a-calculator.html"><a href="r-as-a-calculator.html#variable-assignment"><i class="fa fa-check"></i><b>3.2</b> Variable assignment</a></li>
 <li class="chapter" data-level="3.3" data-path="r-as-a-calculator.html"><a href="r-as-a-calculator.html#functions"><i class="fa fa-check"></i><b>3.3</b> Functions</a></li>
+<li class="chapter" data-level="3.4" data-path="r-as-a-calculator.html"><a href="r-as-a-calculator.html#extensions-to-r"><i class="fa fa-check"></i><b>3.4</b> Extensions to R</a><ul>
+<li class="chapter" data-level="3.4.1" data-path="r-as-a-calculator.html"><a href="r-as-a-calculator.html#exercise"><i class="fa fa-check"></i><b>3.4.1</b> Exercise</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="r-as-a-calculator.html"><a href="r-as-a-calculator.html#loading-packages"><i class="fa fa-check"></i><b>3.5</b> Loading Packages</a><ul>
+<li class="chapter" data-level="3.5.1" data-path="r-as-a-calculator.html"><a href="r-as-a-calculator.html#resources"><i class="fa fa-check"></i><b>3.5.1</b> Resources:</a></li>
+</ul></li>
 </ul></li>
 <li class="part"><span><b>I Toolkit Foundations</b></span></li>
 <li class="chapter" data-level="4" data-path="visual-analysis.html"><a href="visual-analysis.html"><i class="fa fa-check"></i><b>4</b> Visual Analysis</a><ul>
@@ -162,12 +167,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="5" data-path="schools-of-urban-informatics.html"><a href="schools-of-urban-informatics.html"><i class="fa fa-check"></i><b>5</b> Schools of Urban Informatics</a></li>
 <li class="chapter" data-level="6" data-path="broken-windows-and-the-origin-of-ecometrics.html"><a href="broken-windows-and-the-origin-of-ecometrics.html"><i class="fa fa-check"></i><b>6</b> Broken Windows and the origin of Ecometrics</a><ul>
-<li class="chapter" data-level="6.0.1" data-path="broken-windows-and-the-origin-of-ecometrics.html"><a href="broken-windows-and-the-origin-of-ecometrics.html#resources"><i class="fa fa-check"></i><b>6.0.1</b> Resources:</a></li>
+<li class="chapter" data-level="6.0.1" data-path="broken-windows-and-the-origin-of-ecometrics.html"><a href="broken-windows-and-the-origin-of-ecometrics.html#resources-1"><i class="fa fa-check"></i><b>6.0.1</b> Resources:</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="reading-data.html"><a href="reading-data.html"><i class="fa fa-check"></i><b>7</b> Reading data</a><ul>
 <li class="chapter" data-level="7.1" data-path="reading-data.html"><a href="reading-data.html#background"><i class="fa fa-check"></i><b>7.1</b> Background</a></li>
 <li class="chapter" data-level="7.2" data-path="reading-data.html"><a href="reading-data.html#actually-reading-data"><i class="fa fa-check"></i><b>7.2</b> Actually Reading Data</a><ul>
-<li class="chapter" data-level="7.2.1" data-path="reading-data.html"><a href="reading-data.html#exercise"><i class="fa fa-check"></i><b>7.2.1</b> Exercise</a></li>
+<li class="chapter" data-level="7.2.1" data-path="reading-data.html"><a href="reading-data.html#exercise-1"><i class="fa fa-check"></i><b>7.2.1</b> Exercise</a></li>
 </ul></li>
 <li class="chapter" data-level="7.3" data-path="reading-data.html"><a href="reading-data.html#other-common-data-formats"><i class="fa fa-check"></i><b>7.3</b> Other common data formats</a></li>
 </ul></li>
@@ -243,32 +248,32 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="visualizing-trends-and-relationships" class="section level1">
 <h1><span class="header-section-number">Chapter 9</span> Visualizing Trends and Relationships</h1>
-<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb50-1" data-line-number="1"><span class="kw">library</span>(tidyverse)</a>
-<a class="sourceLine" id="cb50-2" data-line-number="2"><span class="co">## ── Attaching packages ────────</span></a>
-<a class="sourceLine" id="cb50-3" data-line-number="3"><span class="co">## ✓ tibble  2.1.3     ✓ purrr   0.3.3</span></a>
-<a class="sourceLine" id="cb50-4" data-line-number="4"><span class="co">## ✓ tidyr   1.0.2     ✓ dplyr   0.8.3</span></a>
-<a class="sourceLine" id="cb50-5" data-line-number="5"><span class="co">## ✓ readr   1.3.1     ✓ stringr 1.4.0</span></a>
-<a class="sourceLine" id="cb50-6" data-line-number="6"><span class="co">## ✓ tibble  2.1.3     ✓ forcats 0.4.0</span></a>
-<a class="sourceLine" id="cb50-7" data-line-number="7"><span class="co">## ── Conflicts ─────────────────</span></a>
-<a class="sourceLine" id="cb50-8" data-line-number="8"><span class="co">## x dplyr::filter() masks stats::filter()</span></a>
-<a class="sourceLine" id="cb50-9" data-line-number="9"><span class="co">## x dplyr::lag()    masks stats::lag()</span></a>
-<a class="sourceLine" id="cb50-10" data-line-number="10"></a>
-<a class="sourceLine" id="cb50-11" data-line-number="11">acs_messy &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data/ACS_1317_TRACT.csv&quot;</span>)</a>
-<a class="sourceLine" id="cb50-12" data-line-number="12"><span class="co">## Parsed with column specification:</span></a>
-<a class="sourceLine" id="cb50-13" data-line-number="13"><span class="co">## cols(</span></a>
-<a class="sourceLine" id="cb50-14" data-line-number="14"><span class="co">##   .default = col_double(),</span></a>
-<a class="sourceLine" id="cb50-15" data-line-number="15"><span class="co">##   name = col_character(),</span></a>
-<a class="sourceLine" id="cb50-16" data-line-number="16"><span class="co">##   med_yr_built = col_character(),</span></a>
-<a class="sourceLine" id="cb50-17" data-line-number="17"><span class="co">##   town = col_character(),</span></a>
-<a class="sourceLine" id="cb50-18" data-line-number="18"><span class="co">##   county = col_character(),</span></a>
-<a class="sourceLine" id="cb50-19" data-line-number="19"><span class="co">##   m_atown = col_character()</span></a>
-<a class="sourceLine" id="cb50-20" data-line-number="20"><span class="co">## )</span></a>
-<a class="sourceLine" id="cb50-21" data-line-number="21"><span class="co">## See spec(...) for full column specifications.</span></a>
-<a class="sourceLine" id="cb50-22" data-line-number="22"></a>
-<a class="sourceLine" id="cb50-23" data-line-number="23">acs &lt;-<span class="st"> </span>acs_messy <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb50-24" data-line-number="24"><span class="st">  </span><span class="kw">separate</span>(name, <span class="dt">sep =</span> <span class="st">&quot;, &quot;</span>, <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;tract&quot;</span>, <span class="st">&quot;county&quot;</span>, <span class="st">&quot;state&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb50-25" data-line-number="25"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">tract =</span> <span class="kw">str_remove</span>(tract, <span class="st">&quot;Census Tract &quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb50-26" data-line-number="26"><span class="st">  </span><span class="kw">na.omit</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb59-1" data-line-number="1"><span class="kw">library</span>(tidyverse)</a>
+<a class="sourceLine" id="cb59-2" data-line-number="2"><span class="co">## ── Attaching packages ───── tidyverse 1.2.1 ──</span></a>
+<a class="sourceLine" id="cb59-3" data-line-number="3"><span class="co">## ✓ tibble  2.1.3     ✓ purrr   0.3.3</span></a>
+<a class="sourceLine" id="cb59-4" data-line-number="4"><span class="co">## ✓ tidyr   1.0.2     ✓ dplyr   0.8.3</span></a>
+<a class="sourceLine" id="cb59-5" data-line-number="5"><span class="co">## ✓ readr   1.3.1     ✓ stringr 1.4.0</span></a>
+<a class="sourceLine" id="cb59-6" data-line-number="6"><span class="co">## ✓ tibble  2.1.3     ✓ forcats 0.4.0</span></a>
+<a class="sourceLine" id="cb59-7" data-line-number="7"><span class="co">## ── Conflicts ──────── tidyverse_conflicts() ──</span></a>
+<a class="sourceLine" id="cb59-8" data-line-number="8"><span class="co">## x dplyr::filter() masks stats::filter()</span></a>
+<a class="sourceLine" id="cb59-9" data-line-number="9"><span class="co">## x dplyr::lag()    masks stats::lag()</span></a>
+<a class="sourceLine" id="cb59-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb59-11" data-line-number="11">acs_messy &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data/ACS_1317_TRACT.csv&quot;</span>)</a>
+<a class="sourceLine" id="cb59-12" data-line-number="12"><span class="co">## Parsed with column specification:</span></a>
+<a class="sourceLine" id="cb59-13" data-line-number="13"><span class="co">## cols(</span></a>
+<a class="sourceLine" id="cb59-14" data-line-number="14"><span class="co">##   .default = col_double(),</span></a>
+<a class="sourceLine" id="cb59-15" data-line-number="15"><span class="co">##   name = col_character(),</span></a>
+<a class="sourceLine" id="cb59-16" data-line-number="16"><span class="co">##   med_yr_built = col_character(),</span></a>
+<a class="sourceLine" id="cb59-17" data-line-number="17"><span class="co">##   town = col_character(),</span></a>
+<a class="sourceLine" id="cb59-18" data-line-number="18"><span class="co">##   county = col_character(),</span></a>
+<a class="sourceLine" id="cb59-19" data-line-number="19"><span class="co">##   m_atown = col_character()</span></a>
+<a class="sourceLine" id="cb59-20" data-line-number="20"><span class="co">## )</span></a>
+<a class="sourceLine" id="cb59-21" data-line-number="21"><span class="co">## See spec(...) for full column specifications.</span></a>
+<a class="sourceLine" id="cb59-22" data-line-number="22"></a>
+<a class="sourceLine" id="cb59-23" data-line-number="23">acs &lt;-<span class="st"> </span>acs_messy <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb59-24" data-line-number="24"><span class="st">  </span><span class="kw">separate</span>(name, <span class="dt">sep =</span> <span class="st">&quot;, &quot;</span>, <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;tract&quot;</span>, <span class="st">&quot;county&quot;</span>, <span class="st">&quot;state&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb59-25" data-line-number="25"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">tract =</span> <span class="kw">str_remove</span>(tract, <span class="st">&quot;Census Tract &quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb59-26" data-line-number="26"><span class="st">  </span><span class="kw">na.omit</span>()</a></code></pre></div>
 <ul>
 <li>most data analyses start with a visualization.</li>
 <li>the data we have will dictate the type of visualizations we create</li>
@@ -308,8 +313,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>puts data into <code>n</code> groups or bins or buckets. ggplot calls them <code>bins</code></li>
 <li>you can identify how many obs fit into a bucket</li>
 </ul>
-<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb51-1" data-line-number="1"><span class="kw">ggplot</span>(acs, <span class="kw">aes</span>(age_u18)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb51-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">bins =</span> <span class="dv">15</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb60-1" data-line-number="1"><span class="kw">ggplot</span>(acs, <span class="kw">aes</span>(age_u18)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb60-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">bins =</span> <span class="dv">15</span>)</a></code></pre></div>
 <p><img src="04-visualization-strategies_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
 </div>
 <div id="density-plot" class="section level3">
@@ -323,8 +328,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li>unlike histograms you cannot determine how many obs fall in a bucket as there are no buckets.</li>
 </ul>
-<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb52-1" data-line-number="1"><span class="kw">ggplot</span>(acs, <span class="kw">aes</span>(age_u18)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb52-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_density</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb61-1" data-line-number="1"><span class="kw">ggplot</span>(acs, <span class="kw">aes</span>(age_u18)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb61-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_density</span>()</a></code></pre></div>
 <p><img src="04-visualization-strategies_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
 </div>
 <div id="box-plot" class="section level3">
@@ -351,8 +356,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li><a href="https://towardsdatascience.com/understanding-boxplots-5e2df7bcbd51" class="uri">https://towardsdatascience.com/understanding-boxplots-5e2df7bcbd51</a></li>
 </ul>
-<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb53-1" data-line-number="1"><span class="kw">ggplot</span>(acs, <span class="kw">aes</span>(<span class="dt">y =</span> age_u18)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb53-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_boxplot</span>() </a></code></pre></div>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb62-1" data-line-number="1"><span class="kw">ggplot</span>(acs, <span class="kw">aes</span>(<span class="dt">y =</span> age_u18)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb62-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_boxplot</span>() </a></code></pre></div>
 <p><img src="04-visualization-strategies_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
 <ul>
 <li>its easier to evaluate a box plot when it’s horizontal.
@@ -360,9 +365,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>we can flip any ggplot with a <code>coord_flip()</code> layer</li>
 </ul></li>
 </ul>
-<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb54-1" data-line-number="1"><span class="kw">ggplot</span>(acs, <span class="kw">aes</span>(<span class="dt">y =</span> age_u18)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb54-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_boxplot</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb54-3" data-line-number="3"><span class="st">  </span><span class="kw">coord_flip</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb63-1" data-line-number="1"><span class="kw">ggplot</span>(acs, <span class="kw">aes</span>(<span class="dt">y =</span> age_u18)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb63-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_boxplot</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb63-3" data-line-number="3"><span class="st">  </span><span class="kw">coord_flip</span>()</a></code></pre></div>
 <p><img src="04-visualization-strategies_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
 <div id="understanding-the-box-plot" class="section level4">
 <h4><span class="header-section-number">9.1.3.1</span> understanding the box plot</h4>
@@ -388,8 +393,8 @@ in the latter scenario, we want to know if the distribution of the data changes 
 <li>this is artistic preference and there is no one true answer</li>
 </ul></li>
 </ul>
-<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb55-1" data-line-number="1"><span class="kw">ggplot</span>(acs, <span class="kw">aes</span>(fam_house_per, age_u18)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb55-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">0.25</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb64-1" data-line-number="1"><span class="kw">ggplot</span>(acs, <span class="kw">aes</span>(fam_house_per, age_u18)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb64-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">0.25</span>)</a></code></pre></div>
 <p><img src="04-visualization-strategies_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
 </div>
 <div id="boxplot-1-continuous-1-categorical" class="section level3">
@@ -398,9 +403,9 @@ in the latter scenario, we want to know if the distribution of the data changes 
 <li>we can use boxplots to compare groups</li>
 <li>for this, we set the categorical variable to the x aesthetic</li>
 </ul>
-<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb56-1" data-line-number="1"><span class="kw">ggplot</span>(acs, <span class="kw">aes</span>(county, age_u18)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb56-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_boxplot</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb56-3" data-line-number="3"><span class="st">  </span><span class="kw">coord_flip</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb65-1" data-line-number="1"><span class="kw">ggplot</span>(acs, <span class="kw">aes</span>(county, age_u18)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb65-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_boxplot</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb65-3" data-line-number="3"><span class="st">  </span><span class="kw">coord_flip</span>()</a></code></pre></div>
 <p><img src="04-visualization-strategies_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
 </div>
 <div id="barplot-1-categorical-1-continuous-discrete" class="section level3">
@@ -408,9 +413,9 @@ in the latter scenario, we want to know if the distribution of the data changes 
 <ul>
 <li>the <code>geom_bar()</code> will count the number observations of the specified categorical variables</li>
 </ul>
-<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb57-1" data-line-number="1"><span class="kw">ggplot</span>(acs, <span class="kw">aes</span>(county)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb57-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_bar</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb57-3" data-line-number="3"><span class="st">  </span><span class="kw">coord_flip</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb66-1" data-line-number="1"><span class="kw">ggplot</span>(acs, <span class="kw">aes</span>(county)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb66-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_bar</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb66-3" data-line-number="3"><span class="st">  </span><span class="kw">coord_flip</span>()</a></code></pre></div>
 <p><img src="04-visualization-strategies_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
 </div>
 <div id="lollipop-chart" class="section level3">
@@ -429,20 +434,20 @@ in the latter scenario, we want to know if the distribution of the data changes 
 </ul></li>
 <li>remember, to install packages, navigate to the console and use the function <code>install.packages(&quot;pkg-name&quot;)</code>.</li>
 </ul>
-<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb58-1" data-line-number="1"><span class="kw">library</span>(ggalt)</a>
-<a class="sourceLine" id="cb58-2" data-line-number="2"><span class="co">## Registered S3 methods overwritten by &#39;ggalt&#39;:</span></a>
-<a class="sourceLine" id="cb58-3" data-line-number="3"><span class="co">##   method                  from   </span></a>
-<a class="sourceLine" id="cb58-4" data-line-number="4"><span class="co">##   grid.draw.absoluteGrob  ggplot2</span></a>
-<a class="sourceLine" id="cb58-5" data-line-number="5"><span class="co">##   grobHeight.absoluteGrob ggplot2</span></a>
-<a class="sourceLine" id="cb58-6" data-line-number="6"><span class="co">##   grobWidth.absoluteGrob  ggplot2</span></a>
-<a class="sourceLine" id="cb58-7" data-line-number="7"><span class="co">##   grobX.absoluteGrob      ggplot2</span></a>
-<a class="sourceLine" id="cb58-8" data-line-number="8"><span class="co">##   grobY.absoluteGrob      ggplot2</span></a>
-<a class="sourceLine" id="cb58-9" data-line-number="9"></a>
-<a class="sourceLine" id="cb58-10" data-line-number="10">acs_counties &lt;-<span class="st"> </span><span class="kw">count</span>(acs, county)</a>
-<a class="sourceLine" id="cb58-11" data-line-number="11"></a>
-<a class="sourceLine" id="cb58-12" data-line-number="12"><span class="kw">ggplot</span>(acs_counties, <span class="kw">aes</span>(county, n)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb58-13" data-line-number="13"><span class="st">  </span><span class="kw">geom_lollipop</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb58-14" data-line-number="14"><span class="st">  </span><span class="kw">coord_flip</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb67-1" data-line-number="1"><span class="kw">library</span>(ggalt)</a>
+<a class="sourceLine" id="cb67-2" data-line-number="2"><span class="co">## Registered S3 methods overwritten by &#39;ggalt&#39;:</span></a>
+<a class="sourceLine" id="cb67-3" data-line-number="3"><span class="co">##   method                  from   </span></a>
+<a class="sourceLine" id="cb67-4" data-line-number="4"><span class="co">##   grid.draw.absoluteGrob  ggplot2</span></a>
+<a class="sourceLine" id="cb67-5" data-line-number="5"><span class="co">##   grobHeight.absoluteGrob ggplot2</span></a>
+<a class="sourceLine" id="cb67-6" data-line-number="6"><span class="co">##   grobWidth.absoluteGrob  ggplot2</span></a>
+<a class="sourceLine" id="cb67-7" data-line-number="7"><span class="co">##   grobX.absoluteGrob      ggplot2</span></a>
+<a class="sourceLine" id="cb67-8" data-line-number="8"><span class="co">##   grobY.absoluteGrob      ggplot2</span></a>
+<a class="sourceLine" id="cb67-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb67-10" data-line-number="10">acs_counties &lt;-<span class="st"> </span><span class="kw">count</span>(acs, county)</a>
+<a class="sourceLine" id="cb67-11" data-line-number="11"></a>
+<a class="sourceLine" id="cb67-12" data-line-number="12"><span class="kw">ggplot</span>(acs_counties, <span class="kw">aes</span>(county, n)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb67-13" data-line-number="13"><span class="st">  </span><span class="kw">geom_lollipop</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb67-14" data-line-number="14"><span class="st">  </span><span class="kw">coord_flip</span>()</a></code></pre></div>
 <p><img src="04-visualization-strategies_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
 <ul>
 <li>ridgelines (1 continuous 1 categorical)</li>
@@ -468,8 +473,8 @@ in the latter scenario, we want to know if the distribution of the data changes 
 </ul></li>
 </ul></li>
 </ul>
-<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb59-1" data-line-number="1"><span class="kw">ggplot</span>(acs, <span class="kw">aes</span>(fam_house_per, age_u18, <span class="dt">color =</span> by_auto)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb59-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb68-1" data-line-number="1"><span class="kw">ggplot</span>(acs, <span class="kw">aes</span>(fam_house_per, age_u18, <span class="dt">color =</span> by_auto)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb68-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>()</a></code></pre></div>
 <p><img src="04-visualization-strategies_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
 <ul>
 <li>we can add size to this as well by setting the <code>size</code> aesthetic
@@ -477,8 +482,8 @@ in the latter scenario, we want to know if the distribution of the data changes 
 <li>lets see if the more female headed house holds there are affects commuting by car as minors increases</li>
 </ul></li>
 </ul>
-<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb60-1" data-line-number="1"><span class="kw">ggplot</span>(acs, <span class="kw">aes</span>(fam_house_per, age_u18, <span class="dt">color =</span> by_auto, <span class="dt">size =</span> fem_head_per)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb60-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">.2</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb69-1" data-line-number="1"><span class="kw">ggplot</span>(acs, <span class="kw">aes</span>(fam_house_per, age_u18, <span class="dt">color =</span> by_auto, <span class="dt">size =</span> fem_head_per)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb69-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">.2</span>)</a></code></pre></div>
 <p><img src="04-visualization-strategies_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
 <ul>
 <li>from this chart we can see quite a few things:
@@ -489,23 +494,23 @@ in the latter scenario, we want to know if the distribution of the data changes 
 <li>this gives us a good idea of some relationships that we can test with our data at a later point</li>
 </ul></li>
 </ul>
-<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb61-1" data-line-number="1">minors_lm &lt;-<span class="st"> </span><span class="kw">lm</span>(age_u18 <span class="op">~</span><span class="st"> </span>fam_house_per <span class="op">+</span><span class="st"> </span>by_auto <span class="op">+</span><span class="st"> </span>fem_head_per, <span class="dt">data =</span> acs)</a>
-<a class="sourceLine" id="cb61-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb61-3" data-line-number="3">huxtable<span class="op">::</span><span class="kw">huxreg</span>(minors_lm)</a>
-<a class="sourceLine" id="cb61-4" data-line-number="4"><span class="co">## Registered S3 methods overwritten by &#39;broom.mixed&#39;:</span></a>
-<a class="sourceLine" id="cb61-5" data-line-number="5"><span class="co">##   method         from </span></a>
-<a class="sourceLine" id="cb61-6" data-line-number="6"><span class="co">##   augment.lme    broom</span></a>
-<a class="sourceLine" id="cb61-7" data-line-number="7"><span class="co">##   augment.merMod broom</span></a>
-<a class="sourceLine" id="cb61-8" data-line-number="8"><span class="co">##   glance.lme     broom</span></a>
-<a class="sourceLine" id="cb61-9" data-line-number="9"><span class="co">##   glance.merMod  broom</span></a>
-<a class="sourceLine" id="cb61-10" data-line-number="10"><span class="co">##   glance.stanreg broom</span></a>
-<a class="sourceLine" id="cb61-11" data-line-number="11"><span class="co">##   tidy.brmsfit   broom</span></a>
-<a class="sourceLine" id="cb61-12" data-line-number="12"><span class="co">##   tidy.gamlss    broom</span></a>
-<a class="sourceLine" id="cb61-13" data-line-number="13"><span class="co">##   tidy.lme       broom</span></a>
-<a class="sourceLine" id="cb61-14" data-line-number="14"><span class="co">##   tidy.merMod    broom</span></a>
-<a class="sourceLine" id="cb61-15" data-line-number="15"><span class="co">##   tidy.rjags     broom</span></a>
-<a class="sourceLine" id="cb61-16" data-line-number="16"><span class="co">##   tidy.stanfit   broom</span></a>
-<a class="sourceLine" id="cb61-17" data-line-number="17"><span class="co">##   tidy.stanreg   broom</span></a></code></pre></div>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb70-1" data-line-number="1">minors_lm &lt;-<span class="st"> </span><span class="kw">lm</span>(age_u18 <span class="op">~</span><span class="st"> </span>fam_house_per <span class="op">+</span><span class="st"> </span>by_auto <span class="op">+</span><span class="st"> </span>fem_head_per, <span class="dt">data =</span> acs)</a>
+<a class="sourceLine" id="cb70-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb70-3" data-line-number="3">huxtable<span class="op">::</span><span class="kw">huxreg</span>(minors_lm)</a>
+<a class="sourceLine" id="cb70-4" data-line-number="4"><span class="co">## Registered S3 methods overwritten by &#39;broom.mixed&#39;:</span></a>
+<a class="sourceLine" id="cb70-5" data-line-number="5"><span class="co">##   method         from </span></a>
+<a class="sourceLine" id="cb70-6" data-line-number="6"><span class="co">##   augment.lme    broom</span></a>
+<a class="sourceLine" id="cb70-7" data-line-number="7"><span class="co">##   augment.merMod broom</span></a>
+<a class="sourceLine" id="cb70-8" data-line-number="8"><span class="co">##   glance.lme     broom</span></a>
+<a class="sourceLine" id="cb70-9" data-line-number="9"><span class="co">##   glance.merMod  broom</span></a>
+<a class="sourceLine" id="cb70-10" data-line-number="10"><span class="co">##   glance.stanreg broom</span></a>
+<a class="sourceLine" id="cb70-11" data-line-number="11"><span class="co">##   tidy.brmsfit   broom</span></a>
+<a class="sourceLine" id="cb70-12" data-line-number="12"><span class="co">##   tidy.gamlss    broom</span></a>
+<a class="sourceLine" id="cb70-13" data-line-number="13"><span class="co">##   tidy.lme       broom</span></a>
+<a class="sourceLine" id="cb70-14" data-line-number="14"><span class="co">##   tidy.merMod    broom</span></a>
+<a class="sourceLine" id="cb70-15" data-line-number="15"><span class="co">##   tidy.rjags     broom</span></a>
+<a class="sourceLine" id="cb70-16" data-line-number="16"><span class="co">##   tidy.stanfit   broom</span></a>
+<a class="sourceLine" id="cb70-17" data-line-number="17"><span class="co">##   tidy.stanreg   broom</span></a></code></pre></div>
 <table class="huxtable" style="border-collapse: collapse; margin-bottom: 2em; margin-top: 2em; width: 50%; margin-left: auto; margin-right: auto;  ">
 <col><col><tr>
 <td style="vertical-align: top; text-align: center; white-space: nowrap; border-style: solid solid solid solid; border-width: 0.8pt 0pt 0pt 0pt; padding: 4pt 4pt 4pt 4pt;"></td>

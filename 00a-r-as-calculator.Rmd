@@ -1,8 +1,10 @@
 # R as a calculator
 
-Before we get going, let's find our footing. R is a statistical programming language. That means that R does math and pretty well too. 
+Before we get going, let's find our footing. R is a statistical programming language. That means that R does math and pretty well too. In this chapter you'll learn the basics of using R including:
 
-Navigate and enter your console. You will know you have activated the console when the cursor starts flashing. As stated earlier, the console is where your code is executed. We can type R commands directly into the console and execute them there by pressing enter. 
+  - arithmetic operators
+  - creating and assigning variables
+  - using functions
 
 ## Arithmetic Operators 
 
@@ -47,3 +49,75 @@ y
 ```
 
 ## Functions
+
+Functions are a special kind of R object. Very simply, a function is an object that performs some action and (usually) produces an output. Functions exist to simplify a task. You can identify a function by the parentheses that are appended to the function name. A function looks like `function_name()`.  
+
+R has many functions that come built in. The collection of functions that come out of the box with R are called *Base R**.
+
+An example of a simple base R function is `sum()`. `sum()` takes any number of inputs and calculates the sum of those inputs. 
+
+We can run `sum()` without providing any inputs.
+
+```{r}
+sum()
+```
+
+We can provide more inputs (formally called function arguments) to `sum()`. For example to find the sum of 10 we write
+
+```{r}
+sum(10)
+```
+
+The sum of a single number is the number itself. We can provide more arguments to `sum()`. Additional arguments are specified by separating them with commas—e.g. `function(argument_1, argument_2)`.
+
+To find the sum of 10, 3, and 2 we write `sum(10, 3, 2)`.
+
+```{r}
+sum(10, 3, 2)
+```
+
+Much of the analysis we will do is done with functions. You will become much more comfortable with them rather quickly. 
+
+If you ever need to know how a function works, you can look at its help page by typing `?function_name()` in your console. That will bring up the documentation page in the bottom right pane. 
+
+## Extensions to R 
+
+While R was created as a statistical programming language, it was designed with the intention of being extended to include even more functionality. Extensions to R are called _packages_. R packages often provide a set of functions to accomplish a specific kind of task. 
+
+To analyse, manipulate, and visualize our data, we will use a number of different packages to do so. Throughout this book we will become familiar with a set of packages that together are known as the [Tidyverse](https://tidyverse.org).
+
+R packages do not come installed out of the box. We will need to install them our selves. Base R includes a function called `install.packages()`. `install.packages()` will download a specified package from CRAN and install it for us.
+
+To download packages, we must tell `install.packages()` which package to download. We will provide the name of the package as the only argument to `install.packages()`. The name of the package needs to be put into quotations such as `install.packages("package-name")`.
+
+> Note: By putting text into quotations we are creating what is called a **character string**.
+
+> Reminder: we create objects with the assignment operator `<-`.
+
+When we don't use quotes (create a character string), R thinks we are referring to an object we have created.
+
+### Exercise
+
+Use your new knowlege of functions and installing packages to install the tidyverse.
+
+```{r, eval = FALSE}
+install.packages("tidyverse")
+```
+
+## Loading Packages
+
+Now that you have installed the tidyverse, you are going to need to know how to make it available to you for use. To load a package, we use the function `library()`. Oddly, though, when specifying which package to load, we do not put that name in quotations.
+
+> Note: It is best practice to load all of your packages at the top of your R script. 
+
+```{r}
+library(tidyverse)
+```
+
+Notice the message above. When we load the tidyverse, we are actually loading eight packages at once! Thesee are the packages listed under "**Attaching packages**."
+
+You have now successfully installed and loaded the tidyverse. Next, we will begin to learn how to visually analyze data!  
+
+### Resources:
+
+- https://techterms.com/definition/string

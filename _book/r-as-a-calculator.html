@@ -148,12 +148,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="2.3" data-path="the-basics.html"><a href="the-basics.html#installing-r-rstudio"><i class="fa fa-check"></i><b>2.3</b> Installing R &amp; RStudio</a></li>
 <li class="chapter" data-level="2.4" data-path="the-basics.html"><a href="the-basics.html#r-projects"><i class="fa fa-check"></i><b>2.4</b> R Projects</a></li>
-<li class="chapter" data-level="2.5" data-path="the-basics.html"><a href="the-basics.html#extensions-to-r"><i class="fa fa-check"></i><b>2.5</b> Extensions to R</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="r-as-a-calculator.html"><a href="r-as-a-calculator.html"><i class="fa fa-check"></i><b>3</b> R as a calculator</a><ul>
 <li class="chapter" data-level="3.1" data-path="r-as-a-calculator.html"><a href="r-as-a-calculator.html#arithmetic-operators"><i class="fa fa-check"></i><b>3.1</b> Arithmetic Operators</a></li>
 <li class="chapter" data-level="3.2" data-path="r-as-a-calculator.html"><a href="r-as-a-calculator.html#variable-assignment"><i class="fa fa-check"></i><b>3.2</b> Variable assignment</a></li>
 <li class="chapter" data-level="3.3" data-path="r-as-a-calculator.html"><a href="r-as-a-calculator.html#functions"><i class="fa fa-check"></i><b>3.3</b> Functions</a></li>
+<li class="chapter" data-level="3.4" data-path="r-as-a-calculator.html"><a href="r-as-a-calculator.html#extensions-to-r"><i class="fa fa-check"></i><b>3.4</b> Extensions to R</a><ul>
+<li class="chapter" data-level="3.4.1" data-path="r-as-a-calculator.html"><a href="r-as-a-calculator.html#exercise"><i class="fa fa-check"></i><b>3.4.1</b> Exercise</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="r-as-a-calculator.html"><a href="r-as-a-calculator.html#loading-packages"><i class="fa fa-check"></i><b>3.5</b> Loading Packages</a><ul>
+<li class="chapter" data-level="3.5.1" data-path="r-as-a-calculator.html"><a href="r-as-a-calculator.html#resources"><i class="fa fa-check"></i><b>3.5.1</b> Resources:</a></li>
+</ul></li>
 </ul></li>
 <li class="part"><span><b>I Toolkit Foundations</b></span></li>
 <li class="chapter" data-level="4" data-path="visual-analysis.html"><a href="visual-analysis.html"><i class="fa fa-check"></i><b>4</b> Visual Analysis</a><ul>
@@ -162,12 +167,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="5" data-path="schools-of-urban-informatics.html"><a href="schools-of-urban-informatics.html"><i class="fa fa-check"></i><b>5</b> Schools of Urban Informatics</a></li>
 <li class="chapter" data-level="6" data-path="broken-windows-and-the-origin-of-ecometrics.html"><a href="broken-windows-and-the-origin-of-ecometrics.html"><i class="fa fa-check"></i><b>6</b> Broken Windows and the origin of Ecometrics</a><ul>
-<li class="chapter" data-level="6.0.1" data-path="broken-windows-and-the-origin-of-ecometrics.html"><a href="broken-windows-and-the-origin-of-ecometrics.html#resources"><i class="fa fa-check"></i><b>6.0.1</b> Resources:</a></li>
+<li class="chapter" data-level="6.0.1" data-path="broken-windows-and-the-origin-of-ecometrics.html"><a href="broken-windows-and-the-origin-of-ecometrics.html#resources-1"><i class="fa fa-check"></i><b>6.0.1</b> Resources:</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="reading-data.html"><a href="reading-data.html"><i class="fa fa-check"></i><b>7</b> Reading data</a><ul>
 <li class="chapter" data-level="7.1" data-path="reading-data.html"><a href="reading-data.html#background"><i class="fa fa-check"></i><b>7.1</b> Background</a></li>
 <li class="chapter" data-level="7.2" data-path="reading-data.html"><a href="reading-data.html#actually-reading-data"><i class="fa fa-check"></i><b>7.2</b> Actually Reading Data</a><ul>
-<li class="chapter" data-level="7.2.1" data-path="reading-data.html"><a href="reading-data.html#exercise"><i class="fa fa-check"></i><b>7.2.1</b> Exercise</a></li>
+<li class="chapter" data-level="7.2.1" data-path="reading-data.html"><a href="reading-data.html#exercise-1"><i class="fa fa-check"></i><b>7.2.1</b> Exercise</a></li>
 </ul></li>
 <li class="chapter" data-level="7.3" data-path="reading-data.html"><a href="reading-data.html#other-common-data-formats"><i class="fa fa-check"></i><b>7.3</b> Other common data formats</a></li>
 </ul></li>
@@ -243,8 +248,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="r-as-a-calculator" class="section level1">
 <h1><span class="header-section-number">Chapter 3</span> R as a calculator</h1>
-<p>Before we get going, let’s find our footing. R is a statistical programming language. That means that R does math and pretty well too.</p>
-<p>Navigate and enter your console. You will know you have activated the console when the cursor starts flashing. As stated earlier, the console is where your code is executed. We can type R commands directly into the console and execute them there by pressing enter.</p>
+<p>Before we get going, let’s find our footing. R is a statistical programming language. That means that R does math and pretty well too. In this chapter you’ll learn the basics of using R including:</p>
+<ul>
+<li>arithmetic operators</li>
+<li>creating and assigning variables</li>
+<li>using functions</li>
+</ul>
 <div id="arithmetic-operators" class="section level2">
 <h2><span class="header-section-number">3.1</span> Arithmetic Operators</h2>
 <p>Do you remember PEMDAS? If not, a quick refresher that PEMDAS specifies the order of operations for a math equation. Do the math inside of the parentheses, then the exponents, and then the multiplication or the division before addition or subtraction. We can’t write the math out, so we need to type it out. Below are the basic arithmetic operators</p>
@@ -264,19 +273,77 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>To create an object we need to assign it to some value. Object assignment is done with the assignment operator which looks like <code>&lt;-</code>. You can automagically insert the assignment operator with <code>opt + -</code>.</p>
 <p>Let’s work with the above example. We will solve for <code>y</code> when <code>x</code> is equal to 5.</p>
 <p>First, we need to assign 5 to the variable x.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="dv">5</span></a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="dv">5</span></a></code></pre></div>
 <p>If you want to see the contents of an object, you can print it. To print an object you can type the name of it.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">x</a></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">x</a></code></pre></div>
 <pre><code>## [1] 5</code></pre>
 <p>We can reference the value that <code>x</code> stores in other mathematic expressions. Now what does <code>y</code> equal? Now solve for y in the above equation!</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">y &lt;-<span class="st"> </span><span class="dv">3</span> <span class="op">*</span><span class="st"> </span>x <span class="op">-</span><span class="st"> </span><span class="dv">24</span></a>
-<a class="sourceLine" id="cb6-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb6-3" data-line-number="3">y</a></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">y &lt;-<span class="st"> </span><span class="dv">3</span> <span class="op">*</span><span class="st"> </span>x <span class="op">-</span><span class="st"> </span><span class="dv">24</span></a>
+<a class="sourceLine" id="cb4-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb4-3" data-line-number="3">y</a></code></pre></div>
 <pre><code>## [1] -9</code></pre>
 </div>
 <div id="functions" class="section level2">
 <h2><span class="header-section-number">3.3</span> Functions</h2>
+<p>Functions are a special kind of R object. Very simply, a function is an object that performs some action and (usually) produces an output. Functions exist to simplify a task. You can identify a function by the parentheses that are appended to the function name. A function looks like <code>function_name()</code>.</p>
+<p>R has many functions that come built in. The collection of functions that come out of the box with R are called *Base R**.</p>
+<p>An example of a simple base R function is <code>sum()</code>. <code>sum()</code> takes any number of inputs and calculates the sum of those inputs.</p>
+<p>We can run <code>sum()</code> without providing any inputs.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw">sum</span>()</a></code></pre></div>
+<pre><code>## [1] 0</code></pre>
+<p>We can provide more inputs (formally called function arguments) to <code>sum()</code>. For example to find the sum of 10 we write</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="kw">sum</span>(<span class="dv">10</span>)</a></code></pre></div>
+<pre><code>## [1] 10</code></pre>
+<p>The sum of a single number is the number itself. We can provide more arguments to <code>sum()</code>. Additional arguments are specified by separating them with commas—e.g. <code>function(argument_1, argument_2)</code>.</p>
+<p>To find the sum of 10, 3, and 2 we write <code>sum(10, 3, 2)</code>.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="kw">sum</span>(<span class="dv">10</span>, <span class="dv">3</span>, <span class="dv">2</span>)</a></code></pre></div>
+<pre><code>## [1] 15</code></pre>
+<p>Much of the analysis we will do is done with functions. You will become much more comfortable with them rather quickly.</p>
+<p>If you ever need to know how a function works, you can look at its help page by typing <code>?function_name()</code> in your console. That will bring up the documentation page in the bottom right pane.</p>
+</div>
+<div id="extensions-to-r" class="section level2">
+<h2><span class="header-section-number">3.4</span> Extensions to R</h2>
+<p>While R was created as a statistical programming language, it was designed with the intention of being extended to include even more functionality. Extensions to R are called <em>packages</em>. R packages often provide a set of functions to accomplish a specific kind of task.</p>
+<p>To analyse, manipulate, and visualize our data, we will use a number of different packages to do so. Throughout this book we will become familiar with a set of packages that together are known as the <a href="https://tidyverse.org">Tidyverse</a>.</p>
+<p>R packages do not come installed out of the box. We will need to install them our selves. Base R includes a function called <code>install.packages()</code>. <code>install.packages()</code> will download a specified package from CRAN and install it for us.</p>
+<p>To download packages, we must tell <code>install.packages()</code> which package to download. We will provide the name of the package as the only argument to <code>install.packages()</code>. The name of the package needs to be put into quotations such as <code>install.packages(&quot;package-name&quot;)</code>.</p>
+<blockquote>
+<p>Note: By putting text into quotations we are creating what is called a <strong>character string</strong>.</p>
+</blockquote>
+<blockquote>
+<p>Reminder: we create objects with the assignment operator <code>&lt;-</code>.</p>
+</blockquote>
+<p>When we don’t use quotes (create a character string), R thinks we are referring to an object we have created.</p>
+<div id="exercise" class="section level3">
+<h3><span class="header-section-number">3.4.1</span> Exercise</h3>
+<p>Use your new knowlege of functions and installing packages to install the tidyverse.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1"><span class="kw">install.packages</span>(<span class="st">&quot;tidyverse&quot;</span>)</a></code></pre></div>
+</div>
+</div>
+<div id="loading-packages" class="section level2">
+<h2><span class="header-section-number">3.5</span> Loading Packages</h2>
+<p>Now that you have installed the tidyverse, you are going to need to know how to make it available to you for use. To load a package, we use the function <code>library()</code>. Oddly, though, when specifying which package to load, we do not put that name in quotations.</p>
+<blockquote>
+<p>Note: It is best practice to load all of your packages at the top of your R script.</p>
+</blockquote>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1"><span class="kw">library</span>(tidyverse)</a></code></pre></div>
+<pre><code>## ── Attaching packages ───── tidyverse 1.2.1 ──</code></pre>
+<pre><code>## ✓ tibble  2.1.3     ✓ purrr   0.3.3
+## ✓ tidyr   1.0.2     ✓ dplyr   0.8.3
+## ✓ readr   1.3.1     ✓ stringr 1.4.0
+## ✓ tibble  2.1.3     ✓ forcats 0.4.0</code></pre>
+<pre><code>## ── Conflicts ──────── tidyverse_conflicts() ──
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()</code></pre>
+<p>Notice the message above. When we load the tidyverse, we are actually loading eight packages at once! Thesee are the packages listed under “<strong>Attaching packages</strong>.”</p>
+<p>You have now successfully installed and loaded the tidyverse. Next, we will begin to learn how to visually analyze data!</p>
+<div id="resources" class="section level3">
+<h3><span class="header-section-number">3.5.1</span> Resources:</h3>
+<ul>
+<li><a href="https://techterms.com/definition/string" class="uri">https://techterms.com/definition/string</a></li>
+</ul>
 
+</div>
 </div>
 </div>
 

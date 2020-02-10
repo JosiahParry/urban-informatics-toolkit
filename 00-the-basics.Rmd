@@ -112,6 +112,8 @@ It's easiest if you install R _and then_ RStudio
 - install RStudio: https://rstudio.com/products/rstudio/download/#download
 - when you're ready to get started, open RStudio not R (look for the circular logo)
 
+if you get lost, check out the RStudio IDE cheatsheet
+
 
 ## R Projects
 
@@ -130,31 +132,4 @@ It's easiest if you install R _and then_ RStudio
   - if the code is related to eachother
   - i think of every general analysis as its own project
 - refer to rstats.wtf
-
-## Extensions to R 
-
-While R was created as a statistical programming language, it was designed with the intention of being extended to include even more functionality. Extensions to R are called _packages_. ‚
-
-outline
-- install the tidyverse
-- the tidyverse is a collection of packages that make data analysis and cleaning and everythingg else a lot easier
-
-```{r eval=FALSE}
-install.packages("tidyverse")
-```
-
-- a package is a collection of functions that make life easier. functions are bits of code that do things. we will use _a lot_ of functions throughout. we will dive into this in more depth later on. You can usually recognize a function by the parentheses at the end i.e. `function()`
-  - think about the anatomy of a function:
-    - function name and arguments
-    - i will be refering to "function arugments" a TON so please internalize this. 
-    - we will review _making_ functions later. But using functions, oof. Main stay
-    - arguments are unquoted
-- the way we load this package for use with the `library()` function (a little meta, lol)
-
-
-- this one line of code will install the packages that we need to do this work. Don't be too concerned about _what_ a package is. We will go over this in more detail later. Very simply, a package is a collection of functions that make certain things possible or easier to do in R. We like to use packages because reinventing the wheel is never fun.
-
-```{r, eval = FALSE}
-install.packages("tidyverse")
-```
 
