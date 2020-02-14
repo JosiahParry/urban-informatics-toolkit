@@ -1,0 +1,60 @@
+
+## filter
+
+```{r}
+library(tidyverse)
+acs_raw <- read_csv("data/ACS_1317_TRACT.csv")
+```
+
+
+- logical operators
+
+### scenario
+
+- we have now selected the columns we need to provide
+
+## mutate
+
+### scenario
+
+- The non-profit has emailed you back and indicated that they want to report on the income quintiles and requested that you do this for them. You're a rockstar and a kickass programmer so you're like, hell yah. 
+- they also ask for:
+  - tract
+  - a combined measure of bach masters and doctoral
+  
+```{r max.print=10}
+
+acs_raw %>% 
+  mutate(hh_inc_quin = ntile(med_house_income, 5))
+
+```
+
+_i need to introduce measures of central tendency and summar stats in between this_
+
+- groups
+- summarizing
+
+
+using the `name` column I can consider introducing string methods
+  - this would probably be better done with text reviews or something
+  
+  
+
+
+## writing data lol
+
+
+
+They define the greater boston area as Suffolk, Middlesex, and Norfolk counties. 
+
+before we go ahead and start cleaning this data, we need to learn the tools to do so. Please bear with me! 
+  
+  
+  - recall how to load the tidyverse
+- we'll read in the `ACS_1317_TRACT.csv` file located in the `data` directory
+  - putting this together the file path is `data/ACS_1317_TRACT.csv`.
+  - store it in the variable `acs_raw`
+
+
+To learn these tools we will work with a role-play / workthrough. 
+a local non-profit is interested in learning about the demographic characteristics of the greater boston area. They are specifically interested to learn more about the relationship between the age, race, and economic status. They've come to you to provide them with the relevant data. you have acces to the annual BARI census data and you will curate the data for them. 

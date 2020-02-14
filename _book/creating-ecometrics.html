@@ -24,7 +24,7 @@
 <meta name="author" content="Josiah Parry" />
 
 
-<meta name="date" content="2020-02-10" />
+<meta name="date" content="2020-02-14" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -181,17 +181,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.2" data-path="general-data-manipulation.html"><a href="general-data-manipulation.html#getting-physical-with-the-data"><i class="fa fa-check"></i><b>8.2</b> Getting physical with the data</a><ul>
 <li class="chapter" data-level="8.2.1" data-path="general-data-manipulation.html"><a href="general-data-manipulation.html#selecting"><i class="fa fa-check"></i><b>8.2.1</b> <code>select()</code>ing</a></li>
 <li class="chapter" data-level="8.2.2" data-path="general-data-manipulation.html"><a href="general-data-manipulation.html#selecting-exercises"><i class="fa fa-check"></i><b>8.2.2</b> <code>select()</code>ing exercises</a></li>
-<li class="chapter" data-level="8.2.3" data-path="general-data-manipulation.html"><a href="general-data-manipulation.html#select-exercises"><i class="fa fa-check"></i><b>8.2.3</b> <code>select()</code> exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="8.3" data-path="general-data-manipulation.html"><a href="general-data-manipulation.html#selecting-rows"><i class="fa fa-check"></i><b>8.3</b> Selecting Rows</a></li>
-<li class="chapter" data-level="8.4" data-path="general-data-manipulation.html"><a href="general-data-manipulation.html#filter"><i class="fa fa-check"></i><b>8.4</b> filter</a><ul>
-<li class="chapter" data-level="8.4.1" data-path="general-data-manipulation.html"><a href="general-data-manipulation.html#scenario-1"><i class="fa fa-check"></i><b>8.4.1</b> scenario</a></li>
+<li class="chapter" data-level="8.4" data-path="general-data-manipulation.html"><a href="general-data-manipulation.html#revisiting-commmuting"><i class="fa fa-check"></i><b>8.4</b> Revisiting commmuting</a><ul>
+<li class="chapter" data-level="8.4.1" data-path="general-data-manipulation.html"><a href="general-data-manipulation.html#exercise-2"><i class="fa fa-check"></i><b>8.4.1</b> Exercise</a></li>
 </ul></li>
-<li class="chapter" data-level="8.5" data-path="general-data-manipulation.html"><a href="general-data-manipulation.html#mutate"><i class="fa fa-check"></i><b>8.5</b> mutate</a><ul>
-<li class="chapter" data-level="8.5.1" data-path="general-data-manipulation.html"><a href="general-data-manipulation.html#scenario-2"><i class="fa fa-check"></i><b>8.5.1</b> scenario</a></li>
+<li class="chapter" data-level="8.5" data-path="general-data-manipulation.html"><a href="general-data-manipulation.html#asking-good-questions"><i class="fa fa-check"></i><b>8.5</b> Asking good questions</a></li>
+<li class="chapter" data-level="8.6" data-path="general-data-manipulation.html"><a href="general-data-manipulation.html#filter"><i class="fa fa-check"></i><b>8.6</b> filter</a><ul>
+<li class="chapter" data-level="8.6.1" data-path="general-data-manipulation.html"><a href="general-data-manipulation.html#scenario-1"><i class="fa fa-check"></i><b>8.6.1</b> scenario</a></li>
 </ul></li>
-<li class="chapter" data-level="8.6" data-path="general-data-manipulation.html"><a href="general-data-manipulation.html#asking-good-questions"><i class="fa fa-check"></i><b>8.6</b> asking good questions</a></li>
-<li class="chapter" data-level="8.7" data-path="general-data-manipulation.html"><a href="general-data-manipulation.html#writing-data-lol"><i class="fa fa-check"></i><b>8.7</b> writing data lol</a></li>
+<li class="chapter" data-level="8.7" data-path="general-data-manipulation.html"><a href="general-data-manipulation.html#mutate"><i class="fa fa-check"></i><b>8.7</b> mutate</a><ul>
+<li class="chapter" data-level="8.7.1" data-path="general-data-manipulation.html"><a href="general-data-manipulation.html#scenario-2"><i class="fa fa-check"></i><b>8.7.1</b> scenario</a></li>
+</ul></li>
+<li class="chapter" data-level="8.8" data-path="general-data-manipulation.html"><a href="general-data-manipulation.html#writing-data-lol"><i class="fa fa-check"></i><b>8.8</b> writing data lol</a></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="visualizing-trends-and-relationships.html"><a href="visualizing-trends-and-relationships.html"><i class="fa fa-check"></i><b>9</b> Visualizing Trends and Relationships</a><ul>
 <li class="chapter" data-level="9.1" data-path="visualizing-trends-and-relationships.html"><a href="visualizing-trends-and-relationships.html#univariate-visualizations"><i class="fa fa-check"></i><b>9.1</b> Univariate visualizations</a><ul>
@@ -252,115 +254,115 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Note: a case study should be recreating these ecometrics</p>
 </blockquote>
 <p>Explore what the data description from BARI looks like</p>
-<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb79-1" data-line-number="1"><span class="kw">library</span>(tidyverse)</a>
-<a class="sourceLine" id="cb79-2" data-line-number="2"><span class="co">## ── Attaching packages ──────────────────────────────────────────── tidyverse 1.2.1 ──</span></a>
-<a class="sourceLine" id="cb79-3" data-line-number="3"><span class="co">## ✓ tibble  2.1.3     ✓ purrr   0.3.3</span></a>
-<a class="sourceLine" id="cb79-4" data-line-number="4"><span class="co">## ✓ tidyr   1.0.2     ✓ dplyr   0.8.3</span></a>
-<a class="sourceLine" id="cb79-5" data-line-number="5"><span class="co">## ✓ readr   1.3.1     ✓ stringr 1.4.0</span></a>
-<a class="sourceLine" id="cb79-6" data-line-number="6"><span class="co">## ✓ tibble  2.1.3     ✓ forcats 0.4.0</span></a>
-<a class="sourceLine" id="cb79-7" data-line-number="7"><span class="co">## ── Conflicts ─────────────────────────────────────────────── tidyverse_conflicts() ──</span></a>
-<a class="sourceLine" id="cb79-8" data-line-number="8"><span class="co">## x dplyr::filter() masks stats::filter()</span></a>
-<a class="sourceLine" id="cb79-9" data-line-number="9"><span class="co">## x dplyr::lag()    masks stats::lag()</span></a>
-<a class="sourceLine" id="cb79-10" data-line-number="10">ecometrics &lt;-<span class="st"> </span>readr<span class="op">::</span><span class="kw">read_csv</span>(<span class="st">&quot;data/911/911-ecometrics-2014-19.csv&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb79-11" data-line-number="11"><span class="st">  </span>janitor<span class="op">::</span><span class="kw">clean_names</span>()</a>
-<a class="sourceLine" id="cb79-12" data-line-number="12"><span class="co">## Parsed with column specification:</span></a>
-<a class="sourceLine" id="cb79-13" data-line-number="13"><span class="co">## cols(</span></a>
-<a class="sourceLine" id="cb79-14" data-line-number="14"><span class="co">##   TYPE = col_character(),</span></a>
-<a class="sourceLine" id="cb79-15" data-line-number="15"><span class="co">##   tycod = col_character(),</span></a>
-<a class="sourceLine" id="cb79-16" data-line-number="16"><span class="co">##   typ_eng = col_character(),</span></a>
-<a class="sourceLine" id="cb79-17" data-line-number="17"><span class="co">##   sub_tycod = col_character(),</span></a>
-<a class="sourceLine" id="cb79-18" data-line-number="18"><span class="co">##   sub_eng = col_character(),</span></a>
-<a class="sourceLine" id="cb79-19" data-line-number="19"><span class="co">##   SocDis = col_double(),</span></a>
-<a class="sourceLine" id="cb79-20" data-line-number="20"><span class="co">##   PrivateConflict = col_double(),</span></a>
-<a class="sourceLine" id="cb79-21" data-line-number="21"><span class="co">##   Violence = col_double(),</span></a>
-<a class="sourceLine" id="cb79-22" data-line-number="22"><span class="co">##   Guns = col_double(),</span></a>
-<a class="sourceLine" id="cb79-23" data-line-number="23"><span class="co">##   Frequency_2015 = col_double(),</span></a>
-<a class="sourceLine" id="cb79-24" data-line-number="24"><span class="co">##   Frequency_2016 = col_double(),</span></a>
-<a class="sourceLine" id="cb79-25" data-line-number="25"><span class="co">##   Frequency_2017 = col_double(),</span></a>
-<a class="sourceLine" id="cb79-26" data-line-number="26"><span class="co">##   Frequency_2018 = col_double(),</span></a>
-<a class="sourceLine" id="cb79-27" data-line-number="27"><span class="co">##   yr.intro = col_double(),</span></a>
-<a class="sourceLine" id="cb79-28" data-line-number="28"><span class="co">##   last.yr = col_double()</span></a>
-<a class="sourceLine" id="cb79-29" data-line-number="29"><span class="co">## )</span></a>
-<a class="sourceLine" id="cb79-30" data-line-number="30"></a>
-<a class="sourceLine" id="cb79-31" data-line-number="31"><span class="kw">glimpse</span>(ecometrics)</a>
-<a class="sourceLine" id="cb79-32" data-line-number="32"><span class="co">## Observations: 302</span></a>
-<a class="sourceLine" id="cb79-33" data-line-number="33"><span class="co">## Variables: 15</span></a>
-<a class="sourceLine" id="cb79-34" data-line-number="34"><span class="co">## $ type             &lt;chr&gt; &quot;AB===&gt;&gt;&gt;&quot;, &quot;ABAN===&gt;&gt;&gt;&quot;, &quot;ABANBU&quot;, &quot;ABANCELL&quot;,…</span></a>
-<a class="sourceLine" id="cb79-35" data-line-number="35"><span class="co">## $ tycod            &lt;chr&gt; &quot;AB&quot;, &quot;ABAN&quot;, &quot;ABAN&quot;, &quot;ABAN&quot;, &quot;ABAN&quot;, &quot;ABAN&quot;, &quot;…</span></a>
-<a class="sourceLine" id="cb79-36" data-line-number="36"><span class="co">## $ typ_eng          &lt;chr&gt; &quot;ASSAULT AND BATTERY&quot;, &quot;ABANDONED CALL&quot;, &quot;ABAND…</span></a>
-<a class="sourceLine" id="cb79-37" data-line-number="37"><span class="co">## $ sub_tycod        &lt;chr&gt; &quot;===&gt;&gt;&gt;&quot;, &quot;===&gt;&gt;&gt;&quot;, &quot;BU&quot;, &quot;CELL&quot;, &quot;INCCAL&quot;, &quot;PH…</span></a>
-<a class="sourceLine" id="cb79-38" data-line-number="38"><span class="co">## $ sub_eng          &lt;chr&gt; &quot;PICK A SUB-TYPE&quot;, &quot;PICK A SUB-TYPE&quot;, &quot;FROM A B…</span></a>
-<a class="sourceLine" id="cb79-39" data-line-number="39"><span class="co">## $ soc_dis          &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,…</span></a>
-<a class="sourceLine" id="cb79-40" data-line-number="40"><span class="co">## $ private_conflict &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,…</span></a>
-<a class="sourceLine" id="cb79-41" data-line-number="41"><span class="co">## $ violence         &lt;dbl&gt; 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0,…</span></a>
-<a class="sourceLine" id="cb79-42" data-line-number="42"><span class="co">## $ guns             &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0,…</span></a>
-<a class="sourceLine" id="cb79-43" data-line-number="43"><span class="co">## $ frequency_2015   &lt;dbl&gt; 27, 40, 12768, 72081, 686, 1734, 3143, 194, 122…</span></a>
-<a class="sourceLine" id="cb79-44" data-line-number="44"><span class="co">## $ frequency_2016   &lt;dbl&gt; 29, 26, 13287, 56074, 1188, 1205, 2687, 397, 19…</span></a>
-<a class="sourceLine" id="cb79-45" data-line-number="45"><span class="co">## $ frequency_2017   &lt;dbl&gt; 29, 17, 12599, 39323, 124, 724, 1944, 253, 162,…</span></a>
-<a class="sourceLine" id="cb79-46" data-line-number="46"><span class="co">## $ frequency_2018   &lt;dbl&gt; 14, 10, 6422, 19947, 70, 506, 840, 262, 169, 78…</span></a>
-<a class="sourceLine" id="cb79-47" data-line-number="47"><span class="co">## $ yr_intro         &lt;dbl&gt; 2014, 2014, 2014, 2014, 2014, 2014, 2014, 2014,…</span></a>
-<a class="sourceLine" id="cb79-48" data-line-number="48"><span class="co">## $ last_yr          &lt;dbl&gt; 2019, 2018, 2019, 2019, 2019, 2019, 2019, 2019,…</span></a></code></pre></div>
+<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb86-1" data-line-number="1"><span class="kw">library</span>(tidyverse)</a>
+<a class="sourceLine" id="cb86-2" data-line-number="2"><span class="co">## ── Attaching packages ──────────────────────────────────── tidyverse 1.2.1 ──</span></a>
+<a class="sourceLine" id="cb86-3" data-line-number="3"><span class="co">## ✓ tibble  2.1.3     ✓ purrr   0.3.3</span></a>
+<a class="sourceLine" id="cb86-4" data-line-number="4"><span class="co">## ✓ tidyr   1.0.2     ✓ dplyr   0.8.3</span></a>
+<a class="sourceLine" id="cb86-5" data-line-number="5"><span class="co">## ✓ readr   1.3.1     ✓ stringr 1.4.0</span></a>
+<a class="sourceLine" id="cb86-6" data-line-number="6"><span class="co">## ✓ tibble  2.1.3     ✓ forcats 0.4.0</span></a>
+<a class="sourceLine" id="cb86-7" data-line-number="7"><span class="co">## ── Conflicts ─────────────────────────────────────── tidyverse_conflicts() ──</span></a>
+<a class="sourceLine" id="cb86-8" data-line-number="8"><span class="co">## x dplyr::filter() masks stats::filter()</span></a>
+<a class="sourceLine" id="cb86-9" data-line-number="9"><span class="co">## x dplyr::lag()    masks stats::lag()</span></a>
+<a class="sourceLine" id="cb86-10" data-line-number="10">ecometrics &lt;-<span class="st"> </span>readr<span class="op">::</span><span class="kw">read_csv</span>(<span class="st">&quot;data/911/911-ecometrics-2014-19.csv&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb86-11" data-line-number="11"><span class="st">  </span>janitor<span class="op">::</span><span class="kw">clean_names</span>()</a>
+<a class="sourceLine" id="cb86-12" data-line-number="12"><span class="co">## Parsed with column specification:</span></a>
+<a class="sourceLine" id="cb86-13" data-line-number="13"><span class="co">## cols(</span></a>
+<a class="sourceLine" id="cb86-14" data-line-number="14"><span class="co">##   TYPE = col_character(),</span></a>
+<a class="sourceLine" id="cb86-15" data-line-number="15"><span class="co">##   tycod = col_character(),</span></a>
+<a class="sourceLine" id="cb86-16" data-line-number="16"><span class="co">##   typ_eng = col_character(),</span></a>
+<a class="sourceLine" id="cb86-17" data-line-number="17"><span class="co">##   sub_tycod = col_character(),</span></a>
+<a class="sourceLine" id="cb86-18" data-line-number="18"><span class="co">##   sub_eng = col_character(),</span></a>
+<a class="sourceLine" id="cb86-19" data-line-number="19"><span class="co">##   SocDis = col_double(),</span></a>
+<a class="sourceLine" id="cb86-20" data-line-number="20"><span class="co">##   PrivateConflict = col_double(),</span></a>
+<a class="sourceLine" id="cb86-21" data-line-number="21"><span class="co">##   Violence = col_double(),</span></a>
+<a class="sourceLine" id="cb86-22" data-line-number="22"><span class="co">##   Guns = col_double(),</span></a>
+<a class="sourceLine" id="cb86-23" data-line-number="23"><span class="co">##   Frequency_2015 = col_double(),</span></a>
+<a class="sourceLine" id="cb86-24" data-line-number="24"><span class="co">##   Frequency_2016 = col_double(),</span></a>
+<a class="sourceLine" id="cb86-25" data-line-number="25"><span class="co">##   Frequency_2017 = col_double(),</span></a>
+<a class="sourceLine" id="cb86-26" data-line-number="26"><span class="co">##   Frequency_2018 = col_double(),</span></a>
+<a class="sourceLine" id="cb86-27" data-line-number="27"><span class="co">##   yr.intro = col_double(),</span></a>
+<a class="sourceLine" id="cb86-28" data-line-number="28"><span class="co">##   last.yr = col_double()</span></a>
+<a class="sourceLine" id="cb86-29" data-line-number="29"><span class="co">## )</span></a>
+<a class="sourceLine" id="cb86-30" data-line-number="30"></a>
+<a class="sourceLine" id="cb86-31" data-line-number="31"><span class="kw">glimpse</span>(ecometrics)</a>
+<a class="sourceLine" id="cb86-32" data-line-number="32"><span class="co">## Observations: 302</span></a>
+<a class="sourceLine" id="cb86-33" data-line-number="33"><span class="co">## Variables: 15</span></a>
+<a class="sourceLine" id="cb86-34" data-line-number="34"><span class="co">## $ type             &lt;chr&gt; &quot;AB===&gt;&gt;&gt;&quot;, &quot;ABAN===&gt;&gt;&gt;&quot;, &quot;ABANBU&quot;, &quot;ABANCELL&quot;,…</span></a>
+<a class="sourceLine" id="cb86-35" data-line-number="35"><span class="co">## $ tycod            &lt;chr&gt; &quot;AB&quot;, &quot;ABAN&quot;, &quot;ABAN&quot;, &quot;ABAN&quot;, &quot;ABAN&quot;, &quot;ABAN&quot;, &quot;…</span></a>
+<a class="sourceLine" id="cb86-36" data-line-number="36"><span class="co">## $ typ_eng          &lt;chr&gt; &quot;ASSAULT AND BATTERY&quot;, &quot;ABANDONED CALL&quot;, &quot;ABAND…</span></a>
+<a class="sourceLine" id="cb86-37" data-line-number="37"><span class="co">## $ sub_tycod        &lt;chr&gt; &quot;===&gt;&gt;&gt;&quot;, &quot;===&gt;&gt;&gt;&quot;, &quot;BU&quot;, &quot;CELL&quot;, &quot;INCCAL&quot;, &quot;PH…</span></a>
+<a class="sourceLine" id="cb86-38" data-line-number="38"><span class="co">## $ sub_eng          &lt;chr&gt; &quot;PICK A SUB-TYPE&quot;, &quot;PICK A SUB-TYPE&quot;, &quot;FROM A B…</span></a>
+<a class="sourceLine" id="cb86-39" data-line-number="39"><span class="co">## $ soc_dis          &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,…</span></a>
+<a class="sourceLine" id="cb86-40" data-line-number="40"><span class="co">## $ private_conflict &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,…</span></a>
+<a class="sourceLine" id="cb86-41" data-line-number="41"><span class="co">## $ violence         &lt;dbl&gt; 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0,…</span></a>
+<a class="sourceLine" id="cb86-42" data-line-number="42"><span class="co">## $ guns             &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0,…</span></a>
+<a class="sourceLine" id="cb86-43" data-line-number="43"><span class="co">## $ frequency_2015   &lt;dbl&gt; 27, 40, 12768, 72081, 686, 1734, 3143, 194, 122…</span></a>
+<a class="sourceLine" id="cb86-44" data-line-number="44"><span class="co">## $ frequency_2016   &lt;dbl&gt; 29, 26, 13287, 56074, 1188, 1205, 2687, 397, 19…</span></a>
+<a class="sourceLine" id="cb86-45" data-line-number="45"><span class="co">## $ frequency_2017   &lt;dbl&gt; 29, 17, 12599, 39323, 124, 724, 1944, 253, 162,…</span></a>
+<a class="sourceLine" id="cb86-46" data-line-number="46"><span class="co">## $ frequency_2018   &lt;dbl&gt; 14, 10, 6422, 19947, 70, 506, 840, 262, 169, 78…</span></a>
+<a class="sourceLine" id="cb86-47" data-line-number="47"><span class="co">## $ yr_intro         &lt;dbl&gt; 2014, 2014, 2014, 2014, 2014, 2014, 2014, 2014,…</span></a>
+<a class="sourceLine" id="cb86-48" data-line-number="48"><span class="co">## $ last_yr          &lt;dbl&gt; 2019, 2018, 2019, 2019, 2019, 2019, 2019, 2019,…</span></a></code></pre></div>
 <p>Check out the offense descriptions</p>
-<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb80-1" data-line-number="1">raw_<span class="dv">911</span> &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data/911/911-raw.csv&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb80-2" data-line-number="2"><span class="st">  </span>janitor<span class="op">::</span><span class="kw">clean_names</span>()</a>
-<a class="sourceLine" id="cb80-3" data-line-number="3"><span class="co">## Parsed with column specification:</span></a>
-<a class="sourceLine" id="cb80-4" data-line-number="4"><span class="co">## cols(</span></a>
-<a class="sourceLine" id="cb80-5" data-line-number="5"><span class="co">##   INCIDENT_NUMBER = col_character(),</span></a>
-<a class="sourceLine" id="cb80-6" data-line-number="6"><span class="co">##   OFFENSE_CODE = col_character(),</span></a>
-<a class="sourceLine" id="cb80-7" data-line-number="7"><span class="co">##   OFFENSE_CODE_GROUP = col_character(),</span></a>
-<a class="sourceLine" id="cb80-8" data-line-number="8"><span class="co">##   OFFENSE_DESCRIPTION = col_character(),</span></a>
-<a class="sourceLine" id="cb80-9" data-line-number="9"><span class="co">##   DISTRICT = col_character(),</span></a>
-<a class="sourceLine" id="cb80-10" data-line-number="10"><span class="co">##   REPORTING_AREA = col_double(),</span></a>
-<a class="sourceLine" id="cb80-11" data-line-number="11"><span class="co">##   SHOOTING = col_character(),</span></a>
-<a class="sourceLine" id="cb80-12" data-line-number="12"><span class="co">##   OCCURRED_ON_DATE = col_datetime(format = &quot;&quot;),</span></a>
-<a class="sourceLine" id="cb80-13" data-line-number="13"><span class="co">##   YEAR = col_double(),</span></a>
-<a class="sourceLine" id="cb80-14" data-line-number="14"><span class="co">##   MONTH = col_double(),</span></a>
-<a class="sourceLine" id="cb80-15" data-line-number="15"><span class="co">##   DAY_OF_WEEK = col_character(),</span></a>
-<a class="sourceLine" id="cb80-16" data-line-number="16"><span class="co">##   HOUR = col_double(),</span></a>
-<a class="sourceLine" id="cb80-17" data-line-number="17"><span class="co">##   UCR_PART = col_character(),</span></a>
-<a class="sourceLine" id="cb80-18" data-line-number="18"><span class="co">##   STREET = col_character(),</span></a>
-<a class="sourceLine" id="cb80-19" data-line-number="19"><span class="co">##   Lat = col_double(),</span></a>
-<a class="sourceLine" id="cb80-20" data-line-number="20"><span class="co">##   Long = col_double(),</span></a>
-<a class="sourceLine" id="cb80-21" data-line-number="21"><span class="co">##   Location = col_character()</span></a>
-<a class="sourceLine" id="cb80-22" data-line-number="22"><span class="co">## )</span></a></code></pre></div>
-<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb81-1" data-line-number="1">raw_<span class="dv">911</span> <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb81-2" data-line-number="2"><span class="st">  </span><span class="kw">count</span>(offense_code_group)</a>
-<a class="sourceLine" id="cb81-3" data-line-number="3"><span class="co">## # A tibble: 68 x 2</span></a>
-<a class="sourceLine" id="cb81-4" data-line-number="4"><span class="co">##    offense_code_group                   n</span></a>
-<a class="sourceLine" id="cb81-5" data-line-number="5"><span class="co">##    &lt;chr&gt;                            &lt;int&gt;</span></a>
-<a class="sourceLine" id="cb81-6" data-line-number="6"><span class="co">##  1 Aggravated Assault               10687</span></a>
-<a class="sourceLine" id="cb81-7" data-line-number="7"><span class="co">##  2 Aircraft                            60</span></a>
-<a class="sourceLine" id="cb81-8" data-line-number="8"><span class="co">##  3 Arson                              109</span></a>
-<a class="sourceLine" id="cb81-9" data-line-number="9"><span class="co">##  4 Assembly or Gathering Violations  1143</span></a>
-<a class="sourceLine" id="cb81-10" data-line-number="10"><span class="co">##  5 Auto Theft                        6211</span></a>
-<a class="sourceLine" id="cb81-11" data-line-number="11"><span class="co">##  6 Auto Theft Recovery               1385</span></a>
-<a class="sourceLine" id="cb81-12" data-line-number="12"><span class="co">##  7 Ballistics                        1338</span></a>
-<a class="sourceLine" id="cb81-13" data-line-number="13"><span class="co">##  8 Biological Threat                    3</span></a>
-<a class="sourceLine" id="cb81-14" data-line-number="14"><span class="co">##  9 Bomb Hoax                          109</span></a>
-<a class="sourceLine" id="cb81-15" data-line-number="15"><span class="co">## 10 Burglary - No Property Taken         5</span></a>
-<a class="sourceLine" id="cb81-16" data-line-number="16"><span class="co">## # … with 58 more rows</span></a></code></pre></div>
+<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb87-1" data-line-number="1">raw_<span class="dv">911</span> &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data/911/911-raw.csv&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb87-2" data-line-number="2"><span class="st">  </span>janitor<span class="op">::</span><span class="kw">clean_names</span>()</a>
+<a class="sourceLine" id="cb87-3" data-line-number="3"><span class="co">## Parsed with column specification:</span></a>
+<a class="sourceLine" id="cb87-4" data-line-number="4"><span class="co">## cols(</span></a>
+<a class="sourceLine" id="cb87-5" data-line-number="5"><span class="co">##   INCIDENT_NUMBER = col_character(),</span></a>
+<a class="sourceLine" id="cb87-6" data-line-number="6"><span class="co">##   OFFENSE_CODE = col_character(),</span></a>
+<a class="sourceLine" id="cb87-7" data-line-number="7"><span class="co">##   OFFENSE_CODE_GROUP = col_character(),</span></a>
+<a class="sourceLine" id="cb87-8" data-line-number="8"><span class="co">##   OFFENSE_DESCRIPTION = col_character(),</span></a>
+<a class="sourceLine" id="cb87-9" data-line-number="9"><span class="co">##   DISTRICT = col_character(),</span></a>
+<a class="sourceLine" id="cb87-10" data-line-number="10"><span class="co">##   REPORTING_AREA = col_double(),</span></a>
+<a class="sourceLine" id="cb87-11" data-line-number="11"><span class="co">##   SHOOTING = col_character(),</span></a>
+<a class="sourceLine" id="cb87-12" data-line-number="12"><span class="co">##   OCCURRED_ON_DATE = col_datetime(format = &quot;&quot;),</span></a>
+<a class="sourceLine" id="cb87-13" data-line-number="13"><span class="co">##   YEAR = col_double(),</span></a>
+<a class="sourceLine" id="cb87-14" data-line-number="14"><span class="co">##   MONTH = col_double(),</span></a>
+<a class="sourceLine" id="cb87-15" data-line-number="15"><span class="co">##   DAY_OF_WEEK = col_character(),</span></a>
+<a class="sourceLine" id="cb87-16" data-line-number="16"><span class="co">##   HOUR = col_double(),</span></a>
+<a class="sourceLine" id="cb87-17" data-line-number="17"><span class="co">##   UCR_PART = col_character(),</span></a>
+<a class="sourceLine" id="cb87-18" data-line-number="18"><span class="co">##   STREET = col_character(),</span></a>
+<a class="sourceLine" id="cb87-19" data-line-number="19"><span class="co">##   Lat = col_double(),</span></a>
+<a class="sourceLine" id="cb87-20" data-line-number="20"><span class="co">##   Long = col_double(),</span></a>
+<a class="sourceLine" id="cb87-21" data-line-number="21"><span class="co">##   Location = col_character()</span></a>
+<a class="sourceLine" id="cb87-22" data-line-number="22"><span class="co">## )</span></a></code></pre></div>
+<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb88-1" data-line-number="1">raw_<span class="dv">911</span> <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb88-2" data-line-number="2"><span class="st">  </span><span class="kw">count</span>(offense_code_group)</a>
+<a class="sourceLine" id="cb88-3" data-line-number="3"><span class="co">## # A tibble: 68 x 2</span></a>
+<a class="sourceLine" id="cb88-4" data-line-number="4"><span class="co">##    offense_code_group                   n</span></a>
+<a class="sourceLine" id="cb88-5" data-line-number="5"><span class="co">##    &lt;chr&gt;                            &lt;int&gt;</span></a>
+<a class="sourceLine" id="cb88-6" data-line-number="6"><span class="co">##  1 Aggravated Assault               10687</span></a>
+<a class="sourceLine" id="cb88-7" data-line-number="7"><span class="co">##  2 Aircraft                            60</span></a>
+<a class="sourceLine" id="cb88-8" data-line-number="8"><span class="co">##  3 Arson                              109</span></a>
+<a class="sourceLine" id="cb88-9" data-line-number="9"><span class="co">##  4 Assembly or Gathering Violations  1143</span></a>
+<a class="sourceLine" id="cb88-10" data-line-number="10"><span class="co">##  5 Auto Theft                        6211</span></a>
+<a class="sourceLine" id="cb88-11" data-line-number="11"><span class="co">##  6 Auto Theft Recovery               1385</span></a>
+<a class="sourceLine" id="cb88-12" data-line-number="12"><span class="co">##  7 Ballistics                        1338</span></a>
+<a class="sourceLine" id="cb88-13" data-line-number="13"><span class="co">##  8 Biological Threat                    3</span></a>
+<a class="sourceLine" id="cb88-14" data-line-number="14"><span class="co">##  9 Bomb Hoax                          109</span></a>
+<a class="sourceLine" id="cb88-15" data-line-number="15"><span class="co">## 10 Burglary - No Property Taken         5</span></a>
+<a class="sourceLine" id="cb88-16" data-line-number="16"><span class="co">## # … with 58 more rows</span></a></code></pre></div>
 <ul>
 <li>There are fewer types of code groups.</li>
 <li>They are rather informative.</li>
 <li>33k missing observations though</li>
 <li>is the same amount of missingness present in the descriptions?</li>
 </ul>
-<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb82-1" data-line-number="1">raw_<span class="dv">911</span> <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb82-2" data-line-number="2"><span class="st">  </span><span class="kw">count</span>(offense_description)</a>
-<a class="sourceLine" id="cb82-3" data-line-number="3"><span class="co">## # A tibble: 279 x 2</span></a>
-<a class="sourceLine" id="cb82-4" data-line-number="4"><span class="co">##    offense_description                              n</span></a>
-<a class="sourceLine" id="cb82-5" data-line-number="5"><span class="co">##    &lt;chr&gt;                                        &lt;int&gt;</span></a>
-<a class="sourceLine" id="cb82-6" data-line-number="6"><span class="co">##  1 A&amp;B HANDS, FEET, ETC.  - MED. </span><span class="al">ATTENTION</span><span class="co"> REQ.     1</span></a>
-<a class="sourceLine" id="cb82-7" data-line-number="7"><span class="co">##  2 A&amp;B ON POLICE OFFICER                            7</span></a>
-<a class="sourceLine" id="cb82-8" data-line-number="8"><span class="co">##  3 ABDUCTION - INTICING                            12</span></a>
-<a class="sourceLine" id="cb82-9" data-line-number="9"><span class="co">##  4 AFFRAY                                         318</span></a>
-<a class="sourceLine" id="cb82-10" data-line-number="10"><span class="co">##  5 AIRCRAFT INCIDENTS                              70</span></a>
-<a class="sourceLine" id="cb82-11" data-line-number="11"><span class="co">##  6 ANIMAL ABUSE                                    89</span></a>
-<a class="sourceLine" id="cb82-12" data-line-number="12"><span class="co">##  7 ANIMAL CONTROL - DOG BITES - ETC.              493</span></a>
-<a class="sourceLine" id="cb82-13" data-line-number="13"><span class="co">##  8 ANIMAL INCIDENTS                               388</span></a>
-<a class="sourceLine" id="cb82-14" data-line-number="14"><span class="co">##  9 ANIMAL INCIDENTS (DOG BITES, LOST DOG, ETC)     34</span></a>
-<a class="sourceLine" id="cb82-15" data-line-number="15"><span class="co">## 10 ANNOYING AND ACCOSTIN                            3</span></a>
-<a class="sourceLine" id="cb82-16" data-line-number="16"><span class="co">## # … with 269 more rows</span></a></code></pre></div>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb89-1" data-line-number="1">raw_<span class="dv">911</span> <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb89-2" data-line-number="2"><span class="st">  </span><span class="kw">count</span>(offense_description)</a>
+<a class="sourceLine" id="cb89-3" data-line-number="3"><span class="co">## # A tibble: 279 x 2</span></a>
+<a class="sourceLine" id="cb89-4" data-line-number="4"><span class="co">##    offense_description                              n</span></a>
+<a class="sourceLine" id="cb89-5" data-line-number="5"><span class="co">##    &lt;chr&gt;                                        &lt;int&gt;</span></a>
+<a class="sourceLine" id="cb89-6" data-line-number="6"><span class="co">##  1 A&amp;B HANDS, FEET, ETC.  - MED. </span><span class="al">ATTENTION</span><span class="co"> REQ.     1</span></a>
+<a class="sourceLine" id="cb89-7" data-line-number="7"><span class="co">##  2 A&amp;B ON POLICE OFFICER                            7</span></a>
+<a class="sourceLine" id="cb89-8" data-line-number="8"><span class="co">##  3 ABDUCTION - INTICING                            12</span></a>
+<a class="sourceLine" id="cb89-9" data-line-number="9"><span class="co">##  4 AFFRAY                                         318</span></a>
+<a class="sourceLine" id="cb89-10" data-line-number="10"><span class="co">##  5 AIRCRAFT INCIDENTS                              70</span></a>
+<a class="sourceLine" id="cb89-11" data-line-number="11"><span class="co">##  6 ANIMAL ABUSE                                    89</span></a>
+<a class="sourceLine" id="cb89-12" data-line-number="12"><span class="co">##  7 ANIMAL CONTROL - DOG BITES - ETC.              493</span></a>
+<a class="sourceLine" id="cb89-13" data-line-number="13"><span class="co">##  8 ANIMAL INCIDENTS                               388</span></a>
+<a class="sourceLine" id="cb89-14" data-line-number="14"><span class="co">##  9 ANIMAL INCIDENTS (DOG BITES, LOST DOG, ETC)     34</span></a>
+<a class="sourceLine" id="cb89-15" data-line-number="15"><span class="co">## 10 ANNOYING AND ACCOSTIN                            3</span></a>
+<a class="sourceLine" id="cb89-16" data-line-number="16"><span class="co">## # … with 269 more rows</span></a></code></pre></div>
 <ul>
 <li>no missingness</li>
 <li>more types</li>

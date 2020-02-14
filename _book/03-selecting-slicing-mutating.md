@@ -41,7 +41,6 @@ To do so, we will be using the tidyverse to read in and manipulate our data (as 
 
 > Refresher: the tidyverse is a collection of packages used for data analysis. When you load the tidyverse it loads `readr`, `ggplot2`, and `dplyr` for us, among other packages. For now, though, these are the only relevant packages. 
 
-
 **Try it:**
 
 * Load the tidyverse
@@ -152,7 +151,7 @@ If you spotted the columns commute_less10, commute1030, commute3060, commute6090
 
 So now we have an intuition of the most important variables, but the next problem soon arises: how do we isolate just these variables? Whenever you find yourself needing to select or deselect columns from a tibble `dplyr::select()` will be the main function that you will go to. 
 
-**What does it do?**: `select()` selects variables from a tibble and always returns another tibble. 
+**What does it do?**: `select()` selects variables from a tibble and returns another tibble. 
 
 Before we work through how to use `select()`, refer to the help documentation and see if you can get somewhat of an intuition by typing `?select()` into the console. Once you press enter the documentation page should pop up in RStudio. 
 
@@ -372,11 +371,11 @@ select(acs_raw, age_o65:age_u18)
 
 > NOTE: This is an awful scenario. SOMEONE HALP
 
-Alright, so now we have gotten the hang of selecting columns based on their names. But equally important is the ability to select columns based on their position. Consider the situation in which you regularly receive georeferenced data from a research partner and the structure of the dataset is rather consistent _except_ that they frequently change the name of the coordinate columns. Sometimes the columns are `x` and `y`. Sometimes they are capitalized `X` and `Y`, `lon` and `lat`, or even `long` and `lat`. It eats you up inside! But you know that while the names may change, their positiions never do. You decide to program a solution rather than having a conversation with your research partner—though, I recommend you both level set on reproducibility standards.
+Alright, so now we have gotten the hang of selecting columns based on their names. But equally important is the ability to select columns based on their position. Consider the situation in which you regularly receive georeferenced data from a research partner and the structure of the dataset is rather consistent _except_ that they frequently change the name of the coordinate columns. Sometimes the columns are `x` and `y`. Sometimes they are capitalized `X` and `Y`, `lon` and `lat`, or even `long` and `lat`. It eats you up inside! But you know that while the names may change, their positiions never do—they're always the last two columns. You decide to program a solution rather than having a conversation with your research partner—though, I recommend you both level set on reproducibility standards.
 
  > "...You can treat variable names like they are positions..."
  
- The above was taken from the argument definition of dots `...`. Like providing the name of the column, we can also provide their positions (also referred to as an index). In our previous example, we selected the `name` column. We can select this column by it's position. `name` is the second column in our tibble. We select it like so:
+ The above was taken from the argument definition of dots `...`. Like providing the name of the column, we can also provide their positions (also referred to as an index). In our previous example, we selected the `name` column. We can select this column by it's position too. `name` is the second column in our tibble. We select it by position like so:
 
 
 ```r
@@ -465,110 +464,78 @@ select(acs_raw, 9:6)
 ## # … with 1,468 more rows
 ```
 
-> Base R Side Bar: To help build your intuition, I want to point out some base R functionality. Using the colon `:` with integers (whole numbers) is actually not a `select()` specific functionality. This is something that is rather handy and built directly into R. Using the colon operator, we can create ranges of numbers in the same exact way as we did above. If we want create the range of numbers from 1 to 10, we write `1:10`.
+> Base R Side Bar: To help build your intuition, I want to point out some base R functionality. Using the colon `:` with integers (whole numbers) is actually not a `select()` specific functionality. This is something that is rather handy and built directly into R. Using the colon operator, we can create ranges of numbers in the same exact way as we did above. If we want create the range of numbers from 1 to 10, we write `1:10`. 1, 2, 3, 4, 5, 6, 7, 8, 9, 10.
 
+In our scenario, we want to select the last two columns. We may not know their names _or_ their position. Luckily, there's a function for that.
 
--------
+![](https://i.imgflip.com/3p2zow.jpg)
 
-to do so we use the function `select()`. Look at the help documentation by running `?select()` inside of the console. What are the arguments?
-- `.data` and `...`. We'll tackle this one by one.
-  - `.data`: "A tbl." 
-    - read this as "A tibble, or data frame". 
-    - for those of you who are curious, `tbl` is the formal object class of a tibble. a tibble is still a data frame
-    - this means that the first argument will be passed the `acs_raw` object
-- `...`: 
+`last_col()` is a handy function that enables us to select the last column. There is also an option to get an offset from the last column. An offset would allow us to grab the second to last column by setting the offset to 1. By setting the offset, `last_col()` will from the `offset + 1` from the last column. So if the offset is set to 1, we would be grabbing the second to last column.
 
-> One or more unquoted expressions separated by commas. You can treat variable names like they are positions, so you can use expressions like x:y to select ranges of variables.
-
-- this one is a little bit more complex. `...` referred to as "dots". This really means we can pass any number of other arguments to `select()` here the `...` will be ways of referring to the columns we want. and there are a number of ways we can referrer to which columns we want we can:
-  1. write the name (unquoted) of the columns—i.e. i want the column `col_x` would be `select(.data, col_x)`
-  2. write the position of the column—i.e. i want the first column would be `select(.data, 1)`
-  3. There are also a number of _select helpers_ of which we will go over a few
-    - everything()
-    - deselecting
-- one behavior that you should notice is that select will _always_ return a tibble, even if we don't sepcify any columns to select
-
-
-### `select()` exercises
-
-- try using the select function on `acs_raw` without passing any column specifications to `...`
+Let's give it a shot:
 
 
 ```r
-select(acs_raw)
-```
-
-- select the median house hold income column (`med_house_income`)
-
-
-```r
-select(acs_raw, med_house_income)
+select(acs_raw, last_col())
 ## # A tibble: 1,478 x 1
-##    med_house_income
-##               <dbl>
-##  1           105735
-##  2            69625
-##  3            70679
-##  4            74528
-##  5            52885
-##  6            64100
-##  7            37093
-##  8            87750
-##  9            97417
-## 10            43384
+##    m_atown      
+##    <chr>        
+##  1 HOLDEN       
+##  2 WEST BOYLSTON
+##  3 WORCESTER    
+##  4 MILFORD      
+##  5 LEOMINSTER   
+##  6 LEICESTER    
+##  7 WEBSTER      
+##  8 WORCESTER    
+##  9 BERLIN       
+## 10 WORCESTER    
+## # … with 1,468 more rows
+select(acs_raw, last_col(offset = 1))
+## # A tibble: 1,478 x 1
+##    area_acr_1
+##         <dbl>
+##  1     23242.
+##  2      8868.
+##  3     24610.
+##  4      9616.
+##  5     18993.
+##  6     15763.
+##  7      9347.
+##  8     24610.
+##  9      8431.
+## 10     24610.
+## # … with 1,468 more rows
+select(acs_raw, last_col(offset = 1):last_col())
+## # A tibble: 1,478 x 2
+##    area_acr_1 m_atown      
+##         <dbl> <chr>        
+##  1     23242. HOLDEN       
+##  2      8868. WEST BOYLSTON
+##  3     24610. WORCESTER    
+##  4      9616. MILFORD      
+##  5     18993. LEOMINSTER   
+##  6     15763. LEICESTER    
+##  7      9347. WEBSTER      
+##  8     24610. WORCESTER    
+##  9      8431. BERLIN       
+## 10     24610. WORCESTER    
 ## # … with 1,468 more rows
 ```
 
 
-- as the documentation notes we can select a range of columns using `col_x:col_y`
-- select the columns relating to education from less than high school to doctoral
+`last_col()` comes from another packages called `tidyselect` which is imported with `dplyr`. This package contains a number of helper functions. There are 9 total helpers and you've already learned one of them. We will briefly review four more of these. I'm sure you are able to deduce how the functions work solely based on their names. The functions are:
 
-
-```r
-select(acs_raw, less_than_hs:doc)
-## # A tibble: 1,478 x 7
-##    less_than_hs hs_grad some_coll  bach master     prof     doc
-##           <dbl>   <dbl>     <dbl> <dbl>  <dbl>    <dbl>   <dbl>
-##  1       0.0252   0.196     0.221 0.325 0.159  0.0405   0.0333 
-##  2       0.0577   0.253     0.316 0.262 0.0971 0.00983  0.00491
-##  3       0.0936   0.173     0.273 0.267 0.121  0.0397   0.0332 
-##  4       0.0843   0.253     0.353 0.231 0.0671 0.00616  0.00481
-##  5       0.145    0.310     0.283 0.168 0.0879 0.00343  0.00158
-##  6       0.0946   0.294     0.317 0.192 0.0858 0.0161   0      
-##  7       0.253    0.394     0.235 0.101 0.0155 0.000484 0      
-##  8       0.0768   0.187     0.185 0.272 0.145  0.0569   0.0782 
-##  9       0.0625   0.254     0.227 0.284 0.127  0.0223   0.0236 
-## 10       0.207    0.362     0.262 0.124 0.0353 0        0.00972
-## # … with 1,468 more rows
-```
-
-- though you will likely not use it too often, it's still important to be comfortable with column index (position) selecting
-- select the 1st, 5th, and 10th columns
-
-
-```r
-select(acs_raw, 1, 5, 10)
-## # A tibble: 1,478 x 3
-##       ct_id_10 sex_ratio for_born
-##          <dbl>     <dbl>    <dbl>
-##  1 25027728100     1.13    0.0438
-##  2 25027729200     1.32    0.0873
-##  3 25027730700     1.13    0.206 
-##  4 25027744200     1.12    0.155 
-##  5 25027709701     1.30    0.106 
-##  6 25027735100     1.11    0.0280
-##  7 25027754300     1.25    0.188 
-##  8 25027730802     0.908   0.198 
-##  9 25027717100     0.990   0.0797
-## 10 25027732600     1.19    0.210 
-## # … with 1,468 more rows
-```
-
-#### tidyselect helpers
-
-- we use the tidyselect helpers in the `...` argument
 - `starts_with()`: a string to search that columns start with
-  - find all columns that start with `"med"`
+- `ends_with()`: a string to search that columns end with
+- `contains()`: a string to search for in the column names at any position
+- `everything()`: selects the remaining columns
+
+Each of these function take a character string and searches the column headers for them. 
+
+Try it out:
+
+- find all columns that start with `"med"`
 
 
 ```r
@@ -590,8 +557,7 @@ select(acs_raw, starts_with("med"))
 ## #   med_yr_moved_inraw <dbl>, med_yr_rent_moved_in <dbl>
 ```
 
-- `ends_with()`: a string to search that columns end with
-  - select columns that end with `"per"`
+- select columns that end with `"per"`
 
 
 ```r
@@ -613,9 +579,7 @@ select(acs_raw, ends_with("per"))
 ## #   renters_per <dbl>, home_own_per <dbl>
 ```
 
-- `contains()`: a string to search for in the column headers
-  - the string that we are searching for can be at any position
-  - find any column that contains the string `"yr"`
+- find any column that contains the string `"yr"`
 
 
 ```r
@@ -636,30 +600,60 @@ select(acs_raw, contains("yr"))
 ## # … with 1,468 more rows
 ```
 
-- `everything()`: helpful when you want to move some columns to the front and dont care about the order of others
-  - takes no arguments
-  - select the town, county, then everything else
+- select columns that start with `med` then select everything else
 
 
 ```r
-select(acs_raw, town, county, everything())
+select(acs_raw, contains("yr"), everything())
 ## # A tibble: 1,478 x 59
-##    town  county ct_id_10 name  total_pop pop_den sex_ratio age_u18 age1834
-##    <chr> <chr>     <dbl> <chr>     <dbl>   <dbl>     <dbl>   <dbl>   <dbl>
-##  1 HOLD… WORCE…  2.50e10 Cens…      4585    333.     1.13    0.234   0.202
-##  2 WEST… WORCE…  2.50e10 Cens…      2165   1070.     1.32    0.181   0.151
-##  3 WORC… WORCE…  2.50e10 Cens…      6917   2113.     1.13    0.171   0.214
-##  4 MILF… WORCE…  2.50e10 Cens…      7278   1346.     1.12    0.203   0.227
-##  5 LEOM… WORCE…  2.50e10 Cens…      5059   2894.     1.30    0.177   0.203
-##  6 LEIC… WORCE…  2.50e10 Cens…      6632    472.     1.11    0.163   0.237
-##  7 WEBS… WORCE…  2.50e10 Cens…      3259   8022.     1.25    0.191   0.326
-##  8 WORC… WORCE…  2.50e10 Cens…      2097   5191.     0.908   0.202   0.183
-##  9 BERL… WORCE…  2.50e10 Cens…      3098    239.     0.990   0.188   0.150
-## 10 WORC… WORCE…  2.50e10 Cens…      3982  17065.     1.19    0.244   0.286
-## # … with 1,468 more rows, and 50 more variables: age3564 <dbl>,
-## #   age_o65 <dbl>, for_born <dbl>, white <dbl>, black <dbl>, asian <dbl>,
-## #   hispanic <dbl>, two_or_more <dbl>, eth_het <dbl>,
-## #   med_house_income <dbl>, pub_assist <dbl>, gini <dbl>,
+##    med_yr_built_raw med_yr_built med_yr_moved_in… med_yr_rent_mov… ct_id_10
+##               <dbl> <chr>                   <dbl>            <dbl>    <dbl>
+##  1             1988 1980 to 1989             2004             2012  2.50e10
+##  2             1955 1950 to 1959             2003             2010  2.50e10
+##  3             1959 1950 to 1959             2007             2012  2.50e10
+##  4             1973 1970 to 1979             2006             2011  2.50e10
+##  5             1964 1960 to 1969             2006             2011  2.50e10
+##  6             1966 1960 to 1969             2000             2009  2.50e10
+##  7             1939 Prior to 19…             2011             2012  2.50e10
+##  8             1939 Prior to 19…             2006             2012  2.50e10
+##  9             1981 1980 to 1989             2004             2012  2.50e10
+## 10             1939 Prior to 19…             2011               NA  2.50e10
+## # … with 1,468 more rows, and 54 more variables: name <chr>,
+## #   total_pop <dbl>, pop_den <dbl>, sex_ratio <dbl>, age_u18 <dbl>,
+## #   age1834 <dbl>, age3564 <dbl>, age_o65 <dbl>, for_born <dbl>,
+## #   white <dbl>, black <dbl>, asian <dbl>, hispanic <dbl>,
+## #   two_or_more <dbl>, eth_het <dbl>, med_house_income <dbl>,
+## #   pub_assist <dbl>, gini <dbl>, fam_pov_per <dbl>, unemp_rate <dbl>,
+## #   total_house_h <dbl>, fam_house_per <dbl>, fem_head_per <dbl>,
+## #   same_sex_coup_per <dbl>, grand_head_per <dbl>, less_than_hs <dbl>,
+## #   hs_grad <dbl>, some_coll <dbl>, bach <dbl>, master <dbl>, prof <dbl>,
+## #   doc <dbl>, commute_less10 <dbl>, commute1030 <dbl>, commute3060 <dbl>,
+## #   commute6090 <dbl>, commute_over90 <dbl>, by_auto <dbl>,
+## #   by_pub_trans <dbl>, by_bike <dbl>, by_walk <dbl>,
+## #   total_house_units <dbl>, vacant_unit_per <dbl>, renters_per <dbl>,
+## #   home_own_per <dbl>, med_gross_rent <dbl>, med_home_val <dbl>,
+## #   area_acres <dbl>, town_id <dbl>, town <chr>, fips_stco <dbl>,
+## #   county <chr>, area_acr_1 <dbl>, m_atown <chr>
+```
+
+## Selecting Rows
+
+Though a somewhat infrequent event, it will be handy to know how to select rows. There are two ways in which we can select our rows. The first is by specifying exactly which rows by their position. The other way is to filter down our data based on a condition—i.e. median household income within a range. The functions to do this are `slice()` and `filter()` respectively. The remainder of this chapter will introduce you to `slice()`. We will learn how to filter in the next chapter.
+
+Like `select()` we can also select rows. But rows do not have names, so we must select the rows based on their position. Given your familiarity with selecting by column position this should be a cake walk for you. 
+
+Similar to `last_col()` we have the function `n()`. `n()` is a rather handy little function which tells us how many observations there are in a tibble. This allows to specify the last row of a tibble. 
+
+
+```r
+slice(acs_raw, n())
+## # A tibble: 1 x 59
+##   ct_id_10 name  total_pop pop_den sex_ratio age_u18 age1834 age3564
+##      <dbl> <chr>     <dbl>   <dbl>     <dbl>   <dbl>   <dbl>   <dbl>
+## 1  2.50e10 Cens…      5821   2760.     0.885   0.181   0.204   0.435
+## # … with 51 more variables: age_o65 <dbl>, for_born <dbl>, white <dbl>,
+## #   black <dbl>, asian <dbl>, hispanic <dbl>, two_or_more <dbl>,
+## #   eth_het <dbl>, med_house_income <dbl>, pub_assist <dbl>, gini <dbl>,
 ## #   fam_pov_per <dbl>, unemp_rate <dbl>, total_house_h <dbl>,
 ## #   fam_house_per <dbl>, fem_head_per <dbl>, same_sex_coup_per <dbl>,
 ## #   grand_head_per <dbl>, less_than_hs <dbl>, hs_grad <dbl>,
@@ -671,38 +665,30 @@ select(acs_raw, town, county, everything())
 ## #   home_own_per <dbl>, med_gross_rent <dbl>, med_home_val <dbl>,
 ## #   med_yr_built_raw <dbl>, med_yr_built <chr>, med_yr_moved_inraw <dbl>,
 ## #   med_yr_rent_moved_in <dbl>, area_acres <dbl>, town_id <dbl>,
-## #   fips_stco <dbl>, area_acr_1 <dbl>, m_atown <chr>
+## #   town <chr>, fips_stco <dbl>, county <chr>, area_acr_1 <dbl>,
+## #   m_atown <chr>
 ```
 
-## Selecting Rows
-
-like we can select columns we can also select rows. however rows do not have names. we select the rows based on position
-unlike select, if we do not specify any arguments to `...` it will return the entire data frame
+Unlike `last_col()`, `n()` provides us with a number. Instead of specifying an offset we can instead subtract directly from the output of `n()`. To grab the last three rows we can write `(n() - 3):n()`. We put `n()-3` inside of parantheses so R knows to process `n() - 3` first.
 
 
 ```r
-slice(acs_raw)
-## # A tibble: 1,478 x 59
-##    ct_id_10 name  total_pop pop_den sex_ratio age_u18 age1834 age3564
-##       <dbl> <chr>     <dbl>   <dbl>     <dbl>   <dbl>   <dbl>   <dbl>
-##  1  2.50e10 Cens…      4585    333.     1.13    0.234   0.202   0.398
-##  2  2.50e10 Cens…      2165   1070.     1.32    0.181   0.151   0.461
-##  3  2.50e10 Cens…      6917   2113.     1.13    0.171   0.214   0.437
-##  4  2.50e10 Cens…      7278   1346.     1.12    0.203   0.227   0.436
-##  5  2.50e10 Cens…      5059   2894.     1.30    0.177   0.203   0.430
-##  6  2.50e10 Cens…      6632    472.     1.11    0.163   0.237   0.439
-##  7  2.50e10 Cens…      3259   8022.     1.25    0.191   0.326   0.380
-##  8  2.50e10 Cens…      2097   5191.     0.908   0.202   0.183   0.466
-##  9  2.50e10 Cens…      3098    239.     0.990   0.188   0.150   0.462
-## 10  2.50e10 Cens…      3982  17065.     1.19    0.244   0.286   0.342
-## # … with 1,468 more rows, and 51 more variables: age_o65 <dbl>,
-## #   for_born <dbl>, white <dbl>, black <dbl>, asian <dbl>, hispanic <dbl>,
-## #   two_or_more <dbl>, eth_het <dbl>, med_house_income <dbl>,
-## #   pub_assist <dbl>, gini <dbl>, fam_pov_per <dbl>, unemp_rate <dbl>,
-## #   total_house_h <dbl>, fam_house_per <dbl>, fem_head_per <dbl>,
-## #   same_sex_coup_per <dbl>, grand_head_per <dbl>, less_than_hs <dbl>,
-## #   hs_grad <dbl>, some_coll <dbl>, bach <dbl>, master <dbl>, prof <dbl>,
-## #   doc <dbl>, commute_less10 <dbl>, commute1030 <dbl>, commute3060 <dbl>,
+slice(acs_raw, (n() - 3):n())
+## # A tibble: 4 x 59
+##   ct_id_10 name  total_pop pop_den sex_ratio age_u18 age1834 age3564
+##      <dbl> <chr>     <dbl>   <dbl>     <dbl>   <dbl>   <dbl>   <dbl>
+## 1  2.50e10 Cens…      2519   3083.     0.806   0.202   0.268   0.397
+## 2  2.50e10 Cens…      3500   5392.     1.05    0.205   0.277   0.395
+## 3  2.50e10 Cens…      5816   2677.     1.20    0.191   0.233   0.458
+## 4  2.50e10 Cens…      5821   2760.     0.885   0.181   0.204   0.435
+## # … with 51 more variables: age_o65 <dbl>, for_born <dbl>, white <dbl>,
+## #   black <dbl>, asian <dbl>, hispanic <dbl>, two_or_more <dbl>,
+## #   eth_het <dbl>, med_house_income <dbl>, pub_assist <dbl>, gini <dbl>,
+## #   fam_pov_per <dbl>, unemp_rate <dbl>, total_house_h <dbl>,
+## #   fam_house_per <dbl>, fem_head_per <dbl>, same_sex_coup_per <dbl>,
+## #   grand_head_per <dbl>, less_than_hs <dbl>, hs_grad <dbl>,
+## #   some_coll <dbl>, bach <dbl>, master <dbl>, prof <dbl>, doc <dbl>,
+## #   commute_less10 <dbl>, commute1030 <dbl>, commute3060 <dbl>,
 ## #   commute6090 <dbl>, commute_over90 <dbl>, by_auto <dbl>,
 ## #   by_pub_trans <dbl>, by_bike <dbl>, by_walk <dbl>,
 ## #   total_house_units <dbl>, vacant_unit_per <dbl>, renters_per <dbl>,
@@ -713,32 +699,33 @@ slice(acs_raw)
 ## #   m_atown <chr>
 ```
 
-positive integers
+
+Try it:
+
+- select the first row, rows 100-105, and the last row
 
 
 ```r
-slice(acs_raw)
-## # A tibble: 1,478 x 59
-##    ct_id_10 name  total_pop pop_den sex_ratio age_u18 age1834 age3564
-##       <dbl> <chr>     <dbl>   <dbl>     <dbl>   <dbl>   <dbl>   <dbl>
-##  1  2.50e10 Cens…      4585    333.     1.13    0.234   0.202   0.398
-##  2  2.50e10 Cens…      2165   1070.     1.32    0.181   0.151   0.461
-##  3  2.50e10 Cens…      6917   2113.     1.13    0.171   0.214   0.437
-##  4  2.50e10 Cens…      7278   1346.     1.12    0.203   0.227   0.436
-##  5  2.50e10 Cens…      5059   2894.     1.30    0.177   0.203   0.430
-##  6  2.50e10 Cens…      6632    472.     1.11    0.163   0.237   0.439
-##  7  2.50e10 Cens…      3259   8022.     1.25    0.191   0.326   0.380
-##  8  2.50e10 Cens…      2097   5191.     0.908   0.202   0.183   0.466
-##  9  2.50e10 Cens…      3098    239.     0.990   0.188   0.150   0.462
-## 10  2.50e10 Cens…      3982  17065.     1.19    0.244   0.286   0.342
-## # … with 1,468 more rows, and 51 more variables: age_o65 <dbl>,
-## #   for_born <dbl>, white <dbl>, black <dbl>, asian <dbl>, hispanic <dbl>,
-## #   two_or_more <dbl>, eth_het <dbl>, med_house_income <dbl>,
-## #   pub_assist <dbl>, gini <dbl>, fam_pov_per <dbl>, unemp_rate <dbl>,
-## #   total_house_h <dbl>, fam_house_per <dbl>, fem_head_per <dbl>,
-## #   same_sex_coup_per <dbl>, grand_head_per <dbl>, less_than_hs <dbl>,
-## #   hs_grad <dbl>, some_coll <dbl>, bach <dbl>, master <dbl>, prof <dbl>,
-## #   doc <dbl>, commute_less10 <dbl>, commute1030 <dbl>, commute3060 <dbl>,
+slice(acs_raw, 1, 100:105, n())
+## # A tibble: 8 x 59
+##   ct_id_10 name  total_pop pop_den sex_ratio age_u18 age1834 age3564
+##      <dbl> <chr>     <dbl>   <dbl>     <dbl>   <dbl>   <dbl>   <dbl>
+## 1  2.50e10 Cens…      4585    333.     1.13    0.234  0.202    0.398
+## 2  2.50e10 Cens…      5223   2402.     1.21    0.183  0.171    0.450
+## 3  2.50e10 Cens…      5586    592.     1.09    0.278  0.116    0.413
+## 4  2.50e10 Cens…      4474   1119.     0.962   0.282  0.0847   0.427
+## 5  2.50e10 Cens…      6713    674.     0.928   0.223  0.216    0.423
+## 6  2.50e10 Cens…      6676   3541.     0.999   0.249  0.266    0.395
+## 7  2.50e10 Cens…      8141    820.     1.25    0.258  0.169    0.410
+## 8  2.50e10 Cens…      5821   2760.     0.885   0.181  0.204    0.435
+## # … with 51 more variables: age_o65 <dbl>, for_born <dbl>, white <dbl>,
+## #   black <dbl>, asian <dbl>, hispanic <dbl>, two_or_more <dbl>,
+## #   eth_het <dbl>, med_house_income <dbl>, pub_assist <dbl>, gini <dbl>,
+## #   fam_pov_per <dbl>, unemp_rate <dbl>, total_house_h <dbl>,
+## #   fam_house_per <dbl>, fem_head_per <dbl>, same_sex_coup_per <dbl>,
+## #   grand_head_per <dbl>, less_than_hs <dbl>, hs_grad <dbl>,
+## #   some_coll <dbl>, bach <dbl>, master <dbl>, prof <dbl>, doc <dbl>,
+## #   commute_less10 <dbl>, commute1030 <dbl>, commute3060 <dbl>,
 ## #   commute6090 <dbl>, commute_over90 <dbl>, by_auto <dbl>,
 ## #   by_pub_trans <dbl>, by_bike <dbl>, by_walk <dbl>,
 ## #   total_house_units <dbl>, vacant_unit_per <dbl>, renters_per <dbl>,
@@ -749,98 +736,36 @@ slice(acs_raw)
 ## #   m_atown <chr>
 ```
 
-the `n()` helper
 
-negative integers
+## Revisiting commmuting 
 
-## filter
+We've just spent a fair amount of time learning how to work with our data. It's now time to return to the problem at hand. We still haven't addressed what data will be of use to our partner at the non-profit. While urban informatics is largely technical, it is still mostly intellectual. We have to think through problems and be methodical with our data selection and curation. We have to think about what our data tells us and why it is important. 
+
+During these exercises, I hope you were looking at the data and thinking about what may be helpful to the non-profit. Again, the goal is to provide them with what is useful, but not more than they need. 
 
 
-- logical operators
+### Exercise
 
-### scenario
+It is now incumbent upon you to curate the data BARI Census Indicator dataset for the non-profit. Refamiliarize yourself with the data. Select a subset of columns that you believe will provide the best insight into commuting behavior in the Greater Boston Area. 
 
-- we have now selected the columns we need to provide
+When making decisions like this, I like to think of a quote from The Master of Disguise:
 
-## mutate
+> "Answer these questions for yourself: who? Why? Where? How?"
 
-### scenario
+Save the resultant tibble to an object named `commute` or something else informative. 
 
-- The non-profit has emailed you back and indicated that they want to report on the income quintiles and requested that you do this for them. You're a rockstar and a kickass programmer so you're like, hell yah. 
-- they also ask for:
-  - tract
-  - a combined measure of bach masters and doctoral
-  
+Below is one approach to this question. For this, I have selected all columns pertaining to commute time (columns that start with `commute`), the method by which people commute (begin with `by`), meidan household income, and the name of the census tract. The name of the census tract will be helpful for identifying "where". 
+
 
 ```r
-
-acs_raw %>% 
-  mutate(hh_inc_quin = ntile(med_house_income, 5))
-## # A tibble: 1,478 x 60
-##    ct_id_10 name  total_pop pop_den sex_ratio age_u18 age1834 age3564
-##       <dbl> <chr>     <dbl>   <dbl>     <dbl>   <dbl>   <dbl>   <dbl>
-##  1  2.50e10 Cens…      4585    333.     1.13    0.234   0.202   0.398
-##  2  2.50e10 Cens…      2165   1070.     1.32    0.181   0.151   0.461
-##  3  2.50e10 Cens…      6917   2113.     1.13    0.171   0.214   0.437
-##  4  2.50e10 Cens…      7278   1346.     1.12    0.203   0.227   0.436
-##  5  2.50e10 Cens…      5059   2894.     1.30    0.177   0.203   0.430
-##  6  2.50e10 Cens…      6632    472.     1.11    0.163   0.237   0.439
-##  7  2.50e10 Cens…      3259   8022.     1.25    0.191   0.326   0.380
-##  8  2.50e10 Cens…      2097   5191.     0.908   0.202   0.183   0.466
-##  9  2.50e10 Cens…      3098    239.     0.990   0.188   0.150   0.462
-## 10  2.50e10 Cens…      3982  17065.     1.19    0.244   0.286   0.342
-## # … with 1,468 more rows, and 52 more variables: age_o65 <dbl>,
-## #   for_born <dbl>, white <dbl>, black <dbl>, asian <dbl>, hispanic <dbl>,
-## #   two_or_more <dbl>, eth_het <dbl>, med_house_income <dbl>,
-## #   pub_assist <dbl>, gini <dbl>, fam_pov_per <dbl>, unemp_rate <dbl>,
-## #   total_house_h <dbl>, fam_house_per <dbl>, fem_head_per <dbl>,
-## #   same_sex_coup_per <dbl>, grand_head_per <dbl>, less_than_hs <dbl>,
-## #   hs_grad <dbl>, some_coll <dbl>, bach <dbl>, master <dbl>, prof <dbl>,
-## #   doc <dbl>, commute_less10 <dbl>, commute1030 <dbl>, commute3060 <dbl>,
-## #   commute6090 <dbl>, commute_over90 <dbl>, by_auto <dbl>,
-## #   by_pub_trans <dbl>, by_bike <dbl>, by_walk <dbl>,
-## #   total_house_units <dbl>, vacant_unit_per <dbl>, renters_per <dbl>,
-## #   home_own_per <dbl>, med_gross_rent <dbl>, med_home_val <dbl>,
-## #   med_yr_built_raw <dbl>, med_yr_built <chr>, med_yr_moved_inraw <dbl>,
-## #   med_yr_rent_moved_in <dbl>, area_acres <dbl>, town_id <dbl>,
-## #   town <chr>, fips_stco <dbl>, county <chr>, area_acr_1 <dbl>,
-## #   m_atown <chr>, hh_inc_quin <int>
+commute <- select(acs_raw,
+                  name,
+                  starts_with("commute"),
+                  starts_with("by"),
+                  med_house_income)
 ```
 
-_i need to introduce measures of central tendency and summar stats in between this_
-
-- groups
-- summarizing
 
 
-using the `name` column I can consider introducing string methods
-  - this would probably be better done with text reviews or something
-  
-  
+## Asking good questions 
 
-## asking good questions 
-
-## writing data lol
-
-
-
-
-
------- 
-
-##### old notes
-
-
-They define the greater boston area as Suffolk, Middlesex, and Norfolk counties. 
-
-before we go ahead and start cleaning this data, we need to learn the tools to do so. Please bear with me! 
-  
-  
-  - recall how to load the tidyverse
-- we'll read in the `ACS_1317_TRACT.csv` file located in the `data` directory
-  - putting this together the file path is `data/ACS_1317_TRACT.csv`.
-  - store it in the variable `acs_raw`
-
-
-To learn these tools we will work with a role-play / workthrough. 
-a local non-profit is interested in learning about the demographic characteristics of the greater boston area. They are specifically interested to learn more about the relationship between the age, race, and economic status. They've come to you to provide them with the relevant data. you have acces to the annual BARI census data and you will curate the data for them. 

@@ -24,7 +24,7 @@
 <meta name="author" content="Josiah Parry" />
 
 
-<meta name="date" content="2020-02-10" />
+<meta name="date" content="2020-02-14" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -181,17 +181,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.2" data-path="general-data-manipulation.html"><a href="general-data-manipulation.html#getting-physical-with-the-data"><i class="fa fa-check"></i><b>8.2</b> Getting physical with the data</a><ul>
 <li class="chapter" data-level="8.2.1" data-path="general-data-manipulation.html"><a href="general-data-manipulation.html#selecting"><i class="fa fa-check"></i><b>8.2.1</b> <code>select()</code>ing</a></li>
 <li class="chapter" data-level="8.2.2" data-path="general-data-manipulation.html"><a href="general-data-manipulation.html#selecting-exercises"><i class="fa fa-check"></i><b>8.2.2</b> <code>select()</code>ing exercises</a></li>
-<li class="chapter" data-level="8.2.3" data-path="general-data-manipulation.html"><a href="general-data-manipulation.html#select-exercises"><i class="fa fa-check"></i><b>8.2.3</b> <code>select()</code> exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="8.3" data-path="general-data-manipulation.html"><a href="general-data-manipulation.html#selecting-rows"><i class="fa fa-check"></i><b>8.3</b> Selecting Rows</a></li>
-<li class="chapter" data-level="8.4" data-path="general-data-manipulation.html"><a href="general-data-manipulation.html#filter"><i class="fa fa-check"></i><b>8.4</b> filter</a><ul>
-<li class="chapter" data-level="8.4.1" data-path="general-data-manipulation.html"><a href="general-data-manipulation.html#scenario-1"><i class="fa fa-check"></i><b>8.4.1</b> scenario</a></li>
+<li class="chapter" data-level="8.4" data-path="general-data-manipulation.html"><a href="general-data-manipulation.html#revisiting-commmuting"><i class="fa fa-check"></i><b>8.4</b> Revisiting commmuting</a><ul>
+<li class="chapter" data-level="8.4.1" data-path="general-data-manipulation.html"><a href="general-data-manipulation.html#exercise-2"><i class="fa fa-check"></i><b>8.4.1</b> Exercise</a></li>
 </ul></li>
-<li class="chapter" data-level="8.5" data-path="general-data-manipulation.html"><a href="general-data-manipulation.html#mutate"><i class="fa fa-check"></i><b>8.5</b> mutate</a><ul>
-<li class="chapter" data-level="8.5.1" data-path="general-data-manipulation.html"><a href="general-data-manipulation.html#scenario-2"><i class="fa fa-check"></i><b>8.5.1</b> scenario</a></li>
+<li class="chapter" data-level="8.5" data-path="general-data-manipulation.html"><a href="general-data-manipulation.html#asking-good-questions"><i class="fa fa-check"></i><b>8.5</b> Asking good questions</a></li>
+<li class="chapter" data-level="8.6" data-path="general-data-manipulation.html"><a href="general-data-manipulation.html#filter"><i class="fa fa-check"></i><b>8.6</b> filter</a><ul>
+<li class="chapter" data-level="8.6.1" data-path="general-data-manipulation.html"><a href="general-data-manipulation.html#scenario-1"><i class="fa fa-check"></i><b>8.6.1</b> scenario</a></li>
 </ul></li>
-<li class="chapter" data-level="8.6" data-path="general-data-manipulation.html"><a href="general-data-manipulation.html#asking-good-questions"><i class="fa fa-check"></i><b>8.6</b> asking good questions</a></li>
-<li class="chapter" data-level="8.7" data-path="general-data-manipulation.html"><a href="general-data-manipulation.html#writing-data-lol"><i class="fa fa-check"></i><b>8.7</b> writing data lol</a></li>
+<li class="chapter" data-level="8.7" data-path="general-data-manipulation.html"><a href="general-data-manipulation.html#mutate"><i class="fa fa-check"></i><b>8.7</b> mutate</a><ul>
+<li class="chapter" data-level="8.7.1" data-path="general-data-manipulation.html"><a href="general-data-manipulation.html#scenario-2"><i class="fa fa-check"></i><b>8.7.1</b> scenario</a></li>
+</ul></li>
+<li class="chapter" data-level="8.8" data-path="general-data-manipulation.html"><a href="general-data-manipulation.html#writing-data-lol"><i class="fa fa-check"></i><b>8.8</b> writing data lol</a></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="visualizing-trends-and-relationships.html"><a href="visualizing-trends-and-relationships.html"><i class="fa fa-check"></i><b>9</b> Visualizing Trends and Relationships</a><ul>
 <li class="chapter" data-level="9.1" data-path="visualizing-trends-and-relationships.html"><a href="visualizing-trends-and-relationships.html#univariate-visualizations"><i class="fa fa-check"></i><b>9.1</b> Univariate visualizations</a><ul>
@@ -327,12 +329,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Note: It is best practice to load all of your packages at the top of your R script.</p>
 </blockquote>
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1"><span class="kw">library</span>(tidyverse)</a></code></pre></div>
-<pre><code>## ── Attaching packages ──────────────────────────────────────────── tidyverse 1.2.1 ──</code></pre>
+<pre><code>## ── Attaching packages ──────────────────────────────────── tidyverse 1.2.1 ──</code></pre>
 <pre><code>## ✓ tibble  2.1.3     ✓ purrr   0.3.3
 ## ✓ tidyr   1.0.2     ✓ dplyr   0.8.3
 ## ✓ readr   1.3.1     ✓ stringr 1.4.0
 ## ✓ tibble  2.1.3     ✓ forcats 0.4.0</code></pre>
-<pre><code>## ── Conflicts ─────────────────────────────────────────────── tidyverse_conflicts() ──
+<pre><code>## ── Conflicts ─────────────────────────────────────── tidyverse_conflicts() ──
 ## x dplyr::filter() masks stats::filter()
 ## x dplyr::lag()    masks stats::lag()</code></pre>
 <p>Notice the message above. When we load the tidyverse, we are actually loading eight packages at once! Thesee are the packages listed under “<strong>Attaching packages</strong>.”</p>
