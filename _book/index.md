@@ -16,6 +16,49 @@ link-citations: yes
 
 # Welcome
 
+
+## Timeline
+
+To Do: put dates to these.
+
+Core Toolkit
+
+- Draft intro to R, RStudio (R files, and R projects)
+- Draft exploratory analysis
+- Draft filtering data
+- Draft creating variables
+- Draft %>% 
+- Draft data structures
+- Draft summary statistics
+- Draft group_by and summarize
+- Draft multiple data sources
+
+UI Specific:
+
+- Draft approaches to UI (inductive vs deductive) 
+- Draft schools of UI (hybrid approach)
+- Draft ecometrics
+
+Advanced Topics:
+
+- Draft data reshaping
+- Draft spatial analysis
+- Draft text analysis
+
+Editing
+
+- Review data sources
+- Review scenarios
+- Create post-chapter exercises
+- Create post-chapter TL;DR
+- Make into package
+- Create rstudio.cloud image
+
+
+----------------
+
+
+
 Welcome to the Urban Informatics Toolkit! 
 This book will provide you with an introduction to some of the history of Urban Informatics as a field, important concepts in the field, and provide you with the skills required to jumpstart your own exploration of the urban commons.
 
@@ -40,7 +83,10 @@ Perhaps I am showing my cards a bit too much, but I have always found that with 
 
 
 
------------
+-----
+
+## outline / notes
+
 
 The study of Urban Informatics is inherently intertwined with big data. Working with big data requires a set of skills that extends beyond quantitative and qualitative analysis expertise. Students need to know how to access, manipulate, analyze, communicate and share data artifacts. The intention of this practicum is to develop educational content to cultivate an expertise in data.
 
@@ -54,7 +100,6 @@ my goal for this text is to provide you with a non-technical instruction to a te
 
 ------
 
-## outline / notes
 
 intro is what is ui
 What is administrative data 
@@ -109,7 +154,3 @@ Text analysis
   * tokenization
 
 
-
-## Other notes 
-
-I will say _these data_ and _this data_ interchangably. I apologize for that. 
