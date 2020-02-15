@@ -24,7 +24,7 @@
 <meta name="author" content="Josiah Parry" />
 
 
-<meta name="date" content="2020-02-14" />
+<meta name="date" content="2020-02-15" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -147,7 +147,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.2.3" data-path="the-basics.html"><a href="the-basics.html#output"><i class="fa fa-check"></i><b>2.2.3</b> Output</a></li>
 </ul></li>
 <li class="chapter" data-level="2.3" data-path="the-basics.html"><a href="the-basics.html#installing-r-rstudio"><i class="fa fa-check"></i><b>2.3</b> Installing R &amp; RStudio</a></li>
-<li class="chapter" data-level="2.4" data-path="the-basics.html"><a href="the-basics.html#r-projects"><i class="fa fa-check"></i><b>2.4</b> R Projects</a></li>
+<li class="chapter" data-level="2.4" data-path="the-basics.html"><a href="the-basics.html#preventative-care"><i class="fa fa-check"></i><b>2.4</b> Preventative Care</a><ul>
+<li class="chapter" data-level="2.4.1" data-path="the-basics.html"><a href="the-basics.html#r-projects"><i class="fa fa-check"></i><b>2.4.1</b> R Projects</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="the-basics.html"><a href="the-basics.html#before-we-embark"><i class="fa fa-check"></i><b>2.5</b> Before we embark</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="r-as-a-calculator.html"><a href="r-as-a-calculator.html"><i class="fa fa-check"></i><b>3</b> R as a calculator</a><ul>
 <li class="chapter" data-level="3.1" data-path="r-as-a-calculator.html"><a href="r-as-a-calculator.html#arithmetic-operators"><i class="fa fa-check"></i><b>3.1</b> Arithmetic Operators</a></li>
@@ -225,9 +228,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="13" data-path="summarizing-the-tidy-way.html"><a href="summarizing-the-tidy-way.html"><i class="fa fa-check"></i><b>13</b> summarizing the tidy way</a></li>
 <li class="chapter" data-level="14" data-path="i-have-two-datasets-what-now.html"><a href="i-have-two-datasets-what-now.html"><i class="fa fa-check"></i><b>14</b> I have two datasets, what now?</a></li>
-<li class="chapter" data-level="15" data-path="creating-ecometrics.html"><a href="creating-ecometrics.html"><i class="fa fa-check"></i><b>15</b> Creating Ecometrics</a></li>
+<li class="chapter" data-level="15" data-path="spatial-analysis.html"><a href="spatial-analysis.html"><i class="fa fa-check"></i><b>15</b> Spatial Analysis</a></li>
+<li class="chapter" data-level="16" data-path="creating-ecometrics.html"><a href="creating-ecometrics.html"><i class="fa fa-check"></i><b>16</b> Creating Ecometrics</a></li>
 <li class="part"><span><b>II Case Studies</b></span></li>
-<li class="chapter" data-level="16" data-path="case-study-twitter-data.html"><a href="case-study-twitter-data.html"><i class="fa fa-check"></i><b>16</b> Case Study: Twitter Data</a></li>
+<li class="chapter" data-level="17" data-path="case-study-twitter-data.html"><a href="case-study-twitter-data.html"><i class="fa fa-check"></i><b>17</b> Case Study: Twitter Data</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -310,31 +314,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>we have a data frame loaded
 this is very similar to a table in excel
 each column is a variable</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1">acs_edu</a>
-<a class="sourceLine" id="cb17-2" data-line-number="2"><span class="co">## # A tibble: 1,456 x 7</span></a>
-<a class="sourceLine" id="cb17-3" data-line-number="3"><span class="co">##    med_house_income less_than_hs hs_grad some_coll  bach white   black</span></a>
-<a class="sourceLine" id="cb17-4" data-line-number="4"><span class="co">##               &lt;dbl&gt;        &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;</span></a>
-<a class="sourceLine" id="cb17-5" data-line-number="5"><span class="co">##  1           105735       0.0252   0.196     0.221 0.325 0.897 0.0122 </span></a>
-<a class="sourceLine" id="cb17-6" data-line-number="6"><span class="co">##  2            69625       0.0577   0.253     0.316 0.262 0.885 0.0171 </span></a>
-<a class="sourceLine" id="cb17-7" data-line-number="7"><span class="co">##  3            70679       0.0936   0.173     0.273 0.267 0.733 0.0795 </span></a>
-<a class="sourceLine" id="cb17-8" data-line-number="8"><span class="co">##  4            74528       0.0843   0.253     0.353 0.231 0.824 0.0306 </span></a>
-<a class="sourceLine" id="cb17-9" data-line-number="9"><span class="co">##  5            52885       0.145    0.310     0.283 0.168 0.737 0.0605 </span></a>
-<a class="sourceLine" id="cb17-10" data-line-number="10"><span class="co">##  6            64100       0.0946   0.294     0.317 0.192 0.966 0.00256</span></a>
-<a class="sourceLine" id="cb17-11" data-line-number="11"><span class="co">##  7            37093       0.253    0.394     0.235 0.101 0.711 0.0770 </span></a>
-<a class="sourceLine" id="cb17-12" data-line-number="12"><span class="co">##  8            87750       0.0768   0.187     0.185 0.272 0.759 0.0310 </span></a>
-<a class="sourceLine" id="cb17-13" data-line-number="13"><span class="co">##  9            97417       0.0625   0.254     0.227 0.284 0.969 0.00710</span></a>
-<a class="sourceLine" id="cb17-14" data-line-number="14"><span class="co">## 10            43384       0.207    0.362     0.262 0.124 0.460 0.105  </span></a>
-<a class="sourceLine" id="cb17-15" data-line-number="15"><span class="co">## # … with 1,446 more rows</span></a></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" data-line-number="1">acs_edu</a>
+<a class="sourceLine" id="cb19-2" data-line-number="2"><span class="co">## # A tibble: 1,456 x 7</span></a>
+<a class="sourceLine" id="cb19-3" data-line-number="3"><span class="co">##    med_house_income less_than_hs hs_grad some_coll  bach white   black</span></a>
+<a class="sourceLine" id="cb19-4" data-line-number="4"><span class="co">##               &lt;dbl&gt;        &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;</span></a>
+<a class="sourceLine" id="cb19-5" data-line-number="5"><span class="co">##  1           105735       0.0252   0.196     0.221 0.325 0.897 0.0122 </span></a>
+<a class="sourceLine" id="cb19-6" data-line-number="6"><span class="co">##  2            69625       0.0577   0.253     0.316 0.262 0.885 0.0171 </span></a>
+<a class="sourceLine" id="cb19-7" data-line-number="7"><span class="co">##  3            70679       0.0936   0.173     0.273 0.267 0.733 0.0795 </span></a>
+<a class="sourceLine" id="cb19-8" data-line-number="8"><span class="co">##  4            74528       0.0843   0.253     0.353 0.231 0.824 0.0306 </span></a>
+<a class="sourceLine" id="cb19-9" data-line-number="9"><span class="co">##  5            52885       0.145    0.310     0.283 0.168 0.737 0.0605 </span></a>
+<a class="sourceLine" id="cb19-10" data-line-number="10"><span class="co">##  6            64100       0.0946   0.294     0.317 0.192 0.966 0.00256</span></a>
+<a class="sourceLine" id="cb19-11" data-line-number="11"><span class="co">##  7            37093       0.253    0.394     0.235 0.101 0.711 0.0770 </span></a>
+<a class="sourceLine" id="cb19-12" data-line-number="12"><span class="co">##  8            87750       0.0768   0.187     0.185 0.272 0.759 0.0310 </span></a>
+<a class="sourceLine" id="cb19-13" data-line-number="13"><span class="co">##  9            97417       0.0625   0.254     0.227 0.284 0.969 0.00710</span></a>
+<a class="sourceLine" id="cb19-14" data-line-number="14"><span class="co">## 10            43384       0.207    0.362     0.262 0.124 0.460 0.105  </span></a>
+<a class="sourceLine" id="cb19-15" data-line-number="15"><span class="co">## # … with 1,446 more rows</span></a></code></pre></div>
 <p>we can visualize the relationship to get a better understanding. we can look at income and college grad rates</p>
 <p>start building a visualization with <code>ggplot()</code> <strong>function</strong> with the <code>acs_edu</code> <strong>object</strong>.
 Functions are characterised by the parentheses at the end of them. Functions do things. Objects hold information.</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" data-line-number="1"><span class="kw">ggplot</span>(acs_edu)</a></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" data-line-number="1"><span class="kw">ggplot</span>(acs_edu)</a></code></pre></div>
 <p><img src="01-visual-analysis_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
 <p>we add to this plot
 determine what we want to plot with the aesthetics <code>aes()</code> function inside of the ggplot().
 want to specify x and y. These are called arguments. To set argument we use the <code>=</code> sign.
 set <code>x</code> to <code>bach</code> and <code>y</code> to <code>med_house_income</code></p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" data-line-number="1"><span class="kw">ggplot</span>(acs_edu, <span class="kw">aes</span>(<span class="dt">x =</span> bach, <span class="dt">y =</span> med_house_income))</a></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1"><span class="kw">ggplot</span>(acs_edu, <span class="kw">aes</span>(<span class="dt">x =</span> bach, <span class="dt">y =</span> med_house_income))</a></code></pre></div>
 <p><img src="01-visual-analysis_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
 <ul>
 <li>notice how the plot is being filled a bit more?</li>
@@ -346,8 +350,8 @@ set <code>x</code> to <code>bach</code> and <code>y</code> to <code>med_house_in
 <li>to add points to the graph we use <code>geom_point()</code>, remember, we are <em>adding</em> a layer so we use the plus sign</li>
 <li>for legibility we add each new layer on a new line. R will indent for you. Good style is important. We’ll get into this later</li>
 </ul>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" data-line-number="1"><span class="kw">ggplot</span>(acs_edu, <span class="kw">aes</span>(<span class="dt">x =</span> bach, <span class="dt">y =</span> med_house_income)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb20-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" data-line-number="1"><span class="kw">ggplot</span>(acs_edu, <span class="kw">aes</span>(<span class="dt">x =</span> bach, <span class="dt">y =</span> med_house_income)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb22-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>()</a></code></pre></div>
 <p><img src="01-visual-analysis_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
 <ul>
 <li>notice that there is a positive linear trend.</li>
@@ -376,11 +380,11 @@ set <code>x</code> to <code>bach</code> and <code>y</code> to <code>med_house_in
 </ul></li>
 <li>note that for each argument I have a new line. again, this helps with legibility</li>
 </ul>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1"><span class="kw">ggplot</span>(acs_edu, <span class="kw">aes</span>(<span class="dt">x =</span> bach, <span class="dt">y =</span> med_house_income)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb21-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb21-3" data-line-number="3"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;% of population with a Bachelor&#39;s Degree&quot;</span>,</a>
-<a class="sourceLine" id="cb21-4" data-line-number="4">       <span class="dt">y =</span> <span class="st">&quot;Median Household Income&quot;</span>,</a>
-<a class="sourceLine" id="cb21-5" data-line-number="5">       <span class="dt">title =</span> <span class="st">&quot;Relationship between Education and Income&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" data-line-number="1"><span class="kw">ggplot</span>(acs_edu, <span class="kw">aes</span>(<span class="dt">x =</span> bach, <span class="dt">y =</span> med_house_income)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb23-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb23-3" data-line-number="3"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;% of population with a Bachelor&#39;s Degree&quot;</span>,</a>
+<a class="sourceLine" id="cb23-4" data-line-number="4">       <span class="dt">y =</span> <span class="st">&quot;Median Household Income&quot;</span>,</a>
+<a class="sourceLine" id="cb23-5" data-line-number="5">       <span class="dt">title =</span> <span class="st">&quot;Relationship between Education and Income&quot;</span>)</a></code></pre></div>
 <p><img src="01-visual-analysis_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
 <ul>
 <li>what can we determine from this graph?</li>
@@ -392,12 +396,12 @@ set <code>x</code> to <code>bach</code> and <code>y</code> to <code>med_house_in
 <li>set the <code>color</code> argument to the <code>white</code> column</li>
 <li>while we’re at it, we can add a subtitle to inform that we’re also coloring by % white</li>
 </ul>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" data-line-number="1"><span class="kw">ggplot</span>(acs_edu, <span class="kw">aes</span>(<span class="dt">x =</span> bach, <span class="dt">y =</span> med_house_income, <span class="dt">color =</span> white)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb22-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb22-3" data-line-number="3"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;% of population with a Bachelor&#39;s Degree&quot;</span>,</a>
-<a class="sourceLine" id="cb22-4" data-line-number="4">       <span class="dt">y =</span> <span class="st">&quot;Median Household Income&quot;</span>,</a>
-<a class="sourceLine" id="cb22-5" data-line-number="5">       <span class="dt">title =</span> <span class="st">&quot;Relationship between Education and Income&quot;</span>,</a>
-<a class="sourceLine" id="cb22-6" data-line-number="6">       <span class="dt">subtitle =</span> <span class="st">&quot;Colored by whiteness&quot;</span>) </a></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" data-line-number="1"><span class="kw">ggplot</span>(acs_edu, <span class="kw">aes</span>(<span class="dt">x =</span> bach, <span class="dt">y =</span> med_house_income, <span class="dt">color =</span> white)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb24-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb24-3" data-line-number="3"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;% of population with a Bachelor&#39;s Degree&quot;</span>,</a>
+<a class="sourceLine" id="cb24-4" data-line-number="4">       <span class="dt">y =</span> <span class="st">&quot;Median Household Income&quot;</span>,</a>
+<a class="sourceLine" id="cb24-5" data-line-number="5">       <span class="dt">title =</span> <span class="st">&quot;Relationship between Education and Income&quot;</span>,</a>
+<a class="sourceLine" id="cb24-6" data-line-number="6">       <span class="dt">subtitle =</span> <span class="st">&quot;Colored by whiteness&quot;</span>) </a></code></pre></div>
 <p><img src="01-visual-analysis_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
 <ul>
 <li>what can we conclude now?</li>

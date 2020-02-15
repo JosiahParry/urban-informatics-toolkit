@@ -5,6 +5,14 @@ Before we get going, let's find our footing. R is a statistical programming lang
   - arithmetic operators
   - creating and assigning variables
   - using functions
+  
+  Executing code:
+  
+    - (either with command + enter on the highlighted code or the line where your cursor is)
+  - or the run button above
+  - i recommend learning the key strokes. it will be immensely helpful
+  - this brings us to the console
+
 
 ## Arithmetic Operators 
 
@@ -143,7 +151,7 @@ library(tidyverse)
 ```
 
 ```
-## ── Attaching packages ──────────────────────────────────── tidyverse 1.2.1 ──
+## ── Attaching packages ─────── tidyverse 1.2.1 ──
 ```
 
 ```
@@ -154,7 +162,7 @@ library(tidyverse)
 ```
 
 ```
-## ── Conflicts ─────────────────────────────────────── tidyverse_conflicts() ──
+## ── Conflicts ────────── tidyverse_conflicts() ──
 ## x dplyr::filter() masks stats::filter()
 ## x dplyr::lag()    masks stats::lag()
 ```

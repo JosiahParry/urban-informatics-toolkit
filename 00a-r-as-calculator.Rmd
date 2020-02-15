@@ -5,6 +5,14 @@ Before we get going, let's find our footing. R is a statistical programming lang
   - arithmetic operators
   - creating and assigning variables
   - using functions
+  
+  Executing code:
+  
+    - (either with command + enter on the highlighted code or the line where your cursor is)
+  - or the run button above
+  - i recommend learning the key strokes. it will be immensely helpful
+  - this brings us to the console
+
 
 ## Arithmetic Operators 
 
