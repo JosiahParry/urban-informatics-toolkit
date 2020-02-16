@@ -7,6 +7,8 @@ There is a topic I have been skirting around for some time now and I think it is
 
 We will cover vectors, data frames rather briefly, and lists. We'll talk about some of their defining characteristics and how we can interact with them. Often the theory behind these object types are ommitted, but I am of the mind that learning this early on will pay off in dividends. Take a deep breath before we dive in and remind yourself that it ain't nothin' but a thing.
 
+This section is undoubtedly the most theoretically dense from a software perspective of this entire book. These concepts may be a little bit difficult to grasp at the frist go around particularly if you do not have a programming background. But do not be discouraged! This is tough and there is no way to around it. If you can grasp this chapter programming in R will become so much easier. You will develop an intuition of why certain things happen to your data and how to interact with other data structures. 
+
 ## Atomic Vectors
 
 I like to think of the atomic vector as the building block of any R object. You've actually been working with atomic vectors this entire time. But we haven't been very explicit about this yet. Up until this point we have been working mainly with tibbles. Each column of a tibble is _actually_  an atomic vector.
@@ -72,16 +74,14 @@ length(unemp)
 
 There are a total of six types of vectors. Fortunately, only four of these really matter to us. These are `integer`, `double`, `character`, `logical`.
 
+Integers represent whole numbers. To specify an integer we append an `L` after the number such as `20L`. Doubles are any number that requires any precision aka decimal places. You can specify doubles in a number of formats such as scientific notation. Generally the easiest way to do this, though, is using a decimal. Together integers and doubles are lumped into the category of numeric. This is because, well, they are numbers.
 
-- integers represent whole numbers
-- to explicitly specify an integer we append an `L` after the number such as `20L`
-- doubles are any nunber that requires any precision. you can specify doubles in a number of formats. 
-  - we will use only decimals
-- we bucket both integer and double into the category of numeric
-- character vectors, as you have previously learned, are created by the use of quotations, either `"` or `'`. 
+As you learned previously, character vectors are created with the use of quotation marks; either `"` or `'`. 
 
-- we've already created a vector of type double, `unemp` 
-  - you can check the type of vector is it with `typeof()`
+We've already created a vector of type double, `unemp`. You can check what type of vector `unemp` is with `typeof()`
+
+> Note: `typeof()` is used only for internal R object such as lists and vectors. In most cases you will want to use `class()` to return the class of an object.
+
 
 
 ```r
@@ -89,32 +89,44 @@ typeof(unemp)
 ## [1] "double"
 ```
 
-- we can also create an integer vector to represent the month numerically. 
-- you have also already learned this
+Say we create another vector called `month` with the numbers 1 through 12. 
 
 
 ```r
-month <- 1:12
+month <- c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12)
+
+typeof(month)
+## [1] "double"
+```
+
+Notice that since we didn't specify the `L` after the numbers R defaulted to treating `month` as a double. When possible it is good to make the distinction between integer and numeric.
+
+
+```r
+month <- c(1L, 2L, 3L, 4L, 5L, 6L, 7L, 8L, 9L, 10L, 11L, 12L)
 
 typeof(month)
 ## [1] "integer"
 ```
 
-- there are also a number of constant vectors that are built into R these being the letters of the alphabet (`letters` and `LETTERS` respectively), as well as `month.abb`, `month.name`, and `pi`.
-- `month.name` is already available
+R has a number of vectors that are built in these being the letters of the alphabet (`letters` and `LETTERS` respectively), as well as `month.abb`, `month.name`, and `pi`. `month.name` is already available to us so let's not recreate it. 
 
 
 ```r
+month.name
+##  [1] "January"   "February"  "March"     "April"     "May"      
+##  [6] "June"      "July"      "August"    "September" "October"  
+## [11] "November"  "December"
+
 typeof(month.name)
 ## [1] "character"
 ```
 
-- logical vectors are represented as the values `TRUE` and `FALSE`.
+Notice the quotes around each vector element. This is how we identify character vectors. 
 
+Logical vectors are the last kind of vector we need to go over. Logical vectors are represented as the values `TRUE` and `FALSE`. Simple enough. Onward!
 
-- recall that vectors are atomic, meaning that there can only be one vector type. we cannot mix and match.
-- When a character is the presence of another type of vector, that value is coerced into a character
-- coersion is the process of contextually changing an objects from one type to another 
+Recall that vectors are atomic meaning that there can only be one type per vector and we cannot mix and match. When a character is in the presence of another element of a different type, that value is _**coerced**_ into a character. Coersion is the process of implicitly or contextually changing an object from one type to another. For example:
 
 
 ```r
@@ -124,7 +136,7 @@ typeof(x)
 ## [1] "character"
 ```
 
-- Something similar happens when a logical value is in the presence of a numeric value 
+Something similar happens when a logical value is in the presence of a numeric value 
 
 
 ```r
@@ -132,9 +144,7 @@ c(TRUE, 1, FALSE)
 ## [1] 1 1 0
 ```
 
-- in the presence of a numeric value, `TRUE` becomes equal to `1L` and `FALSE` equal to `0L` 
-- this behavior exists whenever a logical value is presented in the context where a numeric is expected
-
+In the presence of a numeric value `TRUE` becomes equal to `1L` and `FALSE` equal to `0L`.This behavior exists whenever a logical value is presented where a numeric is expected such as the function call below. 
 
 
 ```r
@@ -142,10 +152,7 @@ sum(TRUE, FALSE, FALSE)
 ## [1] 1
 ```
 
-- while coersion occurs from other processes like combining values in a vector, _casting_ is the process of intentionally changing an object's class
-- there are a number of casting functions
-- these take the shape of `as.class()` o `as_class()`
-- each of the vector types covered have their own casting functions such as `as. 
+While coersion occurs from other processes like combining values in a vector, _casting_ is the process of intentionally changing an object's class. There are a number of casting functions whice generaly take the shape of `as.class()` or `as_class()`. Each of the vector types covered have their own casting functions. 
 
 
 ```r
@@ -159,15 +166,11 @@ as.logical(0)
 ## [1] FALSE
 ```
 
-- it is important to know how to change a vector's type.
-- as you progress, you will find scenarios in which you need to cast objects from one class to another and these functions are the trick!
+As you progress in your R journey you will find scenarios in which you need to cast objects from one class to another and these functions are the trick.
 
-- You now have a strong understanding of the underbellies of R vectors
-- But one thing that is missing is an understanding of how we can select subsets from vectors
-- to extract a value from vectors we append square brackets at the end of the vector `vec[]`
-- we can supply an index value to the square brackets to receive the value at that position
+You now have a strong understanding of the underbellies of R vectors. One thing that is missing is an understanding of how we can select subsets from vectors. To extract a value from vectors we append square brackets at the end of the vector `vec[]`. We supply an index value to the square brackets to receive the value at that position
 
-- to select the month of january from the `unemp` vector, we provide the value of `1` to the brackets. 
+To select the month of January from the `unemp` vector, the first element, we provide the value of `1` to the brackets. 
 
 
 ```r
@@ -175,7 +178,7 @@ unemp[1]
 ## [1] 3.2
 ```
 
-- to extract more than one value, we provide a vector of the row indexes we desire
+To extract more than one value, we provide a vector of the row indexes we desire.
 
 
 ```r
@@ -183,13 +186,11 @@ unemp[c(1, 3)]
 ## [1] 3.2 2.8
 ```
 
-- Now, there is yet another way to extract values from these vectors
-- we can provide a logical vector to our square bracket index
-- for example, we can identify every value of `unemp` that is above the average 
+There is yet another way to extract values from these vectors. We can provide a logical vector to our square brackets. For example, we can identify every value of `unemp` that is above the average rate. 
 
 
 ```r
-# find average 
+# find average removing missing values
 avg_unemp <- mean(unemp, na.rm = TRUE)
 
 # identify which values are above average
@@ -200,8 +201,8 @@ index
 ## [12]    NA
 ```
 
-- notice that the `NA`s stayed `NA`? they can be pesky. as hadley says in adv R "Missing values tend to be infectious: most computations involving a missing value will return another missing value." (https://adv-r.hadley.nz/vectors-chap.html)
-- provide the index to unemp to get the subset
+Notice that the `NA`s stayed `NA`? They can be pesky. Hadley writes in Advanced R "missing values tend to be infectious: most computations involving a missing value will return another missing value." (https://adv-r.hadley.nz/vectors-chap.html)
+
 
 
 ```r
@@ -209,10 +210,9 @@ unemp[index]
 ## [1] 3.2 2.8 2.8 2.8 2.9  NA  NA
 ```
 
-- how annoying those `NA`s can be!
-- we can add another condition to our `index` line to remove `NA`
-- like there are `as.*()` functions for casting, there are also `is.*()` functions for testing 
-- `is.*()` returns a logical vector of the same length as the provided vector 
+How annoying those NAs can be! To prevent these NAs from showing upwe can add another condition to our `index` line to remove NAs. Like there are `as.*()` functions for casting, there are also `is.*()` functions for testing. `is.*()` returns a logical vector of the same length as the provided vector.
+
+> Note: the `*` is called a wildcard. The wildcard character comes from SQL and when present means that any string can follow. `is.*()` is intended to indicate any possible testing function such as `is.numeric()`, `is_tibble()`, etc. 
 
 
 ```r
@@ -221,8 +221,7 @@ is.na(unemp)
 ## [12]  TRUE
 ```
 
-- as we learned, we can negate logical vectors with an `!`
-- combine the negation with an and condition to only identify unemployment values above average _and_ aren't missing
+As we learned, we can negate logical vectors with an `!`. We can negate the test results and include an an `&` condition to only identify unemployment values above average _and_ aren't missing.
 
 
 ```r
@@ -232,16 +231,19 @@ unemp[index]
 ## [1] 3.2 2.8 2.8 2.8 2.9
 ```
 
-- there is one last thing to keep in mind when subsetting from a logical vector and that is vectors of different length
-- when you use a logical vector to subset and they are of differing length, the logical vector will be recycled for the remaining values of the vector being subset
-- an example will be the best
-- say we have an object called `x` which are the values from 0 to 10 and an `index` to subset with 
-- if we subset it with `index` and `index` is a logical vector of length two with the values of `TRUE` and `FALSE`, every other observation will be returned. This is because come the third value in `x`, R has ran out of values in `index` to use so it goes back to the beginning
+There is one last thing to keep in mind and with subsetting vectors using a logical vector that is of a different length. When you use a logical vector to subset and they are of differing length, the logical vector will be recycled for the remaining values of the vector being subset. As always, an example will be the best.
+
+Say we have an object called `x` which are the values from 0 to 10 and an `index` to subset with. If we subset it with `index` and `index` is a logical vector of length two with the values of `TRUE` and `FALSE`, every other observation will be returned. This is because come the third value in `x`, R has ran out of values in `index` to use so it goes back to the beginning
 
 
 ```r
 x <- 0:10
+x
+##  [1]  0  1  2  3  4  5  6  7  8  9 10
+```
 
+
+```r
 index <- c(TRUE, FALSE)
 
 x[index]
@@ -378,7 +380,34 @@ to grab the 10th value of the first column. But again, you still have a tibble a
 
 We can again use brackets to subset the our R object. But data frames are two dimensional, so we need to specify the indexes in two dimensions. If you have made a hand drawn graph used a cartesian plane, which I assume you all have, this will is the same idea. With a cartesian plane we can identify any point with a combination of two values: x and y. x refers to the horizontal axis and y the vertical axis. When we put the cartesian plane in the same frame of reference as the rectangular data frame we envision our rows as the x and our columns as the y. 
 
-To replicate the above example we would provide the indexes 10 and 1 respectively. 
+In specifying our index, we are able to select all rows or all columns by leaving the x or y spot empty respectively. 
+
+
+```r
+unemp_tbl[,1]
+## # A tibble: 12 x 1
+##    unemp_rate
+##         <dbl>
+##  1        3.2
+##  2        2.8
+##  3        2.8
+##  4        2.4
+##  5        2.8
+##  6        2.9
+##  7        2.7
+##  8        2.6
+##  9        2.7
+## 10        2.3
+## 11       NA  
+## 12       NA
+unemp_tbl[10,]
+## # A tibble: 1 x 3
+##   unemp_rate month   above_avg
+##        <dbl> <chr>   <lgl>    
+## 1        2.3 October FALSE
+```
+
+To replicate the above tidyverse example we would provide the indexes 10 and 1 respectively. 
 
 
 ```r
@@ -388,6 +417,7 @@ unemp_tbl[10,1]
 ##        <dbl>
 ## 1        2.3
 ```
+
 
 This is great, we've rewritten our tidyverse code in base R. But, just like the tidyverse code, we maintain the tibble data structure. This is because when we use a single bracket, it maintains the data structure of the object we are selecting from. If we wrap our brackets in another set of bracket, we are returned the an object of the same class as the underlying object.
 
@@ -417,18 +447,151 @@ unclass(unemp_tbl) %>%
 ## [1] "list"
 ```
 
+That is right, data frames are actually just lists disguised as rectangles.
   
 ## Lists
 
+There is a good chance that you will not have to interact with them too often That doesn't mean you shouldn't know how to when that time comes. 
 
-Lists are the most flexible object in R. 
-- lists are the most flexible object in R
-- data frames are actually just lists disguised as rectangles
+Lists are generally the most flexible object type in R. Unlike vectors and data frames lists do not impose any structure on the storage of our data. 
+
+The most simple lists may resemble something like a vector.
 
 
 ```r
-unclass(slice(acs_edu, 1:6))
+list("Jan", "Feb", "Mar")
+## [[1]]
+## [1] "Jan"
+## 
+## [[2]]
+## [1] "Feb"
+## 
+## [[3]]
+## [1] "Mar"
 ```
 
+Notice how this prints differently than
 
+
+```r
+c("Jan", "Feb", "Mar")
+## [1] "Jan" "Feb" "Mar"
+```
+
+Each element of a list is self-contained. I think of lists somewhat like shipping containers where each element is its own container and all components of each element are together. We can include any type of R object in a list. For example, we can include the `unemp_tbl` and associated vectors.
+
+
+```r
+l <- list(unemp_tbl, unemp, month.name)
+```
+
+We can view the structure of the list to get an idea of what is actually contained by that list.
+
+
+```r
+str(l)
+## List of 3
+##  $ :Classes 'tbl_df', 'tbl' and 'data.frame':	12 obs. of  3 variables:
+##   ..$ unemp_rate: num [1:12] 3.2 2.8 2.8 2.4 2.8 2.9 2.7 2.6 2.7 2.3 ...
+##   ..$ month     : chr [1:12] "January" "February" "March" "April" ...
+##   ..$ above_avg : logi [1:12] TRUE TRUE TRUE FALSE TRUE TRUE ...
+##  $ : num [1:12] 3.2 2.8 2.8 2.4 2.8 2.9 2.7 2.6 2.7 2.3 ...
+##  $ : chr [1:12] "January" "February" "March" "April" ...
+```
+
+The structure of `l` shows us that the first element is a tibble (has class `tbl_df`), and the other elements are numeric and character vectors respectively. 
+
+Because of this flexibility there are not predetermined dimensions that we can specify to our brackets. Like extracting the underlying vector value from a data frame we have to use `[[` for indexing. I like to think of `[` as walking up to the storage container and `[[` as actually opening it up and going inside. To get a sense of the difference lets look at the `unemp` vector.
+
+
+```r
+l[2]
+## [[1]]
+##  [1] 3.2 2.8 2.8 2.4 2.8 2.9 2.7 2.6 2.7 2.3  NA  NA
+class(l[2])
+## [1] "list"
+```
+
+When using the single bracket we are just selecting the first element of the list which is why we are returned another list.
+
+
+```r
+l[[2]]
+##  [1] 3.2 2.8 2.8 2.4 2.8 2.9 2.7 2.6 2.7 2.3  NA  NA
+class(l[[2]])
+## [1] "numeric"
+```
+
+When we use the double bracket we are going inside of the container and actually plucking that element out of the list. Once you have plucked out that element, we can again use another set of brackets to subset that item. To grab the tenth row and first column of the `unemp_tbl` inside of `l` we can write. 
+
+
+```r
+l[[1]][[10,1]]
+## [1] 2.3
+```
+
+Now that we know that data frames are lists we can actually extract the underlying vectors using `[[` as well as `$`. We can get the tenth row and first column a number of ways. 
+
+
+```r
+# subsetting the data frame
+l[[1]][[10,1]]
+## [1] 2.3
+
+# grabbing the first vector then position
+l[[1]][[1]][10]
+## [1] 2.3
+
+# grabbing the vector by name then position
+l[[1]]$unemp_rate[10]
+## [1] 2.3
+```
+
+Frankly all of these brackets can get a little messy. The tidyverse package `purrr` has a super handy function called `pluck()` which handles all of these brackets for us. `purrr::pluck()` is meant for flexible indexing into data structures (documentation).
+
+`pluck()` works by first providing the object that you'd like to index—again, notice the data first emphasis—and then providing the position of the element you would like to pluck out of the object. Generally, I will use `pluck()` when possible. By doing so the code becomes more readable and adheres to a single style more thoroughly. 
+
+
+```r
+purrr::pluck(l, 1, 1, 10)
+## [1] 2.3
+```
+
+Congratulations! You made it to the end of this exceptionally dense chapter. You may feel a little overwhlemed and that is to be expected. Nonetheless you should be proud! I have a few more asks of you before you move on.
+
+### Exercises
+
+1. Drink some water 
+2. Move around a bit and shake it out
+3. Create a list with the vectors `unemp`, `month.name`, and `avg_unemp`.
+4. Recreate the `unemp_tbl` but referencing the list elements
+
+
+
+```r
+library(purrr)
+
+unemp_l <- list(unemp, month.name, avg_unemp)
+
+tibble(
+  unemp_rate = pluck(unemp_l, 1),
+  month = pluck(unemp_l, 2)
+) %>% 
+  mutate(above_avg = unemp_rate > pluck(unemp_l, 3))
+## # A tibble: 12 x 3
+##    unemp_rate month     above_avg
+##         <dbl> <chr>     <lgl>    
+##  1        3.2 January   TRUE     
+##  2        2.8 February  TRUE     
+##  3        2.8 March     TRUE     
+##  4        2.4 April     FALSE    
+##  5        2.8 May       TRUE     
+##  6        2.9 June      TRUE     
+##  7        2.7 July      FALSE    
+##  8        2.6 August    FALSE    
+##  9        2.7 September FALSE    
+## 10        2.3 October   FALSE    
+## 11       NA   November  NA       
+## 12       NA   December  NA
+```
 
