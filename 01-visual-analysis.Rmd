@@ -7,32 +7,39 @@ source("common.R")
 
 ## Data Exploration
 
-- introduce you to the data analysis workflow and exploratory data analysis
-- in R for Data Science Garret Grolemund and Hadley Wickham define data exploration as:
+- the proliferation of data has provided vast troves of data asking to be explored
+- in essensce we are at the beginning of a new gold rush
+- for the purposes of scientific inquiry, analysts have historically been rather close to the data generation mechanism
+- much of the open and public data that supports much of urban informatics and the digital humanities was not collected with the intent of being analysed per se
+- this has led to somewhat of a change in the way that data analysis has been approached
+
+- the process of exploratory data analysis becomes extremely handy in developing insights from data
+- in R for Data Science Garret Grolemund and Hadley Wickham describe the inductive approach of exploratory data analysis as the following: 
 
 > Data exploration is the art of looking at your data, rapidly generating hypotheses, quickly testing them, then repeating again and again and again. 
 
-- exploratory data analysis is done generally when your data were not collected as part of an experiment
--  EDA is used for inductive scientific inquiry
+- when a research is close to the data generation process, they are more likely to have preconceived hypotheses and an expectation of what they may find
+- this condition isn't always the case when working with open data
 - we do not necessarily know what we are looking for at the outset
-- or we may have an idea of what is available to us
-- generally when we are performing exploratory data analysis, we did not partake too greatly in the data collection process
-- however, even if your data are the result of an experiment, you may we want to dig into it further. You never know what you may find. You may find the seedling that sprouts into your next experiment
+- with open data and even any dataset in fact, you never know what you may find if you being to dig.
+- You may find the seedling that sprouts into your next study
 
 - below is an image from R for Data Science which accurately describes the data exploration process
 - there are 6 steps in this illustration, 3 of which happen in a cyclical process
 
-
 ![](https://d33wubrfki0l68.cloudfront.net/795c039ba2520455d833b4034befc8cf360a70ba/558a5/diagrams/data-science-explore.png)
 
-
 - this chapter focuses on visualizing our data
-- visualization is key for this process.
+- the importance of visualization cannot be understanded
 - An older National Institute of Standards and Technology (NIST) statistical manual contains this gem
 
 > The reason for the heavy reliance on graphics is that by its very nature the main role of EDA is to open-mindedly explore, and graphics gives the analysts unparalleled power to do so, enticing the data to reveal its structural secrets, and being always ready to gain some new, often unsuspected, insight into the data. In combination with the natural pattern-recognition capabilities that we all possess, graphics provides, of course, unparalleled power to carry this out.
 
 [source](https://www.itl.nist.gov/div898/handbook/eda/section1/eda11.htm)
+
+
+In the following section, you will become acquainted with visual analysis and the American Community Survey. 
+
 
 ## The American Community Survey 
 

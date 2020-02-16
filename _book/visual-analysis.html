@@ -128,7 +128,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="./">A Minimal Book Example</a></li>
+<li><a href="./">Urban Informatics Toolkit</a></li>
 
 <li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Welcome</a><ul>
@@ -136,7 +136,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#what-is-urban-informatics"><i class="fa fa-check"></i><b>1.2</b> What is Urban Informatics</a></li>
 <li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#what-to-expect"><i class="fa fa-check"></i><b>1.3</b> What to expect</a></li>
 <li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#reminders"><i class="fa fa-check"></i><b>1.4</b> Reminders</a></li>
-<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#setting-the-context-big-data"><i class="fa fa-check"></i><b>1.5</b> Setting the Context: Big Data</a></li>
+<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#setting-the-context"><i class="fa fa-check"></i><b>1.5</b> Setting the Context:</a><ul>
+<li class="chapter" data-level="1.5.1" data-path="index.html"><a href="index.html#big-data"><i class="fa fa-check"></i><b>1.5.1</b> Big Data</a></li>
+<li class="chapter" data-level="1.5.2" data-path="index.html"><a href="index.html#open-data"><i class="fa fa-check"></i><b>1.5.2</b> Open Data</a></li>
+</ul></li>
 <li class="chapter" data-level="1.6" data-path="index.html"><a href="index.html#outline-notes"><i class="fa fa-check"></i><b>1.6</b> outline / notes</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="the-basics.html"><a href="the-basics.html"><i class="fa fa-check"></i><b>2</b> The basics</a><ul>
@@ -149,6 +152,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.3" data-path="the-basics.html"><a href="the-basics.html#installing-r-rstudio"><i class="fa fa-check"></i><b>2.3</b> Installing R &amp; RStudio</a></li>
 <li class="chapter" data-level="2.4" data-path="the-basics.html"><a href="the-basics.html#preventative-care"><i class="fa fa-check"></i><b>2.4</b> Preventative Care</a><ul>
 <li class="chapter" data-level="2.4.1" data-path="the-basics.html"><a href="the-basics.html#r-projects"><i class="fa fa-check"></i><b>2.4.1</b> R Projects</a></li>
+<li class="chapter" data-level="2.4.2" data-path="the-basics.html"><a href="the-basics.html#your-workspace"><i class="fa fa-check"></i><b>2.4.2</b> Your Workspace</a></li>
 </ul></li>
 <li class="chapter" data-level="2.5" data-path="the-basics.html"><a href="the-basics.html#before-we-embark"><i class="fa fa-check"></i><b>2.5</b> Before we embark</a></li>
 </ul></li>
@@ -216,9 +220,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="data-structures.html"><a href="data-structures.html"><i class="fa fa-check"></i><b>10</b> Data Structures</a><ul>
-<li class="chapter" data-level="10.1" data-path="data-structures.html"><a href="data-structures.html#vectors"><i class="fa fa-check"></i><b>10.1</b> Vectors</a><ul>
-<li class="chapter" data-level="10.1.1" data-path="data-structures.html"><a href="data-structures.html#types-of-vectors"><i class="fa fa-check"></i><b>10.1.1</b> Types of vectors</a></li>
-</ul></li>
+<li class="chapter" data-level="10.1" data-path="data-structures.html"><a href="data-structures.html#atomic-vectors"><i class="fa fa-check"></i><b>10.1</b> Atomic Vectors</a></li>
 <li class="chapter" data-level="10.2" data-path="data-structures.html"><a href="data-structures.html#data-frames"><i class="fa fa-check"></i><b>10.2</b> Data Frames</a></li>
 <li class="chapter" data-level="10.3" data-path="data-structures.html"><a href="data-structures.html#lists"><i class="fa fa-check"></i><b>10.3</b> Lists</a></li>
 </ul></li>
@@ -233,7 +235,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="part"><span><b>II Case Studies</b></span></li>
 <li class="chapter" data-level="17" data-path="case-study-twitter-data.html"><a href="case-study-twitter-data.html"><i class="fa fa-check"></i><b>17</b> Case Study: Twitter Data</a></li>
 <li class="divider"></li>
-<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+<li><a href="https://github.com/josiahparry/urban-informatics-toolkit" target="blank">GitHub</a></li>
 
 </ul>
 
@@ -257,32 +259,37 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="data-exploration" class="section level2">
 <h2><span class="header-section-number">4.1</span> Data Exploration</h2>
 <ul>
-<li>introduce you to the data analysis workflow and exploratory data analysis</li>
-<li>in R for Data Science Garret Grolemund and Hadley Wickham define data exploration as:</li>
+<li>the proliferation of data has provided vast troves of data asking to be explored</li>
+<li>in essensce we are at the beginning of a new gold rush</li>
+<li>for the purposes of scientific inquiry, analysts have historically been rather close to the data generation mechanism</li>
+<li>much of the open and public data that supports much of urban informatics and the digital humanities was not collected with the intent of being analysed per se</li>
+<li><p>this has led to somewhat of a change in the way that data analysis has been approached</p></li>
+<li>the process of exploratory data analysis becomes extremely handy in developing insights from data</li>
+<li><p>in R for Data Science Garret Grolemund and Hadley Wickham describe the inductive approach of exploratory data analysis as the following:</p></li>
 </ul>
 <blockquote>
 <p>Data exploration is the art of looking at your data, rapidly generating hypotheses, quickly testing them, then repeating again and again and again.</p>
 </blockquote>
 <ul>
-<li>exploratory data analysis is done generally when your data were not collected as part of an experiment</li>
-<li>EDA is used for inductive scientific inquiry</li>
+<li>when a research is close to the data generation process, they are more likely to have preconceived hypotheses and an expectation of what they may find</li>
+<li>this condition isn’t always the case when working with open data</li>
 <li>we do not necessarily know what we are looking for at the outset</li>
-<li>or we may have an idea of what is available to us</li>
-<li>generally when we are performing exploratory data analysis, we did not partake too greatly in the data collection process</li>
-<li><p>however, even if your data are the result of an experiment, you may we want to dig into it further. You never know what you may find. You may find the seedling that sprouts into your next experiment</p></li>
+<li>with open data and even any dataset in fact, you never know what you may find if you being to dig.</li>
+<li><p>You may find the seedling that sprouts into your next study</p></li>
 <li>below is an image from R for Data Science which accurately describes the data exploration process</li>
 <li><p>there are 6 steps in this illustration, 3 of which happen in a cyclical process</p></li>
 </ul>
 <p><img src="https://d33wubrfki0l68.cloudfront.net/795c039ba2520455d833b4034befc8cf360a70ba/558a5/diagrams/data-science-explore.png" /></p>
 <ul>
 <li>this chapter focuses on visualizing our data</li>
-<li>visualization is key for this process.</li>
+<li>the importance of visualization cannot be understanded</li>
 <li>An older National Institute of Standards and Technology (NIST) statistical manual contains this gem</li>
 </ul>
 <blockquote>
 <p>The reason for the heavy reliance on graphics is that by its very nature the main role of EDA is to open-mindedly explore, and graphics gives the analysts unparalleled power to do so, enticing the data to reveal its structural secrets, and being always ready to gain some new, often unsuspected, insight into the data. In combination with the natural pattern-recognition capabilities that we all possess, graphics provides, of course, unparalleled power to carry this out.</p>
 </blockquote>
 <p><a href="https://www.itl.nist.gov/div898/handbook/eda/section1/eda11.htm">source</a></p>
+<p>In the following section, you will become acquainted with visual analysis and the American Community Survey.</p>
 </div>
 <div id="the-american-community-survey" class="section level2">
 <h2><span class="header-section-number">4.2</span> The American Community Survey</h2>
