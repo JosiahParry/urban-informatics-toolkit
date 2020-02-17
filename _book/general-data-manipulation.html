@@ -32,7 +32,7 @@
   
   
 <link rel="prev" href="reading-data.html"/>
-<link rel="next" href="filter.html"/>
+<link rel="next" href="thats-too-much-data.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -140,7 +140,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6" data-path="broken-windows-and-the-origin-of-ecometrics.html"><a href="broken-windows-and-the-origin-of-ecometrics.html"><i class="fa fa-check"></i><b>6</b> Broken Windows and the origin of Ecometrics</a></li>
 <li class="chapter" data-level="7" data-path="reading-data.html"><a href="reading-data.html"><i class="fa fa-check"></i><b>7</b> Reading data</a></li>
 <li class="chapter" data-level="8" data-path="general-data-manipulation.html"><a href="general-data-manipulation.html"><i class="fa fa-check"></i><b>8</b> General data manipulation</a></li>
-<li class="chapter" data-level="9" data-path="filter.html"><a href="filter.html"><i class="fa fa-check"></i><b>9</b> filter</a></li>
+<li class="chapter" data-level="9" data-path="thats-too-much-data.html"><a href="thats-too-much-data.html"><i class="fa fa-check"></i><b>9</b> That’s <em>too much</em> data</a></li>
 <li class="chapter" data-level="10" data-path="visualizing-trends-and-relationships.html"><a href="visualizing-trends-and-relationships.html"><i class="fa fa-check"></i><b>10</b> Visualizing Trends and Relationships</a></li>
 <li class="chapter" data-level="11" data-path="data-structures.html"><a href="data-structures.html"><i class="fa fa-check"></i><b>11</b> Data Structures</a></li>
 <li class="chapter" data-level="12" data-path="summary-statistics.html"><a href="summary-statistics.html"><i class="fa fa-check"></i><b>12</b> Summary statistics</a></li>
@@ -798,7 +798,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Save the resultant tibble to an object named <code>commute</code> or something else informative.</p>
 <p>Below is one approach to this question. For this, I have selected all columns pertaining to commute time (columns that start with <code>commute</code>), the method by which people commute (begin with <code>by</code>), meidan household income, and the name of the census tract. The name of the census tract will be helpful for identifying “where”.</p>
 <div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb58-1" data-line-number="1">commute &lt;-<span class="st"> </span><span class="kw">select</span>(acs_raw,</a>
-<a class="sourceLine" id="cb58-2" data-line-number="2">                  name,</a>
+<a class="sourceLine" id="cb58-2" data-line-number="2">                  county,</a>
 <a class="sourceLine" id="cb58-3" data-line-number="3">                  <span class="kw">starts_with</span>(<span class="st">&quot;commute&quot;</span>),</a>
 <a class="sourceLine" id="cb58-4" data-line-number="4">                  <span class="kw">starts_with</span>(<span class="st">&quot;by&quot;</span>),</a>
 <a class="sourceLine" id="cb58-5" data-line-number="5">                  med_house_income)</a></code></pre></div>
@@ -815,7 +815,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
         </div>
       </div>
 <a href="reading-data.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="filter.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="thats-too-much-data.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

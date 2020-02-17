@@ -16,3 +16,7 @@
   - raster data is extremely interesting but requires more devoted attention
     - raster data analysis can be done to look at changing elevation, analyse vegatation, the amount of reflective surfaces, etc
 * Vector data
+
+https://geocompr.robinlovelace.net/
+
+https://rud.is/books/30-day-map-challenge/points-01.html

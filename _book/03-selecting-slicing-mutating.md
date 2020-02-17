@@ -759,7 +759,7 @@ Below is one approach to this question. For this, I have selected all columns pe
 
 ```r
 commute <- select(acs_raw,
-                  name,
+                  county,
                   starts_with("commute"),
                   starts_with("by"),
                   med_house_income)

@@ -1,4 +1,4 @@
-# filter
+# That's _too much_ data
 
 
 ```r
@@ -6,19 +6,24 @@ library(tidyverse)
 acs_raw <- read_csv("data/ACS_1317_TRACT.csv")
 
 commute <- select(acs_raw,
-                  name,
+                  county,
                   starts_with("commute"),
                   starts_with("by"),
                   med_house_income)
 ```
 
-Let us continue with the scenario developed in the last chapter. There is a non-profit who is seeking graduate student assistance to provide a curated dataset that provides insight into the commuting behavior of the Greater Boston Area. Using BARI's Massachussett's Census Indicators dataset, we were able to reduce the 52 initial columns down to 11. However, these data are for the entire state not just the Greater Boston Area. This leaves us with two tasks: 1) definine the Greater Boston Area and 2) create a subset of our data that fit our criteria defined in 1. 
+Let us continue with the scenario developed in the last chapter. There is a non-profit who is seeking graduate student assistance to provide a curated dataset that provides insight into the commuting behavior of the Greater Boston Area. Using BARI's Massachussett's Census Indicators dataset, we were able to reduce the 52 initial columns down to 11. However these data are for the entire state not just the Greater Boston Area. This leaves us with two tasks: 1) definine the Greater Boston Area and 2) create a subset of our data that fit our criteria defined in 1. 
 
-Previously we looked at ways of selecting columns. Here, we will focus on creating subsets of our data. We will rely on the function `dplyr::filter()` for this. `filter()` differs from `slice()` in that filter will check to see if data fit a certain criteria whereas slice is only concerned with the position of a row. 
 
-`filter()` works similarly to `select()`. The first argument is of course the tibble which you would like to subset. Secondly, we again see `...`. In the case of `filter()`, we provide what are called logical expressions to `...`. `filter()` then only returns the observations when that logical expression, or condition, is true. 
+## `filter()`ing
 
-I would go out on a limb here and say that almost every time you purchase something online whether that is via Amazon Prime or Etsy you are filtering your data using some logic. Whether that is checking the Prime tick box, specifying a price range on Etsy, or a restaurant rating on Yelp. These are all _conditions_ that you are providing to your search. 
+Previously we looked at ways of selecting columns. Here, we will focus on creating subsets of our data. We will rely on the function `dplyr::filter()` for this. `filter()` differs from `slice()` in that filter will check to see if data fit a specified criteria whereas slice is only concerned with the position of a row. 
+
+> Explore the help documentation of `filter()` by running the command `?filter()` in your console.
+
+The first argument of `filter()` is of course the tibble which you would like to subset. Secondly, we again see `...`. In the case of `filter()`, we provide what are called logical expressions to `...`. `filter()` then only returns the observations when that logical expression, or condition, is true. 
+
+Almost every time you purchase something online whether that is from Amazon or Etsy you are filtering your data using some logic. Whether that is checking the Prime tick box, specifying a price range on Etsy, or a restaurant rating on Yelp. These are all _conditions_ that you are providing to your search. 
 
 We can create these types of filters on our own data and to do so, we will need to understand how logical expressions work. A logical expression is any expression that can be boiled down to true or false. 
 
@@ -26,35 +31,35 @@ For example, using our `commute` dataset, we can check to see which Census Tract
 
 
 ```r
-filter(commute, by_auto > 0.75)
+auto_commuters <- filter(commute, by_auto > 0.75)
+
+select(auto_commuters, by_auto)
 ```
 
 ```
-## # A tibble: 1,012 x 11
-##    name  commute_less10 commute1030 commute3060 commute6090 commute_over90
-##    <chr>          <dbl>       <dbl>       <dbl>       <dbl>          <dbl>
-##  1 Cens…         0.0787       0.513       0.331      0.0556         0.0214
-##  2 Cens…         0.251        0.464       0.181      0.0822         0.0219
-##  3 Cens…         0.0537       0.662       0.177      0.0868         0.0203
-##  4 Cens…         0.141        0.394       0.313      0.133          0.0194
-##  5 Cens…         0.175        0.511       0.203      0.0704         0.0411
-##  6 Cens…         0.109        0.440       0.330      0.0830         0.0378
-##  7 Cens…         0.189        0.457       0.303      0.0346         0.0166
-##  8 Cens…         0.187        0.560       0.133      0.0839         0.0358
-##  9 Cens…         0.139        0.455       0.256      0.126          0.0246
-## 10 Cens…         0.0912       0.649       0.218      0.0179         0.0235
-## # … with 1,002 more rows, and 5 more variables: by_auto <dbl>,
-## #   by_pub_trans <dbl>, by_bike <dbl>, by_walk <dbl>,
-## #   med_house_income <dbl>
+## # A tibble: 1,012 x 1
+##    by_auto
+##      <dbl>
+##  1   0.927
+##  2   0.970
+##  3   0.925
+##  4   0.904
+##  5   0.899
+##  6   0.911
+##  7   0.810
+##  8   0.851
+##  9   0.900
+## 10   0.787
+## # … with 1,002 more rows
 ```
 
-This above line checks every single value of `by_auto` and askes "is this value above 0.75?" and when it is filter will include that row in the output. Another way to say this is that when `by_auto` is above 0.75 _the condition is met_.
+This above line checks every single value of `by_auto` and asks "is this value above 0.75?" and when it is filter will include that row in the output. Another way to say this is that when `by_auto` is above 0.75 _the condition is met_.
 
 In R, as with most other programming languages, there are a number of _logical operators_ that are used to check for conditions. We will learn these in the following section.
 
 ## Logical operators 
 
-R has myriad ways to create logical expressions. Here we will focus on the six main _relational_ logical operators. These are called relational because we are checking to see how a value related to another. In general we tend to ask questions like "are these the same?", "are they not the same?", and "is one value larger or smaller than another?". While you are getting the hang of it, I encourage you to try and verbalize logical expressions. 
+R has myriad ways to create logical expressions. Here we will focus on the six main _relational_ logical operators. These are called relational because we are checking to see how one value relates to another. In general we tend to ask questions like "are these the same?", "are they not the same?", and "is one value larger or smaller than another?". While you are getting the hang of it, I encourage you to try and verbalize logical expressions. 
 
 * `<` : less than
 * `>` : greater than
@@ -79,6 +84,8 @@ x < y
 ```
 ## [1] TRUE
 ```
+
+Yes it is. Here R returns a logical value which are represented as `TRUE` and `FALSE`. 
 
 Is `x` greater than `y`?
 
@@ -131,7 +138,6 @@ x != y
 ## [1] TRUE
 ```
 
-
 The power of logical operators isn't necessarily in the ability to compare one value against another, but the ability to compare many values to one value or even many values to multiple other values. This is what `filter()` helps us do.
 
 Using `filter()` we can compare one column to another. When we do this, the values of those columns at each row are compared. For example, we can identify all of the Census Tracts where people walk more than they drive. 
@@ -142,52 +148,54 @@ Using `filter()` we can compare one column to another. When we do this, the valu
 ```r
 walking <- filter(commute, by_walk > by_auto)
 
-select(walking, name, by_walk, by_auto)
+select(walking, county, by_walk, by_auto)
 ```
 
 ```
 ## # A tibble: 54 x 3
-##    name                                                  by_walk by_auto
-##    <chr>                                                   <dbl>   <dbl>
-##  1 Census Tract 8212, Hampshire County, Massachusetts      0.652  0.0993
-##  2 Census Tract 8208.02, Hampshire County, Massachusetts   0.632  0.0985
-##  3 Census Tract 8204, Hampshire County, Massachusetts      0.580  0.189 
-##  4 Census Tract 8220, Hampshire County, Massachusetts      0.613  0.143 
-##  5 Census Tract 8206, Hampshire County, Massachusetts      0.625  0.0916
-##  6 Census Tract 3537, Middlesex County, Massachusetts      0.427  0.213 
-##  7 Census Tract 3539, Middlesex County, Massachusetts      0.545  0.142 
-##  8 Census Tract 3540, Middlesex County, Massachusetts      0.372  0.287 
-##  9 Census Tract 3541, Middlesex County, Massachusetts      0.299  0.240 
-## 10 Census Tract 202, Suffolk County, Massachusetts         0.548  0.105 
+##    county    by_walk by_auto
+##    <chr>       <dbl>   <dbl>
+##  1 HAMPSHIRE   0.652  0.0993
+##  2 HAMPSHIRE   0.632  0.0985
+##  3 HAMPSHIRE   0.580  0.189 
+##  4 HAMPSHIRE   0.613  0.143 
+##  5 HAMPSHIRE   0.625  0.0916
+##  6 MIDDLESEX   0.427  0.213 
+##  7 MIDDLESEX   0.545  0.142 
+##  8 MIDDLESEX   0.372  0.287 
+##  9 MIDDLESEX   0.299  0.240 
+## 10 SUFFOLK     0.548  0.105 
 ## # … with 44 more rows
 ```
 
-We can also use filter to see where the walking rates and the driving rates are the same. As shown above we use `==` to test if things are the same. This is an important distinction to make. `<-` is different from `=` and `=` is different from `==`. If you are ever confused about which operator to use ask yourself what your goal is. If your goal is to assign an object use `<-`. If your goal is to assign an argument value use `=`. And if you are trying to compare two things use `==`. 
+We can also use filter to see where the walking rates and the driving rates are the same. As shown above we use `==` to test if things are the same. 
+
+> **An important distinction**: `<-` is different from `=` and `=` is different from `==`. If you are ever confused about which operator to use ask yourself what your goal is. If your goal is to assign an object use `<-`. If your goal is to assign an argument value use `=`. And if you are trying to compare two things use `==`. 
 
 
 ```r
 walk_auto <- filter(commute, by_walk == by_auto)
 
-select(walk_auto, name, by_walk, by_auto)
+select(walk_auto, county, by_walk, by_auto)
 ```
 
 ```
 ## # A tibble: 2 x 3
-##   name                                                by_walk by_auto
-##   <chr>                                                 <dbl>   <dbl>
-## 1 Census Tract 9901.01, Suffolk County, Massachusetts       0       0
-## 2 Census Tract 9815.02, Suffolk County, Massachusetts       0       0
+##   county  by_walk by_auto
+##   <chr>     <dbl>   <dbl>
+## 1 <NA>          0       0
+## 2 SUFFOLK       0       0
 ```
 
-So far we have only been checking one condition and in most cases this actually wont suffice. You may want to check multiple conditions at one time. When we use filter we can add a logical expression as another argument. In doing so, filter will check to see if both conditions are met and when they are, that row is returned. This is called an "and" statement. Meaning condition one **and** condition two need to be `TRUE`.
+So far we have only been checking one condition and in most cases this actually will not suffice. You may want to check multiple conditions at one time. When we use filter we can add a logical expression as another argument. In doing so, filter will check to see if both conditions are met and, when they are, that row is returned. This is called an "and" statement. Meaning condition one **and** condition two need to be `TRUE`.
 
-Building upon the `walking` example, we can further narrow down the observations by adding a second condition which returns only the observations that have median household income below $40,000.
+Building upon the `walking` example, we can further narrow down the observations by adding a second condition which returns only the observations that have median household incomes below $40,000.
 
 
 ```r
 low_inc_walk <- filter(commute, 
-       by_walk > by_auto,
-       med_house_income < 40000)
+                       by_walk > by_auto,
+                       med_house_income < 40000)
 
 select(low_inc_walk, by_walk, by_auto, med_house_income)
 ```
@@ -209,6 +217,7 @@ select(low_inc_walk, by_walk, by_auto, med_house_income)
 ## 11   0.677   0.107            31218
 ```
 
+### `&` statements: 
 
 Now I want to introduce two more logical operators, **and** (`&`), which was implicitly used in the above filter statement, and **or** (`|`). `&` compares two conditions and will return `TRUE` only if they are both `TRUE`. `|` will return `TRUE` when one of the conditions is `TRUE`. 
 
@@ -251,7 +260,7 @@ TRUE & TRUE
 ## [1] TRUE
 ```
 
-Illustrative `|` statements:
+### `|` statements:
 
 Or statements are used to evaluate whether or not something meets **at least** one of the two conditions. This means that the only time that an _or_ statement evaluates to `FALSE` is when both expressions result in `FALSE`.
 
@@ -281,6 +290,65 @@ FALSE | FALSE
 
 ```
 ## [1] FALSE
+```
+
+We can alter the previous `filter()` statement to show us places that walk more than they drive **or** have a low median household income.
+
+
+```r
+low_inc_or_walk <- filter(commute,
+                          by_walk > by_auto | med_house_income < 40000)
+
+select(low_inc_or_walk, by_walk, by_auto, med_house_income)
+```
+
+```
+## # A tibble: 224 x 3
+##    by_walk by_auto med_house_income
+##      <dbl>   <dbl>            <dbl>
+##  1 0.0959    0.810            37093
+##  2 0.102     0.800            31465
+##  3 0.0478    0.813            14604
+##  4 0.144     0.647            34940
+##  5 0.0541    0.831            26615
+##  6 0.0345    0.931            37935
+##  7 0.0430    0.750            16400
+##  8 0.0543    0.785            19548
+##  9 0.00469   0.944            34821
+## 10 0         0.955            34697
+## # … with 214 more rows
+```
+
+
+## Defining the Greater Boston Area
+
+You now have developed the requisite skills to subset the commuting data to just the Greater Boston Area. But we still haven't completely decided what constitutes it. We will take the naïve approach and say that Suffolk, Norfolk, and Middlesex counties are the Greater Boston Area. We can now filter our data to just these counties!
+
+
+```r
+gba_commute <- filter(commute,
+                      county == "SUFFOLK" | county == "NORFOLK" | county == "MIDDLESEX")
+
+gba_commute
+```
+
+```
+## # A tibble: 648 x 11
+##    county commute_less10 commute1030 commute3060 commute6090 commute_over90
+##    <chr>           <dbl>       <dbl>       <dbl>       <dbl>          <dbl>
+##  1 MIDDL…         0.0916       0.357       0.375      0.134         0.0422 
+##  2 MIDDL…         0.0948       0.445       0.344      0.0887        0.0277 
+##  3 MIDDL…         0.0720       0.404       0.382      0.0969        0.0446 
+##  4 MIDDL…         0.0983       0.390       0.379      0.0943        0.0380 
+##  5 MIDDL…         0.0670       0.379       0.365      0.142         0.0473 
+##  6 MIDDL…         0.0573       0.453       0.352      0.105         0.0324 
+##  7 MIDDL…         0.0791       0.475       0.368      0.0691        0.00949
+##  8 MIDDL…         0.137        0.450       0.337      0.0650        0.0117 
+##  9 MIDDL…         0.0752       0.478       0.329      0.0947        0.0230 
+## 10 MIDDL…         0.0830       0.474       0.322      0.0892        0.0311 
+## # … with 638 more rows, and 5 more variables: by_auto <dbl>,
+## #   by_pub_trans <dbl>, by_bike <dbl>, by_walk <dbl>,
+## #   med_house_income <dbl>
 ```
 
 
