@@ -152,7 +152,7 @@ sum(TRUE, FALSE, FALSE)
 ## [1] 1
 ```
 
-While coersion occurs from other processes like combining values in a vector, _casting_ is the process of intentionally changing an object's class. There are a number of casting functions whice generaly take the shape of `as.class()` or `as_class()`. Each of the vector types covered have their own casting functions. 
+While coersion occurs from other processes like combining values in a vector, _**casting**_ is the process of intentionally changing an object's class. There are a number of casting functions whice generaly take the shape of `as.class()` or `as_class()`. Each of the vector types covered have their own casting functions. 
 
 
 ```r
@@ -339,7 +339,7 @@ unemp_tbl$unemp_rate
 ##  [1] 3.2 2.8 2.8 2.4 2.8 2.9 2.7 2.6 2.7 2.3  NA  NA
 ```
 
-Note that the difference between `select(tbl, col)` and `tbl$col`.
+Note the difference between `select(tbl, col)` and `tbl$col`.
 
 
 ```r

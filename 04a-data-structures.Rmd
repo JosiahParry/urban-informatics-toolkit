@@ -126,7 +126,7 @@ In the presence of a numeric value `TRUE` becomes equal to `1L` and `FALSE` equa
 sum(TRUE, FALSE, FALSE)
 ```
 
-While coersion occurs from other processes like combining values in a vector, _casting_ is the process of intentionally changing an object's class. There are a number of casting functions whice generaly take the shape of `as.class()` or `as_class()`. Each of the vector types covered have their own casting functions. 
+While coersion occurs from other processes like combining values in a vector, _**casting**_ is the process of intentionally changing an object's class. There are a number of casting functions whice generaly take the shape of `as.class()` or `as_class()`. Each of the vector types covered have their own casting functions. 
 
 ```{r}
 as.integer(TRUE)
@@ -252,7 +252,7 @@ For example, extracting the `unemp_rate` column looks like:
 unemp_tbl$unemp_rate
 ```
 
-Note that the difference between `select(tbl, col)` and `tbl$col`.
+Note the difference between `select(tbl, col)` and `tbl$col`.
 
 ```{r}
 select(unemp_tbl, unemp_rate)

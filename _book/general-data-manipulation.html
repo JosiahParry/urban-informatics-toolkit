@@ -24,7 +24,7 @@
 <meta name="author" content="Josiah Parry" />
 
 
-<meta name="date" content="2020-02-16" />
+<meta name="date" content="2020-02-17" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -32,7 +32,7 @@
   
   
 <link rel="prev" href="reading-data.html"/>
-<link rel="next" href="visualizing-trends-and-relationships.html"/>
+<link rel="next" href="filter.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -140,16 +140,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6" data-path="broken-windows-and-the-origin-of-ecometrics.html"><a href="broken-windows-and-the-origin-of-ecometrics.html"><i class="fa fa-check"></i><b>6</b> Broken Windows and the origin of Ecometrics</a></li>
 <li class="chapter" data-level="7" data-path="reading-data.html"><a href="reading-data.html"><i class="fa fa-check"></i><b>7</b> Reading data</a></li>
 <li class="chapter" data-level="8" data-path="general-data-manipulation.html"><a href="general-data-manipulation.html"><i class="fa fa-check"></i><b>8</b> General data manipulation</a></li>
-<li class="chapter" data-level="9" data-path="visualizing-trends-and-relationships.html"><a href="visualizing-trends-and-relationships.html"><i class="fa fa-check"></i><b>9</b> Visualizing Trends and Relationships</a></li>
-<li class="chapter" data-level="10" data-path="data-structures.html"><a href="data-structures.html"><i class="fa fa-check"></i><b>10</b> Data Structures</a></li>
-<li class="chapter" data-level="11" data-path="summary-statistics.html"><a href="summary-statistics.html"><i class="fa fa-check"></i><b>11</b> Summary statistics</a></li>
-<li class="chapter" data-level="12" data-path="the-pipe.html"><a href="the-pipe.html"><i class="fa fa-check"></i><b>12</b> The pipe <code>%&gt;%</code></a></li>
-<li class="chapter" data-level="13" data-path="summarizing-the-tidy-way.html"><a href="summarizing-the-tidy-way.html"><i class="fa fa-check"></i><b>13</b> summarizing the tidy way</a></li>
-<li class="chapter" data-level="14" data-path="i-have-two-datasets-what-now.html"><a href="i-have-two-datasets-what-now.html"><i class="fa fa-check"></i><b>14</b> I have two datasets, what now?</a></li>
-<li class="chapter" data-level="15" data-path="spatial-analysis.html"><a href="spatial-analysis.html"><i class="fa fa-check"></i><b>15</b> Spatial Analysis</a></li>
-<li class="chapter" data-level="16" data-path="creating-ecometrics.html"><a href="creating-ecometrics.html"><i class="fa fa-check"></i><b>16</b> Creating Ecometrics</a></li>
+<li class="chapter" data-level="9" data-path="filter.html"><a href="filter.html"><i class="fa fa-check"></i><b>9</b> filter</a></li>
+<li class="chapter" data-level="10" data-path="visualizing-trends-and-relationships.html"><a href="visualizing-trends-and-relationships.html"><i class="fa fa-check"></i><b>10</b> Visualizing Trends and Relationships</a></li>
+<li class="chapter" data-level="11" data-path="data-structures.html"><a href="data-structures.html"><i class="fa fa-check"></i><b>11</b> Data Structures</a></li>
+<li class="chapter" data-level="12" data-path="summary-statistics.html"><a href="summary-statistics.html"><i class="fa fa-check"></i><b>12</b> Summary statistics</a></li>
+<li class="chapter" data-level="13" data-path="the-pipe.html"><a href="the-pipe.html"><i class="fa fa-check"></i><b>13</b> The pipe <code>%&gt;%</code></a></li>
+<li class="chapter" data-level="14" data-path="summarizing-the-tidy-way.html"><a href="summarizing-the-tidy-way.html"><i class="fa fa-check"></i><b>14</b> summarizing the tidy way</a></li>
+<li class="chapter" data-level="15" data-path="i-have-two-datasets-what-now.html"><a href="i-have-two-datasets-what-now.html"><i class="fa fa-check"></i><b>15</b> I have two datasets, what now?</a></li>
+<li class="chapter" data-level="16" data-path="spatial-analysis.html"><a href="spatial-analysis.html"><i class="fa fa-check"></i><b>16</b> Spatial Analysis</a></li>
+<li class="chapter" data-level="17" data-path="creating-ecometrics.html"><a href="creating-ecometrics.html"><i class="fa fa-check"></i><b>17</b> Creating Ecometrics</a></li>
 <li class="part"><span><b>II Case Studies</b></span></li>
-<li class="chapter" data-level="17" data-path="case-study-twitter-data.html"><a href="case-study-twitter-data.html"><i class="fa fa-check"></i><b>17</b> Case Study: Twitter Data</a></li>
+<li class="chapter" data-level="18" data-path="case-study-twitter-data.html"><a href="case-study-twitter-data.html"><i class="fa fa-check"></i><b>18</b> Case Study: Twitter Data</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/josiahparry/urban-informatics-toolkit" target="blank">GitHub</a></li>
 
@@ -807,106 +808,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">8.5</span> Asking good questions</h2>
 
 </div>
-<div id="filter" class="section level2">
-<h2><span class="header-section-number">8.6</span> filter</h2>
-<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb59-1" data-line-number="1"><span class="kw">library</span>(tidyverse)</a></code></pre></div>
-<pre><code>## ── Attaching packages ───────────────────────────────────────────── tidyverse 1.2.1 ──</code></pre>
-<pre><code>## ✓ tibble  2.1.3     ✓ purrr   0.3.3
-## ✓ tidyr   1.0.2     ✓ dplyr   0.8.3
-## ✓ readr   1.3.1     ✓ stringr 1.4.0
-## ✓ tibble  2.1.3     ✓ forcats 0.4.0</code></pre>
-<pre><code>## ── Conflicts ──────────────────────────────────────────────── tidyverse_conflicts() ──
-## x dplyr::filter() masks stats::filter()
-## x dplyr::lag()    masks stats::lag()</code></pre>
-<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb63-1" data-line-number="1">acs_raw &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data/ACS_1317_TRACT.csv&quot;</span>)</a></code></pre></div>
-<pre><code>## Parsed with column specification:
-## cols(
-##   .default = col_double(),
-##   name = col_character(),
-##   med_yr_built = col_character(),
-##   town = col_character(),
-##   county = col_character(),
-##   m_atown = col_character()
-## )</code></pre>
-<pre><code>## See spec(...) for full column specifications.</code></pre>
-<ul>
-<li>logical operators</li>
-</ul>
-<div id="scenario-1" class="section level3">
-<h3><span class="header-section-number">8.6.1</span> scenario</h3>
-<ul>
-<li>we have now selected the columns we need to provide</li>
-</ul>
-</div>
-</div>
-<div id="mutate" class="section level2">
-<h2><span class="header-section-number">8.7</span> mutate</h2>
-<div id="scenario-2" class="section level3">
-<h3><span class="header-section-number">8.7.1</span> scenario</h3>
-<ul>
-<li>The non-profit has emailed you back and indicated that they want to report on the income quintiles and requested that you do this for them. You’re a rockstar and a kickass programmer so you’re like, hell yah.</li>
-<li>they also ask for:
-<ul>
-<li>tract</li>
-<li>a combined measure of bach masters and doctoral</li>
-</ul></li>
-</ul>
-<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb66-1" data-line-number="1">acs_raw <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb66-2" data-line-number="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">hh_inc_quin =</span> <span class="kw">ntile</span>(med_house_income, <span class="dv">5</span>))</a></code></pre></div>
-<pre><code>## # A tibble: 1,478 x 60
-##    ct_id_10 name  total_pop pop_den sex_ratio age_u18 age1834 age3564
-##       &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
-##  1  2.50e10 Cens…      4585    333.     1.13    0.234   0.202   0.398
-##  2  2.50e10 Cens…      2165   1070.     1.32    0.181   0.151   0.461
-##  3  2.50e10 Cens…      6917   2113.     1.13    0.171   0.214   0.437
-##  4  2.50e10 Cens…      7278   1346.     1.12    0.203   0.227   0.436
-##  5  2.50e10 Cens…      5059   2894.     1.30    0.177   0.203   0.430
-##  6  2.50e10 Cens…      6632    472.     1.11    0.163   0.237   0.439
-##  7  2.50e10 Cens…      3259   8022.     1.25    0.191   0.326   0.380
-##  8  2.50e10 Cens…      2097   5191.     0.908   0.202   0.183   0.466
-##  9  2.50e10 Cens…      3098    239.     0.990   0.188   0.150   0.462
-## 10  2.50e10 Cens…      3982  17065.     1.19    0.244   0.286   0.342
-## # … with 1,468 more rows, and 52 more variables: age_o65 &lt;dbl&gt;,
-## #   for_born &lt;dbl&gt;, white &lt;dbl&gt;, black &lt;dbl&gt;, asian &lt;dbl&gt;, hispanic &lt;dbl&gt;,
-## #   two_or_more &lt;dbl&gt;, eth_het &lt;dbl&gt;, med_house_income &lt;dbl&gt;,
-## #   pub_assist &lt;dbl&gt;, gini &lt;dbl&gt;, fam_pov_per &lt;dbl&gt;, unemp_rate &lt;dbl&gt;,
-## #   total_house_h &lt;dbl&gt;, fam_house_per &lt;dbl&gt;, fem_head_per &lt;dbl&gt;,
-## #   same_sex_coup_per &lt;dbl&gt;, grand_head_per &lt;dbl&gt;, less_than_hs &lt;dbl&gt;,
-## #   hs_grad &lt;dbl&gt;, some_coll &lt;dbl&gt;, bach &lt;dbl&gt;, master &lt;dbl&gt;, prof &lt;dbl&gt;,
-## #   doc &lt;dbl&gt;, commute_less10 &lt;dbl&gt;, commute1030 &lt;dbl&gt;, commute3060 &lt;dbl&gt;,
-## #   commute6090 &lt;dbl&gt;, commute_over90 &lt;dbl&gt;, by_auto &lt;dbl&gt;,
-## #   by_pub_trans &lt;dbl&gt;, by_bike &lt;dbl&gt;, by_walk &lt;dbl&gt;,
-## #   total_house_units &lt;dbl&gt;, vacant_unit_per &lt;dbl&gt;, renters_per &lt;dbl&gt;,
-## #   home_own_per &lt;dbl&gt;, med_gross_rent &lt;dbl&gt;, med_home_val &lt;dbl&gt;,
-## #   med_yr_built_raw &lt;dbl&gt;, med_yr_built &lt;chr&gt;, med_yr_moved_inraw &lt;dbl&gt;,
-## #   med_yr_rent_moved_in &lt;dbl&gt;, area_acres &lt;dbl&gt;, town_id &lt;dbl&gt;,
-## #   town &lt;chr&gt;, fips_stco &lt;dbl&gt;, county &lt;chr&gt;, area_acr_1 &lt;dbl&gt;,
-## #   m_atown &lt;chr&gt;, hh_inc_quin &lt;int&gt;</code></pre>
-<p><em>i need to introduce measures of central tendency and summar stats in between this</em></p>
-<ul>
-<li>groups</li>
-<li>summarizing</li>
-</ul>
-<p>using the <code>name</code> column I can consider introducing string methods
-- this would probably be better done with text reviews or something</p>
-</div>
-</div>
-<div id="writing-data-lol" class="section level2">
-<h2><span class="header-section-number">8.8</span> writing data lol</h2>
-<p>They define the greater boston area as Suffolk, Middlesex, and Norfolk counties.</p>
-<p>before we go ahead and start cleaning this data, we need to learn the tools to do so. Please bear with me!</p>
-<ul>
-<li>recall how to load the tidyverse</li>
-<li>we’ll read in the <code>ACS_1317_TRACT.csv</code> file located in the <code>data</code> directory
-<ul>
-<li>putting this together the file path is <code>data/ACS_1317_TRACT.csv</code>.</li>
-<li>store it in the variable <code>acs_raw</code></li>
-</ul></li>
-</ul>
-<p>To learn these tools we will work with a role-play / workthrough.
-a local non-profit is interested in learning about the demographic characteristics of the greater boston area. They are specifically interested to learn more about the relationship between the age, race, and economic status. They’ve come to you to provide them with the relevant data. you have acces to the annual BARI census data and you will curate the data for them.</p>
-
-</div>
 </div>
             </section>
 
@@ -914,7 +815,7 @@ a local non-profit is interested in learning about the demographic characteristi
         </div>
       </div>
 <a href="reading-data.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="visualizing-trends-and-relationships.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="filter.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

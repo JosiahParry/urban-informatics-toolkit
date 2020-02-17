@@ -29,10 +29,10 @@ Core Toolkit
 - Draft intro to R, RStudio (R files, and R projects) 
   - done 2020-02-15
 - Draft exploratory analysis
-- Draft filtering data
-- Draft creating variables
+- Draft filtering data (logical statements)
 - Draft %>% 
 - Draft data structures
+  - done 2020-02-16
 - Draft summary statistics
 - Draft group_by and summarize
 - Draft multiple data sources
