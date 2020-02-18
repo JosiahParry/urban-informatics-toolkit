@@ -2,7 +2,7 @@
 title: "Urban Informatics Toolkit"
 description: "A hands on introduction approach to analyzing the urban Commons."
 author: "Josiah Parry"
-date: "2020-02-17"
+date: "2020-02-18"
 site: bookdown::gitbook
 documentclass: book
 bibliography: [book.bib, packages.bib]
@@ -28,6 +28,7 @@ Core Toolkit
 - Draft exploratory analysis
 - Draft filtering data (logical statements)
 - Draft %>% 
+  - done 2020-02-18
 - Draft data structures
   - done 2020-02-16
 - Draft summary statistics
@@ -56,6 +57,15 @@ Editing
 - Create rstudio.cloud image
 
 
+Topics that I need to find a way to include:
+
+- stringr
+- dplyr helpers: 
+  - case_when()
+  - ntile()
+  - arrange()
+  - n_distinct()
+- ! negation
 ----------------
 
 

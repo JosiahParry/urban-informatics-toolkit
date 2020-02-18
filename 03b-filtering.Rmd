@@ -170,6 +170,7 @@ select(low_inc_or_walk, by_walk, by_auto, med_house_income)
 You now have developed the requisite skills to subset the commuting data to just the Greater Boston Area. But we still haven't completely decided what constitutes it. We will take the naïve approach and say that Suffolk, Norfolk, and Middlesex counties are the Greater Boston Area. We can now filter our data to just these counties!
 
 ```{r max.print=5}
+
 gba_commute <- filter(commute,
                       county == "SUFFOLK" | county == "NORFOLK" | county == "MIDDLESEX")
 

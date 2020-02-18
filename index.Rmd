@@ -31,6 +31,7 @@ Core Toolkit
 - Draft exploratory analysis
 - Draft filtering data (logical statements)
 - Draft %>% 
+  - done 2020-02-18
 - Draft data structures
   - done 2020-02-16
 - Draft summary statistics
@@ -59,6 +60,15 @@ Editing
 - Create rstudio.cloud image
 
 
+Topics that I need to find a way to include:
+
+- stringr
+- dplyr helpers: 
+  - case_when()
+  - ntile()
+  - arrange()
+  - n_distinct()
+- ! negation
 ----------------
 
 
