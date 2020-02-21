@@ -4,8 +4,101 @@
 source("common.R")
 ```
 
-
-
 - summarising data sets
 - group_by()
 - summarize()
+
+
+-----
+
+
+Now that we have a basic understanding of how to manipulate our dataset, summarising the dataset into a few useful metrics is important. When we have massive datasets with many subgroups, summary statistics will be very important for distilling all of that information into something consumable. Aggregation will also be very important for visualization purposes. 
+
+We have already reviewed what constitutes a summary statistic and how to create them working with vectors. But we have not done so within the context of the tidyverse. We have figured out how to select, filter, mutate and all within a chain of functions. But we have not followed this to its natural next step, the `group_by()` and `summarise()` functions. 
+
+## Counting
+
+dplyr incluides a wonderful helper function called `count()`. It does just what it says it does. It counts the number of observations in a tibble. Let's recreate the `commute` tibble and see it for ourselves. 
+
+```{r message=FALSE}
+library(tidyverse)
+
+commute <- read_csv("data/ACS_1317_TRACT.csv") %>% 
+  select(
+    county,
+    starts_with("commute"),
+    starts_with("by"),
+    med_house_income
+  ) 
+
+count(commute)
+```
+
+We can also count by groups in a data set. For example, we can count how many observations there are per county.
+
+```{r}
+count(commute, county)
+```
+
+
+`count()` is actually a wrapper around the function `summarise()` which is a much more flexible function. `summarise()` is the aggregate analog to `mutate()`. The difference between `mutate()` and `summarise()` is that the result of an expression in `mutate()` must have the same number of values as there are rows—unless of course you are specifying a scalar value like `TRUE`—whereas `summarise()` requires the result to be one value.
+
+> Note: A scalar is a vector of length one.
+
+We can recreate the first above `count()` call with `summarise()` and the handy `n()` function we learned a while ago. Here we follow the same pattern of assigning column names to expressions as we do with. 
+
+```{r}
+summarise(commute, n = n())
+```
+
+Like `mutate()` there is no restriction on the number of new columns we can create. Previously we calculated the min, max, mean, and standard deviation of the `commute3060` variable. This is done rather neatly with `summarise()`.
+
+```{r}
+commute %>% 
+  summarise(
+    min_commute = min(commute3060, na.rm = TRUE),
+    max_commute = max(commute3060, na.rm = TRUE),
+    avg_commute = mean(commute3060, na.rm = TRUE),
+    sd_commute  = sd(commute3060, na.rm = TRUE)
+    )
+```
+
+Frankly this alone is someone unimpressive. The power of `summarise()` comes from incorporating `group_by()` into the function chain. `group_by()` allows us to explicitly identify groups within a tibble as defined by a given variable. The resulting tibble from a `group_by()` call is seemingly unchanged. 
+
+```{r max.print=5}
+commute %>% 
+  group_by(county)
+```
+
+However, if we then look at the class of that grouped tibble we see that there is a new class introduced which is `grouped_df`.
+
+```{r}
+commute %>% 
+  group_by(county) %>% 
+  class()
+```
+
+When a tibble has this object class, dplyr knows that operations should be grouped. For example if you were to calculate the mean, this would be the mean for the specified groups rather than the mean for the entire dataset. 
+
+Let's recreate the grouped count from before.
+
+```{r}
+commute %>% 
+  group_by(county) %>% 
+  summarise(n = n())
+```
+
+We can also include the summary statistic calculations from before. 
+
+```{r}
+commute %>% 
+  group_by(county) %>% 
+  summarise(
+    n = n(),
+    min_commute = min(commute3060, na.rm = TRUE),
+    max_commute = max(commute3060, na.rm = TRUE),
+    avg_commute = mean(commute3060, na.rm = TRUE),
+    sd_commute  = sd(commute3060, na.rm = TRUE)
+    )
+```
+

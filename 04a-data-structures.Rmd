@@ -9,7 +9,7 @@ There is a topic I have been skirting around for some time now and I think it is
 
 We will cover vectors, data frames rather briefly, and lists. We'll talk about some of their defining characteristics and how we can interact with them. Often the theory behind these object types are ommitted, but I am of the mind that learning this early on will pay off in dividends. Take a deep breath before we dive in and remind yourself that it ain't nothin' but a thing.
 
-This section is undoubtedly the most theoretically dense from a software perspective of this entire book. These concepts may be a little bit difficult to grasp at the frist go around particularly if you do not have a programming background. But do not be discouraged! This is tough and there is no way to around it. If you can grasp this chapter programming in R will become so much easier. You will develop an intuition of why certain things happen to your data and how to interact with other data structures. 
+This section is undoubtedly the most theoretically dense from a software perspective of this entire book. These concepts may be a little bit difficult to grasp at the frist go around pllllldc articularly if you do not have a programming background. But do not be discouraged! This is tough and there is no way to around it, so might as well go through it. If you can grasp this chapter programming in R will become so much easier. You will develop an intuition of why certain things happen to your data and how to interact with other data structures. 
 
 ## Atomic Vectors
 

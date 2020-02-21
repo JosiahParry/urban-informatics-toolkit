@@ -77,38 +77,25 @@ sd(commute_rate, na.rm = TRUE)
 ## [1] 0.110289
 ```
 
-
-
-Measures of central tendency and spread are characterizations of a single variable. 
-
-- we will pass only a single column to these summary functions 
-
-We use the functions `mean()`, `median()`, `sd()` and many others.
+Let us look at one last example: identifying the range. The `range()` function returns the minimum and the maximum values.
 
 
 ```r
-mean(commute_rate)
-## [1] NA
-mean(commute_rate, na.rm = TRUE)
-## [1] 0.3165169
-
-median(commute_rate, na.rm = TRUE)
-## [1] 0.3179833
-
-sd(commute_rate, na.rm = TRUE)
-## [1] 0.110289
-```
-
-What is not an appropriate output?
-
-
-```r
-range(commute_rate, na.rm = TRUE)
+(commute_range <- range(commute_rate, na.rm = TRUE))
 ## [1] 0.0000000 0.6327961
 ```
 
-- the result of this is a vector of length two. This is one too many.
-- we can recreate this though by identifying the min and the max respectively 
+> Note: by wrapping an assignment in parentheses, the resultant object will be printed to the console. 
+
+`range()` returned two values. This can be verified with the `length()` function.
+
+
+```r
+length(commute_range)
+## [1] 2
+```
+
+A length two vector does not adhere to providing just out value. We will see why this is a problem illustrated in the next chapter. To recreate this, use the `min()` and `max()` functions. 
 
 
 ```r
@@ -118,11 +105,16 @@ max(commute_rate, na.rm = TRUE)
 ## [1] 0.6327961
 ```
 
+Each of these statistics—mean, median, standard deviation, etc—are a way to characterize a larger sample of data. The lesson to take away here is that we will always need a single value when summarising data. Often we will be taking a column (vector) and calculating a single metric from that.
+
+In the following chapter we will learn how to calculate summary statistics using the tidyverse. 
+
+
+----
+
 - the lessons to take away from here is that:
   - when creating aggregate measures, there can only be one observation per subset
   - we are creating these aggregate measures we will be doing them on one column (aka a vector) at a time
-
--------
 
 - what is a summary stat?
 - measures of central tendency
