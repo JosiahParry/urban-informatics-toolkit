@@ -2,14 +2,6 @@
 
 
 
-- summarising data sets
-- group_by()
-- summarize()
-
-
------
-
-
 Now that we have a basic understanding of how to manipulate our dataset, summarising the dataset into a few useful metrics is important. When we have massive datasets with many subgroups, summary statistics will be very important for distilling all of that information into something consumable. Aggregation will also be very important for visualization purposes. 
 
 We have already reviewed what constitutes a summary statistic and how to create them working with vectors. But we have not done so within the context of the tidyverse. We have figured out how to select, filter, mutate and all within a chain of functions. But we have not followed this to its natural next step, the `group_by()` and `summarise()` functions. 
@@ -63,7 +55,7 @@ count(commute, county)
 ```
 
 
-`count()` is actually a wrapper around the function `summarise()` which is a much more flexible function. `summarise()` is the aggregate analog to `mutate()`. The difference between `mutate()` and `summarise()` is that the result of an expression in `mutate()` must have the same number of values as there are rows—unless of course you are specifying a scalar value like `TRUE`—whereas `summarise()` requires the result to be one value.
+`count()` is actually a wrapper around the function `summarise()` which is a much more flexible function. `summarise()` is the aggregate analog to `mutate()`. The difference between `mutate()` and `summarise()` is that the result of an expression in `mutate()` must have the same number of values as there are rows—unless of course you are specifying a scalar value like `TRUE`—whereas `summarise()` requires the result to be one an element of length one.
 
 > Note: A scalar is a vector of length one.
 
@@ -95,7 +87,7 @@ commute %>%
 ## 1           0       0.633       0.317      0.110
 ```
 
-Frankly this alone is someone unimpressive. The power of `summarise()` comes from incorporating `group_by()` into the function chain. `group_by()` allows us to explicitly identify groups within a tibble as defined by a given variable. The resulting tibble from a `group_by()` call is seemingly unchanged. 
+Frankly this alone is somewhat unimpressive. The power of `summarise()` comes from incorporating `group_by()` into the function chain. `group_by()` allows us to explicitly identify groups within a tibble as defined by a given variable. The resulting tibble from a `group_by()` call is seemingly unchanged. 
 
 
 ```r
@@ -120,7 +112,7 @@ commute %>%
 ## #   med_house_income <dbl>
 ```
 
-However, if we then look at the class of that grouped tibble we see that there is a new class introduced which is `grouped_df`.
+However, if we look at comments above the tibble, we see something new: `# Groups: county [15]`. This tells us a couple of things. First that the groups were created using the `county` column, that there are fifteen groups, and that the data frame is now grouped implying that any future `mutate()` or `summarise()` calls will be performed on the specified groups. If we then look at the class of that grouped tibble we see that there is a new class introduced which is `grouped_df`.
 
 
 ```r
@@ -130,7 +122,39 @@ commute %>%
 ## [1] "grouped_df" "tbl_df"     "tbl"        "data.frame"
 ```
 
+> Note: a tibble has the classes `tbl` and `tbl_df` in addition
+
 When a tibble has this object class, dplyr knows that operations should be grouped. For example if you were to calculate the mean, this would be the mean for the specified groups rather than the mean for the entire dataset. 
+
+We can use the `n()` function to identify how many observations there are per group inside of a mutate call.
+
+> I am including the `commute3060` column to illustrate that the new `n` column will be the same for each group value. 
+
+
+```r
+commute %>% 
+  group_by(county) %>% 
+  mutate(n = n()) %>% 
+  select(county, commute3060, n) 
+## # A tibble: 1,478 x 3
+## # Groups:   county [15]
+##    county    commute3060     n
+##    <chr>           <dbl> <int>
+##  1 WORCESTER       0.331   172
+##  2 WORCESTER       0.181   172
+##  3 WORCESTER       0.177   172
+##  4 WORCESTER       0.313   172
+##  5 WORCESTER       0.203   172
+##  6 WORCESTER       0.330   172
+##  7 WORCESTER       0.303   172
+##  8 WORCESTER       0.133   172
+##  9 WORCESTER       0.256   172
+## 10 WORCESTER       0.218   172
+## # … with 1,468 more rows
+```
+
+
+Here each group only has one unique value for `n`. As discussed previously, when we want to calculate aggregate measures, there ought to only value per-group. This ability to perform grouped calculation within `mutate()`can be extremely powerful, but does not create a proper aggregated dataset. For this, we can again use `summarise()`
 
 Let's recreate the grouped count from before.
 

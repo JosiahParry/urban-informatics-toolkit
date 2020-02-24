@@ -1,3 +1,7 @@
+### 2020-02-24
+
+Can call the focus of inductive and deductive a posterior and apriori
+
 ### 2019-12-19
 
 I want the learning experience to be done through follow along analysis projects 

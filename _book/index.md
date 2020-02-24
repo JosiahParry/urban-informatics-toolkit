@@ -2,7 +2,7 @@
 title: "Urban Informatics Toolkit"
 description: "A hands on introduction approach to analyzing the urban Commons."
 author: "Josiah Parry"
-date: "2020-02-21"
+date: "2020-02-24"
 site: bookdown::gitbook
 documentclass: book
 bibliography: [book.bib, packages.bib]
@@ -32,7 +32,9 @@ Core Toolkit
 - Draft data structures
   - done 2020-02-16
 - Draft summary statistics
+  - done 2020-02-20
 - Draft group_by and summarize
+  - done 2020-02-21
 - Draft multiple data sources
 
 UI Specific:

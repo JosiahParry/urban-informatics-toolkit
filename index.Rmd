@@ -35,7 +35,9 @@ Core Toolkit
 - Draft data structures
   - done 2020-02-16
 - Draft summary statistics
+  - done 2020-02-20
 - Draft group_by and summarize
+  - done 2020-02-21
 - Draft multiple data sources
 
 UI Specific:
