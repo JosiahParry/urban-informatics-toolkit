@@ -24,7 +24,7 @@
 <meta name="author" content="Josiah Parry" />
 
 
-<meta name="date" content="2020-02-24" />
+<meta name="date" content="2020-02-25" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -189,21 +189,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="eda-lifecycle" class="section level2">
 <h2><span class="header-section-number">4.2</span> EDA lifecycle</h2>
 <p>This chapter will introduce you to visual data exploration through the use of the R package <code>ggplot2</code>. You will ask questions of your data, visualize relationships, and draw inferences from the graphics you develop.</p>
-<ul>
-<li>below is an image from R for Data Science which accurately describes the data exploration process</li>
-<li>there are 6 steps in this illustration, 3 of which happen in a cyclical process</li>
-</ul>
+<p>The below image from R for Data Science is renowned for its representation of the data analysis workflow. The concept map encompasses the need to get data (import), clean it up (tidy), explore, and finally communicate insights. The box in blue is a representation of EDA. Within EDA we will find ourselves transforming our data—creating new variables, aggregating, etc.—visualizing it, and creating statistical models.</p>
 <p><img src="https://d33wubrfki0l68.cloudfront.net/795c039ba2520455d833b4034befc8cf360a70ba/558a5/diagrams/data-science-explore.png" /></p>
-<ul>
-<li>this chapter focuses on visualizing our data</li>
-<li>the importance of visualization cannot be understanded</li>
-<li>An older National Institute of Standards and Technology (NIST) statistical manual contains this gem</li>
-</ul>
+<p>This chapter will focus on the visualization step of EDA. We have all heard the trope that “an image is worth a thousand words.” I’d take a leap and say that a good visualization is worth ten thousand words. An older statistical manual from the National Institute of Standards and Technology (NIST) beautifully lays out the role that visualization plays in EDA.</p>
 <blockquote>
 <p>The reason for the heavy reliance on graphics is that by its very nature the main role of EDA is to open-mindedly explore, and graphics gives the analysts unparalleled power to do so, enticing the data to reveal its structural secrets, and being always ready to gain some new, often unsuspected, insight into the data. In combination with the natural pattern-recognition capabilities that we all possess, graphics provides, of course, unparalleled power to carry this out.</p>
 </blockquote>
 <p><a href="https://www.itl.nist.gov/div898/handbook/eda/section1/eda11.htm">source</a></p>
-<p>In the following section, you will become acquainted with visual analysis and the American Community Survey.</p>
+<p>In the following section, you will become acquainted with the graphical R package <code>ggplot2</code> for visual analysis and the American Community Survey. We will walk through the process building a chart from the ground up and drawing inferences from it along the way.</p>
 </div>
 <div id="the-american-community-survey" class="section level2">
 <h2><span class="header-section-number">4.3</span> The American Community Survey</h2>

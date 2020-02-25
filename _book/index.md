@@ -2,7 +2,7 @@
 title: "Urban Informatics Toolkit"
 description: "A hands on introduction approach to analyzing the urban Commons."
 author: "Josiah Parry"
-date: "2020-02-24"
+date: "2020-02-25"
 site: bookdown::gitbook
 documentclass: book
 bibliography: [book.bib, packages.bib]
@@ -70,7 +70,16 @@ Topics that I need to find a way to include:
 - ! negation
 ----------------
 
+## Progress Tracker 
 
+* 2020-02-24:
+  - fleshed out the introduction of visual analysis
+  - next:
+    - introduce the EDA workflow
+    - introduce the ACS and it's role in social sciences
+
+
+-------------
 
 Welcome to the Urban Informatics Toolkit! 
 This book will provide you with an introduction to some of the history of Urban Informatics as a field, important concepts in the field, and provide you with the skills required to jumpstart your own exploration of the urban commons.
