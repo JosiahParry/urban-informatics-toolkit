@@ -41,6 +41,26 @@ In the following section, you will become acquainted with the graphical R packag
 
 ## The American Community Survey 
 
+For this first data exploration we will work with data from the American Community Survey (ACS). In order to use the ACS data, we must understand what data we are actually working with. The ACS is one of the most fundamental data sets in American social sciences. The ACS is administered by the US Census Bureau but is done so for much different purposes. Article I Section 2 of the US Constitution legislates a decennial census.
+
+> . . . [an] enumeration shall be made within three Years after the first Meeting of the Congress of the United States, and within every subsequent Term of ten Years, in such Manner as they shall by Law direct.
+
+The above clause requires the US government to conduct a complete counting of every single individual in the United States for the purposes of determining how many congressional representatives each state will have. These censuses provided a detailed image of _how many_ people there were in the US, but lacked much information beyond that. The first census asked each household for "the number of free white males under 16 years" and of "16 years and upward", the "number of free White females", "number of other free persons, and the "number of slaves"[^12] Since then the breadth of questions asked during the census has increased as well as other supplementary sources of information.
+
+The ACS was developed in response to two shortcomings of the decennial census. The first being that the census only occurrs every ten years. There was, and still is, a need for more consistent and current data. Not only are the censuses too infrequent, but they also do not provide the most colorful picture of who it is that lives within the US. Local, state, and federal governments desired more context about who their constituents are. 
+
+The ACS was developed and first officially released in 2005[^13]. The ACS uses a "series of monthly samples" to "produce annual estimates for the same small areas (census tracts and block groups) formerly surveyed via the decennial census long-form sample"[^14].
+
+### Understanding ACS Estimates
+
+Continuous sampling done by the US Census Bureau occurs at a monthly basis and are used to produce annual estimates[^13]. There are two different types of estimates one can retrieve from the ACS. These are the 1-year and 5-year estimates. Each kind of estimate serves a different purpose.
+
+When choosing between 1-year and 5-year estimates we are making a tradeoff. 1-year estimates provide us with the most current data possible at the expense of a smaller sample size. This means that the estimates are not as reliable as the 5-year estimates which are collected over a period of 60 months. The second downside for 
+
+
+
+The decennial fensus is the best picture of the entire US population we have. As time contin
+
 - we'll work with data from the american community survey. 
   - this is data you will get really familiar with 
 - what is the acs and why do we love it?
@@ -189,6 +209,9 @@ ggplot(acs_edu, aes(x = bach, y = med_house_income, color = white)) +
 [^7]: https://data.boston.gov/
 [^8]: "Relating to or denoting reasoning or knowledge which proceeds from theoretical deduction rather than from observation or experience." [Oxford Dictionary](https://www.lexico.com/definition/a_priori)
 [^9]: https://r4ds.had.co.nz/explore-intro.html
+[^12]: https://www.census.gov/history/www/through_the_decades/index_of_questions/1790_1.html
+[^13]: https://www2.census.gov/programs-surveys/acs/methodology/design_and_methodology/acs_design_methodology_report_2014.pdf
+[^14]: https://www.census.gov/programs-surveys/acs/methodology.html
 
 https://data.boston.gov/dataset/311-service-requests
 https://data.boston.gov/dataset/blue-bikes-system-data
