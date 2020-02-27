@@ -24,7 +24,7 @@
 <meta name="author" content="Josiah Parry" />
 
 
-<meta name="date" content="2020-02-26" />
+<meta name="date" content="2020-02-27" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -262,33 +262,38 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="form-a-question" class="section level3">
 <h3><span class="header-section-number">4.4.2</span> Form a question</h3>
 <p>Once you have familiarized yourself with the data that you will be working with, you can begin to form a question that can be feasibly be explored or answered with the present data. The importance of domain expertise in EDA cannot be understated. Without an understanding of what underlying phenomena your data are measuring it will be extremely difficult to come to meaningful insights.</p>
-<p>My background is in sociology. Within sociology, and specifically social stratification, it is believed that more education leads to more social prestiege, economic stability, and is more readily accessible by the white population. Given this background and the data available in <code>acs_edu</code>, we will explore the relationship between education and income. We will try to answer the question <em>what is the relationship between education and income?</em> We will use our data to visualize this relationship and infer the relationship from the resultant graph.</p>
+<p>My background is in sociology. Within sociology, and specifically social stratification, it is believed that more education leads to more social prestiege, economic stability, and is more readily accessible by the white population. Given this background and the data available in <code>acs_edu</code>, we will explore the relationship between education and income. We will try to answer the question <em>what is the relationship between education and income?</em> We will first look at each variable in isolation and then try and identify any relationship that may exist between the two variables.</p>
 </div>
 <div id="building-a-graph" class="section level3">
 <h3><span class="header-section-number">4.4.3</span> Building a graph</h3>
-<p>start building a visualization with <code>ggplot()</code> <strong>function</strong> with the <code>acs_edu</code> <strong>object</strong>.
-Functions are characterised by the parentheses at the end of them. Functions do things. Objects hold information.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">ggplot</span>(acs_edu)</a></code></pre></div>
-<p><img src="01-visual-analysis_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
-<p>we add to this plot
-determine what we want to plot with the aesthetics <code>aes()</code> function inside of the ggplot().
-want to specify x and y. These are called arguments. To set argument we use the <code>=</code> sign.
-set <code>x</code> to <code>bach</code> and <code>y</code> to <code>med_house_income</code></p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw">ggplot</span>(acs_edu, <span class="kw">aes</span>(<span class="dt">x =</span> bach, <span class="dt">y =</span> med_house_income))</a></code></pre></div>
+<p>To create our visualizations we will use the package <a href="https://ggplot2.tidyverse.org/"><code>ggplot2</code></a> from the tidyverse. Before we can begin, we need to make sure that the collection of functions from ggplot2 are available to us with the <code>library()</code> function.</p>
+<blockquote>
+<p>Reminder: <code>library(pkg_name)</code> loads a package into your workspace and makes the functions and objects it exports available to you.</p>
+</blockquote>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">library</span>(ggplot2)</a></code></pre></div>
+<p>To begin building a ggplot, we use the function <code>ggplot()</code>. There are two function arguments these being <code>data</code> and the aesthetics <code>mapping</code>. The <code>data</code> is the tibble that we wish to visualize. In this case we want to visualize the data from <code>acs_edu</code>.</p>
+<p>We will begin constructing our first visualization with the <code>ggplot()</code> <strong>function</strong> using the <code>acs_edu</code> <strong>object</strong>.</p>
+<blockquote>
+<p>Reminder: Functions are characterised by the parentheses at the end of them. Functions do things whereas objects hold information.</p>
+</blockquote>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw">ggplot</span>(acs_edu)</a></code></pre></div>
 <p><img src="01-visual-analysis_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
-<ul>
-<li>notice how the plot is being filled a bit more?</li>
-<li>now we need to specify what type of plot we will be creating.</li>
-<li>add geometry, or geoms. We use the plus sign <code>+</code> to signify that we are adding on top of the basic graph</li>
-<li>there are many different kinds of charts we can use we will get into these a bit more later.</li>
-<li>a common way of visualizing a relationship between two variables is with a scatterplot</li>
-<li>a scatter plot graphs points for each x and y pair. you’ve likely made a few of these in your primary education</li>
-<li>to add points to the graph we use <code>geom_point()</code>, remember, we are <em>adding</em> a layer so we use the plus sign</li>
-<li>for legibility we add each new layer on a new line. R will indent for you. Good style is important. We’ll get into this later</li>
-</ul>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw">ggplot</span>(acs_edu, <span class="kw">aes</span>(<span class="dt">x =</span> bach, <span class="dt">y =</span> med_house_income)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb4-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>()</a></code></pre></div>
+<p>Notice that this plot is entirely empty. This is because we have not defined what it is that we want to visualize. ggplot uses what is called a grammar of graphics (this is expanded upon in depth in the <em>Visualizing Trends and Relationships</em> chapter) which requires us to sequentiallly build our graphs by first defining what data and variables will be visualized and then adding layers to the plot.</p>
+<p>The next step we need to take is to define which columns we want to visualize. These are called the <em>aesthetics</em> and they are defined using the <code>aes()</code> function which is supplied to the <code>mapping</code> argument. The purpose of <code>aes()</code> is to tell ggplot which columns are mapped to what. The most important and fundamental of these are the <code>x</code> and <code>y</code> arguments. These refer to the x and y axes in the chart that we will begin to make.</p>
+<p>Before we begin to analyze the relationship between <code>med_house_income</code> and <code>bach</code> (bachelor’s degree attainment rate), we ought to do our due dilligence of looking at the distribution of each of these first. Let us start with the <code>med_house_income</code> column. When exploring only a single variable, we want to supply that to the <code>x</code> argument of <code>aes()</code>.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw">ggplot</span>(acs_edu, <span class="kw">aes</span>(<span class="dt">x =</span> med_house_income))</a></code></pre></div>
 <p><img src="01-visual-analysis_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<p>Alright, we are making progress. We can see that the x axis is now filled out a bit more. The axis breaks have been labeled as has the axis itself. In order to see the data in a graphical representation, we need to determine how we want to see the data and what sort of geometry will be used to visualize it.</p>
+<p>To <strong>add</strong> geometry to our ggplot, we use the plus sign <code>+</code> to signify that we are adding a layer on top of the basic graph. There are many ways we can visualize univariate data but the histogram has stood the test of time. To create a histogram we <strong>add</strong> the <code>geom_histogram()</code> layer to our existing ggplot code.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw">ggplot</span>(acs_edu, <span class="kw">aes</span>(<span class="dt">x =</span> med_house_income)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_histogram</span>()</a></code></pre></div>
+<p><img src="01-visual-analysis_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<blockquote>
+<p>Note: To ensure that our code is legible we add each new layer on a line. R will manage the indentation for you. Code readibility is very important and you will thank yourself later for instilling good practices from the start.</p>
+</blockquote>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw">ggplot</span>(acs_edu, <span class="kw">aes</span>(<span class="dt">x =</span> bach, <span class="dt">y =</span> med_house_income)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb6-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>()</a></code></pre></div>
+<p><img src="01-visual-analysis_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
 <ul>
 <li>notice that there is a positive linear trend.</li>
 <li>lets break that down:
@@ -316,12 +321,12 @@ set <code>x</code> to <code>bach</code> and <code>y</code> to <code>med_house_in
 </ul></li>
 <li>note that for each argument I have a new line. again, this helps with legibility</li>
 </ul>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw">ggplot</span>(acs_edu, <span class="kw">aes</span>(<span class="dt">x =</span> bach, <span class="dt">y =</span> med_house_income)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb5-3" data-line-number="3"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;% of population with a Bachelor&#39;s Degree&quot;</span>,</a>
-<a class="sourceLine" id="cb5-4" data-line-number="4">       <span class="dt">y =</span> <span class="st">&quot;Median Household Income&quot;</span>,</a>
-<a class="sourceLine" id="cb5-5" data-line-number="5">       <span class="dt">title =</span> <span class="st">&quot;Relationship between Education and Income&quot;</span>)</a></code></pre></div>
-<p><img src="01-visual-analysis_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw">ggplot</span>(acs_edu, <span class="kw">aes</span>(<span class="dt">x =</span> bach, <span class="dt">y =</span> med_house_income)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb7-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb7-3" data-line-number="3"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;% of population with a Bachelor&#39;s Degree&quot;</span>,</a>
+<a class="sourceLine" id="cb7-4" data-line-number="4">       <span class="dt">y =</span> <span class="st">&quot;Median Household Income&quot;</span>,</a>
+<a class="sourceLine" id="cb7-5" data-line-number="5">       <span class="dt">title =</span> <span class="st">&quot;Relationship between Education and Income&quot;</span>)</a></code></pre></div>
+<p><img src="01-visual-analysis_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
 <ul>
 <li>what can we determine from this graph?</li>
 <li>in the sociology literature there is a lot about the education gap between white and black folks</li>
@@ -332,19 +337,25 @@ set <code>x</code> to <code>bach</code> and <code>y</code> to <code>med_house_in
 <li>set the <code>color</code> argument to the <code>white</code> column</li>
 <li>while we’re at it, we can add a subtitle to inform that we’re also coloring by % white</li>
 </ul>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw">ggplot</span>(acs_edu, <span class="kw">aes</span>(<span class="dt">x =</span> bach, <span class="dt">y =</span> med_house_income, <span class="dt">color =</span> white)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb6-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb6-3" data-line-number="3"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;% of population with a Bachelor&#39;s Degree&quot;</span>,</a>
-<a class="sourceLine" id="cb6-4" data-line-number="4">       <span class="dt">y =</span> <span class="st">&quot;Median Household Income&quot;</span>,</a>
-<a class="sourceLine" id="cb6-5" data-line-number="5">       <span class="dt">title =</span> <span class="st">&quot;Relationship between Education and Income&quot;</span>,</a>
-<a class="sourceLine" id="cb6-6" data-line-number="6">       <span class="dt">subtitle =</span> <span class="st">&quot;Colored by whiteness&quot;</span>) </a></code></pre></div>
-<p><img src="01-visual-analysis_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="kw">ggplot</span>(acs_edu, <span class="kw">aes</span>(<span class="dt">x =</span> bach, <span class="dt">y =</span> med_house_income, <span class="dt">color =</span> white)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb8-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb8-3" data-line-number="3"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;% of population with a Bachelor&#39;s Degree&quot;</span>,</a>
+<a class="sourceLine" id="cb8-4" data-line-number="4">       <span class="dt">y =</span> <span class="st">&quot;Median Household Income&quot;</span>,</a>
+<a class="sourceLine" id="cb8-5" data-line-number="5">       <span class="dt">title =</span> <span class="st">&quot;Relationship between Education and Income&quot;</span>,</a>
+<a class="sourceLine" id="cb8-6" data-line-number="6">       <span class="dt">subtitle =</span> <span class="st">&quot;Colored by whiteness&quot;</span>) </a></code></pre></div>
+<p><img src="01-visual-analysis_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
 <ul>
 <li>what can we conclude now?</li>
 </ul>
-<hr />
+</div>
+</div>
+<div id="httpswww.theguardian.comus-newsdatablog2020feb272020-us-census-black-people-mistakes-count" class="section level2">
+<h2><span class="header-section-number">4.5</span> <a href="https://www.theguardian.com/us-news/datablog/2020/feb/27/2020-us-census-black-people-mistakes-count" class="uri">https://www.theguardian.com/us-news/datablog/2020/feb/27/2020-us-census-black-people-mistakes-count</a></h2>
 <div id="misc-notes" class="section level4">
-<h4><span class="header-section-number">4.4.3.1</span> Misc Notes:</h4>
+<h4><span class="header-section-number">4.5.0.1</span> Misc Notes:</h4>
+<blockquote>
+<p>Note: The independent variable should always be on the x axis. The variable of interest should be on the y axis. This leads to more literate visualizations.</p>
+</blockquote>
 <ul>
 <li>this chapter is to introduce the concept of exploratory data analysis
 <ul>
@@ -357,7 +368,6 @@ set <code>x</code> to <code>bach</code> and <code>y</code> to <code>med_house_in
 <li>the process of exploratory anlaysis is naturally inductive</li>
 </ul>
 
-</div>
 </div>
 </div>
 </div>

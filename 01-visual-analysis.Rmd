@@ -114,37 +114,50 @@ How does one know what criteria their columns represent? This brings us to the i
 
 Once you have familiarized yourself with the data that you will be working with, you can begin to form a question that can be feasibly be explored or answered with the present data. The importance of domain expertise in EDA cannot be understated. Without an understanding of what underlying phenomena your data are measuring it will be extremely difficult to come to meaningful insights. 
 
-My background is in sociology. Within sociology, and specifically social stratification, it is believed that more education leads to more social prestiege, economic stability, and is more readily accessible by the white population. Given this background and the data available in `acs_edu`, we will explore the relationship between education and income. We will try to answer the question _what is the relationship between education and income?_ We will use our data to visualize this relationship and infer the relationship from the resultant graph. 
+My background is in sociology. Within sociology, and specifically social stratification, it is believed that more education leads to more social prestiege, economic stability, and is more readily accessible by the white population. Given this background and the data available in `acs_edu`, we will explore the relationship between education and income. We will try to answer the question _what is the relationship between education and income?_ We will first look at each variable in isolation and then try and identify any relationship that may exist between the two variables.
 
 ### Building a graph
 
+To create our visualizations we will use the package [`ggplot2`](https://ggplot2.tidyverse.org/) from the tidyverse. Before we can begin, we need to make sure that the collection of functions from ggplot2 are available to us with the `library()` function.
 
+> Reminder: `library(pkg_name)` loads a package into your workspace and makes the functions and objects it exports available to you. 
 
-start building a visualization with `ggplot()` **function** with the `acs_edu` **object**.
-Functions are characterised by the parentheses at the end of them. Functions do things. Objects hold information. 
+```{r}
+library(ggplot2)
+```
 
+To begin building a ggplot, we use the function `ggplot()`. There are two function arguments these being `data` and the aesthetics `mapping`. The `data` is the tibble that we wish to visualize. In this case we want to visualize the data from `acs_edu`. 
+
+We will begin constructing our first visualization with the `ggplot()` **function** using the `acs_edu` **object**.
+
+> Reminder: Functions are characterised by the parentheses at the end of them. Functions do things whereas objects hold information. 
 
 ```{r}
 ggplot(acs_edu)
 ```
  
-we add to this plot
-determine what we want to plot with the aesthetics `aes()` function inside of the ggplot(). 
-want to specify x and y. These are called arguments. To set argument we use the `=` sign.
-set `x` to `bach` and `y` to `med_house_income`
+Notice that this plot is entirely empty. This is because we have not defined what it is that we want to visualize. ggplot uses what is called a grammar of graphics (this is expanded upon in depth in the _Visualizing Trends and Relationships_ chapter) which requires us to sequentiallly build our graphs by first defining what data and variables will be visualized and then adding layers to the plot.
+
+The next step we need to take is to define which columns we want to visualize. These are called the _aesthetics_ and they are defined using the `aes()` function which is supplied to the `mapping` argument. The purpose of `aes()` is to tell ggplot which columns are mapped to what. The most important and fundamental of these are the `x` and `y` arguments. These refer to the x and y axes in the chart that we will begin to make.
+
+Before we begin to analyze the relationship between `med_house_income` and `bach` (bachelor's degree attainment rate), we ought to do our due dilligence of looking at the distribution of each of these first. Let us start with the `med_house_income` column. When exploring only a single variable, we want to supply that to the `x` argument of `aes()`.
 
 ```{r}
-ggplot(acs_edu, aes(x = bach, y = med_house_income))
+ggplot(acs_edu, aes(x = med_house_income))
 ```
 
-- notice how the plot is being filled a bit more?
-- now we need to specify what type of plot we will be creating. 
-- add geometry, or geoms. We use the plus sign `+` to signify that we are adding on top of the basic graph
-- there are many different kinds of charts we can use we will get into these a bit more later.
-- a common way of visualizing a relationship between two variables is with a scatterplot 
-- a scatter plot graphs points for each x and y pair. you've likely made a few of these in your primary education
-- to add points to the graph we use `geom_point()`, remember, we are _adding_ a layer so we use the plus sign
-- for legibility we add each new layer on a new line. R will indent for you. Good style is important. We'll get into this later
+Alright, we are making progress. We can see that the x axis is now filled out a bit more. The axis breaks have been labeled as has the axis itself. In order to see the data in a graphical representation, we need to determine how we want to see the data and what sort of geometry will be used to visualize it. 
+
+To **add** geometry to our ggplot, we use the plus sign `+` to signify that we are adding a layer on top of the basic graph. There are many ways we can visualize univariate data but the histogram has stood the test of time. To create a histogram we **add** the `geom_histogram()` layer to our existing ggplot code. 
+
+```{r, warning=FALSE, message=FALSE}
+ggplot(acs_edu, aes(x = med_house_income)) + 
+  geom_histogram()
+```
+
+> Note: To ensure that our code is legible we add each new layer on a line. R will manage the indentation for you. Code readibility is very important and you will thank yourself later for instilling good practices from the start. 
+
+
 
 ```{r}
 ggplot(acs_edu, aes(x = bach, y = med_house_income)) +
@@ -218,10 +231,14 @@ https://data.boston.gov/dataset/311-service-requests
 https://data.boston.gov/dataset/blue-bikes-system-data
 
 
+
+https://www.theguardian.com/us-news/datablog/2020/feb/27/2020-us-census-black-people-mistakes-count
 -------
 
 
 #### Misc Notes:
+
+> Note: The independent variable should always be on the x axis. The variable of interest should be on the y axis. This leads to more literate visualizations. 
 
 - this chapter is to introduce the concept of exploratory data analysis
   - this should be done at a later point
