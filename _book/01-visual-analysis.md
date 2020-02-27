@@ -59,27 +59,14 @@ The impact of the ACS are wide stretching
 
 Continuous sampling done by the US Census Bureau occurs at a monthly basis and are used to produce annual estimates[^13]. There are two different types of estimates one can retrieve from the ACS. These are the 1-year and 5-year estimates. Each kind of estimate serves a different purpose.
 
-When choosing between 1-year and 5-year estimates we are making a tradeoff. 1-year estimates provide us with the most current data possible at the expense of a smaller sample size. This means that the estimates are not as reliable as the 5-year estimates which are collected over a period of 60 months. 
-When we consider 5-year estimates
+When choosing between 1-year and 5-year estimates we are making a tradeoff. 1-year estimates provide us with the most current data possible at the expense of a smaller sample size. This means that the estimates are not as reliable as the 5-year estimates which are collected over a period of 60 months. On the other hand, when we consider 5-year estimates, we benefit from a large sample size and increased reliability, but we lose the ability to make statements about a single year. 
 
+In the cases where 5-year estimates are used researchers are analyzing populations and rates derived from five years of data collection. This requires you, the researcher, to qualify this with a statement to the effect of _"the rate of unemployment in 2014-2018 was 4%"_[^16]. Because of this, you are unable to use consecutive 5-year estimates to analyze annual trends. In the case that you need to analyse annual trends 1-year estimates are recommended. 
 
+There is also another important tradeoff one must consider when using ACS data and that is of unit of analysis. The census and ACS are conducted at the household level. However, estimates are provided for geographic areas. These geographic areas have a hierarchy going from block groups at the smallest level geography, to census tracts, and to counties. Beyond counties are geographies at the state level and even larger. Urban informatics is inherently focuses on a more micro—arguably meso—unit of analysis.
 
-The decennial fensus is the best picture of the entire US population we have. As time contin
-
-- we'll work with data from the american community survey. 
-  - this is data you will get really familiar with 
-- what is the acs and why do we love it?
-  - https://www.vox.com/explainers/2015/12/3/9845152/acs-survey-defunded
-  - random sample of individuals across the us 
-    - random samples are used as they representative and statistically non-biased
-  - the information is used to determine funding
-  - tells us about age, ethnicity, country of origin, occupation, education, voting behavior, etc.
-  - this information is available in the decennial census (in the constitution)
-  - ACS tells us about rates rather than the actual number of people in a thing
-  - one of the major problems is that some populations are under-represented
-    - https://prospect.org/economy/insidious-way-underrepresent-minorities/
+For the p
     
-
 ## A first visualization
 
 
@@ -122,7 +109,7 @@ ggplot(acs_edu)
 ```
 
 <img src="01-visual-analysis_files/figure-html/unnamed-chunk-4-1.png" width="672" />
-
+ 
 we add to this plot
 determine what we want to plot with the aesthetics `aes()` function inside of the ggplot(). 
 want to specify x and y. These are called arguments. To set argument we use the `=` sign.
@@ -218,7 +205,7 @@ ggplot(acs_edu, aes(x = bach, y = med_house_income, color = white)) +
 [^13]: https://www2.census.gov/programs-surveys/acs/methodology/design_and_methodology/acs_design_methodology_report_2014.pdf
 [^14]: https://www.census.gov/programs-surveys/acs/methodology.html
 [^15]: https://www.nytimes.com/2012/05/20/sunday-review/the-debate-over-the-american-community-survey.html
-
+[^16]: https://www.census.gov/content/dam/Census/library/publications/2018/acs/acs_general_handbook_2018_ch03.pdf
 https://data.boston.gov/dataset/311-service-requests
 https://data.boston.gov/dataset/blue-bikes-system-data
 
