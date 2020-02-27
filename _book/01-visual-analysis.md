@@ -49,13 +49,18 @@ The above clause requires the US government to conduct a complete counting of ev
 
 The ACS was developed in response to two shortcomings of the decennial census. The first being that the census only occurrs every ten years. There was, and still is, a need for more consistent and current data. Not only are the censuses too infrequent, but they also do not provide the most colorful picture of who it is that lives within the US. Local, state, and federal governments desired more context about who their constituents are. 
 
-The ACS was developed and first officially released in 2005[^13]. The ACS uses a "series of monthly samples" to "produce annual estimates for the same small areas (census tracts and block groups) formerly surveyed via the decennial census long-form sample"[^14].
+The ACS was developed and first officially released in 2005[^13]. The ACS uses a "series of monthly samples" to "produce annual estimates for the same small areas (census tracts and block groups) formerly surveyed via the decennial census long-form sample"[^14]. As Catherine Rampell wrote in the New York times
+
+> "It tells Americans how poor we are, how rich we are, who is suffering, who is thriving, where people work, what kind of training people need to get jobs, what languages people speak, who uses food stamps, who has access to health care, and so on."[^15]
+
+The impact of the ACS are wide stretching 
 
 ### Understanding ACS Estimates
 
 Continuous sampling done by the US Census Bureau occurs at a monthly basis and are used to produce annual estimates[^13]. There are two different types of estimates one can retrieve from the ACS. These are the 1-year and 5-year estimates. Each kind of estimate serves a different purpose.
 
-When choosing between 1-year and 5-year estimates we are making a tradeoff. 1-year estimates provide us with the most current data possible at the expense of a smaller sample size. This means that the estimates are not as reliable as the 5-year estimates which are collected over a period of 60 months. The second downside for 
+When choosing between 1-year and 5-year estimates we are making a tradeoff. 1-year estimates provide us with the most current data possible at the expense of a smaller sample size. This means that the estimates are not as reliable as the 5-year estimates which are collected over a period of 60 months. 
+When we consider 5-year estimates
 
 
 
@@ -212,6 +217,7 @@ ggplot(acs_edu, aes(x = bach, y = med_house_income, color = white)) +
 [^12]: https://www.census.gov/history/www/through_the_decades/index_of_questions/1790_1.html
 [^13]: https://www2.census.gov/programs-surveys/acs/methodology/design_and_methodology/acs_design_methodology_report_2014.pdf
 [^14]: https://www.census.gov/programs-surveys/acs/methodology.html
+[^15]: https://www.nytimes.com/2012/05/20/sunday-review/the-debate-over-the-american-community-survey.html
 
 https://data.boston.gov/dataset/311-service-requests
 https://data.boston.gov/dataset/blue-bikes-system-data
