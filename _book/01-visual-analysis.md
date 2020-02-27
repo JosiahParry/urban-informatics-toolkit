@@ -73,6 +73,8 @@ For your first introduction to R, we will explore the relationship between educa
 
 **NOTE**: this needs to be updated once I make `uitk` a package with R objects
 
+### Familiarize yourself
+
 There is no one best way to begin an exploratory analysis to guarantee interesting outcomes. But before one begins their EDA, they must know what their data actually contain. Loaded into your environment already is an object called `acs_edu`. `acs_edu` contains data demographic information about every census tract in Massachusetts. 
 
 
@@ -100,9 +102,9 @@ acs_edu
 
 `## # A tibble: 1,456 x 7` is printed out at the top followed by column names, their types—e.g. `<dbl>`—their respective values and, to the far left we see the numbers 1 through 10 before each row of values. 
 
-Let us disect `# A tibble: 1,456 x 7` a little bit more. This alone is quite informative. It tells us that the type of object we are working with is a `tibble` with 1,456 rows and 7 columns. We will be working almost entirely with tibbles for the entirety of this book.
+Let us disect `# A tibble: 1,456 x 7` a little bit more. This alone is quite informative. It tells us that the type of object we are working with is a `tibble` with 1,456 rows and 7 columns.
 
-A tibble is a method of representing rectangular data and is very similar to a table one may create within Excel with rows an columns. When working with tibbles we try to adhere to what are called the principles of tidy data[^ tidydata]. There are three key principles that we ought to keep in mind when working with rectangular data.
+A tibble is a method of representing rectangular data and is very similar to a table one may create within Excel with rows an columns. When working with tibbles we try to adhere to what are called the principles of tidy data[^tidydata]. There are three key principles that we ought to keep in mind when working with rectangular data.
 
 1. Each variable forms a column.
 2. Each observation forms a row.
@@ -118,18 +120,15 @@ In the case of our `acs_edu` tibble, our unit of observation, aka row, is a cens
 
 How does one know what criteria their columns represent? This brings us to the importance of column names. Column names ought to be descriptors of their corresponding variables. This is a surprsingly difficult task! In `acs_edu` we can infer—though we should always have documentation to supplement the data—that the variables measure income, educational attainment rates, and race.
 
-Once 
+### Form a question
 
-> What is the relationship between education and income?
+Once you have familiarized yourself with the data that you will be working with, you can begin to form a question that can be feasibly be explored or answered with the present data. The importance of domain expertise in EDA cannot be understated. Without an understanding of what underlying phenomena your data are measuring it will be extremely difficult to come to meaningful insights. 
 
-we have a data frame loaded 
-this is very similar to a table in excel
-each column is a variable
+My background is in sociology. Within sociology, and specifically social stratification, it is believed that more education leads to more social prestiege, economic stability, and is more readily accessible by the white population. Given this background and the data available in `acs_edu`, we will explore the relationship between education and income. We will try to answer the question _what is the relationship between education and income?_ We will use our data to visualize this relationship and infer the relationship from the resultant graph. 
 
-And in answering this, the importance of domain expertise in EDA cannot be understated.
+### Building a graph
 
 
-we can visualize the relationship to get a better understanding. we can look at income and college grad rates
 
 start building a visualization with `ggplot()` **function** with the `acs_edu` **object**.
 Functions are characterised by the parentheses at the end of them. Functions do things. Objects hold information. 
