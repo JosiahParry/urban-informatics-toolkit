@@ -210,24 +210,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <blockquote>
 <p>“It tells Americans how poor we are, how rich we are, who is suffering, who is thriving, where people work, what kind of training people need to get jobs, what languages people speak, who uses food stamps, who has access to health care, and so on.”<a href="#fn13" class="footnote-ref" id="fnref13"><sup>13</sup></a></p>
 </blockquote>
-<p>The impact of the ACS are wide stretching</p>
+<p>The impact of the ACS are wide stretching from funding to social research.</p>
 <div id="understanding-acs-estimates" class="section level3">
 <h3><span class="header-section-number">4.3.1</span> Understanding ACS Estimates</h3>
 <p>Continuous sampling done by the US Census Bureau occurs at a monthly basis and are used to produce annual estimates<a href="#fn14" class="footnote-ref" id="fnref14"><sup>14</sup></a>. There are two different types of estimates one can retrieve from the ACS. These are the 1-year and 5-year estimates. Each kind of estimate serves a different purpose.</p>
 <p>When choosing between 1-year and 5-year estimates we are making a tradeoff. 1-year estimates provide us with the most current data possible at the expense of a smaller sample size. This means that the estimates are not as reliable as the 5-year estimates which are collected over a period of 60 months. On the other hand, when we consider 5-year estimates, we benefit from a large sample size and increased reliability, but we lose the ability to make statements about a single year.</p>
 <p>In the cases where 5-year estimates are used researchers are analyzing populations and rates derived from five years of data collection. This requires you, the researcher, to qualify this with a statement to the effect of <em>“the rate of unemployment in 2014-2018 was 4%”</em><a href="#fn15" class="footnote-ref" id="fnref15"><sup>15</sup></a>. Because of this, you are unable to use consecutive 5-year estimates to analyze annual trends. In the case that you need to analyse annual trends 1-year estimates are recommended.</p>
 <p>There is also another important tradeoff one must consider when using ACS data and that is of unit of analysis. The census and ACS are conducted at the household level. However, estimates are provided for geographic areas. These geographic areas have a hierarchy going from block groups at the smallest level geography, to census tracts, and to counties. Beyond counties are geographies at the state level and even larger. Urban informatics is inherently focuses on a more micro—arguably meso—unit of analysis.</p>
-<p>For the p</p>
+<p>The following analysis is done using the Massachussetts census indicators published from BARI. The dataset is based on 5-year estimates from the ACS at the tract level.</p>
 </div>
 </div>
 <div id="a-first-visualization" class="section level2">
 <h2><span class="header-section-number">4.4</span> A first visualization</h2>
-<blockquote>
-<p>What is the relationship between education and income?</p>
-</blockquote>
-<p>we have a data frame loaded
-this is very similar to a table in excel
-each column is a variable</p>
+<p>For your first introduction to R, we will explore the relationship between education and income in Massachusetts.</p>
+<p><strong>NOTE</strong>: this needs to be updated once I make <code>uitk</code> a package with R objects</p>
+<p>There is no one best way to begin an exploratory analysis to guarantee interesting outcomes. But before one begins their EDA, they must know what their data actually contain. Loaded into your environment already is an object called <code>acs_edu</code>. <code>acs_edu</code> contains data demographic information about every census tract in Massachusetts.</p>
+<p>Print <code>acs_edu</code> to the console. What do you see?</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1">acs_edu</a>
 <a class="sourceLine" id="cb1-2" data-line-number="2"><span class="co">## # A tibble: 1,456 x 7</span></a>
 <a class="sourceLine" id="cb1-3" data-line-number="3"><span class="co">##    med_house_income less_than_hs hs_grad some_coll  bach white   black</span></a>
@@ -243,6 +241,29 @@ each column is a variable</p>
 <a class="sourceLine" id="cb1-13" data-line-number="13"><span class="co">##  9            97417       0.0625   0.254     0.227 0.284 0.969 0.00710</span></a>
 <a class="sourceLine" id="cb1-14" data-line-number="14"><span class="co">## 10            43384       0.207    0.362     0.262 0.124 0.460 0.105  </span></a>
 <a class="sourceLine" id="cb1-15" data-line-number="15"><span class="co">## # … with 1,446 more rows</span></a></code></pre></div>
+<p><code>## # A tibble: 1,456 x 7</code> is printed out at the top followed by column names, their types—e.g. <code>&lt;dbl&gt;</code>—their respective values and, to the far left we see the numbers 1 through 10 before each row of values.</p>
+<p>Let us disect <code># A tibble: 1,456 x 7</code> a little bit more. This alone is quite informative. It tells us that the type of object we are working with is a <code>tibble</code> with 1,456 rows and 7 columns. We will be working almost entirely with tibbles for the entirety of this book.</p>
+<p>A tibble is a method of representing rectangular data and is very similar to a table one may create within Excel with rows an columns. When working with tibbles we try to adhere to what are called the principles of tidy data[^ tidydata]. There are three key principles that we ought to keep in mind when working with rectangular data.</p>
+<ol style="list-style-type: decimal">
+<li>Each variable forms a column.</li>
+<li>Each observation forms a row.</li>
+<li>Each value represents a combination of an observation and a variable.</li>
+</ol>
+<p>There can often be confusion about what should be a variable and what is to be an observation. In <em>Tidy Data</em> Hadley Wickham write that</p>
+<blockquote>
+<p>“A variable contains all values that measure the same underlying attribute (like height, temperature, duration) across units. An observation contains all values measured on the same unit (like a person, or a day, or a race) across attributes.”<a href="#fn16" class="footnote-ref" id="fnref16"><sup>16</sup></a></p>
+</blockquote>
+<p>Say we have a tibble of survey respondents. In this case each row should be a respondent and each column should be a variable that is associated with that respondent. This could be something such as age, birth date, or the respondents response to a survey question.</p>
+<p>In the case of our <code>acs_edu</code> tibble, our unit of observation, aka row, is a census tract. Each variable measures a different characteristic of a census tract. For example, the column <code>med_house_income</code> is an estimate of the median household income of a given census tract. The other columns indicate what proportion of a population meets some criteria.</p>
+<p>How does one know what criteria their columns represent? This brings us to the importance of column names. Column names ought to be descriptors of their corresponding variables. This is a surprsingly difficult task! In <code>acs_edu</code> we can infer—though we should always have documentation to supplement the data—that the variables measure income, educational attainment rates, and race.</p>
+<p>Once</p>
+<blockquote>
+<p>What is the relationship between education and income?</p>
+</blockquote>
+<p>we have a data frame loaded
+this is very similar to a table in excel
+each column is a variable</p>
+<p>And in answering this, the importance of domain expertise in EDA cannot be understated.</p>
 <p>we can visualize the relationship to get a better understanding. we can look at income and college grad rates</p>
 <p>start building a visualization with <code>ggplot()</code> <strong>function</strong> with the <code>acs_edu</code> <strong>object</strong>.
 Functions are characterised by the parentheses at the end of them. Functions do things. Objects hold information.</p>
@@ -355,6 +376,8 @@ set <code>x</code> to <code>bach</code> and <code>y</code> to <code>med_house_in
 <li id="fn12"><p><a href="https://www.census.gov/programs-surveys/acs/methodology.html" class="uri">https://www.census.gov/programs-surveys/acs/methodology.html</a><a href="visual-analysis.html#fnref12" class="footnote-back">↩</a></p></li>
 <li id="fn13"><p><a href="https://www.nytimes.com/2012/05/20/sunday-review/the-debate-over-the-american-community-survey.html" class="uri">https://www.nytimes.com/2012/05/20/sunday-review/the-debate-over-the-american-community-survey.html</a><a href="visual-analysis.html#fnref13" class="footnote-back">↩</a></p></li>
 <li id="fn14"><p><a href="https://www2.census.gov/programs-surveys/acs/methodology/design_and_methodology/acs_design_methodology_report_2014.pdf" class="uri">https://www2.census.gov/programs-surveys/acs/methodology/design_and_methodology/acs_design_methodology_report_2014.pdf</a><a href="visual-analysis.html#fnref14" class="footnote-back">↩</a></p></li>
+<li id="fn15"><p><a href="https://www.census.gov/content/dam/Census/library/publications/2018/acs/acs_general_handbook_2018_ch03.pdf" class="uri">https://www.census.gov/content/dam/Census/library/publications/2018/acs/acs_general_handbook_2018_ch03.pdf</a><a href="visual-analysis.html#fnref15" class="footnote-back">↩</a></p></li>
+<li id="fn16"><p><a href="https://vita.had.co.nz/papers/tidy-data.pdf" class="uri">https://vita.had.co.nz/papers/tidy-data.pdf</a><a href="visual-analysis.html#fnref16" class="footnote-back">↩</a></p></li>
 </ol>
 </div>
             </section>
