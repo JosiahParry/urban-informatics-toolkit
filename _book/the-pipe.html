@@ -24,7 +24,7 @@
 <meta name="author" content="Josiah Parry" />
 
 
-<meta name="date" content="2020-02-27" />
+<meta name="date" content="2020-02-28" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -215,34 +215,34 @@ new_col_tbl &lt;- mutate(smaller_tbl, ...)</code></pre>
   mutate() %&gt;% 
   select()</code></pre>
 <p>In the chapter on filtering data we began by reading in the data, selecting columns, and then filtered data. Here we will recreate the <code>low_inc_or_walk</code> object which identified Census Tracts that have a higher rate of commuters who walk than drive or have a median household income below $40,000.</p>
-<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb106-1" data-line-number="1"><span class="kw">library</span>(tidyverse)</a>
-<a class="sourceLine" id="cb106-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb106-3" data-line-number="3">low_inc_or_walk &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data/ACS_1317_TRACT.csv&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb106-4" data-line-number="4"><span class="st">  </span><span class="kw">select</span>(</a>
-<a class="sourceLine" id="cb106-5" data-line-number="5">    county,</a>
-<a class="sourceLine" id="cb106-6" data-line-number="6">    <span class="kw">starts_with</span>(<span class="st">&quot;commute&quot;</span>),</a>
-<a class="sourceLine" id="cb106-7" data-line-number="7">    <span class="kw">starts_with</span>(<span class="st">&quot;by&quot;</span>),</a>
-<a class="sourceLine" id="cb106-8" data-line-number="8">    med_house_income</a>
-<a class="sourceLine" id="cb106-9" data-line-number="9">  ) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb106-10" data-line-number="10"><span class="st">  </span><span class="kw">filter</span>(</a>
-<a class="sourceLine" id="cb106-11" data-line-number="11">    by_walk <span class="op">&gt;</span><span class="st"> </span>by_auto,</a>
-<a class="sourceLine" id="cb106-12" data-line-number="12">    med_house_income <span class="op">&lt;</span><span class="st"> </span><span class="dv">40000</span></a>
-<a class="sourceLine" id="cb106-13" data-line-number="13">  )</a>
-<a class="sourceLine" id="cb106-14" data-line-number="14"></a>
-<a class="sourceLine" id="cb106-15" data-line-number="15"><span class="kw">glimpse</span>(low_inc_or_walk)</a>
-<a class="sourceLine" id="cb106-16" data-line-number="16"><span class="co">## Observations: 11</span></a>
-<a class="sourceLine" id="cb106-17" data-line-number="17"><span class="co">## Variables: 11</span></a>
-<a class="sourceLine" id="cb106-18" data-line-number="18"><span class="co">## $ county           &lt;chr&gt; &quot;HAMPSHIRE&quot;, &quot;SUFFOLK&quot;, &quot;SUFFOLK&quot;, &quot;SUFFOLK&quot;, &quot;…</span></a>
-<a class="sourceLine" id="cb106-19" data-line-number="19"><span class="co">## $ commute_less10   &lt;dbl&gt; 0.40234261, 0.34490741, 0.41918528, 0.09421755,…</span></a>
-<a class="sourceLine" id="cb106-20" data-line-number="20"><span class="co">## $ commute1030      &lt;dbl&gt; 0.5077599, 0.3726852, 0.4042926, 0.5200162, 0.5…</span></a>
-<a class="sourceLine" id="cb106-21" data-line-number="21"><span class="co">## $ commute3060      &lt;dbl&gt; 0.07027818, 0.22777778, 0.14673675, 0.35624747,…</span></a>
-<a class="sourceLine" id="cb106-22" data-line-number="22"><span class="co">## $ commute6090      &lt;dbl&gt; 0.01288433, 0.04953704, 0.02058695, 0.02951880,…</span></a>
-<a class="sourceLine" id="cb106-23" data-line-number="23"><span class="co">## $ commute_over90   &lt;dbl&gt; 0.006734993, 0.005092593, 0.009198423, 0.000000…</span></a>
-<a class="sourceLine" id="cb106-24" data-line-number="24"><span class="co">## $ by_auto          &lt;dbl&gt; 0.1889132, 0.2140026, 0.1082621, 0.1704500, 0.1…</span></a>
-<a class="sourceLine" id="cb106-25" data-line-number="25"><span class="co">## $ by_pub_trans     &lt;dbl&gt; 0.04570873, 0.11933069, 0.15384615, 0.29191557,…</span></a>
-<a class="sourceLine" id="cb106-26" data-line-number="26"><span class="co">## $ by_bike          &lt;dbl&gt; 0.014344761, 0.019815059, 0.008547009, 0.071286…</span></a>
-<a class="sourceLine" id="cb106-27" data-line-number="27"><span class="co">## $ by_walk          &lt;dbl&gt; 0.5801118, 0.5808014, 0.6471306, 0.4066109, 0.3…</span></a>
-<a class="sourceLine" id="cb106-28" data-line-number="28"><span class="co">## $ med_house_income &lt;dbl&gt; 2499, 21773, 36250, 34677, 30500, 28618, 16094,…</span></a></code></pre></div>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb109-1" data-line-number="1"><span class="kw">library</span>(tidyverse)</a>
+<a class="sourceLine" id="cb109-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb109-3" data-line-number="3">low_inc_or_walk &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data/ACS_1317_TRACT.csv&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb109-4" data-line-number="4"><span class="st">  </span><span class="kw">select</span>(</a>
+<a class="sourceLine" id="cb109-5" data-line-number="5">    county,</a>
+<a class="sourceLine" id="cb109-6" data-line-number="6">    <span class="kw">starts_with</span>(<span class="st">&quot;commute&quot;</span>),</a>
+<a class="sourceLine" id="cb109-7" data-line-number="7">    <span class="kw">starts_with</span>(<span class="st">&quot;by&quot;</span>),</a>
+<a class="sourceLine" id="cb109-8" data-line-number="8">    med_house_income</a>
+<a class="sourceLine" id="cb109-9" data-line-number="9">  ) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb109-10" data-line-number="10"><span class="st">  </span><span class="kw">filter</span>(</a>
+<a class="sourceLine" id="cb109-11" data-line-number="11">    by_walk <span class="op">&gt;</span><span class="st"> </span>by_auto,</a>
+<a class="sourceLine" id="cb109-12" data-line-number="12">    med_house_income <span class="op">&lt;</span><span class="st"> </span><span class="dv">40000</span></a>
+<a class="sourceLine" id="cb109-13" data-line-number="13">  )</a>
+<a class="sourceLine" id="cb109-14" data-line-number="14"></a>
+<a class="sourceLine" id="cb109-15" data-line-number="15"><span class="kw">glimpse</span>(low_inc_or_walk)</a>
+<a class="sourceLine" id="cb109-16" data-line-number="16"><span class="co">## Observations: 11</span></a>
+<a class="sourceLine" id="cb109-17" data-line-number="17"><span class="co">## Variables: 11</span></a>
+<a class="sourceLine" id="cb109-18" data-line-number="18"><span class="co">## $ county           &lt;chr&gt; &quot;HAMPSHIRE&quot;, &quot;SUFFOLK&quot;, &quot;SUFFOLK&quot;, &quot;SUFFOLK&quot;, &quot;…</span></a>
+<a class="sourceLine" id="cb109-19" data-line-number="19"><span class="co">## $ commute_less10   &lt;dbl&gt; 0.40234261, 0.34490741, 0.41918528, 0.09421755,…</span></a>
+<a class="sourceLine" id="cb109-20" data-line-number="20"><span class="co">## $ commute1030      &lt;dbl&gt; 0.5077599, 0.3726852, 0.4042926, 0.5200162, 0.5…</span></a>
+<a class="sourceLine" id="cb109-21" data-line-number="21"><span class="co">## $ commute3060      &lt;dbl&gt; 0.07027818, 0.22777778, 0.14673675, 0.35624747,…</span></a>
+<a class="sourceLine" id="cb109-22" data-line-number="22"><span class="co">## $ commute6090      &lt;dbl&gt; 0.01288433, 0.04953704, 0.02058695, 0.02951880,…</span></a>
+<a class="sourceLine" id="cb109-23" data-line-number="23"><span class="co">## $ commute_over90   &lt;dbl&gt; 0.006734993, 0.005092593, 0.009198423, 0.000000…</span></a>
+<a class="sourceLine" id="cb109-24" data-line-number="24"><span class="co">## $ by_auto          &lt;dbl&gt; 0.1889132, 0.2140026, 0.1082621, 0.1704500, 0.1…</span></a>
+<a class="sourceLine" id="cb109-25" data-line-number="25"><span class="co">## $ by_pub_trans     &lt;dbl&gt; 0.04570873, 0.11933069, 0.15384615, 0.29191557,…</span></a>
+<a class="sourceLine" id="cb109-26" data-line-number="26"><span class="co">## $ by_bike          &lt;dbl&gt; 0.014344761, 0.019815059, 0.008547009, 0.071286…</span></a>
+<a class="sourceLine" id="cb109-27" data-line-number="27"><span class="co">## $ by_walk          &lt;dbl&gt; 0.5801118, 0.5808014, 0.6471306, 0.4066109, 0.3…</span></a>
+<a class="sourceLine" id="cb109-28" data-line-number="28"><span class="co">## $ med_house_income &lt;dbl&gt; 2499, 21773, 36250, 34677, 30500, 28618, 16094,…</span></a></code></pre></div>
 <p>The reason this pipe works is because the output of each function call is yet another tibble and the pipe operator is passing that resultant tibble as the first argument to the next function.</p>
 <p>Not only does the pipe aid in the manipulation of data, it also has a lot of utility in crafting ggplots. By piping your tibble into a ggplot call, this allows you to quickly iterate on the input data from either filtering down your data to creating new variables for visualization purposes.</p>
 <p>The following sections will use the pipe operator in favor of the above listed alternatives.</p>

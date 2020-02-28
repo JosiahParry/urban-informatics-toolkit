@@ -24,7 +24,7 @@
 <meta name="author" content="Josiah Parry" />
 
 
-<meta name="date" content="2020-02-27" />
+<meta name="date" content="2020-02-28" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -284,32 +284,43 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw">ggplot</span>(acs_edu, <span class="kw">aes</span>(<span class="dt">x =</span> med_house_income))</a></code></pre></div>
 <p><img src="01-visual-analysis_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
 <p>Alright, we are making progress. We can see that the x axis is now filled out a bit more. The axis breaks have been labeled as has the axis itself. In order to see the data in a graphical representation, we need to determine how we want to see the data and what sort of geometry will be used to visualize it.</p>
-<p>To <strong>add</strong> geometry to our ggplot, we use the plus sign <code>+</code> to signify that we are adding a layer on top of the basic graph. There are many ways we can visualize univariate data but the histogram has stood the test of time. To create a histogram we <strong>add</strong> the <code>geom_histogram()</code> layer to our existing ggplot code.</p>
+<p>To <strong>add</strong> geometry to our ggplot, we use the plus sign <code>+</code> which signifies that we are adding a layer on top of the basic graph. There are many ways we can visualize univariate data but the histogram has stood the test of time. To create a histogram we <strong>add</strong> the <code>geom_histogram()</code> layer to our existing ggplot code.</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw">ggplot</span>(acs_edu, <span class="kw">aes</span>(<span class="dt">x =</span> med_house_income)) <span class="op">+</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb5-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_histogram</span>()</a></code></pre></div>
 <p><img src="01-visual-analysis_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
 <blockquote>
 <p>Note: To ensure that our code is legible we add each new layer on a line. R will manage the indentation for you. Code readibility is very important and you will thank yourself later for instilling good practices from the start.</p>
 </blockquote>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw">ggplot</span>(acs_edu, <span class="kw">aes</span>(<span class="dt">x =</span> bach, <span class="dt">y =</span> med_house_income)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb6-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>()</a></code></pre></div>
+<p>This histogram illustrates the distribution of median household income in the state of Massachusetts. The median value seems to sit somewhere around $75k with a few outliers near $250k as well demonstrating a right skew.</p>
+<blockquote>
+<p>Reminder: The skew is where there are few [observations].</p>
+</blockquote>
+<p>Usually when we look at distributions of wealth they are extremely right skewed meaning there are a few people who make an outrageous amount of money. What is interesting is that this histogram is rather normally distributed almost challenging intuition. This is because the ACS does something called top-coding. Top-coding is the practice of creating a ceiling value. For example, if there is a tract has a median household income of $1m, that will be reduced to the top-coded value—what appears to be $250k. This creates what are called censored data.</p>
+<blockquote>
+<p><strong>Censored data</strong>: data “in which the value of a measurement or observation is only partially known.”<a href="#fn18" class="footnote-ref" id="fnref18"><sup>18</sup></a><a href="#fn19" class="footnote-ref" id="fnref19"><sup>19</sup></a></p>
+</blockquote>
+<p>Let us now create a histogram of our second variable of interest, <code>bach</code>.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw">ggplot</span>(acs_edu, <span class="kw">aes</span>(<span class="dt">x =</span> bach)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb6-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_histogram</span>()</a></code></pre></div>
 <p><img src="01-visual-analysis_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<p>This histogram illustrates the distribution of the bachelor degree attainment rate (the proportion of people with a bachelor’s degree) across census tracts in Massachusetts. Because we did our homework ahead of time, we know that the national attainment rate in 2018 for people over 25 was ~35%<a href="#fn20" class="footnote-ref" id="fnref20"><sup>20</sup></a>. Our histogram shows that within MA there is a lot of variation in the attainment rate from a low of about 0% to a high of over 60%. There is not a steep peak in the distribution which tells us that there is a fair amount of variation in the distribution.</p>
+<p>Now that there is an intuition of the distribution and characteristics of both <code>med_house_income</code> and <code>bach</code>, we can begin to try and answer the question <em>what is the effect of education on median household income?</em> The phrasing of our question will determine how we visualize our data.</p>
+<p>When stating research questions we often phrase it as <em>what is the effect of x <strong>on</strong> y</em>? In this formulation we are determining that <code>bach</code>, our independent variable, will be plotted on the x axis and <code>med_house_income</code> will be plotted on the y axis. To visualize this bivariate relationship we will create a scatter plot.</p>
+<blockquote>
+<p>This structure and phrasing is useful for continuity in verbal communication, graphical representation, and hypothesis testing.</p>
+</blockquote>
+<p>We can visualize this relationship by adding additional mapped aesthetics. In this case, we will map both the x and y arguments of the <code>aes()</code> function. Rather than adding histogram layer, we will need to create a scatter plot. Scatter plots are created by plotting points for each (x, y) pair. To get such an effect we will use the <code>geom_point()</code> layer.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw">ggplot</span>(acs_edu, <span class="kw">aes</span>(<span class="dt">x =</span> bach, <span class="dt">y =</span> med_house_income)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb7-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>()</a></code></pre></div>
+<p><img src="01-visual-analysis_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<p>The above scatter plot provides a lot of information. We see that there is a positive linear trend—that is that when the <code>bach</code> value increases so does the <code>med_house_income</code> variable. When looking at a scatter plot we are looking to see if there is a consistent pattern that can be sussed out.</p>
+<p>In this scatterplot we can see that there is a linear pattern. When the points on the scatter plot are closer to eachother and demonstrate less spread, that means there is a stronger relationship between the two variables. Imagine if we drew a line through the middle of the points, we would want each point to be as close to that line as possible. The further the point is away from that line, the more variation there is. In these cases we often create linear regression models to estimate the relationship.</p>
+<p>Using ggplot, we can plot the estimated linear regression line on top of our scatterplot. This is done with a <code>geom_smooth()</code> layer. By default, <code>geom_smooth()</code> does not plot the linear relationship. To do that, we need to specify what kind of smoothing we would like. In order to plot the estimated linear model, we set <code>method = &quot;lm&quot;</code>.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="kw">ggplot</span>(acs_edu, <span class="kw">aes</span>(<span class="dt">x =</span> bach, <span class="dt">y =</span> med_house_income)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb8-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb8-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>)</a></code></pre></div>
+<p><img src="01-visual-analysis_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
 <ul>
-<li>notice that there is a positive linear trend.</li>
-<li>lets break that down:
-<ul>
-<li>when the point point up to the right, that is positive, down to the left is negative.
-<ul>
-<li>for each unit we go up on the x (bach) we tend to go up on the y (hh income)</li>
-</ul></li>
-<li>linear means it resembles a line</li>
-</ul></li>
-<li>what are we looking for in a scatter plot?
-<ul>
-<li>we’re looking for low variation and a consistent pattern or line</li>
-<li>we want the points to be very close</li>
-<li>imagine we drew a line going through the middle of the points, we’d want each point to be either on that line or extremely close. if the line is further away, that means there is a lot more variation</li>
-</ul></li>
 <li>to finish this up we can add some informative labels</li>
 <li>we will add a labels layer with the function <code>labs()</code></li>
 <li>give them more legible labels. we will give each axis a better name and give the plot a title</li>
@@ -321,12 +332,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li>note that for each argument I have a new line. again, this helps with legibility</li>
 </ul>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw">ggplot</span>(acs_edu, <span class="kw">aes</span>(<span class="dt">x =</span> bach, <span class="dt">y =</span> med_house_income)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb7-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb7-3" data-line-number="3"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;% of population with a Bachelor&#39;s Degree&quot;</span>,</a>
-<a class="sourceLine" id="cb7-4" data-line-number="4">       <span class="dt">y =</span> <span class="st">&quot;Median Household Income&quot;</span>,</a>
-<a class="sourceLine" id="cb7-5" data-line-number="5">       <span class="dt">title =</span> <span class="st">&quot;Relationship between Education and Income&quot;</span>)</a></code></pre></div>
-<p><img src="01-visual-analysis_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="kw">ggplot</span>(acs_edu, <span class="kw">aes</span>(<span class="dt">x =</span> bach, <span class="dt">y =</span> med_house_income)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb9-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb9-3" data-line-number="3"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;% of population with a Bachelor&#39;s Degree&quot;</span>,</a>
+<a class="sourceLine" id="cb9-4" data-line-number="4">       <span class="dt">y =</span> <span class="st">&quot;Median Household Income&quot;</span>,</a>
+<a class="sourceLine" id="cb9-5" data-line-number="5">       <span class="dt">title =</span> <span class="st">&quot;Relationship between Education and Income&quot;</span>)</a></code></pre></div>
+<p><img src="01-visual-analysis_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
 <ul>
 <li>what can we determine from this graph?</li>
 <li>in the sociology literature there is a lot about the education gap between white and black folks</li>
@@ -337,16 +348,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>set the <code>color</code> argument to the <code>white</code> column</li>
 <li>while we’re at it, we can add a subtitle to inform that we’re also coloring by % white</li>
 </ul>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="kw">ggplot</span>(acs_edu, <span class="kw">aes</span>(<span class="dt">x =</span> bach, <span class="dt">y =</span> med_house_income, <span class="dt">color =</span> white)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb8-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb8-3" data-line-number="3"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;% of population with a Bachelor&#39;s Degree&quot;</span>,</a>
-<a class="sourceLine" id="cb8-4" data-line-number="4">       <span class="dt">y =</span> <span class="st">&quot;Median Household Income&quot;</span>,</a>
-<a class="sourceLine" id="cb8-5" data-line-number="5">       <span class="dt">title =</span> <span class="st">&quot;Relationship between Education and Income&quot;</span>,</a>
-<a class="sourceLine" id="cb8-6" data-line-number="6">       <span class="dt">subtitle =</span> <span class="st">&quot;Colored by whiteness&quot;</span>) </a></code></pre></div>
-<p><img src="01-visual-analysis_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="kw">ggplot</span>(acs_edu, <span class="kw">aes</span>(<span class="dt">x =</span> bach, <span class="dt">y =</span> med_house_income, <span class="dt">color =</span> white)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb10-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb10-3" data-line-number="3"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;% of population with a Bachelor&#39;s Degree&quot;</span>,</a>
+<a class="sourceLine" id="cb10-4" data-line-number="4">       <span class="dt">y =</span> <span class="st">&quot;Median Household Income&quot;</span>,</a>
+<a class="sourceLine" id="cb10-5" data-line-number="5">       <span class="dt">title =</span> <span class="st">&quot;Relationship between Education and Income&quot;</span>,</a>
+<a class="sourceLine" id="cb10-6" data-line-number="6">       <span class="dt">subtitle =</span> <span class="st">&quot;Colored by whiteness&quot;</span>) </a></code></pre></div>
+<p><img src="01-visual-analysis_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
 <ul>
 <li>what can we conclude now?</li>
 </ul>
+<p><a href="https://data.boston.gov/dataset/311-service-requests" class="uri">https://data.boston.gov/dataset/311-service-requests</a>
+<a href="https://data.boston.gov/dataset/blue-bikes-system-data" class="uri">https://data.boston.gov/dataset/blue-bikes-system-data</a></p>
 </div>
 </div>
 <div id="httpswww.theguardian.comus-newsdatablog2020feb272020-us-census-black-people-mistakes-count" class="section level2">
@@ -391,6 +404,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li id="fn15"><p><a href="https://www.census.gov/content/dam/Census/library/publications/2018/acs/acs_general_handbook_2018_ch03.pdf" class="uri">https://www.census.gov/content/dam/Census/library/publications/2018/acs/acs_general_handbook_2018_ch03.pdf</a><a href="visual-analysis.html#fnref15" class="footnote-back">↩</a></p></li>
 <li id="fn16"><p><a href="https://vita.had.co.nz/papers/tidy-data.pdf" class="uri">https://vita.had.co.nz/papers/tidy-data.pdf</a><a href="visual-analysis.html#fnref16" class="footnote-back">↩</a></p></li>
 <li id="fn17"><p><a href="https://vita.had.co.nz/papers/tidy-data.pdf" class="uri">https://vita.had.co.nz/papers/tidy-data.pdf</a><a href="visual-analysis.html#fnref17" class="footnote-back">↩</a></p></li>
+<li id="fn18"><p><a href="https://en.wikipedia.org/wiki/Censoring_(statistics)" class="uri">https://en.wikipedia.org/wiki/Censoring_(statistics)</a><a href="visual-analysis.html#fnref18" class="footnote-back">↩</a></p></li>
+<li id="fn19"><p><a href="https://stats.stackexchange.com/questions/49443/how-to-model-this-odd-shaped-distribution-almost-a-reverse-j" class="uri">https://stats.stackexchange.com/questions/49443/how-to-model-this-odd-shaped-distribution-almost-a-reverse-j</a><a href="visual-analysis.html#fnref19" class="footnote-back">↩</a></p></li>
+<li id="fn20"><p><a href="https://www.census.gov/data/tables/2018/demo/education-attainment/cps-detailed-tables.html" class="uri">https://www.census.gov/data/tables/2018/demo/education-attainment/cps-detailed-tables.html</a><a href="visual-analysis.html#fnref20" class="footnote-back">↩</a></p></li>
 </ol>
 </div>
             </section>

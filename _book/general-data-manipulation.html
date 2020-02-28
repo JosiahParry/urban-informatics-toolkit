@@ -24,7 +24,7 @@
 <meta name="author" content="Josiah Parry" />
 
 
-<meta name="date" content="2020-02-27" />
+<meta name="date" content="2020-02-28" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -207,74 +207,74 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Load the tidyverse</li>
 <li>Read in the file <code>ACS_1317_TRACT.csv</code> located in the <code>data</code> directory, store it in an object called <code>acs_raw</code></li>
 </ul>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb34-1" data-line-number="1"><span class="kw">library</span>(tidyverse)</a>
-<a class="sourceLine" id="cb34-2" data-line-number="2">acs_raw &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data/ACS_1317_TRACT.csv&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" data-line-number="1"><span class="kw">library</span>(tidyverse)</a>
+<a class="sourceLine" id="cb37-2" data-line-number="2">acs_raw &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data/ACS_1317_TRACT.csv&quot;</span>)</a></code></pre></div>
 <p>Wonderful! You’ve got the hang of reading data in which is truly no small feat. Once we have the data accessible from R, it is important to get familiar with what the data are. This means we need to know <em>which</em> variables are available to us and get a feel for what the values in those variables represent.</p>
 <p>Try printing out the <code>acs_raw</code> object in your console.</p>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" data-line-number="1">acs_raw</a></code></pre></div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb38-1" data-line-number="1">acs_raw</a></code></pre></div>
 <p>Oof, yikes. It’s a bit messy! Not to mention that R did not even print out all of the columns. That’s because it ran out of room. When we’re working with wide data (many columns), it’s generally best to view only a preview of the data. The function <code>dplyr::glimpse()</code> can help us do just that. Provide <code>acs_raw</code> as the only argument to <code>glimpse()</code>.</p>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb36-1" data-line-number="1"><span class="kw">glimpse</span>(acs_raw)</a>
-<a class="sourceLine" id="cb36-2" data-line-number="2"><span class="co">## Observations: 1,478</span></a>
-<a class="sourceLine" id="cb36-3" data-line-number="3"><span class="co">## Variables: 59</span></a>
-<a class="sourceLine" id="cb36-4" data-line-number="4"><span class="co">## $ ct_id_10             &lt;dbl&gt; 25027728100, 25027729200, 25027730700, 2502…</span></a>
-<a class="sourceLine" id="cb36-5" data-line-number="5"><span class="co">## $ name                 &lt;chr&gt; &quot;Census Tract 7281, Worcester County, Massa…</span></a>
-<a class="sourceLine" id="cb36-6" data-line-number="6"><span class="co">## $ total_pop            &lt;dbl&gt; 4585, 2165, 6917, 7278, 5059, 6632, 3259, 2…</span></a>
-<a class="sourceLine" id="cb36-7" data-line-number="7"><span class="co">## $ pop_den              &lt;dbl&gt; 332.5741, 1069.6977, 2112.9526, 1345.5905, …</span></a>
-<a class="sourceLine" id="cb36-8" data-line-number="8"><span class="co">## $ sex_ratio            &lt;dbl&gt; 1.1315667, 1.3179872, 1.1329016, 1.1156977,…</span></a>
-<a class="sourceLine" id="cb36-9" data-line-number="9"><span class="co">## $ age_u18              &lt;dbl&gt; 0.2340240, 0.1810624, 0.1705942, 0.2033526,…</span></a>
-<a class="sourceLine" id="cb36-10" data-line-number="10"><span class="co">## $ age1834              &lt;dbl&gt; 0.2023991, 0.1510393, 0.2143993, 0.2272602,…</span></a>
-<a class="sourceLine" id="cb36-11" data-line-number="11"><span class="co">## $ age3564              &lt;dbl&gt; 0.3980371, 0.4609700, 0.4371838, 0.4359714,…</span></a>
-<a class="sourceLine" id="cb36-12" data-line-number="12"><span class="co">## $ age_o65              &lt;dbl&gt; 0.1655398, 0.2069284, 0.1778228, 0.1334158,…</span></a>
-<a class="sourceLine" id="cb36-13" data-line-number="13"><span class="co">## $ for_born             &lt;dbl&gt; 0.04383860, 0.08729792, 0.20586960, 0.15526…</span></a>
-<a class="sourceLine" id="cb36-14" data-line-number="14"><span class="co">## $ white                &lt;dbl&gt; 0.8972737, 0.8849885, 0.7328322, 0.8235779,…</span></a>
-<a class="sourceLine" id="cb36-15" data-line-number="15"><span class="co">## $ black                &lt;dbl&gt; 0.012213740, 0.017090069, 0.079514240, 0.03…</span></a>
-<a class="sourceLine" id="cb36-16" data-line-number="16"><span class="co">## $ asian                &lt;dbl&gt; 0.006324973, 0.021709007, 0.019950846, 0.03…</span></a>
-<a class="sourceLine" id="cb36-17" data-line-number="17"><span class="co">## $ hispanic             &lt;dbl&gt; 0.070229008, 0.047575058, 0.136330779, 0.07…</span></a>
-<a class="sourceLine" id="cb36-18" data-line-number="18"><span class="co">## $ two_or_more          &lt;dbl&gt; 0.012431843, 0.027713626, 0.017348562, 0.01…</span></a>
-<a class="sourceLine" id="cb36-19" data-line-number="19"><span class="co">## $ eth_het              &lt;dbl&gt; -17032656, -3685242, -26905553, -36365806, …</span></a>
-<a class="sourceLine" id="cb36-20" data-line-number="20"><span class="co">## $ med_house_income     &lt;dbl&gt; 105735, 69625, 70679, 74528, 52885, 64100, …</span></a>
-<a class="sourceLine" id="cb36-21" data-line-number="21"><span class="co">## $ pub_assist           &lt;dbl&gt; 0.020782396, 0.004667445, 0.021067926, 0.03…</span></a>
-<a class="sourceLine" id="cb36-22" data-line-number="22"><span class="co">## $ gini                 &lt;dbl&gt; 0.4084, 0.3886, 0.4693, 0.4052, 0.5327, 0.4…</span></a>
-<a class="sourceLine" id="cb36-23" data-line-number="23"><span class="co">## $ fam_pov_per          &lt;dbl&gt; 0.04754601, 0.06521739, 0.05843440, 0.02486…</span></a>
-<a class="sourceLine" id="cb36-24" data-line-number="24"><span class="co">## $ unemp_rate           &lt;dbl&gt; 0.03361345, 0.03127572, 0.06124498, 0.03983…</span></a>
-<a class="sourceLine" id="cb36-25" data-line-number="25"><span class="co">## $ total_house_h        &lt;dbl&gt; 1636, 857, 2753, 2878, 2326, 2635, 1245, 80…</span></a>
-<a class="sourceLine" id="cb36-26" data-line-number="26"><span class="co">## $ fam_house_per        &lt;dbl&gt; 0.7970660, 0.6977830, 0.6589175, 0.6567060,…</span></a>
-<a class="sourceLine" id="cb36-27" data-line-number="27"><span class="co">## $ fem_head_per         &lt;dbl&gt; 0.08985330, 0.12018670, 0.11442063, 0.12126…</span></a>
-<a class="sourceLine" id="cb36-28" data-line-number="28"><span class="co">## $ same_sex_coup_per    &lt;dbl&gt; 0.00000000, 0.00000000, 0.00000000, 0.00000…</span></a>
-<a class="sourceLine" id="cb36-29" data-line-number="29"><span class="co">## $ grand_head_per       &lt;dbl&gt; 0.000000000, 0.005834306, 0.000000000, 0.00…</span></a>
-<a class="sourceLine" id="cb36-30" data-line-number="30"><span class="co">## $ less_than_hs         &lt;dbl&gt; 0.02515518, 0.05773956, 0.09364548, 0.08426…</span></a>
-<a class="sourceLine" id="cb36-31" data-line-number="31"><span class="co">## $ hs_grad              &lt;dbl&gt; 0.19568768, 0.25307125, 0.17332284, 0.25298…</span></a>
-<a class="sourceLine" id="cb36-32" data-line-number="32"><span class="co">## $ some_coll            &lt;dbl&gt; 0.2211696, 0.3157248, 0.2726736, 0.3534052,…</span></a>
-<a class="sourceLine" id="cb36-33" data-line-number="33"><span class="co">## $ bach                 &lt;dbl&gt; 0.32473048, 0.26167076, 0.26677159, 0.23124…</span></a>
-<a class="sourceLine" id="cb36-34" data-line-number="34"><span class="co">## $ master               &lt;dbl&gt; 0.15942502, 0.09705160, 0.12059807, 0.06714…</span></a>
-<a class="sourceLine" id="cb36-35" data-line-number="35"><span class="co">## $ prof                 &lt;dbl&gt; 0.0405096374, 0.0098280098, 0.0397403108, 0…</span></a>
-<a class="sourceLine" id="cb36-36" data-line-number="36"><span class="co">## $ doc                  &lt;dbl&gt; 0.033322444, 0.004914005, 0.033248082, 0.00…</span></a>
-<a class="sourceLine" id="cb36-37" data-line-number="37"><span class="co">## $ commute_less10       &lt;dbl&gt; 0.07874016, 0.25109361, 0.05369894, 0.14119…</span></a>
-<a class="sourceLine" id="cb36-38" data-line-number="38"><span class="co">## $ commute1030          &lt;dbl&gt; 0.5131234, 0.4636920, 0.6620965, 0.3941685,…</span></a>
-<a class="sourceLine" id="cb36-39" data-line-number="39"><span class="co">## $ commute3060          &lt;dbl&gt; 0.33114611, 0.18110236, 0.17709226, 0.31263…</span></a>
-<a class="sourceLine" id="cb36-40" data-line-number="40"><span class="co">## $ commute6090          &lt;dbl&gt; 0.055555556, 0.082239720, 0.086832334, 0.13…</span></a>
-<a class="sourceLine" id="cb36-41" data-line-number="41"><span class="co">## $ commute_over90       &lt;dbl&gt; 0.021434821, 0.021872266, 0.020279920, 0.01…</span></a>
-<a class="sourceLine" id="cb36-42" data-line-number="42"><span class="co">## $ by_auto              &lt;dbl&gt; 0.9267791, 0.9704861, 0.9248285, 0.9037018,…</span></a>
-<a class="sourceLine" id="cb36-43" data-line-number="43"><span class="co">## $ by_pub_trans         &lt;dbl&gt; 0.000000000, 0.004340278, 0.020301783, 0.01…</span></a>
-<a class="sourceLine" id="cb36-44" data-line-number="44"><span class="co">## $ by_bike              &lt;dbl&gt; 0.002879473, 0.000000000, 0.000000000, 0.00…</span></a>
-<a class="sourceLine" id="cb36-45" data-line-number="45"><span class="co">## $ by_walk              &lt;dbl&gt; 0.002468120, 0.012152778, 0.004938272, 0.02…</span></a>
-<a class="sourceLine" id="cb36-46" data-line-number="46"><span class="co">## $ total_house_units    &lt;dbl&gt; 1701, 886, 2928, 3181, 2511, 2713, 1581, 85…</span></a>
-<a class="sourceLine" id="cb36-47" data-line-number="47"><span class="co">## $ vacant_unit_per      &lt;dbl&gt; 0.03821282, 0.03273138, 0.05976776, 0.09525…</span></a>
-<a class="sourceLine" id="cb36-48" data-line-number="48"><span class="co">## $ renters_per          &lt;dbl&gt; 0.1088020, 0.2100350, 0.2804214, 0.3425990,…</span></a>
-<a class="sourceLine" id="cb36-49" data-line-number="49"><span class="co">## $ home_own_per         &lt;dbl&gt; 0.8911980, 0.7899650, 0.7195786, 0.6574010,…</span></a>
-<a class="sourceLine" id="cb36-50" data-line-number="50"><span class="co">## $ med_gross_rent       &lt;dbl&gt; 1640, 894, 1454, 954, 1018, 867, 910, 1088,…</span></a>
-<a class="sourceLine" id="cb36-51" data-line-number="51"><span class="co">## $ med_home_val         &lt;dbl&gt; 349000, 230200, 207200, 268400, 223200, 232…</span></a>
-<a class="sourceLine" id="cb36-52" data-line-number="52"><span class="co">## $ med_yr_built_raw     &lt;dbl&gt; 1988, 1955, 1959, 1973, 1964, 1966, 1939, 1…</span></a>
-<a class="sourceLine" id="cb36-53" data-line-number="53"><span class="co">## $ med_yr_built         &lt;chr&gt; &quot;1980 to 1989&quot;, &quot;1950 to 1959&quot;, &quot;1950 to 19…</span></a>
-<a class="sourceLine" id="cb36-54" data-line-number="54"><span class="co">## $ med_yr_moved_inraw   &lt;dbl&gt; 2004, 2003, 2007, 2006, 2006, 2000, 2011, 2…</span></a>
-<a class="sourceLine" id="cb36-55" data-line-number="55"><span class="co">## $ med_yr_rent_moved_in &lt;dbl&gt; 2012, 2010, 2012, 2011, 2011, 2009, 2012, 2…</span></a>
-<a class="sourceLine" id="cb36-56" data-line-number="56"><span class="co">## $ area_acres           &lt;dbl&gt; 9407.9167, 1294.2828, 2123.4927, 3581.9026,…</span></a>
-<a class="sourceLine" id="cb36-57" data-line-number="57"><span class="co">## $ town_id              &lt;dbl&gt; 134, 321, 348, 185, 153, 151, 316, 348, 28,…</span></a>
-<a class="sourceLine" id="cb36-58" data-line-number="58"><span class="co">## $ town                 &lt;chr&gt; &quot;HOLDEN&quot;, &quot;WEST BOYLSTON&quot;, &quot;WORCESTER&quot;, &quot;MI…</span></a>
-<a class="sourceLine" id="cb36-59" data-line-number="59"><span class="co">## $ fips_stco            &lt;dbl&gt; 25027, 25027, 25027, 25027, 25027, 25027, 2…</span></a>
-<a class="sourceLine" id="cb36-60" data-line-number="60"><span class="co">## $ county               &lt;chr&gt; &quot;WORCESTER&quot;, &quot;WORCESTER&quot;, &quot;WORCESTER&quot;, &quot;WOR…</span></a>
-<a class="sourceLine" id="cb36-61" data-line-number="61"><span class="co">## $ area_acr_1           &lt;dbl&gt; 23241.514, 8867.508, 24609.965, 9615.644, 1…</span></a>
-<a class="sourceLine" id="cb36-62" data-line-number="62"><span class="co">## $ m_atown              &lt;chr&gt; &quot;HOLDEN&quot;, &quot;WEST BOYLSTON&quot;, &quot;WORCESTER&quot;, &quot;MI…</span></a></code></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb39-1" data-line-number="1"><span class="kw">glimpse</span>(acs_raw)</a>
+<a class="sourceLine" id="cb39-2" data-line-number="2"><span class="co">## Observations: 1,478</span></a>
+<a class="sourceLine" id="cb39-3" data-line-number="3"><span class="co">## Variables: 59</span></a>
+<a class="sourceLine" id="cb39-4" data-line-number="4"><span class="co">## $ ct_id_10             &lt;dbl&gt; 25027728100, 25027729200, 25027730700, 2502…</span></a>
+<a class="sourceLine" id="cb39-5" data-line-number="5"><span class="co">## $ name                 &lt;chr&gt; &quot;Census Tract 7281, Worcester County, Massa…</span></a>
+<a class="sourceLine" id="cb39-6" data-line-number="6"><span class="co">## $ total_pop            &lt;dbl&gt; 4585, 2165, 6917, 7278, 5059, 6632, 3259, 2…</span></a>
+<a class="sourceLine" id="cb39-7" data-line-number="7"><span class="co">## $ pop_den              &lt;dbl&gt; 332.5741, 1069.6977, 2112.9526, 1345.5905, …</span></a>
+<a class="sourceLine" id="cb39-8" data-line-number="8"><span class="co">## $ sex_ratio            &lt;dbl&gt; 1.1315667, 1.3179872, 1.1329016, 1.1156977,…</span></a>
+<a class="sourceLine" id="cb39-9" data-line-number="9"><span class="co">## $ age_u18              &lt;dbl&gt; 0.2340240, 0.1810624, 0.1705942, 0.2033526,…</span></a>
+<a class="sourceLine" id="cb39-10" data-line-number="10"><span class="co">## $ age1834              &lt;dbl&gt; 0.2023991, 0.1510393, 0.2143993, 0.2272602,…</span></a>
+<a class="sourceLine" id="cb39-11" data-line-number="11"><span class="co">## $ age3564              &lt;dbl&gt; 0.3980371, 0.4609700, 0.4371838, 0.4359714,…</span></a>
+<a class="sourceLine" id="cb39-12" data-line-number="12"><span class="co">## $ age_o65              &lt;dbl&gt; 0.1655398, 0.2069284, 0.1778228, 0.1334158,…</span></a>
+<a class="sourceLine" id="cb39-13" data-line-number="13"><span class="co">## $ for_born             &lt;dbl&gt; 0.04383860, 0.08729792, 0.20586960, 0.15526…</span></a>
+<a class="sourceLine" id="cb39-14" data-line-number="14"><span class="co">## $ white                &lt;dbl&gt; 0.8972737, 0.8849885, 0.7328322, 0.8235779,…</span></a>
+<a class="sourceLine" id="cb39-15" data-line-number="15"><span class="co">## $ black                &lt;dbl&gt; 0.012213740, 0.017090069, 0.079514240, 0.03…</span></a>
+<a class="sourceLine" id="cb39-16" data-line-number="16"><span class="co">## $ asian                &lt;dbl&gt; 0.006324973, 0.021709007, 0.019950846, 0.03…</span></a>
+<a class="sourceLine" id="cb39-17" data-line-number="17"><span class="co">## $ hispanic             &lt;dbl&gt; 0.070229008, 0.047575058, 0.136330779, 0.07…</span></a>
+<a class="sourceLine" id="cb39-18" data-line-number="18"><span class="co">## $ two_or_more          &lt;dbl&gt; 0.012431843, 0.027713626, 0.017348562, 0.01…</span></a>
+<a class="sourceLine" id="cb39-19" data-line-number="19"><span class="co">## $ eth_het              &lt;dbl&gt; -17032656, -3685242, -26905553, -36365806, …</span></a>
+<a class="sourceLine" id="cb39-20" data-line-number="20"><span class="co">## $ med_house_income     &lt;dbl&gt; 105735, 69625, 70679, 74528, 52885, 64100, …</span></a>
+<a class="sourceLine" id="cb39-21" data-line-number="21"><span class="co">## $ pub_assist           &lt;dbl&gt; 0.020782396, 0.004667445, 0.021067926, 0.03…</span></a>
+<a class="sourceLine" id="cb39-22" data-line-number="22"><span class="co">## $ gini                 &lt;dbl&gt; 0.4084, 0.3886, 0.4693, 0.4052, 0.5327, 0.4…</span></a>
+<a class="sourceLine" id="cb39-23" data-line-number="23"><span class="co">## $ fam_pov_per          &lt;dbl&gt; 0.04754601, 0.06521739, 0.05843440, 0.02486…</span></a>
+<a class="sourceLine" id="cb39-24" data-line-number="24"><span class="co">## $ unemp_rate           &lt;dbl&gt; 0.03361345, 0.03127572, 0.06124498, 0.03983…</span></a>
+<a class="sourceLine" id="cb39-25" data-line-number="25"><span class="co">## $ total_house_h        &lt;dbl&gt; 1636, 857, 2753, 2878, 2326, 2635, 1245, 80…</span></a>
+<a class="sourceLine" id="cb39-26" data-line-number="26"><span class="co">## $ fam_house_per        &lt;dbl&gt; 0.7970660, 0.6977830, 0.6589175, 0.6567060,…</span></a>
+<a class="sourceLine" id="cb39-27" data-line-number="27"><span class="co">## $ fem_head_per         &lt;dbl&gt; 0.08985330, 0.12018670, 0.11442063, 0.12126…</span></a>
+<a class="sourceLine" id="cb39-28" data-line-number="28"><span class="co">## $ same_sex_coup_per    &lt;dbl&gt; 0.00000000, 0.00000000, 0.00000000, 0.00000…</span></a>
+<a class="sourceLine" id="cb39-29" data-line-number="29"><span class="co">## $ grand_head_per       &lt;dbl&gt; 0.000000000, 0.005834306, 0.000000000, 0.00…</span></a>
+<a class="sourceLine" id="cb39-30" data-line-number="30"><span class="co">## $ less_than_hs         &lt;dbl&gt; 0.02515518, 0.05773956, 0.09364548, 0.08426…</span></a>
+<a class="sourceLine" id="cb39-31" data-line-number="31"><span class="co">## $ hs_grad              &lt;dbl&gt; 0.19568768, 0.25307125, 0.17332284, 0.25298…</span></a>
+<a class="sourceLine" id="cb39-32" data-line-number="32"><span class="co">## $ some_coll            &lt;dbl&gt; 0.2211696, 0.3157248, 0.2726736, 0.3534052,…</span></a>
+<a class="sourceLine" id="cb39-33" data-line-number="33"><span class="co">## $ bach                 &lt;dbl&gt; 0.32473048, 0.26167076, 0.26677159, 0.23124…</span></a>
+<a class="sourceLine" id="cb39-34" data-line-number="34"><span class="co">## $ master               &lt;dbl&gt; 0.15942502, 0.09705160, 0.12059807, 0.06714…</span></a>
+<a class="sourceLine" id="cb39-35" data-line-number="35"><span class="co">## $ prof                 &lt;dbl&gt; 0.0405096374, 0.0098280098, 0.0397403108, 0…</span></a>
+<a class="sourceLine" id="cb39-36" data-line-number="36"><span class="co">## $ doc                  &lt;dbl&gt; 0.033322444, 0.004914005, 0.033248082, 0.00…</span></a>
+<a class="sourceLine" id="cb39-37" data-line-number="37"><span class="co">## $ commute_less10       &lt;dbl&gt; 0.07874016, 0.25109361, 0.05369894, 0.14119…</span></a>
+<a class="sourceLine" id="cb39-38" data-line-number="38"><span class="co">## $ commute1030          &lt;dbl&gt; 0.5131234, 0.4636920, 0.6620965, 0.3941685,…</span></a>
+<a class="sourceLine" id="cb39-39" data-line-number="39"><span class="co">## $ commute3060          &lt;dbl&gt; 0.33114611, 0.18110236, 0.17709226, 0.31263…</span></a>
+<a class="sourceLine" id="cb39-40" data-line-number="40"><span class="co">## $ commute6090          &lt;dbl&gt; 0.055555556, 0.082239720, 0.086832334, 0.13…</span></a>
+<a class="sourceLine" id="cb39-41" data-line-number="41"><span class="co">## $ commute_over90       &lt;dbl&gt; 0.021434821, 0.021872266, 0.020279920, 0.01…</span></a>
+<a class="sourceLine" id="cb39-42" data-line-number="42"><span class="co">## $ by_auto              &lt;dbl&gt; 0.9267791, 0.9704861, 0.9248285, 0.9037018,…</span></a>
+<a class="sourceLine" id="cb39-43" data-line-number="43"><span class="co">## $ by_pub_trans         &lt;dbl&gt; 0.000000000, 0.004340278, 0.020301783, 0.01…</span></a>
+<a class="sourceLine" id="cb39-44" data-line-number="44"><span class="co">## $ by_bike              &lt;dbl&gt; 0.002879473, 0.000000000, 0.000000000, 0.00…</span></a>
+<a class="sourceLine" id="cb39-45" data-line-number="45"><span class="co">## $ by_walk              &lt;dbl&gt; 0.002468120, 0.012152778, 0.004938272, 0.02…</span></a>
+<a class="sourceLine" id="cb39-46" data-line-number="46"><span class="co">## $ total_house_units    &lt;dbl&gt; 1701, 886, 2928, 3181, 2511, 2713, 1581, 85…</span></a>
+<a class="sourceLine" id="cb39-47" data-line-number="47"><span class="co">## $ vacant_unit_per      &lt;dbl&gt; 0.03821282, 0.03273138, 0.05976776, 0.09525…</span></a>
+<a class="sourceLine" id="cb39-48" data-line-number="48"><span class="co">## $ renters_per          &lt;dbl&gt; 0.1088020, 0.2100350, 0.2804214, 0.3425990,…</span></a>
+<a class="sourceLine" id="cb39-49" data-line-number="49"><span class="co">## $ home_own_per         &lt;dbl&gt; 0.8911980, 0.7899650, 0.7195786, 0.6574010,…</span></a>
+<a class="sourceLine" id="cb39-50" data-line-number="50"><span class="co">## $ med_gross_rent       &lt;dbl&gt; 1640, 894, 1454, 954, 1018, 867, 910, 1088,…</span></a>
+<a class="sourceLine" id="cb39-51" data-line-number="51"><span class="co">## $ med_home_val         &lt;dbl&gt; 349000, 230200, 207200, 268400, 223200, 232…</span></a>
+<a class="sourceLine" id="cb39-52" data-line-number="52"><span class="co">## $ med_yr_built_raw     &lt;dbl&gt; 1988, 1955, 1959, 1973, 1964, 1966, 1939, 1…</span></a>
+<a class="sourceLine" id="cb39-53" data-line-number="53"><span class="co">## $ med_yr_built         &lt;chr&gt; &quot;1980 to 1989&quot;, &quot;1950 to 1959&quot;, &quot;1950 to 19…</span></a>
+<a class="sourceLine" id="cb39-54" data-line-number="54"><span class="co">## $ med_yr_moved_inraw   &lt;dbl&gt; 2004, 2003, 2007, 2006, 2006, 2000, 2011, 2…</span></a>
+<a class="sourceLine" id="cb39-55" data-line-number="55"><span class="co">## $ med_yr_rent_moved_in &lt;dbl&gt; 2012, 2010, 2012, 2011, 2011, 2009, 2012, 2…</span></a>
+<a class="sourceLine" id="cb39-56" data-line-number="56"><span class="co">## $ area_acres           &lt;dbl&gt; 9407.9167, 1294.2828, 2123.4927, 3581.9026,…</span></a>
+<a class="sourceLine" id="cb39-57" data-line-number="57"><span class="co">## $ town_id              &lt;dbl&gt; 134, 321, 348, 185, 153, 151, 316, 348, 28,…</span></a>
+<a class="sourceLine" id="cb39-58" data-line-number="58"><span class="co">## $ town                 &lt;chr&gt; &quot;HOLDEN&quot;, &quot;WEST BOYLSTON&quot;, &quot;WORCESTER&quot;, &quot;MI…</span></a>
+<a class="sourceLine" id="cb39-59" data-line-number="59"><span class="co">## $ fips_stco            &lt;dbl&gt; 25027, 25027, 25027, 25027, 25027, 25027, 2…</span></a>
+<a class="sourceLine" id="cb39-60" data-line-number="60"><span class="co">## $ county               &lt;chr&gt; &quot;WORCESTER&quot;, &quot;WORCESTER&quot;, &quot;WORCESTER&quot;, &quot;WOR…</span></a>
+<a class="sourceLine" id="cb39-61" data-line-number="61"><span class="co">## $ area_acr_1           &lt;dbl&gt; 23241.514, 8867.508, 24609.965, 9615.644, 1…</span></a>
+<a class="sourceLine" id="cb39-62" data-line-number="62"><span class="co">## $ m_atown              &lt;chr&gt; &quot;HOLDEN&quot;, &quot;WEST BOYLSTON&quot;, &quot;WORCESTER&quot;, &quot;MI…</span></a></code></pre></div>
 <p>Much better, right? It is frankly still a lot of text, but the way it is presented is rather useful. Each variable is written followed by its data type, i.e. <code>&lt;dbl&gt;</code>, and then a preview of values in that column. If the <code>&lt;dbl&gt;</code> does not make sense yet, do not worry. We will go over data types in depth later. Data types are not the most fun and I think it is important we have fun!</p>
 <p><code>acs_raw</code> is the dataset from which <code>acs_edu</code> was created. As you can see, there are many, many, <em>many</em> different variables that the ACS data provide us with. These are only the tip of the iceberg.</p>
 <p><strong>Pause</strong></p>
@@ -303,8 +303,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><code>.data</code>: A tbl. All main verbs are S3 generics and provide methods for tbl_df(), dtplyr::tbl_dt() and dbplyr::tbl_dbi().</p>
 </blockquote>
 <p>What I want you to take away from this argument definition is <code>a tbl</code>. Whenever you read <code>tbl</code> think to your self “oh, that is just a <code>tibble</code>.” If you recall, when we read rectangular data with <code>readr::read_csv()</code> or any other <code>readr::read_*()</code> function we will end up with a tibble. To verify that this is the case, we can double check our objects using the function <code>is.tbl()</code>. This function takes an object and returns a logical value (<code>TRUE</code> or <code>FALSE</code>) if the statement is true. Let’s double check that <code>acs_raw</code> is in fact a tbl.</p>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" data-line-number="1"><span class="kw">is.tbl</span>(acs_raw)</a>
-<a class="sourceLine" id="cb37-2" data-line-number="2"><span class="co">## [1] TRUE</span></a></code></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb40-1" data-line-number="1"><span class="kw">is.tbl</span>(acs_raw)</a>
+<a class="sourceLine" id="cb40-2" data-line-number="2"><span class="co">## [1] TRUE</span></a></code></pre></div>
 <blockquote>
 <p>Aside: Each object type usually has a function that let’s you test if objects are that type that follow the structure <code>is.obj_type()</code> or the occasional <code>is_obj_type()</code>. We will go over object types more later.</p>
 </blockquote>
@@ -331,145 +331,145 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>select the column <code>name</code> from <code>acs_raw</code></li>
 </ul>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb38-1" data-line-number="1"><span class="kw">select</span>(acs_raw, name)</a>
-<a class="sourceLine" id="cb38-2" data-line-number="2"><span class="co">## # A tibble: 1,478 x 1</span></a>
-<a class="sourceLine" id="cb38-3" data-line-number="3"><span class="co">##    name                                                 </span></a>
-<a class="sourceLine" id="cb38-4" data-line-number="4"><span class="co">##    &lt;chr&gt;                                                </span></a>
-<a class="sourceLine" id="cb38-5" data-line-number="5"><span class="co">##  1 Census Tract 7281, Worcester County, Massachusetts   </span></a>
-<a class="sourceLine" id="cb38-6" data-line-number="6"><span class="co">##  2 Census Tract 7292, Worcester County, Massachusetts   </span></a>
-<a class="sourceLine" id="cb38-7" data-line-number="7"><span class="co">##  3 Census Tract 7307, Worcester County, Massachusetts   </span></a>
-<a class="sourceLine" id="cb38-8" data-line-number="8"><span class="co">##  4 Census Tract 7442, Worcester County, Massachusetts   </span></a>
-<a class="sourceLine" id="cb38-9" data-line-number="9"><span class="co">##  5 Census Tract 7097.01, Worcester County, Massachusetts</span></a>
-<a class="sourceLine" id="cb38-10" data-line-number="10"><span class="co">##  6 Census Tract 7351, Worcester County, Massachusetts   </span></a>
-<a class="sourceLine" id="cb38-11" data-line-number="11"><span class="co">##  7 Census Tract 7543, Worcester County, Massachusetts   </span></a>
-<a class="sourceLine" id="cb38-12" data-line-number="12"><span class="co">##  8 Census Tract 7308.02, Worcester County, Massachusetts</span></a>
-<a class="sourceLine" id="cb38-13" data-line-number="13"><span class="co">##  9 Census Tract 7171, Worcester County, Massachusetts   </span></a>
-<a class="sourceLine" id="cb38-14" data-line-number="14"><span class="co">## 10 Census Tract 7326, Worcester County, Massachusetts   </span></a>
-<a class="sourceLine" id="cb38-15" data-line-number="15"><span class="co">## # … with 1,468 more rows</span></a></code></pre></div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb41-1" data-line-number="1"><span class="kw">select</span>(acs_raw, name)</a>
+<a class="sourceLine" id="cb41-2" data-line-number="2"><span class="co">## # A tibble: 1,478 x 1</span></a>
+<a class="sourceLine" id="cb41-3" data-line-number="3"><span class="co">##    name                                                 </span></a>
+<a class="sourceLine" id="cb41-4" data-line-number="4"><span class="co">##    &lt;chr&gt;                                                </span></a>
+<a class="sourceLine" id="cb41-5" data-line-number="5"><span class="co">##  1 Census Tract 7281, Worcester County, Massachusetts   </span></a>
+<a class="sourceLine" id="cb41-6" data-line-number="6"><span class="co">##  2 Census Tract 7292, Worcester County, Massachusetts   </span></a>
+<a class="sourceLine" id="cb41-7" data-line-number="7"><span class="co">##  3 Census Tract 7307, Worcester County, Massachusetts   </span></a>
+<a class="sourceLine" id="cb41-8" data-line-number="8"><span class="co">##  4 Census Tract 7442, Worcester County, Massachusetts   </span></a>
+<a class="sourceLine" id="cb41-9" data-line-number="9"><span class="co">##  5 Census Tract 7097.01, Worcester County, Massachusetts</span></a>
+<a class="sourceLine" id="cb41-10" data-line-number="10"><span class="co">##  6 Census Tract 7351, Worcester County, Massachusetts   </span></a>
+<a class="sourceLine" id="cb41-11" data-line-number="11"><span class="co">##  7 Census Tract 7543, Worcester County, Massachusetts   </span></a>
+<a class="sourceLine" id="cb41-12" data-line-number="12"><span class="co">##  8 Census Tract 7308.02, Worcester County, Massachusetts</span></a>
+<a class="sourceLine" id="cb41-13" data-line-number="13"><span class="co">##  9 Census Tract 7171, Worcester County, Massachusetts   </span></a>
+<a class="sourceLine" id="cb41-14" data-line-number="14"><span class="co">## 10 Census Tract 7326, Worcester County, Massachusetts   </span></a>
+<a class="sourceLine" id="cb41-15" data-line-number="15"><span class="co">## # … with 1,468 more rows</span></a></code></pre></div>
 <p>The column <code>name</code> was passed to <code>...</code>. Recall that dots allows us to pass “one ore more unquoted expressions separated by commas.” To test this statement out, select <code>town</code> in addition to <code>name</code> from <code>acs_raw</code></p>
 <p>Try it:</p>
 <ul>
 <li>select <code>name</code> and <code>town</code> from <code>acs_raw</code></li>
 </ul>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb39-1" data-line-number="1"><span class="kw">select</span>(acs_raw, name, town)</a>
-<a class="sourceLine" id="cb39-2" data-line-number="2"><span class="co">## # A tibble: 1,478 x 2</span></a>
-<a class="sourceLine" id="cb39-3" data-line-number="3"><span class="co">##    name                                                  town         </span></a>
-<a class="sourceLine" id="cb39-4" data-line-number="4"><span class="co">##    &lt;chr&gt;                                                 &lt;chr&gt;        </span></a>
-<a class="sourceLine" id="cb39-5" data-line-number="5"><span class="co">##  1 Census Tract 7281, Worcester County, Massachusetts    HOLDEN       </span></a>
-<a class="sourceLine" id="cb39-6" data-line-number="6"><span class="co">##  2 Census Tract 7292, Worcester County, Massachusetts    WEST BOYLSTON</span></a>
-<a class="sourceLine" id="cb39-7" data-line-number="7"><span class="co">##  3 Census Tract 7307, Worcester County, Massachusetts    WORCESTER    </span></a>
-<a class="sourceLine" id="cb39-8" data-line-number="8"><span class="co">##  4 Census Tract 7442, Worcester County, Massachusetts    MILFORD      </span></a>
-<a class="sourceLine" id="cb39-9" data-line-number="9"><span class="co">##  5 Census Tract 7097.01, Worcester County, Massachusetts LEOMINSTER   </span></a>
-<a class="sourceLine" id="cb39-10" data-line-number="10"><span class="co">##  6 Census Tract 7351, Worcester County, Massachusetts    LEICESTER    </span></a>
-<a class="sourceLine" id="cb39-11" data-line-number="11"><span class="co">##  7 Census Tract 7543, Worcester County, Massachusetts    WEBSTER      </span></a>
-<a class="sourceLine" id="cb39-12" data-line-number="12"><span class="co">##  8 Census Tract 7308.02, Worcester County, Massachusetts WORCESTER    </span></a>
-<a class="sourceLine" id="cb39-13" data-line-number="13"><span class="co">##  9 Census Tract 7171, Worcester County, Massachusetts    BERLIN       </span></a>
-<a class="sourceLine" id="cb39-14" data-line-number="14"><span class="co">## 10 Census Tract 7326, Worcester County, Massachusetts    WORCESTER    </span></a>
-<a class="sourceLine" id="cb39-15" data-line-number="15"><span class="co">## # … with 1,468 more rows</span></a></code></pre></div>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb42-1" data-line-number="1"><span class="kw">select</span>(acs_raw, name, town)</a>
+<a class="sourceLine" id="cb42-2" data-line-number="2"><span class="co">## # A tibble: 1,478 x 2</span></a>
+<a class="sourceLine" id="cb42-3" data-line-number="3"><span class="co">##    name                                                  town         </span></a>
+<a class="sourceLine" id="cb42-4" data-line-number="4"><span class="co">##    &lt;chr&gt;                                                 &lt;chr&gt;        </span></a>
+<a class="sourceLine" id="cb42-5" data-line-number="5"><span class="co">##  1 Census Tract 7281, Worcester County, Massachusetts    HOLDEN       </span></a>
+<a class="sourceLine" id="cb42-6" data-line-number="6"><span class="co">##  2 Census Tract 7292, Worcester County, Massachusetts    WEST BOYLSTON</span></a>
+<a class="sourceLine" id="cb42-7" data-line-number="7"><span class="co">##  3 Census Tract 7307, Worcester County, Massachusetts    WORCESTER    </span></a>
+<a class="sourceLine" id="cb42-8" data-line-number="8"><span class="co">##  4 Census Tract 7442, Worcester County, Massachusetts    MILFORD      </span></a>
+<a class="sourceLine" id="cb42-9" data-line-number="9"><span class="co">##  5 Census Tract 7097.01, Worcester County, Massachusetts LEOMINSTER   </span></a>
+<a class="sourceLine" id="cb42-10" data-line-number="10"><span class="co">##  6 Census Tract 7351, Worcester County, Massachusetts    LEICESTER    </span></a>
+<a class="sourceLine" id="cb42-11" data-line-number="11"><span class="co">##  7 Census Tract 7543, Worcester County, Massachusetts    WEBSTER      </span></a>
+<a class="sourceLine" id="cb42-12" data-line-number="12"><span class="co">##  8 Census Tract 7308.02, Worcester County, Massachusetts WORCESTER    </span></a>
+<a class="sourceLine" id="cb42-13" data-line-number="13"><span class="co">##  9 Census Tract 7171, Worcester County, Massachusetts    BERLIN       </span></a>
+<a class="sourceLine" id="cb42-14" data-line-number="14"><span class="co">## 10 Census Tract 7326, Worcester County, Massachusetts    WORCESTER    </span></a>
+<a class="sourceLine" id="cb42-15" data-line-number="15"><span class="co">## # … with 1,468 more rows</span></a></code></pre></div>
 <p>Great, you’re getting the hang of it.</p>
 <p>Now, in addition to to selecting columns solely based on their names, we can also select a range of columns using the format <code>col_from:col_to</code>. In writing this <code>select()</code> will register that you want every column from and including <code>col_from</code> up until and including <code>col_to</code>.</p>
 <p>Let’s refresh ourselves with what our data look like:</p>
-<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb40-1" data-line-number="1"><span class="kw">glimpse</span>(acs_raw)</a>
-<a class="sourceLine" id="cb40-2" data-line-number="2"><span class="co">## Observations: 1,478</span></a>
-<a class="sourceLine" id="cb40-3" data-line-number="3"><span class="co">## Variables: 59</span></a>
-<a class="sourceLine" id="cb40-4" data-line-number="4"><span class="co">## $ ct_id_10             &lt;dbl&gt; 25027728100, 25027729200, 25027730700, 2502…</span></a>
-<a class="sourceLine" id="cb40-5" data-line-number="5"><span class="co">## $ name                 &lt;chr&gt; &quot;Census Tract 7281, Worcester County, Massa…</span></a>
-<a class="sourceLine" id="cb40-6" data-line-number="6"><span class="co">## $ total_pop            &lt;dbl&gt; 4585, 2165, 6917, 7278, 5059, 6632, 3259, 2…</span></a>
-<a class="sourceLine" id="cb40-7" data-line-number="7"><span class="co">## $ pop_den              &lt;dbl&gt; 332.5741, 1069.6977, 2112.9526, 1345.5905, …</span></a>
-<a class="sourceLine" id="cb40-8" data-line-number="8"><span class="co">## $ sex_ratio            &lt;dbl&gt; 1.1315667, 1.3179872, 1.1329016, 1.1156977,…</span></a>
-<a class="sourceLine" id="cb40-9" data-line-number="9"><span class="co">## $ age_u18              &lt;dbl&gt; 0.2340240, 0.1810624, 0.1705942, 0.2033526,…</span></a>
-<a class="sourceLine" id="cb40-10" data-line-number="10"><span class="co">## $ age1834              &lt;dbl&gt; 0.2023991, 0.1510393, 0.2143993, 0.2272602,…</span></a>
-<a class="sourceLine" id="cb40-11" data-line-number="11"><span class="co">## $ age3564              &lt;dbl&gt; 0.3980371, 0.4609700, 0.4371838, 0.4359714,…</span></a>
-<a class="sourceLine" id="cb40-12" data-line-number="12"><span class="co">## $ age_o65              &lt;dbl&gt; 0.1655398, 0.2069284, 0.1778228, 0.1334158,…</span></a>
-<a class="sourceLine" id="cb40-13" data-line-number="13"><span class="co">## $ for_born             &lt;dbl&gt; 0.04383860, 0.08729792, 0.20586960, 0.15526…</span></a>
-<a class="sourceLine" id="cb40-14" data-line-number="14"><span class="co">## $ white                &lt;dbl&gt; 0.8972737, 0.8849885, 0.7328322, 0.8235779,…</span></a>
-<a class="sourceLine" id="cb40-15" data-line-number="15"><span class="co">## $ black                &lt;dbl&gt; 0.012213740, 0.017090069, 0.079514240, 0.03…</span></a>
-<a class="sourceLine" id="cb40-16" data-line-number="16"><span class="co">## $ asian                &lt;dbl&gt; 0.006324973, 0.021709007, 0.019950846, 0.03…</span></a>
-<a class="sourceLine" id="cb40-17" data-line-number="17"><span class="co">## $ hispanic             &lt;dbl&gt; 0.070229008, 0.047575058, 0.136330779, 0.07…</span></a>
-<a class="sourceLine" id="cb40-18" data-line-number="18"><span class="co">## $ two_or_more          &lt;dbl&gt; 0.012431843, 0.027713626, 0.017348562, 0.01…</span></a>
-<a class="sourceLine" id="cb40-19" data-line-number="19"><span class="co">## $ eth_het              &lt;dbl&gt; -17032656, -3685242, -26905553, -36365806, …</span></a>
-<a class="sourceLine" id="cb40-20" data-line-number="20"><span class="co">## $ med_house_income     &lt;dbl&gt; 105735, 69625, 70679, 74528, 52885, 64100, …</span></a>
-<a class="sourceLine" id="cb40-21" data-line-number="21"><span class="co">## $ pub_assist           &lt;dbl&gt; 0.020782396, 0.004667445, 0.021067926, 0.03…</span></a>
-<a class="sourceLine" id="cb40-22" data-line-number="22"><span class="co">## $ gini                 &lt;dbl&gt; 0.4084, 0.3886, 0.4693, 0.4052, 0.5327, 0.4…</span></a>
-<a class="sourceLine" id="cb40-23" data-line-number="23"><span class="co">## $ fam_pov_per          &lt;dbl&gt; 0.04754601, 0.06521739, 0.05843440, 0.02486…</span></a>
-<a class="sourceLine" id="cb40-24" data-line-number="24"><span class="co">## $ unemp_rate           &lt;dbl&gt; 0.03361345, 0.03127572, 0.06124498, 0.03983…</span></a>
-<a class="sourceLine" id="cb40-25" data-line-number="25"><span class="co">## $ total_house_h        &lt;dbl&gt; 1636, 857, 2753, 2878, 2326, 2635, 1245, 80…</span></a>
-<a class="sourceLine" id="cb40-26" data-line-number="26"><span class="co">## $ fam_house_per        &lt;dbl&gt; 0.7970660, 0.6977830, 0.6589175, 0.6567060,…</span></a>
-<a class="sourceLine" id="cb40-27" data-line-number="27"><span class="co">## $ fem_head_per         &lt;dbl&gt; 0.08985330, 0.12018670, 0.11442063, 0.12126…</span></a>
-<a class="sourceLine" id="cb40-28" data-line-number="28"><span class="co">## $ same_sex_coup_per    &lt;dbl&gt; 0.00000000, 0.00000000, 0.00000000, 0.00000…</span></a>
-<a class="sourceLine" id="cb40-29" data-line-number="29"><span class="co">## $ grand_head_per       &lt;dbl&gt; 0.000000000, 0.005834306, 0.000000000, 0.00…</span></a>
-<a class="sourceLine" id="cb40-30" data-line-number="30"><span class="co">## $ less_than_hs         &lt;dbl&gt; 0.02515518, 0.05773956, 0.09364548, 0.08426…</span></a>
-<a class="sourceLine" id="cb40-31" data-line-number="31"><span class="co">## $ hs_grad              &lt;dbl&gt; 0.19568768, 0.25307125, 0.17332284, 0.25298…</span></a>
-<a class="sourceLine" id="cb40-32" data-line-number="32"><span class="co">## $ some_coll            &lt;dbl&gt; 0.2211696, 0.3157248, 0.2726736, 0.3534052,…</span></a>
-<a class="sourceLine" id="cb40-33" data-line-number="33"><span class="co">## $ bach                 &lt;dbl&gt; 0.32473048, 0.26167076, 0.26677159, 0.23124…</span></a>
-<a class="sourceLine" id="cb40-34" data-line-number="34"><span class="co">## $ master               &lt;dbl&gt; 0.15942502, 0.09705160, 0.12059807, 0.06714…</span></a>
-<a class="sourceLine" id="cb40-35" data-line-number="35"><span class="co">## $ prof                 &lt;dbl&gt; 0.0405096374, 0.0098280098, 0.0397403108, 0…</span></a>
-<a class="sourceLine" id="cb40-36" data-line-number="36"><span class="co">## $ doc                  &lt;dbl&gt; 0.033322444, 0.004914005, 0.033248082, 0.00…</span></a>
-<a class="sourceLine" id="cb40-37" data-line-number="37"><span class="co">## $ commute_less10       &lt;dbl&gt; 0.07874016, 0.25109361, 0.05369894, 0.14119…</span></a>
-<a class="sourceLine" id="cb40-38" data-line-number="38"><span class="co">## $ commute1030          &lt;dbl&gt; 0.5131234, 0.4636920, 0.6620965, 0.3941685,…</span></a>
-<a class="sourceLine" id="cb40-39" data-line-number="39"><span class="co">## $ commute3060          &lt;dbl&gt; 0.33114611, 0.18110236, 0.17709226, 0.31263…</span></a>
-<a class="sourceLine" id="cb40-40" data-line-number="40"><span class="co">## $ commute6090          &lt;dbl&gt; 0.055555556, 0.082239720, 0.086832334, 0.13…</span></a>
-<a class="sourceLine" id="cb40-41" data-line-number="41"><span class="co">## $ commute_over90       &lt;dbl&gt; 0.021434821, 0.021872266, 0.020279920, 0.01…</span></a>
-<a class="sourceLine" id="cb40-42" data-line-number="42"><span class="co">## $ by_auto              &lt;dbl&gt; 0.9267791, 0.9704861, 0.9248285, 0.9037018,…</span></a>
-<a class="sourceLine" id="cb40-43" data-line-number="43"><span class="co">## $ by_pub_trans         &lt;dbl&gt; 0.000000000, 0.004340278, 0.020301783, 0.01…</span></a>
-<a class="sourceLine" id="cb40-44" data-line-number="44"><span class="co">## $ by_bike              &lt;dbl&gt; 0.002879473, 0.000000000, 0.000000000, 0.00…</span></a>
-<a class="sourceLine" id="cb40-45" data-line-number="45"><span class="co">## $ by_walk              &lt;dbl&gt; 0.002468120, 0.012152778, 0.004938272, 0.02…</span></a>
-<a class="sourceLine" id="cb40-46" data-line-number="46"><span class="co">## $ total_house_units    &lt;dbl&gt; 1701, 886, 2928, 3181, 2511, 2713, 1581, 85…</span></a>
-<a class="sourceLine" id="cb40-47" data-line-number="47"><span class="co">## $ vacant_unit_per      &lt;dbl&gt; 0.03821282, 0.03273138, 0.05976776, 0.09525…</span></a>
-<a class="sourceLine" id="cb40-48" data-line-number="48"><span class="co">## $ renters_per          &lt;dbl&gt; 0.1088020, 0.2100350, 0.2804214, 0.3425990,…</span></a>
-<a class="sourceLine" id="cb40-49" data-line-number="49"><span class="co">## $ home_own_per         &lt;dbl&gt; 0.8911980, 0.7899650, 0.7195786, 0.6574010,…</span></a>
-<a class="sourceLine" id="cb40-50" data-line-number="50"><span class="co">## $ med_gross_rent       &lt;dbl&gt; 1640, 894, 1454, 954, 1018, 867, 910, 1088,…</span></a>
-<a class="sourceLine" id="cb40-51" data-line-number="51"><span class="co">## $ med_home_val         &lt;dbl&gt; 349000, 230200, 207200, 268400, 223200, 232…</span></a>
-<a class="sourceLine" id="cb40-52" data-line-number="52"><span class="co">## $ med_yr_built_raw     &lt;dbl&gt; 1988, 1955, 1959, 1973, 1964, 1966, 1939, 1…</span></a>
-<a class="sourceLine" id="cb40-53" data-line-number="53"><span class="co">## $ med_yr_built         &lt;chr&gt; &quot;1980 to 1989&quot;, &quot;1950 to 1959&quot;, &quot;1950 to 19…</span></a>
-<a class="sourceLine" id="cb40-54" data-line-number="54"><span class="co">## $ med_yr_moved_inraw   &lt;dbl&gt; 2004, 2003, 2007, 2006, 2006, 2000, 2011, 2…</span></a>
-<a class="sourceLine" id="cb40-55" data-line-number="55"><span class="co">## $ med_yr_rent_moved_in &lt;dbl&gt; 2012, 2010, 2012, 2011, 2011, 2009, 2012, 2…</span></a>
-<a class="sourceLine" id="cb40-56" data-line-number="56"><span class="co">## $ area_acres           &lt;dbl&gt; 9407.9167, 1294.2828, 2123.4927, 3581.9026,…</span></a>
-<a class="sourceLine" id="cb40-57" data-line-number="57"><span class="co">## $ town_id              &lt;dbl&gt; 134, 321, 348, 185, 153, 151, 316, 348, 28,…</span></a>
-<a class="sourceLine" id="cb40-58" data-line-number="58"><span class="co">## $ town                 &lt;chr&gt; &quot;HOLDEN&quot;, &quot;WEST BOYLSTON&quot;, &quot;WORCESTER&quot;, &quot;MI…</span></a>
-<a class="sourceLine" id="cb40-59" data-line-number="59"><span class="co">## $ fips_stco            &lt;dbl&gt; 25027, 25027, 25027, 25027, 25027, 25027, 2…</span></a>
-<a class="sourceLine" id="cb40-60" data-line-number="60"><span class="co">## $ county               &lt;chr&gt; &quot;WORCESTER&quot;, &quot;WORCESTER&quot;, &quot;WORCESTER&quot;, &quot;WOR…</span></a>
-<a class="sourceLine" id="cb40-61" data-line-number="61"><span class="co">## $ area_acr_1           &lt;dbl&gt; 23241.514, 8867.508, 24609.965, 9615.644, 1…</span></a>
-<a class="sourceLine" id="cb40-62" data-line-number="62"><span class="co">## $ m_atown              &lt;chr&gt; &quot;HOLDEN&quot;, &quot;WEST BOYLSTON&quot;, &quot;WORCESTER&quot;, &quot;MI…</span></a></code></pre></div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb43-1" data-line-number="1"><span class="kw">glimpse</span>(acs_raw)</a>
+<a class="sourceLine" id="cb43-2" data-line-number="2"><span class="co">## Observations: 1,478</span></a>
+<a class="sourceLine" id="cb43-3" data-line-number="3"><span class="co">## Variables: 59</span></a>
+<a class="sourceLine" id="cb43-4" data-line-number="4"><span class="co">## $ ct_id_10             &lt;dbl&gt; 25027728100, 25027729200, 25027730700, 2502…</span></a>
+<a class="sourceLine" id="cb43-5" data-line-number="5"><span class="co">## $ name                 &lt;chr&gt; &quot;Census Tract 7281, Worcester County, Massa…</span></a>
+<a class="sourceLine" id="cb43-6" data-line-number="6"><span class="co">## $ total_pop            &lt;dbl&gt; 4585, 2165, 6917, 7278, 5059, 6632, 3259, 2…</span></a>
+<a class="sourceLine" id="cb43-7" data-line-number="7"><span class="co">## $ pop_den              &lt;dbl&gt; 332.5741, 1069.6977, 2112.9526, 1345.5905, …</span></a>
+<a class="sourceLine" id="cb43-8" data-line-number="8"><span class="co">## $ sex_ratio            &lt;dbl&gt; 1.1315667, 1.3179872, 1.1329016, 1.1156977,…</span></a>
+<a class="sourceLine" id="cb43-9" data-line-number="9"><span class="co">## $ age_u18              &lt;dbl&gt; 0.2340240, 0.1810624, 0.1705942, 0.2033526,…</span></a>
+<a class="sourceLine" id="cb43-10" data-line-number="10"><span class="co">## $ age1834              &lt;dbl&gt; 0.2023991, 0.1510393, 0.2143993, 0.2272602,…</span></a>
+<a class="sourceLine" id="cb43-11" data-line-number="11"><span class="co">## $ age3564              &lt;dbl&gt; 0.3980371, 0.4609700, 0.4371838, 0.4359714,…</span></a>
+<a class="sourceLine" id="cb43-12" data-line-number="12"><span class="co">## $ age_o65              &lt;dbl&gt; 0.1655398, 0.2069284, 0.1778228, 0.1334158,…</span></a>
+<a class="sourceLine" id="cb43-13" data-line-number="13"><span class="co">## $ for_born             &lt;dbl&gt; 0.04383860, 0.08729792, 0.20586960, 0.15526…</span></a>
+<a class="sourceLine" id="cb43-14" data-line-number="14"><span class="co">## $ white                &lt;dbl&gt; 0.8972737, 0.8849885, 0.7328322, 0.8235779,…</span></a>
+<a class="sourceLine" id="cb43-15" data-line-number="15"><span class="co">## $ black                &lt;dbl&gt; 0.012213740, 0.017090069, 0.079514240, 0.03…</span></a>
+<a class="sourceLine" id="cb43-16" data-line-number="16"><span class="co">## $ asian                &lt;dbl&gt; 0.006324973, 0.021709007, 0.019950846, 0.03…</span></a>
+<a class="sourceLine" id="cb43-17" data-line-number="17"><span class="co">## $ hispanic             &lt;dbl&gt; 0.070229008, 0.047575058, 0.136330779, 0.07…</span></a>
+<a class="sourceLine" id="cb43-18" data-line-number="18"><span class="co">## $ two_or_more          &lt;dbl&gt; 0.012431843, 0.027713626, 0.017348562, 0.01…</span></a>
+<a class="sourceLine" id="cb43-19" data-line-number="19"><span class="co">## $ eth_het              &lt;dbl&gt; -17032656, -3685242, -26905553, -36365806, …</span></a>
+<a class="sourceLine" id="cb43-20" data-line-number="20"><span class="co">## $ med_house_income     &lt;dbl&gt; 105735, 69625, 70679, 74528, 52885, 64100, …</span></a>
+<a class="sourceLine" id="cb43-21" data-line-number="21"><span class="co">## $ pub_assist           &lt;dbl&gt; 0.020782396, 0.004667445, 0.021067926, 0.03…</span></a>
+<a class="sourceLine" id="cb43-22" data-line-number="22"><span class="co">## $ gini                 &lt;dbl&gt; 0.4084, 0.3886, 0.4693, 0.4052, 0.5327, 0.4…</span></a>
+<a class="sourceLine" id="cb43-23" data-line-number="23"><span class="co">## $ fam_pov_per          &lt;dbl&gt; 0.04754601, 0.06521739, 0.05843440, 0.02486…</span></a>
+<a class="sourceLine" id="cb43-24" data-line-number="24"><span class="co">## $ unemp_rate           &lt;dbl&gt; 0.03361345, 0.03127572, 0.06124498, 0.03983…</span></a>
+<a class="sourceLine" id="cb43-25" data-line-number="25"><span class="co">## $ total_house_h        &lt;dbl&gt; 1636, 857, 2753, 2878, 2326, 2635, 1245, 80…</span></a>
+<a class="sourceLine" id="cb43-26" data-line-number="26"><span class="co">## $ fam_house_per        &lt;dbl&gt; 0.7970660, 0.6977830, 0.6589175, 0.6567060,…</span></a>
+<a class="sourceLine" id="cb43-27" data-line-number="27"><span class="co">## $ fem_head_per         &lt;dbl&gt; 0.08985330, 0.12018670, 0.11442063, 0.12126…</span></a>
+<a class="sourceLine" id="cb43-28" data-line-number="28"><span class="co">## $ same_sex_coup_per    &lt;dbl&gt; 0.00000000, 0.00000000, 0.00000000, 0.00000…</span></a>
+<a class="sourceLine" id="cb43-29" data-line-number="29"><span class="co">## $ grand_head_per       &lt;dbl&gt; 0.000000000, 0.005834306, 0.000000000, 0.00…</span></a>
+<a class="sourceLine" id="cb43-30" data-line-number="30"><span class="co">## $ less_than_hs         &lt;dbl&gt; 0.02515518, 0.05773956, 0.09364548, 0.08426…</span></a>
+<a class="sourceLine" id="cb43-31" data-line-number="31"><span class="co">## $ hs_grad              &lt;dbl&gt; 0.19568768, 0.25307125, 0.17332284, 0.25298…</span></a>
+<a class="sourceLine" id="cb43-32" data-line-number="32"><span class="co">## $ some_coll            &lt;dbl&gt; 0.2211696, 0.3157248, 0.2726736, 0.3534052,…</span></a>
+<a class="sourceLine" id="cb43-33" data-line-number="33"><span class="co">## $ bach                 &lt;dbl&gt; 0.32473048, 0.26167076, 0.26677159, 0.23124…</span></a>
+<a class="sourceLine" id="cb43-34" data-line-number="34"><span class="co">## $ master               &lt;dbl&gt; 0.15942502, 0.09705160, 0.12059807, 0.06714…</span></a>
+<a class="sourceLine" id="cb43-35" data-line-number="35"><span class="co">## $ prof                 &lt;dbl&gt; 0.0405096374, 0.0098280098, 0.0397403108, 0…</span></a>
+<a class="sourceLine" id="cb43-36" data-line-number="36"><span class="co">## $ doc                  &lt;dbl&gt; 0.033322444, 0.004914005, 0.033248082, 0.00…</span></a>
+<a class="sourceLine" id="cb43-37" data-line-number="37"><span class="co">## $ commute_less10       &lt;dbl&gt; 0.07874016, 0.25109361, 0.05369894, 0.14119…</span></a>
+<a class="sourceLine" id="cb43-38" data-line-number="38"><span class="co">## $ commute1030          &lt;dbl&gt; 0.5131234, 0.4636920, 0.6620965, 0.3941685,…</span></a>
+<a class="sourceLine" id="cb43-39" data-line-number="39"><span class="co">## $ commute3060          &lt;dbl&gt; 0.33114611, 0.18110236, 0.17709226, 0.31263…</span></a>
+<a class="sourceLine" id="cb43-40" data-line-number="40"><span class="co">## $ commute6090          &lt;dbl&gt; 0.055555556, 0.082239720, 0.086832334, 0.13…</span></a>
+<a class="sourceLine" id="cb43-41" data-line-number="41"><span class="co">## $ commute_over90       &lt;dbl&gt; 0.021434821, 0.021872266, 0.020279920, 0.01…</span></a>
+<a class="sourceLine" id="cb43-42" data-line-number="42"><span class="co">## $ by_auto              &lt;dbl&gt; 0.9267791, 0.9704861, 0.9248285, 0.9037018,…</span></a>
+<a class="sourceLine" id="cb43-43" data-line-number="43"><span class="co">## $ by_pub_trans         &lt;dbl&gt; 0.000000000, 0.004340278, 0.020301783, 0.01…</span></a>
+<a class="sourceLine" id="cb43-44" data-line-number="44"><span class="co">## $ by_bike              &lt;dbl&gt; 0.002879473, 0.000000000, 0.000000000, 0.00…</span></a>
+<a class="sourceLine" id="cb43-45" data-line-number="45"><span class="co">## $ by_walk              &lt;dbl&gt; 0.002468120, 0.012152778, 0.004938272, 0.02…</span></a>
+<a class="sourceLine" id="cb43-46" data-line-number="46"><span class="co">## $ total_house_units    &lt;dbl&gt; 1701, 886, 2928, 3181, 2511, 2713, 1581, 85…</span></a>
+<a class="sourceLine" id="cb43-47" data-line-number="47"><span class="co">## $ vacant_unit_per      &lt;dbl&gt; 0.03821282, 0.03273138, 0.05976776, 0.09525…</span></a>
+<a class="sourceLine" id="cb43-48" data-line-number="48"><span class="co">## $ renters_per          &lt;dbl&gt; 0.1088020, 0.2100350, 0.2804214, 0.3425990,…</span></a>
+<a class="sourceLine" id="cb43-49" data-line-number="49"><span class="co">## $ home_own_per         &lt;dbl&gt; 0.8911980, 0.7899650, 0.7195786, 0.6574010,…</span></a>
+<a class="sourceLine" id="cb43-50" data-line-number="50"><span class="co">## $ med_gross_rent       &lt;dbl&gt; 1640, 894, 1454, 954, 1018, 867, 910, 1088,…</span></a>
+<a class="sourceLine" id="cb43-51" data-line-number="51"><span class="co">## $ med_home_val         &lt;dbl&gt; 349000, 230200, 207200, 268400, 223200, 232…</span></a>
+<a class="sourceLine" id="cb43-52" data-line-number="52"><span class="co">## $ med_yr_built_raw     &lt;dbl&gt; 1988, 1955, 1959, 1973, 1964, 1966, 1939, 1…</span></a>
+<a class="sourceLine" id="cb43-53" data-line-number="53"><span class="co">## $ med_yr_built         &lt;chr&gt; &quot;1980 to 1989&quot;, &quot;1950 to 1959&quot;, &quot;1950 to 19…</span></a>
+<a class="sourceLine" id="cb43-54" data-line-number="54"><span class="co">## $ med_yr_moved_inraw   &lt;dbl&gt; 2004, 2003, 2007, 2006, 2006, 2000, 2011, 2…</span></a>
+<a class="sourceLine" id="cb43-55" data-line-number="55"><span class="co">## $ med_yr_rent_moved_in &lt;dbl&gt; 2012, 2010, 2012, 2011, 2011, 2009, 2012, 2…</span></a>
+<a class="sourceLine" id="cb43-56" data-line-number="56"><span class="co">## $ area_acres           &lt;dbl&gt; 9407.9167, 1294.2828, 2123.4927, 3581.9026,…</span></a>
+<a class="sourceLine" id="cb43-57" data-line-number="57"><span class="co">## $ town_id              &lt;dbl&gt; 134, 321, 348, 185, 153, 151, 316, 348, 28,…</span></a>
+<a class="sourceLine" id="cb43-58" data-line-number="58"><span class="co">## $ town                 &lt;chr&gt; &quot;HOLDEN&quot;, &quot;WEST BOYLSTON&quot;, &quot;WORCESTER&quot;, &quot;MI…</span></a>
+<a class="sourceLine" id="cb43-59" data-line-number="59"><span class="co">## $ fips_stco            &lt;dbl&gt; 25027, 25027, 25027, 25027, 25027, 25027, 2…</span></a>
+<a class="sourceLine" id="cb43-60" data-line-number="60"><span class="co">## $ county               &lt;chr&gt; &quot;WORCESTER&quot;, &quot;WORCESTER&quot;, &quot;WORCESTER&quot;, &quot;WOR…</span></a>
+<a class="sourceLine" id="cb43-61" data-line-number="61"><span class="co">## $ area_acr_1           &lt;dbl&gt; 23241.514, 8867.508, 24609.965, 9615.644, 1…</span></a>
+<a class="sourceLine" id="cb43-62" data-line-number="62"><span class="co">## $ m_atown              &lt;chr&gt; &quot;HOLDEN&quot;, &quot;WEST BOYLSTON&quot;, &quot;WORCESTER&quot;, &quot;MI…</span></a></code></pre></div>
 <p>Try it:</p>
 <ul>
 <li>select the columns <code>age_u18</code> through <code>age_o65</code>.</li>
 </ul>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb41-1" data-line-number="1"><span class="kw">select</span>(acs_raw, age_u18<span class="op">:</span>age_o65)</a>
-<a class="sourceLine" id="cb41-2" data-line-number="2"><span class="co">## # A tibble: 1,478 x 4</span></a>
-<a class="sourceLine" id="cb41-3" data-line-number="3"><span class="co">##    age_u18 age1834 age3564 age_o65</span></a>
-<a class="sourceLine" id="cb41-4" data-line-number="4"><span class="co">##      &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;</span></a>
-<a class="sourceLine" id="cb41-5" data-line-number="5"><span class="co">##  1   0.234   0.202   0.398   0.166</span></a>
-<a class="sourceLine" id="cb41-6" data-line-number="6"><span class="co">##  2   0.181   0.151   0.461   0.207</span></a>
-<a class="sourceLine" id="cb41-7" data-line-number="7"><span class="co">##  3   0.171   0.214   0.437   0.178</span></a>
-<a class="sourceLine" id="cb41-8" data-line-number="8"><span class="co">##  4   0.203   0.227   0.436   0.133</span></a>
-<a class="sourceLine" id="cb41-9" data-line-number="9"><span class="co">##  5   0.177   0.203   0.430   0.190</span></a>
-<a class="sourceLine" id="cb41-10" data-line-number="10"><span class="co">##  6   0.163   0.237   0.439   0.162</span></a>
-<a class="sourceLine" id="cb41-11" data-line-number="11"><span class="co">##  7   0.191   0.326   0.380   0.102</span></a>
-<a class="sourceLine" id="cb41-12" data-line-number="12"><span class="co">##  8   0.202   0.183   0.466   0.148</span></a>
-<a class="sourceLine" id="cb41-13" data-line-number="13"><span class="co">##  9   0.188   0.150   0.462   0.200</span></a>
-<a class="sourceLine" id="cb41-14" data-line-number="14"><span class="co">## 10   0.244   0.286   0.342   0.128</span></a>
-<a class="sourceLine" id="cb41-15" data-line-number="15"><span class="co">## # … with 1,468 more rows</span></a></code></pre></div>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb44-1" data-line-number="1"><span class="kw">select</span>(acs_raw, age_u18<span class="op">:</span>age_o65)</a>
+<a class="sourceLine" id="cb44-2" data-line-number="2"><span class="co">## # A tibble: 1,478 x 4</span></a>
+<a class="sourceLine" id="cb44-3" data-line-number="3"><span class="co">##    age_u18 age1834 age3564 age_o65</span></a>
+<a class="sourceLine" id="cb44-4" data-line-number="4"><span class="co">##      &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;</span></a>
+<a class="sourceLine" id="cb44-5" data-line-number="5"><span class="co">##  1   0.234   0.202   0.398   0.166</span></a>
+<a class="sourceLine" id="cb44-6" data-line-number="6"><span class="co">##  2   0.181   0.151   0.461   0.207</span></a>
+<a class="sourceLine" id="cb44-7" data-line-number="7"><span class="co">##  3   0.171   0.214   0.437   0.178</span></a>
+<a class="sourceLine" id="cb44-8" data-line-number="8"><span class="co">##  4   0.203   0.227   0.436   0.133</span></a>
+<a class="sourceLine" id="cb44-9" data-line-number="9"><span class="co">##  5   0.177   0.203   0.430   0.190</span></a>
+<a class="sourceLine" id="cb44-10" data-line-number="10"><span class="co">##  6   0.163   0.237   0.439   0.162</span></a>
+<a class="sourceLine" id="cb44-11" data-line-number="11"><span class="co">##  7   0.191   0.326   0.380   0.102</span></a>
+<a class="sourceLine" id="cb44-12" data-line-number="12"><span class="co">##  8   0.202   0.183   0.466   0.148</span></a>
+<a class="sourceLine" id="cb44-13" data-line-number="13"><span class="co">##  9   0.188   0.150   0.462   0.200</span></a>
+<a class="sourceLine" id="cb44-14" data-line-number="14"><span class="co">## 10   0.244   0.286   0.342   0.128</span></a>
+<a class="sourceLine" id="cb44-15" data-line-number="15"><span class="co">## # … with 1,468 more rows</span></a></code></pre></div>
 <p>Now to really throw you off! You can even reverse the order of these ranges.</p>
 <p>Try it:</p>
 <ul>
 <li>select columns from <code>age_o65</code> to <code>age_u18</code>.</li>
 </ul>
-<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb42-1" data-line-number="1"><span class="kw">select</span>(acs_raw, age_o65<span class="op">:</span>age_u18)</a>
-<a class="sourceLine" id="cb42-2" data-line-number="2"><span class="co">## # A tibble: 1,478 x 4</span></a>
-<a class="sourceLine" id="cb42-3" data-line-number="3"><span class="co">##    age_o65 age3564 age1834 age_u18</span></a>
-<a class="sourceLine" id="cb42-4" data-line-number="4"><span class="co">##      &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;</span></a>
-<a class="sourceLine" id="cb42-5" data-line-number="5"><span class="co">##  1   0.166   0.398   0.202   0.234</span></a>
-<a class="sourceLine" id="cb42-6" data-line-number="6"><span class="co">##  2   0.207   0.461   0.151   0.181</span></a>
-<a class="sourceLine" id="cb42-7" data-line-number="7"><span class="co">##  3   0.178   0.437   0.214   0.171</span></a>
-<a class="sourceLine" id="cb42-8" data-line-number="8"><span class="co">##  4   0.133   0.436   0.227   0.203</span></a>
-<a class="sourceLine" id="cb42-9" data-line-number="9"><span class="co">##  5   0.190   0.430   0.203   0.177</span></a>
-<a class="sourceLine" id="cb42-10" data-line-number="10"><span class="co">##  6   0.162   0.439   0.237   0.163</span></a>
-<a class="sourceLine" id="cb42-11" data-line-number="11"><span class="co">##  7   0.102   0.380   0.326   0.191</span></a>
-<a class="sourceLine" id="cb42-12" data-line-number="12"><span class="co">##  8   0.148   0.466   0.183   0.202</span></a>
-<a class="sourceLine" id="cb42-13" data-line-number="13"><span class="co">##  9   0.200   0.462   0.150   0.188</span></a>
-<a class="sourceLine" id="cb42-14" data-line-number="14"><span class="co">## 10   0.128   0.342   0.286   0.244</span></a>
-<a class="sourceLine" id="cb42-15" data-line-number="15"><span class="co">## # … with 1,468 more rows</span></a></code></pre></div>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb45-1" data-line-number="1"><span class="kw">select</span>(acs_raw, age_o65<span class="op">:</span>age_u18)</a>
+<a class="sourceLine" id="cb45-2" data-line-number="2"><span class="co">## # A tibble: 1,478 x 4</span></a>
+<a class="sourceLine" id="cb45-3" data-line-number="3"><span class="co">##    age_o65 age3564 age1834 age_u18</span></a>
+<a class="sourceLine" id="cb45-4" data-line-number="4"><span class="co">##      &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;</span></a>
+<a class="sourceLine" id="cb45-5" data-line-number="5"><span class="co">##  1   0.166   0.398   0.202   0.234</span></a>
+<a class="sourceLine" id="cb45-6" data-line-number="6"><span class="co">##  2   0.207   0.461   0.151   0.181</span></a>
+<a class="sourceLine" id="cb45-7" data-line-number="7"><span class="co">##  3   0.178   0.437   0.214   0.171</span></a>
+<a class="sourceLine" id="cb45-8" data-line-number="8"><span class="co">##  4   0.133   0.436   0.227   0.203</span></a>
+<a class="sourceLine" id="cb45-9" data-line-number="9"><span class="co">##  5   0.190   0.430   0.203   0.177</span></a>
+<a class="sourceLine" id="cb45-10" data-line-number="10"><span class="co">##  6   0.162   0.439   0.237   0.163</span></a>
+<a class="sourceLine" id="cb45-11" data-line-number="11"><span class="co">##  7   0.102   0.380   0.326   0.191</span></a>
+<a class="sourceLine" id="cb45-12" data-line-number="12"><span class="co">##  8   0.148   0.466   0.183   0.202</span></a>
+<a class="sourceLine" id="cb45-13" data-line-number="13"><span class="co">##  9   0.200   0.462   0.150   0.188</span></a>
+<a class="sourceLine" id="cb45-14" data-line-number="14"><span class="co">## 10   0.128   0.342   0.286   0.244</span></a>
+<a class="sourceLine" id="cb45-15" data-line-number="15"><span class="co">## # … with 1,468 more rows</span></a></code></pre></div>
 <blockquote>
 <p>NOTE: This is an awful scenario. SOMEONE HALP</p>
 </blockquote>
@@ -478,76 +478,76 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>“…You can treat variable names like they are positions…”</p>
 </blockquote>
 <p>The above was taken from the argument definition of dots <code>...</code>. Like providing the name of the column, we can also provide their positions (also referred to as an index). In our previous example, we selected the <code>name</code> column. We can select this column by it’s position too. <code>name</code> is the second column in our tibble. We select it by position like so:</p>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb43-1" data-line-number="1"><span class="kw">select</span>(acs_raw, <span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb43-2" data-line-number="2"><span class="co">## # A tibble: 1,478 x 1</span></a>
-<a class="sourceLine" id="cb43-3" data-line-number="3"><span class="co">##    name                                                 </span></a>
-<a class="sourceLine" id="cb43-4" data-line-number="4"><span class="co">##    &lt;chr&gt;                                                </span></a>
-<a class="sourceLine" id="cb43-5" data-line-number="5"><span class="co">##  1 Census Tract 7281, Worcester County, Massachusetts   </span></a>
-<a class="sourceLine" id="cb43-6" data-line-number="6"><span class="co">##  2 Census Tract 7292, Worcester County, Massachusetts   </span></a>
-<a class="sourceLine" id="cb43-7" data-line-number="7"><span class="co">##  3 Census Tract 7307, Worcester County, Massachusetts   </span></a>
-<a class="sourceLine" id="cb43-8" data-line-number="8"><span class="co">##  4 Census Tract 7442, Worcester County, Massachusetts   </span></a>
-<a class="sourceLine" id="cb43-9" data-line-number="9"><span class="co">##  5 Census Tract 7097.01, Worcester County, Massachusetts</span></a>
-<a class="sourceLine" id="cb43-10" data-line-number="10"><span class="co">##  6 Census Tract 7351, Worcester County, Massachusetts   </span></a>
-<a class="sourceLine" id="cb43-11" data-line-number="11"><span class="co">##  7 Census Tract 7543, Worcester County, Massachusetts   </span></a>
-<a class="sourceLine" id="cb43-12" data-line-number="12"><span class="co">##  8 Census Tract 7308.02, Worcester County, Massachusetts</span></a>
-<a class="sourceLine" id="cb43-13" data-line-number="13"><span class="co">##  9 Census Tract 7171, Worcester County, Massachusetts   </span></a>
-<a class="sourceLine" id="cb43-14" data-line-number="14"><span class="co">## 10 Census Tract 7326, Worcester County, Massachusetts   </span></a>
-<a class="sourceLine" id="cb43-15" data-line-number="15"><span class="co">## # … with 1,468 more rows</span></a></code></pre></div>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb46-1" data-line-number="1"><span class="kw">select</span>(acs_raw, <span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb46-2" data-line-number="2"><span class="co">## # A tibble: 1,478 x 1</span></a>
+<a class="sourceLine" id="cb46-3" data-line-number="3"><span class="co">##    name                                                 </span></a>
+<a class="sourceLine" id="cb46-4" data-line-number="4"><span class="co">##    &lt;chr&gt;                                                </span></a>
+<a class="sourceLine" id="cb46-5" data-line-number="5"><span class="co">##  1 Census Tract 7281, Worcester County, Massachusetts   </span></a>
+<a class="sourceLine" id="cb46-6" data-line-number="6"><span class="co">##  2 Census Tract 7292, Worcester County, Massachusetts   </span></a>
+<a class="sourceLine" id="cb46-7" data-line-number="7"><span class="co">##  3 Census Tract 7307, Worcester County, Massachusetts   </span></a>
+<a class="sourceLine" id="cb46-8" data-line-number="8"><span class="co">##  4 Census Tract 7442, Worcester County, Massachusetts   </span></a>
+<a class="sourceLine" id="cb46-9" data-line-number="9"><span class="co">##  5 Census Tract 7097.01, Worcester County, Massachusetts</span></a>
+<a class="sourceLine" id="cb46-10" data-line-number="10"><span class="co">##  6 Census Tract 7351, Worcester County, Massachusetts   </span></a>
+<a class="sourceLine" id="cb46-11" data-line-number="11"><span class="co">##  7 Census Tract 7543, Worcester County, Massachusetts   </span></a>
+<a class="sourceLine" id="cb46-12" data-line-number="12"><span class="co">##  8 Census Tract 7308.02, Worcester County, Massachusetts</span></a>
+<a class="sourceLine" id="cb46-13" data-line-number="13"><span class="co">##  9 Census Tract 7171, Worcester County, Massachusetts   </span></a>
+<a class="sourceLine" id="cb46-14" data-line-number="14"><span class="co">## 10 Census Tract 7326, Worcester County, Massachusetts   </span></a>
+<a class="sourceLine" id="cb46-15" data-line-number="15"><span class="co">## # … with 1,468 more rows</span></a></code></pre></div>
 <p>Try it:</p>
 <ul>
 <li>select <code>age_u18</code> and <code>age_o65</code> by their position</li>
 </ul>
-<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb44-1" data-line-number="1"><span class="kw">select</span>(acs_raw, <span class="dv">6</span>, <span class="dv">9</span>)</a>
-<a class="sourceLine" id="cb44-2" data-line-number="2"><span class="co">## # A tibble: 1,478 x 2</span></a>
-<a class="sourceLine" id="cb44-3" data-line-number="3"><span class="co">##    age_u18 age_o65</span></a>
-<a class="sourceLine" id="cb44-4" data-line-number="4"><span class="co">##      &lt;dbl&gt;   &lt;dbl&gt;</span></a>
-<a class="sourceLine" id="cb44-5" data-line-number="5"><span class="co">##  1   0.234   0.166</span></a>
-<a class="sourceLine" id="cb44-6" data-line-number="6"><span class="co">##  2   0.181   0.207</span></a>
-<a class="sourceLine" id="cb44-7" data-line-number="7"><span class="co">##  3   0.171   0.178</span></a>
-<a class="sourceLine" id="cb44-8" data-line-number="8"><span class="co">##  4   0.203   0.133</span></a>
-<a class="sourceLine" id="cb44-9" data-line-number="9"><span class="co">##  5   0.177   0.190</span></a>
-<a class="sourceLine" id="cb44-10" data-line-number="10"><span class="co">##  6   0.163   0.162</span></a>
-<a class="sourceLine" id="cb44-11" data-line-number="11"><span class="co">##  7   0.191   0.102</span></a>
-<a class="sourceLine" id="cb44-12" data-line-number="12"><span class="co">##  8   0.202   0.148</span></a>
-<a class="sourceLine" id="cb44-13" data-line-number="13"><span class="co">##  9   0.188   0.200</span></a>
-<a class="sourceLine" id="cb44-14" data-line-number="14"><span class="co">## 10   0.244   0.128</span></a>
-<a class="sourceLine" id="cb44-15" data-line-number="15"><span class="co">## # … with 1,468 more rows</span></a></code></pre></div>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb47-1" data-line-number="1"><span class="kw">select</span>(acs_raw, <span class="dv">6</span>, <span class="dv">9</span>)</a>
+<a class="sourceLine" id="cb47-2" data-line-number="2"><span class="co">## # A tibble: 1,478 x 2</span></a>
+<a class="sourceLine" id="cb47-3" data-line-number="3"><span class="co">##    age_u18 age_o65</span></a>
+<a class="sourceLine" id="cb47-4" data-line-number="4"><span class="co">##      &lt;dbl&gt;   &lt;dbl&gt;</span></a>
+<a class="sourceLine" id="cb47-5" data-line-number="5"><span class="co">##  1   0.234   0.166</span></a>
+<a class="sourceLine" id="cb47-6" data-line-number="6"><span class="co">##  2   0.181   0.207</span></a>
+<a class="sourceLine" id="cb47-7" data-line-number="7"><span class="co">##  3   0.171   0.178</span></a>
+<a class="sourceLine" id="cb47-8" data-line-number="8"><span class="co">##  4   0.203   0.133</span></a>
+<a class="sourceLine" id="cb47-9" data-line-number="9"><span class="co">##  5   0.177   0.190</span></a>
+<a class="sourceLine" id="cb47-10" data-line-number="10"><span class="co">##  6   0.163   0.162</span></a>
+<a class="sourceLine" id="cb47-11" data-line-number="11"><span class="co">##  7   0.191   0.102</span></a>
+<a class="sourceLine" id="cb47-12" data-line-number="12"><span class="co">##  8   0.202   0.148</span></a>
+<a class="sourceLine" id="cb47-13" data-line-number="13"><span class="co">##  9   0.188   0.200</span></a>
+<a class="sourceLine" id="cb47-14" data-line-number="14"><span class="co">## 10   0.244   0.128</span></a>
+<a class="sourceLine" id="cb47-15" data-line-number="15"><span class="co">## # … with 1,468 more rows</span></a></code></pre></div>
 <p>You may see where I am going with this. Just like column names, we can select a range of columns using the same method <code>index_from:index_to</code>.</p>
 <p>Try it:</p>
 <ul>
 <li>select the columns from <code>age_u18</code> to <code>age_o65</code> using <code>:</code> and the column position</li>
 <li>select the columns in reverse order by their indexes</li>
 </ul>
-<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb45-1" data-line-number="1"><span class="kw">select</span>(acs_raw, <span class="dv">6</span><span class="op">:</span><span class="dv">9</span>)</a>
-<a class="sourceLine" id="cb45-2" data-line-number="2"><span class="co">## # A tibble: 1,478 x 4</span></a>
-<a class="sourceLine" id="cb45-3" data-line-number="3"><span class="co">##    age_u18 age1834 age3564 age_o65</span></a>
-<a class="sourceLine" id="cb45-4" data-line-number="4"><span class="co">##      &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;</span></a>
-<a class="sourceLine" id="cb45-5" data-line-number="5"><span class="co">##  1   0.234   0.202   0.398   0.166</span></a>
-<a class="sourceLine" id="cb45-6" data-line-number="6"><span class="co">##  2   0.181   0.151   0.461   0.207</span></a>
-<a class="sourceLine" id="cb45-7" data-line-number="7"><span class="co">##  3   0.171   0.214   0.437   0.178</span></a>
-<a class="sourceLine" id="cb45-8" data-line-number="8"><span class="co">##  4   0.203   0.227   0.436   0.133</span></a>
-<a class="sourceLine" id="cb45-9" data-line-number="9"><span class="co">##  5   0.177   0.203   0.430   0.190</span></a>
-<a class="sourceLine" id="cb45-10" data-line-number="10"><span class="co">##  6   0.163   0.237   0.439   0.162</span></a>
-<a class="sourceLine" id="cb45-11" data-line-number="11"><span class="co">##  7   0.191   0.326   0.380   0.102</span></a>
-<a class="sourceLine" id="cb45-12" data-line-number="12"><span class="co">##  8   0.202   0.183   0.466   0.148</span></a>
-<a class="sourceLine" id="cb45-13" data-line-number="13"><span class="co">##  9   0.188   0.150   0.462   0.200</span></a>
-<a class="sourceLine" id="cb45-14" data-line-number="14"><span class="co">## 10   0.244   0.286   0.342   0.128</span></a>
-<a class="sourceLine" id="cb45-15" data-line-number="15"><span class="co">## # … with 1,468 more rows</span></a></code></pre></div>
-<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb46-1" data-line-number="1"><span class="kw">select</span>(acs_raw, <span class="dv">9</span><span class="op">:</span><span class="dv">6</span>)</a>
-<a class="sourceLine" id="cb46-2" data-line-number="2"><span class="co">## # A tibble: 1,478 x 4</span></a>
-<a class="sourceLine" id="cb46-3" data-line-number="3"><span class="co">##    age_o65 age3564 age1834 age_u18</span></a>
-<a class="sourceLine" id="cb46-4" data-line-number="4"><span class="co">##      &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;</span></a>
-<a class="sourceLine" id="cb46-5" data-line-number="5"><span class="co">##  1   0.166   0.398   0.202   0.234</span></a>
-<a class="sourceLine" id="cb46-6" data-line-number="6"><span class="co">##  2   0.207   0.461   0.151   0.181</span></a>
-<a class="sourceLine" id="cb46-7" data-line-number="7"><span class="co">##  3   0.178   0.437   0.214   0.171</span></a>
-<a class="sourceLine" id="cb46-8" data-line-number="8"><span class="co">##  4   0.133   0.436   0.227   0.203</span></a>
-<a class="sourceLine" id="cb46-9" data-line-number="9"><span class="co">##  5   0.190   0.430   0.203   0.177</span></a>
-<a class="sourceLine" id="cb46-10" data-line-number="10"><span class="co">##  6   0.162   0.439   0.237   0.163</span></a>
-<a class="sourceLine" id="cb46-11" data-line-number="11"><span class="co">##  7   0.102   0.380   0.326   0.191</span></a>
-<a class="sourceLine" id="cb46-12" data-line-number="12"><span class="co">##  8   0.148   0.466   0.183   0.202</span></a>
-<a class="sourceLine" id="cb46-13" data-line-number="13"><span class="co">##  9   0.200   0.462   0.150   0.188</span></a>
-<a class="sourceLine" id="cb46-14" data-line-number="14"><span class="co">## 10   0.128   0.342   0.286   0.244</span></a>
-<a class="sourceLine" id="cb46-15" data-line-number="15"><span class="co">## # … with 1,468 more rows</span></a></code></pre></div>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb48-1" data-line-number="1"><span class="kw">select</span>(acs_raw, <span class="dv">6</span><span class="op">:</span><span class="dv">9</span>)</a>
+<a class="sourceLine" id="cb48-2" data-line-number="2"><span class="co">## # A tibble: 1,478 x 4</span></a>
+<a class="sourceLine" id="cb48-3" data-line-number="3"><span class="co">##    age_u18 age1834 age3564 age_o65</span></a>
+<a class="sourceLine" id="cb48-4" data-line-number="4"><span class="co">##      &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;</span></a>
+<a class="sourceLine" id="cb48-5" data-line-number="5"><span class="co">##  1   0.234   0.202   0.398   0.166</span></a>
+<a class="sourceLine" id="cb48-6" data-line-number="6"><span class="co">##  2   0.181   0.151   0.461   0.207</span></a>
+<a class="sourceLine" id="cb48-7" data-line-number="7"><span class="co">##  3   0.171   0.214   0.437   0.178</span></a>
+<a class="sourceLine" id="cb48-8" data-line-number="8"><span class="co">##  4   0.203   0.227   0.436   0.133</span></a>
+<a class="sourceLine" id="cb48-9" data-line-number="9"><span class="co">##  5   0.177   0.203   0.430   0.190</span></a>
+<a class="sourceLine" id="cb48-10" data-line-number="10"><span class="co">##  6   0.163   0.237   0.439   0.162</span></a>
+<a class="sourceLine" id="cb48-11" data-line-number="11"><span class="co">##  7   0.191   0.326   0.380   0.102</span></a>
+<a class="sourceLine" id="cb48-12" data-line-number="12"><span class="co">##  8   0.202   0.183   0.466   0.148</span></a>
+<a class="sourceLine" id="cb48-13" data-line-number="13"><span class="co">##  9   0.188   0.150   0.462   0.200</span></a>
+<a class="sourceLine" id="cb48-14" data-line-number="14"><span class="co">## 10   0.244   0.286   0.342   0.128</span></a>
+<a class="sourceLine" id="cb48-15" data-line-number="15"><span class="co">## # … with 1,468 more rows</span></a></code></pre></div>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb49-1" data-line-number="1"><span class="kw">select</span>(acs_raw, <span class="dv">9</span><span class="op">:</span><span class="dv">6</span>)</a>
+<a class="sourceLine" id="cb49-2" data-line-number="2"><span class="co">## # A tibble: 1,478 x 4</span></a>
+<a class="sourceLine" id="cb49-3" data-line-number="3"><span class="co">##    age_o65 age3564 age1834 age_u18</span></a>
+<a class="sourceLine" id="cb49-4" data-line-number="4"><span class="co">##      &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;</span></a>
+<a class="sourceLine" id="cb49-5" data-line-number="5"><span class="co">##  1   0.166   0.398   0.202   0.234</span></a>
+<a class="sourceLine" id="cb49-6" data-line-number="6"><span class="co">##  2   0.207   0.461   0.151   0.181</span></a>
+<a class="sourceLine" id="cb49-7" data-line-number="7"><span class="co">##  3   0.178   0.437   0.214   0.171</span></a>
+<a class="sourceLine" id="cb49-8" data-line-number="8"><span class="co">##  4   0.133   0.436   0.227   0.203</span></a>
+<a class="sourceLine" id="cb49-9" data-line-number="9"><span class="co">##  5   0.190   0.430   0.203   0.177</span></a>
+<a class="sourceLine" id="cb49-10" data-line-number="10"><span class="co">##  6   0.162   0.439   0.237   0.163</span></a>
+<a class="sourceLine" id="cb49-11" data-line-number="11"><span class="co">##  7   0.102   0.380   0.326   0.191</span></a>
+<a class="sourceLine" id="cb49-12" data-line-number="12"><span class="co">##  8   0.148   0.466   0.183   0.202</span></a>
+<a class="sourceLine" id="cb49-13" data-line-number="13"><span class="co">##  9   0.200   0.462   0.150   0.188</span></a>
+<a class="sourceLine" id="cb49-14" data-line-number="14"><span class="co">## 10   0.128   0.342   0.286   0.244</span></a>
+<a class="sourceLine" id="cb49-15" data-line-number="15"><span class="co">## # … with 1,468 more rows</span></a></code></pre></div>
 <blockquote>
 <p>Base R Side Bar: To help build your intuition, I want to point out some base R functionality. Using the colon <code>:</code> with integers (whole numbers) is actually not a <code>select()</code> specific functionality. This is something that is rather handy and built directly into R. Using the colon operator, we can create ranges of numbers in the same exact way as we did above. If we want create the range of numbers from 1 to 10, we write <code>1:10</code>. 1, 2, 3, 4, 5, 6, 7, 8, 9, 10.</p>
 </blockquote>
@@ -555,51 +555,51 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="https://i.imgflip.com/3p2zow.jpg" /></p>
 <p><code>last_col()</code> is a handy function that enables us to select the last column. There is also an option to get an offset from the last column. An offset would allow us to grab the second to last column by setting the offset to 1. By setting the offset, <code>last_col()</code> will from the <code>offset + 1</code> from the last column. So if the offset is set to 1, we would be grabbing the second to last column.</p>
 <p>Let’s give it a shot:</p>
-<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb47-1" data-line-number="1"><span class="kw">select</span>(acs_raw, <span class="kw">last_col</span>())</a>
-<a class="sourceLine" id="cb47-2" data-line-number="2"><span class="co">## # A tibble: 1,478 x 1</span></a>
-<a class="sourceLine" id="cb47-3" data-line-number="3"><span class="co">##    m_atown      </span></a>
-<a class="sourceLine" id="cb47-4" data-line-number="4"><span class="co">##    &lt;chr&gt;        </span></a>
-<a class="sourceLine" id="cb47-5" data-line-number="5"><span class="co">##  1 HOLDEN       </span></a>
-<a class="sourceLine" id="cb47-6" data-line-number="6"><span class="co">##  2 WEST BOYLSTON</span></a>
-<a class="sourceLine" id="cb47-7" data-line-number="7"><span class="co">##  3 WORCESTER    </span></a>
-<a class="sourceLine" id="cb47-8" data-line-number="8"><span class="co">##  4 MILFORD      </span></a>
-<a class="sourceLine" id="cb47-9" data-line-number="9"><span class="co">##  5 LEOMINSTER   </span></a>
-<a class="sourceLine" id="cb47-10" data-line-number="10"><span class="co">##  6 LEICESTER    </span></a>
-<a class="sourceLine" id="cb47-11" data-line-number="11"><span class="co">##  7 WEBSTER      </span></a>
-<a class="sourceLine" id="cb47-12" data-line-number="12"><span class="co">##  8 WORCESTER    </span></a>
-<a class="sourceLine" id="cb47-13" data-line-number="13"><span class="co">##  9 BERLIN       </span></a>
-<a class="sourceLine" id="cb47-14" data-line-number="14"><span class="co">## 10 WORCESTER    </span></a>
-<a class="sourceLine" id="cb47-15" data-line-number="15"><span class="co">## # … with 1,468 more rows</span></a>
-<a class="sourceLine" id="cb47-16" data-line-number="16"><span class="kw">select</span>(acs_raw, <span class="kw">last_col</span>(<span class="dt">offset =</span> <span class="dv">1</span>))</a>
-<a class="sourceLine" id="cb47-17" data-line-number="17"><span class="co">## # A tibble: 1,478 x 1</span></a>
-<a class="sourceLine" id="cb47-18" data-line-number="18"><span class="co">##    area_acr_1</span></a>
-<a class="sourceLine" id="cb47-19" data-line-number="19"><span class="co">##         &lt;dbl&gt;</span></a>
-<a class="sourceLine" id="cb47-20" data-line-number="20"><span class="co">##  1     23242.</span></a>
-<a class="sourceLine" id="cb47-21" data-line-number="21"><span class="co">##  2      8868.</span></a>
-<a class="sourceLine" id="cb47-22" data-line-number="22"><span class="co">##  3     24610.</span></a>
-<a class="sourceLine" id="cb47-23" data-line-number="23"><span class="co">##  4      9616.</span></a>
-<a class="sourceLine" id="cb47-24" data-line-number="24"><span class="co">##  5     18993.</span></a>
-<a class="sourceLine" id="cb47-25" data-line-number="25"><span class="co">##  6     15763.</span></a>
-<a class="sourceLine" id="cb47-26" data-line-number="26"><span class="co">##  7      9347.</span></a>
-<a class="sourceLine" id="cb47-27" data-line-number="27"><span class="co">##  8     24610.</span></a>
-<a class="sourceLine" id="cb47-28" data-line-number="28"><span class="co">##  9      8431.</span></a>
-<a class="sourceLine" id="cb47-29" data-line-number="29"><span class="co">## 10     24610.</span></a>
-<a class="sourceLine" id="cb47-30" data-line-number="30"><span class="co">## # … with 1,468 more rows</span></a>
-<a class="sourceLine" id="cb47-31" data-line-number="31"><span class="kw">select</span>(acs_raw, <span class="kw">last_col</span>(<span class="dt">offset =</span> <span class="dv">1</span>)<span class="op">:</span><span class="kw">last_col</span>())</a>
-<a class="sourceLine" id="cb47-32" data-line-number="32"><span class="co">## # A tibble: 1,478 x 2</span></a>
-<a class="sourceLine" id="cb47-33" data-line-number="33"><span class="co">##    area_acr_1 m_atown      </span></a>
-<a class="sourceLine" id="cb47-34" data-line-number="34"><span class="co">##         &lt;dbl&gt; &lt;chr&gt;        </span></a>
-<a class="sourceLine" id="cb47-35" data-line-number="35"><span class="co">##  1     23242. HOLDEN       </span></a>
-<a class="sourceLine" id="cb47-36" data-line-number="36"><span class="co">##  2      8868. WEST BOYLSTON</span></a>
-<a class="sourceLine" id="cb47-37" data-line-number="37"><span class="co">##  3     24610. WORCESTER    </span></a>
-<a class="sourceLine" id="cb47-38" data-line-number="38"><span class="co">##  4      9616. MILFORD      </span></a>
-<a class="sourceLine" id="cb47-39" data-line-number="39"><span class="co">##  5     18993. LEOMINSTER   </span></a>
-<a class="sourceLine" id="cb47-40" data-line-number="40"><span class="co">##  6     15763. LEICESTER    </span></a>
-<a class="sourceLine" id="cb47-41" data-line-number="41"><span class="co">##  7      9347. WEBSTER      </span></a>
-<a class="sourceLine" id="cb47-42" data-line-number="42"><span class="co">##  8     24610. WORCESTER    </span></a>
-<a class="sourceLine" id="cb47-43" data-line-number="43"><span class="co">##  9      8431. BERLIN       </span></a>
-<a class="sourceLine" id="cb47-44" data-line-number="44"><span class="co">## 10     24610. WORCESTER    </span></a>
-<a class="sourceLine" id="cb47-45" data-line-number="45"><span class="co">## # … with 1,468 more rows</span></a></code></pre></div>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb50-1" data-line-number="1"><span class="kw">select</span>(acs_raw, <span class="kw">last_col</span>())</a>
+<a class="sourceLine" id="cb50-2" data-line-number="2"><span class="co">## # A tibble: 1,478 x 1</span></a>
+<a class="sourceLine" id="cb50-3" data-line-number="3"><span class="co">##    m_atown      </span></a>
+<a class="sourceLine" id="cb50-4" data-line-number="4"><span class="co">##    &lt;chr&gt;        </span></a>
+<a class="sourceLine" id="cb50-5" data-line-number="5"><span class="co">##  1 HOLDEN       </span></a>
+<a class="sourceLine" id="cb50-6" data-line-number="6"><span class="co">##  2 WEST BOYLSTON</span></a>
+<a class="sourceLine" id="cb50-7" data-line-number="7"><span class="co">##  3 WORCESTER    </span></a>
+<a class="sourceLine" id="cb50-8" data-line-number="8"><span class="co">##  4 MILFORD      </span></a>
+<a class="sourceLine" id="cb50-9" data-line-number="9"><span class="co">##  5 LEOMINSTER   </span></a>
+<a class="sourceLine" id="cb50-10" data-line-number="10"><span class="co">##  6 LEICESTER    </span></a>
+<a class="sourceLine" id="cb50-11" data-line-number="11"><span class="co">##  7 WEBSTER      </span></a>
+<a class="sourceLine" id="cb50-12" data-line-number="12"><span class="co">##  8 WORCESTER    </span></a>
+<a class="sourceLine" id="cb50-13" data-line-number="13"><span class="co">##  9 BERLIN       </span></a>
+<a class="sourceLine" id="cb50-14" data-line-number="14"><span class="co">## 10 WORCESTER    </span></a>
+<a class="sourceLine" id="cb50-15" data-line-number="15"><span class="co">## # … with 1,468 more rows</span></a>
+<a class="sourceLine" id="cb50-16" data-line-number="16"><span class="kw">select</span>(acs_raw, <span class="kw">last_col</span>(<span class="dt">offset =</span> <span class="dv">1</span>))</a>
+<a class="sourceLine" id="cb50-17" data-line-number="17"><span class="co">## # A tibble: 1,478 x 1</span></a>
+<a class="sourceLine" id="cb50-18" data-line-number="18"><span class="co">##    area_acr_1</span></a>
+<a class="sourceLine" id="cb50-19" data-line-number="19"><span class="co">##         &lt;dbl&gt;</span></a>
+<a class="sourceLine" id="cb50-20" data-line-number="20"><span class="co">##  1     23242.</span></a>
+<a class="sourceLine" id="cb50-21" data-line-number="21"><span class="co">##  2      8868.</span></a>
+<a class="sourceLine" id="cb50-22" data-line-number="22"><span class="co">##  3     24610.</span></a>
+<a class="sourceLine" id="cb50-23" data-line-number="23"><span class="co">##  4      9616.</span></a>
+<a class="sourceLine" id="cb50-24" data-line-number="24"><span class="co">##  5     18993.</span></a>
+<a class="sourceLine" id="cb50-25" data-line-number="25"><span class="co">##  6     15763.</span></a>
+<a class="sourceLine" id="cb50-26" data-line-number="26"><span class="co">##  7      9347.</span></a>
+<a class="sourceLine" id="cb50-27" data-line-number="27"><span class="co">##  8     24610.</span></a>
+<a class="sourceLine" id="cb50-28" data-line-number="28"><span class="co">##  9      8431.</span></a>
+<a class="sourceLine" id="cb50-29" data-line-number="29"><span class="co">## 10     24610.</span></a>
+<a class="sourceLine" id="cb50-30" data-line-number="30"><span class="co">## # … with 1,468 more rows</span></a>
+<a class="sourceLine" id="cb50-31" data-line-number="31"><span class="kw">select</span>(acs_raw, <span class="kw">last_col</span>(<span class="dt">offset =</span> <span class="dv">1</span>)<span class="op">:</span><span class="kw">last_col</span>())</a>
+<a class="sourceLine" id="cb50-32" data-line-number="32"><span class="co">## # A tibble: 1,478 x 2</span></a>
+<a class="sourceLine" id="cb50-33" data-line-number="33"><span class="co">##    area_acr_1 m_atown      </span></a>
+<a class="sourceLine" id="cb50-34" data-line-number="34"><span class="co">##         &lt;dbl&gt; &lt;chr&gt;        </span></a>
+<a class="sourceLine" id="cb50-35" data-line-number="35"><span class="co">##  1     23242. HOLDEN       </span></a>
+<a class="sourceLine" id="cb50-36" data-line-number="36"><span class="co">##  2      8868. WEST BOYLSTON</span></a>
+<a class="sourceLine" id="cb50-37" data-line-number="37"><span class="co">##  3     24610. WORCESTER    </span></a>
+<a class="sourceLine" id="cb50-38" data-line-number="38"><span class="co">##  4      9616. MILFORD      </span></a>
+<a class="sourceLine" id="cb50-39" data-line-number="39"><span class="co">##  5     18993. LEOMINSTER   </span></a>
+<a class="sourceLine" id="cb50-40" data-line-number="40"><span class="co">##  6     15763. LEICESTER    </span></a>
+<a class="sourceLine" id="cb50-41" data-line-number="41"><span class="co">##  7      9347. WEBSTER      </span></a>
+<a class="sourceLine" id="cb50-42" data-line-number="42"><span class="co">##  8     24610. WORCESTER    </span></a>
+<a class="sourceLine" id="cb50-43" data-line-number="43"><span class="co">##  9      8431. BERLIN       </span></a>
+<a class="sourceLine" id="cb50-44" data-line-number="44"><span class="co">## 10     24610. WORCESTER    </span></a>
+<a class="sourceLine" id="cb50-45" data-line-number="45"><span class="co">## # … with 1,468 more rows</span></a></code></pre></div>
 <p><code>last_col()</code> comes from another packages called <code>tidyselect</code> which is imported with <code>dplyr</code>. This package contains a number of helper functions. There are 9 total helpers and you’ve already learned one of them. We will briefly review four more of these. I’m sure you are able to deduce how the functions work solely based on their names. The functions are:</p>
 <ul>
 <li><code>starts_with()</code>: a string to search that columns start with</li>
@@ -612,92 +612,92 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>find all columns that start with <code>&quot;med&quot;</code></li>
 </ul>
-<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb48-1" data-line-number="1"><span class="kw">select</span>(acs_raw, <span class="kw">starts_with</span>(<span class="st">&quot;med&quot;</span>))</a>
-<a class="sourceLine" id="cb48-2" data-line-number="2"><span class="co">## # A tibble: 1,478 x 7</span></a>
-<a class="sourceLine" id="cb48-3" data-line-number="3"><span class="co">##    med_house_income med_gross_rent med_home_val med_yr_built_raw</span></a>
-<a class="sourceLine" id="cb48-4" data-line-number="4"><span class="co">##               &lt;dbl&gt;          &lt;dbl&gt;        &lt;dbl&gt;            &lt;dbl&gt;</span></a>
-<a class="sourceLine" id="cb48-5" data-line-number="5"><span class="co">##  1           105735           1640       349000             1988</span></a>
-<a class="sourceLine" id="cb48-6" data-line-number="6"><span class="co">##  2            69625            894       230200             1955</span></a>
-<a class="sourceLine" id="cb48-7" data-line-number="7"><span class="co">##  3            70679           1454       207200             1959</span></a>
-<a class="sourceLine" id="cb48-8" data-line-number="8"><span class="co">##  4            74528            954       268400             1973</span></a>
-<a class="sourceLine" id="cb48-9" data-line-number="9"><span class="co">##  5            52885           1018       223200             1964</span></a>
-<a class="sourceLine" id="cb48-10" data-line-number="10"><span class="co">##  6            64100            867       232700             1966</span></a>
-<a class="sourceLine" id="cb48-11" data-line-number="11"><span class="co">##  7            37093            910       170900             1939</span></a>
-<a class="sourceLine" id="cb48-12" data-line-number="12"><span class="co">##  8            87750           1088       270100             1939</span></a>
-<a class="sourceLine" id="cb48-13" data-line-number="13"><span class="co">##  9            97417           1037       379600             1981</span></a>
-<a class="sourceLine" id="cb48-14" data-line-number="14"><span class="co">## 10            43384           1017       156500             1939</span></a>
-<a class="sourceLine" id="cb48-15" data-line-number="15"><span class="co">## # … with 1,468 more rows, and 3 more variables: med_yr_built &lt;chr&gt;,</span></a>
-<a class="sourceLine" id="cb48-16" data-line-number="16"><span class="co">## #   med_yr_moved_inraw &lt;dbl&gt;, med_yr_rent_moved_in &lt;dbl&gt;</span></a></code></pre></div>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb51-1" data-line-number="1"><span class="kw">select</span>(acs_raw, <span class="kw">starts_with</span>(<span class="st">&quot;med&quot;</span>))</a>
+<a class="sourceLine" id="cb51-2" data-line-number="2"><span class="co">## # A tibble: 1,478 x 7</span></a>
+<a class="sourceLine" id="cb51-3" data-line-number="3"><span class="co">##    med_house_income med_gross_rent med_home_val med_yr_built_raw</span></a>
+<a class="sourceLine" id="cb51-4" data-line-number="4"><span class="co">##               &lt;dbl&gt;          &lt;dbl&gt;        &lt;dbl&gt;            &lt;dbl&gt;</span></a>
+<a class="sourceLine" id="cb51-5" data-line-number="5"><span class="co">##  1           105735           1640       349000             1988</span></a>
+<a class="sourceLine" id="cb51-6" data-line-number="6"><span class="co">##  2            69625            894       230200             1955</span></a>
+<a class="sourceLine" id="cb51-7" data-line-number="7"><span class="co">##  3            70679           1454       207200             1959</span></a>
+<a class="sourceLine" id="cb51-8" data-line-number="8"><span class="co">##  4            74528            954       268400             1973</span></a>
+<a class="sourceLine" id="cb51-9" data-line-number="9"><span class="co">##  5            52885           1018       223200             1964</span></a>
+<a class="sourceLine" id="cb51-10" data-line-number="10"><span class="co">##  6            64100            867       232700             1966</span></a>
+<a class="sourceLine" id="cb51-11" data-line-number="11"><span class="co">##  7            37093            910       170900             1939</span></a>
+<a class="sourceLine" id="cb51-12" data-line-number="12"><span class="co">##  8            87750           1088       270100             1939</span></a>
+<a class="sourceLine" id="cb51-13" data-line-number="13"><span class="co">##  9            97417           1037       379600             1981</span></a>
+<a class="sourceLine" id="cb51-14" data-line-number="14"><span class="co">## 10            43384           1017       156500             1939</span></a>
+<a class="sourceLine" id="cb51-15" data-line-number="15"><span class="co">## # … with 1,468 more rows, and 3 more variables: med_yr_built &lt;chr&gt;,</span></a>
+<a class="sourceLine" id="cb51-16" data-line-number="16"><span class="co">## #   med_yr_moved_inraw &lt;dbl&gt;, med_yr_rent_moved_in &lt;dbl&gt;</span></a></code></pre></div>
 <ul>
 <li>select columns that end with <code>&quot;per&quot;</code></li>
 </ul>
-<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb49-1" data-line-number="1"><span class="kw">select</span>(acs_raw, <span class="kw">ends_with</span>(<span class="st">&quot;per&quot;</span>))</a>
-<a class="sourceLine" id="cb49-2" data-line-number="2"><span class="co">## # A tibble: 1,478 x 8</span></a>
-<a class="sourceLine" id="cb49-3" data-line-number="3"><span class="co">##    fam_pov_per fam_house_per fem_head_per same_sex_coup_p… grand_head_per</span></a>
-<a class="sourceLine" id="cb49-4" data-line-number="4"><span class="co">##          &lt;dbl&gt;         &lt;dbl&gt;        &lt;dbl&gt;            &lt;dbl&gt;          &lt;dbl&gt;</span></a>
-<a class="sourceLine" id="cb49-5" data-line-number="5"><span class="co">##  1      0.0475         0.797       0.0899            0            0      </span></a>
-<a class="sourceLine" id="cb49-6" data-line-number="6"><span class="co">##  2      0.0652         0.698       0.120             0            0.00583</span></a>
-<a class="sourceLine" id="cb49-7" data-line-number="7"><span class="co">##  3      0.0584         0.659       0.114             0            0      </span></a>
-<a class="sourceLine" id="cb49-8" data-line-number="8"><span class="co">##  4      0.0249         0.657       0.121             0            0      </span></a>
-<a class="sourceLine" id="cb49-9" data-line-number="9"><span class="co">##  5      0.198          0.531       0.158             0            0.00946</span></a>
-<a class="sourceLine" id="cb49-10" data-line-number="10"><span class="co">##  6      0.0428         0.665       0.0603            0            0.0353 </span></a>
-<a class="sourceLine" id="cb49-11" data-line-number="11"><span class="co">##  7      0.0762         0.632       0.227             0            0.00643</span></a>
-<a class="sourceLine" id="cb49-12" data-line-number="12"><span class="co">##  8      0.101          0.636       0.0582            0.297        0.0260 </span></a>
-<a class="sourceLine" id="cb49-13" data-line-number="13"><span class="co">##  9      0.0149         0.758       0.0721            0            0.00434</span></a>
-<a class="sourceLine" id="cb49-14" data-line-number="14"><span class="co">## 10      0.0954         0.460       0.225             0            0.0279 </span></a>
-<a class="sourceLine" id="cb49-15" data-line-number="15"><span class="co">## # … with 1,468 more rows, and 3 more variables: vacant_unit_per &lt;dbl&gt;,</span></a>
-<a class="sourceLine" id="cb49-16" data-line-number="16"><span class="co">## #   renters_per &lt;dbl&gt;, home_own_per &lt;dbl&gt;</span></a></code></pre></div>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb52-1" data-line-number="1"><span class="kw">select</span>(acs_raw, <span class="kw">ends_with</span>(<span class="st">&quot;per&quot;</span>))</a>
+<a class="sourceLine" id="cb52-2" data-line-number="2"><span class="co">## # A tibble: 1,478 x 8</span></a>
+<a class="sourceLine" id="cb52-3" data-line-number="3"><span class="co">##    fam_pov_per fam_house_per fem_head_per same_sex_coup_p… grand_head_per</span></a>
+<a class="sourceLine" id="cb52-4" data-line-number="4"><span class="co">##          &lt;dbl&gt;         &lt;dbl&gt;        &lt;dbl&gt;            &lt;dbl&gt;          &lt;dbl&gt;</span></a>
+<a class="sourceLine" id="cb52-5" data-line-number="5"><span class="co">##  1      0.0475         0.797       0.0899            0            0      </span></a>
+<a class="sourceLine" id="cb52-6" data-line-number="6"><span class="co">##  2      0.0652         0.698       0.120             0            0.00583</span></a>
+<a class="sourceLine" id="cb52-7" data-line-number="7"><span class="co">##  3      0.0584         0.659       0.114             0            0      </span></a>
+<a class="sourceLine" id="cb52-8" data-line-number="8"><span class="co">##  4      0.0249         0.657       0.121             0            0      </span></a>
+<a class="sourceLine" id="cb52-9" data-line-number="9"><span class="co">##  5      0.198          0.531       0.158             0            0.00946</span></a>
+<a class="sourceLine" id="cb52-10" data-line-number="10"><span class="co">##  6      0.0428         0.665       0.0603            0            0.0353 </span></a>
+<a class="sourceLine" id="cb52-11" data-line-number="11"><span class="co">##  7      0.0762         0.632       0.227             0            0.00643</span></a>
+<a class="sourceLine" id="cb52-12" data-line-number="12"><span class="co">##  8      0.101          0.636       0.0582            0.297        0.0260 </span></a>
+<a class="sourceLine" id="cb52-13" data-line-number="13"><span class="co">##  9      0.0149         0.758       0.0721            0            0.00434</span></a>
+<a class="sourceLine" id="cb52-14" data-line-number="14"><span class="co">## 10      0.0954         0.460       0.225             0            0.0279 </span></a>
+<a class="sourceLine" id="cb52-15" data-line-number="15"><span class="co">## # … with 1,468 more rows, and 3 more variables: vacant_unit_per &lt;dbl&gt;,</span></a>
+<a class="sourceLine" id="cb52-16" data-line-number="16"><span class="co">## #   renters_per &lt;dbl&gt;, home_own_per &lt;dbl&gt;</span></a></code></pre></div>
 <ul>
 <li>find any column that contains the string <code>&quot;yr&quot;</code></li>
 </ul>
-<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb50-1" data-line-number="1"><span class="kw">select</span>(acs_raw, <span class="kw">contains</span>(<span class="st">&quot;yr&quot;</span>))</a>
-<a class="sourceLine" id="cb50-2" data-line-number="2"><span class="co">## # A tibble: 1,478 x 4</span></a>
-<a class="sourceLine" id="cb50-3" data-line-number="3"><span class="co">##    med_yr_built_raw med_yr_built  med_yr_moved_inraw med_yr_rent_moved_in</span></a>
-<a class="sourceLine" id="cb50-4" data-line-number="4"><span class="co">##               &lt;dbl&gt; &lt;chr&gt;                      &lt;dbl&gt;                &lt;dbl&gt;</span></a>
-<a class="sourceLine" id="cb50-5" data-line-number="5"><span class="co">##  1             1988 1980 to 1989                2004                 2012</span></a>
-<a class="sourceLine" id="cb50-6" data-line-number="6"><span class="co">##  2             1955 1950 to 1959                2003                 2010</span></a>
-<a class="sourceLine" id="cb50-7" data-line-number="7"><span class="co">##  3             1959 1950 to 1959                2007                 2012</span></a>
-<a class="sourceLine" id="cb50-8" data-line-number="8"><span class="co">##  4             1973 1970 to 1979                2006                 2011</span></a>
-<a class="sourceLine" id="cb50-9" data-line-number="9"><span class="co">##  5             1964 1960 to 1969                2006                 2011</span></a>
-<a class="sourceLine" id="cb50-10" data-line-number="10"><span class="co">##  6             1966 1960 to 1969                2000                 2009</span></a>
-<a class="sourceLine" id="cb50-11" data-line-number="11"><span class="co">##  7             1939 Prior to 1940               2011                 2012</span></a>
-<a class="sourceLine" id="cb50-12" data-line-number="12"><span class="co">##  8             1939 Prior to 1940               2006                 2012</span></a>
-<a class="sourceLine" id="cb50-13" data-line-number="13"><span class="co">##  9             1981 1980 to 1989                2004                 2012</span></a>
-<a class="sourceLine" id="cb50-14" data-line-number="14"><span class="co">## 10             1939 Prior to 1940               2011                   NA</span></a>
-<a class="sourceLine" id="cb50-15" data-line-number="15"><span class="co">## # … with 1,468 more rows</span></a></code></pre></div>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb53-1" data-line-number="1"><span class="kw">select</span>(acs_raw, <span class="kw">contains</span>(<span class="st">&quot;yr&quot;</span>))</a>
+<a class="sourceLine" id="cb53-2" data-line-number="2"><span class="co">## # A tibble: 1,478 x 4</span></a>
+<a class="sourceLine" id="cb53-3" data-line-number="3"><span class="co">##    med_yr_built_raw med_yr_built  med_yr_moved_inraw med_yr_rent_moved_in</span></a>
+<a class="sourceLine" id="cb53-4" data-line-number="4"><span class="co">##               &lt;dbl&gt; &lt;chr&gt;                      &lt;dbl&gt;                &lt;dbl&gt;</span></a>
+<a class="sourceLine" id="cb53-5" data-line-number="5"><span class="co">##  1             1988 1980 to 1989                2004                 2012</span></a>
+<a class="sourceLine" id="cb53-6" data-line-number="6"><span class="co">##  2             1955 1950 to 1959                2003                 2010</span></a>
+<a class="sourceLine" id="cb53-7" data-line-number="7"><span class="co">##  3             1959 1950 to 1959                2007                 2012</span></a>
+<a class="sourceLine" id="cb53-8" data-line-number="8"><span class="co">##  4             1973 1970 to 1979                2006                 2011</span></a>
+<a class="sourceLine" id="cb53-9" data-line-number="9"><span class="co">##  5             1964 1960 to 1969                2006                 2011</span></a>
+<a class="sourceLine" id="cb53-10" data-line-number="10"><span class="co">##  6             1966 1960 to 1969                2000                 2009</span></a>
+<a class="sourceLine" id="cb53-11" data-line-number="11"><span class="co">##  7             1939 Prior to 1940               2011                 2012</span></a>
+<a class="sourceLine" id="cb53-12" data-line-number="12"><span class="co">##  8             1939 Prior to 1940               2006                 2012</span></a>
+<a class="sourceLine" id="cb53-13" data-line-number="13"><span class="co">##  9             1981 1980 to 1989                2004                 2012</span></a>
+<a class="sourceLine" id="cb53-14" data-line-number="14"><span class="co">## 10             1939 Prior to 1940               2011                   NA</span></a>
+<a class="sourceLine" id="cb53-15" data-line-number="15"><span class="co">## # … with 1,468 more rows</span></a></code></pre></div>
 <ul>
 <li>select columns that start with <code>med</code> then select everything else</li>
 </ul>
-<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb51-1" data-line-number="1"><span class="kw">select</span>(acs_raw, <span class="kw">contains</span>(<span class="st">&quot;yr&quot;</span>), <span class="kw">everything</span>())</a>
-<a class="sourceLine" id="cb51-2" data-line-number="2"><span class="co">## # A tibble: 1,478 x 59</span></a>
-<a class="sourceLine" id="cb51-3" data-line-number="3"><span class="co">##    med_yr_built_raw med_yr_built med_yr_moved_in… med_yr_rent_mov… ct_id_10</span></a>
-<a class="sourceLine" id="cb51-4" data-line-number="4"><span class="co">##               &lt;dbl&gt; &lt;chr&gt;                   &lt;dbl&gt;            &lt;dbl&gt;    &lt;dbl&gt;</span></a>
-<a class="sourceLine" id="cb51-5" data-line-number="5"><span class="co">##  1             1988 1980 to 1989             2004             2012  2.50e10</span></a>
-<a class="sourceLine" id="cb51-6" data-line-number="6"><span class="co">##  2             1955 1950 to 1959             2003             2010  2.50e10</span></a>
-<a class="sourceLine" id="cb51-7" data-line-number="7"><span class="co">##  3             1959 1950 to 1959             2007             2012  2.50e10</span></a>
-<a class="sourceLine" id="cb51-8" data-line-number="8"><span class="co">##  4             1973 1970 to 1979             2006             2011  2.50e10</span></a>
-<a class="sourceLine" id="cb51-9" data-line-number="9"><span class="co">##  5             1964 1960 to 1969             2006             2011  2.50e10</span></a>
-<a class="sourceLine" id="cb51-10" data-line-number="10"><span class="co">##  6             1966 1960 to 1969             2000             2009  2.50e10</span></a>
-<a class="sourceLine" id="cb51-11" data-line-number="11"><span class="co">##  7             1939 Prior to 19…             2011             2012  2.50e10</span></a>
-<a class="sourceLine" id="cb51-12" data-line-number="12"><span class="co">##  8             1939 Prior to 19…             2006             2012  2.50e10</span></a>
-<a class="sourceLine" id="cb51-13" data-line-number="13"><span class="co">##  9             1981 1980 to 1989             2004             2012  2.50e10</span></a>
-<a class="sourceLine" id="cb51-14" data-line-number="14"><span class="co">## 10             1939 Prior to 19…             2011               NA  2.50e10</span></a>
-<a class="sourceLine" id="cb51-15" data-line-number="15"><span class="co">## # … with 1,468 more rows, and 54 more variables: name &lt;chr&gt;,</span></a>
-<a class="sourceLine" id="cb51-16" data-line-number="16"><span class="co">## #   total_pop &lt;dbl&gt;, pop_den &lt;dbl&gt;, sex_ratio &lt;dbl&gt;, age_u18 &lt;dbl&gt;,</span></a>
-<a class="sourceLine" id="cb51-17" data-line-number="17"><span class="co">## #   age1834 &lt;dbl&gt;, age3564 &lt;dbl&gt;, age_o65 &lt;dbl&gt;, for_born &lt;dbl&gt;,</span></a>
-<a class="sourceLine" id="cb51-18" data-line-number="18"><span class="co">## #   white &lt;dbl&gt;, black &lt;dbl&gt;, asian &lt;dbl&gt;, hispanic &lt;dbl&gt;,</span></a>
-<a class="sourceLine" id="cb51-19" data-line-number="19"><span class="co">## #   two_or_more &lt;dbl&gt;, eth_het &lt;dbl&gt;, med_house_income &lt;dbl&gt;,</span></a>
-<a class="sourceLine" id="cb51-20" data-line-number="20"><span class="co">## #   pub_assist &lt;dbl&gt;, gini &lt;dbl&gt;, fam_pov_per &lt;dbl&gt;, unemp_rate &lt;dbl&gt;,</span></a>
-<a class="sourceLine" id="cb51-21" data-line-number="21"><span class="co">## #   total_house_h &lt;dbl&gt;, fam_house_per &lt;dbl&gt;, fem_head_per &lt;dbl&gt;,</span></a>
-<a class="sourceLine" id="cb51-22" data-line-number="22"><span class="co">## #   same_sex_coup_per &lt;dbl&gt;, grand_head_per &lt;dbl&gt;, less_than_hs &lt;dbl&gt;,</span></a>
-<a class="sourceLine" id="cb51-23" data-line-number="23"><span class="co">## #   hs_grad &lt;dbl&gt;, some_coll &lt;dbl&gt;, bach &lt;dbl&gt;, master &lt;dbl&gt;, prof &lt;dbl&gt;,</span></a>
-<a class="sourceLine" id="cb51-24" data-line-number="24"><span class="co">## #   doc &lt;dbl&gt;, commute_less10 &lt;dbl&gt;, commute1030 &lt;dbl&gt;, commute3060 &lt;dbl&gt;,</span></a>
-<a class="sourceLine" id="cb51-25" data-line-number="25"><span class="co">## #   commute6090 &lt;dbl&gt;, commute_over90 &lt;dbl&gt;, by_auto &lt;dbl&gt;,</span></a>
-<a class="sourceLine" id="cb51-26" data-line-number="26"><span class="co">## #   by_pub_trans &lt;dbl&gt;, by_bike &lt;dbl&gt;, by_walk &lt;dbl&gt;,</span></a>
-<a class="sourceLine" id="cb51-27" data-line-number="27"><span class="co">## #   total_house_units &lt;dbl&gt;, vacant_unit_per &lt;dbl&gt;, renters_per &lt;dbl&gt;,</span></a>
-<a class="sourceLine" id="cb51-28" data-line-number="28"><span class="co">## #   home_own_per &lt;dbl&gt;, med_gross_rent &lt;dbl&gt;, med_home_val &lt;dbl&gt;,</span></a>
-<a class="sourceLine" id="cb51-29" data-line-number="29"><span class="co">## #   area_acres &lt;dbl&gt;, town_id &lt;dbl&gt;, town &lt;chr&gt;, fips_stco &lt;dbl&gt;,</span></a>
-<a class="sourceLine" id="cb51-30" data-line-number="30"><span class="co">## #   county &lt;chr&gt;, area_acr_1 &lt;dbl&gt;, m_atown &lt;chr&gt;</span></a></code></pre></div>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb54-1" data-line-number="1"><span class="kw">select</span>(acs_raw, <span class="kw">contains</span>(<span class="st">&quot;yr&quot;</span>), <span class="kw">everything</span>())</a>
+<a class="sourceLine" id="cb54-2" data-line-number="2"><span class="co">## # A tibble: 1,478 x 59</span></a>
+<a class="sourceLine" id="cb54-3" data-line-number="3"><span class="co">##    med_yr_built_raw med_yr_built med_yr_moved_in… med_yr_rent_mov… ct_id_10</span></a>
+<a class="sourceLine" id="cb54-4" data-line-number="4"><span class="co">##               &lt;dbl&gt; &lt;chr&gt;                   &lt;dbl&gt;            &lt;dbl&gt;    &lt;dbl&gt;</span></a>
+<a class="sourceLine" id="cb54-5" data-line-number="5"><span class="co">##  1             1988 1980 to 1989             2004             2012  2.50e10</span></a>
+<a class="sourceLine" id="cb54-6" data-line-number="6"><span class="co">##  2             1955 1950 to 1959             2003             2010  2.50e10</span></a>
+<a class="sourceLine" id="cb54-7" data-line-number="7"><span class="co">##  3             1959 1950 to 1959             2007             2012  2.50e10</span></a>
+<a class="sourceLine" id="cb54-8" data-line-number="8"><span class="co">##  4             1973 1970 to 1979             2006             2011  2.50e10</span></a>
+<a class="sourceLine" id="cb54-9" data-line-number="9"><span class="co">##  5             1964 1960 to 1969             2006             2011  2.50e10</span></a>
+<a class="sourceLine" id="cb54-10" data-line-number="10"><span class="co">##  6             1966 1960 to 1969             2000             2009  2.50e10</span></a>
+<a class="sourceLine" id="cb54-11" data-line-number="11"><span class="co">##  7             1939 Prior to 19…             2011             2012  2.50e10</span></a>
+<a class="sourceLine" id="cb54-12" data-line-number="12"><span class="co">##  8             1939 Prior to 19…             2006             2012  2.50e10</span></a>
+<a class="sourceLine" id="cb54-13" data-line-number="13"><span class="co">##  9             1981 1980 to 1989             2004             2012  2.50e10</span></a>
+<a class="sourceLine" id="cb54-14" data-line-number="14"><span class="co">## 10             1939 Prior to 19…             2011               NA  2.50e10</span></a>
+<a class="sourceLine" id="cb54-15" data-line-number="15"><span class="co">## # … with 1,468 more rows, and 54 more variables: name &lt;chr&gt;,</span></a>
+<a class="sourceLine" id="cb54-16" data-line-number="16"><span class="co">## #   total_pop &lt;dbl&gt;, pop_den &lt;dbl&gt;, sex_ratio &lt;dbl&gt;, age_u18 &lt;dbl&gt;,</span></a>
+<a class="sourceLine" id="cb54-17" data-line-number="17"><span class="co">## #   age1834 &lt;dbl&gt;, age3564 &lt;dbl&gt;, age_o65 &lt;dbl&gt;, for_born &lt;dbl&gt;,</span></a>
+<a class="sourceLine" id="cb54-18" data-line-number="18"><span class="co">## #   white &lt;dbl&gt;, black &lt;dbl&gt;, asian &lt;dbl&gt;, hispanic &lt;dbl&gt;,</span></a>
+<a class="sourceLine" id="cb54-19" data-line-number="19"><span class="co">## #   two_or_more &lt;dbl&gt;, eth_het &lt;dbl&gt;, med_house_income &lt;dbl&gt;,</span></a>
+<a class="sourceLine" id="cb54-20" data-line-number="20"><span class="co">## #   pub_assist &lt;dbl&gt;, gini &lt;dbl&gt;, fam_pov_per &lt;dbl&gt;, unemp_rate &lt;dbl&gt;,</span></a>
+<a class="sourceLine" id="cb54-21" data-line-number="21"><span class="co">## #   total_house_h &lt;dbl&gt;, fam_house_per &lt;dbl&gt;, fem_head_per &lt;dbl&gt;,</span></a>
+<a class="sourceLine" id="cb54-22" data-line-number="22"><span class="co">## #   same_sex_coup_per &lt;dbl&gt;, grand_head_per &lt;dbl&gt;, less_than_hs &lt;dbl&gt;,</span></a>
+<a class="sourceLine" id="cb54-23" data-line-number="23"><span class="co">## #   hs_grad &lt;dbl&gt;, some_coll &lt;dbl&gt;, bach &lt;dbl&gt;, master &lt;dbl&gt;, prof &lt;dbl&gt;,</span></a>
+<a class="sourceLine" id="cb54-24" data-line-number="24"><span class="co">## #   doc &lt;dbl&gt;, commute_less10 &lt;dbl&gt;, commute1030 &lt;dbl&gt;, commute3060 &lt;dbl&gt;,</span></a>
+<a class="sourceLine" id="cb54-25" data-line-number="25"><span class="co">## #   commute6090 &lt;dbl&gt;, commute_over90 &lt;dbl&gt;, by_auto &lt;dbl&gt;,</span></a>
+<a class="sourceLine" id="cb54-26" data-line-number="26"><span class="co">## #   by_pub_trans &lt;dbl&gt;, by_bike &lt;dbl&gt;, by_walk &lt;dbl&gt;,</span></a>
+<a class="sourceLine" id="cb54-27" data-line-number="27"><span class="co">## #   total_house_units &lt;dbl&gt;, vacant_unit_per &lt;dbl&gt;, renters_per &lt;dbl&gt;,</span></a>
+<a class="sourceLine" id="cb54-28" data-line-number="28"><span class="co">## #   home_own_per &lt;dbl&gt;, med_gross_rent &lt;dbl&gt;, med_home_val &lt;dbl&gt;,</span></a>
+<a class="sourceLine" id="cb54-29" data-line-number="29"><span class="co">## #   area_acres &lt;dbl&gt;, town_id &lt;dbl&gt;, town &lt;chr&gt;, fips_stco &lt;dbl&gt;,</span></a>
+<a class="sourceLine" id="cb54-30" data-line-number="30"><span class="co">## #   county &lt;chr&gt;, area_acr_1 &lt;dbl&gt;, m_atown &lt;chr&gt;</span></a></code></pre></div>
 </div>
 </div>
 <div id="selecting-rows" class="section level2">
@@ -705,84 +705,84 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Though a somewhat infrequent event, it will be handy to know how to select rows. There are two ways in which we can select our rows. The first is by specifying exactly which rows by their position. The other way is to filter down our data based on a condition—i.e. median household income within a range. The functions to do this are <code>slice()</code> and <code>filter()</code> respectively. The remainder of this chapter will introduce you to <code>slice()</code>. We will learn how to filter in the next chapter.</p>
 <p>Like <code>select()</code> we can also select rows. But rows do not have names, so we must select the rows based on their position. Given your familiarity with selecting by column position this should be a cake walk for you.</p>
 <p>Similar to <code>last_col()</code> we have the function <code>n()</code>. <code>n()</code> is a rather handy little function which tells us how many observations there are in a tibble. This allows to specify the last row of a tibble.</p>
-<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb52-1" data-line-number="1"><span class="kw">slice</span>(acs_raw, <span class="kw">n</span>())</a>
-<a class="sourceLine" id="cb52-2" data-line-number="2"><span class="co">## # A tibble: 1 x 59</span></a>
-<a class="sourceLine" id="cb52-3" data-line-number="3"><span class="co">##   ct_id_10 name  total_pop pop_den sex_ratio age_u18 age1834 age3564</span></a>
-<a class="sourceLine" id="cb52-4" data-line-number="4"><span class="co">##      &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;</span></a>
-<a class="sourceLine" id="cb52-5" data-line-number="5"><span class="co">## 1  2.50e10 Cens…      5821   2760.     0.885   0.181   0.204   0.435</span></a>
-<a class="sourceLine" id="cb52-6" data-line-number="6"><span class="co">## # … with 51 more variables: age_o65 &lt;dbl&gt;, for_born &lt;dbl&gt;, white &lt;dbl&gt;,</span></a>
-<a class="sourceLine" id="cb52-7" data-line-number="7"><span class="co">## #   black &lt;dbl&gt;, asian &lt;dbl&gt;, hispanic &lt;dbl&gt;, two_or_more &lt;dbl&gt;,</span></a>
-<a class="sourceLine" id="cb52-8" data-line-number="8"><span class="co">## #   eth_het &lt;dbl&gt;, med_house_income &lt;dbl&gt;, pub_assist &lt;dbl&gt;, gini &lt;dbl&gt;,</span></a>
-<a class="sourceLine" id="cb52-9" data-line-number="9"><span class="co">## #   fam_pov_per &lt;dbl&gt;, unemp_rate &lt;dbl&gt;, total_house_h &lt;dbl&gt;,</span></a>
-<a class="sourceLine" id="cb52-10" data-line-number="10"><span class="co">## #   fam_house_per &lt;dbl&gt;, fem_head_per &lt;dbl&gt;, same_sex_coup_per &lt;dbl&gt;,</span></a>
-<a class="sourceLine" id="cb52-11" data-line-number="11"><span class="co">## #   grand_head_per &lt;dbl&gt;, less_than_hs &lt;dbl&gt;, hs_grad &lt;dbl&gt;,</span></a>
-<a class="sourceLine" id="cb52-12" data-line-number="12"><span class="co">## #   some_coll &lt;dbl&gt;, bach &lt;dbl&gt;, master &lt;dbl&gt;, prof &lt;dbl&gt;, doc &lt;dbl&gt;,</span></a>
-<a class="sourceLine" id="cb52-13" data-line-number="13"><span class="co">## #   commute_less10 &lt;dbl&gt;, commute1030 &lt;dbl&gt;, commute3060 &lt;dbl&gt;,</span></a>
-<a class="sourceLine" id="cb52-14" data-line-number="14"><span class="co">## #   commute6090 &lt;dbl&gt;, commute_over90 &lt;dbl&gt;, by_auto &lt;dbl&gt;,</span></a>
-<a class="sourceLine" id="cb52-15" data-line-number="15"><span class="co">## #   by_pub_trans &lt;dbl&gt;, by_bike &lt;dbl&gt;, by_walk &lt;dbl&gt;,</span></a>
-<a class="sourceLine" id="cb52-16" data-line-number="16"><span class="co">## #   total_house_units &lt;dbl&gt;, vacant_unit_per &lt;dbl&gt;, renters_per &lt;dbl&gt;,</span></a>
-<a class="sourceLine" id="cb52-17" data-line-number="17"><span class="co">## #   home_own_per &lt;dbl&gt;, med_gross_rent &lt;dbl&gt;, med_home_val &lt;dbl&gt;,</span></a>
-<a class="sourceLine" id="cb52-18" data-line-number="18"><span class="co">## #   med_yr_built_raw &lt;dbl&gt;, med_yr_built &lt;chr&gt;, med_yr_moved_inraw &lt;dbl&gt;,</span></a>
-<a class="sourceLine" id="cb52-19" data-line-number="19"><span class="co">## #   med_yr_rent_moved_in &lt;dbl&gt;, area_acres &lt;dbl&gt;, town_id &lt;dbl&gt;,</span></a>
-<a class="sourceLine" id="cb52-20" data-line-number="20"><span class="co">## #   town &lt;chr&gt;, fips_stco &lt;dbl&gt;, county &lt;chr&gt;, area_acr_1 &lt;dbl&gt;,</span></a>
-<a class="sourceLine" id="cb52-21" data-line-number="21"><span class="co">## #   m_atown &lt;chr&gt;</span></a></code></pre></div>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb55-1" data-line-number="1"><span class="kw">slice</span>(acs_raw, <span class="kw">n</span>())</a>
+<a class="sourceLine" id="cb55-2" data-line-number="2"><span class="co">## # A tibble: 1 x 59</span></a>
+<a class="sourceLine" id="cb55-3" data-line-number="3"><span class="co">##   ct_id_10 name  total_pop pop_den sex_ratio age_u18 age1834 age3564</span></a>
+<a class="sourceLine" id="cb55-4" data-line-number="4"><span class="co">##      &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;</span></a>
+<a class="sourceLine" id="cb55-5" data-line-number="5"><span class="co">## 1  2.50e10 Cens…      5821   2760.     0.885   0.181   0.204   0.435</span></a>
+<a class="sourceLine" id="cb55-6" data-line-number="6"><span class="co">## # … with 51 more variables: age_o65 &lt;dbl&gt;, for_born &lt;dbl&gt;, white &lt;dbl&gt;,</span></a>
+<a class="sourceLine" id="cb55-7" data-line-number="7"><span class="co">## #   black &lt;dbl&gt;, asian &lt;dbl&gt;, hispanic &lt;dbl&gt;, two_or_more &lt;dbl&gt;,</span></a>
+<a class="sourceLine" id="cb55-8" data-line-number="8"><span class="co">## #   eth_het &lt;dbl&gt;, med_house_income &lt;dbl&gt;, pub_assist &lt;dbl&gt;, gini &lt;dbl&gt;,</span></a>
+<a class="sourceLine" id="cb55-9" data-line-number="9"><span class="co">## #   fam_pov_per &lt;dbl&gt;, unemp_rate &lt;dbl&gt;, total_house_h &lt;dbl&gt;,</span></a>
+<a class="sourceLine" id="cb55-10" data-line-number="10"><span class="co">## #   fam_house_per &lt;dbl&gt;, fem_head_per &lt;dbl&gt;, same_sex_coup_per &lt;dbl&gt;,</span></a>
+<a class="sourceLine" id="cb55-11" data-line-number="11"><span class="co">## #   grand_head_per &lt;dbl&gt;, less_than_hs &lt;dbl&gt;, hs_grad &lt;dbl&gt;,</span></a>
+<a class="sourceLine" id="cb55-12" data-line-number="12"><span class="co">## #   some_coll &lt;dbl&gt;, bach &lt;dbl&gt;, master &lt;dbl&gt;, prof &lt;dbl&gt;, doc &lt;dbl&gt;,</span></a>
+<a class="sourceLine" id="cb55-13" data-line-number="13"><span class="co">## #   commute_less10 &lt;dbl&gt;, commute1030 &lt;dbl&gt;, commute3060 &lt;dbl&gt;,</span></a>
+<a class="sourceLine" id="cb55-14" data-line-number="14"><span class="co">## #   commute6090 &lt;dbl&gt;, commute_over90 &lt;dbl&gt;, by_auto &lt;dbl&gt;,</span></a>
+<a class="sourceLine" id="cb55-15" data-line-number="15"><span class="co">## #   by_pub_trans &lt;dbl&gt;, by_bike &lt;dbl&gt;, by_walk &lt;dbl&gt;,</span></a>
+<a class="sourceLine" id="cb55-16" data-line-number="16"><span class="co">## #   total_house_units &lt;dbl&gt;, vacant_unit_per &lt;dbl&gt;, renters_per &lt;dbl&gt;,</span></a>
+<a class="sourceLine" id="cb55-17" data-line-number="17"><span class="co">## #   home_own_per &lt;dbl&gt;, med_gross_rent &lt;dbl&gt;, med_home_val &lt;dbl&gt;,</span></a>
+<a class="sourceLine" id="cb55-18" data-line-number="18"><span class="co">## #   med_yr_built_raw &lt;dbl&gt;, med_yr_built &lt;chr&gt;, med_yr_moved_inraw &lt;dbl&gt;,</span></a>
+<a class="sourceLine" id="cb55-19" data-line-number="19"><span class="co">## #   med_yr_rent_moved_in &lt;dbl&gt;, area_acres &lt;dbl&gt;, town_id &lt;dbl&gt;,</span></a>
+<a class="sourceLine" id="cb55-20" data-line-number="20"><span class="co">## #   town &lt;chr&gt;, fips_stco &lt;dbl&gt;, county &lt;chr&gt;, area_acr_1 &lt;dbl&gt;,</span></a>
+<a class="sourceLine" id="cb55-21" data-line-number="21"><span class="co">## #   m_atown &lt;chr&gt;</span></a></code></pre></div>
 <p>Unlike <code>last_col()</code>, <code>n()</code> provides us with a number. Instead of specifying an offset we can instead subtract directly from the output of <code>n()</code>. To grab the last three rows we can write <code>(n() - 3):n()</code>. We put <code>n()-3</code> inside of parantheses so R knows to process <code>n() - 3</code> first.</p>
-<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb53-1" data-line-number="1"><span class="kw">slice</span>(acs_raw, (<span class="kw">n</span>() <span class="op">-</span><span class="st"> </span><span class="dv">3</span>)<span class="op">:</span><span class="kw">n</span>())</a>
-<a class="sourceLine" id="cb53-2" data-line-number="2"><span class="co">## # A tibble: 4 x 59</span></a>
-<a class="sourceLine" id="cb53-3" data-line-number="3"><span class="co">##   ct_id_10 name  total_pop pop_den sex_ratio age_u18 age1834 age3564</span></a>
-<a class="sourceLine" id="cb53-4" data-line-number="4"><span class="co">##      &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;</span></a>
-<a class="sourceLine" id="cb53-5" data-line-number="5"><span class="co">## 1  2.50e10 Cens…      2519   3083.     0.806   0.202   0.268   0.397</span></a>
-<a class="sourceLine" id="cb53-6" data-line-number="6"><span class="co">## 2  2.50e10 Cens…      3500   5392.     1.05    0.205   0.277   0.395</span></a>
-<a class="sourceLine" id="cb53-7" data-line-number="7"><span class="co">## 3  2.50e10 Cens…      5816   2677.     1.20    0.191   0.233   0.458</span></a>
-<a class="sourceLine" id="cb53-8" data-line-number="8"><span class="co">## 4  2.50e10 Cens…      5821   2760.     0.885   0.181   0.204   0.435</span></a>
-<a class="sourceLine" id="cb53-9" data-line-number="9"><span class="co">## # … with 51 more variables: age_o65 &lt;dbl&gt;, for_born &lt;dbl&gt;, white &lt;dbl&gt;,</span></a>
-<a class="sourceLine" id="cb53-10" data-line-number="10"><span class="co">## #   black &lt;dbl&gt;, asian &lt;dbl&gt;, hispanic &lt;dbl&gt;, two_or_more &lt;dbl&gt;,</span></a>
-<a class="sourceLine" id="cb53-11" data-line-number="11"><span class="co">## #   eth_het &lt;dbl&gt;, med_house_income &lt;dbl&gt;, pub_assist &lt;dbl&gt;, gini &lt;dbl&gt;,</span></a>
-<a class="sourceLine" id="cb53-12" data-line-number="12"><span class="co">## #   fam_pov_per &lt;dbl&gt;, unemp_rate &lt;dbl&gt;, total_house_h &lt;dbl&gt;,</span></a>
-<a class="sourceLine" id="cb53-13" data-line-number="13"><span class="co">## #   fam_house_per &lt;dbl&gt;, fem_head_per &lt;dbl&gt;, same_sex_coup_per &lt;dbl&gt;,</span></a>
-<a class="sourceLine" id="cb53-14" data-line-number="14"><span class="co">## #   grand_head_per &lt;dbl&gt;, less_than_hs &lt;dbl&gt;, hs_grad &lt;dbl&gt;,</span></a>
-<a class="sourceLine" id="cb53-15" data-line-number="15"><span class="co">## #   some_coll &lt;dbl&gt;, bach &lt;dbl&gt;, master &lt;dbl&gt;, prof &lt;dbl&gt;, doc &lt;dbl&gt;,</span></a>
-<a class="sourceLine" id="cb53-16" data-line-number="16"><span class="co">## #   commute_less10 &lt;dbl&gt;, commute1030 &lt;dbl&gt;, commute3060 &lt;dbl&gt;,</span></a>
-<a class="sourceLine" id="cb53-17" data-line-number="17"><span class="co">## #   commute6090 &lt;dbl&gt;, commute_over90 &lt;dbl&gt;, by_auto &lt;dbl&gt;,</span></a>
-<a class="sourceLine" id="cb53-18" data-line-number="18"><span class="co">## #   by_pub_trans &lt;dbl&gt;, by_bike &lt;dbl&gt;, by_walk &lt;dbl&gt;,</span></a>
-<a class="sourceLine" id="cb53-19" data-line-number="19"><span class="co">## #   total_house_units &lt;dbl&gt;, vacant_unit_per &lt;dbl&gt;, renters_per &lt;dbl&gt;,</span></a>
-<a class="sourceLine" id="cb53-20" data-line-number="20"><span class="co">## #   home_own_per &lt;dbl&gt;, med_gross_rent &lt;dbl&gt;, med_home_val &lt;dbl&gt;,</span></a>
-<a class="sourceLine" id="cb53-21" data-line-number="21"><span class="co">## #   med_yr_built_raw &lt;dbl&gt;, med_yr_built &lt;chr&gt;, med_yr_moved_inraw &lt;dbl&gt;,</span></a>
-<a class="sourceLine" id="cb53-22" data-line-number="22"><span class="co">## #   med_yr_rent_moved_in &lt;dbl&gt;, area_acres &lt;dbl&gt;, town_id &lt;dbl&gt;,</span></a>
-<a class="sourceLine" id="cb53-23" data-line-number="23"><span class="co">## #   town &lt;chr&gt;, fips_stco &lt;dbl&gt;, county &lt;chr&gt;, area_acr_1 &lt;dbl&gt;,</span></a>
-<a class="sourceLine" id="cb53-24" data-line-number="24"><span class="co">## #   m_atown &lt;chr&gt;</span></a></code></pre></div>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb56-1" data-line-number="1"><span class="kw">slice</span>(acs_raw, (<span class="kw">n</span>() <span class="op">-</span><span class="st"> </span><span class="dv">3</span>)<span class="op">:</span><span class="kw">n</span>())</a>
+<a class="sourceLine" id="cb56-2" data-line-number="2"><span class="co">## # A tibble: 4 x 59</span></a>
+<a class="sourceLine" id="cb56-3" data-line-number="3"><span class="co">##   ct_id_10 name  total_pop pop_den sex_ratio age_u18 age1834 age3564</span></a>
+<a class="sourceLine" id="cb56-4" data-line-number="4"><span class="co">##      &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;</span></a>
+<a class="sourceLine" id="cb56-5" data-line-number="5"><span class="co">## 1  2.50e10 Cens…      2519   3083.     0.806   0.202   0.268   0.397</span></a>
+<a class="sourceLine" id="cb56-6" data-line-number="6"><span class="co">## 2  2.50e10 Cens…      3500   5392.     1.05    0.205   0.277   0.395</span></a>
+<a class="sourceLine" id="cb56-7" data-line-number="7"><span class="co">## 3  2.50e10 Cens…      5816   2677.     1.20    0.191   0.233   0.458</span></a>
+<a class="sourceLine" id="cb56-8" data-line-number="8"><span class="co">## 4  2.50e10 Cens…      5821   2760.     0.885   0.181   0.204   0.435</span></a>
+<a class="sourceLine" id="cb56-9" data-line-number="9"><span class="co">## # … with 51 more variables: age_o65 &lt;dbl&gt;, for_born &lt;dbl&gt;, white &lt;dbl&gt;,</span></a>
+<a class="sourceLine" id="cb56-10" data-line-number="10"><span class="co">## #   black &lt;dbl&gt;, asian &lt;dbl&gt;, hispanic &lt;dbl&gt;, two_or_more &lt;dbl&gt;,</span></a>
+<a class="sourceLine" id="cb56-11" data-line-number="11"><span class="co">## #   eth_het &lt;dbl&gt;, med_house_income &lt;dbl&gt;, pub_assist &lt;dbl&gt;, gini &lt;dbl&gt;,</span></a>
+<a class="sourceLine" id="cb56-12" data-line-number="12"><span class="co">## #   fam_pov_per &lt;dbl&gt;, unemp_rate &lt;dbl&gt;, total_house_h &lt;dbl&gt;,</span></a>
+<a class="sourceLine" id="cb56-13" data-line-number="13"><span class="co">## #   fam_house_per &lt;dbl&gt;, fem_head_per &lt;dbl&gt;, same_sex_coup_per &lt;dbl&gt;,</span></a>
+<a class="sourceLine" id="cb56-14" data-line-number="14"><span class="co">## #   grand_head_per &lt;dbl&gt;, less_than_hs &lt;dbl&gt;, hs_grad &lt;dbl&gt;,</span></a>
+<a class="sourceLine" id="cb56-15" data-line-number="15"><span class="co">## #   some_coll &lt;dbl&gt;, bach &lt;dbl&gt;, master &lt;dbl&gt;, prof &lt;dbl&gt;, doc &lt;dbl&gt;,</span></a>
+<a class="sourceLine" id="cb56-16" data-line-number="16"><span class="co">## #   commute_less10 &lt;dbl&gt;, commute1030 &lt;dbl&gt;, commute3060 &lt;dbl&gt;,</span></a>
+<a class="sourceLine" id="cb56-17" data-line-number="17"><span class="co">## #   commute6090 &lt;dbl&gt;, commute_over90 &lt;dbl&gt;, by_auto &lt;dbl&gt;,</span></a>
+<a class="sourceLine" id="cb56-18" data-line-number="18"><span class="co">## #   by_pub_trans &lt;dbl&gt;, by_bike &lt;dbl&gt;, by_walk &lt;dbl&gt;,</span></a>
+<a class="sourceLine" id="cb56-19" data-line-number="19"><span class="co">## #   total_house_units &lt;dbl&gt;, vacant_unit_per &lt;dbl&gt;, renters_per &lt;dbl&gt;,</span></a>
+<a class="sourceLine" id="cb56-20" data-line-number="20"><span class="co">## #   home_own_per &lt;dbl&gt;, med_gross_rent &lt;dbl&gt;, med_home_val &lt;dbl&gt;,</span></a>
+<a class="sourceLine" id="cb56-21" data-line-number="21"><span class="co">## #   med_yr_built_raw &lt;dbl&gt;, med_yr_built &lt;chr&gt;, med_yr_moved_inraw &lt;dbl&gt;,</span></a>
+<a class="sourceLine" id="cb56-22" data-line-number="22"><span class="co">## #   med_yr_rent_moved_in &lt;dbl&gt;, area_acres &lt;dbl&gt;, town_id &lt;dbl&gt;,</span></a>
+<a class="sourceLine" id="cb56-23" data-line-number="23"><span class="co">## #   town &lt;chr&gt;, fips_stco &lt;dbl&gt;, county &lt;chr&gt;, area_acr_1 &lt;dbl&gt;,</span></a>
+<a class="sourceLine" id="cb56-24" data-line-number="24"><span class="co">## #   m_atown &lt;chr&gt;</span></a></code></pre></div>
 <p>Try it:</p>
 <ul>
 <li>select the first row, rows 100-105, and the last row</li>
 </ul>
-<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb54-1" data-line-number="1"><span class="kw">slice</span>(acs_raw, <span class="dv">1</span>, <span class="dv">100</span><span class="op">:</span><span class="dv">105</span>, <span class="kw">n</span>())</a>
-<a class="sourceLine" id="cb54-2" data-line-number="2"><span class="co">## # A tibble: 8 x 59</span></a>
-<a class="sourceLine" id="cb54-3" data-line-number="3"><span class="co">##   ct_id_10 name  total_pop pop_den sex_ratio age_u18 age1834 age3564</span></a>
-<a class="sourceLine" id="cb54-4" data-line-number="4"><span class="co">##      &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;</span></a>
-<a class="sourceLine" id="cb54-5" data-line-number="5"><span class="co">## 1  2.50e10 Cens…      4585    333.     1.13    0.234  0.202    0.398</span></a>
-<a class="sourceLine" id="cb54-6" data-line-number="6"><span class="co">## 2  2.50e10 Cens…      5223   2402.     1.21    0.183  0.171    0.450</span></a>
-<a class="sourceLine" id="cb54-7" data-line-number="7"><span class="co">## 3  2.50e10 Cens…      5586    592.     1.09    0.278  0.116    0.413</span></a>
-<a class="sourceLine" id="cb54-8" data-line-number="8"><span class="co">## 4  2.50e10 Cens…      4474   1119.     0.962   0.282  0.0847   0.427</span></a>
-<a class="sourceLine" id="cb54-9" data-line-number="9"><span class="co">## 5  2.50e10 Cens…      6713    674.     0.928   0.223  0.216    0.423</span></a>
-<a class="sourceLine" id="cb54-10" data-line-number="10"><span class="co">## 6  2.50e10 Cens…      6676   3541.     0.999   0.249  0.266    0.395</span></a>
-<a class="sourceLine" id="cb54-11" data-line-number="11"><span class="co">## 7  2.50e10 Cens…      8141    820.     1.25    0.258  0.169    0.410</span></a>
-<a class="sourceLine" id="cb54-12" data-line-number="12"><span class="co">## 8  2.50e10 Cens…      5821   2760.     0.885   0.181  0.204    0.435</span></a>
-<a class="sourceLine" id="cb54-13" data-line-number="13"><span class="co">## # … with 51 more variables: age_o65 &lt;dbl&gt;, for_born &lt;dbl&gt;, white &lt;dbl&gt;,</span></a>
-<a class="sourceLine" id="cb54-14" data-line-number="14"><span class="co">## #   black &lt;dbl&gt;, asian &lt;dbl&gt;, hispanic &lt;dbl&gt;, two_or_more &lt;dbl&gt;,</span></a>
-<a class="sourceLine" id="cb54-15" data-line-number="15"><span class="co">## #   eth_het &lt;dbl&gt;, med_house_income &lt;dbl&gt;, pub_assist &lt;dbl&gt;, gini &lt;dbl&gt;,</span></a>
-<a class="sourceLine" id="cb54-16" data-line-number="16"><span class="co">## #   fam_pov_per &lt;dbl&gt;, unemp_rate &lt;dbl&gt;, total_house_h &lt;dbl&gt;,</span></a>
-<a class="sourceLine" id="cb54-17" data-line-number="17"><span class="co">## #   fam_house_per &lt;dbl&gt;, fem_head_per &lt;dbl&gt;, same_sex_coup_per &lt;dbl&gt;,</span></a>
-<a class="sourceLine" id="cb54-18" data-line-number="18"><span class="co">## #   grand_head_per &lt;dbl&gt;, less_than_hs &lt;dbl&gt;, hs_grad &lt;dbl&gt;,</span></a>
-<a class="sourceLine" id="cb54-19" data-line-number="19"><span class="co">## #   some_coll &lt;dbl&gt;, bach &lt;dbl&gt;, master &lt;dbl&gt;, prof &lt;dbl&gt;, doc &lt;dbl&gt;,</span></a>
-<a class="sourceLine" id="cb54-20" data-line-number="20"><span class="co">## #   commute_less10 &lt;dbl&gt;, commute1030 &lt;dbl&gt;, commute3060 &lt;dbl&gt;,</span></a>
-<a class="sourceLine" id="cb54-21" data-line-number="21"><span class="co">## #   commute6090 &lt;dbl&gt;, commute_over90 &lt;dbl&gt;, by_auto &lt;dbl&gt;,</span></a>
-<a class="sourceLine" id="cb54-22" data-line-number="22"><span class="co">## #   by_pub_trans &lt;dbl&gt;, by_bike &lt;dbl&gt;, by_walk &lt;dbl&gt;,</span></a>
-<a class="sourceLine" id="cb54-23" data-line-number="23"><span class="co">## #   total_house_units &lt;dbl&gt;, vacant_unit_per &lt;dbl&gt;, renters_per &lt;dbl&gt;,</span></a>
-<a class="sourceLine" id="cb54-24" data-line-number="24"><span class="co">## #   home_own_per &lt;dbl&gt;, med_gross_rent &lt;dbl&gt;, med_home_val &lt;dbl&gt;,</span></a>
-<a class="sourceLine" id="cb54-25" data-line-number="25"><span class="co">## #   med_yr_built_raw &lt;dbl&gt;, med_yr_built &lt;chr&gt;, med_yr_moved_inraw &lt;dbl&gt;,</span></a>
-<a class="sourceLine" id="cb54-26" data-line-number="26"><span class="co">## #   med_yr_rent_moved_in &lt;dbl&gt;, area_acres &lt;dbl&gt;, town_id &lt;dbl&gt;,</span></a>
-<a class="sourceLine" id="cb54-27" data-line-number="27"><span class="co">## #   town &lt;chr&gt;, fips_stco &lt;dbl&gt;, county &lt;chr&gt;, area_acr_1 &lt;dbl&gt;,</span></a>
-<a class="sourceLine" id="cb54-28" data-line-number="28"><span class="co">## #   m_atown &lt;chr&gt;</span></a></code></pre></div>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb57-1" data-line-number="1"><span class="kw">slice</span>(acs_raw, <span class="dv">1</span>, <span class="dv">100</span><span class="op">:</span><span class="dv">105</span>, <span class="kw">n</span>())</a>
+<a class="sourceLine" id="cb57-2" data-line-number="2"><span class="co">## # A tibble: 8 x 59</span></a>
+<a class="sourceLine" id="cb57-3" data-line-number="3"><span class="co">##   ct_id_10 name  total_pop pop_den sex_ratio age_u18 age1834 age3564</span></a>
+<a class="sourceLine" id="cb57-4" data-line-number="4"><span class="co">##      &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;</span></a>
+<a class="sourceLine" id="cb57-5" data-line-number="5"><span class="co">## 1  2.50e10 Cens…      4585    333.     1.13    0.234  0.202    0.398</span></a>
+<a class="sourceLine" id="cb57-6" data-line-number="6"><span class="co">## 2  2.50e10 Cens…      5223   2402.     1.21    0.183  0.171    0.450</span></a>
+<a class="sourceLine" id="cb57-7" data-line-number="7"><span class="co">## 3  2.50e10 Cens…      5586    592.     1.09    0.278  0.116    0.413</span></a>
+<a class="sourceLine" id="cb57-8" data-line-number="8"><span class="co">## 4  2.50e10 Cens…      4474   1119.     0.962   0.282  0.0847   0.427</span></a>
+<a class="sourceLine" id="cb57-9" data-line-number="9"><span class="co">## 5  2.50e10 Cens…      6713    674.     0.928   0.223  0.216    0.423</span></a>
+<a class="sourceLine" id="cb57-10" data-line-number="10"><span class="co">## 6  2.50e10 Cens…      6676   3541.     0.999   0.249  0.266    0.395</span></a>
+<a class="sourceLine" id="cb57-11" data-line-number="11"><span class="co">## 7  2.50e10 Cens…      8141    820.     1.25    0.258  0.169    0.410</span></a>
+<a class="sourceLine" id="cb57-12" data-line-number="12"><span class="co">## 8  2.50e10 Cens…      5821   2760.     0.885   0.181  0.204    0.435</span></a>
+<a class="sourceLine" id="cb57-13" data-line-number="13"><span class="co">## # … with 51 more variables: age_o65 &lt;dbl&gt;, for_born &lt;dbl&gt;, white &lt;dbl&gt;,</span></a>
+<a class="sourceLine" id="cb57-14" data-line-number="14"><span class="co">## #   black &lt;dbl&gt;, asian &lt;dbl&gt;, hispanic &lt;dbl&gt;, two_or_more &lt;dbl&gt;,</span></a>
+<a class="sourceLine" id="cb57-15" data-line-number="15"><span class="co">## #   eth_het &lt;dbl&gt;, med_house_income &lt;dbl&gt;, pub_assist &lt;dbl&gt;, gini &lt;dbl&gt;,</span></a>
+<a class="sourceLine" id="cb57-16" data-line-number="16"><span class="co">## #   fam_pov_per &lt;dbl&gt;, unemp_rate &lt;dbl&gt;, total_house_h &lt;dbl&gt;,</span></a>
+<a class="sourceLine" id="cb57-17" data-line-number="17"><span class="co">## #   fam_house_per &lt;dbl&gt;, fem_head_per &lt;dbl&gt;, same_sex_coup_per &lt;dbl&gt;,</span></a>
+<a class="sourceLine" id="cb57-18" data-line-number="18"><span class="co">## #   grand_head_per &lt;dbl&gt;, less_than_hs &lt;dbl&gt;, hs_grad &lt;dbl&gt;,</span></a>
+<a class="sourceLine" id="cb57-19" data-line-number="19"><span class="co">## #   some_coll &lt;dbl&gt;, bach &lt;dbl&gt;, master &lt;dbl&gt;, prof &lt;dbl&gt;, doc &lt;dbl&gt;,</span></a>
+<a class="sourceLine" id="cb57-20" data-line-number="20"><span class="co">## #   commute_less10 &lt;dbl&gt;, commute1030 &lt;dbl&gt;, commute3060 &lt;dbl&gt;,</span></a>
+<a class="sourceLine" id="cb57-21" data-line-number="21"><span class="co">## #   commute6090 &lt;dbl&gt;, commute_over90 &lt;dbl&gt;, by_auto &lt;dbl&gt;,</span></a>
+<a class="sourceLine" id="cb57-22" data-line-number="22"><span class="co">## #   by_pub_trans &lt;dbl&gt;, by_bike &lt;dbl&gt;, by_walk &lt;dbl&gt;,</span></a>
+<a class="sourceLine" id="cb57-23" data-line-number="23"><span class="co">## #   total_house_units &lt;dbl&gt;, vacant_unit_per &lt;dbl&gt;, renters_per &lt;dbl&gt;,</span></a>
+<a class="sourceLine" id="cb57-24" data-line-number="24"><span class="co">## #   home_own_per &lt;dbl&gt;, med_gross_rent &lt;dbl&gt;, med_home_val &lt;dbl&gt;,</span></a>
+<a class="sourceLine" id="cb57-25" data-line-number="25"><span class="co">## #   med_yr_built_raw &lt;dbl&gt;, med_yr_built &lt;chr&gt;, med_yr_moved_inraw &lt;dbl&gt;,</span></a>
+<a class="sourceLine" id="cb57-26" data-line-number="26"><span class="co">## #   med_yr_rent_moved_in &lt;dbl&gt;, area_acres &lt;dbl&gt;, town_id &lt;dbl&gt;,</span></a>
+<a class="sourceLine" id="cb57-27" data-line-number="27"><span class="co">## #   town &lt;chr&gt;, fips_stco &lt;dbl&gt;, county &lt;chr&gt;, area_acr_1 &lt;dbl&gt;,</span></a>
+<a class="sourceLine" id="cb57-28" data-line-number="28"><span class="co">## #   m_atown &lt;chr&gt;</span></a></code></pre></div>
 </div>
 <div id="revisiting-commmuting" class="section level2">
 <h2><span class="header-section-number">6.4</span> Revisiting commmuting</h2>
@@ -797,11 +797,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </blockquote>
 <p>Save the resultant tibble to an object named <code>commute</code> or something else informative.</p>
 <p>Below is one approach to this question. For this, I have selected all columns pertaining to commute time (columns that start with <code>commute</code>), the method by which people commute (begin with <code>by</code>), meidan household income, and the name of the census tract. The name of the census tract will be helpful for identifying “where”.</p>
-<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb55-1" data-line-number="1">commute &lt;-<span class="st"> </span><span class="kw">select</span>(acs_raw,</a>
-<a class="sourceLine" id="cb55-2" data-line-number="2">                  county,</a>
-<a class="sourceLine" id="cb55-3" data-line-number="3">                  <span class="kw">starts_with</span>(<span class="st">&quot;commute&quot;</span>),</a>
-<a class="sourceLine" id="cb55-4" data-line-number="4">                  <span class="kw">starts_with</span>(<span class="st">&quot;by&quot;</span>),</a>
-<a class="sourceLine" id="cb55-5" data-line-number="5">                  med_house_income)</a></code></pre></div>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb58-1" data-line-number="1">commute &lt;-<span class="st"> </span><span class="kw">select</span>(acs_raw,</a>
+<a class="sourceLine" id="cb58-2" data-line-number="2">                  county,</a>
+<a class="sourceLine" id="cb58-3" data-line-number="3">                  <span class="kw">starts_with</span>(<span class="st">&quot;commute&quot;</span>),</a>
+<a class="sourceLine" id="cb58-4" data-line-number="4">                  <span class="kw">starts_with</span>(<span class="st">&quot;by&quot;</span>),</a>
+<a class="sourceLine" id="cb58-5" data-line-number="5">                  med_house_income)</a></code></pre></div>
 </div>
 </div>
 <div id="asking-good-questions" class="section level2">
