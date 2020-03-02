@@ -217,8 +217,7 @@ The above scatter plot provides a lot of information. We see that there is a pos
 
 In this scatterplot we can see that there is a linear pattern. When the points on the scatter plot are closer to eachother and demonstrate less spread, that means there is a stronger relationship between the two variables. Imagine if we drew a line through the middle of the points, we would want each point to be as close to that line as possible. The further the point is away from that line, the more variation there is. In these cases we often create linear regression models to estimate the relationship.
 
-Using ggplot, we can plot the estimated linear regression line on top of our scatterplot. This is done with a `geom_smooth()` layer. By default, `geom_smooth()` does not plot the linear relationship. To do that, we need to specify what kind of smoothing we would like. In order to plot the estimated linear model, we set `method = "lm"`.  
-
+Using ggplot, we can plot the estimated linear regression line on top of our scatterplot. This is done with a `geom_smooth()` layer. By default, `geom_smooth()` does not plot the linear relationship. To do that, we need to specify what kind of smoothing we would like. To plot the estimated linear model, we set `method = "lm"`.  
 
 ```r
 ggplot(acs_edu, aes(x = bach, y = med_house_income)) +
@@ -228,22 +227,19 @@ ggplot(acs_edu, aes(x = bach, y = med_house_income)) +
 
 <img src="01-visual-analysis_files/figure-html/unnamed-chunk-10-1.png" width="672" />
 
+Wonderful! To finish up this graphic, we should add informative labels. Labels live in their own layer which is created with `labs()`. Each argument maps to an aesthetic—e.g. `x` and `y`. By default ggplot uses the column names for axis labels, but these labels are usually uninformative.
 
+Let's give the plot a title and better labels for its axes. We will set the following arguments to `labs()`
 
-- to finish this up we can add some informative labels
-- we will add a labels layer with the function `labs()`
-- give them more legible labels. we will give each axis a better name and give the plot a title
-- the arguments we will set to the labs function are `x`, `y` and `title`. Rather intuitive, huh?
-  - x = "% of population with a Bachelor's Degree"
-  - y = "Median Household Income"
-  - title = "Relationship between Education and Income"
-- note that for each argument I have a new line. again, this helps with legibility
-
+  - `x = "% of population with a Bachelor's Degree"`
+  - `y = "Median Household Income"`
+  - `title = "Relationship between Education and Income"`
 
 
 ```r
 ggplot(acs_edu, aes(x = bach, y = med_house_income)) +
   geom_point() +
+  geom_smooth(method = "lm") +
   labs(x = "% of population with a Bachelor's Degree",
        y = "Median Household Income",
        title = "Relationship between Education and Income")
@@ -251,20 +247,29 @@ ggplot(acs_edu, aes(x = bach, y = med_house_income)) +
 
 <img src="01-visual-analysis_files/figure-html/unnamed-chunk-11-1.png" width="672" />
 
-- what can we determine from this graph?
-- in the sociology literature there is a lot about the education gap between white and black folks
-- can we see this in a graph?
-- we can modify our existing plot to illustrate this too. 
-- we can map the % white to the color of the chart
-- we add to this within the aesthetics. The `aes()`thetics is where we will determine things like size, group, shape, etc.
-- set the `color` argument to the `white` column
-- while we're at it, we can add a subtitle to inform that we're also coloring by % white
+> Note that each argument is placed on a new line. Again, this is to improve readability.
 
+What can we determine from this graph? Take a few minutes and write down what you see and what you can infer from that. 
+
+> Consider asking these questions:
+> 
+- Is there a relationship between our variables?
+- Is the relationship linear?
+- Which direction does the trend go?
+- How spread out are the value pairs?
+- Are there any outliers? 
+
+This chart ilicits further lines of inquiry. For example, in the sociological literature there is a well documented achievement gap. The achievement gap can be traced along racial lines—though it is not inherently _caused_ by race but rather intertwined with it. Can this be seen in the tracts of Massachusetts? 
+
+We can visualize a third variable on our chart by mapping another `aes`thetic. When we add a third variable to the visualization we are generally trying to illustrate group membership or size / magnitude of the third variable. Due to the large number of points on our chart already, we may benefit more from mapping color rather than size—imagine 1,000 points overlapping even more than they already do. 
+
+We can map the proportion of the population that is white to the color of our points. We do this by setting the `color` aesthetic to `white`. While we're at it, let us include a subtitle which is informative to the viewer.
 
 
 ```r
 ggplot(acs_edu, aes(x = bach, y = med_house_income, color = white)) +
-  geom_point() +
+  geom_point(alpha = .4) +
+  geom_smooth(method = "lm") + 
   labs(x = "% of population with a Bachelor's Degree",
        y = "Median Household Income",
        title = "Relationship between Education and Income",
@@ -273,7 +278,13 @@ ggplot(acs_edu, aes(x = bach, y = med_house_income, color = white)) +
 
 <img src="01-visual-analysis_files/figure-html/unnamed-chunk-12-1.png" width="672" />
 
-- what can we conclude now?
+What can we conclude now? Does the addition of the third variable increase or decrease the utility of our scatter plot? Does the trend seem to mediated by race? I'll leave those questions to you to answer.
+
+You've now completed your first visual analysis. You've learned how to create publication ready histograms and scatter plots using ggplot2. This is no small feat! 
+
+This chapter provided you with data that was used in our visualization exercises. You're going to want to be able to visualize and analyze your own data. The next chapter introduces you reading data and some of the most common file formats you may encounter.
+
+#### Resources and footnotes
 
 [^1]: Boston Building Permits: https://www.boston.gov/departments/inspectional-services/how-find-historical-permit-records
 [^2]: Some note about co-production.
@@ -297,26 +308,9 @@ ggplot(acs_edu, aes(x = bach, y = med_house_income, color = white)) +
 
 
 
-https://data.boston.gov/dataset/311-service-requests
-https://data.boston.gov/dataset/blue-bikes-system-data
+* https://data.boston.gov/dataset/311-service-requests
+* https://data.boston.gov/dataset/blue-bikes-system-data
+* https://www.theguardian.com/us-news/datablog/2020/feb/27/2020-us-census-black-people-mistakes-count
 
 
-
-https://www.theguardian.com/us-news/datablog/2020/feb/27/2020-us-census-black-people-mistakes-count
--------
-
-
-#### Misc Notes:
-
-> Note: The independent variable should always be on the x axis. The variable of interest should be on the y axis. This leads to more literate visualizations. 
-
-- this chapter is to introduce the concept of exploratory data analysis
-  - this should be done at a later point
-
-
-- NIST EDA: https://www.itl.nist.gov/div898/handbook/eda/section1/eda11.htm
-- https://r4ds.had.co.nz/explore-intro.html
-- iteration 
-- this chapter focuses on visualization
-- the process of exploratory anlaysis is naturally inductive
 

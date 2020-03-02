@@ -3,16 +3,14 @@
 
 
 
-
-
 ```r
 library(tidyverse)
-## ── Attaching packages ────────────────────────────────────────────────── tidyverse 1.2.1 ──
+## ── Attaching packages ─────────────────────────────────────────── tidyverse 1.2.1 ──
 ## ✓ tibble  2.1.3     ✓ purrr   0.3.3
 ## ✓ tidyr   1.0.2     ✓ dplyr   0.8.3
 ## ✓ readr   1.3.1     ✓ stringr 1.4.0
 ## ✓ tibble  2.1.3     ✓ forcats 0.4.0
-## ── Conflicts ───────────────────────────────────────────────────── tidyverse_conflicts() ──
+## ── Conflicts ────────────────────────────────────────────── tidyverse_conflicts() ──
 ## x dplyr::filter() masks stats::filter()
 ## x dplyr::lag()    masks stats::lag()
 
@@ -34,7 +32,74 @@ acs <- acs_messy %>%
   na.omit()
 ```
 
+You've made it quite far through this book. Now, I want to bring us back to the very beginning. In the first chapter we created a few visualizations with `ggplot2`. Now I want to unpack ggplot2 a bit more and also address some of the more philosophical underpinnings of visualization.
 
+This chapter introduces you to the idea of the grammar of graphics, discusses when which visualizations are appropriate, and some fundamental design principles follow. 
+
+
+## The Grammar of Layered Graphics
+
+Let's begin by revisting ggplot2. The `gg` in `ggplot2` refers to the grammar of graphics (and the `2` is because it's the second iteration). _The Grammar of Graphics_ (Wilkinson, 1999) is a seminal book in data visualization for the sciences in which, Wilkinson defines a complete system (grammar) for creating visualizations that go beyond the standard domain of "named graphics."[^wickham] 
+
+ggplot2 is "an open source implementation of the grammar of graphics for **R**."[^wickham] Once we can internalize the grammar of graphics, creating plots will be an intuitive and artistic process rather than mechanical.
+
+The principles underpinning `ggplot2` are outlined in _A Layered Grammar of Graphics_[^wickham] (Wickham). There are five high level components of the layered grammar.
+
+1. Defaults:
+  - Data
+  - Mapping
+2. Layer:
+  - Data*
+  - Mapping* 
+  - Geom
+  - Stat
+  - Position 
+3. Scale
+4. Coord
+5. Facet
+
+In the first chapter of this section we explored these principles but did not necessarily put a name to them.
+
+- we specify data and mappings, nothing is displayed at that time
+- from the defaults we can see that the scales and coordinates are intuitively handled
+- the default coordinate system is the cartesian coordinate system which has two axes x (horizontal), and y (vertical)
+- in order to see the data, we needed to add geometry to our base layer
+  - when we add Geoms to the graphic the data and aesthetic mappings are inherited from the defaults
+- we do not necessarily need to default data if we do not feel the need to do so. 
+- we can specify the data and mappings inside of the geom layer itself
+  - this will be handy when we work with geospatial data
+- stat refers to statistical transformations. 
+  - often you will not need to apply transformations to your data as their _identity_ (assigned values) are sufficient.
+
+
+
+[^wickham]: https://vita.had.co.nz/papers/layered-grammar.pdf
+https://cfss.uchicago.edu/notes/grammar-of-graphics/
+
+recommended reading: [A Layered Grammar of Graphics](https://vita.had.co.nz/papers/layered-grammar.pdf)
+
+- in R we will use a package called ggplot2 to do the visualizaiton of our data 
+- the `gg` in ggplot stands for "grammar of graphics".
+- once we can internalize the grammar, creating plots becomes rather easy
+- we specify our aesthetics
+- we **add** layers (hence the plus sign). these take values from the specified aesthetics
+- can add multiple layers
+- add aesthetics other than x and y. helps us visualize more dimensions of the data. we can use shape, color, and size
+
+
+
+### revisiting the cartesian plane
+
+- x and y coordinates
+- generally two numeric values on the x and y. think of the standards scatterplot (below)
+- we also can place groups on one axis
+  - i.e. barchart (below)
+- the y is usually the variable of interest
+  - as we move along the x axis (to the right) we can see how the y changes in response
+  
+  
+  
+  
 - most data analyses start with a visualization. 
 - the data we have will dictate the type of visualizations we create
 - there are many many different ways in which data can be represented
@@ -336,27 +401,9 @@ Trivariate:
 - grouped / stacked bar charts
 - heatmaps 
 
-## The Grammar of Layered Graphics
 
-recommended reading: [A Layered Grammar of Graphics](https://vita.had.co.nz/papers/layered-grammar.pdf)
+Color Ramps:
 
-- in R we will use a package called ggplot2 to do the visualizaiton of our data 
-- the `gg` in ggplot stands for "grammar of graphics".
-- once we can internalize the grammar, creating plots becomes rather easy
-- we specify our aesthetics
-- we **add** layers (hence the plus sign). these take values from the specified aesthetics
-- can add multiple layers
-- add aesthetics other than x and y. helps us visualize more dimensions of the data. we can use shape, color, and size
-
-
-
-### revisiting the cartesian plane
-
-- x and y coordinates
-- generally two numeric values on the x and y. think of the standards scatterplot (below)
-- we also can place groups on one axis
-  - i.e. barchart (below)
-- the y is usually the variable of interest
-  - as we move along the x axis (to the right) we can see how the y changes in response
-  
+- diverging when there is a true middle
+- dark is low bright is high
 
