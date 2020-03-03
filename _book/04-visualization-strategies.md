@@ -5,12 +5,12 @@
 
 ```r
 library(tidyverse)
-## ── Attaching packages ─────────────────────────────────────────── tidyverse 1.2.1 ──
+## ── Attaching packages ────────────────────────────────────────── tidyverse 1.2.1 ──
 ## ✓ tibble  2.1.3     ✓ purrr   0.3.3
 ## ✓ tidyr   1.0.2     ✓ dplyr   0.8.3
 ## ✓ readr   1.3.1     ✓ stringr 1.4.0
 ## ✓ tibble  2.1.3     ✓ forcats 0.4.0
-## ── Conflicts ────────────────────────────────────────────── tidyverse_conflicts() ──
+## ── Conflicts ───────────────────────────────────────────── tidyverse_conflicts() ──
 ## x dplyr::filter() masks stats::filter()
 ## x dplyr::lag()    masks stats::lag()
 
@@ -32,33 +32,99 @@ acs <- acs_messy %>%
   na.omit()
 ```
 
-You've made it quite far through this book. Now, I want to bring us back to the very beginning. In the first chapter we created a few visualizations with `ggplot2`. Now I want to unpack ggplot2 a bit more and also address some of the more philosophical underpinnings of visualization.
+You've made it quite far through this book. Now, I want to bring us back to the very beginning. In the first chapter we created a few visualizations with `ggplot2`. I want to unpack ggplot2 a bit more and also address some of the more philosophical underpinnings of visualization.
 
 This chapter introduces you to the idea of the grammar of graphics, discusses when which visualizations are appropriate, and some fundamental design principles follow. 
 
 
 ## The Grammar of Layered Graphics
 
-Let's begin by revisting ggplot2. The `gg` in `ggplot2` refers to the grammar of graphics (and the `2` is because it's the second iteration). _The Grammar of Graphics_ (Wilkinson, 1999) is a seminal book in data visualization for the sciences in which, Wilkinson defines a complete system (grammar) for creating visualizations that go beyond the standard domain of "named graphics."[^wickham] 
+The `gg` in `ggplot2` refers to the grammar of graphics (and the `2` is because it's the second iteration). _The Grammar of Graphics_ (Wilkinson, 1999) is a seminal book in data visualization for the sciences in which, Wilkinson defines a complete system (grammar) for creating visualizations that go beyond the standard domain of "named graphics"—e.g. histogram, barchart, etc. [^wickham] 
 
-ggplot2 is "an open source implementation of the grammar of graphics for **R**."[^wickham] Once we can internalize the grammar of graphics, creating plots will be an intuitive and artistic process rather than mechanical.
+ggplot2 is "an open source implementation of the grammar of graphics for **R**."[^wickham] Once we can internalize the grammar of graphics, creating plots will be an intuitive and artistic process rather than a mechanical one.
 
-The principles underpinning `ggplot2` are outlined in _A Layered Grammar of Graphics_[^wickham] (Wickham). There are five high level components of the layered grammar.
+There are five high level components of the layered grammar[^wickham].
 
 1. Defaults:
-  - Data
-  - Mapping
+    - Data
+    - Mapping
 2. Layer:
-  - Data*
-  - Mapping* 
-  - Geom
-  - Stat
-  - Position 
+    - Data*
+    - Mapping* 
+    - Geom
+    - Stat
+    - Position 
 3. Scale
 4. Coord
 5. Facet
 
-In the first chapter of this section we explored these principles but did not necessarily put a name to them.
+## Layers and defaults
+
+In the first chapter of this section we explored these principles but did not put a name to them. Recall that we can use `ggplot()` by itself and it returns a chart of nothing.
+
+
+```r
+ggplot()
+```
+
+<img src="04-visualization-strategies_files/figure-html/unnamed-chunk-3-1.png" width="672" />
+
+This is because we have not specified any of the defaults. In order for us to plot anything at all, we need to specify what (the data object) will be visualized, which features (the aesthetic mappings), and how (the geoms). When we begin to specify our x and y aesthetics the scales are interpreted.
+
+
+```r
+ggplot(acs, aes(med_house_income, by_auto))
+```
+
+<img src="04-visualization-strategies_files/figure-html/unnamed-chunk-4-1.png" width="672" />
+
+The final step is to add the geom layer which will inherit the data, aesthetic mappings, scale, and position while the `geom_*()` layer dictates the geometry.
+
+
+```r
+ggplot(acs, aes(bach, med_house_income))+ 
+  geom_point()
+```
+
+<img src="04-visualization-strategies_files/figure-html/unnamed-chunk-5-1.png" width="672" />
+
+While this is the most common way you might define a ggplot, you should also be aware of the fact that each layer can stand on its own without you defining any of the defaults in the `ggplot()` call. Each geom inherits the defaults from `ggplot()`, but each `geom_*()` also has arguments for `data`, and `mapping`, providing you with increased flexibility.
+
+> Note: the `geom_*()`s have the data as the second argument so either put the data there or name the argument explicitly. The choice is yours. Choose wisely! 
+
+What happens if we provide all of this information to `geom_point()` and entirely omit `ggplot()`?
+
+
+```r
+geom_point(aes(med_house_income, by_auto), acs)
+## mapping: x = ~med_house_income, y = ~by_auto 
+## geom_point: na.rm = FALSE
+## stat_identity: na.rm = FALSE
+## position_identity
+```
+
+We see that we do not have the plot, but we do have all of the information required of a layer is printed out to the console. If we add an empty ggplot call ahead of the layer, we will be able to create the plot.
+
+
+```r
+ggplot() + 
+  geom_point(aes(med_house_income, by_auto), acs)
+```
+
+<img src="04-visualization-strategies_files/figure-html/unnamed-chunk-7-1.png" width="672" />
+
+Being able to specify different data objects within each layer will provie to be extraordinarily helpful when we begin to work with spatial data, or plotting two different data frames with the same axes, or any other creative problem you wish to solve. 
+
+
+## Scales 
+
+## Coordinates
+
+## Facets
+
+-----------
+
+**Notes**
 
 - we specify data and mappings, nothing is displayed at that time
 - from the defaults we can see that the scales and coordinates are intuitively handled
@@ -132,7 +198,7 @@ ggplot(acs, aes(age_u18)) +
   geom_histogram(bins = 15)
 ```
 
-<img src="04-visualization-strategies_files/figure-html/unnamed-chunk-3-1.png" width="672" />
+<img src="04-visualization-strategies_files/figure-html/unnamed-chunk-8-1.png" width="672" />
 
 ### density plot
 
@@ -148,7 +214,7 @@ ggplot(acs, aes(age_u18)) +
   geom_density()
 ```
 
-<img src="04-visualization-strategies_files/figure-html/unnamed-chunk-4-1.png" width="672" />
+<img src="04-visualization-strategies_files/figure-html/unnamed-chunk-9-1.png" width="672" />
 
 ### box plot
 
@@ -174,7 +240,7 @@ ggplot(acs, aes(y = age_u18)) +
   geom_boxplot() 
 ```
 
-<img src="04-visualization-strategies_files/figure-html/unnamed-chunk-5-1.png" width="672" />
+<img src="04-visualization-strategies_files/figure-html/unnamed-chunk-10-1.png" width="672" />
 
 - its easier to evaluate a box plot when it's horizontal.
   - we can flip any ggplot with a `coord_flip()` layer
@@ -188,7 +254,7 @@ ggplot(acs, aes(y = age_u18)) +
   coord_flip()
 ```
 
-<img src="04-visualization-strategies_files/figure-html/unnamed-chunk-6-1.png" width="672" />
+<img src="04-visualization-strategies_files/figure-html/unnamed-chunk-11-1.png" width="672" />
 
 #### understanding the box plot
 
@@ -215,7 +281,7 @@ ggplot(acs, aes(fam_house_per, age_u18)) +
   geom_point(alpha = 0.25)
 ```
 
-<img src="04-visualization-strategies_files/figure-html/unnamed-chunk-7-1.png" width="672" />
+<img src="04-visualization-strategies_files/figure-html/unnamed-chunk-12-1.png" width="672" />
 
 ### boxplot (1 continuous 1 categorical)
 
@@ -229,7 +295,7 @@ ggplot(acs, aes(county, age_u18)) +
   coord_flip()
 ```
 
-<img src="04-visualization-strategies_files/figure-html/unnamed-chunk-8-1.png" width="672" />
+<img src="04-visualization-strategies_files/figure-html/unnamed-chunk-13-1.png" width="672" />
 
 
 ### barplot (1 categorical 1 continuous / discrete)
@@ -243,7 +309,7 @@ ggplot(acs, aes(county)) +
   coord_flip()
 ```
 
-<img src="04-visualization-strategies_files/figure-html/unnamed-chunk-9-1.png" width="672" />
+<img src="04-visualization-strategies_files/figure-html/unnamed-chunk-14-1.png" width="672" />
 
 ### lollipop chart
 
@@ -274,7 +340,7 @@ ggplot(acs_counties, aes(county, n)) +
   coord_flip()
 ```
 
-<img src="04-visualization-strategies_files/figure-html/unnamed-chunk-10-1.png" width="672" />
+<img src="04-visualization-strategies_files/figure-html/unnamed-chunk-15-1.png" width="672" />
 
 
 - ridgelines (1 continuous 1 categorical)
@@ -295,7 +361,7 @@ ggplot(acs, aes(fam_house_per, age_u18, color = by_auto)) +
   geom_point()
 ```
 
-<img src="04-visualization-strategies_files/figure-html/unnamed-chunk-11-1.png" width="672" />
+<img src="04-visualization-strategies_files/figure-html/unnamed-chunk-16-1.png" width="672" />
 
 - we can add size to this as well by setting the `size` aesthetic
   - lets see if the more female headed house holds there are affects commuting by car as minors increases
@@ -306,7 +372,7 @@ ggplot(acs, aes(fam_house_per, age_u18, color = by_auto, size = fem_head_per)) +
   geom_point(alpha = .2)
 ```
 
-<img src="04-visualization-strategies_files/figure-html/unnamed-chunk-12-1.png" width="672" />
+<img src="04-visualization-strategies_files/figure-html/unnamed-chunk-17-1.png" width="672" />
 
 - from this chart we can see quite a few things:
   - as `fam_house_per` increases so does the under 18 pop,
