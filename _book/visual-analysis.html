@@ -24,7 +24,7 @@
 <meta name="author" content="Josiah Parry" />
 
 
-<meta name="date" content="2020-03-03" />
+<meta name="date" content="2020-03-06" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -149,8 +149,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="15" data-path="creating-ecometrics.html"><a href="creating-ecometrics.html"><i class="fa fa-check"></i><b>15</b> Creating Ecometrics</a></li>
 <li class="part"><span><b>II Case Studies</b></span></li>
 <li class="chapter" data-level="16" data-path="case-study-twitter-data.html"><a href="case-study-twitter-data.html"><i class="fa fa-check"></i><b>16</b> Case Study: Twitter Data</a></li>
-<li class="chapter" data-level="17" data-path="schools-of-urban-informatics.html"><a href="schools-of-urban-informatics.html"><i class="fa fa-check"></i><b>17</b> Schools of Urban Informatics</a></li>
-<li class="chapter" data-level="18" data-path="broken-windows-and-the-origin-of-ecometrics.html"><a href="broken-windows-and-the-origin-of-ecometrics.html"><i class="fa fa-check"></i><b>18</b> Broken Windows and the origin of Ecometrics</a></li>
+<li class="chapter" data-level="17" data-path="various-things-that-i-didnt-cover-well.html"><a href="various-things-that-i-didnt-cover-well.html"><i class="fa fa-check"></i><b>17</b> Various things that i didn’t cover well</a></li>
+<li class="chapter" data-level="18" data-path="schools-of-urban-informatics.html"><a href="schools-of-urban-informatics.html"><i class="fa fa-check"></i><b>18</b> Schools of Urban Informatics</a></li>
+<li class="chapter" data-level="19" data-path="broken-windows-and-the-origin-of-ecometrics.html"><a href="broken-windows-and-the-origin-of-ecometrics.html"><i class="fa fa-check"></i><b>19</b> Broken Windows and the origin of Ecometrics</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/josiahparry/urban-informatics-toolkit" target="blank">GitHub</a></li>
 
@@ -318,7 +319,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Using ggplot, we can plot the estimated linear regression line on top of our scatterplot. This is done with a <code>geom_smooth()</code> layer. By default, <code>geom_smooth()</code> does not plot the linear relationship. To do that, we need to specify what kind of smoothing we would like. To plot the estimated linear model, we set <code>method = &quot;lm&quot;</code>.</p>
 <div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" data-line-number="1"><span class="kw">ggplot</span>(acs_edu, <span class="kw">aes</span>(<span class="dt">x =</span> bach, <span class="dt">y =</span> med_house_income)) <span class="op">+</span></a>
 <a class="sourceLine" id="cb26-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb26-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb26-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>)</a>
+<a class="sourceLine" id="cb26-4" data-line-number="4"><span class="co">## `geom_smooth()` using formula &#39;y ~ x&#39;</span></a></code></pre></div>
 <p><img src="01-visual-analysis_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
 <p>Wonderful! To finish up this graphic, we should add informative labels. Labels live in their own layer which is created with <code>labs()</code>. Each argument maps to an aesthetic—e.g. <code>x</code> and <code>y</code>. By default ggplot uses the column names for axis labels, but these labels are usually uninformative.</p>
 <p>Let’s give the plot a title and better labels for its axes. We will set the following arguments to <code>labs()</code></p>
@@ -332,7 +334,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb27-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>) <span class="op">+</span></a>
 <a class="sourceLine" id="cb27-4" data-line-number="4"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;% of population with a Bachelor&#39;s Degree&quot;</span>,</a>
 <a class="sourceLine" id="cb27-5" data-line-number="5">       <span class="dt">y =</span> <span class="st">&quot;Median Household Income&quot;</span>,</a>
-<a class="sourceLine" id="cb27-6" data-line-number="6">       <span class="dt">title =</span> <span class="st">&quot;Relationship between Education and Income&quot;</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb27-6" data-line-number="6">       <span class="dt">title =</span> <span class="st">&quot;Relationship between Education and Income&quot;</span>)</a>
+<a class="sourceLine" id="cb27-7" data-line-number="7"><span class="co">## `geom_smooth()` using formula &#39;y ~ x&#39;</span></a></code></pre></div>
 <p><img src="01-visual-analysis_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
 <blockquote>
 <p>Note that each argument is placed on a new line. Again, this is to improve readability.</p>
@@ -357,7 +360,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb28-4" data-line-number="4"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;% of population with a Bachelor&#39;s Degree&quot;</span>,</a>
 <a class="sourceLine" id="cb28-5" data-line-number="5">       <span class="dt">y =</span> <span class="st">&quot;Median Household Income&quot;</span>,</a>
 <a class="sourceLine" id="cb28-6" data-line-number="6">       <span class="dt">title =</span> <span class="st">&quot;Relationship between Education and Income&quot;</span>,</a>
-<a class="sourceLine" id="cb28-7" data-line-number="7">       <span class="dt">subtitle =</span> <span class="st">&quot;Colored by whiteness&quot;</span>) </a></code></pre></div>
+<a class="sourceLine" id="cb28-7" data-line-number="7">       <span class="dt">subtitle =</span> <span class="st">&quot;Colored by whiteness&quot;</span>) </a>
+<a class="sourceLine" id="cb28-8" data-line-number="8"><span class="co">## `geom_smooth()` using formula &#39;y ~ x&#39;</span></a></code></pre></div>
 <p><img src="01-visual-analysis_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
 <p>What can we conclude now? Does the addition of the third variable increase or decrease the utility of our scatter plot? Does the trend seem to mediated by race? I’ll leave those questions to you to answer.</p>
 <p>You’ve now completed your first visual analysis. You’ve learned how to create publication ready histograms and scatter plots using ggplot2. This is no small feat!</p>

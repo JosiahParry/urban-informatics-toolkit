@@ -24,7 +24,7 @@
 <meta name="author" content="Josiah Parry" />
 
 
-<meta name="date" content="2020-03-03" />
+<meta name="date" content="2020-03-06" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -149,8 +149,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="15" data-path="creating-ecometrics.html"><a href="creating-ecometrics.html"><i class="fa fa-check"></i><b>15</b> Creating Ecometrics</a></li>
 <li class="part"><span><b>II Case Studies</b></span></li>
 <li class="chapter" data-level="16" data-path="case-study-twitter-data.html"><a href="case-study-twitter-data.html"><i class="fa fa-check"></i><b>16</b> Case Study: Twitter Data</a></li>
-<li class="chapter" data-level="17" data-path="schools-of-urban-informatics.html"><a href="schools-of-urban-informatics.html"><i class="fa fa-check"></i><b>17</b> Schools of Urban Informatics</a></li>
-<li class="chapter" data-level="18" data-path="broken-windows-and-the-origin-of-ecometrics.html"><a href="broken-windows-and-the-origin-of-ecometrics.html"><i class="fa fa-check"></i><b>18</b> Broken Windows and the origin of Ecometrics</a></li>
+<li class="chapter" data-level="17" data-path="various-things-that-i-didnt-cover-well.html"><a href="various-things-that-i-didnt-cover-well.html"><i class="fa fa-check"></i><b>17</b> Various things that i didn’t cover well</a></li>
+<li class="chapter" data-level="18" data-path="schools-of-urban-informatics.html"><a href="schools-of-urban-informatics.html"><i class="fa fa-check"></i><b>18</b> Schools of Urban Informatics</a></li>
+<li class="chapter" data-level="19" data-path="broken-windows-and-the-origin-of-ecometrics.html"><a href="broken-windows-and-the-origin-of-ecometrics.html"><i class="fa fa-check"></i><b>19</b> Broken Windows and the origin of Ecometrics</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/josiahparry/urban-informatics-toolkit" target="blank">GitHub</a></li>
 
@@ -178,88 +179,88 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="counting" class="section level2">
 <h2><span class="header-section-number">12.1</span> Counting</h2>
 <p>dplyr incluides a wonderful helper function called <code>count()</code>. It does just what it says it does. It counts the number of observations in a tibble. Let’s recreate the <code>commute</code> tibble and see it for ourselves.</p>
-<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb176-1" data-line-number="1"><span class="kw">library</span>(tidyverse)</a>
-<a class="sourceLine" id="cb176-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb176-3" data-line-number="3">commute &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data/ACS_1317_TRACT.csv&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb176-4" data-line-number="4"><span class="st">  </span><span class="kw">select</span>(</a>
-<a class="sourceLine" id="cb176-5" data-line-number="5">    county,</a>
-<a class="sourceLine" id="cb176-6" data-line-number="6">    <span class="kw">starts_with</span>(<span class="st">&quot;commute&quot;</span>),</a>
-<a class="sourceLine" id="cb176-7" data-line-number="7">    <span class="kw">starts_with</span>(<span class="st">&quot;by&quot;</span>),</a>
-<a class="sourceLine" id="cb176-8" data-line-number="8">    med_house_income</a>
-<a class="sourceLine" id="cb176-9" data-line-number="9">  ) </a>
-<a class="sourceLine" id="cb176-10" data-line-number="10"></a>
-<a class="sourceLine" id="cb176-11" data-line-number="11"><span class="kw">count</span>(commute)</a>
-<a class="sourceLine" id="cb176-12" data-line-number="12"><span class="co">## # A tibble: 1 x 1</span></a>
-<a class="sourceLine" id="cb176-13" data-line-number="13"><span class="co">##       n</span></a>
-<a class="sourceLine" id="cb176-14" data-line-number="14"><span class="co">##   &lt;int&gt;</span></a>
-<a class="sourceLine" id="cb176-15" data-line-number="15"><span class="co">## 1  1478</span></a></code></pre></div>
+<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb182-1" data-line-number="1"><span class="kw">library</span>(tidyverse)</a>
+<a class="sourceLine" id="cb182-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb182-3" data-line-number="3">commute &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data/ACS_1317_TRACT.csv&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb182-4" data-line-number="4"><span class="st">  </span><span class="kw">select</span>(</a>
+<a class="sourceLine" id="cb182-5" data-line-number="5">    county,</a>
+<a class="sourceLine" id="cb182-6" data-line-number="6">    <span class="kw">starts_with</span>(<span class="st">&quot;commute&quot;</span>),</a>
+<a class="sourceLine" id="cb182-7" data-line-number="7">    <span class="kw">starts_with</span>(<span class="st">&quot;by&quot;</span>),</a>
+<a class="sourceLine" id="cb182-8" data-line-number="8">    med_house_income</a>
+<a class="sourceLine" id="cb182-9" data-line-number="9">  ) </a>
+<a class="sourceLine" id="cb182-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb182-11" data-line-number="11"><span class="kw">count</span>(commute)</a>
+<a class="sourceLine" id="cb182-12" data-line-number="12"><span class="co">## # A tibble: 1 x 1</span></a>
+<a class="sourceLine" id="cb182-13" data-line-number="13"><span class="co">##       n</span></a>
+<a class="sourceLine" id="cb182-14" data-line-number="14"><span class="co">##   &lt;int&gt;</span></a>
+<a class="sourceLine" id="cb182-15" data-line-number="15"><span class="co">## 1  1478</span></a></code></pre></div>
 <p>We can also count by groups in a data set. For example, we can count how many observations there are per county.</p>
-<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb177-1" data-line-number="1"><span class="kw">count</span>(commute, county)</a>
-<a class="sourceLine" id="cb177-2" data-line-number="2"><span class="co">## # A tibble: 15 x 2</span></a>
-<a class="sourceLine" id="cb177-3" data-line-number="3"><span class="co">##    county         n</span></a>
-<a class="sourceLine" id="cb177-4" data-line-number="4"><span class="co">##    &lt;chr&gt;      &lt;int&gt;</span></a>
-<a class="sourceLine" id="cb177-5" data-line-number="5"><span class="co">##  1 BARNSTABLE    54</span></a>
-<a class="sourceLine" id="cb177-6" data-line-number="6"><span class="co">##  2 BERKSHIRE     39</span></a>
-<a class="sourceLine" id="cb177-7" data-line-number="7"><span class="co">##  3 BRISTOL      122</span></a>
-<a class="sourceLine" id="cb177-8" data-line-number="8"><span class="co">##  4 DUKES          4</span></a>
-<a class="sourceLine" id="cb177-9" data-line-number="9"><span class="co">##  5 ESSEX        160</span></a>
-<a class="sourceLine" id="cb177-10" data-line-number="10"><span class="co">##  6 FRANKLIN      18</span></a>
-<a class="sourceLine" id="cb177-11" data-line-number="11"><span class="co">##  7 HAMPDEN      103</span></a>
-<a class="sourceLine" id="cb177-12" data-line-number="12"><span class="co">##  8 HAMPSHIRE     36</span></a>
-<a class="sourceLine" id="cb177-13" data-line-number="13"><span class="co">##  9 MIDDLESEX    318</span></a>
-<a class="sourceLine" id="cb177-14" data-line-number="14"><span class="co">## 10 NANTUCKET      5</span></a>
-<a class="sourceLine" id="cb177-15" data-line-number="15"><span class="co">## 11 NORFOLK      130</span></a>
-<a class="sourceLine" id="cb177-16" data-line-number="16"><span class="co">## 12 PLYMOUTH      99</span></a>
-<a class="sourceLine" id="cb177-17" data-line-number="17"><span class="co">## 13 SUFFOLK      200</span></a>
-<a class="sourceLine" id="cb177-18" data-line-number="18"><span class="co">## 14 WORCESTER    172</span></a>
-<a class="sourceLine" id="cb177-19" data-line-number="19"><span class="co">## 15 &lt;NA&gt;          18</span></a></code></pre></div>
+<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb183-1" data-line-number="1"><span class="kw">count</span>(commute, county)</a>
+<a class="sourceLine" id="cb183-2" data-line-number="2"><span class="co">## # A tibble: 15 x 2</span></a>
+<a class="sourceLine" id="cb183-3" data-line-number="3"><span class="co">##    county         n</span></a>
+<a class="sourceLine" id="cb183-4" data-line-number="4"><span class="co">##    &lt;chr&gt;      &lt;int&gt;</span></a>
+<a class="sourceLine" id="cb183-5" data-line-number="5"><span class="co">##  1 BARNSTABLE    54</span></a>
+<a class="sourceLine" id="cb183-6" data-line-number="6"><span class="co">##  2 BERKSHIRE     39</span></a>
+<a class="sourceLine" id="cb183-7" data-line-number="7"><span class="co">##  3 BRISTOL      122</span></a>
+<a class="sourceLine" id="cb183-8" data-line-number="8"><span class="co">##  4 DUKES          4</span></a>
+<a class="sourceLine" id="cb183-9" data-line-number="9"><span class="co">##  5 ESSEX        160</span></a>
+<a class="sourceLine" id="cb183-10" data-line-number="10"><span class="co">##  6 FRANKLIN      18</span></a>
+<a class="sourceLine" id="cb183-11" data-line-number="11"><span class="co">##  7 HAMPDEN      103</span></a>
+<a class="sourceLine" id="cb183-12" data-line-number="12"><span class="co">##  8 HAMPSHIRE     36</span></a>
+<a class="sourceLine" id="cb183-13" data-line-number="13"><span class="co">##  9 MIDDLESEX    318</span></a>
+<a class="sourceLine" id="cb183-14" data-line-number="14"><span class="co">## 10 NANTUCKET      5</span></a>
+<a class="sourceLine" id="cb183-15" data-line-number="15"><span class="co">## 11 NORFOLK      130</span></a>
+<a class="sourceLine" id="cb183-16" data-line-number="16"><span class="co">## 12 PLYMOUTH      99</span></a>
+<a class="sourceLine" id="cb183-17" data-line-number="17"><span class="co">## 13 SUFFOLK      200</span></a>
+<a class="sourceLine" id="cb183-18" data-line-number="18"><span class="co">## 14 WORCESTER    172</span></a>
+<a class="sourceLine" id="cb183-19" data-line-number="19"><span class="co">## 15 &lt;NA&gt;          18</span></a></code></pre></div>
 <p><code>count()</code> is actually a wrapper around the function <code>summarise()</code> which is a much more flexible function. <code>summarise()</code> is the aggregate analog to <code>mutate()</code>. The difference between <code>mutate()</code> and <code>summarise()</code> is that the result of an expression in <code>mutate()</code> must have the same number of values as there are rows—unless of course you are specifying a scalar value like <code>TRUE</code>—whereas <code>summarise()</code> requires the result to be one an element of length one.</p>
 <blockquote>
 <p>Note: A scalar is a vector of length one.</p>
 </blockquote>
 <p>We can recreate the first above <code>count()</code> call with <code>summarise()</code> and the handy <code>n()</code> function we learned a while ago. Here we follow the same pattern of assigning column names to expressions as we do with.</p>
-<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb178-1" data-line-number="1"><span class="kw">summarise</span>(commute, <span class="dt">n =</span> <span class="kw">n</span>())</a>
-<a class="sourceLine" id="cb178-2" data-line-number="2"><span class="co">## # A tibble: 1 x 1</span></a>
-<a class="sourceLine" id="cb178-3" data-line-number="3"><span class="co">##       n</span></a>
-<a class="sourceLine" id="cb178-4" data-line-number="4"><span class="co">##   &lt;int&gt;</span></a>
-<a class="sourceLine" id="cb178-5" data-line-number="5"><span class="co">## 1  1478</span></a></code></pre></div>
+<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb184-1" data-line-number="1"><span class="kw">summarise</span>(commute, <span class="dt">n =</span> <span class="kw">n</span>())</a>
+<a class="sourceLine" id="cb184-2" data-line-number="2"><span class="co">## # A tibble: 1 x 1</span></a>
+<a class="sourceLine" id="cb184-3" data-line-number="3"><span class="co">##       n</span></a>
+<a class="sourceLine" id="cb184-4" data-line-number="4"><span class="co">##   &lt;int&gt;</span></a>
+<a class="sourceLine" id="cb184-5" data-line-number="5"><span class="co">## 1  1478</span></a></code></pre></div>
 <p>Like <code>mutate()</code> there is no restriction on the number of new columns we can create. Previously we calculated the min, max, mean, and standard deviation of the <code>commute3060</code> variable. This is done rather neatly with <code>summarise()</code>.</p>
-<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb179-1" data-line-number="1">commute <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb179-2" data-line-number="2"><span class="st">  </span><span class="kw">summarise</span>(</a>
-<a class="sourceLine" id="cb179-3" data-line-number="3">    <span class="dt">min_commute =</span> <span class="kw">min</span>(commute3060, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),</a>
-<a class="sourceLine" id="cb179-4" data-line-number="4">    <span class="dt">max_commute =</span> <span class="kw">max</span>(commute3060, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),</a>
-<a class="sourceLine" id="cb179-5" data-line-number="5">    <span class="dt">avg_commute =</span> <span class="kw">mean</span>(commute3060, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),</a>
-<a class="sourceLine" id="cb179-6" data-line-number="6">    <span class="dt">sd_commute  =</span> <span class="kw">sd</span>(commute3060, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb179-7" data-line-number="7">    )</a>
-<a class="sourceLine" id="cb179-8" data-line-number="8"><span class="co">## # A tibble: 1 x 4</span></a>
-<a class="sourceLine" id="cb179-9" data-line-number="9"><span class="co">##   min_commute max_commute avg_commute sd_commute</span></a>
-<a class="sourceLine" id="cb179-10" data-line-number="10"><span class="co">##         &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt;      &lt;dbl&gt;</span></a>
-<a class="sourceLine" id="cb179-11" data-line-number="11"><span class="co">## 1           0       0.633       0.317      0.110</span></a></code></pre></div>
+<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb185-1" data-line-number="1">commute <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb185-2" data-line-number="2"><span class="st">  </span><span class="kw">summarise</span>(</a>
+<a class="sourceLine" id="cb185-3" data-line-number="3">    <span class="dt">min_commute =</span> <span class="kw">min</span>(commute3060, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),</a>
+<a class="sourceLine" id="cb185-4" data-line-number="4">    <span class="dt">max_commute =</span> <span class="kw">max</span>(commute3060, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),</a>
+<a class="sourceLine" id="cb185-5" data-line-number="5">    <span class="dt">avg_commute =</span> <span class="kw">mean</span>(commute3060, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),</a>
+<a class="sourceLine" id="cb185-6" data-line-number="6">    <span class="dt">sd_commute  =</span> <span class="kw">sd</span>(commute3060, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb185-7" data-line-number="7">    )</a>
+<a class="sourceLine" id="cb185-8" data-line-number="8"><span class="co">## # A tibble: 1 x 4</span></a>
+<a class="sourceLine" id="cb185-9" data-line-number="9"><span class="co">##   min_commute max_commute avg_commute sd_commute</span></a>
+<a class="sourceLine" id="cb185-10" data-line-number="10"><span class="co">##         &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt;      &lt;dbl&gt;</span></a>
+<a class="sourceLine" id="cb185-11" data-line-number="11"><span class="co">## 1           0       0.633       0.317      0.110</span></a></code></pre></div>
 <p>Frankly this alone is somewhat unimpressive. The power of <code>summarise()</code> comes from incorporating <code>group_by()</code> into the function chain. <code>group_by()</code> allows us to explicitly identify groups within a tibble as defined by a given variable. The resulting tibble from a <code>group_by()</code> call is seemingly unchanged.</p>
-<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb180-1" data-line-number="1">commute <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb180-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>(county)</a>
-<a class="sourceLine" id="cb180-3" data-line-number="3"><span class="co">## # A tibble: 1,478 x 11</span></a>
-<a class="sourceLine" id="cb180-4" data-line-number="4"><span class="co">## # Groups:   county [15]</span></a>
-<a class="sourceLine" id="cb180-5" data-line-number="5"><span class="co">##    county commute_less10 commute1030 commute3060 commute6090 commute_over90</span></a>
-<a class="sourceLine" id="cb180-6" data-line-number="6"><span class="co">##    &lt;chr&gt;           &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt;          &lt;dbl&gt;</span></a>
-<a class="sourceLine" id="cb180-7" data-line-number="7"><span class="co">##  1 WORCE…         0.0787       0.513       0.331      0.0556         0.0214</span></a>
-<a class="sourceLine" id="cb180-8" data-line-number="8"><span class="co">##  2 WORCE…         0.251        0.464       0.181      0.0822         0.0219</span></a>
-<a class="sourceLine" id="cb180-9" data-line-number="9"><span class="co">##  3 WORCE…         0.0537       0.662       0.177      0.0868         0.0203</span></a>
-<a class="sourceLine" id="cb180-10" data-line-number="10"><span class="co">##  4 WORCE…         0.141        0.394       0.313      0.133          0.0194</span></a>
-<a class="sourceLine" id="cb180-11" data-line-number="11"><span class="co">##  5 WORCE…         0.175        0.511       0.203      0.0704         0.0411</span></a>
-<a class="sourceLine" id="cb180-12" data-line-number="12"><span class="co">##  6 WORCE…         0.109        0.440       0.330      0.0830         0.0378</span></a>
-<a class="sourceLine" id="cb180-13" data-line-number="13"><span class="co">##  7 WORCE…         0.189        0.457       0.303      0.0346         0.0166</span></a>
-<a class="sourceLine" id="cb180-14" data-line-number="14"><span class="co">##  8 WORCE…         0.187        0.560       0.133      0.0839         0.0358</span></a>
-<a class="sourceLine" id="cb180-15" data-line-number="15"><span class="co">##  9 WORCE…         0.139        0.455       0.256      0.126          0.0246</span></a>
-<a class="sourceLine" id="cb180-16" data-line-number="16"><span class="co">## 10 WORCE…         0.0912       0.649       0.218      0.0179         0.0235</span></a>
-<a class="sourceLine" id="cb180-17" data-line-number="17"><span class="co">## # … with 1,468 more rows, and 5 more variables: by_auto &lt;dbl&gt;,</span></a>
-<a class="sourceLine" id="cb180-18" data-line-number="18"><span class="co">## #   by_pub_trans &lt;dbl&gt;, by_bike &lt;dbl&gt;, by_walk &lt;dbl&gt;,</span></a>
-<a class="sourceLine" id="cb180-19" data-line-number="19"><span class="co">## #   med_house_income &lt;dbl&gt;</span></a></code></pre></div>
+<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb186-1" data-line-number="1">commute <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb186-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>(county)</a>
+<a class="sourceLine" id="cb186-3" data-line-number="3"><span class="co">## # A tibble: 1,478 x 11</span></a>
+<a class="sourceLine" id="cb186-4" data-line-number="4"><span class="co">## # Groups:   county [15]</span></a>
+<a class="sourceLine" id="cb186-5" data-line-number="5"><span class="co">##    county commute_less10 commute1030 commute3060 commute6090 commute_over90</span></a>
+<a class="sourceLine" id="cb186-6" data-line-number="6"><span class="co">##    &lt;chr&gt;           &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt;          &lt;dbl&gt;</span></a>
+<a class="sourceLine" id="cb186-7" data-line-number="7"><span class="co">##  1 WORCE…         0.0787       0.513       0.331      0.0556         0.0214</span></a>
+<a class="sourceLine" id="cb186-8" data-line-number="8"><span class="co">##  2 WORCE…         0.251        0.464       0.181      0.0822         0.0219</span></a>
+<a class="sourceLine" id="cb186-9" data-line-number="9"><span class="co">##  3 WORCE…         0.0537       0.662       0.177      0.0868         0.0203</span></a>
+<a class="sourceLine" id="cb186-10" data-line-number="10"><span class="co">##  4 WORCE…         0.141        0.394       0.313      0.133          0.0194</span></a>
+<a class="sourceLine" id="cb186-11" data-line-number="11"><span class="co">##  5 WORCE…         0.175        0.511       0.203      0.0704         0.0411</span></a>
+<a class="sourceLine" id="cb186-12" data-line-number="12"><span class="co">##  6 WORCE…         0.109        0.440       0.330      0.0830         0.0378</span></a>
+<a class="sourceLine" id="cb186-13" data-line-number="13"><span class="co">##  7 WORCE…         0.189        0.457       0.303      0.0346         0.0166</span></a>
+<a class="sourceLine" id="cb186-14" data-line-number="14"><span class="co">##  8 WORCE…         0.187        0.560       0.133      0.0839         0.0358</span></a>
+<a class="sourceLine" id="cb186-15" data-line-number="15"><span class="co">##  9 WORCE…         0.139        0.455       0.256      0.126          0.0246</span></a>
+<a class="sourceLine" id="cb186-16" data-line-number="16"><span class="co">## 10 WORCE…         0.0912       0.649       0.218      0.0179         0.0235</span></a>
+<a class="sourceLine" id="cb186-17" data-line-number="17"><span class="co">## # … with 1,468 more rows, and 5 more variables: by_auto &lt;dbl&gt;,</span></a>
+<a class="sourceLine" id="cb186-18" data-line-number="18"><span class="co">## #   by_pub_trans &lt;dbl&gt;, by_bike &lt;dbl&gt;, by_walk &lt;dbl&gt;,</span></a>
+<a class="sourceLine" id="cb186-19" data-line-number="19"><span class="co">## #   med_house_income &lt;dbl&gt;</span></a></code></pre></div>
 <p>However, if we look at comments above the tibble, we see something new: <code># Groups: county [15]</code>. This tells us a couple of things. First that the groups were created using the <code>county</code> column, that there are fifteen groups, and that the data frame is now grouped implying that any future <code>mutate()</code> or <code>summarise()</code> calls will be performed on the specified groups. If we then look at the class of that grouped tibble we see that there is a new class introduced which is <code>grouped_df</code>.</p>
-<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb181-1" data-line-number="1">commute <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb181-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>(county) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb181-3" data-line-number="3"><span class="st">  </span><span class="kw">class</span>()</a>
-<a class="sourceLine" id="cb181-4" data-line-number="4"><span class="co">## [1] &quot;grouped_df&quot; &quot;tbl_df&quot;     &quot;tbl&quot;        &quot;data.frame&quot;</span></a></code></pre></div>
+<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb187-1" data-line-number="1">commute <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb187-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>(county) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb187-3" data-line-number="3"><span class="st">  </span><span class="kw">class</span>()</a>
+<a class="sourceLine" id="cb187-4" data-line-number="4"><span class="co">## [1] &quot;grouped_df&quot; &quot;tbl_df&quot;     &quot;tbl&quot;        &quot;data.frame&quot;</span></a></code></pre></div>
 <blockquote>
 <p>Note: a tibble has the classes <code>tbl</code> and <code>tbl_df</code> in addition</p>
 </blockquote>
@@ -268,76 +269,76 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <blockquote>
 <p>I am including the <code>commute3060</code> column to illustrate that the new <code>n</code> column will be the same for each group value.</p>
 </blockquote>
-<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb182-1" data-line-number="1">commute <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb182-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>(county) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb182-3" data-line-number="3"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">n =</span> <span class="kw">n</span>()) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb182-4" data-line-number="4"><span class="st">  </span><span class="kw">select</span>(county, commute3060, n) </a>
-<a class="sourceLine" id="cb182-5" data-line-number="5"><span class="co">## # A tibble: 1,478 x 3</span></a>
-<a class="sourceLine" id="cb182-6" data-line-number="6"><span class="co">## # Groups:   county [15]</span></a>
-<a class="sourceLine" id="cb182-7" data-line-number="7"><span class="co">##    county    commute3060     n</span></a>
-<a class="sourceLine" id="cb182-8" data-line-number="8"><span class="co">##    &lt;chr&gt;           &lt;dbl&gt; &lt;int&gt;</span></a>
-<a class="sourceLine" id="cb182-9" data-line-number="9"><span class="co">##  1 WORCESTER       0.331   172</span></a>
-<a class="sourceLine" id="cb182-10" data-line-number="10"><span class="co">##  2 WORCESTER       0.181   172</span></a>
-<a class="sourceLine" id="cb182-11" data-line-number="11"><span class="co">##  3 WORCESTER       0.177   172</span></a>
-<a class="sourceLine" id="cb182-12" data-line-number="12"><span class="co">##  4 WORCESTER       0.313   172</span></a>
-<a class="sourceLine" id="cb182-13" data-line-number="13"><span class="co">##  5 WORCESTER       0.203   172</span></a>
-<a class="sourceLine" id="cb182-14" data-line-number="14"><span class="co">##  6 WORCESTER       0.330   172</span></a>
-<a class="sourceLine" id="cb182-15" data-line-number="15"><span class="co">##  7 WORCESTER       0.303   172</span></a>
-<a class="sourceLine" id="cb182-16" data-line-number="16"><span class="co">##  8 WORCESTER       0.133   172</span></a>
-<a class="sourceLine" id="cb182-17" data-line-number="17"><span class="co">##  9 WORCESTER       0.256   172</span></a>
-<a class="sourceLine" id="cb182-18" data-line-number="18"><span class="co">## 10 WORCESTER       0.218   172</span></a>
-<a class="sourceLine" id="cb182-19" data-line-number="19"><span class="co">## # … with 1,468 more rows</span></a></code></pre></div>
+<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb188-1" data-line-number="1">commute <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb188-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>(county) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb188-3" data-line-number="3"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">n =</span> <span class="kw">n</span>()) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb188-4" data-line-number="4"><span class="st">  </span><span class="kw">select</span>(county, commute3060, n) </a>
+<a class="sourceLine" id="cb188-5" data-line-number="5"><span class="co">## # A tibble: 1,478 x 3</span></a>
+<a class="sourceLine" id="cb188-6" data-line-number="6"><span class="co">## # Groups:   county [15]</span></a>
+<a class="sourceLine" id="cb188-7" data-line-number="7"><span class="co">##    county    commute3060     n</span></a>
+<a class="sourceLine" id="cb188-8" data-line-number="8"><span class="co">##    &lt;chr&gt;           &lt;dbl&gt; &lt;int&gt;</span></a>
+<a class="sourceLine" id="cb188-9" data-line-number="9"><span class="co">##  1 WORCESTER       0.331   172</span></a>
+<a class="sourceLine" id="cb188-10" data-line-number="10"><span class="co">##  2 WORCESTER       0.181   172</span></a>
+<a class="sourceLine" id="cb188-11" data-line-number="11"><span class="co">##  3 WORCESTER       0.177   172</span></a>
+<a class="sourceLine" id="cb188-12" data-line-number="12"><span class="co">##  4 WORCESTER       0.313   172</span></a>
+<a class="sourceLine" id="cb188-13" data-line-number="13"><span class="co">##  5 WORCESTER       0.203   172</span></a>
+<a class="sourceLine" id="cb188-14" data-line-number="14"><span class="co">##  6 WORCESTER       0.330   172</span></a>
+<a class="sourceLine" id="cb188-15" data-line-number="15"><span class="co">##  7 WORCESTER       0.303   172</span></a>
+<a class="sourceLine" id="cb188-16" data-line-number="16"><span class="co">##  8 WORCESTER       0.133   172</span></a>
+<a class="sourceLine" id="cb188-17" data-line-number="17"><span class="co">##  9 WORCESTER       0.256   172</span></a>
+<a class="sourceLine" id="cb188-18" data-line-number="18"><span class="co">## 10 WORCESTER       0.218   172</span></a>
+<a class="sourceLine" id="cb188-19" data-line-number="19"><span class="co">## # … with 1,468 more rows</span></a></code></pre></div>
 <p>Here each group only has one unique value for <code>n</code>. As discussed previously, when we want to calculate aggregate measures, there ought to only value per-group. This ability to perform grouped calculation within <code>mutate()</code>can be extremely powerful, but does not create a proper aggregated dataset. For this, we can again use <code>summarise()</code></p>
 <p>Let’s recreate the grouped count from before.</p>
-<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb183-1" data-line-number="1">commute <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb183-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>(county) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb183-3" data-line-number="3"><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">n =</span> <span class="kw">n</span>())</a>
-<a class="sourceLine" id="cb183-4" data-line-number="4"><span class="co">## # A tibble: 15 x 2</span></a>
-<a class="sourceLine" id="cb183-5" data-line-number="5"><span class="co">##    county         n</span></a>
-<a class="sourceLine" id="cb183-6" data-line-number="6"><span class="co">##    &lt;chr&gt;      &lt;int&gt;</span></a>
-<a class="sourceLine" id="cb183-7" data-line-number="7"><span class="co">##  1 BARNSTABLE    54</span></a>
-<a class="sourceLine" id="cb183-8" data-line-number="8"><span class="co">##  2 BERKSHIRE     39</span></a>
-<a class="sourceLine" id="cb183-9" data-line-number="9"><span class="co">##  3 BRISTOL      122</span></a>
-<a class="sourceLine" id="cb183-10" data-line-number="10"><span class="co">##  4 DUKES          4</span></a>
-<a class="sourceLine" id="cb183-11" data-line-number="11"><span class="co">##  5 ESSEX        160</span></a>
-<a class="sourceLine" id="cb183-12" data-line-number="12"><span class="co">##  6 FRANKLIN      18</span></a>
-<a class="sourceLine" id="cb183-13" data-line-number="13"><span class="co">##  7 HAMPDEN      103</span></a>
-<a class="sourceLine" id="cb183-14" data-line-number="14"><span class="co">##  8 HAMPSHIRE     36</span></a>
-<a class="sourceLine" id="cb183-15" data-line-number="15"><span class="co">##  9 MIDDLESEX    318</span></a>
-<a class="sourceLine" id="cb183-16" data-line-number="16"><span class="co">## 10 NANTUCKET      5</span></a>
-<a class="sourceLine" id="cb183-17" data-line-number="17"><span class="co">## 11 NORFOLK      130</span></a>
-<a class="sourceLine" id="cb183-18" data-line-number="18"><span class="co">## 12 PLYMOUTH      99</span></a>
-<a class="sourceLine" id="cb183-19" data-line-number="19"><span class="co">## 13 SUFFOLK      200</span></a>
-<a class="sourceLine" id="cb183-20" data-line-number="20"><span class="co">## 14 WORCESTER    172</span></a>
-<a class="sourceLine" id="cb183-21" data-line-number="21"><span class="co">## 15 &lt;NA&gt;          18</span></a></code></pre></div>
+<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb189-1" data-line-number="1">commute <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb189-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>(county) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb189-3" data-line-number="3"><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">n =</span> <span class="kw">n</span>())</a>
+<a class="sourceLine" id="cb189-4" data-line-number="4"><span class="co">## # A tibble: 15 x 2</span></a>
+<a class="sourceLine" id="cb189-5" data-line-number="5"><span class="co">##    county         n</span></a>
+<a class="sourceLine" id="cb189-6" data-line-number="6"><span class="co">##    &lt;chr&gt;      &lt;int&gt;</span></a>
+<a class="sourceLine" id="cb189-7" data-line-number="7"><span class="co">##  1 BARNSTABLE    54</span></a>
+<a class="sourceLine" id="cb189-8" data-line-number="8"><span class="co">##  2 BERKSHIRE     39</span></a>
+<a class="sourceLine" id="cb189-9" data-line-number="9"><span class="co">##  3 BRISTOL      122</span></a>
+<a class="sourceLine" id="cb189-10" data-line-number="10"><span class="co">##  4 DUKES          4</span></a>
+<a class="sourceLine" id="cb189-11" data-line-number="11"><span class="co">##  5 ESSEX        160</span></a>
+<a class="sourceLine" id="cb189-12" data-line-number="12"><span class="co">##  6 FRANKLIN      18</span></a>
+<a class="sourceLine" id="cb189-13" data-line-number="13"><span class="co">##  7 HAMPDEN      103</span></a>
+<a class="sourceLine" id="cb189-14" data-line-number="14"><span class="co">##  8 HAMPSHIRE     36</span></a>
+<a class="sourceLine" id="cb189-15" data-line-number="15"><span class="co">##  9 MIDDLESEX    318</span></a>
+<a class="sourceLine" id="cb189-16" data-line-number="16"><span class="co">## 10 NANTUCKET      5</span></a>
+<a class="sourceLine" id="cb189-17" data-line-number="17"><span class="co">## 11 NORFOLK      130</span></a>
+<a class="sourceLine" id="cb189-18" data-line-number="18"><span class="co">## 12 PLYMOUTH      99</span></a>
+<a class="sourceLine" id="cb189-19" data-line-number="19"><span class="co">## 13 SUFFOLK      200</span></a>
+<a class="sourceLine" id="cb189-20" data-line-number="20"><span class="co">## 14 WORCESTER    172</span></a>
+<a class="sourceLine" id="cb189-21" data-line-number="21"><span class="co">## 15 &lt;NA&gt;          18</span></a></code></pre></div>
 <p>We can also include the summary statistic calculations from before.</p>
-<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb184-1" data-line-number="1">commute <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb184-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>(county) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb184-3" data-line-number="3"><span class="st">  </span><span class="kw">summarise</span>(</a>
-<a class="sourceLine" id="cb184-4" data-line-number="4">    <span class="dt">n =</span> <span class="kw">n</span>(),</a>
-<a class="sourceLine" id="cb184-5" data-line-number="5">    <span class="dt">min_commute =</span> <span class="kw">min</span>(commute3060, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),</a>
-<a class="sourceLine" id="cb184-6" data-line-number="6">    <span class="dt">max_commute =</span> <span class="kw">max</span>(commute3060, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),</a>
-<a class="sourceLine" id="cb184-7" data-line-number="7">    <span class="dt">avg_commute =</span> <span class="kw">mean</span>(commute3060, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),</a>
-<a class="sourceLine" id="cb184-8" data-line-number="8">    <span class="dt">sd_commute  =</span> <span class="kw">sd</span>(commute3060, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb184-9" data-line-number="9">    )</a>
-<a class="sourceLine" id="cb184-10" data-line-number="10"><span class="co">## # A tibble: 15 x 6</span></a>
-<a class="sourceLine" id="cb184-11" data-line-number="11"><span class="co">##    county         n min_commute max_commute avg_commute sd_commute</span></a>
-<a class="sourceLine" id="cb184-12" data-line-number="12"><span class="co">##    &lt;chr&gt;      &lt;int&gt;       &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt;      &lt;dbl&gt;</span></a>
-<a class="sourceLine" id="cb184-13" data-line-number="13"><span class="co">##  1 BARNSTABLE    54     0.0402        0.305      0.171      0.0611</span></a>
-<a class="sourceLine" id="cb184-14" data-line-number="14"><span class="co">##  2 BERKSHIRE     39     0.0701        0.510      0.190      0.102 </span></a>
-<a class="sourceLine" id="cb184-15" data-line-number="15"><span class="co">##  3 BRISTOL      122     0.0599        0.442      0.249      0.0796</span></a>
-<a class="sourceLine" id="cb184-16" data-line-number="16"><span class="co">##  4 DUKES          4     0.0459        0.110      0.0744     0.0277</span></a>
-<a class="sourceLine" id="cb184-17" data-line-number="17"><span class="co">##  5 ESSEX        160     0.151         0.458      0.287      0.0664</span></a>
-<a class="sourceLine" id="cb184-18" data-line-number="18"><span class="co">##  6 FRANKLIN      18     0.186         0.454      0.283      0.0814</span></a>
-<a class="sourceLine" id="cb184-19" data-line-number="19"><span class="co">##  7 HAMPDEN      103     0.0495        0.480      0.226      0.0932</span></a>
-<a class="sourceLine" id="cb184-20" data-line-number="20"><span class="co">##  8 HAMPSHIRE     36     0.0318        0.569      0.264      0.138 </span></a>
-<a class="sourceLine" id="cb184-21" data-line-number="21"><span class="co">##  9 MIDDLESEX    318     0.104         0.612      0.383      0.0825</span></a>
-<a class="sourceLine" id="cb184-22" data-line-number="22"><span class="co">## 10 NANTUCKET      5     0.00587       0.120      0.0390     0.0470</span></a>
-<a class="sourceLine" id="cb184-23" data-line-number="23"><span class="co">## 11 NORFOLK      130     0.186         0.613      0.392      0.0761</span></a>
-<a class="sourceLine" id="cb184-24" data-line-number="24"><span class="co">## 12 PLYMOUTH      99     0.125         0.533      0.303      0.0596</span></a>
-<a class="sourceLine" id="cb184-25" data-line-number="25"><span class="co">## 13 SUFFOLK      200     0             0.633      0.400      0.0972</span></a>
-<a class="sourceLine" id="cb184-26" data-line-number="26"><span class="co">## 14 WORCESTER    172     0.0550        0.536      0.288      0.0810</span></a>
-<a class="sourceLine" id="cb184-27" data-line-number="27"><span class="co">## 15 &lt;NA&gt;          18     0.109         0.507      0.238      0.112</span></a></code></pre></div>
+<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb190-1" data-line-number="1">commute <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb190-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>(county) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb190-3" data-line-number="3"><span class="st">  </span><span class="kw">summarise</span>(</a>
+<a class="sourceLine" id="cb190-4" data-line-number="4">    <span class="dt">n =</span> <span class="kw">n</span>(),</a>
+<a class="sourceLine" id="cb190-5" data-line-number="5">    <span class="dt">min_commute =</span> <span class="kw">min</span>(commute3060, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),</a>
+<a class="sourceLine" id="cb190-6" data-line-number="6">    <span class="dt">max_commute =</span> <span class="kw">max</span>(commute3060, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),</a>
+<a class="sourceLine" id="cb190-7" data-line-number="7">    <span class="dt">avg_commute =</span> <span class="kw">mean</span>(commute3060, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),</a>
+<a class="sourceLine" id="cb190-8" data-line-number="8">    <span class="dt">sd_commute  =</span> <span class="kw">sd</span>(commute3060, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb190-9" data-line-number="9">    )</a>
+<a class="sourceLine" id="cb190-10" data-line-number="10"><span class="co">## # A tibble: 15 x 6</span></a>
+<a class="sourceLine" id="cb190-11" data-line-number="11"><span class="co">##    county         n min_commute max_commute avg_commute sd_commute</span></a>
+<a class="sourceLine" id="cb190-12" data-line-number="12"><span class="co">##    &lt;chr&gt;      &lt;int&gt;       &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt;      &lt;dbl&gt;</span></a>
+<a class="sourceLine" id="cb190-13" data-line-number="13"><span class="co">##  1 BARNSTABLE    54     0.0402        0.305      0.171      0.0611</span></a>
+<a class="sourceLine" id="cb190-14" data-line-number="14"><span class="co">##  2 BERKSHIRE     39     0.0701        0.510      0.190      0.102 </span></a>
+<a class="sourceLine" id="cb190-15" data-line-number="15"><span class="co">##  3 BRISTOL      122     0.0599        0.442      0.249      0.0796</span></a>
+<a class="sourceLine" id="cb190-16" data-line-number="16"><span class="co">##  4 DUKES          4     0.0459        0.110      0.0744     0.0277</span></a>
+<a class="sourceLine" id="cb190-17" data-line-number="17"><span class="co">##  5 ESSEX        160     0.151         0.458      0.287      0.0664</span></a>
+<a class="sourceLine" id="cb190-18" data-line-number="18"><span class="co">##  6 FRANKLIN      18     0.186         0.454      0.283      0.0814</span></a>
+<a class="sourceLine" id="cb190-19" data-line-number="19"><span class="co">##  7 HAMPDEN      103     0.0495        0.480      0.226      0.0932</span></a>
+<a class="sourceLine" id="cb190-20" data-line-number="20"><span class="co">##  8 HAMPSHIRE     36     0.0318        0.569      0.264      0.138 </span></a>
+<a class="sourceLine" id="cb190-21" data-line-number="21"><span class="co">##  9 MIDDLESEX    318     0.104         0.612      0.383      0.0825</span></a>
+<a class="sourceLine" id="cb190-22" data-line-number="22"><span class="co">## 10 NANTUCKET      5     0.00587       0.120      0.0390     0.0470</span></a>
+<a class="sourceLine" id="cb190-23" data-line-number="23"><span class="co">## 11 NORFOLK      130     0.186         0.613      0.392      0.0761</span></a>
+<a class="sourceLine" id="cb190-24" data-line-number="24"><span class="co">## 12 PLYMOUTH      99     0.125         0.533      0.303      0.0596</span></a>
+<a class="sourceLine" id="cb190-25" data-line-number="25"><span class="co">## 13 SUFFOLK      200     0             0.633      0.400      0.0972</span></a>
+<a class="sourceLine" id="cb190-26" data-line-number="26"><span class="co">## 14 WORCESTER    172     0.0550        0.536      0.288      0.0810</span></a>
+<a class="sourceLine" id="cb190-27" data-line-number="27"><span class="co">## 15 &lt;NA&gt;          18     0.109         0.507      0.238      0.112</span></a></code></pre></div>
 
 </div>
 </div>

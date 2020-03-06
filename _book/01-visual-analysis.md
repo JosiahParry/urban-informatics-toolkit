@@ -223,6 +223,7 @@ Using ggplot, we can plot the estimated linear regression line on top of our sca
 ggplot(acs_edu, aes(x = bach, y = med_house_income)) +
   geom_point() +
   geom_smooth(method = "lm")
+## `geom_smooth()` using formula 'y ~ x'
 ```
 
 <img src="01-visual-analysis_files/figure-html/unnamed-chunk-10-1.png" width="672" />
@@ -243,6 +244,7 @@ ggplot(acs_edu, aes(x = bach, y = med_house_income)) +
   labs(x = "% of population with a Bachelor's Degree",
        y = "Median Household Income",
        title = "Relationship between Education and Income")
+## `geom_smooth()` using formula 'y ~ x'
 ```
 
 <img src="01-visual-analysis_files/figure-html/unnamed-chunk-11-1.png" width="672" />
@@ -274,6 +276,7 @@ ggplot(acs_edu, aes(x = bach, y = med_house_income, color = white)) +
        y = "Median Household Income",
        title = "Relationship between Education and Income",
        subtitle = "Colored by whiteness") 
+## `geom_smooth()` using formula 'y ~ x'
 ```
 
 <img src="01-visual-analysis_files/figure-html/unnamed-chunk-12-1.png" width="672" />

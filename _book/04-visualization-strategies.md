@@ -5,26 +5,8 @@
 
 ```r
 library(tidyverse)
-## ── Attaching packages ────────────────────────────────────────── tidyverse 1.2.1 ──
-## ✓ tibble  2.1.3     ✓ purrr   0.3.3
-## ✓ tidyr   1.0.2     ✓ dplyr   0.8.3
-## ✓ readr   1.3.1     ✓ stringr 1.4.0
-## ✓ tibble  2.1.3     ✓ forcats 0.4.0
-## ── Conflicts ───────────────────────────────────────────── tidyverse_conflicts() ──
-## x dplyr::filter() masks stats::filter()
-## x dplyr::lag()    masks stats::lag()
 
 acs_messy <- read_csv("data/ACS_1317_TRACT.csv")
-## Parsed with column specification:
-## cols(
-##   .default = col_double(),
-##   name = col_character(),
-##   med_yr_built = col_character(),
-##   town = col_character(),
-##   county = col_character(),
-##   m_atown = col_character()
-## )
-## See spec(...) for full column specifications.
 
 acs <- acs_messy %>% 
   separate(name, sep = ", ", into = c("tract", "county", "state")) %>% 
@@ -118,6 +100,8 @@ Being able to specify different data objects within each layer will provie to be
 
 ## Scales 
 
+
+
 ## Coordinates
 
 ## Facets
@@ -164,41 +148,93 @@ recommended reading: [A Layered Grammar of Graphics](https://vita.had.co.nz/pape
   - as we move along the x axis (to the right) we can see how the y changes in response
   
   
-  
-  
-- most data analyses start with a visualization. 
-- the data we have will dictate the type of visualizations we create
-- there are many many different ways in which data can be represented
-- generally these can be bucketed into a few major categories
-  - numeric 
-    - integer
-    - double
-  - character 
-    - think groups, factors, nominal, anything that doesn't have a numeric value that makes sense to count, aggregate, etc.
-  - time / order 
+-------------
+
+We now have a language for creating graphics. Next we must build the intuition of which plots to build and when. We will cover the most basic of visualizations starting with univariate followed by bivariate plots. We will then discuss ways to extend visualizations beyond two variables and some simple principles of design.
+
+In most cases a data analysis will start with a visualization. And that visualization will be dictated by the characteristics of the data available to us. In intro to statistics you probably learned about the four types of data which are: nominal and ordinal, together referred to as _categorical_;  interval and ratio, together referred to as _numerical_ We're going to contextualize these in R terms where _categorical_ is `character` and _numerical_ is `numeric`.
+
+Categorical and numeric have different are treated differently and thus lead to different kinds of visualizations. When we refer to categorical or character, we are often thinking of groups or a label. In the case where we don't have a quantifiable numeric value, we often count those variables.
+
   
 ## Univariate visualizations
 
-- what are we looking for in univariate visualizations?
-- the shape of the distribution
-- measures of central tendency
-  - where do the data cluster?
-  - is there a center? more than one?
-- how much variation is in the data?
-  - is the distribution flatter or steeper?
+There is always a strong urge to begin creating epic graphs with facets, shapes, colors, and hell, maybe even three dimensions. But we must resist that urge! We _must_ understand the distributions of our data before we start visualizing them and drawing conlcusions. Who knows, we may find anomalies or errors in the data cleaning process or even collection process. We should always begin by studying the indivual variable characteristics with univariate visualizations. 
 
-### histogram
 
-- puts data into `n` groups or bins or buckets. ggplot calls them `bins`
-- you can identify how many obs fit into a bucket
-  
+> Note that univariate visualizations are for numeric variables
+
+There a couple of things that we are looking for in a univariate visualization. In the broadest sense, we're looking at characterizations of central tendency, and spread. When we create these visualizations we're trying to answer the following questions:
+
+
+- Where is the middle? 
+- Is there more than one middle? 
+- How close together are our points? 
+- Are there any points very far from the middle?
+- Is the distribution flat? Is it steep?
+
+In exploring these questions we will rely on three types of plots:
+
+1. Histogram
+2. Density 
+3. Box plot
+
+Each type of plot above serves a different purpose.  
+
+### Histogram
+
+We have already created a number of histograms already. But it is always good to revisit the subject. Histograms puts our data into `n` buckets (or bins, or groups, or whatever your stats professor called them), counts the number of values that fall into each bucket, and use that frequency count as the height of each bar. 
+
+The true benefit of the histogram is that it is the easiest chart to consume by the layperson. But the downside is that merely by changing the number of bins, the distribution can be rather distorted and it is on you, the researcher and analyst, to ensure that there is no miscommunication of data.
+
+When we wish to create a histogram, we use the `geom_histogram(bins = n)` geom layer. Since it is a univariate visualization, we only specify one aesthetic mapping—in this case it is `x`. 
+
+Let's look at the distribution of the `med_yr_moved_inraw` column for an example.
+
+
+* Create a histogram of `med_yr_moved_inraw` with 10 bins. 
+
 
 ```r
-ggplot(acs, aes(age_u18)) +
-  geom_histogram(bins = 15)
+ggplot(acs, aes(med_yr_moved_inraw)) +
+  geom_histogram(bins = 10)
 ```
 
 <img src="04-visualization-strategies_files/figure-html/unnamed-chunk-8-1.png" width="672" />
+
+This histogram is rather informative! We can see that shortly after 2000, there was a steep increase in people moving in. Right after 2005 we can see that number tapering off—presumably due to the housing crises that begat the Great Recession.
+
+Now, if we do not specify the number of bins, we get a very different histogram. 
+
+
+```r
+ggplot(acs, aes(med_yr_moved_inraw)) +
+  geom_histogram()
+```
+
+<img src="04-visualization-strategies_files/figure-html/unnamed-chunk-9-1.png" width="672" />
+
+The above histogram shows gaps in between buckets of the histogram. On a first glance, we would assume that there may be missing data or some phenemonon in the data recording process that led to some sort of missingness. But that isn't the case! If we count the number of observations per year manually, the story becomes apparent.
+
+> Note: I am using the base R function `table()` to produce counts. This produces a class `table` object which is less friendly to work with. Using `table()` rather than count serves two purposes: 1) you get to learn another function and 2) the printing method is more friendly for a bookdown document. 
+
+
+```r
+(moved_counts <- table(acs$med_yr_moved_inraw))
+## 
+## 1991 1995 1996 1997 1998 1999 2000 2001 2002 2003 2004 2005 2006 2007 2008 
+##    1    2    5    7   14   31   56   77  108  121  141  109  113   84   73 
+## 2009 2010 2011 2012 2013 
+##   67  125  140   29    8
+
+glue::glue("There are {length(moved_counts)} unique values")
+## There are 20 unique values
+```
+
+> The glue function provides a way to create strings by combining R expressions and plain text. More in the appendix.
+
+This above tells us something really important and explains why our histogram is all wonky. Our histogram looks the way it does because we have specified more bins than there are unique values! Moral of the story, when creating a histogram be thoughtful and considerate of the number of bins your are using—it changes the whole story.
+
 
 ### density plot
 
@@ -214,7 +250,7 @@ ggplot(acs, aes(age_u18)) +
   geom_density()
 ```
 
-<img src="04-visualization-strategies_files/figure-html/unnamed-chunk-9-1.png" width="672" />
+<img src="04-visualization-strategies_files/figure-html/unnamed-chunk-11-1.png" width="672" />
 
 ### box plot
 
@@ -240,7 +276,7 @@ ggplot(acs, aes(y = age_u18)) +
   geom_boxplot() 
 ```
 
-<img src="04-visualization-strategies_files/figure-html/unnamed-chunk-10-1.png" width="672" />
+<img src="04-visualization-strategies_files/figure-html/unnamed-chunk-12-1.png" width="672" />
 
 - its easier to evaluate a box plot when it's horizontal.
   - we can flip any ggplot with a `coord_flip()` layer
@@ -254,7 +290,7 @@ ggplot(acs, aes(y = age_u18)) +
   coord_flip()
 ```
 
-<img src="04-visualization-strategies_files/figure-html/unnamed-chunk-11-1.png" width="672" />
+<img src="04-visualization-strategies_files/figure-html/unnamed-chunk-13-1.png" width="672" />
 
 #### understanding the box plot
 
@@ -281,7 +317,7 @@ ggplot(acs, aes(fam_house_per, age_u18)) +
   geom_point(alpha = 0.25)
 ```
 
-<img src="04-visualization-strategies_files/figure-html/unnamed-chunk-12-1.png" width="672" />
+<img src="04-visualization-strategies_files/figure-html/unnamed-chunk-14-1.png" width="672" />
 
 ### boxplot (1 continuous 1 categorical)
 
@@ -295,7 +331,7 @@ ggplot(acs, aes(county, age_u18)) +
   coord_flip()
 ```
 
-<img src="04-visualization-strategies_files/figure-html/unnamed-chunk-13-1.png" width="672" />
+<img src="04-visualization-strategies_files/figure-html/unnamed-chunk-15-1.png" width="672" />
 
 
 ### barplot (1 categorical 1 continuous / discrete)
@@ -309,7 +345,7 @@ ggplot(acs, aes(county)) +
   coord_flip()
 ```
 
-<img src="04-visualization-strategies_files/figure-html/unnamed-chunk-14-1.png" width="672" />
+<img src="04-visualization-strategies_files/figure-html/unnamed-chunk-16-1.png" width="672" />
 
 ### lollipop chart
 
@@ -340,7 +376,7 @@ ggplot(acs_counties, aes(county, n)) +
   coord_flip()
 ```
 
-<img src="04-visualization-strategies_files/figure-html/unnamed-chunk-15-1.png" width="672" />
+<img src="04-visualization-strategies_files/figure-html/unnamed-chunk-17-1.png" width="672" />
 
 
 - ridgelines (1 continuous 1 categorical)
@@ -361,7 +397,7 @@ ggplot(acs, aes(fam_house_per, age_u18, color = by_auto)) +
   geom_point()
 ```
 
-<img src="04-visualization-strategies_files/figure-html/unnamed-chunk-16-1.png" width="672" />
+<img src="04-visualization-strategies_files/figure-html/unnamed-chunk-18-1.png" width="672" />
 
 - we can add size to this as well by setting the `size` aesthetic
   - lets see if the more female headed house holds there are affects commuting by car as minors increases
@@ -372,7 +408,7 @@ ggplot(acs, aes(fam_house_per, age_u18, color = by_auto, size = fem_head_per)) +
   geom_point(alpha = .2)
 ```
 
-<img src="04-visualization-strategies_files/figure-html/unnamed-chunk-17-1.png" width="672" />
+<img src="04-visualization-strategies_files/figure-html/unnamed-chunk-19-1.png" width="672" />
 
 - from this chart we can see quite a few things:
   - as `fam_house_per` increases so does the under 18 pop,
@@ -472,4 +508,23 @@ Color Ramps:
 
 - diverging when there is a true middle
 - dark is low bright is high
+
+
+- most data analyses start with a visualization. 
+- the data we have will dictate the type of visualizations we create
+- there are many many different ways in which data can be represented
+- generally these can be bucketed into a few major categories
+  - numeric 
+    - integer
+    - double
+  - character 
+    - think groups, factors, nominal, anything that doesn't have a numeric value that makes sense to count, aggregate, etc.
+  - time / order 
+  
+  
+twitter thread on this:
+
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr"><a href="https://twitter.com/hashtag/rstats?src=hash&amp;ref_src=twsrc%5Etfw">#rstats</a> / general <a href="https://twitter.com/hashtag/datascience?src=hash&amp;ref_src=twsrc%5Etfw">#datascience</a> tweeps:<br><br>what types of visualizations do you think new folks should learn and embrace? i.e. hists, scatters, etc.</p>&mdash; Josiah 👨🏻
+💻 (@JosiahParry) <a href="https://twitter.com/JosiahParry/status/1216059573548638208?ref_src=twsrc%5Etfw">January 11, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
 
