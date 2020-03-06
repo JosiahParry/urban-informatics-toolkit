@@ -90,46 +90,7 @@ Being able to specify different data objects within each layer will provie to be
 
 ## Facets
 
------------
 
-**Notes**
-
-- we specify data and mappings, nothing is displayed at that time
-- from the defaults we can see that the scales and coordinates are intuitively handled
-- the default coordinate system is the cartesian coordinate system which has two axes x (horizontal), and y (vertical)
-- in order to see the data, we needed to add geometry to our base layer
-  - when we add Geoms to the graphic the data and aesthetic mappings are inherited from the defaults
-- we do not necessarily need to default data if we do not feel the need to do so. 
-- we can specify the data and mappings inside of the geom layer itself
-  - this will be handy when we work with geospatial data
-- stat refers to statistical transformations. 
-  - often you will not need to apply transformations to your data as their _identity_ (assigned values) are sufficient.
-
-
-
-[^wickham]: https://vita.had.co.nz/papers/layered-grammar.pdf
-https://cfss.uchicago.edu/notes/grammar-of-graphics/
-
-recommended reading: [A Layered Grammar of Graphics](https://vita.had.co.nz/papers/layered-grammar.pdf)
-
-- in R we will use a package called ggplot2 to do the visualizaiton of our data 
-- the `gg` in ggplot stands for "grammar of graphics".
-- once we can internalize the grammar, creating plots becomes rather easy
-- we specify our aesthetics
-- we **add** layers (hence the plus sign). these take values from the specified aesthetics
-- can add multiple layers
-- add aesthetics other than x and y. helps us visualize more dimensions of the data. we can use shape, color, and size
-
-
-
-### revisiting the cartesian plane
-
-- x and y coordinates
-- generally two numeric values on the x and y. think of the standards scatterplot (below)
-- we also can place groups on one axis
-  - i.e. barchart (below)
-- the y is usually the variable of interest
-  - as we move along the x axis (to the right) we can see how the y changes in response
   
   
 -------------
@@ -391,3 +352,45 @@ twitter thread on this:
 💻 (@JosiahParry) <a href="https://twitter.com/JosiahParry/status/1216059573548638208?ref_src=twsrc%5Etfw">January 11, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 
+
+
+-----------
+
+**Notes**
+
+- we specify data and mappings, nothing is displayed at that time
+- from the defaults we can see that the scales and coordinates are intuitively handled
+- the default coordinate system is the cartesian coordinate system which has two axes x (horizontal), and y (vertical)
+- in order to see the data, we needed to add geometry to our base layer
+  - when we add Geoms to the graphic the data and aesthetic mappings are inherited from the defaults
+- we do not necessarily need to default data if we do not feel the need to do so. 
+- we can specify the data and mappings inside of the geom layer itself
+  - this will be handy when we work with geospatial data
+- stat refers to statistical transformations. 
+  - often you will not need to apply transformations to your data as their _identity_ (assigned values) are sufficient.
+
+
+
+[^wickham]: https://vita.had.co.nz/papers/layered-grammar.pdf
+https://cfss.uchicago.edu/notes/grammar-of-graphics/
+
+recommended reading: [A Layered Grammar of Graphics](https://vita.had.co.nz/papers/layered-grammar.pdf)
+
+- in R we will use a package called ggplot2 to do the visualizaiton of our data 
+- the `gg` in ggplot stands for "grammar of graphics".
+- once we can internalize the grammar, creating plots becomes rather easy
+- we specify our aesthetics
+- we **add** layers (hence the plus sign). these take values from the specified aesthetics
+- can add multiple layers
+- add aesthetics other than x and y. helps us visualize more dimensions of the data. we can use shape, color, and size
+
+
+
+### revisiting the cartesian plane
+
+- x and y coordinates
+- generally two numeric values on the x and y. think of the standards scatterplot (below)
+- we also can place groups on one axis
+  - i.e. barchart (below)
+- the y is usually the variable of interest
+  - as we move along the x axis (to the right) we can see how the y changes in response
