@@ -135,7 +135,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2" data-path="the-basics.html"><a href="the-basics.html"><i class="fa fa-check"></i><b>2</b> The basics</a></li>
 <li class="chapter" data-level="3" data-path="r-as-a-calculator.html"><a href="r-as-a-calculator.html"><i class="fa fa-check"></i><b>3</b> R as a calculator</a></li>
 <li class="part"><span><b>I Toolkit Foundations</b></span></li>
-<li class="chapter" data-level="4" data-path="visual-analysis.html"><a href="visual-analysis.html"><i class="fa fa-check"></i><b>4</b> Visual Analysis</a></li>
+<li class="chapter" data-level="4" data-path="exploratory-visual-analysis.html"><a href="exploratory-visual-analysis.html"><i class="fa fa-check"></i><b>4</b> Exploratory Visual Analysis</a></li>
 <li class="chapter" data-level="5" data-path="reading-data.html"><a href="reading-data.html"><i class="fa fa-check"></i><b>5</b> Reading data</a></li>
 <li class="chapter" data-level="6" data-path="general-data-manipulation.html"><a href="general-data-manipulation.html"><i class="fa fa-check"></i><b>6</b> General data manipulation</a></li>
 <li class="chapter" data-level="7" data-path="thats-too-much-data.html"><a href="thats-too-much-data.html"><i class="fa fa-check"></i><b>7</b> That’s <em>too much</em> data</a></li>
@@ -253,8 +253,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <p><img src="04b-visualization-strategies_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
 </div>
-<div id="boxplot" class="section level3">
-<h3><span class="header-section-number">11.1.3</span> Boxplot</h3>
+<div id="boxplots" class="section level3">
+<h3><span class="header-section-number">11.1.3</span> Boxplots</h3>
 <p>The boxplot is the third univariate visualization we will cover. Unlike histograms and density plot, the box plot’s power comes from being able to effectively illustrate outliers and the general spread of a variable.</p>
 <p>There are five elements that make the boxplot:</p>
 <ol style="list-style-type: decimal">
@@ -281,6 +281,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="04b-visualization-strategies_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
 <p>From this boxplot, what can we tell about median household income in Massachusetts?</p>
 </div>
+<div id="barplot" class="section level3">
+<h3><span class="header-section-number">11.1.4</span> Barplot</h3>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw">ggplot</span>(acs, <span class="kw">aes</span>(<span class="dt">y =</span> county)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb6-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_bar</span>()</a></code></pre></div>
+<p><img src="04b-visualization-strategies_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+</div>
 </div>
 <div id="bivariate-visualizations" class="section level2">
 <h2><span class="header-section-number">11.2</span> Bivariate visualizations</h2>
@@ -302,22 +308,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Note: when plotting <em>against</em> something. We are plotting x <em>against</em> y.</p>
 </blockquote>
 <p>Recall that to plot a scatter plot we use the <code>geom_point()</code> layer with an x and y aesthetic mapped.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw">ggplot</span>(acs, <span class="kw">aes</span>(fam_house_per, age_u18)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb6-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>()</a></code></pre></div>
-<p><img src="04b-visualization-strategies_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw">ggplot</span>(acs, <span class="kw">aes</span>(fam_house_per, age_u18)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb7-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>()</a></code></pre></div>
+<p><img src="04b-visualization-strategies_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
 <p>The above scatter plot is useful, but there is one downside we should be aware of and that is the number of points that we are plotting. Since there are over 1,400 points—as is often the case with big data—they will likely stack on top of each other hiding other points and leading to a dark uninterpretable mass! We want to be able to decipher the concentration of points as well as the shape.</p>
 <blockquote>
 <p>When there are too many points to be interpretable this is called overplotting</p>
 </blockquote>
 <p>To improve the visualization we have a few options. We can make each point more transparent so as they stack on top of eachother they become darker. Or, we can make the points very small so that as they cluster they become a bigger and darker mass.</p>
 <p>To implement these stylistic enhancements we need to set some aesthetic arguments inside of the geom layer. In order to change the transparency of the layer we will change the <code>alpha</code> argument. <code>alpha</code> takes a value from 0 to 1 where 0 is entirely transparent and 1 is completely opaque. Try a few values and see what floats your boat!</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw">ggplot</span>(acs, <span class="kw">aes</span>(fam_house_per, age_u18)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb7-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="dv">1</span><span class="op">/</span><span class="dv">4</span>)</a></code></pre></div>
-<p><img src="04b-visualization-strategies_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
-<p>Alternatively, we can change the size (or even a combination of both) of our points. To do this, change the <code>size</code> argument inside of <code>geom_point()</code>. There is not a finite range of values that you can specify so experimentation is encouraged!</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="kw">ggplot</span>(acs, <span class="kw">aes</span>(fam_house_per, age_u18)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb8-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="dv">1</span><span class="op">/</span><span class="dv">3</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb8-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="dv">1</span><span class="op">/</span><span class="dv">4</span>)</a></code></pre></div>
 <p><img src="04b-visualization-strategies_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<p>Alternatively, we can change the size (or even a combination of both) of our points. To do this, change the <code>size</code> argument inside of <code>geom_point()</code>. There is not a finite range of values that you can specify so experimentation is encouraged!</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="kw">ggplot</span>(acs, <span class="kw">aes</span>(fam_house_per, age_u18)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb9-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="dv">1</span><span class="op">/</span><span class="dv">3</span>)</a></code></pre></div>
+<p><img src="04b-visualization-strategies_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
 <blockquote>
 <p>Remember when deciding the <code>alpha</code> and <code>size</code> parameters your are implementing stylistic changes and as such there are no <em>correct</em> solution. Only marginally better solutions.</p>
 </blockquote>
@@ -332,25 +338,37 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p><code>geom_hex()</code> for a hexagonal heatmap.</p></li>
 <li><p>Convert the above scatter plot into a heat map using both above geoms.</p></li>
 </ul>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="kw">ggplot</span>(acs, <span class="kw">aes</span>(fam_house_per, age_u18)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb9-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_bin2d</span>()</a></code></pre></div>
-<p><img src="04b-visualization-strategies_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="kw">ggplot</span>(acs, <span class="kw">aes</span>(fam_house_per, age_u18)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb10-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_hex</span>()</a></code></pre></div>
+<a class="sourceLine" id="cb10-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_bin2d</span>()</a></code></pre></div>
 <p><img src="04b-visualization-strategies_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1"><span class="kw">ggplot</span>(acs, <span class="kw">aes</span>(fam_house_per, age_u18)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb11-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_hex</span>()</a></code></pre></div>
+<p><img src="04b-visualization-strategies_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
 <p>Just like a histogram we can determine the number of bins that are used for aggragating the data. By adjusting the <code>bins</code> argument to <code>geom_hex()</code> or <code>geom_bin2d()</code> we can alter the size of each hexagon or rectangle. Again, the decision of how many bins to include is a trade-off between interpretability and accurate representation of the underlying data.</p>
 <ul>
 <li>Set the number of <code>bins</code> to 20</li>
 </ul>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1"><span class="kw">ggplot</span>(acs, <span class="kw">aes</span>(fam_house_per, age_u18)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb11-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_hex</span>(<span class="dt">bins =</span> <span class="dv">20</span>)</a></code></pre></div>
-<p><img src="04b-visualization-strategies_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1"><span class="kw">ggplot</span>(acs, <span class="kw">aes</span>(fam_house_per, age_u18)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb12-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_hex</span>(<span class="dt">bins =</span> <span class="dv">20</span>)</a></code></pre></div>
+<p><img src="04b-visualization-strategies_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
 </div>
 </div>
 <div id="one-numeric-and-one-categorical" class="section level3">
 <h3><span class="header-section-number">11.2.2</span> One numeric and one categorical</h3>
+<p>The next type of bivariate relationship we will encounter is that between a numeric variable and a categorical variable. In general there are two lines of inquiry we might take. The first is similar to our approach of a single numeric variable where we are interested in measures of centrality and spread but are further interested in how those characteristics change by group categorization (or group membership). The second seeks to compare groups based on some aggregate measure of a numeric variable.</p>
+<p>As an example, imagine we are interested in evaluating the educational attainment rate by county in the Greater Boston Area. We can take the approach of ranking the educational attainment rate by the median or average. Or, we could also try and evaluate if the counties differ in the amount of variation.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1">gba_acs &lt;-<span class="st"> </span>acs <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb13-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(<span class="kw">toupper</span>(county) <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;SUFFOLK COUNTY&quot;</span>, <span class="st">&quot;NORFOLK COUNTY&quot;</span>, <span class="st">&quot;MIDDLESEX COUNTY&quot;</span>))</a></code></pre></div>
+<p>We will explore both types of visual analysis.</p>
 <div id="ridgelines" class="section level4">
 <h4><span class="header-section-number">11.2.2.1</span> ridgelines</h4>
+<ul>
+<li>we are interested in centrality and spread just like we are in a univariate visualization but concerned with how these change by group</li>
+</ul>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1"><span class="kw">ggplot</span>(gba_acs, <span class="kw">aes</span>(bach, county)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb14-2" data-line-number="2"><span class="st">  </span>ggridges<span class="op">::</span><span class="kw">geom_density_ridges</span>()</a>
+<a class="sourceLine" id="cb14-3" data-line-number="3"><span class="co">## Picking joint bandwidth of 0.0285</span></a></code></pre></div>
+<p><img src="04b-visualization-strategies_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
 </div>
 </div>
 <div id="boxplot-1-continuous-1-categorical" class="section level3">
@@ -359,20 +377,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>we can use boxplots to compare groups</li>
 <li>for this, we set the categorical variable to the x aesthetic</li>
 </ul>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1"><span class="kw">ggplot</span>(acs, <span class="kw">aes</span>(county, age_u18)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb12-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_boxplot</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb12-3" data-line-number="3"><span class="st">  </span><span class="kw">coord_flip</span>()</a></code></pre></div>
-<p><img src="04b-visualization-strategies_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1"><span class="kw">ggplot</span>(gba_acs, <span class="kw">aes</span>(age_u18, county)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb15-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_boxplot</span>()</a></code></pre></div>
+<p><img src="04b-visualization-strategies_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
 </div>
 <div id="barplot-1-categorical-1-continuous-discrete" class="section level3">
 <h3><span class="header-section-number">11.2.4</span> barplot (1 categorical 1 continuous / discrete)</h3>
 <ul>
 <li>the <code>geom_bar()</code> will count the number observations of the specified categorical variables</li>
 </ul>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1"><span class="kw">ggplot</span>(acs, <span class="kw">aes</span>(county)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb13-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_bar</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb13-3" data-line-number="3"><span class="st">  </span><span class="kw">coord_flip</span>()</a></code></pre></div>
-<p><img src="04b-visualization-strategies_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1"><span class="kw">ggplot</span>(acs, <span class="kw">aes</span>(county)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb16-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_bar</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb16-3" data-line-number="3"><span class="st">  </span><span class="kw">coord_flip</span>()</a></code></pre></div>
+<p><img src="04b-visualization-strategies_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
 </div>
 <div id="lollipop-chart" class="section level3">
 <h3><span class="header-section-number">11.2.5</span> lollipop chart</h3>
@@ -390,25 +407,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li>remember, to install packages, navigate to the console and use the function <code>install.packages(&quot;pkg-name&quot;)</code>.</li>
 </ul>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1"><span class="kw">library</span>(ggalt)</a>
-<a class="sourceLine" id="cb14-2" data-line-number="2"><span class="co">## Registered S3 methods overwritten by &#39;ggalt&#39;:</span></a>
-<a class="sourceLine" id="cb14-3" data-line-number="3"><span class="co">##   method                  from   </span></a>
-<a class="sourceLine" id="cb14-4" data-line-number="4"><span class="co">##   grid.draw.absoluteGrob  ggplot2</span></a>
-<a class="sourceLine" id="cb14-5" data-line-number="5"><span class="co">##   grobHeight.absoluteGrob ggplot2</span></a>
-<a class="sourceLine" id="cb14-6" data-line-number="6"><span class="co">##   grobWidth.absoluteGrob  ggplot2</span></a>
-<a class="sourceLine" id="cb14-7" data-line-number="7"><span class="co">##   grobX.absoluteGrob      ggplot2</span></a>
-<a class="sourceLine" id="cb14-8" data-line-number="8"><span class="co">##   grobY.absoluteGrob      ggplot2</span></a>
-<a class="sourceLine" id="cb14-9" data-line-number="9"></a>
-<a class="sourceLine" id="cb14-10" data-line-number="10">acs_counties &lt;-<span class="st"> </span><span class="kw">count</span>(acs, county)</a>
-<a class="sourceLine" id="cb14-11" data-line-number="11"></a>
-<a class="sourceLine" id="cb14-12" data-line-number="12"><span class="kw">ggplot</span>(acs_counties, <span class="kw">aes</span>(county, n)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb14-13" data-line-number="13"><span class="st">  </span><span class="kw">geom_lollipop</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb14-14" data-line-number="14"><span class="st">  </span><span class="kw">coord_flip</span>()</a></code></pre></div>
-<p><img src="04b-visualization-strategies_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
-<ul>
-<li>ridgelines (1 continuous 1 categorical)</li>
-<li>line chart (1 continuous 1 time), this is a unique case</li>
-</ul>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1"><span class="kw">library</span>(ggalt)</a>
+<a class="sourceLine" id="cb17-2" data-line-number="2"><span class="co">## Registered S3 methods overwritten by &#39;ggalt&#39;:</span></a>
+<a class="sourceLine" id="cb17-3" data-line-number="3"><span class="co">##   method                  from   </span></a>
+<a class="sourceLine" id="cb17-4" data-line-number="4"><span class="co">##   grid.draw.absoluteGrob  ggplot2</span></a>
+<a class="sourceLine" id="cb17-5" data-line-number="5"><span class="co">##   grobHeight.absoluteGrob ggplot2</span></a>
+<a class="sourceLine" id="cb17-6" data-line-number="6"><span class="co">##   grobWidth.absoluteGrob  ggplot2</span></a>
+<a class="sourceLine" id="cb17-7" data-line-number="7"><span class="co">##   grobX.absoluteGrob      ggplot2</span></a>
+<a class="sourceLine" id="cb17-8" data-line-number="8"><span class="co">##   grobY.absoluteGrob      ggplot2</span></a>
+<a class="sourceLine" id="cb17-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb17-10" data-line-number="10">acs_counties &lt;-<span class="st"> </span><span class="kw">count</span>(acs, county)</a>
+<a class="sourceLine" id="cb17-11" data-line-number="11"></a>
+<a class="sourceLine" id="cb17-12" data-line-number="12"><span class="kw">ggplot</span>(acs_counties, <span class="kw">aes</span>(county, n)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb17-13" data-line-number="13"><span class="st">  </span><span class="kw">geom_lollipop</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb17-14" data-line-number="14"><span class="st">  </span><span class="kw">coord_flip</span>()</a></code></pre></div>
+<p><img src="04b-visualization-strategies_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
 </div>
 </div>
 <div id="expanding-bivariate-visualizations-to-trivariate-other-tri-variate" class="section level2">
@@ -429,18 +442,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 </ul></li>
 </ul>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1"><span class="kw">ggplot</span>(acs, <span class="kw">aes</span>(fam_house_per, age_u18, <span class="dt">color =</span> by_auto)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb15-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>()</a></code></pre></div>
-<p><img src="04b-visualization-strategies_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" data-line-number="1"><span class="kw">ggplot</span>(acs, <span class="kw">aes</span>(fam_house_per, age_u18, <span class="dt">color =</span> by_auto)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb18-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>()</a></code></pre></div>
+<p><img src="04b-visualization-strategies_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
 <ul>
 <li>we can add size to this as well by setting the <code>size</code> aesthetic
 <ul>
 <li>lets see if the more female headed house holds there are affects commuting by car as minors increases</li>
 </ul></li>
 </ul>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1"><span class="kw">ggplot</span>(acs, <span class="kw">aes</span>(fam_house_per, age_u18, <span class="dt">color =</span> by_auto, <span class="dt">size =</span> fem_head_per)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb16-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">.2</span>)</a></code></pre></div>
-<p><img src="04b-visualization-strategies_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" data-line-number="1"><span class="kw">ggplot</span>(acs, <span class="kw">aes</span>(fam_house_per, age_u18, <span class="dt">color =</span> by_auto, <span class="dt">size =</span> fem_head_per)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb19-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">.2</span>)</a></code></pre></div>
+<p><img src="04b-visualization-strategies_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
 <ul>
 <li>from this chart we can see quite a few things:
 <ul>
@@ -450,23 +463,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>this gives us a good idea of some relationships that we can test with our data at a later point</li>
 </ul></li>
 </ul>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1">minors_lm &lt;-<span class="st"> </span><span class="kw">lm</span>(age_u18 <span class="op">~</span><span class="st"> </span>fam_house_per <span class="op">+</span><span class="st"> </span>by_auto <span class="op">+</span><span class="st"> </span>fem_head_per, <span class="dt">data =</span> acs)</a>
-<a class="sourceLine" id="cb17-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb17-3" data-line-number="3">huxtable<span class="op">::</span><span class="kw">huxreg</span>(minors_lm)</a>
-<a class="sourceLine" id="cb17-4" data-line-number="4"><span class="co">## Registered S3 methods overwritten by &#39;broom.mixed&#39;:</span></a>
-<a class="sourceLine" id="cb17-5" data-line-number="5"><span class="co">##   method         from </span></a>
-<a class="sourceLine" id="cb17-6" data-line-number="6"><span class="co">##   augment.lme    broom</span></a>
-<a class="sourceLine" id="cb17-7" data-line-number="7"><span class="co">##   augment.merMod broom</span></a>
-<a class="sourceLine" id="cb17-8" data-line-number="8"><span class="co">##   glance.lme     broom</span></a>
-<a class="sourceLine" id="cb17-9" data-line-number="9"><span class="co">##   glance.merMod  broom</span></a>
-<a class="sourceLine" id="cb17-10" data-line-number="10"><span class="co">##   glance.stanreg broom</span></a>
-<a class="sourceLine" id="cb17-11" data-line-number="11"><span class="co">##   tidy.brmsfit   broom</span></a>
-<a class="sourceLine" id="cb17-12" data-line-number="12"><span class="co">##   tidy.gamlss    broom</span></a>
-<a class="sourceLine" id="cb17-13" data-line-number="13"><span class="co">##   tidy.lme       broom</span></a>
-<a class="sourceLine" id="cb17-14" data-line-number="14"><span class="co">##   tidy.merMod    broom</span></a>
-<a class="sourceLine" id="cb17-15" data-line-number="15"><span class="co">##   tidy.rjags     broom</span></a>
-<a class="sourceLine" id="cb17-16" data-line-number="16"><span class="co">##   tidy.stanfit   broom</span></a>
-<a class="sourceLine" id="cb17-17" data-line-number="17"><span class="co">##   tidy.stanreg   broom</span></a></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" data-line-number="1">minors_lm &lt;-<span class="st"> </span><span class="kw">lm</span>(age_u18 <span class="op">~</span><span class="st"> </span>fam_house_per <span class="op">+</span><span class="st"> </span>by_auto <span class="op">+</span><span class="st"> </span>fem_head_per, <span class="dt">data =</span> acs)</a>
+<a class="sourceLine" id="cb20-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb20-3" data-line-number="3">huxtable<span class="op">::</span><span class="kw">huxreg</span>(minors_lm)</a>
+<a class="sourceLine" id="cb20-4" data-line-number="4"><span class="co">## Registered S3 methods overwritten by &#39;broom.mixed&#39;:</span></a>
+<a class="sourceLine" id="cb20-5" data-line-number="5"><span class="co">##   method         from </span></a>
+<a class="sourceLine" id="cb20-6" data-line-number="6"><span class="co">##   augment.lme    broom</span></a>
+<a class="sourceLine" id="cb20-7" data-line-number="7"><span class="co">##   augment.merMod broom</span></a>
+<a class="sourceLine" id="cb20-8" data-line-number="8"><span class="co">##   glance.lme     broom</span></a>
+<a class="sourceLine" id="cb20-9" data-line-number="9"><span class="co">##   glance.merMod  broom</span></a>
+<a class="sourceLine" id="cb20-10" data-line-number="10"><span class="co">##   glance.stanreg broom</span></a>
+<a class="sourceLine" id="cb20-11" data-line-number="11"><span class="co">##   tidy.brmsfit   broom</span></a>
+<a class="sourceLine" id="cb20-12" data-line-number="12"><span class="co">##   tidy.gamlss    broom</span></a>
+<a class="sourceLine" id="cb20-13" data-line-number="13"><span class="co">##   tidy.lme       broom</span></a>
+<a class="sourceLine" id="cb20-14" data-line-number="14"><span class="co">##   tidy.merMod    broom</span></a>
+<a class="sourceLine" id="cb20-15" data-line-number="15"><span class="co">##   tidy.rjags     broom</span></a>
+<a class="sourceLine" id="cb20-16" data-line-number="16"><span class="co">##   tidy.stanfit   broom</span></a>
+<a class="sourceLine" id="cb20-17" data-line-number="17"><span class="co">##   tidy.stanreg   broom</span></a></code></pre></div>
 <table class="huxtable" style="border-collapse: collapse; margin-bottom: 2em; margin-top: 2em; width: 50%; margin-left: auto; margin-right: auto;  ">
 <col><col><tr>
 <td style="vertical-align: top; text-align: center; white-space: nowrap; border-style: solid solid solid solid; border-width: 0.8pt 0pt 0pt 0pt; padding: 4pt 4pt 4pt 4pt;"></td>

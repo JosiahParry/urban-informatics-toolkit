@@ -122,7 +122,7 @@ gd|gh
 
 
 
-### Boxplot
+### Boxplots
 
 The boxplot is the third univariate visualization we will cover. Unlike histograms and density plot, the box plot's power comes from being able to effectively illustrate outliers and the general spread of a variable. 
 
@@ -159,6 +159,16 @@ ggplot(acs, aes(med_house_income)) +
 ```
 
 From this boxplot, what can we tell about median household income in Massachusetts? 
+
+
+### Barplot
+
+```{r}
+ggplot(acs, aes(y = county)) +
+  geom_bar()
+```
+
+
 
 ## Bivariate visualizations
 
@@ -250,7 +260,29 @@ ggplot(acs, aes(fam_house_per, age_u18)) +
 
 ### One numeric and one categorical
 
-#### ridgelines 
+The next type of bivariate relationship we will encounter is that between a numeric variable and a categorical variable. In general there are two lines of inquiry we might take. The first is similar to our approach of a single numeric variable where we are interested in measures of centrality and spread but are further interested in how those characteristics change by group categorization (or group membership). The second seeks to compare groups based on some aggregate measure of a numeric variable. 
+
+As an example, imagine we are interested in evaluating the educational attainment rate by county in the Greater Boston Area. We can take the approach of ranking the educational attainment rate by the median or average. Or, we could also try and evaluate if the counties differ in the amount of variation.
+
+```{r}
+gba_acs <- acs %>% 
+  filter(toupper(county) %in% c("SUFFOLK COUNTY", "NORFOLK COUNTY", "MIDDLESEX COUNTY"))
+```
+
+
+We will explore both types of visual analysis.
+
+
+#### ridgelines
+
+
+- we are interested in centrality and spread just like we are in a univariate visualization but concerned with how these change by group
+
+```{r}
+ggplot(gba_acs, aes(bach, county)) +
+  ggridges::geom_density_ridges()
+```
+
 
 ### boxplot (1 continuous 1 categorical)
 
@@ -258,9 +290,8 @@ ggplot(acs, aes(fam_house_per, age_u18)) +
   - for this, we set the categorical variable to the x aesthetic
   
 ```{r}
-ggplot(acs, aes(county, age_u18)) +
-  geom_boxplot() +
-  coord_flip()
+ggplot(gba_acs, aes(age_u18, county)) +
+  geom_boxplot()
 ```
 
 
@@ -295,9 +326,6 @@ ggplot(acs_counties, aes(county, n)) +
   coord_flip()
 ```
 
-
-- ridgelines (1 continuous 1 categorical)
-- line chart (1 continuous 1 time), this is a unique case
 
 ## Expanding bivariate visualizations to trivariate & other tri-variate
 

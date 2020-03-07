@@ -120,7 +120,7 @@ Now compare the histogram to the density plot.
 
 
 
-### Boxplot
+### Boxplots
 
 The boxplot is the third univariate visualization we will cover. Unlike histograms and density plot, the box plot's power comes from being able to effectively illustrate outliers and the general spread of a variable. 
 
@@ -161,6 +161,19 @@ ggplot(acs, aes(med_house_income)) +
 
 From this boxplot, what can we tell about median household income in Massachusetts? 
 
+
+### Barplot
+
+
+```r
+ggplot(acs, aes(y = county)) +
+  geom_bar()
+```
+
+<img src="04b-visualization-strategies_files/figure-html/unnamed-chunk-8-1.png" width="672" />
+
+
+
 ## Bivariate visualizations
 
 We are ready to introduce a second variable into the analysis. With bivariate relationships (two-variables) we are often looking to answer, in general, if one variable changes with another. But the way we approach these relationships is dependent upon the type of variables we have to work with. We can can either be looking at the bivariate relationship of 
@@ -191,7 +204,7 @@ ggplot(acs, aes(fam_house_per, age_u18)) +
   geom_point()
 ```
 
-<img src="04b-visualization-strategies_files/figure-html/unnamed-chunk-8-1.png" width="672" />
+<img src="04b-visualization-strategies_files/figure-html/unnamed-chunk-9-1.png" width="672" />
 
 The above scatter plot is useful, but there is one downside we should be aware of and that is the number of points that we are plotting. Since there are over 1,400 points—as is often the case with big data—they will likely stack on top of each other hiding other points and leading to a dark uninterpretable mass! We want to be able to decipher the concentration of points as well as the shape.
 
@@ -207,7 +220,7 @@ ggplot(acs, aes(fam_house_per, age_u18)) +
   geom_point(alpha = 1/4)
 ```
 
-<img src="04b-visualization-strategies_files/figure-html/unnamed-chunk-9-1.png" width="672" />
+<img src="04b-visualization-strategies_files/figure-html/unnamed-chunk-10-1.png" width="672" />
 
 Alternatively, we can change the size (or even a combination of both) of our points. To do this, change the `size` argument inside of `geom_point()`. There is not a finite range of values that you can specify so experimentation is encouraged! 
 
@@ -217,7 +230,7 @@ ggplot(acs, aes(fam_house_per, age_u18)) +
   geom_point(size = 1/3)
 ```
 
-<img src="04b-visualization-strategies_files/figure-html/unnamed-chunk-10-1.png" width="672" />
+<img src="04b-visualization-strategies_files/figure-html/unnamed-chunk-11-1.png" width="672" />
 
 > Remember when deciding the `alpha` and `size` parameters your are implementing stylistic changes and as such there are no _correct_ solution. Only marginally better solutions. 
 
@@ -242,7 +255,7 @@ ggplot(acs, aes(fam_house_per, age_u18)) +
   geom_bin2d()
 ```
 
-<img src="04b-visualization-strategies_files/figure-html/unnamed-chunk-11-1.png" width="672" />
+<img src="04b-visualization-strategies_files/figure-html/unnamed-chunk-12-1.png" width="672" />
 
 
 
@@ -251,7 +264,7 @@ ggplot(acs, aes(fam_house_per, age_u18)) +
   geom_hex()
 ```
 
-<img src="04b-visualization-strategies_files/figure-html/unnamed-chunk-12-1.png" width="672" />
+<img src="04b-visualization-strategies_files/figure-html/unnamed-chunk-13-1.png" width="672" />
 
 
 Just like a histogram we can determine the number of bins that are used for aggragating the data. By adjusting the `bins` argument to `geom_hex()` or `geom_bin2d()` we can alter the size of each hexagon or rectangle. Again, the decision of how many bins to include is a trade-off between interpretability and accurate representation of the underlying data. 
@@ -264,12 +277,39 @@ ggplot(acs, aes(fam_house_per, age_u18)) +
   geom_hex(bins = 20)
 ```
 
-<img src="04b-visualization-strategies_files/figure-html/unnamed-chunk-13-1.png" width="672" />
+<img src="04b-visualization-strategies_files/figure-html/unnamed-chunk-14-1.png" width="672" />
 
 
 ### One numeric and one categorical
 
-#### ridgelines 
+The next type of bivariate relationship we will encounter is that between a numeric variable and a categorical variable. In general there are two lines of inquiry we might take. The first is similar to our approach of a single numeric variable where we are interested in measures of centrality and spread but are further interested in how those characteristics change by group categorization (or group membership). The second seeks to compare groups based on some aggregate measure of a numeric variable. 
+
+As an example, imagine we are interested in evaluating the educational attainment rate by county in the Greater Boston Area. We can take the approach of ranking the educational attainment rate by the median or average. Or, we could also try and evaluate if the counties differ in the amount of variation.
+
+
+```r
+gba_acs <- acs %>% 
+  filter(toupper(county) %in% c("SUFFOLK COUNTY", "NORFOLK COUNTY", "MIDDLESEX COUNTY"))
+```
+
+
+We will explore both types of visual analysis.
+
+
+#### ridgelines
+
+
+- we are interested in centrality and spread just like we are in a univariate visualization but concerned with how these change by group
+
+
+```r
+ggplot(gba_acs, aes(bach, county)) +
+  ggridges::geom_density_ridges()
+## Picking joint bandwidth of 0.0285
+```
+
+<img src="04b-visualization-strategies_files/figure-html/unnamed-chunk-16-1.png" width="672" />
+
 
 ### boxplot (1 continuous 1 categorical)
 
@@ -278,12 +318,11 @@ ggplot(acs, aes(fam_house_per, age_u18)) +
   
 
 ```r
-ggplot(acs, aes(county, age_u18)) +
-  geom_boxplot() +
-  coord_flip()
+ggplot(gba_acs, aes(age_u18, county)) +
+  geom_boxplot()
 ```
 
-<img src="04b-visualization-strategies_files/figure-html/unnamed-chunk-14-1.png" width="672" />
+<img src="04b-visualization-strategies_files/figure-html/unnamed-chunk-17-1.png" width="672" />
 
 
 ### barplot (1 categorical 1 continuous / discrete)
@@ -297,7 +336,7 @@ ggplot(acs, aes(county)) +
   coord_flip()
 ```
 
-<img src="04b-visualization-strategies_files/figure-html/unnamed-chunk-15-1.png" width="672" />
+<img src="04b-visualization-strategies_files/figure-html/unnamed-chunk-18-1.png" width="672" />
 
 ### lollipop chart
 
@@ -328,11 +367,8 @@ ggplot(acs_counties, aes(county, n)) +
   coord_flip()
 ```
 
-<img src="04b-visualization-strategies_files/figure-html/unnamed-chunk-16-1.png" width="672" />
+<img src="04b-visualization-strategies_files/figure-html/unnamed-chunk-19-1.png" width="672" />
 
-
-- ridgelines (1 continuous 1 categorical)
-- line chart (1 continuous 1 time), this is a unique case
 
 ## Expanding bivariate visualizations to trivariate & other tri-variate
 
@@ -349,7 +385,7 @@ ggplot(acs, aes(fam_house_per, age_u18, color = by_auto)) +
   geom_point()
 ```
 
-<img src="04b-visualization-strategies_files/figure-html/unnamed-chunk-17-1.png" width="672" />
+<img src="04b-visualization-strategies_files/figure-html/unnamed-chunk-20-1.png" width="672" />
 
 - we can add size to this as well by setting the `size` aesthetic
   - lets see if the more female headed house holds there are affects commuting by car as minors increases
@@ -360,7 +396,7 @@ ggplot(acs, aes(fam_house_per, age_u18, color = by_auto, size = fem_head_per)) +
   geom_point(alpha = .2)
 ```
 
-<img src="04b-visualization-strategies_files/figure-html/unnamed-chunk-18-1.png" width="672" />
+<img src="04b-visualization-strategies_files/figure-html/unnamed-chunk-21-1.png" width="672" />
 
 - from this chart we can see quite a few things:
   - as `fam_house_per` increases so does the under 18 pop,
