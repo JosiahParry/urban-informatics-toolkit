@@ -2,7 +2,7 @@
 title: "Urban Informatics Toolkit"
 description: "A hands on introduction approach to analyzing the urban Commons."
 author: "Josiah Parry"
-date: "2020-03-06"
+date: "2020-03-07"
 site: bookdown::gitbook
 documentclass: book
 bibliography: [book.bib, packages.bib]
@@ -26,7 +26,10 @@ Core Toolkit
 - Draft intro to R, RStudio (R files, and R projects) 
   - done 2020-02-15
 - Draft exploratory analysis
+  - done
 - Draft filtering data (logical statements)
+   - done
+- Draft mutate
 - Draft %>% 
   - done 2020-02-18
 - Draft data structures
@@ -35,6 +38,7 @@ Core Toolkit
   - done 2020-02-20
 - Draft group_by and summarize
   - done 2020-02-21
+- Draft visualization principles
 - Draft multiple data sources
 
 UI Specific:

@@ -1,0 +1,26 @@
+# Grammer of layered graphics II
+
+```{r, include=FALSE, message=FALSE}
+source("common.R")
+library(tidyverse)
+
+acs_messy <- read_csv("data/ACS_1317_TRACT.csv")
+
+acs <- acs_messy %>% 
+  separate(name, sep = ", ", into = c("tract", "county", "state")) %>% 
+  mutate(tract = str_remove(tract, "Census Tract ")) %>% 
+  na.omit()
+```
+
+
+## Scales 
+
+
+
+## Coordinates
+
+## Facets
+
+
+  
+  

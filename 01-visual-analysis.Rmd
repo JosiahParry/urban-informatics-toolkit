@@ -1,4 +1,4 @@
-# Visual Analysis 
+# Exploratory Visual Analysis 
 
 
 ```{r, include=FALSE}

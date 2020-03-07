@@ -194,91 +194,188 @@ glue::glue("There are {length(moved_counts)} unique values")
 
 > The glue function provides a way to create strings by combining R expressions and plain text. More in the appendix.
 
-This above tells us something really important and explains why our histogram is all wonky. Our histogram looks the way it does because we have specified more bins than there are unique values! Moral of the story, when creating a histogram be thoughtful and considerate of the number of bins your are using—it changes the whole story.
+This above tells us something really important and explains why our histogram is all wonky. Our histogram looks the way it does because we have specified more bins than there are unique values! The moral of the story is that when creating a histogram, be thoughtful and considerate of the number of bins your are using—it changes the whole story.
 
 
-### density plot
+### Density Function plot
 
-- A density plot is a representation of the distribution of a numeric variable
-- visualizes the distribution of data over a continuous interval
-- it's called a density plot because it uses a kernel density.
-  - you do not need to know what this is, just that it shows a continuous representation of the distribution
-- unlike histograms you cannot determine how many obs fall in a bucket as there are no buckets.
+
+Histograms are a fairly straight-forward chart that provides illustrates the distribution of a sample space. The histogram does not provide a fine grain picture of what the underlying distribution looks like. When we are concerned with understanding the underlying shape of a distribution we should use a **kernel density plot** (aka density plot). 
+
+The density plot represents a variable over a continuous space and by doing so creates a much better visual representation of the underlying distribution shape with all of its curves. 
+
+Like a histogram, we only provide a single variable to the aesthetic mappings. The geom layer for a density distribution is `geom_density()`.
+
+* Create a density plot of `med_yr_moved_inraw`
 
 
 ```r
-ggplot(acs, aes(age_u18)) +
+gd <- ggplot(acs, aes(med_yr_moved_inraw)) +
   geom_density()
+
+gh <- ggplot(acs, aes(med_yr_moved_inraw)) +
+  geom_histogram(bins = 10)
 ```
 
-<img src="04-visualization-strategies_files/figure-html/unnamed-chunk-11-1.png" width="672" />
 
-### box plot
+Now compare the histogram to the density plot. 
 
-
-- box plots are another way to show the distribution
-- unlike histograms and density plots which show the shape of the distribution box plots are concerned with illustrating any potential outliers
-  - aside: an outlier is a value that differs substantially from other obs
-- based on 5 summary values:
-  - the first quartile 
-  - median (the middle value)
-  - the third quartile
-  - the _minimum_ and the _maximum_:
-    - these aren't actually the max and min, these are 
-- we have to set this aesthetic to `y`
-  
-refs:
-
-- https://towardsdatascience.com/understanding-boxplots-5e2df7bcbd51
-
-
-```r
-ggplot(acs, aes(y = age_u18)) +
-  geom_boxplot() 
-```
+* Which do you feel does a better job illustrating the shape of the distribution?
+* Which do you think is more interpretable?
 
 <img src="04-visualization-strategies_files/figure-html/unnamed-chunk-12-1.png" width="672" />
 
-- its easier to evaluate a box plot when it's horizontal.
-  - we can flip any ggplot with a `coord_flip()` layer
 
 
-  
+
+### Boxplot
+
+The boxplot is the third univariate visualization we will cover. Unlike histograms and density plot, the box plot's power comes from being able to effectively illustrate outliers and the general spread of a variable. 
+
+There are five elements that make the boxplot:
+
+1. Minimum
+2. First quartile (25th percentile)
+3. Median (50th percentile)
+3. Third quartile (75th percentile)
+3. Maximum 
+
+
+When creating a boxplot, the definition of minimum and maximum change a little bit. We are defining the minimums and maximums _without_ the outliers. And in the context of a boxplot the outliers are determined by the **IQR** (inner quartile range). The IQR is different between the third and first quartile. We then take the IQR and _add_ it to the third quartile to find the upper bound and then subtract the IQR from the first quartile to find the lower bound.
+
+$IQR = Q3 - Q1$
+$Minimum = Q1 - IQR$
+$Maximum = Q3 + IQR$
+
+
+> Note that this is a naive approach to defining an outlier. This is not a hard and fast rule of what is considered an outlier. There are many considerations that should go into defining an outlier other than arbitrary statistical heuristics. Be sure to have a deep think before calling anything an outlier. 
+
+Any points that fall outside of that the minimum and maximum are plotted individually to give you an idea of any _potential_ outliers. 
+
+To create a boxplot we use the `geom_boxplot()` function.
+
+* Create a boxplot of `med_house_income`
+
+
 
 ```r
-ggplot(acs, aes(y = age_u18)) +
-  geom_boxplot() +
-  coord_flip()
+ggplot(acs, aes(med_house_income)) +
+  geom_boxplot() 
 ```
 
 <img src="04-visualization-strategies_files/figure-html/unnamed-chunk-13-1.png" width="672" />
 
-#### understanding the box plot
+From this boxplot, what can we tell about median household income in Massachusetts? 
 
 ## Bivariate visualizations
 
-with bi-variate relationships we're looking to answer, in general, if one variable affects the other. we usually will be comparing two numeric variables or one numeric and one categorical variable
-in the former situtation we're looking to see if there is a related trend, i.e. when one goes up does the other go down or vice versa
-in the latter scenario, we want to know if the distribution of the data changes for different groups
+We are ready to introduce a second variable into the analysis. With bivariate relationships (two-variables) we are often looking to answer, in general, if one variable changes with another. But the way we approach these relationships is dependent upon the type of variables we have to work with. We can can either be looking at the bivariate relationship of 
 
-### scatter plot (2 continuous)
-  - we made one previously
-  - this is two continuous on each axis.
-  - the variable of interest is on the y
-  - example:
-    - we can hypothesize that where there are more under 18 there are more families
-    - we can ask how does the prop of population under 18 vary with prop of family households?
-    - when there are many points (which is often the case w/ big data) we can change the transparency (often called opacity) so we can see where there is the most overlap. Inside of the `geom_point()` we set the `alpha` argument to a value between 0 and 1 where 1 is not transparent and 0 is invisible.
-    - this is artistic preference and there is no one true answer
-    
+* 2 numeric variables,
+* 1 numeric variable and 1 categorical,
+* or 2 categorical variables. 
+
+### Two Numeric Variables
+
+#### Scatter plot
+
+When confronted with two numeric variables, your first stop should be the scatter plot. A scatter plot positions takes two continuous variables and plots each point at their (x, y) coordinate. This type of plot illustrates how the two variables change with each other—if at all. It is exceptionally useful for pinpointing linearity, clusters, points that may be disproportionately distorting a relationship, etc. 
+
+Scatter plots are useful for asking questions such as "when x increases how does y change?" Because of this natural formulation of statistical questions—i.e. we are always interested in how the x affects the y—we plot the variable of interest vertically along the y axis and the independent variable along the horizontal x axis. 
+
+Take for example the question "how does the proportion of individuals under the age of eighteen increase with the number of family households?"
+
+Using a scatter plot, we can begin to answer this question! Notice how in the formulation of our question we are asking how does y change with x. In this formulation we should plot the `fam_house_per` against the `age_u18` column.
+
+> Note: when plotting _against_ something. We are plotting x _against_ y.
+
+Recall that to plot a scatter plot we use the `geom_point()` layer with an x and y aesthetic mapped.
 
 
 ```r
 ggplot(acs, aes(fam_house_per, age_u18)) +
-  geom_point(alpha = 0.25)
+  geom_point()
 ```
 
 <img src="04-visualization-strategies_files/figure-html/unnamed-chunk-14-1.png" width="672" />
+
+The above scatter plot is useful, but there is one downside we should be aware of and that is the number of points that we are plotting. Since there are over 1,400 points—as is often the case with big data—they will likely stack on top of each other hiding other points and leading to a dark uninterpretable mass! We want to be able to decipher the concentration of points as well as the shape.
+
+> When there are too many points to be interpretable this is called overplotting
+
+To improve the visualization we have a few options. We can make each point more transparent so as they stack on top of eachother they become darker. Or, we can make the points very small so that as they cluster they become a bigger and darker mass.
+
+To implement these stylistic enhancements we need to set some aesthetic arguments inside of the geom layer. In order to change the transparency of the layer we will change the `alpha` argument. `alpha` takes a value from 0 to 1 where 0 is entirely transparent and 1 is completely opaque. Try a few values and see what floats your boat!
+
+
+```r
+ggplot(acs, aes(fam_house_per, age_u18)) +
+  geom_point(alpha = 1/4)
+```
+
+<img src="04-visualization-strategies_files/figure-html/unnamed-chunk-15-1.png" width="672" />
+
+Alternatively, we can change the size (or even a combination of both) of our points. To do this, change the `size` argument inside of `geom_point()`. There is not a finite range of values that you can specify so experimentation is encouraged! 
+
+
+```r
+ggplot(acs, aes(fam_house_per, age_u18)) +
+  geom_point(size = 1/3)
+```
+
+<img src="04-visualization-strategies_files/figure-html/unnamed-chunk-16-1.png" width="672" />
+
+> Remember when deciding the `alpha` and `size` parameters your are implementing stylistic changes and as such there are no _correct_ solution. Only marginally better solutions. 
+
+
+#### Hexagonal heatmap 
+
+Scatter plots do not scale very well with hundreds or thousand of points. When the scatter plot becomes a gross mass of points, we need to find a better way to display those data. One solution to this is to create a heatmap of our points. You can think of a heatmap as the two-dimension equivalent to the histogram. 
+
+The heatmap "divides the plane into rectangles [of equal size], counts the number of cases in each rectangle", and then that count is then used to color the rectangle[^bin2d]. An alternative to the rectangular heatmap is the hexagonal heatmap. The hexagonal heatmap has a few minor visual benefits over the rectangular heatmap. But choosing which one is better suited to the task it up to you! 
+
+The geoms to create these heatmaps are 
+
+* `geom_bin2d()` for creating the rectangular heatmap and
+* `geom_hex()` for a hexagonal heatmap.
+
+
+* Convert the above scatter plot into a heat map using both above geoms. 
+
+
+```r
+ggplot(acs, aes(fam_house_per, age_u18)) +
+  geom_bin2d()
+```
+
+<img src="04-visualization-strategies_files/figure-html/unnamed-chunk-17-1.png" width="672" />
+
+
+
+```r
+ggplot(acs, aes(fam_house_per, age_u18)) +
+  geom_hex()
+```
+
+<img src="04-visualization-strategies_files/figure-html/unnamed-chunk-18-1.png" width="672" />
+
+
+Just like a histogram we can determine the number of bins that are used for aggragating the data. By adjusting the `bins` argument to `geom_hex()` or `geom_bin2d()` we can alter the size of each hexagon or rectangle. Again, the decision of how many bins to include is a trade-off between interpretability and accurate representation of the underlying data. 
+
+* Set the number of `bins` to 20 
+
+
+```r
+ggplot(acs, aes(fam_house_per, age_u18)) +
+  geom_hex(bins = 20)
+```
+
+<img src="04-visualization-strategies_files/figure-html/unnamed-chunk-19-1.png" width="672" />
+
+
+### One numeric and one categorical
+
+#### ridgelines 
 
 ### boxplot (1 continuous 1 categorical)
 
@@ -292,7 +389,7 @@ ggplot(acs, aes(county, age_u18)) +
   coord_flip()
 ```
 
-<img src="04-visualization-strategies_files/figure-html/unnamed-chunk-15-1.png" width="672" />
+<img src="04-visualization-strategies_files/figure-html/unnamed-chunk-20-1.png" width="672" />
 
 
 ### barplot (1 categorical 1 continuous / discrete)
@@ -306,7 +403,7 @@ ggplot(acs, aes(county)) +
   coord_flip()
 ```
 
-<img src="04-visualization-strategies_files/figure-html/unnamed-chunk-16-1.png" width="672" />
+<img src="04-visualization-strategies_files/figure-html/unnamed-chunk-21-1.png" width="672" />
 
 ### lollipop chart
 
@@ -337,7 +434,7 @@ ggplot(acs_counties, aes(county, n)) +
   coord_flip()
 ```
 
-<img src="04-visualization-strategies_files/figure-html/unnamed-chunk-17-1.png" width="672" />
+<img src="04-visualization-strategies_files/figure-html/unnamed-chunk-22-1.png" width="672" />
 
 
 - ridgelines (1 continuous 1 categorical)
@@ -358,7 +455,7 @@ ggplot(acs, aes(fam_house_per, age_u18, color = by_auto)) +
   geom_point()
 ```
 
-<img src="04-visualization-strategies_files/figure-html/unnamed-chunk-18-1.png" width="672" />
+<img src="04-visualization-strategies_files/figure-html/unnamed-chunk-23-1.png" width="672" />
 
 - we can add size to this as well by setting the `size` aesthetic
   - lets see if the more female headed house holds there are affects commuting by car as minors increases
@@ -369,7 +466,7 @@ ggplot(acs, aes(fam_house_per, age_u18, color = by_auto, size = fem_head_per)) +
   geom_point(alpha = .2)
 ```
 
-<img src="04-visualization-strategies_files/figure-html/unnamed-chunk-19-1.png" width="672" />
+<img src="04-visualization-strategies_files/figure-html/unnamed-chunk-24-1.png" width="672" />
 
 - from this chart we can see quite a few things:
   - as `fam_house_per` increases so does the under 18 pop,
@@ -506,9 +603,13 @@ twitter thread on this:
 - stat refers to statistical transformations. 
   - often you will not need to apply transformations to your data as their _identity_ (assigned values) are sufficient.
 
+with bi-variate relationships we're looking to answer, in general, if one variable affects the other. we usually will be comparing two numeric variables or one numeric and one categorical variable
+in the former situtation we're looking to see if there is a related trend, i.e. when one goes up does the other go down or vice versa
+in the latter scenario, we want to know if the distribution of the data changes for different groups
 
 
 [^wickham]: https://vita.had.co.nz/papers/layered-grammar.pdf
+[^bin2d]: https://ggplot2.tidyverse.org/reference/geom_bin2d.html
 https://cfss.uchicago.edu/notes/grammar-of-graphics/
 
 recommended reading: [A Layered Grammar of Graphics](https://vita.had.co.nz/papers/layered-grammar.pdf)

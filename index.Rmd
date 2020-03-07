@@ -29,7 +29,10 @@ Core Toolkit
 - Draft intro to R, RStudio (R files, and R projects) 
   - done 2020-02-15
 - Draft exploratory analysis
+  - done
 - Draft filtering data (logical statements)
+   - done
+- Draft mutate
 - Draft %>% 
   - done 2020-02-18
 - Draft data structures
@@ -38,6 +41,7 @@ Core Toolkit
   - done 2020-02-20
 - Draft group_by and summarize
   - done 2020-02-21
+- Draft visualization principles
 - Draft multiple data sources
 
 UI Specific:
