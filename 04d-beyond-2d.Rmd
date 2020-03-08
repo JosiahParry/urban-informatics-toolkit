@@ -1,0 +1,73 @@
+# Visualizing beyond 2-dimensions
+
+
+```{r, include=FALSE, message=FALSE}
+source("common.R")
+library(tidyverse)
+
+acs_messy <- read_csv("data/ACS_1317_TRACT.csv")
+
+acs <- acs_messy %>% 
+  separate(name, sep = ", ", into = c("tract", "county", "state")) %>% 
+  mutate(tract = str_remove(tract, "Census Tract ")) %>% 
+  na.omit()
+```
+
+## Expanding bivariate visualizations to trivariate & other tri-variate
+
+- we can visualize other vcariables by setting further aesthetics.
+  - can set the color or fill, size, and shape
+- we alreay did this previously when we set the color, let's do that here. 
+  - lets see how commuting by walking changes with the family house and under 18 pop
+    - set the color argument of the `aes()` function as `color = by_walk`
+      - it's important you do this within the aesthetics function 
+    
+```{r}
+ggplot(acs, aes(fam_house_per, age_u18, color = by_auto)) +
+  geom_point()
+```
+
+- we can add size to this as well by setting the `size` aesthetic
+  - lets see if the more female headed house holds there are affects commuting by car as minors increases
+
+```{r}
+ggplot(acs, aes(fam_house_per, age_u18, color = by_auto, size = fem_head_per)) +
+  geom_point(alpha = .2)
+```
+
+- from this chart we can see quite a few things:
+  - as `fam_house_per` increases so does the under 18 pop,
+  - as both `age_u18` and `fam_house_per` increase so does the rate of communiting by car
+  - as both `age_u18` and `fam_house_per` so does female headed houses, but to a lesser degree
+  - this gives us a good idea of some relationships that we can test with our data at a later point
+
+```{r}
+minors_lm <- lm(age_u18 ~ fam_house_per + by_auto + fem_head_per, data = acs)
+
+huxtable::huxreg(minors_lm)
+```
+
+
+
+Trivariate:
+
+- grouped / stacked bar charts
+- heatmaps 
+
+
+Color Ramps:
+
+- diverging when there is a true middle
+- dark is low bright is high
+
+
+- most data analyses start with a visualization. 
+- the data we have will dictate the type of visualizations we create
+- there are many many different ways in which data can be represented
+- generally these can be bucketed into a few major categories
+  - numeric 
+    - integer
+    - double
+  - character 
+    - think groups, factors, nominal, anything that doesn't have a numeric value that makes sense to count, aggregate, etc.
+  - time / order 

@@ -5,7 +5,11 @@
 
 ## Scales 
 
+### Transformations
 
+### Labeling
+
+{scales} package
 
 ## Coordinates
 

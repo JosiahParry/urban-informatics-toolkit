@@ -3,7 +3,6 @@
 
 
 
-
 We now have a language for creating graphics. Next we must build the intuition of which plots to build and when. We will cover the most basic of visualizations starting with univariate followed by bivariate plots. We will then discuss ways to extend visualizations beyond two variables and some simple principles of design.
 
 In most cases a data analysis will start with a visualization. And that visualization will be dictated by the characteristics of the data available to us. In intro to statistics you probably learned about the four types of data which are: nominal and ordinal, together referred to as _categorical_;  interval and ratio, together referred to as _numerical_ We're going to contextualize these in R terms where _categorical_ is `character` and _numerical_ is `numeric`.
@@ -18,7 +17,7 @@ There is always a strong urge to begin creating epic graphs with facets, shapes,
 
 > Note that univariate visualizations are for numeric variables
 
-There a couple of things that we are looking for in a univariate visualization. In the broadest sense, we're looking at characterizations of central tendency, and spread. When we create these visualizations we're trying to answer the following questions:
+There a couple of things that we are looking for in a numeric univariate visualization. In the broadest sense, we're looking at characterizations of central tendency, and spread. When we create these visualizations we're trying to answer the following questions:
 
 
 - Where is the middle? 
@@ -37,7 +36,7 @@ Each type of plot above serves a different purpose.
 
 ### Histogram
 
-We have already created a number of histograms already. But it is always good to revisit the subject. Histograms puts our data into `n` buckets (or bins, or groups, or whatever your stats professor called them), counts the number of values that fall into each bucket, and use that frequency count as the height of each bar. 
+We have already created a number of histograms already but it is always good to revisit the subject. Histograms puts our data into `n` buckets (or bins, or groups, or whatever your stats professor called them), counts the number of values that fall into each bucket, and use that frequency count as the height of each bar. 
 
 The true benefit of the histogram is that it is the easiest chart to consume by the layperson. But the downside is that merely by changing the number of bins, the distribution can be rather distorted and it is on you, the researcher and analyst, to ensure that there is no miscommunication of data.
 
@@ -161,8 +160,37 @@ ggplot(acs, aes(med_house_income)) +
 
 From this boxplot, what can we tell about median household income in Massachusetts? 
 
+### Empirical Cumulative Distribution Function (ECDF)
 
-### Barplot
+
+
+```r
+ggplot(acs, aes(med_house_income)) +
+  geom_step(stat = "ecdf")
+```
+
+<img src="04b-visualization-strategies_files/figure-html/unnamed-chunk-8-1.png" width="672" />
+
+
+
+
+### Barchart
+
+The last univariate chart we will touch on is the bar chart. When we are faced with a single categorical variable there is not much that we can do to summarize it. The approach is to identify the frequency or relative frequency with which each level (unqiue value) occurs. This is essentially a histogram but for values which cannot have ranges and where order does not matter—though we may be interested in ordering our values. 
+
+To create a bar chart of categorical features we simply provide that feature to our aesthetic mapping and add `geom_bar()` layer
+
+
+```r
+ggplot(acs, aes(county)) +
+  geom_bar()
+```
+
+<img src="04b-visualization-strategies_files/figure-html/unnamed-chunk-9-1.png" width="672" />
+
+I'm sure you're looking at this chart and thinking something along the lines of "I can't read a single label, this is awful." And yeah, you're totally right. In general when creating a bar chart it is better to to flip the axes. The main justification for fliping the axes is so that we can read the labels better. In addition to making the labels more legible, by flipping the axes, the comparisons between bars is perceivedly easier.  
+
+To flip the axes, we can map the `county` column to the `y` axis rather than `x` (which is done positionally).
 
 
 ```r
@@ -170,9 +198,20 @@ ggplot(acs, aes(y = county)) +
   geom_bar()
 ```
 
-<img src="04b-visualization-strategies_files/figure-html/unnamed-chunk-8-1.png" width="672" />
+<img src="04b-visualization-strategies_files/figure-html/unnamed-chunk-10-1.png" width="672" />
+
+If you find yourself in the situation where you have variables mapped to both the x and y columns we can add a `coor_flip()` layer to the plot which will handle the flipping for us.
 
 
+```r
+ggplot(acs, aes(county)) +
+  geom_bar() +
+  coord_flip()
+```
+
+<img src="04b-visualization-strategies_files/figure-html/unnamed-chunk-11-1.png" width="672" />
+
+Be sure to keep `coord_flip()` in your back pocket! It is a rather handy function. 
 
 ## Bivariate visualizations
 
@@ -204,7 +243,7 @@ ggplot(acs, aes(fam_house_per, age_u18)) +
   geom_point()
 ```
 
-<img src="04b-visualization-strategies_files/figure-html/unnamed-chunk-9-1.png" width="672" />
+<img src="04b-visualization-strategies_files/figure-html/unnamed-chunk-12-1.png" width="672" />
 
 The above scatter plot is useful, but there is one downside we should be aware of and that is the number of points that we are plotting. Since there are over 1,400 points—as is often the case with big data—they will likely stack on top of each other hiding other points and leading to a dark uninterpretable mass! We want to be able to decipher the concentration of points as well as the shape.
 
@@ -220,7 +259,7 @@ ggplot(acs, aes(fam_house_per, age_u18)) +
   geom_point(alpha = 1/4)
 ```
 
-<img src="04b-visualization-strategies_files/figure-html/unnamed-chunk-10-1.png" width="672" />
+<img src="04b-visualization-strategies_files/figure-html/unnamed-chunk-13-1.png" width="672" />
 
 Alternatively, we can change the size (or even a combination of both) of our points. To do this, change the `size` argument inside of `geom_point()`. There is not a finite range of values that you can specify so experimentation is encouraged! 
 
@@ -230,7 +269,7 @@ ggplot(acs, aes(fam_house_per, age_u18)) +
   geom_point(size = 1/3)
 ```
 
-<img src="04b-visualization-strategies_files/figure-html/unnamed-chunk-11-1.png" width="672" />
+<img src="04b-visualization-strategies_files/figure-html/unnamed-chunk-14-1.png" width="672" />
 
 > Remember when deciding the `alpha` and `size` parameters your are implementing stylistic changes and as such there are no _correct_ solution. Only marginally better solutions. 
 
@@ -255,7 +294,7 @@ ggplot(acs, aes(fam_house_per, age_u18)) +
   geom_bin2d()
 ```
 
-<img src="04b-visualization-strategies_files/figure-html/unnamed-chunk-12-1.png" width="672" />
+<img src="04b-visualization-strategies_files/figure-html/unnamed-chunk-15-1.png" width="672" />
 
 
 
@@ -264,7 +303,7 @@ ggplot(acs, aes(fam_house_per, age_u18)) +
   geom_hex()
 ```
 
-<img src="04b-visualization-strategies_files/figure-html/unnamed-chunk-13-1.png" width="672" />
+<img src="04b-visualization-strategies_files/figure-html/unnamed-chunk-16-1.png" width="672" />
 
 
 Just like a histogram we can determine the number of bins that are used for aggragating the data. By adjusting the `bins` argument to `geom_hex()` or `geom_bin2d()` we can alter the size of each hexagon or rectangle. Again, the decision of how many bins to include is a trade-off between interpretability and accurate representation of the underlying data. 
@@ -277,12 +316,12 @@ ggplot(acs, aes(fam_house_per, age_u18)) +
   geom_hex(bins = 20)
 ```
 
-<img src="04b-visualization-strategies_files/figure-html/unnamed-chunk-14-1.png" width="672" />
+<img src="04b-visualization-strategies_files/figure-html/unnamed-chunk-17-1.png" width="672" />
 
 
 ### One numeric and one categorical
 
-The next type of bivariate relationship we will encounter is that between a numeric variable and a categorical variable. In general there are two lines of inquiry we might take. The first is similar to our approach of a single numeric variable where we are interested in measures of centrality and spread but are further interested in how those characteristics change by group categorization (or group membership). The second seeks to compare groups based on some aggregate measure of a numeric variable. 
+The next type of bivariate relationship we will encounter is that between a numeric variable and a categorical variable. In general there are two lines of inquiry we might take. The first is similar to our approach of a single numeric variable where we are interested in measures of centrality and spread but are further interested in how those characteristics change by category (or group membership). The second seeks to compare groups based on some aggregate measure of a numeric variable. 
 
 As an example, imagine we are interested in evaluating the educational attainment rate by county in the Greater Boston Area. We can take the approach of ranking the educational attainment rate by the median or average. Or, we could also try and evaluate if the counties differ in the amount of variation.
 
@@ -292,66 +331,148 @@ gba_acs <- acs %>%
   filter(toupper(county) %in% c("SUFFOLK COUNTY", "NORFOLK COUNTY", "MIDDLESEX COUNTY"))
 ```
 
-
-We will explore both types of visual analysis.
-
-
-#### ridgelines
+We will explore different techniques for addressing both lines of inqury. 
 
 
-- we are interested in centrality and spread just like we are in a univariate visualization but concerned with how these change by group
+#### Ridgelines
+
+Ridgelines are a wonderful method for visualizing the distribution of a numeric variable for each level in a categorical variable. Ridgeline plot a density curve for each level in your categorical variable and stacks them vertically. In doing so, we have a rather comfortable way to assess the shape of each level's distribution.
+
+To plot a ridgeline, we need to install the package `ggridges` and use the function `ggridges::geom_density_ridges()`.
+
+> Reminders: install packages with `install.packages("pkg-name")`. The expression `ggridges::geom_density_ridges()` is used for referencing an exported function from a namespace (package name). The syntax is _`pkgname::function()`_.
+
 
 
 ```r
 ggplot(gba_acs, aes(bach, county)) +
-  ggridges::geom_density_ridges()
-## Picking joint bandwidth of 0.0285
+  ggridges::geom_density_ridges() 
 ```
 
-<img src="04b-visualization-strategies_files/figure-html/unnamed-chunk-16-1.png" width="672" />
+<img src="04b-visualization-strategies_files/figure-html/unnamed-chunk-19-1.png" width="672" />
+
+The ridgeline plot very clearly illustrates the differences in distributions within the `county` variable. From this plot, we can tell that Suffolk County has rather extreme variation in the Bachelor's degree attainment rate. And when compared to Norfolk and Middlesex counties, it becomes apparent that the median Suffolk County attainment rate falls almost 20% lower.
+
+A plot such as the above may lead one to investigate further. Suffolk County is large and contains every single neighborhood of Boston from Back Bay, to Mission Hill, and Roxbury. We can drill down further into Suffolk County by identifying income percentiles and plotting those as well.
 
 
-### boxplot (1 continuous 1 categorical)
+<img src="04b-visualization-strategies_files/figure-html/unnamed-chunk-20-1.png" width="672" />
 
-  - we can use boxplots to compare groups
-  - for this, we set the categorical variable to the x aesthetic
-  
+Ridgelines are the perfect tool for exploring changes in variation among different groups. Before you run an ANOVA visualize the variation of your variables with a ridgeline plot first!
+
+#### Boxplot 
+
+It's time to come back to the boxplot. The boxplot is indeed wonderful for a single variable. But much in the same way that multiple density plots is what makes the ridgeline fantastic, so does multiple box plots! 
+
+Again, when using the boxplot we are not as concerned about the _shape_ of the distribution but rather _where_ the data are. The boxplot is extremely useful for identifying skewness and potential outliers. 
+
+We can look at the distribution of educational attainment using a boxplot just like above. The only difference is the use of the `geom_boxplot()`. 
+
 
 ```r
-ggplot(gba_acs, aes(age_u18, county)) +
+ggplot(gba_acs, aes(bach, county)) +
   geom_boxplot()
 ```
 
-<img src="04b-visualization-strategies_files/figure-html/unnamed-chunk-17-1.png" width="672" />
+<img src="04b-visualization-strategies_files/figure-html/unnamed-chunk-21-1.png" width="672" />
 
 
-### barplot (1 categorical 1 continuous / discrete)
+#### Barchar
 
-- the `geom_bar()` will count the number observations of the specified categorical variables
+We've already used the barchart to plot counts of categorical variables. But they are also useful for visualizing summary values of each categorical variable. 
+
+For example, if we were to plot the number of observations per county we can use our knowledge of `summarise()` to recreate the values.
 
 
 ```r
-ggplot(acs, aes(county)) +
-  geom_bar() +
-  coord_flip()
+county_counts <- acs %>% 
+  group_by(county) %>% 
+  summarise(n = n())
+
+county_counts
+## # A tibble: 14 x 2
+##    county                n
+##    <chr>             <int>
+##  1 Barnstable County    49
+##  2 Berkshire County     38
+##  3 Bristol County      116
+##  4 Dukes County          4
+##  5 Essex County        151
+##  6 Franklin County      17
+##  7 Hampden County       89
+##  8 Hampshire County     30
+##  9 Middlesex County    283
+## 10 Nantucket County      2
+## 11 Norfolk County      115
+## 12 Plymouth County      89
+## 13 Suffolk County      168
+## 14 Worcester County    160
 ```
 
-<img src="04b-visualization-strategies_files/figure-html/unnamed-chunk-18-1.png" width="672" />
-
-### lollipop chart
-
-- barplot's more fun cousin, the lollipop chart
-- the package `ggalt` makes a `geom` for us so we don't have to create it manually
-- we do, however, have to count the observations ourself. 
-  - we use the function `count()` to do this. 
-  - the arguments are `x`, or the tibble, and `...` these are the columns we want to count
-    - important note: in the tidyverse, the first argument is almost always the tibble we are working with
-    - this will become very useful at a later point
-- remember, to install packages, navigate to the console and use the function `install.packages("pkg-name")`.
+Now that we've counted the number of points per value, we can plot that using either `geom_bar()` and setting `stat = "identity"` _or_ we can use `geom_col()`. I prefer the latter.
 
 
 ```r
-library(ggalt)
+ggplot(county_counts, aes(n, county)) +
+  geom_col()
+```
+
+<img src="04b-visualization-strategies_files/figure-html/unnamed-chunk-23-1.png" width="672" />
+
+Here's the thing, barcharts, and horizontal barcharts in particular are phenomenal for ranking. But ggplot2 doesn't order the bars for us. We need to do that on our own. To do so, we will use our knowledge of `mutate()` and a new function `forcats::fct_reorder()`. 
+
+`fct_reorder()` is a function used for reordering categorical variables by some other numeric variable. In our case, we want to reorder `county` by `n`. So, within a `mutate()` function call we will alter `county` to be the value of the output `fct_reorder(county, n)`.
+
+> If you are confused by `fct_reorder()`, remember to check out the help documentation with `?fct_reorder()`.
+
+The modified `county_counts` tibble can then be piped into our `ggplot()`.
+
+
+```r
+county_counts %>% 
+  mutate(county = fct_reorder(county, n)) %>% 
+  ggplot(aes(n, county)) +
+  geom_col()
+```
+
+<img src="04b-visualization-strategies_files/figure-html/unnamed-chunk-24-1.png" width="672" />
+
+This is a pattern that you will follow rather frequently—particularly when you need to rank variables. Now knowing the number of observations is useful, but we really want to use the barchart for visualizing some value of importance. Let's continue the example of educational attainment but for the entirety of Massachusetts this time.
+
+* Using `group_by()` and `summarise()`, calculate the median Bachelor degree attainment rate and call that column `med_bach`.
+* Reorder `county` by `avg_bach`
+* Create an ordered horizontal barchart of `avg_bach` by `county`.
+
+
+```r
+acs %>% 
+  group_by(county) %>% 
+  summarise(med_bach = median(bach)) %>% 
+  mutate(county = fct_reorder(county, med_bach)) %>% 
+  ggplot(aes(med_bach, county)) + 
+  geom_col()
+```
+
+<img src="04b-visualization-strategies_files/figure-html/unnamed-chunk-25-1.png" width="672" />
+
+This brings us very naturally to our next type of plot: the lollipop plot. 
+
+#### Lollipop plot
+
+The lollipop plot is the barchart's more fun cousin. Rather than a big thick bar we plot the summary value with a big point and draw a thin line back to it's respective axis' intercept. We can either manually create the lollipop using a creative combination of geoms, or use a geom incorporated in another package. I will almost always recommend that you don't recreate something if you do not have to. As such, we will use the `ggalt::geom_lollipop()` function.
+
+> Remember: _`pkgname::function()`_. If you do not have `pkgname` installed, install it with `install.packages("pkgname")`.
+
+We can copy our previous barplot code and only replace the geom to produce a lollipop plot! Since we are keeping `med_bach` in the x position we will need to specify `horizontal = TRUE` in `geom_lollipop()`. This is a quirk of the geom but an easy one to get past. I recommend setting `horizontal = FALSE` to get a firmer understanding of what is happening. There is nothing quite like purposefully breaking your code to figure out what is happening! 
+
+
+```r
+acs %>% 
+  group_by(county) %>% 
+  summarise(med_bach = median(bach)) %>% 
+  mutate(county = fct_reorder(county, med_bach)) %>% 
+  ggplot(aes(med_bach, county)) + 
+  ggalt::geom_lollipop(horizontal = TRUE)
 ## Registered S3 methods overwritten by 'ggalt':
 ##   method                  from   
 ##   grid.draw.absoluteGrob  ggplot2
@@ -359,183 +480,17 @@ library(ggalt)
 ##   grobWidth.absoluteGrob  ggplot2
 ##   grobX.absoluteGrob      ggplot2
 ##   grobY.absoluteGrob      ggplot2
-
-acs_counties <- count(acs, county)
-
-ggplot(acs_counties, aes(county, n)) +
-  geom_lollipop() +
-  coord_flip()
 ```
 
-<img src="04b-visualization-strategies_files/figure-html/unnamed-chunk-19-1.png" width="672" />
+<img src="04b-visualization-strategies_files/figure-html/unnamed-chunk-26-1.png" width="672" />
+
+## Review:
+
+You've now built up a repetoire of different types of visualizations that you can use in your own analyses. You've built an intuition of what types of visualization are suitable given the types of variables at your disposal. 
+
+In the next chapter we will explore ways of improving upon the plots that we already know how to build. We will explore further the _Layered Grammer of Graphics_ how how to improve upon our charts using scales, and facets, and breifly touch upon coordinates. 
 
 
-## Expanding bivariate visualizations to trivariate & other tri-variate
-
-- we can visualize other vcariables by setting further aesthetics.
-  - can set the color or fill, size, and shape
-- we alreay did this previously when we set the color, let's do that here. 
-  - lets see how commuting by walking changes with the family house and under 18 pop
-    - set the color argument of the `aes()` function as `color = by_walk`
-      - it's important you do this within the aesthetics function 
-    
-
-```r
-ggplot(acs, aes(fam_house_per, age_u18, color = by_auto)) +
-  geom_point()
-```
-
-<img src="04b-visualization-strategies_files/figure-html/unnamed-chunk-20-1.png" width="672" />
-
-- we can add size to this as well by setting the `size` aesthetic
-  - lets see if the more female headed house holds there are affects commuting by car as minors increases
-
-
-```r
-ggplot(acs, aes(fam_house_per, age_u18, color = by_auto, size = fem_head_per)) +
-  geom_point(alpha = .2)
-```
-
-<img src="04b-visualization-strategies_files/figure-html/unnamed-chunk-21-1.png" width="672" />
-
-- from this chart we can see quite a few things:
-  - as `fam_house_per` increases so does the under 18 pop,
-  - as both `age_u18` and `fam_house_per` increase so does the rate of communiting by car
-  - as both `age_u18` and `fam_house_per` so does female headed houses, but to a lesser degree
-  - this gives us a good idea of some relationships that we can test with our data at a later point
-
-
-```r
-minors_lm <- lm(age_u18 ~ fam_house_per + by_auto + fem_head_per, data = acs)
-
-huxtable::huxreg(minors_lm)
-## Registered S3 methods overwritten by 'broom.mixed':
-##   method         from 
-##   augment.lme    broom
-##   augment.merMod broom
-##   glance.lme     broom
-##   glance.merMod  broom
-##   glance.stanreg broom
-##   tidy.brmsfit   broom
-##   tidy.gamlss    broom
-##   tidy.lme       broom
-##   tidy.merMod    broom
-##   tidy.rjags     broom
-##   tidy.stanfit   broom
-##   tidy.stanreg   broom
-```
-
-<!--html_preserve--><table class="huxtable" style="border-collapse: collapse; margin-bottom: 2em; margin-top: 2em; width: 50%; margin-left: auto; margin-right: auto;  ">
-<col><col><tr>
-<td style="vertical-align: top; text-align: center; white-space: nowrap; border-style: solid solid solid solid; border-width: 0.8pt 0pt 0pt 0pt; padding: 4pt 4pt 4pt 4pt;"></td>
-<td style="vertical-align: top; text-align: center; white-space: nowrap; border-style: solid solid solid solid; border-width: 0.8pt 0pt 0.4pt 0pt; padding: 4pt 4pt 4pt 4pt;">(1)</td>
-</tr>
-<tr>
-<td style="vertical-align: top; text-align: left; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">(Intercept)</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">0.000&nbsp;&nbsp;&nbsp;&nbsp;</td>
-</tr>
-<tr>
-<td style="vertical-align: top; text-align: left; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;"></td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">(0.006)&nbsp;&nbsp;&nbsp;</td>
-</tr>
-<tr>
-<td style="vertical-align: top; text-align: left; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">fam_house_per</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">0.245 ***</td>
-</tr>
-<tr>
-<td style="vertical-align: top; text-align: left; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;"></td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">(0.009)&nbsp;&nbsp;&nbsp;</td>
-</tr>
-<tr>
-<td style="vertical-align: top; text-align: left; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">by_auto</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">0.016 *&nbsp;&nbsp;</td>
-</tr>
-<tr>
-<td style="vertical-align: top; text-align: left; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;"></td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">(0.007)&nbsp;&nbsp;&nbsp;</td>
-</tr>
-<tr>
-<td style="vertical-align: top; text-align: left; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">fem_head_per</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">0.257 ***</td>
-</tr>
-<tr>
-<td style="vertical-align: top; text-align: left; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;"></td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt; padding: 4pt 4pt 4pt 4pt;">(0.012)&nbsp;&nbsp;&nbsp;</td>
-</tr>
-<tr>
-<td style="vertical-align: top; text-align: left; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">N</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">1311&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-</tr>
-<tr>
-<td style="vertical-align: top; text-align: left; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">R2</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">0.564&nbsp;&nbsp;&nbsp;&nbsp;</td>
-</tr>
-<tr>
-<td style="vertical-align: top; text-align: left; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">logLik</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">2444.648&nbsp;&nbsp;&nbsp;&nbsp;</td>
-</tr>
-<tr>
-<td style="vertical-align: top; text-align: left; white-space: nowrap; border-style: solid solid solid solid; border-width: 0pt 0pt 0.8pt 0pt; padding: 4pt 4pt 4pt 4pt;">AIC</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; border-style: solid solid solid solid; border-width: 0pt 0pt 0.8pt 0pt; padding: 4pt 4pt 4pt 4pt;">-4879.296&nbsp;&nbsp;&nbsp;&nbsp;</td>
-</tr>
-<tr>
-<td colspan="2" style="vertical-align: top; text-align: left; white-space: normal; padding: 4pt 4pt 4pt 4pt;"> *** p &lt; 0.001;  ** p &lt; 0.01;  * p &lt; 0.05.</td>
-</tr>
-</table>
-<!--/html_preserve-->
-
-
-
-Trivariate:
-
-- grouped / stacked bar charts
-- heatmaps 
-
-
-Color Ramps:
-
-- diverging when there is a true middle
-- dark is low bright is high
-
-
-- most data analyses start with a visualization. 
-- the data we have will dictate the type of visualizations we create
-- there are many many different ways in which data can be represented
-- generally these can be bucketed into a few major categories
-  - numeric 
-    - integer
-    - double
-  - character 
-    - think groups, factors, nominal, anything that doesn't have a numeric value that makes sense to count, aggregate, etc.
-  - time / order 
-  
-  
-twitter thread on this:
-
-<blockquote class="twitter-tweet"><p lang="en" dir="ltr"><a href="https://twitter.com/hashtag/rstats?src=hash&amp;ref_src=twsrc%5Etfw">#rstats</a> / general <a href="https://twitter.com/hashtag/datascience?src=hash&amp;ref_src=twsrc%5Etfw">#datascience</a> tweeps:<br><br>what types of visualizations do you think new folks should learn and embrace? i.e. hists, scatters, etc.</p>&mdash; Josiah 👨🏻
-💻 (@JosiahParry) <a href="https://twitter.com/JosiahParry/status/1216059573548638208?ref_src=twsrc%5Etfw">January 11, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-
-
-
-
------------
-
-**Notes**
-
-- we specify data and mappings, nothing is displayed at that time
-- from the defaults we can see that the scales and coordinates are intuitively handled
-- the default coordinate system is the cartesian coordinate system which has two axes x (horizontal), and y (vertical)
-- in order to see the data, we needed to add geometry to our base layer
-  - when we add Geoms to the graphic the data and aesthetic mappings are inherited from the defaults
-- we do not necessarily need to default data if we do not feel the need to do so. 
-- we can specify the data and mappings inside of the geom layer itself
-  - this will be handy when we work with geospatial data
-- stat refers to statistical transformations. 
-  - often you will not need to apply transformations to your data as their _identity_ (assigned values) are sufficient.
-
-with bi-variate relationships we're looking to answer, in general, if one variable affects the other. we usually will be comparing two numeric variables or one numeric and one categorical variable
-in the former situtation we're looking to see if there is a related trend, i.e. when one goes up does the other go down or vice versa
-in the latter scenario, we want to know if the distribution of the data changes for different groups
 
 
 [^wickham]: https://vita.had.co.nz/papers/layered-grammar.pdf
@@ -543,22 +498,3 @@ in the latter scenario, we want to know if the distribution of the data changes 
 https://cfss.uchicago.edu/notes/grammar-of-graphics/
 
 recommended reading: [A Layered Grammar of Graphics](https://vita.had.co.nz/papers/layered-grammar.pdf)
-
-- in R we will use a package called ggplot2 to do the visualizaiton of our data 
-- the `gg` in ggplot stands for "grammar of graphics".
-- once we can internalize the grammar, creating plots becomes rather easy
-- we specify our aesthetics
-- we **add** layers (hence the plus sign). these take values from the specified aesthetics
-- can add multiple layers
-- add aesthetics other than x and y. helps us visualize more dimensions of the data. we can use shape, color, and size
-
-
-
-### revisiting the cartesian plane
-
-- x and y coordinates
-- generally two numeric values on the x and y. think of the standards scatterplot (below)
-- we also can place groups on one axis
-  - i.e. barchart (below)
-- the y is usually the variable of interest
-  - as we move along the x axis (to the right) we can see how the y changes in response

@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 17 Spatial Analysis | Urban Informatics Toolkit</title>
+  <title>Chapter 13 Visualizing beyond 2-dimensions | Urban Informatics Toolkit</title>
   <meta name="description" content="A hands on introduction approach to analyzing the urban Commons." />
   <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 17 Spatial Analysis | Urban Informatics Toolkit" />
+  <meta property="og:title" content="Chapter 13 Visualizing beyond 2-dimensions | Urban Informatics Toolkit" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 17 Spatial Analysis | Urban Informatics Toolkit" />
+  <meta name="twitter:title" content="Chapter 13 Visualizing beyond 2-dimensions | Urban Informatics Toolkit" />
   
   <meta name="twitter:description" content="A hands on introduction approach to analyzing the urban Commons." />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="i-have-two-datasets-what-now.html"/>
-<link rel="next" href="creating-ecometrics.html"/>
+<link rel="prev" href="grammer-of-layered-graphics-ii.html"/>
+<link rel="next" href="summary-statistics.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -175,47 +175,158 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="spatial-analysis" class="section level1">
-<h1><span class="header-section-number">Chapter 17</span> Spatial Analysis</h1>
+<div id="visualizing-beyond-2-dimensions" class="section level1">
+<h1><span class="header-section-number">Chapter 13</span> Visualizing beyond 2-dimensions</h1>
+<div id="expanding-bivariate-visualizations-to-trivariate-other-tri-variate" class="section level2">
+<h2><span class="header-section-number">13.1</span> Expanding bivariate visualizations to trivariate &amp; other tri-variate</h2>
 <ul>
-<li>What is spatial data?
+<li>we can visualize other vcariables by setting further aesthetics.
 <ul>
-<li>events happen at a location and are associate with place</li>
-<li>data become spatial when there is a geographic element present</li>
-<li>the most obvious is when lat and long data are present</li>
-<li>data which lists county, for example, is also spatial
+<li>can set the color or fill, size, and shape</li>
+</ul></li>
+<li>we alreay did this previously when we set the color, let’s do that here.
 <ul>
-<li>often there isn’t spatial data explicitly associated</li>
+<li>lets see how commuting by walking changes with the family house and under 18 pop
+<ul>
+<li>set the color argument of the <code>aes()</code> function as <code>color = by_walk</code>
+<ul>
+<li>it’s important you do this within the aesthetics function</li>
 </ul></li>
 </ul></li>
-<li>Types of spatial data
-<ul>
-<li>Vector and Raster</li>
-<li>in gneral you will encounter vector data more frequently.</li>
-<li>vector data are coordinates</li>
-<li>raster data is used to “represent spatially continuous phenomenon”
-<ul>
-<li>(<a href="https://rspatial.org/raster/spatial/Spatialdata.pdf" class="uri">https://rspatial.org/raster/spatial/Spatialdata.pdf</a>)</li>
 </ul></li>
-<li>vector data is less complex to analyse and is the easiest to pick up</li>
-<li>raster data is extremely interesting but requires more devoted attention
-<ul>
-<li>raster data analysis can be done to look at changing elevation, analyse vegatation, the amount of reflective surfaces, etc</li>
-</ul></li>
-</ul></li>
-<li>Vector data</li>
 </ul>
-<p><a href="https://geocompr.robinlovelace.net/" class="uri">https://geocompr.robinlovelace.net/</a></p>
-<p><a href="https://rud.is/books/30-day-map-challenge/points-01.html" class="uri">https://rud.is/books/30-day-map-challenge/points-01.html</a></p>
+<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb184-1" data-line-number="1"><span class="kw">ggplot</span>(acs, <span class="kw">aes</span>(fam_house_per, age_u18, <span class="dt">color =</span> by_auto)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb184-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>()</a></code></pre></div>
+<p><img src="04d-beyond-2d_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<ul>
+<li>we can add size to this as well by setting the <code>size</code> aesthetic
+<ul>
+<li>lets see if the more female headed house holds there are affects commuting by car as minors increases</li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb185-1" data-line-number="1"><span class="kw">ggplot</span>(acs, <span class="kw">aes</span>(fam_house_per, age_u18, <span class="dt">color =</span> by_auto, <span class="dt">size =</span> fem_head_per)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb185-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">.2</span>)</a></code></pre></div>
+<p><img src="04d-beyond-2d_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<ul>
+<li>from this chart we can see quite a few things:
+<ul>
+<li>as <code>fam_house_per</code> increases so does the under 18 pop,</li>
+<li>as both <code>age_u18</code> and <code>fam_house_per</code> increase so does the rate of communiting by car</li>
+<li>as both <code>age_u18</code> and <code>fam_house_per</code> so does female headed houses, but to a lesser degree</li>
+<li>this gives us a good idea of some relationships that we can test with our data at a later point</li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb186-1" data-line-number="1">minors_lm &lt;-<span class="st"> </span><span class="kw">lm</span>(age_u18 <span class="op">~</span><span class="st"> </span>fam_house_per <span class="op">+</span><span class="st"> </span>by_auto <span class="op">+</span><span class="st"> </span>fem_head_per, <span class="dt">data =</span> acs)</a>
+<a class="sourceLine" id="cb186-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb186-3" data-line-number="3">huxtable<span class="op">::</span><span class="kw">huxreg</span>(minors_lm)</a>
+<a class="sourceLine" id="cb186-4" data-line-number="4"><span class="co">## Registered S3 methods overwritten by &#39;broom.mixed&#39;:</span></a>
+<a class="sourceLine" id="cb186-5" data-line-number="5"><span class="co">##   method         from </span></a>
+<a class="sourceLine" id="cb186-6" data-line-number="6"><span class="co">##   augment.lme    broom</span></a>
+<a class="sourceLine" id="cb186-7" data-line-number="7"><span class="co">##   augment.merMod broom</span></a>
+<a class="sourceLine" id="cb186-8" data-line-number="8"><span class="co">##   glance.lme     broom</span></a>
+<a class="sourceLine" id="cb186-9" data-line-number="9"><span class="co">##   glance.merMod  broom</span></a>
+<a class="sourceLine" id="cb186-10" data-line-number="10"><span class="co">##   glance.stanreg broom</span></a>
+<a class="sourceLine" id="cb186-11" data-line-number="11"><span class="co">##   tidy.brmsfit   broom</span></a>
+<a class="sourceLine" id="cb186-12" data-line-number="12"><span class="co">##   tidy.gamlss    broom</span></a>
+<a class="sourceLine" id="cb186-13" data-line-number="13"><span class="co">##   tidy.lme       broom</span></a>
+<a class="sourceLine" id="cb186-14" data-line-number="14"><span class="co">##   tidy.merMod    broom</span></a>
+<a class="sourceLine" id="cb186-15" data-line-number="15"><span class="co">##   tidy.rjags     broom</span></a>
+<a class="sourceLine" id="cb186-16" data-line-number="16"><span class="co">##   tidy.stanfit   broom</span></a>
+<a class="sourceLine" id="cb186-17" data-line-number="17"><span class="co">##   tidy.stanreg   broom</span></a></code></pre></div>
+<table class="huxtable" style="border-collapse: collapse; margin-bottom: 2em; margin-top: 2em; width: 50%; margin-left: auto; margin-right: auto;  ">
+<col><col><tr>
+<td style="vertical-align: top; text-align: center; white-space: nowrap; border-style: solid solid solid solid; border-width: 0.8pt 0pt 0pt 0pt; padding: 4pt 4pt 4pt 4pt;"></td>
+<td style="vertical-align: top; text-align: center; white-space: nowrap; border-style: solid solid solid solid; border-width: 0.8pt 0pt 0.4pt 0pt; padding: 4pt 4pt 4pt 4pt;">(1)</td>
+</tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">(Intercept)</td>
+<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">0.000&nbsp;&nbsp;&nbsp;&nbsp;</td>
+</tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;"></td>
+<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">(0.006)&nbsp;&nbsp;&nbsp;</td>
+</tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">fam_house_per</td>
+<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">0.245 ***</td>
+</tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;"></td>
+<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">(0.009)&nbsp;&nbsp;&nbsp;</td>
+</tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">by_auto</td>
+<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">0.016 *&nbsp;&nbsp;</td>
+</tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;"></td>
+<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">(0.007)&nbsp;&nbsp;&nbsp;</td>
+</tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">fem_head_per</td>
+<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">0.257 ***</td>
+</tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;"></td>
+<td style="vertical-align: top; text-align: right; white-space: nowrap; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt; padding: 4pt 4pt 4pt 4pt;">(0.012)&nbsp;&nbsp;&nbsp;</td>
+</tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">N</td>
+<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">1311&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+</tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">R2</td>
+<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">0.564&nbsp;&nbsp;&nbsp;&nbsp;</td>
+</tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">logLik</td>
+<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">2444.648&nbsp;&nbsp;&nbsp;&nbsp;</td>
+</tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: nowrap; border-style: solid solid solid solid; border-width: 0pt 0pt 0.8pt 0pt; padding: 4pt 4pt 4pt 4pt;">AIC</td>
+<td style="vertical-align: top; text-align: right; white-space: nowrap; border-style: solid solid solid solid; border-width: 0pt 0pt 0.8pt 0pt; padding: 4pt 4pt 4pt 4pt;">-4879.296&nbsp;&nbsp;&nbsp;&nbsp;</td>
+</tr>
+<tr>
+<td colspan="2" style="vertical-align: top; text-align: left; white-space: normal; padding: 4pt 4pt 4pt 4pt;"> *** p &lt; 0.001;  ** p &lt; 0.01;  * p &lt; 0.05.</td>
+</tr>
+</table>
 
+<p>Trivariate:</p>
+<ul>
+<li>grouped / stacked bar charts</li>
+<li>heatmaps</li>
+</ul>
+<p>Color Ramps:</p>
+<ul>
+<li>diverging when there is a true middle</li>
+<li><p>dark is low bright is high</p></li>
+<li>most data analyses start with a visualization.</li>
+<li>the data we have will dictate the type of visualizations we create</li>
+<li>there are many many different ways in which data can be represented</li>
+<li>generally these can be bucketed into a few major categories
+<ul>
+<li>numeric
+<ul>
+<li>integer</li>
+<li>double</li>
+</ul></li>
+<li>character
+<ul>
+<li>think groups, factors, nominal, anything that doesn’t have a numeric value that makes sense to count, aggregate, etc.</li>
+</ul></li>
+<li>time / order</li>
+</ul></li>
+</ul>
+
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="i-have-two-datasets-what-now.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="creating-ecometrics.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="grammer-of-layered-graphics-ii.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="summary-statistics.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

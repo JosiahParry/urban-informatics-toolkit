@@ -11,7 +11,7 @@ This section is undoubtedly the most theoretically dense from a software perspec
 
 ## Atomic Vectors
 
-I like to think of the atomic vector as the building block of any R object. You've actually been working with atomic vectors this entire time. But we haven't been very explicit about this yet. Up until this point we have been working mainly with tibbles. Each column of a tibble is _actually_  an atomic vector.
+I like to think of the atomic vector much like the atom—that is as the building block of any R object. You've actually been working with atomic vectors this entire time. But we haven't been very explicit about this yet. Up until this point we have been working mainly with tibbles. And here is the secret: each column of a tibble is _actually_  an atomic vector.
 
 What makes a vector a atomic is that it can only be **a single data type** and that they are _one-dimensional_—opposed to tibbles which are two-dimensional (https://swcarpentry.github.io/r-novice-inflammation/13-supp-data-structures/). You may have noticed that every value of a column is of the same data type. This means that they are rather strict to work with and for good reason. Imagine you wanted to multiple a column by 10, what would happen if a few of the values in the column were actually written out as text? Let's try exploring this idea. 
 

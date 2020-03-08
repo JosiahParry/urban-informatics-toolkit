@@ -24,7 +24,7 @@
 <meta name="author" content="Josiah Parry" />
 
 
-<meta name="date" content="2020-03-07" />
+<meta name="date" content="2020-03-08" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -144,16 +144,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10" data-path="grammer-of-layered-graphics-i.html"><a href="grammer-of-layered-graphics-i.html"><i class="fa fa-check"></i><b>10</b> Grammer of layered graphics I</a></li>
 <li class="chapter" data-level="11" data-path="visualizing-trends-and-relationships.html"><a href="visualizing-trends-and-relationships.html"><i class="fa fa-check"></i><b>11</b> Visualizing Trends and Relationships</a></li>
 <li class="chapter" data-level="12" data-path="grammer-of-layered-graphics-ii.html"><a href="grammer-of-layered-graphics-ii.html"><i class="fa fa-check"></i><b>12</b> Grammer of layered graphics II</a></li>
-<li class="chapter" data-level="13" data-path="summary-statistics.html"><a href="summary-statistics.html"><i class="fa fa-check"></i><b>13</b> Summary statistics</a></li>
-<li class="chapter" data-level="14" data-path="summarizing-the-tidy-way.html"><a href="summarizing-the-tidy-way.html"><i class="fa fa-check"></i><b>14</b> summarizing the tidy way</a></li>
-<li class="chapter" data-level="15" data-path="i-have-two-datasets-what-now.html"><a href="i-have-two-datasets-what-now.html"><i class="fa fa-check"></i><b>15</b> I have two datasets, what now?</a></li>
-<li class="chapter" data-level="16" data-path="spatial-analysis.html"><a href="spatial-analysis.html"><i class="fa fa-check"></i><b>16</b> Spatial Analysis</a></li>
-<li class="chapter" data-level="17" data-path="creating-ecometrics.html"><a href="creating-ecometrics.html"><i class="fa fa-check"></i><b>17</b> Creating Ecometrics</a></li>
+<li class="chapter" data-level="13" data-path="visualizing-beyond-2-dimensions.html"><a href="visualizing-beyond-2-dimensions.html"><i class="fa fa-check"></i><b>13</b> Visualizing beyond 2-dimensions</a></li>
+<li class="chapter" data-level="14" data-path="summary-statistics.html"><a href="summary-statistics.html"><i class="fa fa-check"></i><b>14</b> Summary statistics</a></li>
+<li class="chapter" data-level="15" data-path="summarizing-the-tidy-way.html"><a href="summarizing-the-tidy-way.html"><i class="fa fa-check"></i><b>15</b> summarizing the tidy way</a></li>
+<li class="chapter" data-level="16" data-path="i-have-two-datasets-what-now.html"><a href="i-have-two-datasets-what-now.html"><i class="fa fa-check"></i><b>16</b> I have two datasets, what now?</a></li>
+<li class="chapter" data-level="17" data-path="spatial-analysis.html"><a href="spatial-analysis.html"><i class="fa fa-check"></i><b>17</b> Spatial Analysis</a></li>
+<li class="chapter" data-level="18" data-path="creating-ecometrics.html"><a href="creating-ecometrics.html"><i class="fa fa-check"></i><b>18</b> Creating Ecometrics</a></li>
 <li class="part"><span><b>II Case Studies</b></span></li>
-<li class="chapter" data-level="18" data-path="case-study-twitter-data.html"><a href="case-study-twitter-data.html"><i class="fa fa-check"></i><b>18</b> Case Study: Twitter Data</a></li>
-<li class="chapter" data-level="19" data-path="various-things-that-i-didnt-cover-well.html"><a href="various-things-that-i-didnt-cover-well.html"><i class="fa fa-check"></i><b>19</b> Various things that i didn’t cover well</a></li>
-<li class="chapter" data-level="20" data-path="schools-of-urban-informatics.html"><a href="schools-of-urban-informatics.html"><i class="fa fa-check"></i><b>20</b> Schools of Urban Informatics</a></li>
-<li class="chapter" data-level="21" data-path="broken-windows-and-the-origin-of-ecometrics.html"><a href="broken-windows-and-the-origin-of-ecometrics.html"><i class="fa fa-check"></i><b>21</b> Broken Windows and the origin of Ecometrics</a></li>
+<li class="chapter" data-level="19" data-path="case-study-twitter-data.html"><a href="case-study-twitter-data.html"><i class="fa fa-check"></i><b>19</b> Case Study: Twitter Data</a></li>
+<li class="chapter" data-level="20" data-path="various-things-that-i-didnt-cover-well.html"><a href="various-things-that-i-didnt-cover-well.html"><i class="fa fa-check"></i><b>20</b> Various things that i didn’t cover well</a></li>
+<li class="chapter" data-level="21" data-path="schools-of-urban-informatics.html"><a href="schools-of-urban-informatics.html"><i class="fa fa-check"></i><b>21</b> Schools of Urban Informatics</a></li>
+<li class="chapter" data-level="22" data-path="broken-windows-and-the-origin-of-ecometrics.html"><a href="broken-windows-and-the-origin-of-ecometrics.html"><i class="fa fa-check"></i><b>22</b> Broken Windows and the origin of Ecometrics</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/josiahparry/urban-informatics-toolkit" target="blank">GitHub</a></li>
 
@@ -181,7 +182,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>This section is undoubtedly the most theoretically dense from a software perspective of this entire book. These concepts may be a little bit difficult to grasp at the frist go around pllllldc articularly if you do not have a programming background. But do not be discouraged! This is tough and there is no way to around it, so might as well go through it. If you can grasp this chapter programming in R will become so much easier. You will develop an intuition of why certain things happen to your data and how to interact with other data structures.</p>
 <div id="atomic-vectors" class="section level2">
 <h2><span class="header-section-number">9.1</span> Atomic Vectors</h2>
-<p>I like to think of the atomic vector as the building block of any R object. You’ve actually been working with atomic vectors this entire time. But we haven’t been very explicit about this yet. Up until this point we have been working mainly with tibbles. Each column of a tibble is <em>actually</em> an atomic vector.</p>
+<p>I like to think of the atomic vector much like the atom—that is as the building block of any R object. You’ve actually been working with atomic vectors this entire time. But we haven’t been very explicit about this yet. Up until this point we have been working mainly with tibbles. And here is the secret: each column of a tibble is <em>actually</em> an atomic vector.</p>
 <p>What makes a vector a atomic is that it can only be <strong>a single data type</strong> and that they are <em>one-dimensional</em>—opposed to tibbles which are two-dimensional (<a href="https://swcarpentry.github.io/r-novice-inflammation/13-supp-data-structures/" class="uri">https://swcarpentry.github.io/r-novice-inflammation/13-supp-data-structures/</a>). You may have noticed that every value of a column is of the same data type. This means that they are rather strict to work with and for good reason. Imagine you wanted to multiple a column by 10, what would happen if a few of the values in the column were actually written out as text? Let’s try exploring this idea.</p>
 <p>The most common way to create a vector in R is to use the <code>c()</code> function. This stands for <em>combine</em>. We can <code>c</code>ombine as many elements as we want into a single vector using <code>c()</code>. Each element of the vector is it’s own argument (separated by a comma).</p>
 <p>For example if we wanted to create a vector of <a href="https://data.bls.gov/timeseries/LAUMT257165000000003?amp%253bdata_tool=XGtable&amp;output_view=data&amp;include_graphs=true">Boston’s unemployment rate</a> rate for each month in 2019 that we have data for (until October as of this writing on 2019-12-18) we could write the below. We will save it in a a vector called <code>unemp</code>.</p>

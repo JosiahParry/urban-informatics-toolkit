@@ -15,7 +15,11 @@ acs <- acs_messy %>%
 
 ## Scales 
 
+### Transformations
 
+### Labeling
+
+{scales} package
 
 ## Coordinates
 
