@@ -3,7 +3,16 @@
 
 
 
+To cover:
+
+- coloring / filling
+- shaping
+- sizing
+- faceting
+
 ## Expanding bivariate visualizations to trivariate & other tri-variate
+
+
 
 - we can visualize other vcariables by setting further aesthetics.
   - can set the color or fill, size, and shape

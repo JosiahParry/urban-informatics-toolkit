@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 17 Spatial Analysis | Urban Informatics Toolkit</title>
+  <title>Chapter 10 Grammer of layered graphics I | Urban Informatics Toolkit</title>
   <meta name="description" content="A hands on introduction approach to analyzing the urban Commons." />
   <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 17 Spatial Analysis | Urban Informatics Toolkit" />
+  <meta property="og:title" content="Chapter 10 Grammer of layered graphics I | Urban Informatics Toolkit" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 17 Spatial Analysis | Urban Informatics Toolkit" />
+  <meta name="twitter:title" content="Chapter 10 Grammer of layered graphics I | Urban Informatics Toolkit" />
   
   <meta name="twitter:description" content="A hands on introduction approach to analyzing the urban Commons." />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="i-have-two-datasets-what-now.html"/>
-<link rel="next" href="creating-ecometrics.html"/>
+<link rel="prev" href="data-structures.html"/>
+<link rel="next" href="visualizing-trends-and-relationships.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -176,47 +176,87 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="spatial-analysis" class="section level1">
-<h1><span class="header-section-number">Chapter 17</span> Spatial Analysis</h1>
+<div id="layered-i" class="section level1">
+<h1><span class="header-section-number">Chapter 10</span> Grammer of layered graphics I</h1>
+<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb155-1" data-line-number="1"><span class="kw">library</span>(tidyverse)</a>
+<a class="sourceLine" id="cb155-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb155-3" data-line-number="3">acs_messy &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data/ACS_1317_TRACT.csv&quot;</span>)</a>
+<a class="sourceLine" id="cb155-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb155-5" data-line-number="5">acs &lt;-<span class="st"> </span>acs_messy <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb155-6" data-line-number="6"><span class="st">  </span><span class="kw">separate</span>(name, <span class="dt">sep =</span> <span class="st">&quot;, &quot;</span>, <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;tract&quot;</span>, <span class="st">&quot;county&quot;</span>, <span class="st">&quot;state&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb155-7" data-line-number="7"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">tract =</span> <span class="kw">str_remove</span>(tract, <span class="st">&quot;Census Tract &quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb155-8" data-line-number="8"><span class="st">  </span><span class="kw">na.omit</span>()</a></code></pre></div>
+<p>You’ve made it quite far through this book. Now, I want to bring us back to the very beginning. In the first chapter we created a few visualizations with <code>ggplot2</code>. I want to unpack ggplot2 a bit more and also address some of the more philosophical underpinnings of visualization.</p>
+<p>This chapter introduces you to the idea of the grammar of graphics, discusses when which visualizations are appropriate, and some fundamental design principles follow.</p>
+<div id="the-grammar-of-layered-graphics" class="section level2">
+<h2><span class="header-section-number">10.1</span> The Grammar of Layered Graphics</h2>
+<p>The <code>gg</code> in <code>ggplot2</code> refers to the grammar of graphics (and the <code>2</code> is because it’s the second iteration). <em>The Grammar of Graphics</em> (Wilkinson, 1999) is a seminal book in data visualization for the sciences in which, Wilkinson defines a complete system (grammar) for creating visualizations that go beyond the standard domain of “named graphics”—e.g. histogram, barchart, etc.<a href="#fn21" class="footnote-ref" id="fnref21"><sup>21</sup></a></p>
+<p>ggplot2 is “an open source implementation of the grammar of graphics for <strong>R</strong>.”<a href="#fn22" class="footnote-ref" id="fnref22"><sup>22</sup></a> Once we can internalize the grammar of graphics, creating plots will be an intuitive and artistic process rather than a mechanical one.</p>
+<p>There are five high level components of the layered grammar<a href="#fn23" class="footnote-ref" id="fnref23"><sup>23</sup></a>. We will only cover the first two in this chapter.</p>
+<ol style="list-style-type: decimal">
+<li><strong>Defaults</strong>:
 <ul>
-<li>What is spatial data?
-<ul>
-<li>events happen at a location and are associate with place</li>
-<li>data become spatial when there is a geographic element present</li>
-<li>the most obvious is when lat and long data are present</li>
-<li>data which lists county, for example, is also spatial
-<ul>
-<li>often there isn’t spatial data explicitly associated</li>
+<li>Data</li>
+<li>Mapping</li>
 </ul></li>
-</ul></li>
-<li>Types of spatial data
+<li><strong>Layers</strong>:
 <ul>
-<li>Vector and Raster</li>
-<li>in gneral you will encounter vector data more frequently.</li>
-<li>vector data are coordinates</li>
-<li>raster data is used to “represent spatially continuous phenomenon”
-<ul>
-<li>(<a href="https://rspatial.org/raster/spatial/Spatialdata.pdf" class="uri">https://rspatial.org/raster/spatial/Spatialdata.pdf</a>)</li>
+<li>Data*</li>
+<li>Mapping*</li>
+<li>Geom</li>
+<li>Stat</li>
+<li>Position</li>
 </ul></li>
-<li>vector data is less complex to analyse and is the easiest to pick up</li>
-<li>raster data is extremely interesting but requires more devoted attention
-<ul>
-<li>raster data analysis can be done to look at changing elevation, analyse vegatation, the amount of reflective surfaces, etc</li>
-</ul></li>
-</ul></li>
-<li>Vector data</li>
-</ul>
-<p><a href="https://geocompr.robinlovelace.net/" class="uri">https://geocompr.robinlovelace.net/</a></p>
-<p><a href="https://rud.is/books/30-day-map-challenge/points-01.html" class="uri">https://rud.is/books/30-day-map-challenge/points-01.html</a></p>
+<li>Scales</li>
+<li>Coordinates</li>
+<li>Facets</li>
+</ol>
+</div>
+<div id="layers-and-defaults" class="section level2">
+<h2><span class="header-section-number">10.2</span> Layers and defaults</h2>
+<p>In the first chapter of this section we explored these principles but did not put a name to them. Recall that we can use <code>ggplot()</code> by itself and it returns a chart of nothing.</p>
+<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb156-1" data-line-number="1"><span class="kw">ggplot</span>()</a></code></pre></div>
+<p><img src="04a-grammar-I_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<p>This is because we have not specified any of the defaults. In order for us to plot anything at all, we need to specify what (the data object) will be visualized, which features (the aesthetic mappings), and how (the geoms). When we begin to specify our x and y aesthetics the scales are interpreted.</p>
+<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb157-1" data-line-number="1"><span class="kw">ggplot</span>(acs, <span class="kw">aes</span>(med_house_income, by_auto))</a></code></pre></div>
+<p><img src="04a-grammar-I_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p>The final step is to add the geom layer which will inherit the data, aesthetic mappings, scale, and position while the <code>geom_*()</code> layer dictates the geometry.</p>
+<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb158-1" data-line-number="1"><span class="kw">ggplot</span>(acs, <span class="kw">aes</span>(bach, med_house_income))<span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb158-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>()</a></code></pre></div>
+<p><img src="04a-grammar-I_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<p>While this is the most common way you might define a ggplot, you should also be aware of the fact that each layer can stand on its own without you defining any of the defaults in the <code>ggplot()</code> call. Each geom inherits the defaults from <code>ggplot()</code>, but each <code>geom_*()</code> also has arguments for <code>data</code>, and <code>mapping</code>, providing you with increased flexibility.</p>
+<blockquote>
+<p>Note: the <code>geom_*()</code>s have the data as the second argument so either put the data there or name the argument explicitly. The choice is yours. Choose wisely!</p>
+</blockquote>
+<p>What happens if we provide all of this information to <code>geom_point()</code> and entirely omit <code>ggplot()</code>?</p>
+<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb159-1" data-line-number="1"><span class="kw">geom_point</span>(<span class="kw">aes</span>(med_house_income, by_auto), acs)</a>
+<a class="sourceLine" id="cb159-2" data-line-number="2"><span class="co">## mapping: x = ~med_house_income, y = ~by_auto </span></a>
+<a class="sourceLine" id="cb159-3" data-line-number="3"><span class="co">## geom_point: na.rm = FALSE</span></a>
+<a class="sourceLine" id="cb159-4" data-line-number="4"><span class="co">## stat_identity: na.rm = FALSE</span></a>
+<a class="sourceLine" id="cb159-5" data-line-number="5"><span class="co">## position_identity</span></a></code></pre></div>
+<p>We see that we do not have the plot, but we do have all of the information required of a layer is printed out to the console. If we add an empty ggplot call ahead of the layer, we will be able to create the plot.</p>
+<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb160-1" data-line-number="1"><span class="kw">ggplot</span>() <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb160-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(med_house_income, by_auto), acs)</a></code></pre></div>
+<p><img src="04a-grammar-I_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<p>Being able to specify different data objects within each layer will provie to be extraordinarily helpful when we begin to work with spatial data, or plotting two different data frames with the same axes, or any other creative problem you wish to solve.</p>
 
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="21">
+<li id="fn21"><p><a href="https://vita.had.co.nz/papers/layered-grammar.pdf" class="uri">https://vita.had.co.nz/papers/layered-grammar.pdf</a><a href="layered-i.html#fnref21" class="footnote-back">↩</a></p></li>
+<li id="fn22"><p><a href="https://vita.had.co.nz/papers/layered-grammar.pdf" class="uri">https://vita.had.co.nz/papers/layered-grammar.pdf</a><a href="layered-i.html#fnref22" class="footnote-back">↩</a></p></li>
+<li id="fn23"><p><a href="https://vita.had.co.nz/papers/layered-grammar.pdf" class="uri">https://vita.had.co.nz/papers/layered-grammar.pdf</a><a href="layered-i.html#fnref23" class="footnote-back">↩</a></p></li>
+</ol>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="i-have-two-datasets-what-now.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="creating-ecometrics.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="data-structures.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="visualizing-trends-and-relationships.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

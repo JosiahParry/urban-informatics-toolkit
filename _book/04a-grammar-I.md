@@ -1,4 +1,4 @@
-# Grammer of layered graphics I 
+# Grammer of layered graphics I  {#layered-i}
 
 
 
@@ -25,20 +25,20 @@ The `gg` in `ggplot2` refers to the grammar of graphics (and the `2` is because 
 
 ggplot2 is "an open source implementation of the grammar of graphics for **R**."[^wickham] Once we can internalize the grammar of graphics, creating plots will be an intuitive and artistic process rather than a mechanical one.
 
-There are five high level components of the layered grammar[^wickham].
+There are five high level components of the layered grammar[^wickham]. We will only cover the first two in this chapter.
 
-1. Defaults:
+1. **Defaults**:
     - Data
     - Mapping
-2. Layer:
+2. **Layers**:
     - Data*
     - Mapping* 
     - Geom
     - Stat
     - Position 
-3. Scale
-4. Coord
-5. Facet
+3. Scales
+4. Coordinates
+5. Facets
 
 ## Layers and defaults
 

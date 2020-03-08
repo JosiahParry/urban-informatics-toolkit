@@ -377,7 +377,7 @@ ggplot(gba_acs, aes(bach, county)) +
 <img src="04b-visualization-strategies_files/figure-html/unnamed-chunk-21-1.png" width="672" />
 
 
-#### Barchar
+#### Barchart
 
 We've already used the barchart to plot counts of categorical variables. But they are also useful for visualizing summary values of each categorical variable. 
 
