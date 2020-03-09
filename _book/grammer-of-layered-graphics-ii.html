@@ -24,7 +24,7 @@
 <meta name="author" content="Josiah Parry" />
 
 
-<meta name="date" content="2020-03-08" />
+<meta name="date" content="2020-03-09" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -185,13 +185,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb184-1" data-line-number="1">(p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(acs, <span class="kw">aes</span>(med_house_income, bach)))</a></code></pre></div>
 <p><img src="04c-grammar-II_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
 <p>By specifying our defaults in the <code>ggplot()</code> call, we implicitly are providing the x and y axes. From those mappings, ggplot2 is able to identify the type of variable mapped to each aesthetic and its values. That inference makes it possible for us to plot without having to explicitly state what our axes are.</p>
-<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb185-1" data-line-number="1"><span class="kw">ggplot</span>(acs, <span class="kw">aes</span>(med_house_income, bach)) <span class="op">+</span></a>
+<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb185-1" data-line-number="1">p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(acs, <span class="kw">aes</span>(med_house_income, bach)) <span class="op">+</span></a>
 <a class="sourceLine" id="cb185-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="dv">1</span><span class="op">/</span><span class="dv">3</span>)</a></code></pre></div>
-<p><img src="04c-grammar-II_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
 <p>In the above chart, each column is being mapped as a continuous variable. We are able to manually specify what each scale type is by using the various <code>scale_*_type()</code> layers from ggplot2. These layers follow a general format of first specifying <code>scale</code> followed by which aesthetic we’re scaling, and what data type. For example, to change the <code>med_house_income</code> axis to a discrete axis we can apply the layer <code>scale_x_discrete()</code></p>
-<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb186-1" data-line-number="1"><span class="kw">ggplot</span>(acs, <span class="kw">aes</span>(med_house_income, bach)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb186-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="dv">1</span><span class="op">/</span><span class="dv">3</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb186-3" data-line-number="3"><span class="st">  </span><span class="kw">scale_x_discrete</span>() </a></code></pre></div>
+<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb186-1" data-line-number="1">p <span class="op">+</span></a>
+<a class="sourceLine" id="cb186-2" data-line-number="2"><span class="st">  </span><span class="kw">scale_x_discrete</span>() </a></code></pre></div>
 <p><img src="04c-grammar-II_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
 <p>In doing so we have lost the axis labels! That is because ggplot2 considers both integers and floating point (numbers with decimals) as continuous and categorical variables as being discrete.</p>
 <p>Nonetheless, we have a lot of functions at our disposal to alter the axes to our liking!</p>
@@ -208,30 +206,46 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>we can apply this with <code>scale_x_sqrt()</code></li>
 </ul></li>
 </ul>
-<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb187-1" data-line-number="1"><span class="kw">ggplot</span>(acs, <span class="kw">aes</span>(med_house_income, bach)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb187-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="dv">1</span><span class="op">/</span><span class="dv">3</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb187-3" data-line-number="3"><span class="st">  </span><span class="kw">scale_x_sqrt</span>() </a></code></pre></div>
+<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb187-1" data-line-number="1">p <span class="op">+</span></a>
+<a class="sourceLine" id="cb187-2" data-line-number="2"><span class="st">  </span><span class="kw">scale_x_sqrt</span>() </a></code></pre></div>
 <p><img src="04c-grammar-II_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
-<p>We can apply a log10 transformation as well.</p>
-<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb188-1" data-line-number="1"><span class="kw">ggplot</span>(acs, <span class="kw">aes</span>(med_house_income, bach)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb188-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="dv">1</span><span class="op">/</span><span class="dv">3</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb188-3" data-line-number="3"><span class="st">  </span><span class="kw">scale_x_log10</span>() </a></code></pre></div>
+<p>We can apply a log10 transformation as well with <code>scale_*_log10()</code>.</p>
+<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb188-1" data-line-number="1">p <span class="op">+</span></a>
+<a class="sourceLine" id="cb188-2" data-line-number="2"><span class="st">  </span><span class="kw">scale_x_log10</span>() </a></code></pre></div>
 <p><img src="04c-grammar-II_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
-<p>This is an overcorrection clearly the slight upward arch in the original plotting is now inverted</p>
-<p><code>scale_*_log10()</code>
-<code>scale_*_reverse()</code>
-<code>scale_*_sqrt()</code>
-<code>scale_*_binned()</code></p>
-<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb189-1" data-line-number="1"><span class="kw">ggplot</span>(acs, <span class="kw">aes</span>(med_house_income)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb189-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_bar</span>() <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb189-3" data-line-number="3"><span class="st">  </span><span class="kw">scale_x_binned</span>(<span class="dt">n.breaks =</span> <span class="dv">10</span>)</a></code></pre></div>
-<p><img src="04c-grammar-II_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<p><code>lims()</code>
+<code>expand_limits()</code></p>
+<p>This is an overcorrection. The slight upward arch in the original plotting is now inverted. Nonetheless, I hope the point is made. In addition to being able to control the <strong>defaults</strong>, the <strong>layers</strong>, and now the <strong>scales</strong> you are well equipped to develop and manipulate your own plots.</p>
+<p>It is also important to note that what we have gone through is by no means exhaustive. You should, at minimum, familiarize yourself with both <code>scale_*_reverse()</code>, and <code>scale_*_binned()</code> in your spare time. There are dozens, if not hundreds, of ggplot2 functions to suit your every whim. And, as you have already briefly seen, the ggplot function universe is not relegated to just ggplot2. There are many other packages which have built custom geoms and other enhancements that may benefit you.</p>
 </div>
 <div id="labeling" class="section level3">
 <h3><span class="header-section-number">12.1.2</span> Labeling</h3>
-<p><code>labs()</code>
-<code>lims()</code>
-<code>expand_limits()</code></p>
+<p>The plots we create, while lovely as they are, are somewhat lacking in the labeling department. I would put money on it that no publication would accept plots with labels such as the ones above for sole reason being that our axes titles and scale labels are hard to interpret.</p>
+<p>We’ve already used it befofe but to be extra clear, to add titles and axis labels to our plots (not adjusting the scale labels) we use a <code>labs()</code> layer. With <code>labs()</code>, you can label any aesthetic you have mapped as well as adding a <code>title</code>, <code>subtitle</code>, <code>caption</code>, and a <code>tag</code>.</p>
+<p>Let’s add some titles and labels to our plot.</p>
+<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb189-1" data-line-number="1">p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(acs, <span class="kw">aes</span>(med_house_income, bach)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb189-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="dv">1</span><span class="op">/</span><span class="dv">3</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb189-3" data-line-number="3"><span class="st">    </span><span class="kw">labs</span>(</a>
+<a class="sourceLine" id="cb189-4" data-line-number="4">       <span class="dt">y =</span> <span class="st">&quot;% of population with a Bachelor&#39;s Degree&quot;</span>,</a>
+<a class="sourceLine" id="cb189-5" data-line-number="5">       <span class="dt">x =</span> <span class="st">&quot;Median Household Income&quot;</span>,</a>
+<a class="sourceLine" id="cb189-6" data-line-number="6">       <span class="dt">title =</span> <span class="st">&quot;Relationship between Education and Income&quot;</span>,</a>
+<a class="sourceLine" id="cb189-7" data-line-number="7">       <span class="dt">subtitle =</span> <span class="st">&quot;All Massachusetts Tracts&quot;</span>,</a>
+<a class="sourceLine" id="cb189-8" data-line-number="8">       <span class="dt">caption =</span> <span class="st">&quot;Source: Boston Area Research Initiative</span><span class="ch">\n</span><span class="st">via US Census Bureau&quot;</span></a>
+<a class="sourceLine" id="cb189-9" data-line-number="9">      )</a>
+<a class="sourceLine" id="cb189-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb189-11" data-line-number="11">p</a></code></pre></div>
+<p><img src="04c-grammar-II_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<p>Friends, it’s looking pretty good. But there are just two more changes we need to make: our axes labels! The x and y axes labels are meant to illustrate dollar amounts and percentages but respectively. To change the <em>scale</em> labels. we will use some helper functions from the package <a href="https://scales.r-lib.org/"><code>scales</code></a></p>
+<p>{scales} provides handy functions for taking a variable and altering the labeling to match some other format. In our case, we are interested in printing our <code>med_house_income</code> as in a dollar format, i.e. <code>2000</code> becomes <code>\$2,000</code>, and <code>bach</code> as a percentage, i.e. <code>.4</code> becomes <code>%40</code>. To alter our labels we will use <code>scales::dollar()</code>, and <code>scales::percent()</code> respectively.</p>
+<blockquote>
+<p>Isn’t it nice how well named functions can be sometimes?</p>
+</blockquote>
+<p>To produce the examples outlines above we would call the function as such:</p>
+<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb190-1" data-line-number="1">scales<span class="op">::</span><span class="kw">dollar</span>(<span class="dv">2000</span>)</a>
+<a class="sourceLine" id="cb190-2" data-line-number="2"><span class="co">## [1] &quot;$2,000&quot;</span></a>
+<a class="sourceLine" id="cb190-3" data-line-number="3">scales<span class="op">::</span><span class="kw">percent</span>(.<span class="dv">4</span>)</a>
+<a class="sourceLine" id="cb190-4" data-line-number="4"><span class="co">## [1] &quot;40%&quot;</span></a></code></pre></div>
+<p>Now we have an understanding of <em>how</em> the function behaves, but where do we actually change the labels? This is where we come full cirlce back to our <code>scale_*_continuous()</code> layer. As we mentioned earlier, <code>ggplot()</code> will handle making the scales for us. But <code>ggplot()</code> doesn’t know how we want to label our variables or how they should appear on the axes. And now the impetus is on us to make these changes manually. To change the axis labels we will specify which axis we are altering using the proper scale layer—i.e. <code>scale_y...</code> or <code>scale_x...</code>.</p>
 </div>
 </div>
 <div id="coordinates" class="section level2">

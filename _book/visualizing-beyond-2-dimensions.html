@@ -24,7 +24,7 @@
 <meta name="author" content="Josiah Parry" />
 
 
-<meta name="date" content="2020-03-08" />
+<meta name="date" content="2020-03-09" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -203,8 +203,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 </ul></li>
 </ul>
-<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb190-1" data-line-number="1"><span class="kw">ggplot</span>(acs, <span class="kw">aes</span>(fam_house_per, age_u18, <span class="dt">color =</span> by_auto)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb190-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb191-1" data-line-number="1"><span class="kw">ggplot</span>(acs, <span class="kw">aes</span>(fam_house_per, age_u18, <span class="dt">color =</span> by_auto)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb191-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>()</a></code></pre></div>
 <p><img src="04d-beyond-2d_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
 <ul>
 <li>we can add size to this as well by setting the <code>size</code> aesthetic
@@ -212,8 +212,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>lets see if the more female headed house holds there are affects commuting by car as minors increases</li>
 </ul></li>
 </ul>
-<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb191-1" data-line-number="1"><span class="kw">ggplot</span>(acs, <span class="kw">aes</span>(fam_house_per, age_u18, <span class="dt">color =</span> by_auto, <span class="dt">size =</span> fem_head_per)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb191-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">.2</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb192-1" data-line-number="1"><span class="kw">ggplot</span>(acs, <span class="kw">aes</span>(fam_house_per, age_u18, <span class="dt">color =</span> by_auto, <span class="dt">size =</span> fem_head_per)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb192-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">.2</span>)</a></code></pre></div>
 <p><img src="04d-beyond-2d_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
 <ul>
 <li>from this chart we can see quite a few things:
@@ -224,23 +224,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>this gives us a good idea of some relationships that we can test with our data at a later point</li>
 </ul></li>
 </ul>
-<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb192-1" data-line-number="1">minors_lm &lt;-<span class="st"> </span><span class="kw">lm</span>(age_u18 <span class="op">~</span><span class="st"> </span>fam_house_per <span class="op">+</span><span class="st"> </span>by_auto <span class="op">+</span><span class="st"> </span>fem_head_per, <span class="dt">data =</span> acs)</a>
-<a class="sourceLine" id="cb192-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb192-3" data-line-number="3">huxtable<span class="op">::</span><span class="kw">huxreg</span>(minors_lm)</a>
-<a class="sourceLine" id="cb192-4" data-line-number="4"><span class="co">## Registered S3 methods overwritten by &#39;broom.mixed&#39;:</span></a>
-<a class="sourceLine" id="cb192-5" data-line-number="5"><span class="co">##   method         from </span></a>
-<a class="sourceLine" id="cb192-6" data-line-number="6"><span class="co">##   augment.lme    broom</span></a>
-<a class="sourceLine" id="cb192-7" data-line-number="7"><span class="co">##   augment.merMod broom</span></a>
-<a class="sourceLine" id="cb192-8" data-line-number="8"><span class="co">##   glance.lme     broom</span></a>
-<a class="sourceLine" id="cb192-9" data-line-number="9"><span class="co">##   glance.merMod  broom</span></a>
-<a class="sourceLine" id="cb192-10" data-line-number="10"><span class="co">##   glance.stanreg broom</span></a>
-<a class="sourceLine" id="cb192-11" data-line-number="11"><span class="co">##   tidy.brmsfit   broom</span></a>
-<a class="sourceLine" id="cb192-12" data-line-number="12"><span class="co">##   tidy.gamlss    broom</span></a>
-<a class="sourceLine" id="cb192-13" data-line-number="13"><span class="co">##   tidy.lme       broom</span></a>
-<a class="sourceLine" id="cb192-14" data-line-number="14"><span class="co">##   tidy.merMod    broom</span></a>
-<a class="sourceLine" id="cb192-15" data-line-number="15"><span class="co">##   tidy.rjags     broom</span></a>
-<a class="sourceLine" id="cb192-16" data-line-number="16"><span class="co">##   tidy.stanfit   broom</span></a>
-<a class="sourceLine" id="cb192-17" data-line-number="17"><span class="co">##   tidy.stanreg   broom</span></a></code></pre></div>
+<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb193-1" data-line-number="1">minors_lm &lt;-<span class="st"> </span><span class="kw">lm</span>(age_u18 <span class="op">~</span><span class="st"> </span>fam_house_per <span class="op">+</span><span class="st"> </span>by_auto <span class="op">+</span><span class="st"> </span>fem_head_per, <span class="dt">data =</span> acs)</a>
+<a class="sourceLine" id="cb193-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb193-3" data-line-number="3">huxtable<span class="op">::</span><span class="kw">huxreg</span>(minors_lm)</a>
+<a class="sourceLine" id="cb193-4" data-line-number="4"><span class="co">## Registered S3 methods overwritten by &#39;broom.mixed&#39;:</span></a>
+<a class="sourceLine" id="cb193-5" data-line-number="5"><span class="co">##   method         from </span></a>
+<a class="sourceLine" id="cb193-6" data-line-number="6"><span class="co">##   augment.lme    broom</span></a>
+<a class="sourceLine" id="cb193-7" data-line-number="7"><span class="co">##   augment.merMod broom</span></a>
+<a class="sourceLine" id="cb193-8" data-line-number="8"><span class="co">##   glance.lme     broom</span></a>
+<a class="sourceLine" id="cb193-9" data-line-number="9"><span class="co">##   glance.merMod  broom</span></a>
+<a class="sourceLine" id="cb193-10" data-line-number="10"><span class="co">##   glance.stanreg broom</span></a>
+<a class="sourceLine" id="cb193-11" data-line-number="11"><span class="co">##   tidy.brmsfit   broom</span></a>
+<a class="sourceLine" id="cb193-12" data-line-number="12"><span class="co">##   tidy.gamlss    broom</span></a>
+<a class="sourceLine" id="cb193-13" data-line-number="13"><span class="co">##   tidy.lme       broom</span></a>
+<a class="sourceLine" id="cb193-14" data-line-number="14"><span class="co">##   tidy.merMod    broom</span></a>
+<a class="sourceLine" id="cb193-15" data-line-number="15"><span class="co">##   tidy.rjags     broom</span></a>
+<a class="sourceLine" id="cb193-16" data-line-number="16"><span class="co">##   tidy.stanfit   broom</span></a>
+<a class="sourceLine" id="cb193-17" data-line-number="17"><span class="co">##   tidy.stanreg   broom</span></a></code></pre></div>
 <table class="huxtable" style="border-collapse: collapse; margin-bottom: 2em; margin-top: 2em; width: 50%; margin-left: auto; margin-right: auto;  ">
 <col><col><tr>
 <td style="vertical-align: top; text-align: center; white-space: nowrap; border-style: solid solid solid solid; border-width: 0.8pt 0pt 0pt 0pt; padding: 4pt 4pt 4pt 4pt;"></td>
