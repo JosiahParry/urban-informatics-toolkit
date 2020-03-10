@@ -24,7 +24,7 @@
 <meta name="author" content="Josiah Parry" />
 
 
-<meta name="date" content="2020-03-09" />
+<meta name="date" content="2020-03-10" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -182,59 +182,59 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Let us start by asking the question <em>“what is a statistic?”</em> Very simply a statistic is a single number that is used to characterize a sample of data. Most often we see statistics used to describe central tendancy and spread—measures like the mean and standard deviation. However, the ways in which we can characterize a sample of data are not restricted to traditional frequentists statistics. We want to be more creative in the ways that we look at our data. In addition to evaluating central tendancy and spread we may find ourselves looking at the average word counts of tweets, or distances from the Boston Common, and so much more.</p>
 <p>When we begin to summarize data, we are taking all observations or maybe a subset of observations and calculating one value to represent that sample. This is very important framing to have. Whenever we want to create an aggregate measure of our data there must be only one observation per-subset. Meaning, if you have a data frame with 150 rows and 3 groups within that, there ought to be only three resultant observations—though there may be many more variables.</p>
 <p>Let us revisit the <code>commute</code>, and specifically the rate of commuters who travel between 30 and 60 minutes.</p>
-<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb194-1" data-line-number="1"><span class="kw">library</span>(tidyverse)</a>
-<a class="sourceLine" id="cb194-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb194-3" data-line-number="3">commute &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data/ACS_1317_TRACT.csv&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb194-4" data-line-number="4"><span class="st">  </span><span class="kw">select</span>(</a>
-<a class="sourceLine" id="cb194-5" data-line-number="5">    county,</a>
-<a class="sourceLine" id="cb194-6" data-line-number="6">    <span class="kw">starts_with</span>(<span class="st">&quot;commute&quot;</span>),</a>
-<a class="sourceLine" id="cb194-7" data-line-number="7">    <span class="kw">starts_with</span>(<span class="st">&quot;by&quot;</span>),</a>
-<a class="sourceLine" id="cb194-8" data-line-number="8">    med_house_income</a>
-<a class="sourceLine" id="cb194-9" data-line-number="9">  ) </a></code></pre></div>
+<div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb197-1" data-line-number="1"><span class="kw">library</span>(tidyverse)</a>
+<a class="sourceLine" id="cb197-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb197-3" data-line-number="3">commute &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data/ACS_1317_TRACT.csv&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb197-4" data-line-number="4"><span class="st">  </span><span class="kw">select</span>(</a>
+<a class="sourceLine" id="cb197-5" data-line-number="5">    county,</a>
+<a class="sourceLine" id="cb197-6" data-line-number="6">    <span class="kw">starts_with</span>(<span class="st">&quot;commute&quot;</span>),</a>
+<a class="sourceLine" id="cb197-7" data-line-number="7">    <span class="kw">starts_with</span>(<span class="st">&quot;by&quot;</span>),</a>
+<a class="sourceLine" id="cb197-8" data-line-number="8">    med_house_income</a>
+<a class="sourceLine" id="cb197-9" data-line-number="9">  ) </a></code></pre></div>
 <p>It is of course of interest to identify the average rate of 30-60 minute commuting, as well as the standard deviation, and median. What does this look like and how is it done? Prior to measuring central tendency and spread, we begin by visualizing our data. The purpose of visualizing your data before hand is to give you an intuition of how it may behave and its shape.</p>
-<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb195-1" data-line-number="1"><span class="kw">ggplot</span>(commute, <span class="kw">aes</span>(commute3060)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb195-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">bins =</span> <span class="dv">20</span>)</a>
-<a class="sourceLine" id="cb195-3" data-line-number="3"><span class="co">## Warning: Removed 14 rows containing non-finite values (stat_bin).</span></a></code></pre></div>
+<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb198-1" data-line-number="1"><span class="kw">ggplot</span>(commute, <span class="kw">aes</span>(commute3060)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb198-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">bins =</span> <span class="dv">20</span>)</a>
+<a class="sourceLine" id="cb198-3" data-line-number="3"><span class="co">## Warning: Removed 14 rows containing non-finite values (stat_bin).</span></a></code></pre></div>
 <p><img src="05-summary-stats_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
 <p>In the above histogram we can intuit a number of things. The distribution looks fairly normally distributed meaning that both the mean and median are likely to be close to eachother and are equally sound measures of center, most likely somewhere around 0.3. Secondly, due to the distribution’s rather round shape (or “fat tails”), it can be expected to have a rather large standard deviation. Once the intuition has been developed, one should calculate the relevant statistics to quantify these characteristics.</p>
 <p>Let’s calculate the mean, median, standard deviation, and range of this single variable. When calculating statistics like the mean and standard deviation, we are calculating univariate statistics and as such, working with only one column (variable) at a time—this tends to be the case almost always.</p>
 <p>We will first extract the <code>commute3060</code> column as a vector using <code>dplyr::pull()</code>.</p>
-<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb196-1" data-line-number="1"> commute_rate &lt;-<span class="st"> </span><span class="kw">pull</span>(commute, commute3060)</a></code></pre></div>
+<div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb199-1" data-line-number="1"> commute_rate &lt;-<span class="st"> </span><span class="kw">pull</span>(commute, commute3060)</a></code></pre></div>
 <blockquote>
 <p>Exercise: Read the help documentation for the functions <code>mean()</code>, <code>median()</code>, and <code>sd()</code> to get a sense of how these functions work. Calculate the mean, median, and standard deviation of <code>commute_rate</code>.</p>
 </blockquote>
-<div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb197-1" data-line-number="1"><span class="kw">mean</span>(commute_rate)</a>
-<a class="sourceLine" id="cb197-2" data-line-number="2"><span class="co">## [1] NA</span></a>
-<a class="sourceLine" id="cb197-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb197-4" data-line-number="4"><span class="kw">median</span>(commute_rate)</a>
-<a class="sourceLine" id="cb197-5" data-line-number="5"><span class="co">## [1] NA</span></a>
-<a class="sourceLine" id="cb197-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb197-7" data-line-number="7"><span class="kw">sd</span>(commute_rate)</a>
-<a class="sourceLine" id="cb197-8" data-line-number="8"><span class="co">## [1] NA</span></a></code></pre></div>
+<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb200-1" data-line-number="1"><span class="kw">mean</span>(commute_rate)</a>
+<a class="sourceLine" id="cb200-2" data-line-number="2"><span class="co">## [1] NA</span></a>
+<a class="sourceLine" id="cb200-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb200-4" data-line-number="4"><span class="kw">median</span>(commute_rate)</a>
+<a class="sourceLine" id="cb200-5" data-line-number="5"><span class="co">## [1] NA</span></a>
+<a class="sourceLine" id="cb200-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb200-7" data-line-number="7"><span class="kw">sd</span>(commute_rate)</a>
+<a class="sourceLine" id="cb200-8" data-line-number="8"><span class="co">## [1] NA</span></a></code></pre></div>
 <p>The results of these functions bring good and bad news. The good news is that their output is a single value. The bad news is that the output is <code>NA</code>. To reiterate a previous point, <code>NA</code> will infect your analyses. The only way to get around this is to perform these calculations without them.</p>
 <p>Note that each of the functions used above have an argument called <code>na.rm</code>. <code>na.rm</code> tells R to remove the NAs prior to calculation. We can recalculate these statistics with the <code>na.rm</code> argument set to <code>TRUE</code>.</p>
-<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb198-1" data-line-number="1"><span class="kw">mean</span>(commute_rate, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb198-2" data-line-number="2"><span class="co">## [1] 0.3165169</span></a>
-<a class="sourceLine" id="cb198-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb198-4" data-line-number="4"><span class="kw">median</span>(commute_rate, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb198-5" data-line-number="5"><span class="co">## [1] 0.3179833</span></a>
-<a class="sourceLine" id="cb198-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb198-7" data-line-number="7"><span class="kw">sd</span>(commute_rate, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb198-8" data-line-number="8"><span class="co">## [1] 0.110289</span></a></code></pre></div>
+<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb201-1" data-line-number="1"><span class="kw">mean</span>(commute_rate, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb201-2" data-line-number="2"><span class="co">## [1] 0.3165169</span></a>
+<a class="sourceLine" id="cb201-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb201-4" data-line-number="4"><span class="kw">median</span>(commute_rate, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb201-5" data-line-number="5"><span class="co">## [1] 0.3179833</span></a>
+<a class="sourceLine" id="cb201-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb201-7" data-line-number="7"><span class="kw">sd</span>(commute_rate, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb201-8" data-line-number="8"><span class="co">## [1] 0.110289</span></a></code></pre></div>
 <p>Let us look at one last example: identifying the range. The <code>range()</code> function returns the minimum and the maximum values.</p>
-<div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb199-1" data-line-number="1">(commute_range &lt;-<span class="st"> </span><span class="kw">range</span>(commute_rate, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))</a>
-<a class="sourceLine" id="cb199-2" data-line-number="2"><span class="co">## [1] 0.0000000 0.6327961</span></a></code></pre></div>
+<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb202-1" data-line-number="1">(commute_range &lt;-<span class="st"> </span><span class="kw">range</span>(commute_rate, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))</a>
+<a class="sourceLine" id="cb202-2" data-line-number="2"><span class="co">## [1] 0.0000000 0.6327961</span></a></code></pre></div>
 <blockquote>
 <p>Note: by wrapping an assignment in parentheses, the resultant object will be printed to the console.</p>
 </blockquote>
 <p><code>range()</code> returned two values. This can be verified with the <code>length()</code> function.</p>
-<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb200-1" data-line-number="1"><span class="kw">length</span>(commute_range)</a>
-<a class="sourceLine" id="cb200-2" data-line-number="2"><span class="co">## [1] 2</span></a></code></pre></div>
+<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb203-1" data-line-number="1"><span class="kw">length</span>(commute_range)</a>
+<a class="sourceLine" id="cb203-2" data-line-number="2"><span class="co">## [1] 2</span></a></code></pre></div>
 <p>A length two vector does not adhere to providing just out value. We will see why this is a problem illustrated in the next chapter. To recreate this, use the <code>min()</code> and <code>max()</code> functions.</p>
-<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb201-1" data-line-number="1"><span class="kw">min</span>(commute_rate, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb201-2" data-line-number="2"><span class="co">## [1] 0</span></a>
-<a class="sourceLine" id="cb201-3" data-line-number="3"><span class="kw">max</span>(commute_rate, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb201-4" data-line-number="4"><span class="co">## [1] 0.6327961</span></a></code></pre></div>
+<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb204-1" data-line-number="1"><span class="kw">min</span>(commute_rate, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb204-2" data-line-number="2"><span class="co">## [1] 0</span></a>
+<a class="sourceLine" id="cb204-3" data-line-number="3"><span class="kw">max</span>(commute_rate, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb204-4" data-line-number="4"><span class="co">## [1] 0.6327961</span></a></code></pre></div>
 <p>Each of these statistics—mean, median, standard deviation, etc—are a way to characterize a larger sample of data. The lesson to take away here is that we will always need a single value when summarising data. Often we will be taking a column (vector) and calculating a single metric from that.</p>
 <p>In the following chapter we will learn how to calculate summary statistics using the tidyverse.</p>
 <hr />

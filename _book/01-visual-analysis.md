@@ -219,6 +219,7 @@ In this scatterplot we can see that there is a linear pattern. When the points o
 
 Using ggplot, we can plot the estimated linear regression line on top of our scatterplot. This is done with a `geom_smooth()` layer. By default, `geom_smooth()` does not plot the linear relationship. To do that, we need to specify what kind of smoothing we would like. To plot the estimated linear model, we set `method = "lm"`.  
 
+
 ```r
 ggplot(acs_edu, aes(x = bach, y = med_house_income)) +
   geom_point() +

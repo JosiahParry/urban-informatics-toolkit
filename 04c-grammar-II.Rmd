@@ -63,14 +63,36 @@ p +
   scale_x_log10() 
 ```
 
-`lims()`
-`expand_limits()`
+This is an overcorrection. The slight upward arch in the original plotting is now inverted. Nonetheless, I hope the point is made. 
 
-This is an overcorrection. The slight upward arch in the original plotting is now inverted. Nonetheless, I hope the point is made. In addition to being able to control the **defaults**, the **layers**, and now the **scales** you are well equipped to develop and manipulate your own plots.
+In addition to applying transformations, we will want to have more control over the limits of our graph. For example, say we want to have our y axis include all _possible_ values of [0,1]. We can tell ggplot what range of values we want our axes to contain with `lims()`. `lims()` takes a name-value pair where the name is an aesthetic and the value is a numeric vector with two elements—the first being the value at the origin and the second being at the extent of the axis[^lims].
+
+> Note: [0,1] means from 0 inclusive to 1 inclusive. 
+
+We can modify our y axis to have the limits of [0,1] by adding a `lims()` layer where we set the `y` aesthetic to `c(0, 1)`.
+
+```{r}
+p +
+  lims(y = c(0, 1))
+```
+
+The graph we get we when expand our y axis limits definitely contains a bit too much white space. But by expanding ths grid, we can see this sort of flattening out of education at around $150,000 while income still continues to increase. Perhaps if we omit tose values, the relationship may seem even stronger. Let's experiment with that.
 
 
-It is also important to note that what we have gone through is by no means exhaustive. You should, at minimum, familiarize yourself with both `scale_*_reverse()`, and `scale_*_binned()` in your spare time. There are dozens, if not hundreds, of ggplot2 functions to suit your every whim. And, as you have already briefly seen, the ggplot function universe is not relegated to just ggplot2. There are many other packages which have built custom geoms and other enhancements that may benefit you. 
+* Set the x axis limit to be from [0, 150000]
+* Set the y axis limits to be from [0, 0.5]
 
+```{r warning=FALSE}
+p +
+  lims(
+    x = c(0, 150000),
+    y = c(0, .5)
+    )
+```
+
+By changing the extent of our axes this relationship seems much more robust! Such a visualization could spur further validation of this ACS data.
+
+> Remember, ACS data come from samples and sometimes those samples are small. Because of these small samples, we may very well get values that are not properly representative. It is on you to decide whether or not you should include or exclude the values! 
 
 ### Labeling
 
@@ -100,19 +122,32 @@ Friends, it's looking pretty good. But there are just two more changes we need t
 
 > Isn't it nice how well named functions can be sometimes?
 
-To produce the examples outlines above we would call the function as such:
+To produce the examples outlined above we would call the function as such:
 
 ```{r}
 scales::dollar(2000)
 scales::percent(.4)
 ```
 
-Now we have an understanding of _how_ the function behaves, but where do we actually change the labels? This is where we come full cirlce back to our `scale_*_continuous()` layer. As we mentioned earlier, `ggplot()` will handle making the scales for us. But `ggplot()` doesn't know how we want to label our variables or how they should appear on the axes. And now the impetus is on us to make these changes manually. To change the axis labels we will specify which axis we are altering using the proper scale layer—i.e. `scale_y...` or `scale_x...`.
+Now we have an understanding of _how_ the function behaves, but where do we actually change the labels? This is where we come full cirlce back to our `scale_*_continuous()` layer. As we mentioned earlier, `ggplot()` will handle making the scales for us. But `ggplot()` doesn't know how we want to label our variables or how they should appear on the axes. And now the impetus is on us to make these changes manually. To change the axis labels we will specify which axis we are altering using the proper scale layer—i.e. `scale_y_` or `scale_x_`. Then, in each layer we set the `labels` argument to the respective labelling function we want—e.g. `scales::percent` and `scales::dollar`.
 
+> Note: If you append parentheses like you normally would you will get an error. This case we want to ignore them because when they are present, R will try to evaluate that function. Rather, we are interested in providing the _function object_ to the `labels` argument rather than provide it with a vector of output. 
 
+```{r}
+p + 
+  scale_x_continuous(labels = scales::dollar) + 
+  scale_y_continuous(labels = scales::percent)
+```
 
+In addition to being able to control the **defaults**, the **layers**, and now the **scales** you are well equipped to create and manipulate your own plots. 
 
 ## Coordinates
+
+While you're likely to create 98% of your visualizations without ever manipulating the coordinates, it is still good knowledge to have! 
+
+As we have mentioned and alluded to, we are working in a two-dimensional space—meaning with x and y coordinates. When working in two-dimensions, thee cartesian plane is the natural choice for a coordinate reference system. In all of our plots, this has been the default.
+
+If, however, we find the need to alter or manipulate the coordinate system the tools are available to us. We've actually already used one, `coord_flip()`. Like, with scales, all coordinate based functions are prefixed with `coord_()`.
 
 `coord_flip()`
 `coord_cartesian()` - our default
@@ -123,4 +158,13 @@ Now we have an understanding of _how_ the function behaves, but where do we actu
 
 `facet_wrap()`
 `facet_grid()`
+
+
+
+
+
+It is also important to note that what we have gone through is by no means exhaustive. You should, at minimum, familiarize yourself with both `scale_*_reverse()`, and `scale_*_binned()` in your spare time. There are dozens, if not hundreds, of ggplot2 functions to suit your every whim. And, as you have already briefly seen, the ggplot function universe is not relegated to just ggplot2. There are many other packages which have built custom geoms and other enhancements that may benefit you. 
+
+
+[^lims]: https://ggplot2.tidyverse.org/reference/lims
   
