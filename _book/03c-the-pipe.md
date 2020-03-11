@@ -110,7 +110,51 @@ Not only does the pipe aid in the manipulation of data, it also has a lot of uti
 
 The following sections will use the pipe operator in favor of the above listed alternatives. 
 
+## Revisiting our scenario
 
+Now that we have the pipe operator at our fingertips, we ought to think about how we can incorporate it into our previous work. In our earlier scenario we 
+
+
+```r
+acs_raw <- read_csv("data/ACS_1317_TRACT.csv")
+## Parsed with column specification:
+## cols(
+##   .default = col_double(),
+##   name = col_character(),
+##   med_yr_built = col_character(),
+##   town = col_character(),
+##   county = col_character(),
+##   m_atown = col_character()
+## )
+## See spec(...) for full column specifications.
+
+select(acs_raw,
+       county,
+       hs_grad, bach, master,
+       starts_with("commute"),
+       starts_with("by"),
+       med_house_income) %>% 
+  filter(county %in% c("SUFFOLK", "NORFOLK", "MIDDLESEX")) %>% 
+  mutate(hh_inc_quin = ntile(med_house_income, 5),
+         edu_attain = bach + master) %>% 
+  select(-bach, -master)
+## # A tibble: 648 x 14
+##    county hs_grad commute_less10 commute1030 commute3060 commute6090
+##    <chr>    <dbl>          <dbl>       <dbl>       <dbl>       <dbl>
+##  1 MIDDL…   0.389         0.0916       0.357       0.375      0.134 
+##  2 MIDDL…   0.167         0.0948       0.445       0.344      0.0887
+##  3 MIDDL…   0.184         0.0720       0.404       0.382      0.0969
+##  4 MIDDL…   0.258         0.0983       0.390       0.379      0.0943
+##  5 MIDDL…   0.301         0.0670       0.379       0.365      0.142 
+##  6 MIDDL…   0.159         0.0573       0.453       0.352      0.105 
+##  7 MIDDL…   0.268         0.0791       0.475       0.368      0.0691
+##  8 MIDDL…   0.261         0.137        0.450       0.337      0.0650
+##  9 MIDDL…   0.315         0.0752       0.478       0.329      0.0947
+## 10 MIDDL…   0.151         0.0830       0.474       0.322      0.0892
+## # … with 638 more rows, and 8 more variables: commute_over90 <dbl>,
+## #   by_auto <dbl>, by_pub_trans <dbl>, by_bike <dbl>, by_walk <dbl>,
+## #   med_house_income <dbl>, hh_inc_quin <int>, edu_attain <dbl>
+```
 
 
 

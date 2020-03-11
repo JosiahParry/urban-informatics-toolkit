@@ -98,7 +98,24 @@ Not only does the pipe aid in the manipulation of data, it also has a lot of uti
 
 The following sections will use the pipe operator in favor of the above listed alternatives. 
 
+## Revisiting our scenario
 
+Now that we have the pipe operator at our fingertips, we ought to think about how we can incorporate it into our previous work. In our earlier scenario we 
+
+```{r}
+acs_raw <- read_csv("data/ACS_1317_TRACT.csv")
+
+select(acs_raw,
+       county,
+       hs_grad, bach, master,
+       starts_with("commute"),
+       starts_with("by"),
+       med_house_income) %>% 
+  filter(county %in% c("SUFFOLK", "NORFOLK", "MIDDLESEX")) %>% 
+  mutate(hh_inc_quin = ntile(med_house_income, 5),
+         edu_attain = bach + master) %>% 
+  select(-bach, -master)
+```
 
 
 

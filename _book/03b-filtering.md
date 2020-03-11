@@ -7,6 +7,7 @@ acs_raw <- read_csv("data/ACS_1317_TRACT.csv")
 
 commute <- select(acs_raw,
                   county,
+                  hs_grad, bach, master,
                   starts_with("commute"),
                   starts_with("by"),
                   med_house_income)
@@ -333,26 +334,72 @@ gba_commute
 ```
 
 ```
-## # A tibble: 648 x 11
-##    county commute_less10 commute1030 commute3060 commute6090 commute_over90
-##    <chr>           <dbl>       <dbl>       <dbl>       <dbl>          <dbl>
-##  1 MIDDL…         0.0916       0.357       0.375      0.134         0.0422 
-##  2 MIDDL…         0.0948       0.445       0.344      0.0887        0.0277 
-##  3 MIDDL…         0.0720       0.404       0.382      0.0969        0.0446 
-##  4 MIDDL…         0.0983       0.390       0.379      0.0943        0.0380 
-##  5 MIDDL…         0.0670       0.379       0.365      0.142         0.0473 
-##  6 MIDDL…         0.0573       0.453       0.352      0.105         0.0324 
-##  7 MIDDL…         0.0791       0.475       0.368      0.0691        0.00949
-##  8 MIDDL…         0.137        0.450       0.337      0.0650        0.0117 
-##  9 MIDDL…         0.0752       0.478       0.329      0.0947        0.0230 
-## 10 MIDDL…         0.0830       0.474       0.322      0.0892        0.0311 
-## # … with 638 more rows, and 5 more variables: by_auto <dbl>,
-## #   by_pub_trans <dbl>, by_bike <dbl>, by_walk <dbl>,
-## #   med_house_income <dbl>
+## # A tibble: 648 x 14
+##    county hs_grad  bach master commute_less10 commute1030 commute3060
+##    <chr>    <dbl> <dbl>  <dbl>          <dbl>       <dbl>       <dbl>
+##  1 MIDDL…   0.389 0.188 0.100          0.0916       0.357       0.375
+##  2 MIDDL…   0.167 0.400 0.130          0.0948       0.445       0.344
+##  3 MIDDL…   0.184 0.317 0.139          0.0720       0.404       0.382
+##  4 MIDDL…   0.258 0.322 0.144          0.0983       0.390       0.379
+##  5 MIDDL…   0.301 0.177 0.0742         0.0670       0.379       0.365
+##  6 MIDDL…   0.159 0.310 0.207          0.0573       0.453       0.352
+##  7 MIDDL…   0.268 0.247 0.149          0.0791       0.475       0.368
+##  8 MIDDL…   0.261 0.300 0.126          0.137        0.450       0.337
+##  9 MIDDL…   0.315 0.198 0.140          0.0752       0.478       0.329
+## 10 MIDDL…   0.151 0.348 0.151          0.0830       0.474       0.322
+## # … with 638 more rows, and 7 more variables: commute6090 <dbl>,
+## #   commute_over90 <dbl>, by_auto <dbl>, by_pub_trans <dbl>,
+## #   by_bike <dbl>, by_walk <dbl>, med_house_income <dbl>
 ```
 
 
 ------
+
+## mutate
+
+### scenario
+
+- The non-profit has emailed you back and indicated that they want to report on the income quintiles and measures of educational attainment and requested that you do this for them. You're a rockstar and a kickass programmer so you oblige
+- they also ask for:
+  - tract
+  - a combined measure of bach masters and doctoral
+  
+
+```r
+commute <- mutate(commute, hh_inc_quin = ntile(med_house_income, 5),
+         edu_attain = bach + master)
+
+commute <- select(commute, -bach, -master)
+```
+
+
+
+
+## Writing Data
+
+
+
+They define the greater boston area as Suffolk, Middlesex, and Norfolk counties. 
+
+before we go ahead and start cleaning this data, we need to learn the tools to do so. Please bear with me! 
+  
+  
+  - recall how to load the tidyverse
+- we'll read in the `ACS_1317_TRACT.csv` file located in the `data` directory
+  - putting this together the file path is `data/ACS_1317_TRACT.csv`.
+  - store it in the variable `acs_raw`
+
+
+
+
+
+------
+
+old notes
+
+To learn these tools we will work with a role-play / workthrough. 
+a local non-profit is interested in learning about the demographic characteristics of the greater boston area. They are specifically interested to learn more about the relationship between the age, race, and economic status. They've come to you to provide them with the relevant data. you have acces to the annual BARI census data and you will curate the data for them. 
+
 
 Alright, so now I want to talk about the `!` (called the _**bang**_ operator) and its nuance. See how we put `!` in front of our `=`? The bang operator essentially checks the opposite of a thing. So in this case it checked the opposite of equals. If we put `!` in front of a logical expression, it will reverse the outcome. 
 
@@ -374,88 +421,5 @@ Alright, so now I want to talk about the `!` (called the _**bang**_ operator) an
 ```
 
 
-
-
-
-
-
-### scenario
-
 - we have now selected the columns we need to provide
-
-## mutate
-
-### scenario
-
-- The non-profit has emailed you back and indicated that they want to report on the income quintiles and requested that you do this for them. You're a rockstar and a kickass programmer so you're like, hell yah. 
-- they also ask for:
-  - tract
-  - a combined measure of bach masters and doctoral
-  
-
-```r
-acs_raw %>% 
-  mutate(hh_inc_quin = ntile(med_house_income, 5))
-```
-
-```
-## # A tibble: 1,478 x 60
-##    ct_id_10 name  total_pop pop_den sex_ratio age_u18 age1834 age3564
-##       <dbl> <chr>     <dbl>   <dbl>     <dbl>   <dbl>   <dbl>   <dbl>
-##  1  2.50e10 Cens…      4585    333.     1.13    0.234   0.202   0.398
-##  2  2.50e10 Cens…      2165   1070.     1.32    0.181   0.151   0.461
-##  3  2.50e10 Cens…      6917   2113.     1.13    0.171   0.214   0.437
-##  4  2.50e10 Cens…      7278   1346.     1.12    0.203   0.227   0.436
-##  5  2.50e10 Cens…      5059   2894.     1.30    0.177   0.203   0.430
-##  6  2.50e10 Cens…      6632    472.     1.11    0.163   0.237   0.439
-##  7  2.50e10 Cens…      3259   8022.     1.25    0.191   0.326   0.380
-##  8  2.50e10 Cens…      2097   5191.     0.908   0.202   0.183   0.466
-##  9  2.50e10 Cens…      3098    239.     0.990   0.188   0.150   0.462
-## 10  2.50e10 Cens…      3982  17065.     1.19    0.244   0.286   0.342
-## # … with 1,468 more rows, and 52 more variables: age_o65 <dbl>,
-## #   for_born <dbl>, white <dbl>, black <dbl>, asian <dbl>, hispanic <dbl>,
-## #   two_or_more <dbl>, eth_het <dbl>, med_house_income <dbl>,
-## #   pub_assist <dbl>, gini <dbl>, fam_pov_per <dbl>, unemp_rate <dbl>,
-## #   total_house_h <dbl>, fam_house_per <dbl>, fem_head_per <dbl>,
-## #   same_sex_coup_per <dbl>, grand_head_per <dbl>, less_than_hs <dbl>,
-## #   hs_grad <dbl>, some_coll <dbl>, bach <dbl>, master <dbl>, prof <dbl>,
-## #   doc <dbl>, commute_less10 <dbl>, commute1030 <dbl>, commute3060 <dbl>,
-## #   commute6090 <dbl>, commute_over90 <dbl>, by_auto <dbl>,
-## #   by_pub_trans <dbl>, by_bike <dbl>, by_walk <dbl>,
-## #   total_house_units <dbl>, vacant_unit_per <dbl>, renters_per <dbl>,
-## #   home_own_per <dbl>, med_gross_rent <dbl>, med_home_val <dbl>,
-## #   med_yr_built_raw <dbl>, med_yr_built <chr>, med_yr_moved_inraw <dbl>,
-## #   med_yr_rent_moved_in <dbl>, area_acres <dbl>, town_id <dbl>,
-## #   town <chr>, fips_stco <dbl>, county <chr>, area_acr_1 <dbl>,
-## #   m_atown <chr>, hh_inc_quin <int>
-```
-
-_i need to introduce measures of central tendency and summar stats in between this_
-
-- groups
-- summarizing
-
-
-using the `name` column I can consider introducing string methods
-  - this would probably be better done with text reviews or something
-  
-  
-
-
-## writing data lol
-
-
-
-They define the greater boston area as Suffolk, Middlesex, and Norfolk counties. 
-
-before we go ahead and start cleaning this data, we need to learn the tools to do so. Please bear with me! 
-  
-  
-  - recall how to load the tidyverse
-- we'll read in the `ACS_1317_TRACT.csv` file located in the `data` directory
-  - putting this together the file path is `data/ACS_1317_TRACT.csv`.
-  - store it in the variable `acs_raw`
-
-
-To learn these tools we will work with a role-play / workthrough. 
-a local non-profit is interested in learning about the demographic characteristics of the greater boston area. They are specifically interested to learn more about the relationship between the age, race, and economic status. They've come to you to provide them with the relevant data. you have acces to the annual BARI census data and you will curate the data for them. 
+-

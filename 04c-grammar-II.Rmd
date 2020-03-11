@@ -92,7 +92,7 @@ p +
 
 By changing the extent of our axes this relationship seems much more robust! Such a visualization could spur further validation of this ACS data.
 
-> Remember, ACS data come from samples and sometimes those samples are small. Because of these small samples, we may very well get values that are not properly representative. It is on you to decide whether or not you should include or exclude the values! 
+> Remember, ACS data come from samples and sometimes those samples are small. Because of these small sample sizes, we may very well get values that are not properly representative. It is on you to decide whether or not you should include or exclude the values!
 
 ### Labeling
 
@@ -145,13 +145,13 @@ In addition to being able to control the **defaults**, the **layers**, and now t
 
 While you're likely to create 98% of your visualizations without ever manipulating the coordinates, it is still good knowledge to have! 
 
-As we have mentioned and alluded to, we are working in a two-dimensional space—meaning with x and y coordinates. When working in two-dimensions, thee cartesian plane is the natural choice for a coordinate reference system. In all of our plots, this has been the default.
+As we have mentioned and alluded to, we are working in a two-dimensional space—meaning with x and y coordinates. When working in two-dimensions, thee cartesian plane is the natural choice for a coordinate reference system. In all of our plots, this has been the default. Behind the scenes, ggplot is essentially adding a `coord_cartesian()` layer to your plot.
+
+> Think of this much of the same way that your scales are inferred.
 
 If, however, we find the need to alter or manipulate the coordinate system the tools are available to us. We've actually already used one, `coord_flip()`. Like, with scales, all coordinate based functions are prefixed with `coord_()`.
 
-`coord_flip()`
-`coord_cartesian()` - our default
-`coord_polar()`
+You're most likely 
 
 ## Facets
 

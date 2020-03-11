@@ -6,6 +6,7 @@ acs_raw <- read_csv("data/ACS_1317_TRACT.csv")
 
 commute <- select(acs_raw,
                   county,
+                  hs_grad, bach, master,
                   starts_with("commute"),
                   starts_with("by"),
                   med_house_income)
@@ -180,52 +181,27 @@ gba_commute
 
 ------
 
-Alright, so now I want to talk about the `!` (called the _**bang**_ operator) and its nuance. See how we put `!` in front of our `=`? The bang operator essentially checks the opposite of a thing. So in this case it checked the opposite of equals. If we put `!` in front of a logical expression, it will reverse the outcome. 
-
-```{r}
-1 == 1
-!(1 == 1)
-```
-
-
-
-
-
-
-
-### scenario
-
-- we have now selected the columns we need to provide
-
 ## mutate
 
 ### scenario
 
-- The non-profit has emailed you back and indicated that they want to report on the income quintiles and requested that you do this for them. You're a rockstar and a kickass programmer so you're like, hell yah. 
+- The non-profit has emailed you back and indicated that they want to report on the income quintiles and measures of educational attainment and requested that you do this for them. You're a rockstar and a kickass programmer so you oblige
 - they also ask for:
   - tract
   - a combined measure of bach masters and doctoral
   
 ```{r max.print=10}
 
-acs_raw %>% 
-  mutate(hh_inc_quin = ntile(med_house_income, 5))
+commute <- mutate(commute, hh_inc_quin = ntile(med_house_income, 5),
+         edu_attain = bach + master)
 
+commute <- select(commute, -bach, -master)
 ```
 
-_i need to introduce measures of central tendency and summar stats in between this_
-
-- groups
-- summarizing
 
 
-using the `name` column I can consider introducing string methods
-  - this would probably be better done with text reviews or something
-  
-  
 
-
-## writing data lol
+## Writing Data
 
 
 
@@ -240,5 +216,24 @@ before we go ahead and start cleaning this data, we need to learn the tools to d
   - store it in the variable `acs_raw`
 
 
+
+
+
+------
+
+old notes
+
 To learn these tools we will work with a role-play / workthrough. 
 a local non-profit is interested in learning about the demographic characteristics of the greater boston area. They are specifically interested to learn more about the relationship between the age, race, and economic status. They've come to you to provide them with the relevant data. you have acces to the annual BARI census data and you will curate the data for them. 
+
+
+Alright, so now I want to talk about the `!` (called the _**bang**_ operator) and its nuance. See how we put `!` in front of our `=`? The bang operator essentially checks the opposite of a thing. So in this case it checked the opposite of equals. If we put `!` in front of a logical expression, it will reverse the outcome. 
+
+```{r}
+1 == 1
+!(1 == 1)
+```
+
+
+- we have now selected the columns we need to provide
+-

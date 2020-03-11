@@ -12,8 +12,6 @@ You may have heard of the 80/20 rule, or at least one of the many 80/20 rules. T
 
 In this chapter we will learn how to preview data, select columns, arrange rows, and filter rows. This is where we get hands on with our data. This is just about as physical as we will be able to get unless you want to open up the raw csv and edit the data there!
 
-#### CHECK THIS LATER
-
 > Note: I do not recommend editing any csvs directly. That statement was in jest. We will cover the concept of reproducibility.
 
 
@@ -23,13 +21,13 @@ The data we read in in the last chapter was only a select few variables from the
 
 ## Scenario:
 
-A local non-profit is interested in the commuting behavior of Greater Boston residents. Your advisor suggested that you assist the non-profit in their work. You've just had coffee with the project manager to learn more about what their specific research question is. It seems that the extension of the Green Line is of great interest to them. They spoke at length about the history of the Big Dig and its impact on commuters working in the city. They look at their watch and realize they're about to miss the commuter train home. You shake their hand, thank them for their time (and the free coffee because you're a grad student), and affirm that you will email them in a week or so with some data for them to work with.
+A local non-profit is interested in the commuting behavior of Greater Boston residents. Your advisor suggested that you assist the non-profit in their work. You've just had coffee with the project manager to learn more about what their specific research question is. It seems that the extension of the Green Line is of great interest to them. She spoke at length about the history of the Big Dig and its impact on commuters working in the city. This poured over into a conversation about the spatial and social stratification of a city. She looks at her watch and realizes she's about to miss the commuter train home. You shake their hand, thank them for their time (and the free coffee because you're a grad student), and affirm that you will email them in a week or so with some data for them to work with.
 
 https://www.mass.gov/green-line-extension-project-glx
 https://en.wikipedia.org/wiki/Big_Dig
 
 
-You're back at your apartment, french press next your laptop, though not too close, notes open, and ready to begin. You review your notes and realize, while you now have a rather good understanding of _what_ the Green Line Extensions is and the impact that the Big Dig had, you really have no idea what about commuting behavior in Greater Boston they are interested in. You realize you did not even confirm what constitutes the Greater Boston area. You push down the coffee grinds and pour your first cup of coffee. This will take at least two cups of coffee. 
+You're back at your apartment, french press next your laptop—though not too close—notes open, and ready to begin. You pore over your notes and realize while you now have a rather good understanding of _what_ the Green Line Extensions is and the impact that the Big Dig had, you really have no idea what about commuting behavior in Greater Boston they are interested in. You realize you did not even confirm what constitutes the Greater Boston area. You push down the coffee grinds and pour your first cup of coffee. This will take at least two cups of coffee. 
 
 The above scenario sounds like something out of a stress dream. This is scenario that I have found myself in many times and I am sure that you will find yourself in at one point as well. The more comfortable you get with data analysis and asking good questions, the more guided and directed you can make these seemingly vague objectives. 
 
@@ -307,7 +305,7 @@ During these exercises, I hope you were looking at the data and thinking about w
 
 ### Exercise
 
-It is now incumbent upon you to curate the data BARI Census Indicator dataset for the non-profit. Refamiliarize yourself with the data. Select a subset of columns that you believe will provide the best insight into commuting behavior in the Greater Boston Area. 
+It is now incumbent upon you to curate the data BARI Census Indicator dataset for the non-profit. Refamiliarize yourself with the data. Select a subset of columns that you believe will provide the best insight into commuting behavior in the Greater Boston Area while also providing demographic insight into the the area. 
 
 When making decisions like this, I like to think of a quote from The Master of Disguise:
 
@@ -320,6 +318,7 @@ Below is one approach to this question. For this, I have selected all columns pe
 ```{r}
 commute <- select(acs_raw,
                   county,
+                  hs_grad, bach, master,
                   starts_with("commute"),
                   starts_with("by"),
                   med_house_income)

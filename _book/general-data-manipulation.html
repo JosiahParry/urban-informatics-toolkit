@@ -24,7 +24,7 @@
 <meta name="author" content="Josiah Parry" />
 
 
-<meta name="date" content="2020-03-10" />
+<meta name="date" content="2020-03-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -140,14 +140,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6" data-path="general-data-manipulation.html"><a href="general-data-manipulation.html"><i class="fa fa-check"></i><b>6</b> General data manipulation</a></li>
 <li class="chapter" data-level="7" data-path="thats-too-much-data.html"><a href="thats-too-much-data.html"><i class="fa fa-check"></i><b>7</b> That’s <em>too much</em> data</a></li>
 <li class="chapter" data-level="8" data-path="the-pipe.html"><a href="the-pipe.html"><i class="fa fa-check"></i><b>8</b> The pipe <code>%&gt;%</code></a></li>
-<li class="part"><span><b>II II Vizualization Strategies</b></span></li>
 <li class="chapter" data-level="9" data-path="data-structures.html"><a href="data-structures.html"><i class="fa fa-check"></i><b>9</b> Data Structures</a></li>
-<li class="chapter" data-level="10" data-path="layered-i.html"><a href="layered-i.html"><i class="fa fa-check"></i><b>10</b> Grammer of layered graphics I</a></li>
-<li class="chapter" data-level="11" data-path="visualizing-trends-and-relationships.html"><a href="visualizing-trends-and-relationships.html"><i class="fa fa-check"></i><b>11</b> Visualizing Trends and Relationships</a></li>
-<li class="chapter" data-level="12" data-path="grammer-of-layered-graphics-ii.html"><a href="grammer-of-layered-graphics-ii.html"><i class="fa fa-check"></i><b>12</b> Grammer of layered graphics II</a></li>
-<li class="chapter" data-level="13" data-path="visualizing-beyond-2-dimensions.html"><a href="visualizing-beyond-2-dimensions.html"><i class="fa fa-check"></i><b>13</b> Visualizing beyond 2-dimensions</a></li>
-<li class="chapter" data-level="14" data-path="summary-statistics.html"><a href="summary-statistics.html"><i class="fa fa-check"></i><b>14</b> Summary statistics</a></li>
-<li class="chapter" data-level="15" data-path="summarizing-the-tidy-way.html"><a href="summarizing-the-tidy-way.html"><i class="fa fa-check"></i><b>15</b> summarizing the tidy way</a></li>
+<li class="chapter" data-level="10" data-path="summary-statistics.html"><a href="summary-statistics.html"><i class="fa fa-check"></i><b>10</b> Summary statistics</a></li>
+<li class="chapter" data-level="11" data-path="summarizing-the-tidy-way.html"><a href="summarizing-the-tidy-way.html"><i class="fa fa-check"></i><b>11</b> summarizing the tidy way</a></li>
+<li class="part"><span><b>II II Vizualization Strategies</b></span></li>
+<li class="chapter" data-level="12" data-path="layered-i.html"><a href="layered-i.html"><i class="fa fa-check"></i><b>12</b> Grammer of layered graphics I</a></li>
+<li class="chapter" data-level="13" data-path="visualizing-trends-and-relationships.html"><a href="visualizing-trends-and-relationships.html"><i class="fa fa-check"></i><b>13</b> Visualizing Trends and Relationships</a></li>
+<li class="chapter" data-level="14" data-path="grammer-of-layered-graphics-ii.html"><a href="grammer-of-layered-graphics-ii.html"><i class="fa fa-check"></i><b>14</b> Grammer of layered graphics II</a></li>
+<li class="chapter" data-level="15" data-path="visualizing-beyond-2-dimensions.html"><a href="visualizing-beyond-2-dimensions.html"><i class="fa fa-check"></i><b>15</b> Visualizing beyond 2-dimensions</a></li>
 <li class="chapter" data-level="16" data-path="i-have-two-datasets-what-now.html"><a href="i-have-two-datasets-what-now.html"><i class="fa fa-check"></i><b>16</b> I have two datasets, what now?</a></li>
 <li class="chapter" data-level="17" data-path="spatial-analysis.html"><a href="spatial-analysis.html"><i class="fa fa-check"></i><b>17</b> Spatial Analysis</a></li>
 <li class="chapter" data-level="18" data-path="creating-ecometrics.html"><a href="creating-ecometrics.html"><i class="fa fa-check"></i><b>18</b> Creating Ecometrics</a></li>
@@ -181,20 +181,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Now that you have the ability to read in data, it is important that you get comfortable handling it. Some people call the process of rearranging, cleaning, and reshaping data massaging, plumbing, engineering, and myriad other names. Here, we will refer to this as data manipulation. This is a preferrable catch-all term that does not ilicit images of toilets or Phoebe Buffay (she was a masseuse!).</p>
 <p>You may have heard of the 80/20 rule, or at least one of the many 80/20 rules. The 80/20 rule I’m referring to, is the idea that data scientists will spend 80% or more of their time cleaning and manipulating their data. The other 20% is the analysis part—creating statistics and models. I mention this because working with data is <em>mostly</em> data manipulation and only <em>some</em> statistics. Be prepared to get your hands dirty with data—euphamisms like this is probably why the phrase <em>data plumbing</em> ever came about.</p>
 <p>In this chapter we will learn how to preview data, select columns, arrange rows, and filter rows. This is where we get hands on with our data. This is just about as physical as we will be able to get unless you want to open up the raw csv and edit the data there!</p>
-<div id="check-this-later" class="section level4">
-<h4><span class="header-section-number">6.0.0.1</span> CHECK THIS LATER</h4>
 <blockquote>
 <p>Note: I do not recommend editing any csvs directly. That statement was in jest. We will cover the concept of reproducibility.</p>
 </blockquote>
 <p>This is all to say that you will find yourself with messy, unsanitized, gross, not fun to look at data most of the time. Because of this, it is really important that we have the skills to clean our data. Right now we’re going to go over the foundational skills we will learn how to select columns and rows, filter data, and create new columns, and arrange our data. To do this, we will be using the <a href="https://dplyr.tidyverse.org"><code>dplyr</code></a> package from the tidyverse.</p>
 <p>The data we read in in the last chapter was only a select few variables from the annual census data release that the team at the Boston Area Research Initiative (BARI) provides. These census indicators are used to provide a picture into the changing landscape of Boston and Massachussettes more gnerally. In this chapter we will work through a rather real life scenario that you may very well encounter using the BARI data.</p>
-</div>
 <div id="scenario" class="section level2">
 <h2><span class="header-section-number">6.1</span> Scenario:</h2>
-<p>A local non-profit is interested in the commuting behavior of Greater Boston residents. Your advisor suggested that you assist the non-profit in their work. You’ve just had coffee with the project manager to learn more about what their specific research question is. It seems that the extension of the Green Line is of great interest to them. They spoke at length about the history of the Big Dig and its impact on commuters working in the city. They look at their watch and realize they’re about to miss the commuter train home. You shake their hand, thank them for their time (and the free coffee because you’re a grad student), and affirm that you will email them in a week or so with some data for them to work with.</p>
+<p>A local non-profit is interested in the commuting behavior of Greater Boston residents. Your advisor suggested that you assist the non-profit in their work. You’ve just had coffee with the project manager to learn more about what their specific research question is. It seems that the extension of the Green Line is of great interest to them. She spoke at length about the history of the Big Dig and its impact on commuters working in the city. This poured over into a conversation about the spatial and social stratification of a city. She looks at her watch and realizes she’s about to miss the commuter train home. You shake their hand, thank them for their time (and the free coffee because you’re a grad student), and affirm that you will email them in a week or so with some data for them to work with.</p>
 <p><a href="https://www.mass.gov/green-line-extension-project-glx" class="uri">https://www.mass.gov/green-line-extension-project-glx</a>
 <a href="https://en.wikipedia.org/wiki/Big_Dig" class="uri">https://en.wikipedia.org/wiki/Big_Dig</a></p>
-<p>You’re back at your apartment, french press next your laptop, though not too close, notes open, and ready to begin. You review your notes and realize, while you now have a rather good understanding of <em>what</em> the Green Line Extensions is and the impact that the Big Dig had, you really have no idea what about commuting behavior in Greater Boston they are interested in. You realize you did not even confirm what constitutes the Greater Boston area. You push down the coffee grinds and pour your first cup of coffee. This will take at least two cups of coffee.</p>
+<p>You’re back at your apartment, french press next your laptop—though not too close—notes open, and ready to begin. You pore over your notes and realize while you now have a rather good understanding of <em>what</em> the Green Line Extensions is and the impact that the Big Dig had, you really have no idea what about commuting behavior in Greater Boston they are interested in. You realize you did not even confirm what constitutes the Greater Boston area. You push down the coffee grinds and pour your first cup of coffee. This will take at least two cups of coffee.</p>
 <p>The above scenario sounds like something out of a stress dream. This is scenario that I have found myself in many times and I am sure that you will find yourself in at one point as well. The more comfortable you get with data analysis and asking good questions, the more guided and directed you can make these seemingly vague objectives.</p>
 <blockquote>
 <p>At the end of this chapter, we will expound upon ways to prevent this in the future.</p>
@@ -795,7 +792,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>During these exercises, I hope you were looking at the data and thinking about what may be helpful to the non-profit. Again, the goal is to provide them with what is useful, but not more than they need.</p>
 <div id="exercise-2" class="section level3">
 <h3><span class="header-section-number">6.4.1</span> Exercise</h3>
-<p>It is now incumbent upon you to curate the data BARI Census Indicator dataset for the non-profit. Refamiliarize yourself with the data. Select a subset of columns that you believe will provide the best insight into commuting behavior in the Greater Boston Area.</p>
+<p>It is now incumbent upon you to curate the data BARI Census Indicator dataset for the non-profit. Refamiliarize yourself with the data. Select a subset of columns that you believe will provide the best insight into commuting behavior in the Greater Boston Area while also providing demographic insight into the the area.</p>
 <p>When making decisions like this, I like to think of a quote from The Master of Disguise:</p>
 <blockquote>
 <p>“Answer these questions for yourself: who? Why? Where? How?”</p>
@@ -804,9 +801,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Below is one approach to this question. For this, I have selected all columns pertaining to commute time (columns that start with <code>commute</code>), the method by which people commute (begin with <code>by</code>), meidan household income, and the name of the census tract. The name of the census tract will be helpful for identifying “where”.</p>
 <div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb59-1" data-line-number="1">commute &lt;-<span class="st"> </span><span class="kw">select</span>(acs_raw,</a>
 <a class="sourceLine" id="cb59-2" data-line-number="2">                  county,</a>
-<a class="sourceLine" id="cb59-3" data-line-number="3">                  <span class="kw">starts_with</span>(<span class="st">&quot;commute&quot;</span>),</a>
-<a class="sourceLine" id="cb59-4" data-line-number="4">                  <span class="kw">starts_with</span>(<span class="st">&quot;by&quot;</span>),</a>
-<a class="sourceLine" id="cb59-5" data-line-number="5">                  med_house_income)</a></code></pre></div>
+<a class="sourceLine" id="cb59-3" data-line-number="3">                  hs_grad, bach, master,</a>
+<a class="sourceLine" id="cb59-4" data-line-number="4">                  <span class="kw">starts_with</span>(<span class="st">&quot;commute&quot;</span>),</a>
+<a class="sourceLine" id="cb59-5" data-line-number="5">                  <span class="kw">starts_with</span>(<span class="st">&quot;by&quot;</span>),</a>
+<a class="sourceLine" id="cb59-6" data-line-number="6">                  med_house_income)</a></code></pre></div>
 </div>
 </div>
 <div id="asking-good-questions" class="section level2">
