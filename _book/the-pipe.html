@@ -143,15 +143,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9" data-path="data-structures.html"><a href="data-structures.html"><i class="fa fa-check"></i><b>9</b> Data Structures</a></li>
 <li class="chapter" data-level="10" data-path="summary-statistics.html"><a href="summary-statistics.html"><i class="fa fa-check"></i><b>10</b> Summary statistics</a></li>
 <li class="chapter" data-level="11" data-path="summarizing-the-tidy-way.html"><a href="summarizing-the-tidy-way.html"><i class="fa fa-check"></i><b>11</b> summarizing the tidy way</a></li>
-<li class="part"><span><b>II II Vizualization Strategies</b></span></li>
+<li class="part"><span><b>II Vizualization Strategies</b></span></li>
 <li class="chapter" data-level="12" data-path="layered-i.html"><a href="layered-i.html"><i class="fa fa-check"></i><b>12</b> Grammer of layered graphics I</a></li>
 <li class="chapter" data-level="13" data-path="visualizing-trends-and-relationships.html"><a href="visualizing-trends-and-relationships.html"><i class="fa fa-check"></i><b>13</b> Visualizing Trends and Relationships</a></li>
 <li class="chapter" data-level="14" data-path="grammer-of-layered-graphics-ii.html"><a href="grammer-of-layered-graphics-ii.html"><i class="fa fa-check"></i><b>14</b> Grammer of layered graphics II</a></li>
 <li class="chapter" data-level="15" data-path="visualizing-beyond-2-dimensions.html"><a href="visualizing-beyond-2-dimensions.html"><i class="fa fa-check"></i><b>15</b> Visualizing beyond 2-dimensions</a></li>
+<li class="part"><span><b>III More than hammer and nails</b></span></li>
 <li class="chapter" data-level="16" data-path="i-have-two-datasets-what-now.html"><a href="i-have-two-datasets-what-now.html"><i class="fa fa-check"></i><b>16</b> I have two datasets, what now?</a></li>
 <li class="chapter" data-level="17" data-path="spatial-analysis.html"><a href="spatial-analysis.html"><i class="fa fa-check"></i><b>17</b> Spatial Analysis</a></li>
 <li class="chapter" data-level="18" data-path="creating-ecometrics.html"><a href="creating-ecometrics.html"><i class="fa fa-check"></i><b>18</b> Creating Ecometrics</a></li>
-<li class="part"><span><b>III Case Studies</b></span></li>
+<li class="part"><span><b>IV Case Studies</b></span></li>
 <li class="chapter" data-level="19" data-path="case-study-twitter-data.html"><a href="case-study-twitter-data.html"><i class="fa fa-check"></i><b>19</b> Case Study: Twitter Data</a></li>
 <li class="chapter" data-level="20" data-path="various-things-that-i-didnt-cover-well.html"><a href="various-things-that-i-didnt-cover-well.html"><i class="fa fa-check"></i><b>20</b> Various things that i didn’t cover well</a></li>
 <li class="chapter" data-level="21" data-path="schools-of-urban-informatics.html"><a href="schools-of-urban-informatics.html"><i class="fa fa-check"></i><b>21</b> Schools of Urban Informatics</a></li>
@@ -256,43 +257,17 @@ new_col_tbl &lt;- mutate(smaller_tbl, ...)</code></pre>
 <h2><span class="header-section-number">8.2</span> Revisiting our scenario</h2>
 <p>Now that we have the pipe operator at our fingertips, we ought to think about how we can incorporate it into our previous work. In our earlier scenario we</p>
 <div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb110-1" data-line-number="1">acs_raw &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data/ACS_1317_TRACT.csv&quot;</span>)</a>
-<a class="sourceLine" id="cb110-2" data-line-number="2"><span class="co">## Parsed with column specification:</span></a>
-<a class="sourceLine" id="cb110-3" data-line-number="3"><span class="co">## cols(</span></a>
-<a class="sourceLine" id="cb110-4" data-line-number="4"><span class="co">##   .default = col_double(),</span></a>
-<a class="sourceLine" id="cb110-5" data-line-number="5"><span class="co">##   name = col_character(),</span></a>
-<a class="sourceLine" id="cb110-6" data-line-number="6"><span class="co">##   med_yr_built = col_character(),</span></a>
-<a class="sourceLine" id="cb110-7" data-line-number="7"><span class="co">##   town = col_character(),</span></a>
-<a class="sourceLine" id="cb110-8" data-line-number="8"><span class="co">##   county = col_character(),</span></a>
-<a class="sourceLine" id="cb110-9" data-line-number="9"><span class="co">##   m_atown = col_character()</span></a>
-<a class="sourceLine" id="cb110-10" data-line-number="10"><span class="co">## )</span></a>
-<a class="sourceLine" id="cb110-11" data-line-number="11"><span class="co">## See spec(...) for full column specifications.</span></a>
-<a class="sourceLine" id="cb110-12" data-line-number="12"></a>
-<a class="sourceLine" id="cb110-13" data-line-number="13"><span class="kw">select</span>(acs_raw,</a>
-<a class="sourceLine" id="cb110-14" data-line-number="14">       county,</a>
-<a class="sourceLine" id="cb110-15" data-line-number="15">       hs_grad, bach, master,</a>
-<a class="sourceLine" id="cb110-16" data-line-number="16">       <span class="kw">starts_with</span>(<span class="st">&quot;commute&quot;</span>),</a>
-<a class="sourceLine" id="cb110-17" data-line-number="17">       <span class="kw">starts_with</span>(<span class="st">&quot;by&quot;</span>),</a>
-<a class="sourceLine" id="cb110-18" data-line-number="18">       med_house_income) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb110-19" data-line-number="19"><span class="st">  </span><span class="kw">filter</span>(county <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;SUFFOLK&quot;</span>, <span class="st">&quot;NORFOLK&quot;</span>, <span class="st">&quot;MIDDLESEX&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb110-20" data-line-number="20"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">hh_inc_quin =</span> <span class="kw">ntile</span>(med_house_income, <span class="dv">5</span>),</a>
-<a class="sourceLine" id="cb110-21" data-line-number="21">         <span class="dt">edu_attain =</span> bach <span class="op">+</span><span class="st"> </span>master) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb110-22" data-line-number="22"><span class="st">  </span><span class="kw">select</span>(<span class="op">-</span>bach, <span class="op">-</span>master)</a>
-<a class="sourceLine" id="cb110-23" data-line-number="23"><span class="co">## # A tibble: 648 x 14</span></a>
-<a class="sourceLine" id="cb110-24" data-line-number="24"><span class="co">##    county hs_grad commute_less10 commute1030 commute3060 commute6090</span></a>
-<a class="sourceLine" id="cb110-25" data-line-number="25"><span class="co">##    &lt;chr&gt;    &lt;dbl&gt;          &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt;</span></a>
-<a class="sourceLine" id="cb110-26" data-line-number="26"><span class="co">##  1 MIDDL…   0.389         0.0916       0.357       0.375      0.134 </span></a>
-<a class="sourceLine" id="cb110-27" data-line-number="27"><span class="co">##  2 MIDDL…   0.167         0.0948       0.445       0.344      0.0887</span></a>
-<a class="sourceLine" id="cb110-28" data-line-number="28"><span class="co">##  3 MIDDL…   0.184         0.0720       0.404       0.382      0.0969</span></a>
-<a class="sourceLine" id="cb110-29" data-line-number="29"><span class="co">##  4 MIDDL…   0.258         0.0983       0.390       0.379      0.0943</span></a>
-<a class="sourceLine" id="cb110-30" data-line-number="30"><span class="co">##  5 MIDDL…   0.301         0.0670       0.379       0.365      0.142 </span></a>
-<a class="sourceLine" id="cb110-31" data-line-number="31"><span class="co">##  6 MIDDL…   0.159         0.0573       0.453       0.352      0.105 </span></a>
-<a class="sourceLine" id="cb110-32" data-line-number="32"><span class="co">##  7 MIDDL…   0.268         0.0791       0.475       0.368      0.0691</span></a>
-<a class="sourceLine" id="cb110-33" data-line-number="33"><span class="co">##  8 MIDDL…   0.261         0.137        0.450       0.337      0.0650</span></a>
-<a class="sourceLine" id="cb110-34" data-line-number="34"><span class="co">##  9 MIDDL…   0.315         0.0752       0.478       0.329      0.0947</span></a>
-<a class="sourceLine" id="cb110-35" data-line-number="35"><span class="co">## 10 MIDDL…   0.151         0.0830       0.474       0.322      0.0892</span></a>
-<a class="sourceLine" id="cb110-36" data-line-number="36"><span class="co">## # … with 638 more rows, and 8 more variables: commute_over90 &lt;dbl&gt;,</span></a>
-<a class="sourceLine" id="cb110-37" data-line-number="37"><span class="co">## #   by_auto &lt;dbl&gt;, by_pub_trans &lt;dbl&gt;, by_bike &lt;dbl&gt;, by_walk &lt;dbl&gt;,</span></a>
-<a class="sourceLine" id="cb110-38" data-line-number="38"><span class="co">## #   med_house_income &lt;dbl&gt;, hh_inc_quin &lt;int&gt;, edu_attain &lt;dbl&gt;</span></a></code></pre></div>
+<a class="sourceLine" id="cb110-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb110-3" data-line-number="3">commute &lt;-<span class="st"> </span><span class="kw">select</span>(acs_raw,</a>
+<a class="sourceLine" id="cb110-4" data-line-number="4">       county,</a>
+<a class="sourceLine" id="cb110-5" data-line-number="5">       hs_grad, bach, master,</a>
+<a class="sourceLine" id="cb110-6" data-line-number="6">       <span class="kw">starts_with</span>(<span class="st">&quot;commute&quot;</span>),</a>
+<a class="sourceLine" id="cb110-7" data-line-number="7">       <span class="kw">starts_with</span>(<span class="st">&quot;by&quot;</span>),</a>
+<a class="sourceLine" id="cb110-8" data-line-number="8">       med_house_income) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb110-9" data-line-number="9"><span class="st">  </span><span class="kw">filter</span>(county <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;SUFFOLK&quot;</span>, <span class="st">&quot;NORFOLK&quot;</span>, <span class="st">&quot;MIDDLESEX&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb110-10" data-line-number="10"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">hh_inc_quin =</span> <span class="kw">ntile</span>(med_house_income, <span class="dv">5</span>),</a>
+<a class="sourceLine" id="cb110-11" data-line-number="11">         <span class="dt">edu_attain =</span> bach <span class="op">+</span><span class="st"> </span>master) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb110-12" data-line-number="12"><span class="st">  </span><span class="kw">select</span>(<span class="op">-</span>bach, <span class="op">-</span>master)</a></code></pre></div>
 
 </div>
 </div>

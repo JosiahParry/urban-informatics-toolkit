@@ -102,10 +102,10 @@ The following sections will use the pipe operator in favor of the above listed a
 
 Now that we have the pipe operator at our fingertips, we ought to think about how we can incorporate it into our previous work. In our earlier scenario we 
 
-```{r}
+```{r message=FALSE}
 acs_raw <- read_csv("data/ACS_1317_TRACT.csv")
 
-select(acs_raw,
+commute <- select(acs_raw,
        county,
        hs_grad, bach, master,
        starts_with("commute"),

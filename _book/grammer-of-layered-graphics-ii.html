@@ -143,15 +143,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9" data-path="data-structures.html"><a href="data-structures.html"><i class="fa fa-check"></i><b>9</b> Data Structures</a></li>
 <li class="chapter" data-level="10" data-path="summary-statistics.html"><a href="summary-statistics.html"><i class="fa fa-check"></i><b>10</b> Summary statistics</a></li>
 <li class="chapter" data-level="11" data-path="summarizing-the-tidy-way.html"><a href="summarizing-the-tidy-way.html"><i class="fa fa-check"></i><b>11</b> summarizing the tidy way</a></li>
-<li class="part"><span><b>II II Vizualization Strategies</b></span></li>
+<li class="part"><span><b>II Vizualization Strategies</b></span></li>
 <li class="chapter" data-level="12" data-path="layered-i.html"><a href="layered-i.html"><i class="fa fa-check"></i><b>12</b> Grammer of layered graphics I</a></li>
 <li class="chapter" data-level="13" data-path="visualizing-trends-and-relationships.html"><a href="visualizing-trends-and-relationships.html"><i class="fa fa-check"></i><b>13</b> Visualizing Trends and Relationships</a></li>
 <li class="chapter" data-level="14" data-path="grammer-of-layered-graphics-ii.html"><a href="grammer-of-layered-graphics-ii.html"><i class="fa fa-check"></i><b>14</b> Grammer of layered graphics II</a></li>
 <li class="chapter" data-level="15" data-path="visualizing-beyond-2-dimensions.html"><a href="visualizing-beyond-2-dimensions.html"><i class="fa fa-check"></i><b>15</b> Visualizing beyond 2-dimensions</a></li>
+<li class="part"><span><b>III More than hammer and nails</b></span></li>
 <li class="chapter" data-level="16" data-path="i-have-two-datasets-what-now.html"><a href="i-have-two-datasets-what-now.html"><i class="fa fa-check"></i><b>16</b> I have two datasets, what now?</a></li>
 <li class="chapter" data-level="17" data-path="spatial-analysis.html"><a href="spatial-analysis.html"><i class="fa fa-check"></i><b>17</b> Spatial Analysis</a></li>
 <li class="chapter" data-level="18" data-path="creating-ecometrics.html"><a href="creating-ecometrics.html"><i class="fa fa-check"></i><b>18</b> Creating Ecometrics</a></li>
-<li class="part"><span><b>III Case Studies</b></span></li>
+<li class="part"><span><b>IV Case Studies</b></span></li>
 <li class="chapter" data-level="19" data-path="case-study-twitter-data.html"><a href="case-study-twitter-data.html"><i class="fa fa-check"></i><b>19</b> Case Study: Twitter Data</a></li>
 <li class="chapter" data-level="20" data-path="various-things-that-i-didnt-cover-well.html"><a href="various-things-that-i-didnt-cover-well.html"><i class="fa fa-check"></i><b>20</b> Various things that i didn’t cover well</a></li>
 <li class="chapter" data-level="21" data-path="schools-of-urban-informatics.html"><a href="schools-of-urban-informatics.html"><i class="fa fa-check"></i><b>21</b> Schools of Urban Informatics</a></li>
@@ -283,13 +284,55 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <blockquote>
 <p>Think of this much of the same way that your scales are inferred.</p>
 </blockquote>
-<p>If, however, we find the need to alter or manipulate the coordinate system the tools are available to us. We’ve actually already used one, <code>coord_flip()</code>. Like, with scales, all coordinate based functions are prefixed with <code>coord_()</code>.</p>
-<p>You’re most likely</p>
+<p>If, however, we find the need to alter or manipulate the coordinate system the tools are available to us. We’ve actually already used one, <code>coord_flip()</code>. Like, with scales, all coordinate based functions are prefixed with <code>coord_()</code>. If you will need to use these coordinate layers, it will be to essentially change the aspect ratio of your plots.</p>
+<p>We will encounter coordinates much more when we talk about spatial data. For now, though, all you need to know is that they exist and are a major underlying part of your plots.</p>
 </div>
 <div id="facets" class="section level2">
 <h2><span class="header-section-number">14.3</span> Facets</h2>
-<p><code>facet_wrap()</code>
-<code>facet_grid()</code></p>
+<div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb211-1" data-line-number="1">commute &lt;-<span class="st"> </span><span class="kw">select</span>(acs_raw,</a>
+<a class="sourceLine" id="cb211-2" data-line-number="2">       county,</a>
+<a class="sourceLine" id="cb211-3" data-line-number="3">       hs_grad, bach, master,</a>
+<a class="sourceLine" id="cb211-4" data-line-number="4">       <span class="kw">starts_with</span>(<span class="st">&quot;commute&quot;</span>),</a>
+<a class="sourceLine" id="cb211-5" data-line-number="5">       <span class="kw">starts_with</span>(<span class="st">&quot;by&quot;</span>),</a>
+<a class="sourceLine" id="cb211-6" data-line-number="6">       med_house_income) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb211-7" data-line-number="7"><span class="st">  </span><span class="kw">filter</span>(county <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;SUFFOLK&quot;</span>, <span class="st">&quot;NORFOLK&quot;</span>, <span class="st">&quot;MIDDLESEX&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb211-8" data-line-number="8"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">hh_inc_quin =</span> <span class="kw">ntile</span>(med_house_income, <span class="dv">5</span>),</a>
+<a class="sourceLine" id="cb211-9" data-line-number="9">         <span class="dt">edu_attain =</span> bach <span class="op">+</span><span class="st"> </span>master) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb211-10" data-line-number="10"><span class="st">  </span><span class="kw">select</span>(<span class="op">-</span>bach, <span class="op">-</span>master)</a></code></pre></div>
+<p>The last portion of the grammar to visit is facetting. When we facet a plot we are creating what are called “small multiples”, a term coined by the prominent Edward Tufte. A facetting, in other words, creates a graph for each unique level in a categorical variable. Think of this like a <code>group_by()</code> for plotting.</p>
+<p>There are two types of facetting we can do: wrapped and grid. These are done with <code>facet_wrap()</code> and <code>facet_grid()</code> respectively. The reference documentation sums up the differences best:</p>
+<blockquote>
+<p>“<code>facet_grid()</code> forms a matrix of panels defined by row and column faceting variables. It is most useful when you have two discrete variables, and all combinations of the variables exist in the data. If you have only one variable with many levels, try <code>facet_wrap()</code>.”<a href="#fn26" class="footnote-ref" id="fnref26"><sup>26</sup></a></p>
+</blockquote>
+<p>Let’s look at <code>facet_wrap()</code> first. To create the facetting, we need to add <code>facet_wrap()</code> as a layer to our existing plot. There is only one argument that we are required to fulfill and that is the <code>facet</code> argument. <code>facet</code> expects a set of variables defined by the <code>vars()</code> function. <code>vars()</code> is a function used throughout the tidyverse to specify which columns are to be referenced used within the context of a the function it’s being used in.</p>
+<p>To recreate the above plot but facetting by county, we would add <code>facet_wrap(vars(county))</code> as a layer to our plot.</p>
+<div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb212-1" data-line-number="1">p &lt;-<span class="st"> </span>commute <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb212-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(hh_inc_quin)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb212-3" data-line-number="3"><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(med_house_income, edu_attain)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb212-4" data-line-number="4"><span class="st">  </span><span class="kw">geom_point</span>() </a>
+<a class="sourceLine" id="cb212-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb212-6" data-line-number="6">p <span class="op">+</span></a>
+<a class="sourceLine" id="cb212-7" data-line-number="7"><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="kw">vars</span>(county))</a></code></pre></div>
+<p><img src="04c-grammar-II_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<p>With <code>facet_wrap()</code> we are able to explicitly state how many rows or columns of plots there should be. The defaults may be nice, but it’s always good to be explicit about our expecvtations! We set the <code>nrow</code> or <code>ncol</code> argument to do this. Since our above example defaulted to <code>ncol = 3</code>, let’s try this with three rows.</p>
+<div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb213-1" data-line-number="1">p <span class="op">+</span></a>
+<a class="sourceLine" id="cb213-2" data-line-number="2"><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="kw">vars</span>(county), <span class="dt">nrow =</span> <span class="dv">3</span>)</a></code></pre></div>
+<p><img src="04c-grammar-II_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+<p>The grid works a little bit differenly. Rather than specifying which columns to facet on and the number of rows or columns, we can create a grid (or matrix) of small multiples. With <code>facet_grid()</code> we use the <code>rows</code> and <code>cols</code>.</p>
+<p>We can recreate our above graphs by passing <code>vars(county)</code> to either <code>rows</code> or <code>cols</code>. But where <code>facet_grid()</code> shines is when you have data in every pairing of two categorical variables. For example we can we create a facet for each combination of <code>county</code> and <code>hh_inc_quin</code>.</p>
+<div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb214-1" data-line-number="1">p <span class="op">+</span></a>
+<a class="sourceLine" id="cb214-2" data-line-number="2"><span class="st">  </span><span class="kw">facet_grid</span>(<span class="dt">cols =</span> <span class="kw">vars</span>(county),</a>
+<a class="sourceLine" id="cb214-3" data-line-number="3">             <span class="dt">rows =</span> <span class="kw">vars</span>(hh_inc_quin))</a></code></pre></div>
+<p><img src="04c-grammar-II_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+<p>When we create facets, each panel has shares the same scales. We can change this by setting the <code>scales</code> argument to one of <code>&quot;free&quot;</code>, <code>&quot;free_x&quot;</code>, or <code>&quot;free_y&quot;</code>. These in essence, “free up” the scales for each panel. We can choose to share the scales on the x axis by setting <code>scales = &quot;free_y&quot;</code> or vice versa.</p>
+<div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb215-1" data-line-number="1">p <span class="op">+</span></a>
+<a class="sourceLine" id="cb215-2" data-line-number="2"><span class="st">  </span><span class="kw">facet_grid</span>(<span class="dt">cols =</span> <span class="kw">vars</span>(county),</a>
+<a class="sourceLine" id="cb215-3" data-line-number="3">             <span class="dt">rows =</span> <span class="kw">vars</span>(hh_inc_quin),</a>
+<a class="sourceLine" id="cb215-4" data-line-number="4">             <span class="dt">scales =</span> <span class="st">&quot;free&quot;</span>)</a></code></pre></div>
+<p><img src="04c-grammar-II_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
+<blockquote>
+<p>Note: the behavior of <code>scales = &quot;free&quot;</code> changes behavior when set in the context of <code>facet_wrap()</code> vs <code>facet_grid()</code>. The former frees the scales for each panel. The latter frees the scales for either a column or row of panels.</p>
+</blockquote>
 <p>It is also important to note that what we have gone through is by no means exhaustive. You should, at minimum, familiarize yourself with both <code>scale_*_reverse()</code>, and <code>scale_*_binned()</code> in your spare time. There are dozens, if not hundreds, of ggplot2 functions to suit your every whim. And, as you have already briefly seen, the ggplot function universe is not relegated to just ggplot2. There are many other packages which have built custom geoms and other enhancements that may benefit you.</p>
 
 </div>
@@ -298,6 +341,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <hr />
 <ol start="25">
 <li id="fn25"><p><a href="https://ggplot2.tidyverse.org/reference/lims" class="uri">https://ggplot2.tidyverse.org/reference/lims</a><a href="grammer-of-layered-graphics-ii.html#fnref25" class="footnote-back">↩</a></p></li>
+<li id="fn26"><p><a href="https://ggplot2.tidyverse.org/reference/facet_grid.html" class="uri">https://ggplot2.tidyverse.org/reference/facet_grid.html</a><a href="grammer-of-layered-graphics-ii.html#fnref26" class="footnote-back">↩</a></p></li>
 </ol>
 </div>
             </section>

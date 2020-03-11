@@ -1,1 +1,1 @@
-# (PART) II Vizualization Strategies {-}
+# (PART) Vizualization Strategies {-}

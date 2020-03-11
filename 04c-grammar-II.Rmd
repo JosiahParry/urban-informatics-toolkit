@@ -4,9 +4,9 @@
 source("common.R")
 library(tidyverse)
 
-acs_messy <- read_csv("data/ACS_1317_TRACT.csv")
+acs_raw <- read_csv("data/ACS_1317_TRACT.csv")
 
-acs <- acs_messy %>% 
+acs <- acs_raw %>% 
   separate(name, sep = ", ", into = c("tract", "county", "state")) %>% 
   mutate(tract = str_remove(tract, "Census Tract ")) %>% 
   na.omit()
@@ -149,22 +149,80 @@ As we have mentioned and alluded to, we are working in a two-dimensional spaceâ€
 
 > Think of this much of the same way that your scales are inferred.
 
-If, however, we find the need to alter or manipulate the coordinate system the tools are available to us. We've actually already used one, `coord_flip()`. Like, with scales, all coordinate based functions are prefixed with `coord_()`.
+If, however, we find the need to alter or manipulate the coordinate system the tools are available to us. We've actually already used one, `coord_flip()`. Like, with scales, all coordinate based functions are prefixed with `coord_()`. If you will need to use these coordinate layers, it will be to essentially change the aspect ratio of your plots.
 
-You're most likely 
+We will encounter coordinates much more when we talk about spatial data. For now, though, all you need to know is that they exist and are a major underlying part of your plots.
+
 
 ## Facets
 
+```{r}
+commute <- select(acs_raw,
+       county,
+       hs_grad, bach, master,
+       starts_with("commute"),
+       starts_with("by"),
+       med_house_income) %>% 
+  filter(county %in% c("SUFFOLK", "NORFOLK", "MIDDLESEX")) %>% 
+  mutate(hh_inc_quin = ntile(med_house_income, 5),
+         edu_attain = bach + master) %>% 
+  select(-bach, -master)
+```
 
-`facet_wrap()`
-`facet_grid()`
+The last portion of the grammar to visit is facetting. When we facet a plot we are creating what are called  "small multiples", a term coined by the prominent Edward Tufte. A facetting, in other words, creates a graph for each unique level in a categorical variable. Think of this like a `group_by()` for plotting.
+
+There are two types of facetting we can do: wrapped and grid. These are done with `facet_wrap()` and `facet_grid()` respectively. The reference documentation sums up the differences best:
+
+> "`facet_grid()` forms a matrix of panels defined by row and column faceting variables. It is most useful when you have two discrete variables, and all combinations of the variables exist in the data. If you have only one variable with many levels, try `facet_wrap()`."[^facet]
+
+Let's look at `facet_wrap()` first. To create the facetting, we need to add `facet_wrap()` as a layer to our existing plot. There is only one argument that we are required to fulfill and that is the `facet` argument. `facet` expects a set of variables defined by the `vars()` function. `vars()` is a function used throughout the tidyverse to specify which columns are to be referenced used within the context of a the function it's being used in. 
+
+To recreate the above plot but facetting by county, we would add `facet_wrap(vars(county))` as a layer to our plot.
+
+```{r warning=FALSE}
+p <- commute %>% 
+  filter(!is.na(hh_inc_quin)) %>% 
+  ggplot(aes(med_house_income, edu_attain)) +
+  geom_point() 
+
+p +
+  facet_wrap(vars(county))
+```
+
+With `facet_wrap()` we are able to explicitly state how many rows or columns of plots there should be. The defaults may be nice, but it's always good to be explicit about our expecvtations! We set the `nrow` or `ncol` argument to do this. Since our above example defaulted to `ncol = 3`, let's try this with three rows.
+
+```{r warning = FALSE}
+p +
+  facet_wrap(vars(county), nrow = 3)
+```
+
+The grid works a little bit differenly. Rather than specifying which columns to facet on and the number of rows or columns, we can create a grid (or matrix) of small multiples. With `facet_grid()` we use the `rows` and `cols`. 
+
+We can recreate our above graphs by passing `vars(county)` to  either `rows` or `cols`. But where `facet_grid()` shines is when you have data in every pairing of two categorical variables. For example we can we create a facet for each combination of `county` and `hh_inc_quin`. 
+
+```{r warning=FALSE}
+p +
+  facet_grid(cols = vars(county),
+             rows = vars(hh_inc_quin))
+```
+
+When we create facets, each panel has shares the same scales. We can change this by setting the `scales` argument to one of `"free"`, `"free_x"`, or `"free_y"`. These in essence, "free up" the scales for each panel. We can choose to share the scales on the x axis by setting `scales = "free_y"` or vice versa.
 
 
+```{r}
+p +
+  facet_grid(cols = vars(county),
+             rows = vars(hh_inc_quin),
+             scales = "free")
+```
 
+
+> Note: the behavior of `scales = "free"` changes behavior when set in the context of `facet_wrap()` vs `facet_grid()`. The former frees the scales for each panel. The latter frees the scales for either a column or row of panels. 
 
 
 It is also important to note that what we have gone through is by no means exhaustive. You should, at minimum, familiarize yourself with both `scale_*_reverse()`, and `scale_*_binned()` in your spare time. There are dozens, if not hundreds, of ggplot2 functions to suit your every whim. And, as you have already briefly seen, the ggplot function universe is not relegated to just ggplot2. There are many other packages which have built custom geoms and other enhancements that may benefit you. 
 
 
 [^lims]: https://ggplot2.tidyverse.org/reference/lims
+[^facet]: https://ggplot2.tidyverse.org/reference/facet_grid.html
   
