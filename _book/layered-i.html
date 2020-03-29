@@ -24,7 +24,7 @@
 <meta name="author" content="Josiah Parry" />
 
 
-<meta name="date" content="2020-03-11" />
+<meta name="date" content="2020-03-28" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -53,9 +53,9 @@
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
@@ -64,14 +64,16 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -80,9 +82,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -179,14 +181,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="layered-i" class="section level1">
 <h1><span class="header-section-number">Chapter 12</span> Grammer of layered graphics I</h1>
-<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb172-1" data-line-number="1"><span class="kw">library</span>(tidyverse)</a>
-<a class="sourceLine" id="cb172-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb172-3" data-line-number="3">acs_messy &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data/ACS_1317_TRACT.csv&quot;</span>)</a>
-<a class="sourceLine" id="cb172-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb172-5" data-line-number="5">acs &lt;-<span class="st"> </span>acs_messy <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb172-6" data-line-number="6"><span class="st">  </span><span class="kw">separate</span>(name, <span class="dt">sep =</span> <span class="st">&quot;, &quot;</span>, <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;tract&quot;</span>, <span class="st">&quot;county&quot;</span>, <span class="st">&quot;state&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb172-7" data-line-number="7"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">tract =</span> <span class="kw">str_remove</span>(tract, <span class="st">&quot;Census Tract &quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb172-8" data-line-number="8"><span class="st">  </span><span class="kw">na.omit</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb172-1"><a href="layered-i.html#cb172-1"></a><span class="kw">library</span>(tidyverse)</span>
+<span id="cb172-2"><a href="layered-i.html#cb172-2"></a></span>
+<span id="cb172-3"><a href="layered-i.html#cb172-3"></a>acs_messy &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data/ACS_1317_TRACT.csv&quot;</span>)</span>
+<span id="cb172-4"><a href="layered-i.html#cb172-4"></a></span>
+<span id="cb172-5"><a href="layered-i.html#cb172-5"></a>acs &lt;-<span class="st"> </span>acs_messy <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb172-6"><a href="layered-i.html#cb172-6"></a><span class="st">  </span><span class="kw">separate</span>(name, <span class="dt">sep =</span> <span class="st">&quot;, &quot;</span>, <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;tract&quot;</span>, <span class="st">&quot;county&quot;</span>, <span class="st">&quot;state&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb172-7"><a href="layered-i.html#cb172-7"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">tract =</span> <span class="kw">str_remove</span>(tract, <span class="st">&quot;Census Tract &quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb172-8"><a href="layered-i.html#cb172-8"></a><span class="st">  </span><span class="kw">na.omit</span>()</span></code></pre></div>
 <p>You’ve made it quite far through this book. Now, I want to bring us back to the very beginning. In the first chapter we created a few visualizations with <code>ggplot2</code>. I want to unpack ggplot2 a bit more and also address some of the more philosophical underpinnings of visualization.</p>
 <p>This chapter introduces you to the idea of the grammar of graphics, discusses when which visualizations are appropriate, and some fundamental design principles follow.</p>
 <div id="the-grammar-of-layered-graphics" class="section level2">
@@ -216,28 +218,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="layers-and-defaults" class="section level2">
 <h2><span class="header-section-number">12.2</span> Layers and defaults</h2>
 <p>In the first chapter of this section we explored these principles but did not put a name to them. Recall that we can use <code>ggplot()</code> by itself and it returns a chart of nothing.</p>
-<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb173-1" data-line-number="1"><span class="kw">ggplot</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="layered-i.html#cb173-1"></a><span class="kw">ggplot</span>()</span></code></pre></div>
 <p><img src="04a-grammar-I_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
 <p>This is because we have not specified any of the defaults. In order for us to plot anything at all, we need to specify what (the data object) will be visualized, which features (the aesthetic mappings), and how (the geoms). When we begin to specify our x and y aesthetics the scales are interpreted.</p>
-<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb174-1" data-line-number="1"><span class="kw">ggplot</span>(acs, <span class="kw">aes</span>(med_house_income, by_auto))</a></code></pre></div>
+<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="layered-i.html#cb174-1"></a><span class="kw">ggplot</span>(acs, <span class="kw">aes</span>(med_house_income, by_auto))</span></code></pre></div>
 <p><img src="04a-grammar-I_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
 <p>The final step is to add the geom layer which will inherit the data, aesthetic mappings, scale, and position while the <code>geom_*()</code> layer dictates the geometry.</p>
-<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb175-1" data-line-number="1"><span class="kw">ggplot</span>(acs, <span class="kw">aes</span>(bach, med_house_income))<span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb175-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="layered-i.html#cb175-1"></a><span class="kw">ggplot</span>(acs, <span class="kw">aes</span>(bach, med_house_income))<span class="op">+</span><span class="st"> </span></span>
+<span id="cb175-2"><a href="layered-i.html#cb175-2"></a><span class="st">  </span><span class="kw">geom_point</span>()</span></code></pre></div>
 <p><img src="04a-grammar-I_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
 <p>While this is the most common way you might define a ggplot, you should also be aware of the fact that each layer can stand on its own without you defining any of the defaults in the <code>ggplot()</code> call. Each geom inherits the defaults from <code>ggplot()</code>, but each <code>geom_*()</code> also has arguments for <code>data</code>, and <code>mapping</code>, providing you with increased flexibility.</p>
 <blockquote>
 <p>Note: the <code>geom_*()</code>s have the data as the second argument so either put the data there or name the argument explicitly. The choice is yours. Choose wisely!</p>
 </blockquote>
 <p>What happens if we provide all of this information to <code>geom_point()</code> and entirely omit <code>ggplot()</code>?</p>
-<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb176-1" data-line-number="1"><span class="kw">geom_point</span>(<span class="kw">aes</span>(med_house_income, by_auto), acs)</a>
-<a class="sourceLine" id="cb176-2" data-line-number="2"><span class="co">## mapping: x = ~med_house_income, y = ~by_auto </span></a>
-<a class="sourceLine" id="cb176-3" data-line-number="3"><span class="co">## geom_point: na.rm = FALSE</span></a>
-<a class="sourceLine" id="cb176-4" data-line-number="4"><span class="co">## stat_identity: na.rm = FALSE</span></a>
-<a class="sourceLine" id="cb176-5" data-line-number="5"><span class="co">## position_identity</span></a></code></pre></div>
+<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb176-1"><a href="layered-i.html#cb176-1"></a><span class="kw">geom_point</span>(<span class="kw">aes</span>(med_house_income, by_auto), acs)</span>
+<span id="cb176-2"><a href="layered-i.html#cb176-2"></a><span class="co">## mapping: x = ~med_house_income, y = ~by_auto </span></span>
+<span id="cb176-3"><a href="layered-i.html#cb176-3"></a><span class="co">## geom_point: na.rm = FALSE</span></span>
+<span id="cb176-4"><a href="layered-i.html#cb176-4"></a><span class="co">## stat_identity: na.rm = FALSE</span></span>
+<span id="cb176-5"><a href="layered-i.html#cb176-5"></a><span class="co">## position_identity</span></span></code></pre></div>
 <p>We see that we do not have the plot, but we do have all of the information required of a layer is printed out to the console. If we add an empty ggplot call ahead of the layer, we will be able to create the plot.</p>
-<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb177-1" data-line-number="1"><span class="kw">ggplot</span>() <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb177-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(med_house_income, by_auto), acs)</a></code></pre></div>
+<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="layered-i.html#cb177-1"></a><span class="kw">ggplot</span>() <span class="op">+</span><span class="st"> </span></span>
+<span id="cb177-2"><a href="layered-i.html#cb177-2"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(med_house_income, by_auto), acs)</span></code></pre></div>
 <p><img src="04a-grammar-I_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
 <p>Being able to specify different data objects within each layer will provie to be extraordinarily helpful when we begin to work with spatial data, or plotting two different data frames with the same axes, or any other creative problem you wish to solve.</p>
 
@@ -246,9 +248,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="footnotes">
 <hr />
 <ol start="21">
-<li id="fn21"><p><a href="https://vita.had.co.nz/papers/layered-grammar.pdf" class="uri">https://vita.had.co.nz/papers/layered-grammar.pdf</a><a href="layered-i.html#fnref21" class="footnote-back">↩</a></p></li>
-<li id="fn22"><p><a href="https://vita.had.co.nz/papers/layered-grammar.pdf" class="uri">https://vita.had.co.nz/papers/layered-grammar.pdf</a><a href="layered-i.html#fnref22" class="footnote-back">↩</a></p></li>
-<li id="fn23"><p><a href="https://vita.had.co.nz/papers/layered-grammar.pdf" class="uri">https://vita.had.co.nz/papers/layered-grammar.pdf</a><a href="layered-i.html#fnref23" class="footnote-back">↩</a></p></li>
+<li id="fn21"><p><a href="https://vita.had.co.nz/papers/layered-grammar.pdf" class="uri">https://vita.had.co.nz/papers/layered-grammar.pdf</a><a href="layered-i.html#fnref21" class="footnote-back">↩︎</a></p></li>
+<li id="fn22"><p><a href="https://vita.had.co.nz/papers/layered-grammar.pdf" class="uri">https://vita.had.co.nz/papers/layered-grammar.pdf</a><a href="layered-i.html#fnref22" class="footnote-back">↩︎</a></p></li>
+<li id="fn23"><p><a href="https://vita.had.co.nz/papers/layered-grammar.pdf" class="uri">https://vita.had.co.nz/papers/layered-grammar.pdf</a><a href="layered-i.html#fnref23" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>

@@ -24,7 +24,7 @@
 <meta name="author" content="Josiah Parry" />
 
 
-<meta name="date" content="2020-03-11" />
+<meta name="date" content="2020-03-28" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -53,9 +53,9 @@
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
@@ -64,14 +64,16 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -80,9 +82,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -179,15 +181,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="thats-too-much-data" class="section level1">
 <h1><span class="header-section-number">Chapter 7</span> That’s <em>too much</em> data</h1>
-<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb60-1" data-line-number="1"><span class="kw">library</span>(tidyverse)</a>
-<a class="sourceLine" id="cb60-2" data-line-number="2">acs_raw &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data/ACS_1317_TRACT.csv&quot;</span>)</a>
-<a class="sourceLine" id="cb60-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb60-4" data-line-number="4">commute &lt;-<span class="st"> </span><span class="kw">select</span>(acs_raw,</a>
-<a class="sourceLine" id="cb60-5" data-line-number="5">                  county,</a>
-<a class="sourceLine" id="cb60-6" data-line-number="6">                  hs_grad, bach, master,</a>
-<a class="sourceLine" id="cb60-7" data-line-number="7">                  <span class="kw">starts_with</span>(<span class="st">&quot;commute&quot;</span>),</a>
-<a class="sourceLine" id="cb60-8" data-line-number="8">                  <span class="kw">starts_with</span>(<span class="st">&quot;by&quot;</span>),</a>
-<a class="sourceLine" id="cb60-9" data-line-number="9">                  med_house_income)</a></code></pre></div>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="thats-too-much-data.html#cb60-1"></a><span class="kw">library</span>(tidyverse)</span>
+<span id="cb60-2"><a href="thats-too-much-data.html#cb60-2"></a>acs_raw &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data/ACS_1317_TRACT.csv&quot;</span>)</span>
+<span id="cb60-3"><a href="thats-too-much-data.html#cb60-3"></a></span>
+<span id="cb60-4"><a href="thats-too-much-data.html#cb60-4"></a>commute &lt;-<span class="st"> </span><span class="kw">select</span>(acs_raw,</span>
+<span id="cb60-5"><a href="thats-too-much-data.html#cb60-5"></a>                  county,</span>
+<span id="cb60-6"><a href="thats-too-much-data.html#cb60-6"></a>                  hs_grad, bach, master,</span>
+<span id="cb60-7"><a href="thats-too-much-data.html#cb60-7"></a>                  <span class="kw">starts_with</span>(<span class="st">&quot;commute&quot;</span>),</span>
+<span id="cb60-8"><a href="thats-too-much-data.html#cb60-8"></a>                  <span class="kw">starts_with</span>(<span class="st">&quot;by&quot;</span>),</span>
+<span id="cb60-9"><a href="thats-too-much-data.html#cb60-9"></a>                  med_house_income)</span></code></pre></div>
 <p>Let us continue with the scenario developed in the last chapter. There is a non-profit who is seeking graduate student assistance to provide a curated dataset that provides insight into the commuting behavior of the Greater Boston Area. Using BARI’s Massachussett’s Census Indicators dataset, we were able to reduce the 52 initial columns down to 11. However these data are for the entire state not just the Greater Boston Area. This leaves us with two tasks: 1) definine the Greater Boston Area and 2) create a subset of our data that fit our criteria defined in 1.</p>
 <div id="filtering" class="section level2">
 <h2><span class="header-section-number">7.1</span> <code>filter()</code>ing</h2>
@@ -199,9 +201,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Almost every time you purchase something online whether that is from Amazon or Etsy you are filtering your data using some logic. Whether that is checking the Prime tick box, specifying a price range on Etsy, or a restaurant rating on Yelp. These are all <em>conditions</em> that you are providing to your search.</p>
 <p>We can create these types of filters on our own data and to do so, we will need to understand how logical expressions work. A logical expression is any expression that can be boiled down to true or false.</p>
 <p>For example, using our <code>commute</code> dataset, we can check to see which Census Tracts have more than 75% of commuters travelling by auto.</p>
-<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb61-1" data-line-number="1">auto_commuters &lt;-<span class="st"> </span><span class="kw">filter</span>(commute, by_auto <span class="op">&gt;</span><span class="st"> </span><span class="fl">0.75</span>)</a>
-<a class="sourceLine" id="cb61-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb61-3" data-line-number="3"><span class="kw">select</span>(auto_commuters, by_auto)</a></code></pre></div>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="thats-too-much-data.html#cb61-1"></a>auto_commuters &lt;-<span class="st"> </span><span class="kw">filter</span>(commute, by_auto <span class="op">&gt;</span><span class="st"> </span><span class="fl">0.75</span>)</span>
+<span id="cb61-2"><a href="thats-too-much-data.html#cb61-2"></a></span>
+<span id="cb61-3"><a href="thats-too-much-data.html#cb61-3"></a><span class="kw">select</span>(auto_commuters, by_auto)</span></code></pre></div>
 <pre><code>## # A tibble: 1,012 x 1
 ##    by_auto
 ##      &lt;dbl&gt;
@@ -232,38 +234,38 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <p>Let’s bring it back to early algebra and work with the variable x and y. Let’s say <code>x = 3</code> and <code>y = 5</code>.</p>
 <p>Is <code>x</code> less than <code>y</code>?</p>
-<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb63-1" data-line-number="1"><span class="co"># set variables.</span></a>
-<a class="sourceLine" id="cb63-2" data-line-number="2">x &lt;-<span class="st"> </span><span class="dv">3</span></a>
-<a class="sourceLine" id="cb63-3" data-line-number="3">y &lt;-<span class="st"> </span><span class="dv">5</span></a>
-<a class="sourceLine" id="cb63-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb63-5" data-line-number="5">x <span class="op">&lt;</span><span class="st"> </span>y</a></code></pre></div>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="thats-too-much-data.html#cb63-1"></a><span class="co"># set variables.</span></span>
+<span id="cb63-2"><a href="thats-too-much-data.html#cb63-2"></a>x &lt;-<span class="st"> </span><span class="dv">3</span></span>
+<span id="cb63-3"><a href="thats-too-much-data.html#cb63-3"></a>y &lt;-<span class="st"> </span><span class="dv">5</span></span>
+<span id="cb63-4"><a href="thats-too-much-data.html#cb63-4"></a></span>
+<span id="cb63-5"><a href="thats-too-much-data.html#cb63-5"></a>x <span class="op">&lt;</span><span class="st"> </span>y</span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
 <p>Yes it is. Here R returns a logical value which are represented as <code>TRUE</code> and <code>FALSE</code>.</p>
 <p>Is <code>x</code> greater than <code>y</code>?</p>
-<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb65-1" data-line-number="1"><span class="co"># greater than?</span></a>
-<a class="sourceLine" id="cb65-2" data-line-number="2">x <span class="op">&gt;</span><span class="st"> </span>y</a></code></pre></div>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="thats-too-much-data.html#cb65-1"></a><span class="co"># greater than?</span></span>
+<span id="cb65-2"><a href="thats-too-much-data.html#cb65-2"></a>x <span class="op">&gt;</span><span class="st"> </span>y</span></code></pre></div>
 <pre><code>## [1] FALSE</code></pre>
 <p>And for the sake of illustration:</p>
-<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb67-1" data-line-number="1"><span class="co"># less than or equal</span></a>
-<a class="sourceLine" id="cb67-2" data-line-number="2">x <span class="op">&lt;=</span><span class="st"> </span>y</a></code></pre></div>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="thats-too-much-data.html#cb67-1"></a><span class="co"># less than or equal</span></span>
+<span id="cb67-2"><a href="thats-too-much-data.html#cb67-2"></a>x <span class="op">&lt;=</span><span class="st"> </span>y</span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
-<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb69-1" data-line-number="1"><span class="co"># greater or equal</span></a>
-<a class="sourceLine" id="cb69-2" data-line-number="2">x <span class="op">&gt;=</span><span class="st"> </span>y</a></code></pre></div>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="thats-too-much-data.html#cb69-1"></a><span class="co"># greater or equal</span></span>
+<span id="cb69-2"><a href="thats-too-much-data.html#cb69-2"></a>x <span class="op">&gt;=</span><span class="st"> </span>y</span></code></pre></div>
 <pre><code>## [1] FALSE</code></pre>
-<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb71-1" data-line-number="1"><span class="co"># exactly equal?</span></a>
-<a class="sourceLine" id="cb71-2" data-line-number="2">x <span class="op">==</span><span class="st"> </span>y</a></code></pre></div>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="thats-too-much-data.html#cb71-1"></a><span class="co"># exactly equal?</span></span>
+<span id="cb71-2"><a href="thats-too-much-data.html#cb71-2"></a>x <span class="op">==</span><span class="st"> </span>y</span></code></pre></div>
 <pre><code>## [1] FALSE</code></pre>
-<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb73-1" data-line-number="1"><span class="co"># not equal</span></a>
-<a class="sourceLine" id="cb73-2" data-line-number="2">x <span class="op">!=</span><span class="st"> </span>y</a></code></pre></div>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="thats-too-much-data.html#cb73-1"></a><span class="co"># not equal</span></span>
+<span id="cb73-2"><a href="thats-too-much-data.html#cb73-2"></a>x <span class="op">!=</span><span class="st"> </span>y</span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
 <p>The power of logical operators isn’t necessarily in the ability to compare one value against another, but the ability to compare many values to one value or even many values to multiple other values. This is what <code>filter()</code> helps us do.</p>
 <p>Using <code>filter()</code> we can compare one column to another. When we do this, the values of those columns at each row are compared. For example, we can identify all of the Census Tracts where people walk more than they drive.</p>
 <blockquote>
 <p>Note: I am saving the results to an object called <code>walk</code> to then select only a few columns.</p>
 </blockquote>
-<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb75-1" data-line-number="1">walking &lt;-<span class="st"> </span><span class="kw">filter</span>(commute, by_walk <span class="op">&gt;</span><span class="st"> </span>by_auto)</a>
-<a class="sourceLine" id="cb75-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb75-3" data-line-number="3"><span class="kw">select</span>(walking, county, by_walk, by_auto)</a></code></pre></div>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="thats-too-much-data.html#cb75-1"></a>walking &lt;-<span class="st"> </span><span class="kw">filter</span>(commute, by_walk <span class="op">&gt;</span><span class="st"> </span>by_auto)</span>
+<span id="cb75-2"><a href="thats-too-much-data.html#cb75-2"></a></span>
+<span id="cb75-3"><a href="thats-too-much-data.html#cb75-3"></a><span class="kw">select</span>(walking, county, by_walk, by_auto)</span></code></pre></div>
 <pre><code>## # A tibble: 54 x 3
 ##    county    by_walk by_auto
 ##    &lt;chr&gt;       &lt;dbl&gt;   &lt;dbl&gt;
@@ -282,9 +284,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <blockquote>
 <p><strong>An important distinction</strong>: <code>&lt;-</code> is different from <code>=</code> and <code>=</code> is different from <code>==</code>. If you are ever confused about which operator to use ask yourself what your goal is. If your goal is to assign an object use <code>&lt;-</code>. If your goal is to assign an argument value use <code>=</code>. And if you are trying to compare two things use <code>==</code>.</p>
 </blockquote>
-<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb77-1" data-line-number="1">walk_auto &lt;-<span class="st"> </span><span class="kw">filter</span>(commute, by_walk <span class="op">==</span><span class="st"> </span>by_auto)</a>
-<a class="sourceLine" id="cb77-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb77-3" data-line-number="3"><span class="kw">select</span>(walk_auto, county, by_walk, by_auto)</a></code></pre></div>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="thats-too-much-data.html#cb77-1"></a>walk_auto &lt;-<span class="st"> </span><span class="kw">filter</span>(commute, by_walk <span class="op">==</span><span class="st"> </span>by_auto)</span>
+<span id="cb77-2"><a href="thats-too-much-data.html#cb77-2"></a></span>
+<span id="cb77-3"><a href="thats-too-much-data.html#cb77-3"></a><span class="kw">select</span>(walk_auto, county, by_walk, by_auto)</span></code></pre></div>
 <pre><code>## # A tibble: 2 x 3
 ##   county  by_walk by_auto
 ##   &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;
@@ -292,11 +294,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 2 SUFFOLK       0       0</code></pre>
 <p>So far we have only been checking one condition and in most cases this actually will not suffice. You may want to check multiple conditions at one time. When we use filter we can add a logical expression as another argument. In doing so, filter will check to see if both conditions are met and, when they are, that row is returned. This is called an “and” statement. Meaning condition one <strong>and</strong> condition two need to be <code>TRUE</code>.</p>
 <p>Building upon the <code>walking</code> example, we can further narrow down the observations by adding a second condition which returns only the observations that have median household incomes below $40,000.</p>
-<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb79-1" data-line-number="1">low_inc_walk &lt;-<span class="st"> </span><span class="kw">filter</span>(commute, </a>
-<a class="sourceLine" id="cb79-2" data-line-number="2">                       by_walk <span class="op">&gt;</span><span class="st"> </span>by_auto,</a>
-<a class="sourceLine" id="cb79-3" data-line-number="3">                       med_house_income <span class="op">&lt;</span><span class="st"> </span><span class="dv">40000</span>)</a>
-<a class="sourceLine" id="cb79-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb79-5" data-line-number="5"><span class="kw">select</span>(low_inc_walk, by_walk, by_auto, med_house_income)</a></code></pre></div>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="thats-too-much-data.html#cb79-1"></a>low_inc_walk &lt;-<span class="st"> </span><span class="kw">filter</span>(commute, </span>
+<span id="cb79-2"><a href="thats-too-much-data.html#cb79-2"></a>                       by_walk <span class="op">&gt;</span><span class="st"> </span>by_auto,</span>
+<span id="cb79-3"><a href="thats-too-much-data.html#cb79-3"></a>                       med_house_income <span class="op">&lt;</span><span class="st"> </span><span class="dv">40000</span>)</span>
+<span id="cb79-4"><a href="thats-too-much-data.html#cb79-4"></a></span>
+<span id="cb79-5"><a href="thats-too-much-data.html#cb79-5"></a><span class="kw">select</span>(low_inc_walk, by_walk, by_auto, med_house_income)</span></code></pre></div>
 <pre><code>## # A tibble: 11 x 3
 ##    by_walk by_auto med_house_income
 ##      &lt;dbl&gt;   &lt;dbl&gt;            &lt;dbl&gt;
@@ -315,36 +317,36 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">7.2.1</span> <code>&amp;</code> statements:</h3>
 <p>Now I want to introduce two more logical operators, <strong>and</strong> (<code>&amp;</code>), which was implicitly used in the above filter statement, and <strong>or</strong> (<code>|</code>). <code>&amp;</code> compares two conditions and will return <code>TRUE</code> only if they are both <code>TRUE</code>. <code>|</code> will return <code>TRUE</code> when one of the conditions is <code>TRUE</code>.</p>
 <p>Now for an illustrative example of <code>&amp;</code> statements :</p>
-<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb81-1" data-line-number="1"><span class="co"># We have TRUE and TRUE, this should be false because they aren&#39;t both TRUE</span></a>
-<a class="sourceLine" id="cb81-2" data-line-number="2"><span class="ot">TRUE</span> <span class="op">&amp;</span><span class="st"> </span><span class="ot">FALSE</span> </a></code></pre></div>
+<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="thats-too-much-data.html#cb81-1"></a><span class="co"># We have TRUE and TRUE, this should be false because they aren&#39;t both TRUE</span></span>
+<span id="cb81-2"><a href="thats-too-much-data.html#cb81-2"></a><span class="ot">TRUE</span> <span class="op">&amp;</span><span class="st"> </span><span class="ot">FALSE</span> </span></code></pre></div>
 <pre><code>## [1] FALSE</code></pre>
-<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb83-1" data-line-number="1"><span class="co"># both a TRUE, we expect TRUE</span></a>
-<a class="sourceLine" id="cb83-2" data-line-number="2"><span class="ot">TRUE</span> <span class="op">&amp;</span><span class="st"> </span><span class="ot">TRUE</span></a></code></pre></div>
+<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="thats-too-much-data.html#cb83-1"></a><span class="co"># both a TRUE, we expect TRUE</span></span>
+<span id="cb83-2"><a href="thats-too-much-data.html#cb83-2"></a><span class="ot">TRUE</span> <span class="op">&amp;</span><span class="st"> </span><span class="ot">TRUE</span></span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
-<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb85-1" data-line-number="1"><span class="co"># The first statement is TRUE, but the second is not TRUE, expect FALSE</span></a>
-<a class="sourceLine" id="cb85-2" data-line-number="2">(<span class="dv">1</span> <span class="op">==</span><span class="st"> </span><span class="dv">1</span>) <span class="op">&amp;</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">&lt;</span><span class="st"> </span><span class="dv">1</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="thats-too-much-data.html#cb85-1"></a><span class="co"># The first statement is TRUE, but the second is not TRUE, expect FALSE</span></span>
+<span id="cb85-2"><a href="thats-too-much-data.html#cb85-2"></a>(<span class="dv">1</span> <span class="op">==</span><span class="st"> </span><span class="dv">1</span>) <span class="op">&amp;</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">&lt;</span><span class="st"> </span><span class="dv">1</span>)</span></code></pre></div>
 <pre><code>## [1] FALSE</code></pre>
-<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb87-1" data-line-number="1"><span class="co"># The first statement is TRUE and the second is TRUE, expect TRUE</span></a>
-<a class="sourceLine" id="cb87-2" data-line-number="2">(<span class="dv">1</span> <span class="op">==</span><span class="st"> </span><span class="dv">1</span>) <span class="op">&amp;</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">&lt;=</span><span class="st"> </span><span class="dv">1</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="thats-too-much-data.html#cb87-1"></a><span class="co"># The first statement is TRUE and the second is TRUE, expect TRUE</span></span>
+<span id="cb87-2"><a href="thats-too-much-data.html#cb87-2"></a>(<span class="dv">1</span> <span class="op">==</span><span class="st"> </span><span class="dv">1</span>) <span class="op">&amp;</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">&lt;=</span><span class="st"> </span><span class="dv">1</span>)</span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
 </div>
 <div id="statements-1" class="section level3">
 <h3><span class="header-section-number">7.2.2</span> <code>|</code> statements:</h3>
 <p>Or statements are used to evaluate whether or not something meets <strong>at least</strong> one of the two conditions. This means that the only time that an <em>or</em> statement evaluates to <code>FALSE</code> is when both expressions result in <code>FALSE</code>.</p>
-<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb89-1" data-line-number="1"><span class="co"># True is present, so we expect TRUE</span></a>
-<a class="sourceLine" id="cb89-2" data-line-number="2"><span class="ot">TRUE</span> <span class="op">|</span><span class="st"> </span><span class="ot">TRUE</span></a></code></pre></div>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="thats-too-much-data.html#cb89-1"></a><span class="co"># True is present, so we expect TRUE</span></span>
+<span id="cb89-2"><a href="thats-too-much-data.html#cb89-2"></a><span class="ot">TRUE</span> <span class="op">|</span><span class="st"> </span><span class="ot">TRUE</span></span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
-<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb91-1" data-line-number="1"><span class="co"># True is present, so we expect TRUE</span></a>
-<a class="sourceLine" id="cb91-2" data-line-number="2"><span class="ot">TRUE</span> <span class="op">|</span><span class="st"> </span><span class="ot">FALSE</span></a></code></pre></div>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="thats-too-much-data.html#cb91-1"></a><span class="co"># True is present, so we expect TRUE</span></span>
+<span id="cb91-2"><a href="thats-too-much-data.html#cb91-2"></a><span class="ot">TRUE</span> <span class="op">|</span><span class="st"> </span><span class="ot">FALSE</span></span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
-<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb93-1" data-line-number="1"><span class="co"># </span></a>
-<a class="sourceLine" id="cb93-2" data-line-number="2"><span class="ot">FALSE</span> <span class="op">|</span><span class="st"> </span><span class="ot">FALSE</span></a></code></pre></div>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="thats-too-much-data.html#cb93-1"></a><span class="co"># </span></span>
+<span id="cb93-2"><a href="thats-too-much-data.html#cb93-2"></a><span class="ot">FALSE</span> <span class="op">|</span><span class="st"> </span><span class="ot">FALSE</span></span></code></pre></div>
 <pre><code>## [1] FALSE</code></pre>
 <p>We can alter the previous <code>filter()</code> statement to show us places that walk more than they drive <strong>or</strong> have a low median household income.</p>
-<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb95-1" data-line-number="1">low_inc_or_walk &lt;-<span class="st"> </span><span class="kw">filter</span>(commute,</a>
-<a class="sourceLine" id="cb95-2" data-line-number="2">                          by_walk <span class="op">&gt;</span><span class="st"> </span>by_auto <span class="op">|</span><span class="st"> </span>med_house_income <span class="op">&lt;</span><span class="st"> </span><span class="dv">40000</span>)</a>
-<a class="sourceLine" id="cb95-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb95-4" data-line-number="4"><span class="kw">select</span>(low_inc_or_walk, by_walk, by_auto, med_house_income)</a></code></pre></div>
+<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="thats-too-much-data.html#cb95-1"></a>low_inc_or_walk &lt;-<span class="st"> </span><span class="kw">filter</span>(commute,</span>
+<span id="cb95-2"><a href="thats-too-much-data.html#cb95-2"></a>                          by_walk <span class="op">&gt;</span><span class="st"> </span>by_auto <span class="op">|</span><span class="st"> </span>med_house_income <span class="op">&lt;</span><span class="st"> </span><span class="dv">40000</span>)</span>
+<span id="cb95-3"><a href="thats-too-much-data.html#cb95-3"></a></span>
+<span id="cb95-4"><a href="thats-too-much-data.html#cb95-4"></a><span class="kw">select</span>(low_inc_or_walk, by_walk, by_auto, med_house_income)</span></code></pre></div>
 <pre><code>## # A tibble: 224 x 3
 ##    by_walk by_auto med_house_income
 ##      &lt;dbl&gt;   &lt;dbl&gt;            &lt;dbl&gt;
@@ -364,10 +366,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="defining-the-greater-boston-area" class="section level2">
 <h2><span class="header-section-number">7.3</span> Defining the Greater Boston Area</h2>
 <p>You now have developed the requisite skills to subset the commuting data to just the Greater Boston Area. But we still haven’t completely decided what constitutes it. We will take the naïve approach and say that Suffolk, Norfolk, and Middlesex counties are the Greater Boston Area. We can now filter our data to just these counties!</p>
-<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb97-1" data-line-number="1">gba_commute &lt;-<span class="st"> </span><span class="kw">filter</span>(commute,</a>
-<a class="sourceLine" id="cb97-2" data-line-number="2">                      county <span class="op">==</span><span class="st"> &quot;SUFFOLK&quot;</span> <span class="op">|</span><span class="st"> </span>county <span class="op">==</span><span class="st"> &quot;NORFOLK&quot;</span> <span class="op">|</span><span class="st"> </span>county <span class="op">==</span><span class="st"> &quot;MIDDLESEX&quot;</span>)</a>
-<a class="sourceLine" id="cb97-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb97-4" data-line-number="4">gba_commute</a></code></pre></div>
+<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="thats-too-much-data.html#cb97-1"></a>gba_commute &lt;-<span class="st"> </span><span class="kw">filter</span>(commute,</span>
+<span id="cb97-2"><a href="thats-too-much-data.html#cb97-2"></a>                      county <span class="op">==</span><span class="st"> &quot;SUFFOLK&quot;</span> <span class="op">|</span><span class="st"> </span>county <span class="op">==</span><span class="st"> &quot;NORFOLK&quot;</span> <span class="op">|</span><span class="st"> </span>county <span class="op">==</span><span class="st"> &quot;MIDDLESEX&quot;</span>)</span>
+<span id="cb97-3"><a href="thats-too-much-data.html#cb97-3"></a></span>
+<span id="cb97-4"><a href="thats-too-much-data.html#cb97-4"></a>gba_commute</span></code></pre></div>
 <pre><code>## # A tibble: 648 x 14
 ##    county hs_grad  bach master commute_less10 commute1030 commute3060
 ##    &lt;chr&gt;    &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;          &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt;
@@ -398,10 +400,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>a combined measure of bach masters and doctoral</li>
 </ul></li>
 </ul>
-<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb99-1" data-line-number="1">commute &lt;-<span class="st"> </span><span class="kw">mutate</span>(commute, <span class="dt">hh_inc_quin =</span> <span class="kw">ntile</span>(med_house_income, <span class="dv">5</span>),</a>
-<a class="sourceLine" id="cb99-2" data-line-number="2">         <span class="dt">edu_attain =</span> bach <span class="op">+</span><span class="st"> </span>master)</a>
-<a class="sourceLine" id="cb99-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb99-4" data-line-number="4">commute &lt;-<span class="st"> </span><span class="kw">select</span>(commute, <span class="op">-</span>bach, <span class="op">-</span>master)</a></code></pre></div>
+<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="thats-too-much-data.html#cb99-1"></a>commute &lt;-<span class="st"> </span><span class="kw">mutate</span>(commute, <span class="dt">hh_inc_quin =</span> <span class="kw">ntile</span>(med_house_income, <span class="dv">5</span>),</span>
+<span id="cb99-2"><a href="thats-too-much-data.html#cb99-2"></a>         <span class="dt">edu_attain =</span> bach <span class="op">+</span><span class="st"> </span>master)</span>
+<span id="cb99-3"><a href="thats-too-much-data.html#cb99-3"></a></span>
+<span id="cb99-4"><a href="thats-too-much-data.html#cb99-4"></a>commute &lt;-<span class="st"> </span><span class="kw">select</span>(commute, <span class="op">-</span>bach, <span class="op">-</span>master)</span></code></pre></div>
 </div>
 </div>
 <div id="writing-data" class="section level2">
@@ -421,9 +423,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>To learn these tools we will work with a role-play / workthrough.
 a local non-profit is interested in learning about the demographic characteristics of the greater boston area. They are specifically interested to learn more about the relationship between the age, race, and economic status. They’ve come to you to provide them with the relevant data. you have acces to the annual BARI census data and you will curate the data for them.</p>
 <p>Alright, so now I want to talk about the <code>!</code> (called the <em><strong>bang</strong></em> operator) and its nuance. See how we put <code>!</code> in front of our <code>=</code>? The bang operator essentially checks the opposite of a thing. So in this case it checked the opposite of equals. If we put <code>!</code> in front of a logical expression, it will reverse the outcome.</p>
-<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb100-1" data-line-number="1"><span class="dv">1</span> <span class="op">==</span><span class="st"> </span><span class="dv">1</span></a></code></pre></div>
+<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="thats-too-much-data.html#cb100-1"></a><span class="dv">1</span> <span class="op">==</span><span class="st"> </span><span class="dv">1</span></span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
-<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb102-1" data-line-number="1"><span class="op">!</span>(<span class="dv">1</span> <span class="op">==</span><span class="st"> </span><span class="dv">1</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="thats-too-much-data.html#cb102-1"></a><span class="op">!</span>(<span class="dv">1</span> <span class="op">==</span><span class="st"> </span><span class="dv">1</span>)</span></code></pre></div>
 <pre><code>## [1] FALSE</code></pre>
 <ul>
 <li>we have now selected the columns we need to provide</li>

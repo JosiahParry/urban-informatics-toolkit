@@ -41,7 +41,7 @@ In the following section, you will become acquainted with the graphical R packag
 
 ## The American Community Survey 
 
-For this first data exploration we will work with data from the American Community Survey (ACS). In order to use the ACS data, we must understand what data we are actually working with. The ACS is one of the most fundamental data sets in American social sciences. The ACS is administered by the US Census Bureau but is done so for much different purposes. Article I Section 2 of the US Constitution legislates a decennial census.
+For this first data exploration we will work with data from the American Community Survey (ACS). While the ACS is central to Urban Informatics (UI), it does not exhibit the primary characteristic of that we rely upon in UI—namely being naturally occurring. This is a topic we will explore in more depth later. In order to use the ACS data, we must understand what data we are actually working with. The ACS is one of the most fundamental data sets in American social sciences. The ACS is administered by the US Census Bureau but is done so for much different purposes. Article I Section 2 of the US Constitution legislates a decennial census.
 
 > . . . [an] enumeration shall be made within three Years after the first Meeting of the Congress of the United States, and within every subsequent Term of ten Years, in such Manner as they shall by Law direct.
 
@@ -102,7 +102,7 @@ acs_edu
 
 `## # A tibble: 1,456 x 7` is printed out at the top followed by column names, their types—e.g. `<dbl>`—their respective values and, to the far left we see the numbers 1 through 10 before each row of values. 
 
-Let us disect `# A tibble: 1,456 x 7` a little bit more. This alone is quite informative. It tells us that the type of object we are working with is a `tibble` with 1,456 rows and 7 columns.
+Let us dissect `# A tibble: 1,456 x 7` a little bit more. This alone is quite informative. It tells us that the type of object we are working with is a `tibble` with 1,456 rows and 7 columns.
 
 A tibble is a method of representing rectangular data and is very similar to a table one may create within Excel with rows an columns. When working with tibbles we try to adhere to what are called the principles of tidy data[^tidydata]. There are three key principles that we ought to keep in mind when working with rectangular data.
 

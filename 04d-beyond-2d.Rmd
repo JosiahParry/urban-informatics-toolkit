@@ -1,17 +1,43 @@
 # Visualizing beyond 2-dimensions
 
-
 ```{r, include=FALSE, message=FALSE}
 source("common.R")
 library(tidyverse)
 
-acs_messy <- read_csv("data/ACS_1317_TRACT.csv")
+acs_raw <- read_csv("data/ACS_1317_TRACT.csv")
 
-acs <- acs_messy %>% 
-  separate(name, sep = ", ", into = c("tract", "county", "state")) %>% 
-  mutate(tract = str_remove(tract, "Census Tract ")) %>% 
-  na.omit()
+commute <- select(acs_raw,
+       county,
+       hs_grad, bach, master,
+       starts_with("commute"),
+       starts_with("by"),
+       med_house_income) %>% 
+  filter(county %in% c("SUFFOLK", "NORFOLK", "MIDDLESEX")) %>% 
+  mutate(hh_inc_quin = ntile(med_house_income, 5),
+         edu_attain = bach + master) %>% 
+  select(-bach, -master)
 ```
+
+
+Over the duration of the last three chapters we have cultivated a fundamental understanding of the grammar of graphics and have discussed how to craft univariate visualizations and explore bivariate relationships. In those graphics we have not gone beyond two-dimensions. We only utilized two aesthetics to map. Howver, there is many more that we can incorporate into our visualizations which will in turn enable us to explore three or for variables at once.
+
+> Note that these will not be 3D, but rather visualize three variables. 
+
+To improve our graphics we will utilize the color, shape and size aesthetics as well as faceting. Of course, this begs the question of which aesthetic do I choose? Well, that depends upon what type of data you will be visualizing.
+
+Generally, if you want to visualize a continuous variable, color and then size will be preferable.
+
+
+
+we can utilize color, size, and shape to tell a better story with our graphics. 
+Each aesthetic can serve a different purpose / used for a different kind of variable
+
+- color (continuous or discrete)
+- size (continuous)
+- shape (discrete) 
+
+others:
+- linetype 
 
 To cover:
 
@@ -23,7 +49,6 @@ To cover:
 ## Expanding bivariate visualizations to trivariate & other tri-variate
 
 
-
 - we can visualize other vcariables by setting further aesthetics.
   - can set the color or fill, size, and shape
 - we alreay did this previously when we set the color, let's do that here. 
@@ -32,7 +57,7 @@ To cover:
       - it's important you do this within the aesthetics function 
     
 ```{r}
-ggplot(acs, aes(fam_house_per, age_u18, color = by_auto)) +
+ggplot(acs_raw, aes(fam_house_per, age_u18, color = by_auto)) +
   geom_point()
 ```
 
@@ -40,7 +65,7 @@ ggplot(acs, aes(fam_house_per, age_u18, color = by_auto)) +
   - lets see if the more female headed house holds there are affects commuting by car as minors increases
 
 ```{r}
-ggplot(acs, aes(fam_house_per, age_u18, color = by_auto, size = fem_head_per)) +
+ggplot(acs_raw, aes(fam_house_per, age_u18, color = by_auto, size = fem_head_per)) +
   geom_point(alpha = .2)
 ```
 
@@ -51,7 +76,7 @@ ggplot(acs, aes(fam_house_per, age_u18, color = by_auto, size = fem_head_per)) +
   - this gives us a good idea of some relationships that we can test with our data at a later point
 
 ```{r}
-minors_lm <- lm(age_u18 ~ fam_house_per + by_auto + fem_head_per, data = acs)
+minors_lm <- lm(age_u18 ~ fam_house_per + by_auto + fem_head_per, data = acs_raw)
 
 huxtable::huxreg(minors_lm)
 ```
@@ -80,3 +105,10 @@ Color Ramps:
   - character 
     - think groups, factors, nominal, anything that doesn't have a numeric value that makes sense to count, aggregate, etc.
   - time / order 
+  
+-------
+
+
+Notes:
+
+https://extremepresentation.typepad.com/files/choosing-a-good-chart-09.pdf

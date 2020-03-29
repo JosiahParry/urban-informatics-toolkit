@@ -3,6 +3,26 @@
 
 
 
+Over the duration of the last three chapters we have cultivated a fundamental understanding of the grammar of graphics and have discussed how to craft univariate visualizations and explore bivariate relationships. In those graphics we have not gone beyond two-dimensions. We only utilized two aesthetics to map. Howver, there is many more that we can incorporate into our visualizations which will in turn enable us to explore three or for variables at once.
+
+> Note that these will not be 3D, but rather visualize three variables. 
+
+To improve our graphics we will utilize the color, shape and size aesthetics as well as faceting. Of course, this begs the question of which aesthetic do I choose? Well, that depends upon what type of data you will be visualizing.
+
+Generally, if you want to visualize a continuous variable, color and then size will be preferable.
+
+
+
+we can utilize color, size, and shape to tell a better story with our graphics. 
+Each aesthetic can serve a different purpose / used for a different kind of variable
+
+- color (continuous or discrete)
+- size (continuous)
+- shape (discrete) 
+
+others:
+- linetype 
+
 To cover:
 
 - coloring / filling
@@ -11,7 +31,6 @@ To cover:
 - faceting
 
 ## Expanding bivariate visualizations to trivariate & other tri-variate
-
 
 
 - we can visualize other vcariables by setting further aesthetics.
@@ -23,8 +42,9 @@ To cover:
     
 
 ```r
-ggplot(acs, aes(fam_house_per, age_u18, color = by_auto)) +
+ggplot(acs_raw, aes(fam_house_per, age_u18, color = by_auto)) +
   geom_point()
+## Warning: Removed 17 rows containing missing values (geom_point).
 ```
 
 <img src="04d-beyond-2d_files/figure-html/unnamed-chunk-2-1.png" width="672" />
@@ -34,8 +54,9 @@ ggplot(acs, aes(fam_house_per, age_u18, color = by_auto)) +
 
 
 ```r
-ggplot(acs, aes(fam_house_per, age_u18, color = by_auto, size = fem_head_per)) +
+ggplot(acs_raw, aes(fam_house_per, age_u18, color = by_auto, size = fem_head_per)) +
   geom_point(alpha = .2)
+## Warning: Removed 17 rows containing missing values (geom_point).
 ```
 
 <img src="04d-beyond-2d_files/figure-html/unnamed-chunk-3-1.png" width="672" />
@@ -48,7 +69,7 @@ ggplot(acs, aes(fam_house_per, age_u18, color = by_auto, size = fem_head_per)) +
 
 
 ```r
-minors_lm <- lm(age_u18 ~ fam_house_per + by_auto + fem_head_per, data = acs)
+minors_lm <- lm(age_u18 ~ fam_house_per + by_auto + fem_head_per, data = acs_raw)
 
 huxtable::huxreg(minors_lm)
 ## Registered S3 methods overwritten by 'broom.mixed':
@@ -74,23 +95,23 @@ huxtable::huxreg(minors_lm)
 </tr>
 <tr>
 <td style="vertical-align: top; text-align: left; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">(Intercept)</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">0.000&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">-0.007&nbsp;&nbsp;&nbsp;&nbsp;</td>
 </tr>
 <tr>
 <td style="vertical-align: top; text-align: left; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;"></td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">(0.006)&nbsp;&nbsp;&nbsp;</td>
+<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">(0.005)&nbsp;&nbsp;&nbsp;</td>
 </tr>
 <tr>
 <td style="vertical-align: top; text-align: left; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">fam_house_per</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">0.245 ***</td>
+<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">0.229 ***</td>
 </tr>
 <tr>
 <td style="vertical-align: top; text-align: left; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;"></td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">(0.009)&nbsp;&nbsp;&nbsp;</td>
+<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">(0.010)&nbsp;&nbsp;&nbsp;</td>
 </tr>
 <tr>
 <td style="vertical-align: top; text-align: left; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">by_auto</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">0.016 *&nbsp;&nbsp;</td>
+<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">0.042 ***</td>
 </tr>
 <tr>
 <td style="vertical-align: top; text-align: left; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;"></td>
@@ -98,7 +119,7 @@ huxtable::huxreg(minors_lm)
 </tr>
 <tr>
 <td style="vertical-align: top; text-align: left; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">fem_head_per</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">0.257 ***</td>
+<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">0.228 ***</td>
 </tr>
 <tr>
 <td style="vertical-align: top; text-align: left; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;"></td>
@@ -106,19 +127,19 @@ huxtable::huxreg(minors_lm)
 </tr>
 <tr>
 <td style="vertical-align: top; text-align: left; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">N</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">1311&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">1459&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
 </tr>
 <tr>
 <td style="vertical-align: top; text-align: left; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">R2</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">0.564&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">0.547&nbsp;&nbsp;&nbsp;&nbsp;</td>
 </tr>
 <tr>
 <td style="vertical-align: top; text-align: left; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">logLik</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">2444.648&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">2550.558&nbsp;&nbsp;&nbsp;&nbsp;</td>
 </tr>
 <tr>
 <td style="vertical-align: top; text-align: left; white-space: nowrap; border-style: solid solid solid solid; border-width: 0pt 0pt 0.8pt 0pt; padding: 4pt 4pt 4pt 4pt;">AIC</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; border-style: solid solid solid solid; border-width: 0pt 0pt 0.8pt 0pt; padding: 4pt 4pt 4pt 4pt;">-4879.296&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td style="vertical-align: top; text-align: right; white-space: nowrap; border-style: solid solid solid solid; border-width: 0pt 0pt 0.8pt 0pt; padding: 4pt 4pt 4pt 4pt;">-5091.116&nbsp;&nbsp;&nbsp;&nbsp;</td>
 </tr>
 <tr>
 <td colspan="2" style="vertical-align: top; text-align: left; white-space: normal; padding: 4pt 4pt 4pt 4pt;"> *** p &lt; 0.001;  ** p &lt; 0.01;  * p &lt; 0.05.</td>
@@ -150,3 +171,10 @@ Color Ramps:
   - character 
     - think groups, factors, nominal, anything that doesn't have a numeric value that makes sense to count, aggregate, etc.
   - time / order 
+  
+-------
+
+
+Notes:
+
+https://extremepresentation.typepad.com/files/choosing-a-good-chart-09.pdf

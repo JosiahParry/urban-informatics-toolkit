@@ -24,7 +24,7 @@
 <meta name="author" content="Josiah Parry" />
 
 
-<meta name="date" content="2020-03-11" />
+<meta name="date" content="2020-03-28" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -53,9 +53,9 @@
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
@@ -64,14 +64,16 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -80,9 +82,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -221,34 +223,34 @@ new_col_tbl &lt;- mutate(smaller_tbl, ...)</code></pre>
   mutate() %&gt;% 
   select()</code></pre>
 <p>In the chapter on filtering data we began by reading in the data, selecting columns, and then filtered data. Here we will recreate the <code>low_inc_or_walk</code> object which identified Census Tracts that have a higher rate of commuters who walk than drive or have a median household income below $40,000.</p>
-<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb109-1" data-line-number="1"><span class="kw">library</span>(tidyverse)</a>
-<a class="sourceLine" id="cb109-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb109-3" data-line-number="3">low_inc_or_walk &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data/ACS_1317_TRACT.csv&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb109-4" data-line-number="4"><span class="st">  </span><span class="kw">select</span>(</a>
-<a class="sourceLine" id="cb109-5" data-line-number="5">    county,</a>
-<a class="sourceLine" id="cb109-6" data-line-number="6">    <span class="kw">starts_with</span>(<span class="st">&quot;commute&quot;</span>),</a>
-<a class="sourceLine" id="cb109-7" data-line-number="7">    <span class="kw">starts_with</span>(<span class="st">&quot;by&quot;</span>),</a>
-<a class="sourceLine" id="cb109-8" data-line-number="8">    med_house_income</a>
-<a class="sourceLine" id="cb109-9" data-line-number="9">  ) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb109-10" data-line-number="10"><span class="st">  </span><span class="kw">filter</span>(</a>
-<a class="sourceLine" id="cb109-11" data-line-number="11">    by_walk <span class="op">&gt;</span><span class="st"> </span>by_auto,</a>
-<a class="sourceLine" id="cb109-12" data-line-number="12">    med_house_income <span class="op">&lt;</span><span class="st"> </span><span class="dv">40000</span></a>
-<a class="sourceLine" id="cb109-13" data-line-number="13">  )</a>
-<a class="sourceLine" id="cb109-14" data-line-number="14"></a>
-<a class="sourceLine" id="cb109-15" data-line-number="15"><span class="kw">glimpse</span>(low_inc_or_walk)</a>
-<a class="sourceLine" id="cb109-16" data-line-number="16"><span class="co">## Observations: 11</span></a>
-<a class="sourceLine" id="cb109-17" data-line-number="17"><span class="co">## Variables: 11</span></a>
-<a class="sourceLine" id="cb109-18" data-line-number="18"><span class="co">## $ county           &lt;chr&gt; &quot;HAMPSHIRE&quot;, &quot;SUFFOLK&quot;, &quot;SUFFOLK&quot;, &quot;SUFFOLK&quot;, &quot;…</span></a>
-<a class="sourceLine" id="cb109-19" data-line-number="19"><span class="co">## $ commute_less10   &lt;dbl&gt; 0.40234261, 0.34490741, 0.41918528, 0.09421755,…</span></a>
-<a class="sourceLine" id="cb109-20" data-line-number="20"><span class="co">## $ commute1030      &lt;dbl&gt; 0.5077599, 0.3726852, 0.4042926, 0.5200162, 0.5…</span></a>
-<a class="sourceLine" id="cb109-21" data-line-number="21"><span class="co">## $ commute3060      &lt;dbl&gt; 0.07027818, 0.22777778, 0.14673675, 0.35624747,…</span></a>
-<a class="sourceLine" id="cb109-22" data-line-number="22"><span class="co">## $ commute6090      &lt;dbl&gt; 0.01288433, 0.04953704, 0.02058695, 0.02951880,…</span></a>
-<a class="sourceLine" id="cb109-23" data-line-number="23"><span class="co">## $ commute_over90   &lt;dbl&gt; 0.006734993, 0.005092593, 0.009198423, 0.000000…</span></a>
-<a class="sourceLine" id="cb109-24" data-line-number="24"><span class="co">## $ by_auto          &lt;dbl&gt; 0.1889132, 0.2140026, 0.1082621, 0.1704500, 0.1…</span></a>
-<a class="sourceLine" id="cb109-25" data-line-number="25"><span class="co">## $ by_pub_trans     &lt;dbl&gt; 0.04570873, 0.11933069, 0.15384615, 0.29191557,…</span></a>
-<a class="sourceLine" id="cb109-26" data-line-number="26"><span class="co">## $ by_bike          &lt;dbl&gt; 0.014344761, 0.019815059, 0.008547009, 0.071286…</span></a>
-<a class="sourceLine" id="cb109-27" data-line-number="27"><span class="co">## $ by_walk          &lt;dbl&gt; 0.5801118, 0.5808014, 0.6471306, 0.4066109, 0.3…</span></a>
-<a class="sourceLine" id="cb109-28" data-line-number="28"><span class="co">## $ med_house_income &lt;dbl&gt; 2499, 21773, 36250, 34677, 30500, 28618, 16094,…</span></a></code></pre></div>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="the-pipe.html#cb109-1"></a><span class="kw">library</span>(tidyverse)</span>
+<span id="cb109-2"><a href="the-pipe.html#cb109-2"></a></span>
+<span id="cb109-3"><a href="the-pipe.html#cb109-3"></a>low_inc_or_walk &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data/ACS_1317_TRACT.csv&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb109-4"><a href="the-pipe.html#cb109-4"></a><span class="st">  </span><span class="kw">select</span>(</span>
+<span id="cb109-5"><a href="the-pipe.html#cb109-5"></a>    county,</span>
+<span id="cb109-6"><a href="the-pipe.html#cb109-6"></a>    <span class="kw">starts_with</span>(<span class="st">&quot;commute&quot;</span>),</span>
+<span id="cb109-7"><a href="the-pipe.html#cb109-7"></a>    <span class="kw">starts_with</span>(<span class="st">&quot;by&quot;</span>),</span>
+<span id="cb109-8"><a href="the-pipe.html#cb109-8"></a>    med_house_income</span>
+<span id="cb109-9"><a href="the-pipe.html#cb109-9"></a>  ) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb109-10"><a href="the-pipe.html#cb109-10"></a><span class="st">  </span><span class="kw">filter</span>(</span>
+<span id="cb109-11"><a href="the-pipe.html#cb109-11"></a>    by_walk <span class="op">&gt;</span><span class="st"> </span>by_auto,</span>
+<span id="cb109-12"><a href="the-pipe.html#cb109-12"></a>    med_house_income <span class="op">&lt;</span><span class="st"> </span><span class="dv">40000</span></span>
+<span id="cb109-13"><a href="the-pipe.html#cb109-13"></a>  )</span>
+<span id="cb109-14"><a href="the-pipe.html#cb109-14"></a></span>
+<span id="cb109-15"><a href="the-pipe.html#cb109-15"></a><span class="kw">glimpse</span>(low_inc_or_walk)</span>
+<span id="cb109-16"><a href="the-pipe.html#cb109-16"></a><span class="co">## Observations: 11</span></span>
+<span id="cb109-17"><a href="the-pipe.html#cb109-17"></a><span class="co">## Variables: 11</span></span>
+<span id="cb109-18"><a href="the-pipe.html#cb109-18"></a><span class="co">## $ county           &lt;chr&gt; &quot;HAMPSHIRE&quot;, &quot;SUFFOLK&quot;, &quot;SUFFOLK&quot;, &quot;SUFFOLK&quot;, &quot;…</span></span>
+<span id="cb109-19"><a href="the-pipe.html#cb109-19"></a><span class="co">## $ commute_less10   &lt;dbl&gt; 0.40234261, 0.34490741, 0.41918528, 0.09421755,…</span></span>
+<span id="cb109-20"><a href="the-pipe.html#cb109-20"></a><span class="co">## $ commute1030      &lt;dbl&gt; 0.5077599, 0.3726852, 0.4042926, 0.5200162, 0.5…</span></span>
+<span id="cb109-21"><a href="the-pipe.html#cb109-21"></a><span class="co">## $ commute3060      &lt;dbl&gt; 0.07027818, 0.22777778, 0.14673675, 0.35624747,…</span></span>
+<span id="cb109-22"><a href="the-pipe.html#cb109-22"></a><span class="co">## $ commute6090      &lt;dbl&gt; 0.01288433, 0.04953704, 0.02058695, 0.02951880,…</span></span>
+<span id="cb109-23"><a href="the-pipe.html#cb109-23"></a><span class="co">## $ commute_over90   &lt;dbl&gt; 0.006734993, 0.005092593, 0.009198423, 0.000000…</span></span>
+<span id="cb109-24"><a href="the-pipe.html#cb109-24"></a><span class="co">## $ by_auto          &lt;dbl&gt; 0.1889132, 0.2140026, 0.1082621, 0.1704500, 0.1…</span></span>
+<span id="cb109-25"><a href="the-pipe.html#cb109-25"></a><span class="co">## $ by_pub_trans     &lt;dbl&gt; 0.04570873, 0.11933069, 0.15384615, 0.29191557,…</span></span>
+<span id="cb109-26"><a href="the-pipe.html#cb109-26"></a><span class="co">## $ by_bike          &lt;dbl&gt; 0.014344761, 0.019815059, 0.008547009, 0.071286…</span></span>
+<span id="cb109-27"><a href="the-pipe.html#cb109-27"></a><span class="co">## $ by_walk          &lt;dbl&gt; 0.5801118, 0.5808014, 0.6471306, 0.4066109, 0.3…</span></span>
+<span id="cb109-28"><a href="the-pipe.html#cb109-28"></a><span class="co">## $ med_house_income &lt;dbl&gt; 2499, 21773, 36250, 34677, 30500, 28618, 16094,…</span></span></code></pre></div>
 <p>The reason this pipe works is because the output of each function call is yet another tibble and the pipe operator is passing that resultant tibble as the first argument to the next function.</p>
 <p>Not only does the pipe aid in the manipulation of data, it also has a lot of utility in crafting ggplots. By piping your tibble into a ggplot call, this allows you to quickly iterate on the input data from either filtering down your data to creating new variables for visualization purposes.</p>
 <p>The following sections will use the pipe operator in favor of the above listed alternatives.</p>
@@ -256,18 +258,18 @@ new_col_tbl &lt;- mutate(smaller_tbl, ...)</code></pre>
 <div id="revisiting-our-scenario" class="section level2">
 <h2><span class="header-section-number">8.2</span> Revisiting our scenario</h2>
 <p>Now that we have the pipe operator at our fingertips, we ought to think about how we can incorporate it into our previous work. In our earlier scenario we</p>
-<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb110-1" data-line-number="1">acs_raw &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data/ACS_1317_TRACT.csv&quot;</span>)</a>
-<a class="sourceLine" id="cb110-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb110-3" data-line-number="3">commute &lt;-<span class="st"> </span><span class="kw">select</span>(acs_raw,</a>
-<a class="sourceLine" id="cb110-4" data-line-number="4">       county,</a>
-<a class="sourceLine" id="cb110-5" data-line-number="5">       hs_grad, bach, master,</a>
-<a class="sourceLine" id="cb110-6" data-line-number="6">       <span class="kw">starts_with</span>(<span class="st">&quot;commute&quot;</span>),</a>
-<a class="sourceLine" id="cb110-7" data-line-number="7">       <span class="kw">starts_with</span>(<span class="st">&quot;by&quot;</span>),</a>
-<a class="sourceLine" id="cb110-8" data-line-number="8">       med_house_income) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb110-9" data-line-number="9"><span class="st">  </span><span class="kw">filter</span>(county <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;SUFFOLK&quot;</span>, <span class="st">&quot;NORFOLK&quot;</span>, <span class="st">&quot;MIDDLESEX&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb110-10" data-line-number="10"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">hh_inc_quin =</span> <span class="kw">ntile</span>(med_house_income, <span class="dv">5</span>),</a>
-<a class="sourceLine" id="cb110-11" data-line-number="11">         <span class="dt">edu_attain =</span> bach <span class="op">+</span><span class="st"> </span>master) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb110-12" data-line-number="12"><span class="st">  </span><span class="kw">select</span>(<span class="op">-</span>bach, <span class="op">-</span>master)</a></code></pre></div>
+<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="the-pipe.html#cb110-1"></a>acs_raw &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data/ACS_1317_TRACT.csv&quot;</span>)</span>
+<span id="cb110-2"><a href="the-pipe.html#cb110-2"></a></span>
+<span id="cb110-3"><a href="the-pipe.html#cb110-3"></a>commute &lt;-<span class="st"> </span><span class="kw">select</span>(acs_raw,</span>
+<span id="cb110-4"><a href="the-pipe.html#cb110-4"></a>       county,</span>
+<span id="cb110-5"><a href="the-pipe.html#cb110-5"></a>       hs_grad, bach, master,</span>
+<span id="cb110-6"><a href="the-pipe.html#cb110-6"></a>       <span class="kw">starts_with</span>(<span class="st">&quot;commute&quot;</span>),</span>
+<span id="cb110-7"><a href="the-pipe.html#cb110-7"></a>       <span class="kw">starts_with</span>(<span class="st">&quot;by&quot;</span>),</span>
+<span id="cb110-8"><a href="the-pipe.html#cb110-8"></a>       med_house_income) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb110-9"><a href="the-pipe.html#cb110-9"></a><span class="st">  </span><span class="kw">filter</span>(county <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;SUFFOLK&quot;</span>, <span class="st">&quot;NORFOLK&quot;</span>, <span class="st">&quot;MIDDLESEX&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb110-10"><a href="the-pipe.html#cb110-10"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">hh_inc_quin =</span> <span class="kw">ntile</span>(med_house_income, <span class="dv">5</span>),</span>
+<span id="cb110-11"><a href="the-pipe.html#cb110-11"></a>         <span class="dt">edu_attain =</span> bach <span class="op">+</span><span class="st"> </span>master) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb110-12"><a href="the-pipe.html#cb110-12"></a><span class="st">  </span><span class="kw">select</span>(<span class="op">-</span>bach, <span class="op">-</span>master)</span></code></pre></div>
 
 </div>
 </div>

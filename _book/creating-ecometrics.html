@@ -24,7 +24,7 @@
 <meta name="author" content="Josiah Parry" />
 
 
-<meta name="date" content="2020-03-11" />
+<meta name="date" content="2020-03-28" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -53,9 +53,9 @@
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
@@ -64,14 +64,16 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -80,9 +82,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -183,115 +185,115 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Note: a case study should be recreating these ecometrics</p>
 </blockquote>
 <p>Explore what the data description from BARI looks like</p>
-<div class="sourceCode" id="cb219"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb219-1" data-line-number="1"><span class="kw">library</span>(tidyverse)</a>
-<a class="sourceLine" id="cb219-2" data-line-number="2"><span class="co">## ── Attaching packages ────────────────────────────────────────────────────────────────────────────────────────── tidyverse 1.2.1 ──</span></a>
-<a class="sourceLine" id="cb219-3" data-line-number="3"><span class="co">## ✓ tibble  2.1.3     ✓ purrr   0.3.3</span></a>
-<a class="sourceLine" id="cb219-4" data-line-number="4"><span class="co">## ✓ tidyr   1.0.2     ✓ dplyr   0.8.3</span></a>
-<a class="sourceLine" id="cb219-5" data-line-number="5"><span class="co">## ✓ readr   1.3.1     ✓ stringr 1.4.0</span></a>
-<a class="sourceLine" id="cb219-6" data-line-number="6"><span class="co">## ✓ tibble  2.1.3     ✓ forcats 0.4.0</span></a>
-<a class="sourceLine" id="cb219-7" data-line-number="7"><span class="co">## ── Conflicts ───────────────────────────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──</span></a>
-<a class="sourceLine" id="cb219-8" data-line-number="8"><span class="co">## x dplyr::filter() masks stats::filter()</span></a>
-<a class="sourceLine" id="cb219-9" data-line-number="9"><span class="co">## x dplyr::lag()    masks stats::lag()</span></a>
-<a class="sourceLine" id="cb219-10" data-line-number="10">ecometrics &lt;-<span class="st"> </span>readr<span class="op">::</span><span class="kw">read_csv</span>(<span class="st">&quot;data/911/911-ecometrics-2014-19.csv&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb219-11" data-line-number="11"><span class="st">  </span>janitor<span class="op">::</span><span class="kw">clean_names</span>()</a>
-<a class="sourceLine" id="cb219-12" data-line-number="12"><span class="co">## Parsed with column specification:</span></a>
-<a class="sourceLine" id="cb219-13" data-line-number="13"><span class="co">## cols(</span></a>
-<a class="sourceLine" id="cb219-14" data-line-number="14"><span class="co">##   TYPE = col_character(),</span></a>
-<a class="sourceLine" id="cb219-15" data-line-number="15"><span class="co">##   tycod = col_character(),</span></a>
-<a class="sourceLine" id="cb219-16" data-line-number="16"><span class="co">##   typ_eng = col_character(),</span></a>
-<a class="sourceLine" id="cb219-17" data-line-number="17"><span class="co">##   sub_tycod = col_character(),</span></a>
-<a class="sourceLine" id="cb219-18" data-line-number="18"><span class="co">##   sub_eng = col_character(),</span></a>
-<a class="sourceLine" id="cb219-19" data-line-number="19"><span class="co">##   SocDis = col_double(),</span></a>
-<a class="sourceLine" id="cb219-20" data-line-number="20"><span class="co">##   PrivateConflict = col_double(),</span></a>
-<a class="sourceLine" id="cb219-21" data-line-number="21"><span class="co">##   Violence = col_double(),</span></a>
-<a class="sourceLine" id="cb219-22" data-line-number="22"><span class="co">##   Guns = col_double(),</span></a>
-<a class="sourceLine" id="cb219-23" data-line-number="23"><span class="co">##   Frequency_2015 = col_double(),</span></a>
-<a class="sourceLine" id="cb219-24" data-line-number="24"><span class="co">##   Frequency_2016 = col_double(),</span></a>
-<a class="sourceLine" id="cb219-25" data-line-number="25"><span class="co">##   Frequency_2017 = col_double(),</span></a>
-<a class="sourceLine" id="cb219-26" data-line-number="26"><span class="co">##   Frequency_2018 = col_double(),</span></a>
-<a class="sourceLine" id="cb219-27" data-line-number="27"><span class="co">##   yr.intro = col_double(),</span></a>
-<a class="sourceLine" id="cb219-28" data-line-number="28"><span class="co">##   last.yr = col_double()</span></a>
-<a class="sourceLine" id="cb219-29" data-line-number="29"><span class="co">## )</span></a>
-<a class="sourceLine" id="cb219-30" data-line-number="30"></a>
-<a class="sourceLine" id="cb219-31" data-line-number="31"><span class="kw">glimpse</span>(ecometrics)</a>
-<a class="sourceLine" id="cb219-32" data-line-number="32"><span class="co">## Observations: 302</span></a>
-<a class="sourceLine" id="cb219-33" data-line-number="33"><span class="co">## Variables: 15</span></a>
-<a class="sourceLine" id="cb219-34" data-line-number="34"><span class="co">## $ type             &lt;chr&gt; &quot;AB===&gt;&gt;&gt;&quot;, &quot;ABAN===&gt;&gt;&gt;&quot;, &quot;ABANBU&quot;, &quot;ABANCELL&quot;,…</span></a>
-<a class="sourceLine" id="cb219-35" data-line-number="35"><span class="co">## $ tycod            &lt;chr&gt; &quot;AB&quot;, &quot;ABAN&quot;, &quot;ABAN&quot;, &quot;ABAN&quot;, &quot;ABAN&quot;, &quot;ABAN&quot;, &quot;…</span></a>
-<a class="sourceLine" id="cb219-36" data-line-number="36"><span class="co">## $ typ_eng          &lt;chr&gt; &quot;ASSAULT AND BATTERY&quot;, &quot;ABANDONED CALL&quot;, &quot;ABAND…</span></a>
-<a class="sourceLine" id="cb219-37" data-line-number="37"><span class="co">## $ sub_tycod        &lt;chr&gt; &quot;===&gt;&gt;&gt;&quot;, &quot;===&gt;&gt;&gt;&quot;, &quot;BU&quot;, &quot;CELL&quot;, &quot;INCCAL&quot;, &quot;PH…</span></a>
-<a class="sourceLine" id="cb219-38" data-line-number="38"><span class="co">## $ sub_eng          &lt;chr&gt; &quot;PICK A SUB-TYPE&quot;, &quot;PICK A SUB-TYPE&quot;, &quot;FROM A B…</span></a>
-<a class="sourceLine" id="cb219-39" data-line-number="39"><span class="co">## $ soc_dis          &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,…</span></a>
-<a class="sourceLine" id="cb219-40" data-line-number="40"><span class="co">## $ private_conflict &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,…</span></a>
-<a class="sourceLine" id="cb219-41" data-line-number="41"><span class="co">## $ violence         &lt;dbl&gt; 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0,…</span></a>
-<a class="sourceLine" id="cb219-42" data-line-number="42"><span class="co">## $ guns             &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0,…</span></a>
-<a class="sourceLine" id="cb219-43" data-line-number="43"><span class="co">## $ frequency_2015   &lt;dbl&gt; 27, 40, 12768, 72081, 686, 1734, 3143, 194, 122…</span></a>
-<a class="sourceLine" id="cb219-44" data-line-number="44"><span class="co">## $ frequency_2016   &lt;dbl&gt; 29, 26, 13287, 56074, 1188, 1205, 2687, 397, 19…</span></a>
-<a class="sourceLine" id="cb219-45" data-line-number="45"><span class="co">## $ frequency_2017   &lt;dbl&gt; 29, 17, 12599, 39323, 124, 724, 1944, 253, 162,…</span></a>
-<a class="sourceLine" id="cb219-46" data-line-number="46"><span class="co">## $ frequency_2018   &lt;dbl&gt; 14, 10, 6422, 19947, 70, 506, 840, 262, 169, 78…</span></a>
-<a class="sourceLine" id="cb219-47" data-line-number="47"><span class="co">## $ yr_intro         &lt;dbl&gt; 2014, 2014, 2014, 2014, 2014, 2014, 2014, 2014,…</span></a>
-<a class="sourceLine" id="cb219-48" data-line-number="48"><span class="co">## $ last_yr          &lt;dbl&gt; 2019, 2018, 2019, 2019, 2019, 2019, 2019, 2019,…</span></a></code></pre></div>
+<div class="sourceCode" id="cb219"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb219-1"><a href="creating-ecometrics.html#cb219-1"></a><span class="kw">library</span>(tidyverse)</span>
+<span id="cb219-2"><a href="creating-ecometrics.html#cb219-2"></a><span class="co">## ── Attaching packages ───────────────────────────────────────────── tidyverse 1.2.1 ──</span></span>
+<span id="cb219-3"><a href="creating-ecometrics.html#cb219-3"></a><span class="co">## ✓ tibble  2.1.3     ✓ purrr   0.3.3</span></span>
+<span id="cb219-4"><a href="creating-ecometrics.html#cb219-4"></a><span class="co">## ✓ tidyr   1.0.2     ✓ dplyr   0.8.3</span></span>
+<span id="cb219-5"><a href="creating-ecometrics.html#cb219-5"></a><span class="co">## ✓ readr   1.3.1     ✓ stringr 1.4.0</span></span>
+<span id="cb219-6"><a href="creating-ecometrics.html#cb219-6"></a><span class="co">## ✓ tibble  2.1.3     ✓ forcats 0.4.0</span></span>
+<span id="cb219-7"><a href="creating-ecometrics.html#cb219-7"></a><span class="co">## ── Conflicts ──────────────────────────────────────────────── tidyverse_conflicts() ──</span></span>
+<span id="cb219-8"><a href="creating-ecometrics.html#cb219-8"></a><span class="co">## x dplyr::filter() masks stats::filter()</span></span>
+<span id="cb219-9"><a href="creating-ecometrics.html#cb219-9"></a><span class="co">## x dplyr::lag()    masks stats::lag()</span></span>
+<span id="cb219-10"><a href="creating-ecometrics.html#cb219-10"></a>ecometrics &lt;-<span class="st"> </span>readr<span class="op">::</span><span class="kw">read_csv</span>(<span class="st">&quot;data/911/911-ecometrics-2014-19.csv&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb219-11"><a href="creating-ecometrics.html#cb219-11"></a><span class="st">  </span>janitor<span class="op">::</span><span class="kw">clean_names</span>()</span>
+<span id="cb219-12"><a href="creating-ecometrics.html#cb219-12"></a><span class="co">## Parsed with column specification:</span></span>
+<span id="cb219-13"><a href="creating-ecometrics.html#cb219-13"></a><span class="co">## cols(</span></span>
+<span id="cb219-14"><a href="creating-ecometrics.html#cb219-14"></a><span class="co">##   TYPE = col_character(),</span></span>
+<span id="cb219-15"><a href="creating-ecometrics.html#cb219-15"></a><span class="co">##   tycod = col_character(),</span></span>
+<span id="cb219-16"><a href="creating-ecometrics.html#cb219-16"></a><span class="co">##   typ_eng = col_character(),</span></span>
+<span id="cb219-17"><a href="creating-ecometrics.html#cb219-17"></a><span class="co">##   sub_tycod = col_character(),</span></span>
+<span id="cb219-18"><a href="creating-ecometrics.html#cb219-18"></a><span class="co">##   sub_eng = col_character(),</span></span>
+<span id="cb219-19"><a href="creating-ecometrics.html#cb219-19"></a><span class="co">##   SocDis = col_double(),</span></span>
+<span id="cb219-20"><a href="creating-ecometrics.html#cb219-20"></a><span class="co">##   PrivateConflict = col_double(),</span></span>
+<span id="cb219-21"><a href="creating-ecometrics.html#cb219-21"></a><span class="co">##   Violence = col_double(),</span></span>
+<span id="cb219-22"><a href="creating-ecometrics.html#cb219-22"></a><span class="co">##   Guns = col_double(),</span></span>
+<span id="cb219-23"><a href="creating-ecometrics.html#cb219-23"></a><span class="co">##   Frequency_2015 = col_double(),</span></span>
+<span id="cb219-24"><a href="creating-ecometrics.html#cb219-24"></a><span class="co">##   Frequency_2016 = col_double(),</span></span>
+<span id="cb219-25"><a href="creating-ecometrics.html#cb219-25"></a><span class="co">##   Frequency_2017 = col_double(),</span></span>
+<span id="cb219-26"><a href="creating-ecometrics.html#cb219-26"></a><span class="co">##   Frequency_2018 = col_double(),</span></span>
+<span id="cb219-27"><a href="creating-ecometrics.html#cb219-27"></a><span class="co">##   yr.intro = col_double(),</span></span>
+<span id="cb219-28"><a href="creating-ecometrics.html#cb219-28"></a><span class="co">##   last.yr = col_double()</span></span>
+<span id="cb219-29"><a href="creating-ecometrics.html#cb219-29"></a><span class="co">## )</span></span>
+<span id="cb219-30"><a href="creating-ecometrics.html#cb219-30"></a></span>
+<span id="cb219-31"><a href="creating-ecometrics.html#cb219-31"></a><span class="kw">glimpse</span>(ecometrics)</span>
+<span id="cb219-32"><a href="creating-ecometrics.html#cb219-32"></a><span class="co">## Observations: 302</span></span>
+<span id="cb219-33"><a href="creating-ecometrics.html#cb219-33"></a><span class="co">## Variables: 15</span></span>
+<span id="cb219-34"><a href="creating-ecometrics.html#cb219-34"></a><span class="co">## $ type             &lt;chr&gt; &quot;AB===&gt;&gt;&gt;&quot;, &quot;ABAN===&gt;&gt;&gt;&quot;, &quot;ABANBU&quot;, &quot;ABANCELL&quot;,…</span></span>
+<span id="cb219-35"><a href="creating-ecometrics.html#cb219-35"></a><span class="co">## $ tycod            &lt;chr&gt; &quot;AB&quot;, &quot;ABAN&quot;, &quot;ABAN&quot;, &quot;ABAN&quot;, &quot;ABAN&quot;, &quot;ABAN&quot;, &quot;…</span></span>
+<span id="cb219-36"><a href="creating-ecometrics.html#cb219-36"></a><span class="co">## $ typ_eng          &lt;chr&gt; &quot;ASSAULT AND BATTERY&quot;, &quot;ABANDONED CALL&quot;, &quot;ABAND…</span></span>
+<span id="cb219-37"><a href="creating-ecometrics.html#cb219-37"></a><span class="co">## $ sub_tycod        &lt;chr&gt; &quot;===&gt;&gt;&gt;&quot;, &quot;===&gt;&gt;&gt;&quot;, &quot;BU&quot;, &quot;CELL&quot;, &quot;INCCAL&quot;, &quot;PH…</span></span>
+<span id="cb219-38"><a href="creating-ecometrics.html#cb219-38"></a><span class="co">## $ sub_eng          &lt;chr&gt; &quot;PICK A SUB-TYPE&quot;, &quot;PICK A SUB-TYPE&quot;, &quot;FROM A B…</span></span>
+<span id="cb219-39"><a href="creating-ecometrics.html#cb219-39"></a><span class="co">## $ soc_dis          &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,…</span></span>
+<span id="cb219-40"><a href="creating-ecometrics.html#cb219-40"></a><span class="co">## $ private_conflict &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,…</span></span>
+<span id="cb219-41"><a href="creating-ecometrics.html#cb219-41"></a><span class="co">## $ violence         &lt;dbl&gt; 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0,…</span></span>
+<span id="cb219-42"><a href="creating-ecometrics.html#cb219-42"></a><span class="co">## $ guns             &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0,…</span></span>
+<span id="cb219-43"><a href="creating-ecometrics.html#cb219-43"></a><span class="co">## $ frequency_2015   &lt;dbl&gt; 27, 40, 12768, 72081, 686, 1734, 3143, 194, 122…</span></span>
+<span id="cb219-44"><a href="creating-ecometrics.html#cb219-44"></a><span class="co">## $ frequency_2016   &lt;dbl&gt; 29, 26, 13287, 56074, 1188, 1205, 2687, 397, 19…</span></span>
+<span id="cb219-45"><a href="creating-ecometrics.html#cb219-45"></a><span class="co">## $ frequency_2017   &lt;dbl&gt; 29, 17, 12599, 39323, 124, 724, 1944, 253, 162,…</span></span>
+<span id="cb219-46"><a href="creating-ecometrics.html#cb219-46"></a><span class="co">## $ frequency_2018   &lt;dbl&gt; 14, 10, 6422, 19947, 70, 506, 840, 262, 169, 78…</span></span>
+<span id="cb219-47"><a href="creating-ecometrics.html#cb219-47"></a><span class="co">## $ yr_intro         &lt;dbl&gt; 2014, 2014, 2014, 2014, 2014, 2014, 2014, 2014,…</span></span>
+<span id="cb219-48"><a href="creating-ecometrics.html#cb219-48"></a><span class="co">## $ last_yr          &lt;dbl&gt; 2019, 2018, 2019, 2019, 2019, 2019, 2019, 2019,…</span></span></code></pre></div>
 <p>Check out the offense descriptions</p>
-<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb220-1" data-line-number="1">raw_<span class="dv">911</span> &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data/911/911-raw.csv&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb220-2" data-line-number="2"><span class="st">  </span>janitor<span class="op">::</span><span class="kw">clean_names</span>()</a>
-<a class="sourceLine" id="cb220-3" data-line-number="3"><span class="co">## Parsed with column specification:</span></a>
-<a class="sourceLine" id="cb220-4" data-line-number="4"><span class="co">## cols(</span></a>
-<a class="sourceLine" id="cb220-5" data-line-number="5"><span class="co">##   INCIDENT_NUMBER = col_character(),</span></a>
-<a class="sourceLine" id="cb220-6" data-line-number="6"><span class="co">##   OFFENSE_CODE = col_character(),</span></a>
-<a class="sourceLine" id="cb220-7" data-line-number="7"><span class="co">##   OFFENSE_CODE_GROUP = col_character(),</span></a>
-<a class="sourceLine" id="cb220-8" data-line-number="8"><span class="co">##   OFFENSE_DESCRIPTION = col_character(),</span></a>
-<a class="sourceLine" id="cb220-9" data-line-number="9"><span class="co">##   DISTRICT = col_character(),</span></a>
-<a class="sourceLine" id="cb220-10" data-line-number="10"><span class="co">##   REPORTING_AREA = col_double(),</span></a>
-<a class="sourceLine" id="cb220-11" data-line-number="11"><span class="co">##   SHOOTING = col_character(),</span></a>
-<a class="sourceLine" id="cb220-12" data-line-number="12"><span class="co">##   OCCURRED_ON_DATE = col_datetime(format = &quot;&quot;),</span></a>
-<a class="sourceLine" id="cb220-13" data-line-number="13"><span class="co">##   YEAR = col_double(),</span></a>
-<a class="sourceLine" id="cb220-14" data-line-number="14"><span class="co">##   MONTH = col_double(),</span></a>
-<a class="sourceLine" id="cb220-15" data-line-number="15"><span class="co">##   DAY_OF_WEEK = col_character(),</span></a>
-<a class="sourceLine" id="cb220-16" data-line-number="16"><span class="co">##   HOUR = col_double(),</span></a>
-<a class="sourceLine" id="cb220-17" data-line-number="17"><span class="co">##   UCR_PART = col_character(),</span></a>
-<a class="sourceLine" id="cb220-18" data-line-number="18"><span class="co">##   STREET = col_character(),</span></a>
-<a class="sourceLine" id="cb220-19" data-line-number="19"><span class="co">##   Lat = col_double(),</span></a>
-<a class="sourceLine" id="cb220-20" data-line-number="20"><span class="co">##   Long = col_double(),</span></a>
-<a class="sourceLine" id="cb220-21" data-line-number="21"><span class="co">##   Location = col_character()</span></a>
-<a class="sourceLine" id="cb220-22" data-line-number="22"><span class="co">## )</span></a></code></pre></div>
-<div class="sourceCode" id="cb221"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb221-1" data-line-number="1">raw_<span class="dv">911</span> <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb221-2" data-line-number="2"><span class="st">  </span><span class="kw">count</span>(offense_code_group)</a>
-<a class="sourceLine" id="cb221-3" data-line-number="3"><span class="co">## # A tibble: 68 x 2</span></a>
-<a class="sourceLine" id="cb221-4" data-line-number="4"><span class="co">##    offense_code_group                   n</span></a>
-<a class="sourceLine" id="cb221-5" data-line-number="5"><span class="co">##    &lt;chr&gt;                            &lt;int&gt;</span></a>
-<a class="sourceLine" id="cb221-6" data-line-number="6"><span class="co">##  1 Aggravated Assault               10687</span></a>
-<a class="sourceLine" id="cb221-7" data-line-number="7"><span class="co">##  2 Aircraft                            60</span></a>
-<a class="sourceLine" id="cb221-8" data-line-number="8"><span class="co">##  3 Arson                              109</span></a>
-<a class="sourceLine" id="cb221-9" data-line-number="9"><span class="co">##  4 Assembly or Gathering Violations  1143</span></a>
-<a class="sourceLine" id="cb221-10" data-line-number="10"><span class="co">##  5 Auto Theft                        6211</span></a>
-<a class="sourceLine" id="cb221-11" data-line-number="11"><span class="co">##  6 Auto Theft Recovery               1385</span></a>
-<a class="sourceLine" id="cb221-12" data-line-number="12"><span class="co">##  7 Ballistics                        1338</span></a>
-<a class="sourceLine" id="cb221-13" data-line-number="13"><span class="co">##  8 Biological Threat                    3</span></a>
-<a class="sourceLine" id="cb221-14" data-line-number="14"><span class="co">##  9 Bomb Hoax                          109</span></a>
-<a class="sourceLine" id="cb221-15" data-line-number="15"><span class="co">## 10 Burglary - No Property Taken         5</span></a>
-<a class="sourceLine" id="cb221-16" data-line-number="16"><span class="co">## # … with 58 more rows</span></a></code></pre></div>
+<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb220-1"><a href="creating-ecometrics.html#cb220-1"></a>raw_<span class="dv">911</span> &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data/911/911-raw.csv&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb220-2"><a href="creating-ecometrics.html#cb220-2"></a><span class="st">  </span>janitor<span class="op">::</span><span class="kw">clean_names</span>()</span>
+<span id="cb220-3"><a href="creating-ecometrics.html#cb220-3"></a><span class="co">## Parsed with column specification:</span></span>
+<span id="cb220-4"><a href="creating-ecometrics.html#cb220-4"></a><span class="co">## cols(</span></span>
+<span id="cb220-5"><a href="creating-ecometrics.html#cb220-5"></a><span class="co">##   INCIDENT_NUMBER = col_character(),</span></span>
+<span id="cb220-6"><a href="creating-ecometrics.html#cb220-6"></a><span class="co">##   OFFENSE_CODE = col_character(),</span></span>
+<span id="cb220-7"><a href="creating-ecometrics.html#cb220-7"></a><span class="co">##   OFFENSE_CODE_GROUP = col_character(),</span></span>
+<span id="cb220-8"><a href="creating-ecometrics.html#cb220-8"></a><span class="co">##   OFFENSE_DESCRIPTION = col_character(),</span></span>
+<span id="cb220-9"><a href="creating-ecometrics.html#cb220-9"></a><span class="co">##   DISTRICT = col_character(),</span></span>
+<span id="cb220-10"><a href="creating-ecometrics.html#cb220-10"></a><span class="co">##   REPORTING_AREA = col_double(),</span></span>
+<span id="cb220-11"><a href="creating-ecometrics.html#cb220-11"></a><span class="co">##   SHOOTING = col_character(),</span></span>
+<span id="cb220-12"><a href="creating-ecometrics.html#cb220-12"></a><span class="co">##   OCCURRED_ON_DATE = col_datetime(format = &quot;&quot;),</span></span>
+<span id="cb220-13"><a href="creating-ecometrics.html#cb220-13"></a><span class="co">##   YEAR = col_double(),</span></span>
+<span id="cb220-14"><a href="creating-ecometrics.html#cb220-14"></a><span class="co">##   MONTH = col_double(),</span></span>
+<span id="cb220-15"><a href="creating-ecometrics.html#cb220-15"></a><span class="co">##   DAY_OF_WEEK = col_character(),</span></span>
+<span id="cb220-16"><a href="creating-ecometrics.html#cb220-16"></a><span class="co">##   HOUR = col_double(),</span></span>
+<span id="cb220-17"><a href="creating-ecometrics.html#cb220-17"></a><span class="co">##   UCR_PART = col_character(),</span></span>
+<span id="cb220-18"><a href="creating-ecometrics.html#cb220-18"></a><span class="co">##   STREET = col_character(),</span></span>
+<span id="cb220-19"><a href="creating-ecometrics.html#cb220-19"></a><span class="co">##   Lat = col_double(),</span></span>
+<span id="cb220-20"><a href="creating-ecometrics.html#cb220-20"></a><span class="co">##   Long = col_double(),</span></span>
+<span id="cb220-21"><a href="creating-ecometrics.html#cb220-21"></a><span class="co">##   Location = col_character()</span></span>
+<span id="cb220-22"><a href="creating-ecometrics.html#cb220-22"></a><span class="co">## )</span></span></code></pre></div>
+<div class="sourceCode" id="cb221"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb221-1"><a href="creating-ecometrics.html#cb221-1"></a>raw_<span class="dv">911</span> <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb221-2"><a href="creating-ecometrics.html#cb221-2"></a><span class="st">  </span><span class="kw">count</span>(offense_code_group)</span>
+<span id="cb221-3"><a href="creating-ecometrics.html#cb221-3"></a><span class="co">## # A tibble: 68 x 2</span></span>
+<span id="cb221-4"><a href="creating-ecometrics.html#cb221-4"></a><span class="co">##    offense_code_group                   n</span></span>
+<span id="cb221-5"><a href="creating-ecometrics.html#cb221-5"></a><span class="co">##    &lt;chr&gt;                            &lt;int&gt;</span></span>
+<span id="cb221-6"><a href="creating-ecometrics.html#cb221-6"></a><span class="co">##  1 Aggravated Assault               10687</span></span>
+<span id="cb221-7"><a href="creating-ecometrics.html#cb221-7"></a><span class="co">##  2 Aircraft                            60</span></span>
+<span id="cb221-8"><a href="creating-ecometrics.html#cb221-8"></a><span class="co">##  3 Arson                              109</span></span>
+<span id="cb221-9"><a href="creating-ecometrics.html#cb221-9"></a><span class="co">##  4 Assembly or Gathering Violations  1143</span></span>
+<span id="cb221-10"><a href="creating-ecometrics.html#cb221-10"></a><span class="co">##  5 Auto Theft                        6211</span></span>
+<span id="cb221-11"><a href="creating-ecometrics.html#cb221-11"></a><span class="co">##  6 Auto Theft Recovery               1385</span></span>
+<span id="cb221-12"><a href="creating-ecometrics.html#cb221-12"></a><span class="co">##  7 Ballistics                        1338</span></span>
+<span id="cb221-13"><a href="creating-ecometrics.html#cb221-13"></a><span class="co">##  8 Biological Threat                    3</span></span>
+<span id="cb221-14"><a href="creating-ecometrics.html#cb221-14"></a><span class="co">##  9 Bomb Hoax                          109</span></span>
+<span id="cb221-15"><a href="creating-ecometrics.html#cb221-15"></a><span class="co">## 10 Burglary - No Property Taken         5</span></span>
+<span id="cb221-16"><a href="creating-ecometrics.html#cb221-16"></a><span class="co">## # … with 58 more rows</span></span></code></pre></div>
 <ul>
 <li>There are fewer types of code groups.</li>
 <li>They are rather informative.</li>
 <li>33k missing observations though</li>
 <li>is the same amount of missingness present in the descriptions?</li>
 </ul>
-<div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb222-1" data-line-number="1">raw_<span class="dv">911</span> <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb222-2" data-line-number="2"><span class="st">  </span><span class="kw">count</span>(offense_description)</a>
-<a class="sourceLine" id="cb222-3" data-line-number="3"><span class="co">## # A tibble: 279 x 2</span></a>
-<a class="sourceLine" id="cb222-4" data-line-number="4"><span class="co">##    offense_description                              n</span></a>
-<a class="sourceLine" id="cb222-5" data-line-number="5"><span class="co">##    &lt;chr&gt;                                        &lt;int&gt;</span></a>
-<a class="sourceLine" id="cb222-6" data-line-number="6"><span class="co">##  1 A&amp;B HANDS, FEET, ETC.  - MED. </span><span class="al">ATTENTION</span><span class="co"> REQ.     1</span></a>
-<a class="sourceLine" id="cb222-7" data-line-number="7"><span class="co">##  2 A&amp;B ON POLICE OFFICER                            7</span></a>
-<a class="sourceLine" id="cb222-8" data-line-number="8"><span class="co">##  3 ABDUCTION - INTICING                            12</span></a>
-<a class="sourceLine" id="cb222-9" data-line-number="9"><span class="co">##  4 AFFRAY                                         318</span></a>
-<a class="sourceLine" id="cb222-10" data-line-number="10"><span class="co">##  5 AIRCRAFT INCIDENTS                              70</span></a>
-<a class="sourceLine" id="cb222-11" data-line-number="11"><span class="co">##  6 ANIMAL ABUSE                                    89</span></a>
-<a class="sourceLine" id="cb222-12" data-line-number="12"><span class="co">##  7 ANIMAL CONTROL - DOG BITES - ETC.              493</span></a>
-<a class="sourceLine" id="cb222-13" data-line-number="13"><span class="co">##  8 ANIMAL INCIDENTS                               388</span></a>
-<a class="sourceLine" id="cb222-14" data-line-number="14"><span class="co">##  9 ANIMAL INCIDENTS (DOG BITES, LOST DOG, ETC)     34</span></a>
-<a class="sourceLine" id="cb222-15" data-line-number="15"><span class="co">## 10 ANNOYING AND ACCOSTIN                            3</span></a>
-<a class="sourceLine" id="cb222-16" data-line-number="16"><span class="co">## # … with 269 more rows</span></a></code></pre></div>
+<div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb222-1"><a href="creating-ecometrics.html#cb222-1"></a>raw_<span class="dv">911</span> <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb222-2"><a href="creating-ecometrics.html#cb222-2"></a><span class="st">  </span><span class="kw">count</span>(offense_description)</span>
+<span id="cb222-3"><a href="creating-ecometrics.html#cb222-3"></a><span class="co">## # A tibble: 279 x 2</span></span>
+<span id="cb222-4"><a href="creating-ecometrics.html#cb222-4"></a><span class="co">##    offense_description                              n</span></span>
+<span id="cb222-5"><a href="creating-ecometrics.html#cb222-5"></a><span class="co">##    &lt;chr&gt;                                        &lt;int&gt;</span></span>
+<span id="cb222-6"><a href="creating-ecometrics.html#cb222-6"></a><span class="co">##  1 A&amp;B HANDS, FEET, ETC.  - MED. </span><span class="al">ATTENTION</span><span class="co"> REQ.     1</span></span>
+<span id="cb222-7"><a href="creating-ecometrics.html#cb222-7"></a><span class="co">##  2 A&amp;B ON POLICE OFFICER                            7</span></span>
+<span id="cb222-8"><a href="creating-ecometrics.html#cb222-8"></a><span class="co">##  3 ABDUCTION - INTICING                            12</span></span>
+<span id="cb222-9"><a href="creating-ecometrics.html#cb222-9"></a><span class="co">##  4 AFFRAY                                         318</span></span>
+<span id="cb222-10"><a href="creating-ecometrics.html#cb222-10"></a><span class="co">##  5 AIRCRAFT INCIDENTS                              70</span></span>
+<span id="cb222-11"><a href="creating-ecometrics.html#cb222-11"></a><span class="co">##  6 ANIMAL ABUSE                                    89</span></span>
+<span id="cb222-12"><a href="creating-ecometrics.html#cb222-12"></a><span class="co">##  7 ANIMAL CONTROL - DOG BITES - ETC.              493</span></span>
+<span id="cb222-13"><a href="creating-ecometrics.html#cb222-13"></a><span class="co">##  8 ANIMAL INCIDENTS                               388</span></span>
+<span id="cb222-14"><a href="creating-ecometrics.html#cb222-14"></a><span class="co">##  9 ANIMAL INCIDENTS (DOG BITES, LOST DOG, ETC)     34</span></span>
+<span id="cb222-15"><a href="creating-ecometrics.html#cb222-15"></a><span class="co">## 10 ANNOYING AND ACCOSTIN                            3</span></span>
+<span id="cb222-16"><a href="creating-ecometrics.html#cb222-16"></a><span class="co">## # … with 269 more rows</span></span></code></pre></div>
 <ul>
 <li>no missingness</li>
 <li>more types</li>

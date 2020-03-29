@@ -24,7 +24,7 @@
 <meta name="author" content="Josiah Parry" />
 
 
-<meta name="date" content="2020-03-11" />
+<meta name="date" content="2020-03-28" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -53,9 +53,9 @@
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
@@ -64,14 +64,16 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -80,9 +82,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -195,7 +197,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </blockquote>
 <p>I just threw the phrase <em>rectangular data</em> at you. It is only fair to actually describe what that means. If you were to look at rectangular data in something like excel it would resemble a rectangle. In fancy speak, rectangular data is a <em>two-dimensional</em> data structure with rows and columns. We will learn more about the “proper” way to shape rectangular data in the “tidying data” chapter. For now, all you need to know is that there are rows and columns in rectangular data.</p>
 <p>To get started, let us load the tidyverse. This will load readr for us.</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" data-line-number="1"><span class="kw">library</span>(tidyverse) </a></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="reading-data.html#cb29-1"></a><span class="kw">library</span>(tidyverse) </span></code></pre></div>
 <p>You most likely have seen and encountered flat text files in the wild inthe form of a <code>csv</code>. It is important to know what <em>csv</em> stands for because it will help you understand what it actually is. it stands for <strong>c</strong>omma <strong>s</strong>eparated <strong>v</strong>alues. _csv_s are a flat text data file where the data is rectangular! Each new line of the file indicates that there is a new row. Within each row, each comma indicates a new column. If you opened one up in a text editor like text edit or notepad a csv would look something like below.</p>
 <pre><code>column_a, column_b, column_c,
 10, &quot;these are words&quot;, .432,
@@ -206,13 +208,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </blockquote>
 <p>Have a look at the arguments of <code>read_csv()</code> by entering <code>?read_csv()</code> into the console. You will notice that there are many arguments that you can set. These are there to give you a lot of control over how R will read your data. For now, and most of the time, we do not need to be concerned about these extra arguments. All we need to do is tell R <em>where</em> our data file lives. If you haven’t deduced from the help page yet, we will supply only the first argument <code>file</code>. This argument is <em>either a path to a file, a connection, or literal data (either a single string or a raw vector)</em>.</p>
 <blockquote>
-<p>Note: When you see the word <em>string</em>, that means values inside of quotations—i.e. <em>“this is a string”</em>.</p>
+<p>Note: When you see the word <em>string</em>, that means values inside of quotations—i.e. <em>“this is a string”</em>.</p>
 </blockquote>
 <p>We will read in the dataset that was already loaded in the first chapter. These data are stored in the file named <code>acs_edu.csv</code>. We can try reading this as the file path.</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" data-line-number="1"><span class="kw">read_csv</span>(<span class="st">&quot;acs_edu.csv&quot;</span>)</a>
-<a class="sourceLine" id="cb31-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb31-3" data-line-number="3"><span class="co">## Error: &#39;acs_edu.csv&#39; does not exist in current working directory </span></a>
-<a class="sourceLine" id="cb31-4" data-line-number="4"><span class="co">##   (&#39;/Users/Josiah/GitHub/urban-commons-toolkit&#39;).</span></a></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="reading-data.html#cb31-1"></a><span class="kw">read_csv</span>(<span class="st">&quot;acs_edu.csv&quot;</span>)</span>
+<span id="cb31-2"><a href="reading-data.html#cb31-2"></a></span>
+<span id="cb31-3"><a href="reading-data.html#cb31-3"></a><span class="co">## Error: &#39;acs_edu.csv&#39; does not exist in current working directory </span></span>
+<span id="cb31-4"><a href="reading-data.html#cb31-4"></a><span class="co">##   (&#39;/Users/Josiah/GitHub/urban-commons-toolkit&#39;).</span></span></code></pre></div>
 <p>Oops. We’ve got red text and that is never fun. Except, this is a very important error message that, frankly, you will get <strong>a lot</strong>.</p>
 <p>Again it says:</p>
 <blockquote>
@@ -222,91 +224,91 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>For those of you who weren’t able to figure it out or just too impatient (like myself): this error is telling us that R looked for the file we provided <code>acs_edu.csv</code> but it could not find it. This usually means to me that I’ve either misspelled the file name, or I have not told R to look in the appropriate folder (a.k.a. directory).</p>
 <p><code>acs_edu.csv</code> actually lives in a directory called <code>data</code>. To tell R—or any computer system, really—where that file is we write <code>data/acs_edu.csv</code>. This tells R to first enter the <code>data</code> directory and then look for the <code>acs_edu.csv</code> file.</p>
 <p>Now, read the <code>acs_edu.csv</code> file!</p>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" data-line-number="1"><span class="kw">read_csv</span>(<span class="dt">file =</span> <span class="st">&quot;data/acs_edu.csv&quot;</span>) </a>
-<a class="sourceLine" id="cb32-2" data-line-number="2"><span class="co">## Parsed with column specification:</span></a>
-<a class="sourceLine" id="cb32-3" data-line-number="3"><span class="co">## cols(</span></a>
-<a class="sourceLine" id="cb32-4" data-line-number="4"><span class="co">##   med_house_income = col_double(),</span></a>
-<a class="sourceLine" id="cb32-5" data-line-number="5"><span class="co">##   less_than_hs = col_double(),</span></a>
-<a class="sourceLine" id="cb32-6" data-line-number="6"><span class="co">##   hs_grad = col_double(),</span></a>
-<a class="sourceLine" id="cb32-7" data-line-number="7"><span class="co">##   some_coll = col_double(),</span></a>
-<a class="sourceLine" id="cb32-8" data-line-number="8"><span class="co">##   bach = col_double(),</span></a>
-<a class="sourceLine" id="cb32-9" data-line-number="9"><span class="co">##   white = col_double(),</span></a>
-<a class="sourceLine" id="cb32-10" data-line-number="10"><span class="co">##   black = col_double()</span></a>
-<a class="sourceLine" id="cb32-11" data-line-number="11"><span class="co">## )</span></a>
-<a class="sourceLine" id="cb32-12" data-line-number="12"><span class="co">## # A tibble: 1,456 x 7</span></a>
-<a class="sourceLine" id="cb32-13" data-line-number="13"><span class="co">##    med_house_income less_than_hs hs_grad some_coll  bach white   black</span></a>
-<a class="sourceLine" id="cb32-14" data-line-number="14"><span class="co">##               &lt;dbl&gt;        &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;</span></a>
-<a class="sourceLine" id="cb32-15" data-line-number="15"><span class="co">##  1           105735       0.0252   0.196     0.221 0.325 0.897 0.0122 </span></a>
-<a class="sourceLine" id="cb32-16" data-line-number="16"><span class="co">##  2            69625       0.0577   0.253     0.316 0.262 0.885 0.0171 </span></a>
-<a class="sourceLine" id="cb32-17" data-line-number="17"><span class="co">##  3            70679       0.0936   0.173     0.273 0.267 0.733 0.0795 </span></a>
-<a class="sourceLine" id="cb32-18" data-line-number="18"><span class="co">##  4            74528       0.0843   0.253     0.353 0.231 0.824 0.0306 </span></a>
-<a class="sourceLine" id="cb32-19" data-line-number="19"><span class="co">##  5            52885       0.145    0.310     0.283 0.168 0.737 0.0605 </span></a>
-<a class="sourceLine" id="cb32-20" data-line-number="20"><span class="co">##  6            64100       0.0946   0.294     0.317 0.192 0.966 0.00256</span></a>
-<a class="sourceLine" id="cb32-21" data-line-number="21"><span class="co">##  7            37093       0.253    0.394     0.235 0.101 0.711 0.0770 </span></a>
-<a class="sourceLine" id="cb32-22" data-line-number="22"><span class="co">##  8            87750       0.0768   0.187     0.185 0.272 0.759 0.0310 </span></a>
-<a class="sourceLine" id="cb32-23" data-line-number="23"><span class="co">##  9            97417       0.0625   0.254     0.227 0.284 0.969 0.00710</span></a>
-<a class="sourceLine" id="cb32-24" data-line-number="24"><span class="co">## 10            43384       0.207    0.362     0.262 0.124 0.460 0.105  </span></a>
-<a class="sourceLine" id="cb32-25" data-line-number="25"><span class="co">## # … with 1,446 more rows</span></a></code></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="reading-data.html#cb32-1"></a><span class="kw">read_csv</span>(<span class="dt">file =</span> <span class="st">&quot;data/acs_edu.csv&quot;</span>) </span>
+<span id="cb32-2"><a href="reading-data.html#cb32-2"></a><span class="co">## Parsed with column specification:</span></span>
+<span id="cb32-3"><a href="reading-data.html#cb32-3"></a><span class="co">## cols(</span></span>
+<span id="cb32-4"><a href="reading-data.html#cb32-4"></a><span class="co">##   med_house_income = col_double(),</span></span>
+<span id="cb32-5"><a href="reading-data.html#cb32-5"></a><span class="co">##   less_than_hs = col_double(),</span></span>
+<span id="cb32-6"><a href="reading-data.html#cb32-6"></a><span class="co">##   hs_grad = col_double(),</span></span>
+<span id="cb32-7"><a href="reading-data.html#cb32-7"></a><span class="co">##   some_coll = col_double(),</span></span>
+<span id="cb32-8"><a href="reading-data.html#cb32-8"></a><span class="co">##   bach = col_double(),</span></span>
+<span id="cb32-9"><a href="reading-data.html#cb32-9"></a><span class="co">##   white = col_double(),</span></span>
+<span id="cb32-10"><a href="reading-data.html#cb32-10"></a><span class="co">##   black = col_double()</span></span>
+<span id="cb32-11"><a href="reading-data.html#cb32-11"></a><span class="co">## )</span></span>
+<span id="cb32-12"><a href="reading-data.html#cb32-12"></a><span class="co">## # A tibble: 1,456 x 7</span></span>
+<span id="cb32-13"><a href="reading-data.html#cb32-13"></a><span class="co">##    med_house_income less_than_hs hs_grad some_coll  bach white   black</span></span>
+<span id="cb32-14"><a href="reading-data.html#cb32-14"></a><span class="co">##               &lt;dbl&gt;        &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;</span></span>
+<span id="cb32-15"><a href="reading-data.html#cb32-15"></a><span class="co">##  1           105735       0.0252   0.196     0.221 0.325 0.897 0.0122 </span></span>
+<span id="cb32-16"><a href="reading-data.html#cb32-16"></a><span class="co">##  2            69625       0.0577   0.253     0.316 0.262 0.885 0.0171 </span></span>
+<span id="cb32-17"><a href="reading-data.html#cb32-17"></a><span class="co">##  3            70679       0.0936   0.173     0.273 0.267 0.733 0.0795 </span></span>
+<span id="cb32-18"><a href="reading-data.html#cb32-18"></a><span class="co">##  4            74528       0.0843   0.253     0.353 0.231 0.824 0.0306 </span></span>
+<span id="cb32-19"><a href="reading-data.html#cb32-19"></a><span class="co">##  5            52885       0.145    0.310     0.283 0.168 0.737 0.0605 </span></span>
+<span id="cb32-20"><a href="reading-data.html#cb32-20"></a><span class="co">##  6            64100       0.0946   0.294     0.317 0.192 0.966 0.00256</span></span>
+<span id="cb32-21"><a href="reading-data.html#cb32-21"></a><span class="co">##  7            37093       0.253    0.394     0.235 0.101 0.711 0.0770 </span></span>
+<span id="cb32-22"><a href="reading-data.html#cb32-22"></a><span class="co">##  8            87750       0.0768   0.187     0.185 0.272 0.759 0.0310 </span></span>
+<span id="cb32-23"><a href="reading-data.html#cb32-23"></a><span class="co">##  9            97417       0.0625   0.254     0.227 0.284 0.969 0.00710</span></span>
+<span id="cb32-24"><a href="reading-data.html#cb32-24"></a><span class="co">## 10            43384       0.207    0.362     0.262 0.124 0.460 0.105  </span></span>
+<span id="cb32-25"><a href="reading-data.html#cb32-25"></a><span class="co">## # … with 1,446 more rows</span></span></code></pre></div>
 <p>This is really good! Except, all that happened was that the function was ran. The data it imported was not saved anywhere which means we will not be able to interact with it. What we saw was the output of the data. In order to interact with the data we need to assign it to an object.</p>
 <blockquote>
-<p>Reminder: we assign object with the assignment operator <code>&lt;-</code>—i.e. <code>new_obj &lt;- read_csv(&quot;file-path.csv&quot;)</code>. Objects are things that we interact with such as a tibble. Functions such as <code>read_csv()</code> <em>usually</em>, but not always, modify or create objects.</p>
+<p>Reminder: we assign object with the assignment operator <code>&lt;-</code>—i.e. <code>new_obj &lt;- read_csv("file-path.csv")</code>. Objects are things that we interact with such as a tibble. Functions such as <code>read_csv()</code> <em>usually</em>, but not always, modify or create objects.</p>
 </blockquote>
 <p>In order to interact with the data, let us store the output into a tibble object called <code>acs</code>.</p>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" data-line-number="1">acs &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="dt">file =</span> <span class="st">&quot;data/acs_edu.csv&quot;</span>) </a></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="reading-data.html#cb33-1"></a>acs &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="dt">file =</span> <span class="st">&quot;data/acs_edu.csv&quot;</span>) </span></code></pre></div>
 <p>Notice how now there was no data printed in the console. This is a good sign! It means that R read the data and stored it properly into the <code>acs</code> object. When we don’t store the function results, the results are (usually) printed out. To print an object, we can just type it’s name into the console.</p>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb34-1" data-line-number="1">acs</a>
-<a class="sourceLine" id="cb34-2" data-line-number="2"><span class="co">## # A tibble: 1,456 x 7</span></a>
-<a class="sourceLine" id="cb34-3" data-line-number="3"><span class="co">##    med_house_income less_than_hs hs_grad some_coll  bach white   black</span></a>
-<a class="sourceLine" id="cb34-4" data-line-number="4"><span class="co">##               &lt;dbl&gt;        &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;</span></a>
-<a class="sourceLine" id="cb34-5" data-line-number="5"><span class="co">##  1           105735       0.0252   0.196     0.221 0.325 0.897 0.0122 </span></a>
-<a class="sourceLine" id="cb34-6" data-line-number="6"><span class="co">##  2            69625       0.0577   0.253     0.316 0.262 0.885 0.0171 </span></a>
-<a class="sourceLine" id="cb34-7" data-line-number="7"><span class="co">##  3            70679       0.0936   0.173     0.273 0.267 0.733 0.0795 </span></a>
-<a class="sourceLine" id="cb34-8" data-line-number="8"><span class="co">##  4            74528       0.0843   0.253     0.353 0.231 0.824 0.0306 </span></a>
-<a class="sourceLine" id="cb34-9" data-line-number="9"><span class="co">##  5            52885       0.145    0.310     0.283 0.168 0.737 0.0605 </span></a>
-<a class="sourceLine" id="cb34-10" data-line-number="10"><span class="co">##  6            64100       0.0946   0.294     0.317 0.192 0.966 0.00256</span></a>
-<a class="sourceLine" id="cb34-11" data-line-number="11"><span class="co">##  7            37093       0.253    0.394     0.235 0.101 0.711 0.0770 </span></a>
-<a class="sourceLine" id="cb34-12" data-line-number="12"><span class="co">##  8            87750       0.0768   0.187     0.185 0.272 0.759 0.0310 </span></a>
-<a class="sourceLine" id="cb34-13" data-line-number="13"><span class="co">##  9            97417       0.0625   0.254     0.227 0.284 0.969 0.00710</span></a>
-<a class="sourceLine" id="cb34-14" data-line-number="14"><span class="co">## 10            43384       0.207    0.362     0.262 0.124 0.460 0.105  </span></a>
-<a class="sourceLine" id="cb34-15" data-line-number="15"><span class="co">## # … with 1,446 more rows</span></a></code></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="reading-data.html#cb34-1"></a>acs</span>
+<span id="cb34-2"><a href="reading-data.html#cb34-2"></a><span class="co">## # A tibble: 1,456 x 7</span></span>
+<span id="cb34-3"><a href="reading-data.html#cb34-3"></a><span class="co">##    med_house_income less_than_hs hs_grad some_coll  bach white   black</span></span>
+<span id="cb34-4"><a href="reading-data.html#cb34-4"></a><span class="co">##               &lt;dbl&gt;        &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;</span></span>
+<span id="cb34-5"><a href="reading-data.html#cb34-5"></a><span class="co">##  1           105735       0.0252   0.196     0.221 0.325 0.897 0.0122 </span></span>
+<span id="cb34-6"><a href="reading-data.html#cb34-6"></a><span class="co">##  2            69625       0.0577   0.253     0.316 0.262 0.885 0.0171 </span></span>
+<span id="cb34-7"><a href="reading-data.html#cb34-7"></a><span class="co">##  3            70679       0.0936   0.173     0.273 0.267 0.733 0.0795 </span></span>
+<span id="cb34-8"><a href="reading-data.html#cb34-8"></a><span class="co">##  4            74528       0.0843   0.253     0.353 0.231 0.824 0.0306 </span></span>
+<span id="cb34-9"><a href="reading-data.html#cb34-9"></a><span class="co">##  5            52885       0.145    0.310     0.283 0.168 0.737 0.0605 </span></span>
+<span id="cb34-10"><a href="reading-data.html#cb34-10"></a><span class="co">##  6            64100       0.0946   0.294     0.317 0.192 0.966 0.00256</span></span>
+<span id="cb34-11"><a href="reading-data.html#cb34-11"></a><span class="co">##  7            37093       0.253    0.394     0.235 0.101 0.711 0.0770 </span></span>
+<span id="cb34-12"><a href="reading-data.html#cb34-12"></a><span class="co">##  8            87750       0.0768   0.187     0.185 0.272 0.759 0.0310 </span></span>
+<span id="cb34-13"><a href="reading-data.html#cb34-13"></a><span class="co">##  9            97417       0.0625   0.254     0.227 0.284 0.969 0.00710</span></span>
+<span id="cb34-14"><a href="reading-data.html#cb34-14"></a><span class="co">## 10            43384       0.207    0.362     0.262 0.124 0.460 0.105  </span></span>
+<span id="cb34-15"><a href="reading-data.html#cb34-15"></a><span class="co">## # … with 1,446 more rows</span></span></code></pre></div>
 <p>This is sometimes a little overwhelming of a view. For previewing data, the function <code>dplyr::glimpse()</code> (there is the namespace notation again) is a great option. Try using the function <code>glimpse()</code> with the first argument being the <code>acs</code> object.</p>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" data-line-number="1"><span class="kw">glimpse</span>(acs)</a>
-<a class="sourceLine" id="cb35-2" data-line-number="2"><span class="co">## Observations: 1,456</span></a>
-<a class="sourceLine" id="cb35-3" data-line-number="3"><span class="co">## Variables: 7</span></a>
-<a class="sourceLine" id="cb35-4" data-line-number="4"><span class="co">## $ med_house_income &lt;dbl&gt; 105735, 69625, 70679, 74528, 52885, 64100, 3709…</span></a>
-<a class="sourceLine" id="cb35-5" data-line-number="5"><span class="co">## $ less_than_hs     &lt;dbl&gt; 0.02515518, 0.05773956, 0.09364548, 0.08426318,…</span></a>
-<a class="sourceLine" id="cb35-6" data-line-number="6"><span class="co">## $ hs_grad          &lt;dbl&gt; 0.19568768, 0.25307125, 0.17332284, 0.25298192,…</span></a>
-<a class="sourceLine" id="cb35-7" data-line-number="7"><span class="co">## $ some_coll        &lt;dbl&gt; 0.2211696, 0.3157248, 0.2726736, 0.3534052, 0.2…</span></a>
-<a class="sourceLine" id="cb35-8" data-line-number="8"><span class="co">## $ bach             &lt;dbl&gt; 0.32473048, 0.26167076, 0.26677159, 0.23124279,…</span></a>
-<a class="sourceLine" id="cb35-9" data-line-number="9"><span class="co">## $ white            &lt;dbl&gt; 0.8972737, 0.8849885, 0.7328322, 0.8235779, 0.7…</span></a>
-<a class="sourceLine" id="cb35-10" data-line-number="10"><span class="co">## $ black            &lt;dbl&gt; 0.012213740, 0.017090069, 0.079514240, 0.030640…</span></a></code></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="reading-data.html#cb35-1"></a><span class="kw">glimpse</span>(acs)</span>
+<span id="cb35-2"><a href="reading-data.html#cb35-2"></a><span class="co">## Observations: 1,456</span></span>
+<span id="cb35-3"><a href="reading-data.html#cb35-3"></a><span class="co">## Variables: 7</span></span>
+<span id="cb35-4"><a href="reading-data.html#cb35-4"></a><span class="co">## $ med_house_income &lt;dbl&gt; 105735, 69625, 70679, 74528, 52885, 64100, 3709…</span></span>
+<span id="cb35-5"><a href="reading-data.html#cb35-5"></a><span class="co">## $ less_than_hs     &lt;dbl&gt; 0.02515518, 0.05773956, 0.09364548, 0.08426318,…</span></span>
+<span id="cb35-6"><a href="reading-data.html#cb35-6"></a><span class="co">## $ hs_grad          &lt;dbl&gt; 0.19568768, 0.25307125, 0.17332284, 0.25298192,…</span></span>
+<span id="cb35-7"><a href="reading-data.html#cb35-7"></a><span class="co">## $ some_coll        &lt;dbl&gt; 0.2211696, 0.3157248, 0.2726736, 0.3534052, 0.2…</span></span>
+<span id="cb35-8"><a href="reading-data.html#cb35-8"></a><span class="co">## $ bach             &lt;dbl&gt; 0.32473048, 0.26167076, 0.26677159, 0.23124279,…</span></span>
+<span id="cb35-9"><a href="reading-data.html#cb35-9"></a><span class="co">## $ white            &lt;dbl&gt; 0.8972737, 0.8849885, 0.7328322, 0.8235779, 0.7…</span></span>
+<span id="cb35-10"><a href="reading-data.html#cb35-10"></a><span class="co">## $ black            &lt;dbl&gt; 0.012213740, 0.017090069, 0.079514240, 0.030640…</span></span></code></pre></div>
 <div id="exercise-1" class="section level3">
 <h3><span class="header-section-number">5.2.1</span> Exercise</h3>
 <p>Recreate a plot from the previous chapter using our newly imported <code>acs</code> tibble object.</p>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb36-1" data-line-number="1"><span class="kw">ggplot</span>(acs, <span class="kw">aes</span>(<span class="dt">x =</span> bach, <span class="dt">y =</span> med_house_income)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb36-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">0.25</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb36-3" data-line-number="3"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;% of population with a Bachelor&#39;s Degree&quot;</span>,</a>
-<a class="sourceLine" id="cb36-4" data-line-number="4">       <span class="dt">y =</span> <span class="st">&quot;Median Household Income&quot;</span>,</a>
-<a class="sourceLine" id="cb36-5" data-line-number="5">       <span class="dt">title =</span> <span class="st">&quot;Relationship between Education and Income&quot;</span>) </a></code></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="reading-data.html#cb36-1"></a><span class="kw">ggplot</span>(acs, <span class="kw">aes</span>(<span class="dt">x =</span> bach, <span class="dt">y =</span> med_house_income)) <span class="op">+</span></span>
+<span id="cb36-2"><a href="reading-data.html#cb36-2"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">0.25</span>) <span class="op">+</span></span>
+<span id="cb36-3"><a href="reading-data.html#cb36-3"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;% of population with a Bachelor&#39;s Degree&quot;</span>,</span>
+<span id="cb36-4"><a href="reading-data.html#cb36-4"></a>       <span class="dt">y =</span> <span class="st">&quot;Median Household Income&quot;</span>,</span>
+<span id="cb36-5"><a href="reading-data.html#cb36-5"></a>       <span class="dt">title =</span> <span class="st">&quot;Relationship between Education and Income&quot;</span>) </span></code></pre></div>
 <p><img src="02-reading-data_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
 </div>
 </div>
 <div id="other-common-data-formats" class="section level2">
 <h2><span class="header-section-number">5.3</span> Other common data formats</h2>
 <p>While csv files are going to be the most ubiquitous, you will invariably run into other data formats. The workflow is almost always the same. If you want to read excel files, you can use the function <code>readxl::read_excel()</code> from the <a href="https://readxl.tidyverse.org/"><code>readxl</code></a> package.</p>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" data-line-number="1">acs_xl &lt;-<span class="st"> </span>readxl<span class="op">::</span><span class="kw">read_excel</span>(<span class="st">&quot;data/acs_edu.xlsx&quot;</span>)</a>
-<a class="sourceLine" id="cb37-2" data-line-number="2"><span class="kw">glimpse</span>(acs_xl)</a>
-<a class="sourceLine" id="cb37-3" data-line-number="3"><span class="co">## Observations: 1,456</span></a>
-<a class="sourceLine" id="cb37-4" data-line-number="4"><span class="co">## Variables: 7</span></a>
-<a class="sourceLine" id="cb37-5" data-line-number="5"><span class="co">## $ med_house_income &lt;dbl&gt; 105735, 69625, 70679, 74528, 52885, 64100, 3709…</span></a>
-<a class="sourceLine" id="cb37-6" data-line-number="6"><span class="co">## $ less_than_hs     &lt;dbl&gt; 0.02515518, 0.05773956, 0.09364548, 0.08426318,…</span></a>
-<a class="sourceLine" id="cb37-7" data-line-number="7"><span class="co">## $ hs_grad          &lt;dbl&gt; 0.19568768, 0.25307125, 0.17332284, 0.25298192,…</span></a>
-<a class="sourceLine" id="cb37-8" data-line-number="8"><span class="co">## $ some_coll        &lt;dbl&gt; 0.2211696, 0.3157248, 0.2726736, 0.3534052, 0.2…</span></a>
-<a class="sourceLine" id="cb37-9" data-line-number="9"><span class="co">## $ bach             &lt;dbl&gt; 0.32473048, 0.26167076, 0.26677159, 0.23124279,…</span></a>
-<a class="sourceLine" id="cb37-10" data-line-number="10"><span class="co">## $ white            &lt;dbl&gt; 0.8972737, 0.8849885, 0.7328322, 0.8235779, 0.7…</span></a>
-<a class="sourceLine" id="cb37-11" data-line-number="11"><span class="co">## $ black            &lt;dbl&gt; 0.012213740, 0.017090069, 0.079514240, 0.030640…</span></a></code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="reading-data.html#cb37-1"></a>acs_xl &lt;-<span class="st"> </span>readxl<span class="op">::</span><span class="kw">read_excel</span>(<span class="st">&quot;data/acs_edu.xlsx&quot;</span>)</span>
+<span id="cb37-2"><a href="reading-data.html#cb37-2"></a><span class="kw">glimpse</span>(acs_xl)</span>
+<span id="cb37-3"><a href="reading-data.html#cb37-3"></a><span class="co">## Observations: 1,456</span></span>
+<span id="cb37-4"><a href="reading-data.html#cb37-4"></a><span class="co">## Variables: 7</span></span>
+<span id="cb37-5"><a href="reading-data.html#cb37-5"></a><span class="co">## $ med_house_income &lt;dbl&gt; 105735, 69625, 70679, 74528, 52885, 64100, 3709…</span></span>
+<span id="cb37-6"><a href="reading-data.html#cb37-6"></a><span class="co">## $ less_than_hs     &lt;dbl&gt; 0.02515518, 0.05773956, 0.09364548, 0.08426318,…</span></span>
+<span id="cb37-7"><a href="reading-data.html#cb37-7"></a><span class="co">## $ hs_grad          &lt;dbl&gt; 0.19568768, 0.25307125, 0.17332284, 0.25298192,…</span></span>
+<span id="cb37-8"><a href="reading-data.html#cb37-8"></a><span class="co">## $ some_coll        &lt;dbl&gt; 0.2211696, 0.3157248, 0.2726736, 0.3534052, 0.2…</span></span>
+<span id="cb37-9"><a href="reading-data.html#cb37-9"></a><span class="co">## $ bach             &lt;dbl&gt; 0.32473048, 0.26167076, 0.26677159, 0.23124279,…</span></span>
+<span id="cb37-10"><a href="reading-data.html#cb37-10"></a><span class="co">## $ white            &lt;dbl&gt; 0.8972737, 0.8849885, 0.7328322, 0.8235779, 0.7…</span></span>
+<span id="cb37-11"><a href="reading-data.html#cb37-11"></a><span class="co">## $ black            &lt;dbl&gt; 0.012213740, 0.017090069, 0.079514240, 0.030640…</span></span></code></pre></div>
 <p>Another common format is a <strong>tsv</strong> which stands for <strong>t</strong>ab <strong>s</strong>eparated <strong>f</strong>ormat. <code>readr::read_tsv()</code> will be able to assist you here.</p>
-<p>If for some reason there are special delimiters like <code>|</code>, the <code>readr::read_delim()</code> function will work best. For example <code>readr::read_delim(&quot;file-path&quot;, delim = &quot;|&quot;)</code> would do the trick!</p>
+<p>If for some reason there are special delimiters like <code>|</code>, the <code>readr::read_delim()</code> function will work best. For example <code>readr::read_delim("file-path", delim = "|")</code> would do the trick!</p>
 <p>Additionally, another extremely common data type is <em>json</em> which is short for javascript object notation. json is a data type that you will usually not read directly from a text file but interact with from an API. If you do happen to encounter a json flat text file, use the <code>jsonlite</code> package. <code>jsonlite::read_json()</code>.</p>
 <p>In the next chapter we will begin to work with <a href="https://dplyr.tidyverse.org"><code>dplyr</code></a> and start getting hands on with our data.</p>
 
