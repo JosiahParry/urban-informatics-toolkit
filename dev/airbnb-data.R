@@ -9,7 +9,7 @@ airbnb <- select(listings,
                  neighborhood = neighbourhood,
                  room_type, price, minimum_nights, 
                  n_reviews = number_of_reviews,
-                 n_host_listings = calculated_host_listings_count,
+                 #n_host_listings = calculated_host_listings_count,
                  availability_365,
                  host_id)
 
@@ -31,20 +31,21 @@ airbnb_hosts <- select(listings_raw, starts_with("host")) %>%
   distinct(id, .keep_all = TRUE) %>% 
   mutate(superhost = as.integer(superhost)) 
 
-
-View(airbnb_hosts)
-
-  
+airbnb_locations <- select(listings,
+       id, longitude, latitude)
 
 
-babynames::babynames %>% 
-  filter(year >= 1960) %>% 
-  count(name, sex) %>% 
-  pivot_wider(names_from = sex, values_from = n) %>% 
-  mutate(male = replace_na(M, 0),
-         female = replace_na(F, 0)) %>% 
-  select(-c(M, F))
-  
+# make into list
+l <- list(listings = airbnb, 
+     hosts = airbnb_hosts,
+     locations = airbnb_locations,
+     reviews = filter(reviews,  lubridate::year(date) >= 2019)) 
+   
+# write data 
+map2(l, 1:length(l),  ~write_csv(.x, glue::glue("data/airbnb/{names(l)[.y]}.csv")))
+
+
+# can use airbnb to introduce geospatial work
 
 
 # can introduce lubridate a little bit by taking reviews data and counting by the year and totalling the number of reviews per year. Can also look at the number of reviews per month
