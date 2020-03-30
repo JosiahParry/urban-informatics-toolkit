@@ -3,6 +3,7 @@
 
 ```{r, include=FALSE}
 source("common.R")
+library(tidyverse)
 ```
 
 Many times working with just one data set will not suffice. More often than not the data that we will be working with be will need to be supplemented by other data sets. These datasets have a shared relation which are what enables us to **join** them together. A join is a way of combining the columns between two sets of data while ensuring the rows are properly aligned. 
@@ -32,11 +33,14 @@ glimpse(hosts)
 
 Notice that the each row of the table is an observation of a different phenomenon. Each observation in `listings` is rentable dwelling and each row in `hosts` is a different individual. One host may have multiple listings as illustrated by the `n_listings` column. This sort of relationship is called _one to many_ meaning that for each host there is one or more listings. This is rather evident in the number of observations in each table—3,799 and 1,335 respectively. 
 
-If we look at the variables of our tibbles we notice that `listings` contains `host_id` and `hosts` an `id` column.‚
+To associate the host information with the listings information we need to join the two datasets together. Most often the common identifier will be a type of id (often referred to as keys). Identifiers are meant to be unique at the observational unit. If we look at the variables of our tibbles we notice that `listings` contains `host_id` and `hosts` an `id` column. Fortunately the first two rows of each dataset share identifiers.
 
+```{r}
+slice(listings, 1:2)
+slice(hosts, 1:2)
+```
 
-The first dataset contains some general information about each listing in the dataset such as the neighborhood, the room type, price,and  
-
+Before we get to joining our datasets, we need to understand the different types of joins that are available to us. 
 
 - multiple data sets
 - what is a join?

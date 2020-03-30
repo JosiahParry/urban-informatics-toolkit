@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 17 Spatial Analysis | Urban Informatics Toolkit</title>
+  <title>Chapter 16 Multiple data sets | Urban Informatics Toolkit</title>
   <meta name="description" content="A hands on introduction approach to analyzing the urban Commons." />
   <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 17 Spatial Analysis | Urban Informatics Toolkit" />
+  <meta property="og:title" content="Chapter 16 Multiple data sets | Urban Informatics Toolkit" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 17 Spatial Analysis | Urban Informatics Toolkit" />
+  <meta name="twitter:title" content="Chapter 16 Multiple data sets | Urban Informatics Toolkit" />
   
   <meta name="twitter:description" content="A hands on introduction approach to analyzing the urban Commons." />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="multiple-data-sets.html"/>
-<link rel="next" href="creating-ecometrics.html"/>
+<link rel="prev" href="visualizing-beyond-2-dimensions.html"/>
+<link rel="next" href="spatial-analysis.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -179,38 +179,57 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="spatial-analysis" class="section level1">
-<h1><span class="header-section-number">Chapter 17</span> Spatial Analysis</h1>
+<div id="multiple-data-sets" class="section level1">
+<h1><span class="header-section-number">Chapter 16</span> Multiple data sets</h1>
+<p>Many times working with just one data set will not suffice. More often than not the data that we will be working with be will need to be supplemented by other data sets. These datasets have a shared relation which are what enables us to <strong>join</strong> them together. A join is a way of combining the columns between two sets of data while ensuring the rows are properly aligned.</p>
+<p>The relationship that joins these tables together are expressed in the data through what is called a <strong>common identifier</strong>. This a variable exists in both datasets—perhaps, with a different name—and can be used as a reference to associate rows from each table together.</p>
+<p>Recall to our definition of tidy data. The definition that we used characterized the data inside of a single table. There is actually another rule: “each observational unit forms a table.” So, in our previous definition a row was a single observation. When we extend the definition as such this is still the case but we have to create distinctions between “observational units[s].”</p>
+<p>To explore this concept we will use data about Airbnb listings in Boston. These data come from <a href="http://insideairbnb.com">Inside Airbnb</a>. Inside Airbnb collects Airbnb’s public listing and makes them available through a “non-commercial set of tools and data that allows you to explore how Airbnb is really being used in cities around the world” (<a href="http://insideairbnb.com/about.html" class="uri">http://insideairbnb.com/about.html</a>).</p>
+<p>Inside Airbnb data are another example of harnessing naturally occurring data. The listings are not generated with the intent of <em>being</em> data, but by the virtue of their existence, they become data. We are able to harness them to learn about the shifting neighborhood dynamic of cities. They can tell us something about short term rentals in a locale and about where people may be visiting and when.</p>
+<p>We will first look at two data sets: <code>listings</code>, and <code>hosts</code>.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="multiple-data-sets.html#cb1-1"></a>listings &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data/airbnb/listings.csv&quot;</span>)</span>
+<span id="cb1-2"><a href="multiple-data-sets.html#cb1-2"></a></span>
+<span id="cb1-3"><a href="multiple-data-sets.html#cb1-3"></a><span class="kw">glimpse</span>(listings)</span>
+<span id="cb1-4"><a href="multiple-data-sets.html#cb1-4"></a><span class="co">## Observations: 3,799</span></span>
+<span id="cb1-5"><a href="multiple-data-sets.html#cb1-5"></a><span class="co">## Variables: 7</span></span>
+<span id="cb1-6"><a href="multiple-data-sets.html#cb1-6"></a><span class="co">## $ neighborhood     &lt;chr&gt; &quot;East Boston&quot;, &quot;Roxbury&quot;, &quot;Roxbury&quot;, &quot;Downtown&quot;…</span></span>
+<span id="cb1-7"><a href="multiple-data-sets.html#cb1-7"></a><span class="co">## $ room_type        &lt;chr&gt; &quot;Entire home/apt&quot;, &quot;Entire home/apt&quot;, &quot;Entire h…</span></span>
+<span id="cb1-8"><a href="multiple-data-sets.html#cb1-8"></a><span class="co">## $ price            &lt;dbl&gt; 125, 145, 169, 99, 150, 179, 125, 50, 154, 115,…</span></span>
+<span id="cb1-9"><a href="multiple-data-sets.html#cb1-9"></a><span class="co">## $ minimum_nights   &lt;dbl&gt; 28, 3, 3, 91, 91, 91, 91, 91, 29, 1, 2, 2, 2, 6…</span></span>
+<span id="cb1-10"><a href="multiple-data-sets.html#cb1-10"></a><span class="co">## $ n_reviews        &lt;dbl&gt; 16, 106, 115, 24, 31, 80, 2, 0, 52, 21, 316, 10…</span></span>
+<span id="cb1-11"><a href="multiple-data-sets.html#cb1-11"></a><span class="co">## $ availability_365 &lt;dbl&gt; 68, 322, 274, 247, 29, 0, 364, 365, 304, 285, 6…</span></span>
+<span id="cb1-12"><a href="multiple-data-sets.html#cb1-12"></a><span class="co">## $ host_id          &lt;dbl&gt; 4804, 8229, 8229, 26988, 26988, 38997, 38997, 2…</span></span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="multiple-data-sets.html#cb2-1"></a>hosts &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data/airbnb/hosts.csv&quot;</span>)</span>
+<span id="cb2-2"><a href="multiple-data-sets.html#cb2-2"></a></span>
+<span id="cb2-3"><a href="multiple-data-sets.html#cb2-3"></a><span class="kw">glimpse</span>(hosts)</span>
+<span id="cb2-4"><a href="multiple-data-sets.html#cb2-4"></a><span class="co">## Observations: 1,335</span></span>
+<span id="cb2-5"><a href="multiple-data-sets.html#cb2-5"></a><span class="co">## Variables: 9</span></span>
+<span id="cb2-6"><a href="multiple-data-sets.html#cb2-6"></a><span class="co">## $ id                 &lt;dbl&gt; 4804, 8229, 26988, 38997, 23078, 71783, 85130…</span></span>
+<span id="cb2-7"><a href="multiple-data-sets.html#cb2-7"></a><span class="co">## $ name               &lt;chr&gt; &quot;Frank&quot;, &quot;Terry&quot;, &quot;Anne&quot;, &quot;Michelle&quot;, &quot;Eric&quot;,…</span></span>
+<span id="cb2-8"><a href="multiple-data-sets.html#cb2-8"></a><span class="co">## $ since_year         &lt;dbl&gt; 2008, 2009, 2009, 2009, 2009, 2010, 2010, 201…</span></span>
+<span id="cb2-9"><a href="multiple-data-sets.html#cb2-9"></a><span class="co">## $ since_month        &lt;chr&gt; &quot;12&quot;, &quot;02&quot;, &quot;07&quot;, &quot;09&quot;, &quot;06&quot;, &quot;01&quot;, &quot;02&quot;, &quot;02…</span></span>
+<span id="cb2-10"><a href="multiple-data-sets.html#cb2-10"></a><span class="co">## $ since_day          &lt;chr&gt; &quot;03&quot;, &quot;19&quot;, &quot;22&quot;, &quot;16&quot;, &quot;24&quot;, &quot;19&quot;, &quot;24&quot;, &quot;26…</span></span>
+<span id="cb2-11"><a href="multiple-data-sets.html#cb2-11"></a><span class="co">## $ host_response_rate &lt;chr&gt; &quot;100%&quot;, &quot;100%&quot;, &quot;100%&quot;, &quot;92%&quot;, &quot;50%&quot;, &quot;98%&quot;, …</span></span>
+<span id="cb2-12"><a href="multiple-data-sets.html#cb2-12"></a><span class="co">## $ acceptance_rate    &lt;chr&gt; &quot;50%&quot;, &quot;100%&quot;, &quot;84%&quot;, &quot;17%&quot;, &quot;N/A&quot;, &quot;98%&quot;, &quot;9…</span></span>
+<span id="cb2-13"><a href="multiple-data-sets.html#cb2-13"></a><span class="co">## $ superhost          &lt;dbl&gt; 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, …</span></span>
+<span id="cb2-14"><a href="multiple-data-sets.html#cb2-14"></a><span class="co">## $ n_listings         &lt;dbl&gt; 5, 2, 9, 13, 3, 40, 7, 4, 1, 2, 1, 1, 5, 1, 1…</span></span></code></pre></div>
+<p>Notice that the each row of the table is an observation of a different phenomenon. Each observation in <code>listings</code> is rentable dwelling and each row in <code>hosts</code> is a different individual. One host may have multiple listings as illustrated by the <code>n_listings</code> column. This sort of relationship is called <em>one to many</em> meaning that for each host there is one or more listings. This is rather evident in the number of observations in each table—3,799 and 1,335 respectively.</p>
+<p>To associate the host information with the listings information we need to join the two datasets together. Most often the common identifier will be a type of id (often referred to as keys).
+If we look at the variables of our tibbles we notice that <code>listings</code> contains <code>host_id</code> and <code>hosts</code> an <code>id</code> column.‚</p>
+<p>The first dataset contains some general information about each listing in the dataset such as the neighborhood, the room type, price,and</p>
 <ul>
-<li>What is spatial data?
+<li>multiple data sets</li>
+<li>what is a join?</li>
+<li>the need for a common identifier</li>
+<li>join types:
 <ul>
-<li>events happen at a location and are associate with place</li>
-<li>data become spatial when there is a geographic element present</li>
-<li>the most obvious is when lat and long data are present</li>
-<li>data which lists county, for example, is also spatial
-<ul>
-<li>often there isn’t spatial data explicitly associated</li>
+<li>left</li>
+<li>inner</li>
+<li>right</li>
+<li>full (rare)</li>
+<li>anti-join (for removing data)</li>
 </ul></li>
-</ul></li>
-<li>Types of spatial data
-<ul>
-<li>Vector and Raster</li>
-<li>in gneral you will encounter vector data more frequently.</li>
-<li>vector data are coordinates</li>
-<li>raster data is used to “represent spatially continuous phenomenon”
-<ul>
-<li>(<a href="https://rspatial.org/raster/spatial/Spatialdata.pdf" class="uri">https://rspatial.org/raster/spatial/Spatialdata.pdf</a>)</li>
-</ul></li>
-<li>vector data is less complex to analyse and is the easiest to pick up</li>
-<li>raster data is extremely interesting but requires more devoted attention
-<ul>
-<li>raster data analysis can be done to look at changing elevation, analyse vegatation, the amount of reflective surfaces, etc</li>
-</ul></li>
-</ul></li>
-<li>Vector data</li>
 </ul>
-<p><a href="https://geocompr.robinlovelace.net/" class="uri">https://geocompr.robinlovelace.net/</a></p>
-<p><a href="https://rud.is/books/30-day-map-challenge/points-01.html" class="uri">https://rud.is/books/30-day-map-challenge/points-01.html</a></p>
 
 </div>
             </section>
@@ -218,8 +237,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="multiple-data-sets.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="creating-ecometrics.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="visualizing-beyond-2-dimensions.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="spatial-analysis.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -269,20 +288,6 @@ gitbook.start({
 });
 </script>
 
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
-  (function () {
-    var script = document.createElement("script");
-    script.type = "text/javascript";
-    var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:")
-      if (/^https?:/.test(src))
-        src = src.replace(/^https?:/, '');
-    script.src = src;
-    document.getElementsByTagName("head")[0].appendChild(script);
-  })();
-</script>
 </body>
 
 </html>

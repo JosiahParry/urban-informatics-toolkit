@@ -24,7 +24,7 @@
 <meta name="author" content="Josiah Parry" />
 
 
-<meta name="date" content="2020-03-28" />
+<meta name="date" content="2020-03-30" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -32,7 +32,7 @@
   
   
 <link rel="prev" href="grammer-of-layered-graphics-ii.html"/>
-<link rel="next" href="i-have-two-datasets-what-now.html"/>
+<link rel="next" href="multiple-data-sets.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -151,7 +151,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="14" data-path="grammer-of-layered-graphics-ii.html"><a href="grammer-of-layered-graphics-ii.html"><i class="fa fa-check"></i><b>14</b> Grammer of layered graphics II</a></li>
 <li class="chapter" data-level="15" data-path="visualizing-beyond-2-dimensions.html"><a href="visualizing-beyond-2-dimensions.html"><i class="fa fa-check"></i><b>15</b> Visualizing beyond 2-dimensions</a></li>
 <li class="part"><span><b>III More than hammer and nails</b></span></li>
-<li class="chapter" data-level="16" data-path="i-have-two-datasets-what-now.html"><a href="i-have-two-datasets-what-now.html"><i class="fa fa-check"></i><b>16</b> I have two datasets, what now?</a></li>
+<li class="chapter" data-level="16" data-path="multiple-data-sets.html"><a href="multiple-data-sets.html"><i class="fa fa-check"></i><b>16</b> Multiple data sets</a></li>
 <li class="chapter" data-level="17" data-path="spatial-analysis.html"><a href="spatial-analysis.html"><i class="fa fa-check"></i><b>17</b> Spatial Analysis</a></li>
 <li class="chapter" data-level="18" data-path="creating-ecometrics.html"><a href="creating-ecometrics.html"><i class="fa fa-check"></i><b>18</b> Creating Ecometrics</a></li>
 <li class="part"><span><b>IV Case Studies</b></span></li>
@@ -221,9 +221,9 @@ Each aesthetic can serve a different purpose / used for a different kind of vari
 </ul></li>
 </ul></li>
 </ul>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="visualizing-beyond-2-dimensions.html#cb1-1"></a><span class="kw">ggplot</span>(acs_raw, <span class="kw">aes</span>(fam_house_per, age_u18, <span class="dt">color =</span> by_auto)) <span class="op">+</span></span>
-<span id="cb1-2"><a href="visualizing-beyond-2-dimensions.html#cb1-2"></a><span class="st">  </span><span class="kw">geom_point</span>()</span>
-<span id="cb1-3"><a href="visualizing-beyond-2-dimensions.html#cb1-3"></a><span class="co">## Warning: Removed 17 rows containing missing values (geom_point).</span></span></code></pre></div>
+<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb216-1"><a href="visualizing-beyond-2-dimensions.html#cb216-1"></a><span class="kw">ggplot</span>(acs_raw, <span class="kw">aes</span>(fam_house_per, age_u18, <span class="dt">color =</span> by_auto)) <span class="op">+</span></span>
+<span id="cb216-2"><a href="visualizing-beyond-2-dimensions.html#cb216-2"></a><span class="st">  </span><span class="kw">geom_point</span>()</span>
+<span id="cb216-3"><a href="visualizing-beyond-2-dimensions.html#cb216-3"></a><span class="co">## Warning: Removed 17 rows containing missing values (geom_point).</span></span></code></pre></div>
 <p><img src="04d-beyond-2d_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
 <ul>
 <li>we can add size to this as well by setting the <code>size</code> aesthetic
@@ -231,9 +231,9 @@ Each aesthetic can serve a different purpose / used for a different kind of vari
 <li>lets see if the more female headed house holds there are affects commuting by car as minors increases</li>
 </ul></li>
 </ul>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="visualizing-beyond-2-dimensions.html#cb2-1"></a><span class="kw">ggplot</span>(acs_raw, <span class="kw">aes</span>(fam_house_per, age_u18, <span class="dt">color =</span> by_auto, <span class="dt">size =</span> fem_head_per)) <span class="op">+</span></span>
-<span id="cb2-2"><a href="visualizing-beyond-2-dimensions.html#cb2-2"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">.2</span>)</span>
-<span id="cb2-3"><a href="visualizing-beyond-2-dimensions.html#cb2-3"></a><span class="co">## Warning: Removed 17 rows containing missing values (geom_point).</span></span></code></pre></div>
+<div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb217-1"><a href="visualizing-beyond-2-dimensions.html#cb217-1"></a><span class="kw">ggplot</span>(acs_raw, <span class="kw">aes</span>(fam_house_per, age_u18, <span class="dt">color =</span> by_auto, <span class="dt">size =</span> fem_head_per)) <span class="op">+</span></span>
+<span id="cb217-2"><a href="visualizing-beyond-2-dimensions.html#cb217-2"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">.2</span>)</span>
+<span id="cb217-3"><a href="visualizing-beyond-2-dimensions.html#cb217-3"></a><span class="co">## Warning: Removed 17 rows containing missing values (geom_point).</span></span></code></pre></div>
 <p><img src="04d-beyond-2d_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
 <ul>
 <li>from this chart we can see quite a few things:
@@ -244,23 +244,23 @@ Each aesthetic can serve a different purpose / used for a different kind of vari
 <li>this gives us a good idea of some relationships that we can test with our data at a later point</li>
 </ul></li>
 </ul>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="visualizing-beyond-2-dimensions.html#cb3-1"></a>minors_lm &lt;-<span class="st"> </span><span class="kw">lm</span>(age_u18 <span class="op">~</span><span class="st"> </span>fam_house_per <span class="op">+</span><span class="st"> </span>by_auto <span class="op">+</span><span class="st"> </span>fem_head_per, <span class="dt">data =</span> acs_raw)</span>
-<span id="cb3-2"><a href="visualizing-beyond-2-dimensions.html#cb3-2"></a></span>
-<span id="cb3-3"><a href="visualizing-beyond-2-dimensions.html#cb3-3"></a>huxtable<span class="op">::</span><span class="kw">huxreg</span>(minors_lm)</span>
-<span id="cb3-4"><a href="visualizing-beyond-2-dimensions.html#cb3-4"></a><span class="co">## Registered S3 methods overwritten by &#39;broom.mixed&#39;:</span></span>
-<span id="cb3-5"><a href="visualizing-beyond-2-dimensions.html#cb3-5"></a><span class="co">##   method         from </span></span>
-<span id="cb3-6"><a href="visualizing-beyond-2-dimensions.html#cb3-6"></a><span class="co">##   augment.lme    broom</span></span>
-<span id="cb3-7"><a href="visualizing-beyond-2-dimensions.html#cb3-7"></a><span class="co">##   augment.merMod broom</span></span>
-<span id="cb3-8"><a href="visualizing-beyond-2-dimensions.html#cb3-8"></a><span class="co">##   glance.lme     broom</span></span>
-<span id="cb3-9"><a href="visualizing-beyond-2-dimensions.html#cb3-9"></a><span class="co">##   glance.merMod  broom</span></span>
-<span id="cb3-10"><a href="visualizing-beyond-2-dimensions.html#cb3-10"></a><span class="co">##   glance.stanreg broom</span></span>
-<span id="cb3-11"><a href="visualizing-beyond-2-dimensions.html#cb3-11"></a><span class="co">##   tidy.brmsfit   broom</span></span>
-<span id="cb3-12"><a href="visualizing-beyond-2-dimensions.html#cb3-12"></a><span class="co">##   tidy.gamlss    broom</span></span>
-<span id="cb3-13"><a href="visualizing-beyond-2-dimensions.html#cb3-13"></a><span class="co">##   tidy.lme       broom</span></span>
-<span id="cb3-14"><a href="visualizing-beyond-2-dimensions.html#cb3-14"></a><span class="co">##   tidy.merMod    broom</span></span>
-<span id="cb3-15"><a href="visualizing-beyond-2-dimensions.html#cb3-15"></a><span class="co">##   tidy.rjags     broom</span></span>
-<span id="cb3-16"><a href="visualizing-beyond-2-dimensions.html#cb3-16"></a><span class="co">##   tidy.stanfit   broom</span></span>
-<span id="cb3-17"><a href="visualizing-beyond-2-dimensions.html#cb3-17"></a><span class="co">##   tidy.stanreg   broom</span></span></code></pre></div>
+<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb218-1"><a href="visualizing-beyond-2-dimensions.html#cb218-1"></a>minors_lm &lt;-<span class="st"> </span><span class="kw">lm</span>(age_u18 <span class="op">~</span><span class="st"> </span>fam_house_per <span class="op">+</span><span class="st"> </span>by_auto <span class="op">+</span><span class="st"> </span>fem_head_per, <span class="dt">data =</span> acs_raw)</span>
+<span id="cb218-2"><a href="visualizing-beyond-2-dimensions.html#cb218-2"></a></span>
+<span id="cb218-3"><a href="visualizing-beyond-2-dimensions.html#cb218-3"></a>huxtable<span class="op">::</span><span class="kw">huxreg</span>(minors_lm)</span>
+<span id="cb218-4"><a href="visualizing-beyond-2-dimensions.html#cb218-4"></a><span class="co">## Registered S3 methods overwritten by &#39;broom.mixed&#39;:</span></span>
+<span id="cb218-5"><a href="visualizing-beyond-2-dimensions.html#cb218-5"></a><span class="co">##   method         from </span></span>
+<span id="cb218-6"><a href="visualizing-beyond-2-dimensions.html#cb218-6"></a><span class="co">##   augment.lme    broom</span></span>
+<span id="cb218-7"><a href="visualizing-beyond-2-dimensions.html#cb218-7"></a><span class="co">##   augment.merMod broom</span></span>
+<span id="cb218-8"><a href="visualizing-beyond-2-dimensions.html#cb218-8"></a><span class="co">##   glance.lme     broom</span></span>
+<span id="cb218-9"><a href="visualizing-beyond-2-dimensions.html#cb218-9"></a><span class="co">##   glance.merMod  broom</span></span>
+<span id="cb218-10"><a href="visualizing-beyond-2-dimensions.html#cb218-10"></a><span class="co">##   glance.stanreg broom</span></span>
+<span id="cb218-11"><a href="visualizing-beyond-2-dimensions.html#cb218-11"></a><span class="co">##   tidy.brmsfit   broom</span></span>
+<span id="cb218-12"><a href="visualizing-beyond-2-dimensions.html#cb218-12"></a><span class="co">##   tidy.gamlss    broom</span></span>
+<span id="cb218-13"><a href="visualizing-beyond-2-dimensions.html#cb218-13"></a><span class="co">##   tidy.lme       broom</span></span>
+<span id="cb218-14"><a href="visualizing-beyond-2-dimensions.html#cb218-14"></a><span class="co">##   tidy.merMod    broom</span></span>
+<span id="cb218-15"><a href="visualizing-beyond-2-dimensions.html#cb218-15"></a><span class="co">##   tidy.rjags     broom</span></span>
+<span id="cb218-16"><a href="visualizing-beyond-2-dimensions.html#cb218-16"></a><span class="co">##   tidy.stanfit   broom</span></span>
+<span id="cb218-17"><a href="visualizing-beyond-2-dimensions.html#cb218-17"></a><span class="co">##   tidy.stanreg   broom</span></span></code></pre></div>
 <table class="huxtable" style="border-collapse: collapse; margin-bottom: 2em; margin-top: 2em; width: 50%; margin-left: auto; margin-right: auto;  ">
 <col><col><tr>
 <td style="vertical-align: top; text-align: center; white-space: nowrap; border-style: solid solid solid solid; border-width: 0.8pt 0pt 0pt 0pt; padding: 4pt 4pt 4pt 4pt;"></td>
@@ -361,7 +361,7 @@ Each aesthetic can serve a different purpose / used for a different kind of vari
         </div>
       </div>
 <a href="grammer-of-layered-graphics-ii.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="i-have-two-datasets-what-now.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="multiple-data-sets.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -411,6 +411,20 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>
