@@ -31,7 +31,7 @@ hosts <- read_csv("data/airbnb/hosts.csv")
 glimpse(hosts)
 ```
 
-Notice that the each row of the table is an observation of a different phenomenon. Each observation in `listings` is rentable dwelling and each row in `hosts` is a different individual. One host may have multiple listings as illustrated by the `n_listings` column. This sort of relationship is called _one to many_ meaning that for each host there is one or more listings. This is rather evident in the number of observations in each table—3,799 and 1,335 respectively. 
+Notice that the each row of the table is an observation of a different phenomenon. Each observation in `listings` is rentable dwelling and each row in `hosts` is a different individual. One host may have multiple listings. This sort of relationship is called _one to many_ meaning that for each host there is one or more listings. This is rather evident in the number of observations in each table—3,799 and 1,335 respectively. 
 
 To associate the host information with the listings information we need to join the two datasets together. Most often the common identifier will be a type of id (often referred to as keys). Identifiers are meant to be unique at the observational unit. If we look at the variables of our tibbles we notice that `listings` contains `host_id` and `hosts` an `id` column. Fortunately the first two rows of each dataset share identifiers.
 
@@ -122,6 +122,24 @@ Anti joins are often a good way to sanity check your data when looking for compl
 
 For this exercise your goal is to identify the average price and availability of Airbnb rentals by host. Then plot
 
+
+- Read in the reviews dataset 
+- Count the total number of reviews by listing, create column `n_reviews`
+- join to listings
+- join that to host, name it `airbnb_full`. 
+
+
+```{r}
+reviews <- read_csv("data/airbnb/reviews.csv")
+
+airbnb_full <- group_by(reviews, listing_id) %>% 
+  summarise(n_reviews = n()) %>% 
+  left_join(listings, by = c("listing_id" = "id")) %>% 
+  left_join(hosts, by = c("host_id" = "id"))
+
+glimpse(airbnb_full)
+```
+
 ```{r}
 host_summary <- left_join(listings, hosts, by = c("host_id" = "id")) %>% 
   group_by(superhost) %>% 
@@ -129,4 +147,5 @@ host_summary <- left_join(listings, hosts, by = c("host_id" = "id")) %>%
             avg_price = mean(price),
             avg_min_nights = mean(minimum_nights))
 ```
+
 

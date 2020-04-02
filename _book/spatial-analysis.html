@@ -24,7 +24,7 @@
 <meta name="author" content="Josiah Parry" />
 
 
-<meta name="date" content="2020-03-31" />
+<meta name="date" content="2020-04-02" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -181,37 +181,89 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="spatial-analysis" class="section level1">
 <h1><span class="header-section-number">Chapter 17</span> Spatial Analysis</h1>
+<p>In the very beginning of the book we discussed some of the benefits of administrative data. One of the benefits mentioned is that administrative data are inherently <strong>spatial</strong>. Most data tend to be spatial in nature. This is because most events happen at a physical place. In the context of administrative data, we know that all data recorded at that level must fall within the municipal boundaries. Often we know the location within the municipality to a much finer scale—i.e. the block group, the voting ward, or even the exact point location.</p>
+<p>Identifying whether or not your data is spatial is easiest when there are geographic components present such as latitude and longitude. However, your data can also be spatial even if it isn’t explicitly stated. Some things you can keep an eye out for are things like neighborhood, towns, county, etc. as these are location specific. It is likely that you will be performing analyses rooted in space and accounting for things such as counties but perhaps without using any geospatial techniques.</p>
+<p>In this section we will go over the very basics of geospatial analysis.</p>
+<div id="types-of-spatial-data" class="section level2">
+<h2><span class="header-section-number">17.1</span> Types of spatial data</h2>
+<p>Within the field of Geographic Information Systems (<strong>GIS</strong>) there are two general umbrellas in which data fall under. These are vector and raster data.</p>
+<p><strong>Vector</strong> data is what you will find yourself working with most frequently. Most simply put they are <em>“points, lines, and polygons.”</em> The basis of vector data is the coordinate point. Just like the scatter plots we have built, each coordinate point is a combination of an x and y value (longitude and latitude respectively). This combination of x and y will tell us where something is. By combining two or more points we can trace along a path—think of the connect the dots diagrams you would do at restaurants as a kid—and create line segments. If, however, at any point these lines close, you now have a polygon.</p>
+<p>The other umbrella of data is known as <strong>raster</strong> data. Raster data are to deal with more complex data that cannot easily be captured by a single point. Rasters are used to “represent spatially continuous phenomenon” <a href="https://rspatial.org/raster/spatial/Spatialdata.pdf">source</a>. Raster analysis is done to evaluate things like changing vegetation, elevation and slope modeling, analysing reflective surfaces, among much more. Raster analysis typically relies on satellite imagery or LiDAR laser point cloud data. Raster analysis is an extremely complex topic and requires devoted attention. As such, we will not cover it in this book. But, know that it exists and is out there!</p>
+<p><img src="http://michaelminn.net/tutorials/gis-data/2019-points-lines-polygons.png" /></p>
+</div>
+<div id="working-with-spatial-data" class="section level2">
+<h2><span class="header-section-number">17.2</span> Working with spatial data</h2>
+<p>Working with spatial data is made rather straightforward by the <a href="https://github.com/r-spatial/sf"><code>sf</code></a> package. We will be using this package to perform our spatial transformations. We will return to the Airbnb listings data to work through some of the skills that we will need.</p>
+<p>Begin by installing the <code>sf</code> (simple-features) package and loading the <code>locations</code> Airbnb dataset.</p>
+<div class="sourceCode" id="cb232"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb232-1"><a href="spatial-analysis.html#cb232-1"></a><span class="kw">library</span>(sf)</span></code></pre></div>
+<pre><code>## Linking to GEOS 3.7.2, GDAL 2.4.2, PROJ 5.2.0</code></pre>
+<div class="sourceCode" id="cb234"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb234-1"><a href="spatial-analysis.html#cb234-1"></a><span class="kw">library</span>(tidyverse)</span></code></pre></div>
+<pre><code>## ── Attaching packages ───────────────────────────────────────────── tidyverse 1.2.1 ──</code></pre>
+<pre><code>## ✓ tibble  2.1.3     ✓ purrr   0.3.3
+## ✓ tidyr   1.0.2     ✓ dplyr   0.8.3
+## ✓ readr   1.3.1     ✓ stringr 1.4.0
+## ✓ tibble  2.1.3     ✓ forcats 0.4.0</code></pre>
+<pre><code>## ── Conflicts ──────────────────────────────────────────────── tidyverse_conflicts() ──
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()</code></pre>
+<div class="sourceCode" id="cb238"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb238-1"><a href="spatial-analysis.html#cb238-1"></a>locations &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data/airbnb/locations.csv&quot;</span>)</span></code></pre></div>
+<pre><code>## Parsed with column specification:
+## cols(
+##   id = col_double(),
+##   longitude = col_double(),
+##   latitude = col_double()
+## )</code></pre>
+<div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb240-1"><a href="spatial-analysis.html#cb240-1"></a><span class="kw">head</span>(locations)</span></code></pre></div>
+<pre><code>## # A tibble: 6 x 3
+##      id longitude latitude
+##   &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
+## 1  3781     -71.0     42.4
+## 2  5506     -71.1     42.3
+## 3  6695     -71.1     42.3
+## 4  8789     -71.1     42.4
+## 5 10730     -71.1     42.4
+## 6 10813     -71.1     42.3</code></pre>
+<p>So far everything is the same. But now that we have a dataset with coordinate points, we can make this a spatial object using <code>sf</code>.</p>
 <ul>
-<li>What is spatial data?
+<li>use <code>st_as_sf()</code>
 <ul>
-<li>events happen at a location and are associate with place</li>
-<li>data become spatial when there is a geographic element present</li>
-<li>the most obvious is when lat and long data are present</li>
-<li>data which lists county, for example, is also spatial
+<li>spatial transform as sf</li>
+<li>all spatial transformations are prefixed with <code>st</code></li>
+<li>requires us to specify the spatial components (lat and long)
 <ul>
-<li>often there isn’t spatial data explicitly associated</li>
+<li>its annoying because lat long is actually y,x</li>
 </ul></li>
+<li>use the <code>coord</code> argument to tell <code>sf</code> what the spatial components are.</li>
 </ul></li>
-<li>Types of spatial data
+</ul>
+<div class="sourceCode" id="cb242"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb242-1"><a href="spatial-analysis.html#cb242-1"></a>loc_sf &lt;-<span class="st"> </span><span class="kw">st_as_sf</span>(locations,</span>
+<span id="cb242-2"><a href="spatial-analysis.html#cb242-2"></a>         <span class="dt">coords =</span> <span class="kw">c</span>(<span class="st">&quot;longitude&quot;</span>, <span class="st">&quot;latitude&quot;</span>),</span>
+<span id="cb242-3"><a href="spatial-analysis.html#cb242-3"></a>         <span class="dt">crs =</span> <span class="dv">4326</span>)</span>
+<span id="cb242-4"><a href="spatial-analysis.html#cb242-4"></a></span>
+<span id="cb242-5"><a href="spatial-analysis.html#cb242-5"></a><span class="kw">head</span>(loc_sf)</span></code></pre></div>
+<pre><code>## Simple feature collection with 6 features and 1 field
+## geometry type:  POINT
+## dimension:      XY
+## bbox:           xmin: -71.09559 ymin: 42.32981 xmax: -71.02991 ymax: 42.36413
+## epsg (SRID):    4326
+## proj4string:    +proj=longlat +datum=WGS84 +no_defs
+## # A tibble: 6 x 2
+##      id             geometry
+##   &lt;dbl&gt;          &lt;POINT [°]&gt;
+## 1  3781 (-71.02991 42.36413)
+## 2  5506 (-71.09559 42.32981)
+## 3  6695 (-71.09351 42.32994)
+## 4  8789 (-71.06265 42.35919)
+## 5 10730  (-71.06185 42.3584)
+## 6 10813 (-71.08904 42.34961)</code></pre>
 <ul>
-<li>Vector and Raster</li>
-<li>in gneral you will encounter vector data more frequently.</li>
-<li>vector data are coordinates</li>
-<li>raster data is used to “represent spatially continuous phenomenon”
-<ul>
-<li>(<a href="https://rspatial.org/raster/spatial/Spatialdata.pdf" class="uri">https://rspatial.org/raster/spatial/Spatialdata.pdf</a>)</li>
-</ul></li>
-<li>vector data is less complex to analyse and is the easiest to pick up</li>
-<li>raster data is extremely interesting but requires more devoted attention
-<ul>
-<li>raster data analysis can be done to look at changing elevation, analyse vegatation, the amount of reflective surfaces, etc</li>
-</ul></li>
-</ul></li>
-<li>Vector data</li>
+<li>We can now see that instead of a long and lat column we have a <code>geometry</code> column.</li>
+<li></li>
 </ul>
 <p><a href="https://geocompr.robinlovelace.net/" class="uri">https://geocompr.robinlovelace.net/</a></p>
 <p><a href="https://rud.is/books/30-day-map-challenge/points-01.html" class="uri">https://rud.is/books/30-day-map-challenge/points-01.html</a></p>
 
+</div>
 </div>
             </section>
 
