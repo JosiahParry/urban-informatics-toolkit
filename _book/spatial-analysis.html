@@ -24,7 +24,7 @@
 <meta name="author" content="Josiah Parry" />
 
 
-<meta name="date" content="2020-04-02" />
+<meta name="date" content="2020-04-04" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -193,17 +193,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="working-with-spatial-data" class="section level2">
 <h2><span class="header-section-number">17.2</span> Working with spatial data</h2>
-<p>Working with spatial data is made rather straightforward by the <a href="https://github.com/r-spatial/sf"><code>sf</code></a> package. We will be using this package to perform our spatial transformations. We will return to the Airbnb listings data to work through some of the skills that we will need.</p>
+<p>Working with spatial data is made rather straightforward by the <a href="https://github.com/r-spatial/sf"><code>sf</code></a> package.</p>
+<p>sf is shorthand for <em>simple features</em>. sf let’s us represent physical objects or phenomena in that occur the real world through data. It is built upon an international standard that “describes how such objects can be stored in and retrieved from databases, and which geometrical operations should be defined for them.” (sf vinette, 1).</p>
+<p>All simple features are representation of vector data. That is that they are composed of points. These points are usually represented two-dimensionally with longitude and latitude (x and y). We can associate a third dimension of altitude if so desired to extend to three dimensions: longitude, latitude, and altitude (x, y, &amp; z). In our cases, however, this will not be used.</p>
+<p>In this section we will working with the <code>locations</code> Airbnb dataset. <code>locations</code> contains the longitude and latitude of Airbnb listings in Boston. These are an example of point data (which contain two-dimension).</p>
+</div>
+<div id="creating-simple-features-from-a-tibble" class="section level2">
+<h2><span class="header-section-number">17.3</span> Creating simple features from a tibble</h2>
 <p>Begin by installing the <code>sf</code> (simple-features) package and loading the <code>locations</code> Airbnb dataset.</p>
-<div class="sourceCode" id="cb232"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb232-1"><a href="spatial-analysis.html#cb232-1"></a><span class="kw">library</span>(sf)</span></code></pre></div>
+<div class="sourceCode" id="cb232"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb232-1"><a href="spatial-analysis.html#cb232-1"></a><span class="co"># install.packages(&quot;sf&quot;)</span></span>
+<span id="cb232-2"><a href="spatial-analysis.html#cb232-2"></a><span class="kw">library</span>(sf)</span></code></pre></div>
 <pre><code>## Linking to GEOS 3.7.2, GDAL 2.4.2, PROJ 5.2.0</code></pre>
 <div class="sourceCode" id="cb234"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb234-1"><a href="spatial-analysis.html#cb234-1"></a><span class="kw">library</span>(tidyverse)</span></code></pre></div>
-<pre><code>## ── Attaching packages ───────────────────────────────────────────── tidyverse 1.2.1 ──</code></pre>
+<pre><code>## ── Attaching packages ─────────────────</code></pre>
 <pre><code>## ✓ tibble  2.1.3     ✓ purrr   0.3.3
 ## ✓ tidyr   1.0.2     ✓ dplyr   0.8.3
 ## ✓ readr   1.3.1     ✓ stringr 1.4.0
 ## ✓ tibble  2.1.3     ✓ forcats 0.4.0</code></pre>
-<pre><code>## ── Conflicts ──────────────────────────────────────────────── tidyverse_conflicts() ──
+<pre><code>## ── Conflicts ──────────────────────────
 ## x dplyr::filter() masks stats::filter()
 ## x dplyr::lag()    masks stats::lag()</code></pre>
 <div class="sourceCode" id="cb238"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb238-1"><a href="spatial-analysis.html#cb238-1"></a>locations &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data/airbnb/locations.csv&quot;</span>)</span></code></pre></div>
@@ -223,42 +230,110 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 4  8789     -71.1     42.4
 ## 5 10730     -71.1     42.4
 ## 6 10813     -71.1     42.3</code></pre>
-<p>So far everything is the same. But now that we have a dataset with coordinate points, we can make this a spatial object using <code>sf</code>.</p>
-<ul>
-<li>use <code>st_as_sf()</code>
-<ul>
-<li>spatial transform as sf</li>
-<li>all spatial transformations are prefixed with <code>st</code></li>
-<li>requires us to specify the spatial components (lat and long)
-<ul>
-<li>its annoying because lat long is actually y,x</li>
-</ul></li>
-<li>use the <code>coord</code> argument to tell <code>sf</code> what the spatial components are.</li>
-</ul></li>
-</ul>
-<div class="sourceCode" id="cb242"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb242-1"><a href="spatial-analysis.html#cb242-1"></a>loc_sf &lt;-<span class="st"> </span><span class="kw">st_as_sf</span>(locations,</span>
-<span id="cb242-2"><a href="spatial-analysis.html#cb242-2"></a>         <span class="dt">coords =</span> <span class="kw">c</span>(<span class="st">&quot;longitude&quot;</span>, <span class="st">&quot;latitude&quot;</span>),</span>
-<span id="cb242-3"><a href="spatial-analysis.html#cb242-3"></a>         <span class="dt">crs =</span> <span class="dv">4326</span>)</span>
-<span id="cb242-4"><a href="spatial-analysis.html#cb242-4"></a></span>
-<span id="cb242-5"><a href="spatial-analysis.html#cb242-5"></a><span class="kw">head</span>(loc_sf)</span></code></pre></div>
-<pre><code>## Simple feature collection with 6 features and 1 field
+<p>So far everything is the same. We have read in our dataset and created a tibble. The next step is to make this tibble a simple feature. Fortunately, sf keeps this process rather simple for us by representing spatial data in native R data formats—namely, the data frame. To make simple features from an existing tibble, we need to cast the object as an <code>sf</code> object. And we do this with <code>st_as_sf()</code>.</p>
+<p>Generally when we cast objects we use functions like <code>as.integer()</code> or <code>as_tibble()</code>. Here, there is a prefixed <code>st_</code>. This stands for <em>spatial transformation</em>. All transformations are prefixed as such—this is in an effort to keep continuity between GIS tools. Most functions cast objects to other classes with no function arguments. <code>st_as_sf()</code> unfortunately cannot read your mind and is not aware of what the geometry is in the tibble. As such, we need to use the <code>coords</code> argument in <code>st_as_sf()</code>. <code>coords</code> gives us the ability to tell sf what the columns are that contain our coordinate points. For point data we need to provide a character vector of length two with the x and y dimensions aka longitude and latitude.</p>
+<blockquote>
+<p>Note that we are likely used to saying <em>lat, long</em>, but that actually maps to <em>y, x</em>. This is something that trips everyone up! Just make sure you put longitude in the x spot and latitude in the y spot.</p>
+</blockquote>
+<p>To convert the <code>locations</code> data frame to a simple feature we will use <code>st_as_sf()</code> and set the <code>coords</code> argument to <code>c("longitude", "latitude")</code>.</p>
+<div class="sourceCode" id="cb242"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb242-1"><a href="spatial-analysis.html#cb242-1"></a><span class="kw">st_as_sf</span>(locations,</span>
+<span id="cb242-2"><a href="spatial-analysis.html#cb242-2"></a>         <span class="dt">coords =</span> <span class="kw">c</span>(<span class="st">&quot;longitude&quot;</span>, <span class="st">&quot;latitude&quot;</span>))</span></code></pre></div>
+<pre><code>## Simple feature collection with 3799 features and 1 field
 ## geometry type:  POINT
 ## dimension:      XY
-## bbox:           xmin: -71.09559 ymin: 42.32981 xmax: -71.02991 ymax: 42.36413
+## bbox:           xmin: -71.1728 ymin: 42.23576 xmax: -70.99595 ymax: 42.39549
+## epsg (SRID):    NA
+## proj4string:    NA
+## # A tibble: 3,799 x 2
+##       id             geometry
+##    &lt;dbl&gt;              &lt;POINT&gt;
+##  1  3781 (-71.02991 42.36413)
+##  2  5506 (-71.09559 42.32981)
+##  3  6695 (-71.09351 42.32994)
+##  4  8789 (-71.06265 42.35919)
+##  5 10730  (-71.06185 42.3584)
+##  6 10813 (-71.08904 42.34961)
+##  7 10986 (-71.05075 42.36352)
+##  8 16384  (-71.07132 42.3581)
+##  9 18711 (-71.06096 42.32212)
+## 10 22195  (-71.0793 42.34558)
+## # … with 3,789 more rows</code></pre>
+<p>Now that we have successfully created a simple feature we can see that we no longer have the columns <code>longitude</code> and <code>latitude</code> but a <code>geometry</code> column instead. Notice that when printed, the object tells us what type of geometry we are working with, it’s dimensions, and the bounding box for these points.</p>
+<blockquote>
+<p>A bounding box is the furthest extent that our data reaches in both latiude and longitude.</p>
+</blockquote>
+<p>The printed object informs us that there are actually two missing pieces of information the epsg and proj4string. This is because we failed to specify a <strong>coordinate reference system</strong> (CRS). While this book is not intended as an introduction to GIS, this is still worth briefly expanding upon. We use a CRS because we are trying to place points in two-dimensions when the Earth is round! Try peeling and orange and laying the peel flat. It’s impossible. There is now way to visualize a circle as a rectangle without introducing <em>some</em> error. This is what a CRS accounts for. There are many CRS for each type of map projection and each type of unit. Most, if not all, of the frustration you may encounter when working with spatial data will be due to mismatching CRS.</p>
+<p>Fortunately we will <em>most likely</em> be working with data that is collected using the <strong>WGS84</strong> reference system. This is a CRS that is used to define a global reference system that is used consistently throughout government agencies, and typically in online data recording. The Airbnb data uses this references system.</p>
+<p>Most other online data sources use this reference system as well. For example Google and Twitter provide their data using this CRS. The times when you are most likely to encounter a CRS isn’t WGS84 is when working with data from local agencies that need highly accurate and tailored spatial data. This would be agencies like water departments, and forestry groups, etc.</p>
+<p>To ensure that our data are properly represented in space, we need to provide the CRS in the creation of our simple features. We do this by specifying the <code>crs</code> argument. <code>crs</code> will accept a number that indicates what projection you are using. There are too many CRS identifiers to commit to memory. This information is usually recorded in the original data source. Be sure to confirm the spatial dimensions! For WGS84, the CRS identifier is <code>4326</code>. This is probably worth committing to memory.</p>
+<p><a href="https://confluence.qps.nl/qinsy/latest/en/world-geodetic-system-1984-wgs84-182618391.html#id-.WorldGeodeticSystem1984(WGS84)v9.1-WGS84definitions" class="uri">https://confluence.qps.nl/qinsy/latest/en/world-geodetic-system-1984-wgs84-182618391.html#id-.WorldGeodeticSystem1984(WGS84)v9.1-WGS84definitions</a></p>
+<p>We will now create an object called <code>loc_sf</code> using <code>st_as_sf()</code> and providing both the <code>coords</code> and the <code>crs</code>.</p>
+<div class="sourceCode" id="cb244"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb244-1"><a href="spatial-analysis.html#cb244-1"></a>loc_sf &lt;-<span class="st"> </span><span class="kw">st_as_sf</span>(locations,</span>
+<span id="cb244-2"><a href="spatial-analysis.html#cb244-2"></a>         <span class="dt">coords =</span> <span class="kw">c</span>(<span class="st">&quot;longitude&quot;</span>, <span class="st">&quot;latitude&quot;</span>),</span>
+<span id="cb244-3"><a href="spatial-analysis.html#cb244-3"></a>         <span class="dt">crs =</span> <span class="dv">4326</span>)</span>
+<span id="cb244-4"><a href="spatial-analysis.html#cb244-4"></a></span>
+<span id="cb244-5"><a href="spatial-analysis.html#cb244-5"></a>loc_sf</span></code></pre></div>
+<pre><code>## Simple feature collection with 3799 features and 1 field
+## geometry type:  POINT
+## dimension:      XY
+## bbox:           xmin: -71.1728 ymin: 42.23576 xmax: -70.99595 ymax: 42.39549
 ## epsg (SRID):    4326
 ## proj4string:    +proj=longlat +datum=WGS84 +no_defs
-## # A tibble: 6 x 2
-##      id             geometry
-##   &lt;dbl&gt;          &lt;POINT [°]&gt;
-## 1  3781 (-71.02991 42.36413)
-## 2  5506 (-71.09559 42.32981)
-## 3  6695 (-71.09351 42.32994)
-## 4  8789 (-71.06265 42.35919)
-## 5 10730  (-71.06185 42.3584)
-## 6 10813 (-71.08904 42.34961)</code></pre>
+## # A tibble: 3,799 x 2
+##       id             geometry
+##    &lt;dbl&gt;          &lt;POINT [°]&gt;
+##  1  3781 (-71.02991 42.36413)
+##  2  5506 (-71.09559 42.32981)
+##  3  6695 (-71.09351 42.32994)
+##  4  8789 (-71.06265 42.35919)
+##  5 10730  (-71.06185 42.3584)
+##  6 10813 (-71.08904 42.34961)
+##  7 10986 (-71.05075 42.36352)
+##  8 16384  (-71.07132 42.3581)
+##  9 18711 (-71.06096 42.32212)
+## 10 22195  (-71.0793 42.34558)
+## # … with 3,789 more rows</code></pre>
+<p>Since an sf object is also a data frame we are able to perform all of the operations that we may with a normal tibble such as selecting columns, joining, mutating etc.</p>
+<div class="sourceCode" id="cb246"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb246-1"><a href="spatial-analysis.html#cb246-1"></a><span class="kw">count</span>(loc_sf)</span></code></pre></div>
+<pre><code>## Simple feature collection with 1 feature and 1 field
+## geometry type:  MULTIPOINT
+## dimension:      XY
+## bbox:           xmin: -71.1728 ymin: 42.23576 xmax: -70.99595 ymax: 42.39549
+## epsg (SRID):    4326
+## proj4string:    +proj=longlat +datum=WGS84 +no_defs
+## # A tibble: 1 x 2
+##       n                                                            geometry
+## * &lt;int&gt;                                                    &lt;MULTIPOINT [°]&gt;
+## 1  3799 (-71.1728 42.34835, -71.17174 42.34854, -71.17173 42.34923, -71.17…</code></pre>
+<p>Notice that it keeps the geometry even when counting. When our data is spatial, we have to incorporate the geometry into our computations. This often times leads to slower processing times. So if you do not immediately need the geometry, my recommendation is that you join it back on as late as possible. You can cast an sf object to a tibble with <code>as_tibble()</code></p>
+<div class="sourceCode" id="cb248"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb248-1"><a href="spatial-analysis.html#cb248-1"></a><span class="kw">as_tibble</span>(loc_sf) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb248-2"><a href="spatial-analysis.html#cb248-2"></a><span class="st">  </span><span class="kw">count</span>()</span></code></pre></div>
+<pre><code>## # A tibble: 1 x 1
+##       n
+##   &lt;int&gt;
+## 1  3799</code></pre>
+<p>Notice that we now lose the geometry column. This is because we have stopped keeping track of the geometry.</p>
+</div>
+<div id="plotting-sf-objects-with-ggplot" class="section level2">
+<h2><span class="header-section-number">17.4</span> Plotting sf objects with ggplot</h2>
+<p>Plotting sf objects is made rather straightforward with ggplot2. Since sf objects contain a ton of spatial information this is inferred from ggplot. As such, we are not required to map the aesthetics for x and y. We simple provide just the data argument to ggpplot and then add a <code>geom_sf()</code> layer. Inside of <code>geom_sf()</code> we can provide any and all arguments that we may like such as color, size, shape, etc. as this will be passed to the underlying <code>geom_*</code>—in the case of points, it will be <code>geom_point()</code>.</p>
+<div class="sourceCode" id="cb250"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb250-1"><a href="spatial-analysis.html#cb250-1"></a><span class="kw">ggplot</span>(loc_sf) <span class="op">+</span></span>
+<span id="cb250-2"><a href="spatial-analysis.html#cb250-2"></a><span class="st">  </span><span class="kw">geom_sf</span>(<span class="dt">shape =</span> <span class="st">&quot;.&quot;</span>)</span></code></pre></div>
+<p><img src="10-spatial-analysis_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
 <ul>
-<li>We can now see that instead of a long and lat column we have a <code>geometry</code> column.</li>
-<li></li>
+<li>this is great we can already somewhat see the shape of boston and suffolk county</li>
+<li>these points are nice, but we want so supplement them with census data</li>
+<li>we can read in polygon data which represents the census tracts</li>
+<li>perform spatial joins to associate the points with which tracts they fall in</li>
+</ul>
+</div>
+<div id="connecting-points-to-polygons" class="section level2">
+<h2><span class="header-section-number">17.5</span> Connecting points to polygons</h2>
+<ul>
+<li>st_join()</li>
+<li>following the join we can associate it with normal tabular data</li>
+<li>locations has an id column that joins back to listings data.</li>
+<li>create a plot of census tracts colored by the number of listings in that tract</li>
 </ul>
 <p><a href="https://geocompr.robinlovelace.net/" class="uri">https://geocompr.robinlovelace.net/</a></p>
 <p><a href="https://rud.is/books/30-day-map-challenge/points-01.html" class="uri">https://rud.is/books/30-day-map-challenge/points-01.html</a></p>

@@ -1,9 +1,43 @@
-# Schools of Urban Informatics 
+# Approaches to, and Schools of, Urban Informatics 
 
 ```{r, include=FALSE}
 source("common.R")
 ```
 
+In the field of Urban Informatics, and the digital humanities more generally, there are three distinct scientific approaches. I will first introduce two of them and the expemplary schools from which they may be traced back to in urban studies. 
+
+- i will first address inductive and deductive scientific processes each with an example
+- lastly i will discuss a newer, more hybrid approach 
+
+
+- inductive vs deductive approaches to science has been a point of argument since the 17th century. 
+- these two theories can be best characterized as "top down" and "bottom up" approaches to
+- deductive approaches (i.e. we are deducing) start with a theory about the workings of some observed phenomenon
+  - this is how we have most likely been taught science 
+  - then a hypothesis is created about the function of a theory
+  - then we observe phenomena, collect data, and the confirm or refute our theory
+- inductive approaches work in a reverse order
+  - inductive approaches to science are characterized by making observations of the natural world 
+  - observing some pattern in these observations
+  - _then_ drawing tentative conclusions from them
+  - try to observe the patten more frequently or in other locations and then confirm those hypothesis and then build a theory
+  - think of sherlock and watson looking for clues and them coming to conclusions from them 
+
+
+
+- what is a theory?
+  - we can think of theories as frameworks that scientists use to explain observed phonemona
+  - 
+  
+  
+## Chicago School
+
+- The University of Chicago plays a central role in both the creation of the field of american sociology and urban theory. 
+- Research that came out of the sociology department of the University of Chicago in 1890s and early 20th century is called the chicago school. 
+- at the time the social sciences were dominated by political science, anthropology, history, the new field of economics. 
+  - they were highly critical of the new field of sociology
+  - it was believed that general theory "confer[ed] academic respectability" (Roscoe Hinkle 1980, p 207 from Turner)
+  - Chicago school "fostered a very different view of sociology: first-hand data collection was to be emphasized; research on the particular case or setting was to be stressed; induction over deduction was to be promoted"
 
 
 - Sociological origins

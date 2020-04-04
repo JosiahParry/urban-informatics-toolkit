@@ -24,7 +24,7 @@
 <meta name="author" content="Josiah Parry" />
 
 
-<meta name="date" content="2020-04-02" />
+<meta name="date" content="2020-04-04" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -226,96 +226,96 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Note: a case study should be recreating these ecometrics</p>
 </blockquote>
 <p>Explore what the data description from BARI looks like</p>
-<div class="sourceCode" id="cb248"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb248-1"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb248-1"></a><span class="kw">library</span>(tidyverse)</span>
-<span id="cb248-2"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb248-2"></a><span class="co">## ── Attaching packages ───────────────────────────────────────────── tidyverse 1.2.1 ──</span></span>
-<span id="cb248-3"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb248-3"></a><span class="co">## ✓ tibble  2.1.3     ✓ purrr   0.3.3</span></span>
-<span id="cb248-4"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb248-4"></a><span class="co">## ✓ tidyr   1.0.2     ✓ dplyr   0.8.3</span></span>
-<span id="cb248-5"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb248-5"></a><span class="co">## ✓ readr   1.3.1     ✓ stringr 1.4.0</span></span>
-<span id="cb248-6"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb248-6"></a><span class="co">## ✓ tibble  2.1.3     ✓ forcats 0.4.0</span></span>
-<span id="cb248-7"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb248-7"></a><span class="co">## ── Conflicts ──────────────────────────────────────────────── tidyverse_conflicts() ──</span></span>
-<span id="cb248-8"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb248-8"></a><span class="co">## x dplyr::filter() masks stats::filter()</span></span>
-<span id="cb248-9"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb248-9"></a><span class="co">## x dplyr::lag()    masks stats::lag()</span></span>
-<span id="cb248-10"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb248-10"></a>ecometrics &lt;-<span class="st"> </span>readr<span class="op">::</span><span class="kw">read_csv</span>(<span class="st">&quot;data/911/911-ecometrics-2014-19.csv&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb248-11"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb248-11"></a><span class="st">  </span>janitor<span class="op">::</span><span class="kw">clean_names</span>()</span>
-<span id="cb248-12"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb248-12"></a><span class="co">## Parsed with column specification:</span></span>
-<span id="cb248-13"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb248-13"></a><span class="co">## cols(</span></span>
-<span id="cb248-14"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb248-14"></a><span class="co">##   TYPE = col_character(),</span></span>
-<span id="cb248-15"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb248-15"></a><span class="co">##   tycod = col_character(),</span></span>
-<span id="cb248-16"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb248-16"></a><span class="co">##   typ_eng = col_character(),</span></span>
-<span id="cb248-17"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb248-17"></a><span class="co">##   sub_tycod = col_character(),</span></span>
-<span id="cb248-18"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb248-18"></a><span class="co">##   sub_eng = col_character(),</span></span>
-<span id="cb248-19"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb248-19"></a><span class="co">##   SocDis = col_double(),</span></span>
-<span id="cb248-20"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb248-20"></a><span class="co">##   PrivateConflict = col_double(),</span></span>
-<span id="cb248-21"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb248-21"></a><span class="co">##   Violence = col_double(),</span></span>
-<span id="cb248-22"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb248-22"></a><span class="co">##   Guns = col_double(),</span></span>
-<span id="cb248-23"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb248-23"></a><span class="co">##   Frequency_2015 = col_double(),</span></span>
-<span id="cb248-24"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb248-24"></a><span class="co">##   Frequency_2016 = col_double(),</span></span>
-<span id="cb248-25"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb248-25"></a><span class="co">##   Frequency_2017 = col_double(),</span></span>
-<span id="cb248-26"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb248-26"></a><span class="co">##   Frequency_2018 = col_double(),</span></span>
-<span id="cb248-27"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb248-27"></a><span class="co">##   yr.intro = col_double(),</span></span>
-<span id="cb248-28"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb248-28"></a><span class="co">##   last.yr = col_double()</span></span>
-<span id="cb248-29"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb248-29"></a><span class="co">## )</span></span>
-<span id="cb248-30"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb248-30"></a></span>
-<span id="cb248-31"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb248-31"></a><span class="kw">glimpse</span>(ecometrics)</span>
-<span id="cb248-32"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb248-32"></a><span class="co">## Observations: 302</span></span>
-<span id="cb248-33"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb248-33"></a><span class="co">## Variables: 15</span></span>
-<span id="cb248-34"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb248-34"></a><span class="co">## $ type             &lt;chr&gt; &quot;AB===&gt;&gt;&gt;&quot;, &quot;ABAN===&gt;&gt;&gt;&quot;, &quot;ABANBU&quot;, &quot;ABANCELL&quot;,…</span></span>
-<span id="cb248-35"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb248-35"></a><span class="co">## $ tycod            &lt;chr&gt; &quot;AB&quot;, &quot;ABAN&quot;, &quot;ABAN&quot;, &quot;ABAN&quot;, &quot;ABAN&quot;, &quot;ABAN&quot;, &quot;…</span></span>
-<span id="cb248-36"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb248-36"></a><span class="co">## $ typ_eng          &lt;chr&gt; &quot;ASSAULT AND BATTERY&quot;, &quot;ABANDONED CALL&quot;, &quot;ABAND…</span></span>
-<span id="cb248-37"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb248-37"></a><span class="co">## $ sub_tycod        &lt;chr&gt; &quot;===&gt;&gt;&gt;&quot;, &quot;===&gt;&gt;&gt;&quot;, &quot;BU&quot;, &quot;CELL&quot;, &quot;INCCAL&quot;, &quot;PH…</span></span>
-<span id="cb248-38"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb248-38"></a><span class="co">## $ sub_eng          &lt;chr&gt; &quot;PICK A SUB-TYPE&quot;, &quot;PICK A SUB-TYPE&quot;, &quot;FROM A B…</span></span>
-<span id="cb248-39"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb248-39"></a><span class="co">## $ soc_dis          &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,…</span></span>
-<span id="cb248-40"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb248-40"></a><span class="co">## $ private_conflict &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,…</span></span>
-<span id="cb248-41"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb248-41"></a><span class="co">## $ violence         &lt;dbl&gt; 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0,…</span></span>
-<span id="cb248-42"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb248-42"></a><span class="co">## $ guns             &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0,…</span></span>
-<span id="cb248-43"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb248-43"></a><span class="co">## $ frequency_2015   &lt;dbl&gt; 27, 40, 12768, 72081, 686, 1734, 3143, 194, 122…</span></span>
-<span id="cb248-44"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb248-44"></a><span class="co">## $ frequency_2016   &lt;dbl&gt; 29, 26, 13287, 56074, 1188, 1205, 2687, 397, 19…</span></span>
-<span id="cb248-45"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb248-45"></a><span class="co">## $ frequency_2017   &lt;dbl&gt; 29, 17, 12599, 39323, 124, 724, 1944, 253, 162,…</span></span>
-<span id="cb248-46"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb248-46"></a><span class="co">## $ frequency_2018   &lt;dbl&gt; 14, 10, 6422, 19947, 70, 506, 840, 262, 169, 78…</span></span>
-<span id="cb248-47"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb248-47"></a><span class="co">## $ yr_intro         &lt;dbl&gt; 2014, 2014, 2014, 2014, 2014, 2014, 2014, 2014,…</span></span>
-<span id="cb248-48"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb248-48"></a><span class="co">## $ last_yr          &lt;dbl&gt; 2019, 2018, 2019, 2019, 2019, 2019, 2019, 2019,…</span></span></code></pre></div>
+<div class="sourceCode" id="cb255"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb255-1"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb255-1"></a><span class="kw">library</span>(tidyverse)</span>
+<span id="cb255-2"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb255-2"></a><span class="co">## ── Attaching packages ─────────────────</span></span>
+<span id="cb255-3"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb255-3"></a><span class="co">## ✓ tibble  2.1.3     ✓ purrr   0.3.3</span></span>
+<span id="cb255-4"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb255-4"></a><span class="co">## ✓ tidyr   1.0.2     ✓ dplyr   0.8.3</span></span>
+<span id="cb255-5"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb255-5"></a><span class="co">## ✓ readr   1.3.1     ✓ stringr 1.4.0</span></span>
+<span id="cb255-6"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb255-6"></a><span class="co">## ✓ tibble  2.1.3     ✓ forcats 0.4.0</span></span>
+<span id="cb255-7"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb255-7"></a><span class="co">## ── Conflicts ──────────────────────────</span></span>
+<span id="cb255-8"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb255-8"></a><span class="co">## x dplyr::filter() masks stats::filter()</span></span>
+<span id="cb255-9"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb255-9"></a><span class="co">## x dplyr::lag()    masks stats::lag()</span></span>
+<span id="cb255-10"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb255-10"></a>ecometrics &lt;-<span class="st"> </span>readr<span class="op">::</span><span class="kw">read_csv</span>(<span class="st">&quot;data/911/911-ecometrics-2014-19.csv&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb255-11"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb255-11"></a><span class="st">  </span>janitor<span class="op">::</span><span class="kw">clean_names</span>()</span>
+<span id="cb255-12"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb255-12"></a><span class="co">## Parsed with column specification:</span></span>
+<span id="cb255-13"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb255-13"></a><span class="co">## cols(</span></span>
+<span id="cb255-14"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb255-14"></a><span class="co">##   TYPE = col_character(),</span></span>
+<span id="cb255-15"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb255-15"></a><span class="co">##   tycod = col_character(),</span></span>
+<span id="cb255-16"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb255-16"></a><span class="co">##   typ_eng = col_character(),</span></span>
+<span id="cb255-17"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb255-17"></a><span class="co">##   sub_tycod = col_character(),</span></span>
+<span id="cb255-18"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb255-18"></a><span class="co">##   sub_eng = col_character(),</span></span>
+<span id="cb255-19"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb255-19"></a><span class="co">##   SocDis = col_double(),</span></span>
+<span id="cb255-20"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb255-20"></a><span class="co">##   PrivateConflict = col_double(),</span></span>
+<span id="cb255-21"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb255-21"></a><span class="co">##   Violence = col_double(),</span></span>
+<span id="cb255-22"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb255-22"></a><span class="co">##   Guns = col_double(),</span></span>
+<span id="cb255-23"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb255-23"></a><span class="co">##   Frequency_2015 = col_double(),</span></span>
+<span id="cb255-24"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb255-24"></a><span class="co">##   Frequency_2016 = col_double(),</span></span>
+<span id="cb255-25"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb255-25"></a><span class="co">##   Frequency_2017 = col_double(),</span></span>
+<span id="cb255-26"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb255-26"></a><span class="co">##   Frequency_2018 = col_double(),</span></span>
+<span id="cb255-27"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb255-27"></a><span class="co">##   yr.intro = col_double(),</span></span>
+<span id="cb255-28"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb255-28"></a><span class="co">##   last.yr = col_double()</span></span>
+<span id="cb255-29"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb255-29"></a><span class="co">## )</span></span>
+<span id="cb255-30"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb255-30"></a></span>
+<span id="cb255-31"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb255-31"></a><span class="kw">glimpse</span>(ecometrics)</span>
+<span id="cb255-32"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb255-32"></a><span class="co">## Observations: 302</span></span>
+<span id="cb255-33"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb255-33"></a><span class="co">## Variables: 15</span></span>
+<span id="cb255-34"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb255-34"></a><span class="co">## $ type             &lt;chr&gt; &quot;AB===&gt;&gt;&gt;&quot;, &quot;ABAN===&gt;&gt;&gt;&quot;, &quot;ABANBU&quot;, &quot;ABANCELL&quot;,…</span></span>
+<span id="cb255-35"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb255-35"></a><span class="co">## $ tycod            &lt;chr&gt; &quot;AB&quot;, &quot;ABAN&quot;, &quot;ABAN&quot;, &quot;ABAN&quot;, &quot;ABAN&quot;, &quot;ABAN&quot;, &quot;…</span></span>
+<span id="cb255-36"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb255-36"></a><span class="co">## $ typ_eng          &lt;chr&gt; &quot;ASSAULT AND BATTERY&quot;, &quot;ABANDONED CALL&quot;, &quot;ABAND…</span></span>
+<span id="cb255-37"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb255-37"></a><span class="co">## $ sub_tycod        &lt;chr&gt; &quot;===&gt;&gt;&gt;&quot;, &quot;===&gt;&gt;&gt;&quot;, &quot;BU&quot;, &quot;CELL&quot;, &quot;INCCAL&quot;, &quot;PH…</span></span>
+<span id="cb255-38"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb255-38"></a><span class="co">## $ sub_eng          &lt;chr&gt; &quot;PICK A SUB-TYPE&quot;, &quot;PICK A SUB-TYPE&quot;, &quot;FROM A B…</span></span>
+<span id="cb255-39"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb255-39"></a><span class="co">## $ soc_dis          &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,…</span></span>
+<span id="cb255-40"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb255-40"></a><span class="co">## $ private_conflict &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,…</span></span>
+<span id="cb255-41"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb255-41"></a><span class="co">## $ violence         &lt;dbl&gt; 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0,…</span></span>
+<span id="cb255-42"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb255-42"></a><span class="co">## $ guns             &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0,…</span></span>
+<span id="cb255-43"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb255-43"></a><span class="co">## $ frequency_2015   &lt;dbl&gt; 27, 40, 12768, 72081, 686, 1734, 3143, 194, 122…</span></span>
+<span id="cb255-44"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb255-44"></a><span class="co">## $ frequency_2016   &lt;dbl&gt; 29, 26, 13287, 56074, 1188, 1205, 2687, 397, 19…</span></span>
+<span id="cb255-45"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb255-45"></a><span class="co">## $ frequency_2017   &lt;dbl&gt; 29, 17, 12599, 39323, 124, 724, 1944, 253, 162,…</span></span>
+<span id="cb255-46"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb255-46"></a><span class="co">## $ frequency_2018   &lt;dbl&gt; 14, 10, 6422, 19947, 70, 506, 840, 262, 169, 78…</span></span>
+<span id="cb255-47"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb255-47"></a><span class="co">## $ yr_intro         &lt;dbl&gt; 2014, 2014, 2014, 2014, 2014, 2014, 2014, 2014,…</span></span>
+<span id="cb255-48"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb255-48"></a><span class="co">## $ last_yr          &lt;dbl&gt; 2019, 2018, 2019, 2019, 2019, 2019, 2019, 2019,…</span></span></code></pre></div>
 <p>Check out</p>
-<div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb249-1"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb249-1"></a>raw_<span class="dv">911</span> &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data/911/911-raw.csv&quot;</span>, <span class="dt">n_max =</span> <span class="dv">5000</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb249-2"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb249-2"></a><span class="st">  </span>janitor<span class="op">::</span><span class="kw">clean_names</span>()</span>
-<span id="cb249-3"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb249-3"></a><span class="co">## Parsed with column specification:</span></span>
-<span id="cb249-4"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb249-4"></a><span class="co">## cols(</span></span>
-<span id="cb249-5"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb249-5"></a><span class="co">##   INCIDENT_NUMBER = col_character(),</span></span>
-<span id="cb249-6"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb249-6"></a><span class="co">##   OFFENSE_CODE = col_character(),</span></span>
-<span id="cb249-7"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb249-7"></a><span class="co">##   OFFENSE_CODE_GROUP = col_character(),</span></span>
-<span id="cb249-8"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb249-8"></a><span class="co">##   OFFENSE_DESCRIPTION = col_character(),</span></span>
-<span id="cb249-9"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb249-9"></a><span class="co">##   DISTRICT = col_character(),</span></span>
-<span id="cb249-10"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb249-10"></a><span class="co">##   REPORTING_AREA = col_double(),</span></span>
-<span id="cb249-11"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb249-11"></a><span class="co">##   SHOOTING = col_character(),</span></span>
-<span id="cb249-12"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb249-12"></a><span class="co">##   OCCURRED_ON_DATE = col_datetime(format = &quot;&quot;),</span></span>
-<span id="cb249-13"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb249-13"></a><span class="co">##   YEAR = col_double(),</span></span>
-<span id="cb249-14"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb249-14"></a><span class="co">##   MONTH = col_double(),</span></span>
-<span id="cb249-15"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb249-15"></a><span class="co">##   DAY_OF_WEEK = col_character(),</span></span>
-<span id="cb249-16"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb249-16"></a><span class="co">##   HOUR = col_double(),</span></span>
-<span id="cb249-17"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb249-17"></a><span class="co">##   UCR_PART = col_character(),</span></span>
-<span id="cb249-18"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb249-18"></a><span class="co">##   STREET = col_character(),</span></span>
-<span id="cb249-19"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb249-19"></a><span class="co">##   Lat = col_double(),</span></span>
-<span id="cb249-20"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb249-20"></a><span class="co">##   Long = col_double(),</span></span>
-<span id="cb249-21"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb249-21"></a><span class="co">##   Location = col_character()</span></span>
-<span id="cb249-22"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb249-22"></a><span class="co">## )</span></span></code></pre></div>
-<div class="sourceCode" id="cb250"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb250-1"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb250-1"></a>raw_<span class="dv">911</span> <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb250-2"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb250-2"></a><span class="st">  </span><span class="kw">filter</span>(<span class="kw">str_detect</span>(offense_description, <span class="kw">coll</span>(<span class="st">&quot;battery&quot;</span>, T)))</span>
-<span id="cb250-3"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb250-3"></a><span class="co">## # A tibble: 342 x 17</span></span>
-<span id="cb250-4"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb250-4"></a><span class="co">##    incident_number offense_code offense_code_gr… offense_descrip… district</span></span>
-<span id="cb250-5"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb250-5"></a><span class="co">##    &lt;chr&gt;           &lt;chr&gt;        &lt;chr&gt;            &lt;chr&gt;            &lt;chr&gt;   </span></span>
-<span id="cb250-6"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb250-6"></a><span class="co">##  1 I192078613      00802        Simple Assault   ASSAULT SIMPLE … A7      </span></span>
-<span id="cb250-7"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb250-7"></a><span class="co">##  2 I192078603      00802        Simple Assault   ASSAULT SIMPLE … A7      </span></span>
-<span id="cb250-8"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb250-8"></a><span class="co">##  3 I192078600      00413        Aggravated Assa… ASSAULT - AGGRA… C11     </span></span>
-<span id="cb250-9"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb250-9"></a><span class="co">##  4 I192078573      00802        Simple Assault   ASSAULT SIMPLE … B2      </span></span>
-<span id="cb250-10"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb250-10"></a><span class="co">##  5 I192078563      00413        Aggravated Assa… ASSAULT - AGGRA… B3      </span></span>
-<span id="cb250-11"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb250-11"></a><span class="co">##  6 I192078563      00802        Simple Assault   ASSAULT SIMPLE … B3      </span></span>
-<span id="cb250-12"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb250-12"></a><span class="co">##  7 I192078538      00802        Simple Assault   ASSAULT SIMPLE … C6      </span></span>
-<span id="cb250-13"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb250-13"></a><span class="co">##  8 I192078531      00802        Simple Assault   ASSAULT SIMPLE … C11     </span></span>
-<span id="cb250-14"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb250-14"></a><span class="co">##  9 I192078530      00413        Aggravated Assa… ASSAULT - AGGRA… C6      </span></span>
-<span id="cb250-15"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb250-15"></a><span class="co">## 10 I192078529      00413        Aggravated Assa… ASSAULT - AGGRA… E5      </span></span>
-<span id="cb250-16"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb250-16"></a><span class="co">## # … with 332 more rows, and 12 more variables: reporting_area &lt;dbl&gt;,</span></span>
-<span id="cb250-17"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb250-17"></a><span class="co">## #   shooting &lt;chr&gt;, occurred_on_date &lt;dttm&gt;, year &lt;dbl&gt;, month &lt;dbl&gt;,</span></span>
-<span id="cb250-18"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb250-18"></a><span class="co">## #   day_of_week &lt;chr&gt;, hour &lt;dbl&gt;, ucr_part &lt;chr&gt;, street &lt;chr&gt;,</span></span>
-<span id="cb250-19"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb250-19"></a><span class="co">## #   lat &lt;dbl&gt;, long &lt;dbl&gt;, location &lt;chr&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb256"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb256-1"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb256-1"></a>raw_<span class="dv">911</span> &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data/911/911-raw.csv&quot;</span>, <span class="dt">n_max =</span> <span class="dv">5000</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb256-2"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb256-2"></a><span class="st">  </span>janitor<span class="op">::</span><span class="kw">clean_names</span>()</span>
+<span id="cb256-3"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb256-3"></a><span class="co">## Parsed with column specification:</span></span>
+<span id="cb256-4"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb256-4"></a><span class="co">## cols(</span></span>
+<span id="cb256-5"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb256-5"></a><span class="co">##   INCIDENT_NUMBER = col_character(),</span></span>
+<span id="cb256-6"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb256-6"></a><span class="co">##   OFFENSE_CODE = col_character(),</span></span>
+<span id="cb256-7"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb256-7"></a><span class="co">##   OFFENSE_CODE_GROUP = col_character(),</span></span>
+<span id="cb256-8"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb256-8"></a><span class="co">##   OFFENSE_DESCRIPTION = col_character(),</span></span>
+<span id="cb256-9"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb256-9"></a><span class="co">##   DISTRICT = col_character(),</span></span>
+<span id="cb256-10"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb256-10"></a><span class="co">##   REPORTING_AREA = col_double(),</span></span>
+<span id="cb256-11"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb256-11"></a><span class="co">##   SHOOTING = col_character(),</span></span>
+<span id="cb256-12"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb256-12"></a><span class="co">##   OCCURRED_ON_DATE = col_datetime(format = &quot;&quot;),</span></span>
+<span id="cb256-13"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb256-13"></a><span class="co">##   YEAR = col_double(),</span></span>
+<span id="cb256-14"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb256-14"></a><span class="co">##   MONTH = col_double(),</span></span>
+<span id="cb256-15"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb256-15"></a><span class="co">##   DAY_OF_WEEK = col_character(),</span></span>
+<span id="cb256-16"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb256-16"></a><span class="co">##   HOUR = col_double(),</span></span>
+<span id="cb256-17"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb256-17"></a><span class="co">##   UCR_PART = col_character(),</span></span>
+<span id="cb256-18"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb256-18"></a><span class="co">##   STREET = col_character(),</span></span>
+<span id="cb256-19"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb256-19"></a><span class="co">##   Lat = col_double(),</span></span>
+<span id="cb256-20"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb256-20"></a><span class="co">##   Long = col_double(),</span></span>
+<span id="cb256-21"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb256-21"></a><span class="co">##   Location = col_character()</span></span>
+<span id="cb256-22"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb256-22"></a><span class="co">## )</span></span></code></pre></div>
+<div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb257-1"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb257-1"></a>raw_<span class="dv">911</span> <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb257-2"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb257-2"></a><span class="st">  </span><span class="kw">filter</span>(<span class="kw">str_detect</span>(offense_description, <span class="kw">coll</span>(<span class="st">&quot;battery&quot;</span>, T)))</span>
+<span id="cb257-3"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb257-3"></a><span class="co">## # A tibble: 342 x 17</span></span>
+<span id="cb257-4"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb257-4"></a><span class="co">##    incident_number offense_code offense_code_gr… offense_descrip… district</span></span>
+<span id="cb257-5"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb257-5"></a><span class="co">##    &lt;chr&gt;           &lt;chr&gt;        &lt;chr&gt;            &lt;chr&gt;            &lt;chr&gt;   </span></span>
+<span id="cb257-6"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb257-6"></a><span class="co">##  1 I192078613      00802        Simple Assault   ASSAULT SIMPLE … A7      </span></span>
+<span id="cb257-7"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb257-7"></a><span class="co">##  2 I192078603      00802        Simple Assault   ASSAULT SIMPLE … A7      </span></span>
+<span id="cb257-8"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb257-8"></a><span class="co">##  3 I192078600      00413        Aggravated Assa… ASSAULT - AGGRA… C11     </span></span>
+<span id="cb257-9"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb257-9"></a><span class="co">##  4 I192078573      00802        Simple Assault   ASSAULT SIMPLE … B2      </span></span>
+<span id="cb257-10"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb257-10"></a><span class="co">##  5 I192078563      00413        Aggravated Assa… ASSAULT - AGGRA… B3      </span></span>
+<span id="cb257-11"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb257-11"></a><span class="co">##  6 I192078563      00802        Simple Assault   ASSAULT SIMPLE … B3      </span></span>
+<span id="cb257-12"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb257-12"></a><span class="co">##  7 I192078538      00802        Simple Assault   ASSAULT SIMPLE … C6      </span></span>
+<span id="cb257-13"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb257-13"></a><span class="co">##  8 I192078531      00802        Simple Assault   ASSAULT SIMPLE … C11     </span></span>
+<span id="cb257-14"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb257-14"></a><span class="co">##  9 I192078530      00413        Aggravated Assa… ASSAULT - AGGRA… C6      </span></span>
+<span id="cb257-15"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb257-15"></a><span class="co">## 10 I192078529      00413        Aggravated Assa… ASSAULT - AGGRA… E5      </span></span>
+<span id="cb257-16"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb257-16"></a><span class="co">## # … with 332 more rows, and 12 more variables: reporting_area &lt;dbl&gt;,</span></span>
+<span id="cb257-17"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb257-17"></a><span class="co">## #   shooting &lt;chr&gt;, occurred_on_date &lt;dttm&gt;, year &lt;dbl&gt;, month &lt;dbl&gt;,</span></span>
+<span id="cb257-18"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb257-18"></a><span class="co">## #   day_of_week &lt;chr&gt;, hour &lt;dbl&gt;, ucr_part &lt;chr&gt;, street &lt;chr&gt;,</span></span>
+<span id="cb257-19"><a href="broken-windows-and-the-origin-of-ecometrics.html#cb257-19"></a><span class="co">## #   lat &lt;dbl&gt;, long &lt;dbl&gt;, location &lt;chr&gt;</span></span></code></pre></div>
 <div id="resources-1" class="section level3">
 <h3><span class="header-section-number">22.0.1</span> Resources:</h3>
 <ul>

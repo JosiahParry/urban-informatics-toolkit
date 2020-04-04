@@ -20,12 +20,22 @@ The other umbrella of data is known as **raster** data. Raster data are to deal 
 
 ## Working with spatial data 
 
-Working with spatial data is made rather straightforward by the [`sf`](https://github.com/r-spatial/sf) package. We will be using this package to perform our spatial transformations. We will return to the Airbnb listings data to work through some of the skills that we will need.  
+Working with spatial data is made rather straightforward by the [`sf`](https://github.com/r-spatial/sf) package. 
+
+sf is shorthand for _simple features_. sf let's us represent physical objects or phenomena in that occur the real world through data. It is built upon an international standard that "describes how such objects can be stored in and retrieved from databases, and which geometrical operations should be defined for them." (sf vinette, 1).
+
+All simple features are representation of vector data. That is that they are composed of points. These points are usually represented two-dimensionally with longitude and latitude (x and y). We can associate a third dimension of altitude if so desired to extend to three dimensions: longitude, latitude, and altitude (x, y, & z). In our cases, however, this will not be used. 
+
+In this section we will working with the `locations` Airbnb dataset. `locations` contains the longitude and latitude of Airbnb listings in Boston. These are an example of point data (which contain two-dimension). 
+
+
+## Creating simple features from a tibble
 
 Begin by installing the `sf` (simple-features) package and loading the `locations` Airbnb dataset.
 
 
 ```r
+# install.packages("sf")
 library(sf)
 ```
 
@@ -38,7 +48,7 @@ library(tidyverse)
 ```
 
 ```
-## ── Attaching packages ───────────────────────────────────────────── tidyverse 1.2.1 ──
+## ── Attaching packages ─────────────────
 ```
 
 ```
@@ -49,7 +59,7 @@ library(tidyverse)
 ```
 
 ```
-## ── Conflicts ──────────────────────────────────────────────── tidyverse_conflicts() ──
+## ── Conflicts ──────────────────────────
 ## x dplyr::filter() masks stats::filter()
 ## x dplyr::lag()    masks stats::lag()
 ```
@@ -82,14 +92,61 @@ head(locations)
 ## 5 10730     -71.1     42.4
 ## 6 10813     -71.1     42.3
 ```
-So far everything is the same. But now that we have a dataset with coordinate points, we can make this a spatial object using `sf`.
 
-- use `st_as_sf()`
-  - spatial transform as sf
-  - all spatial transformations are prefixed with `st`
-  - requires us to specify the spatial components (lat and long)
-    - its annoying because lat long is actually y,x
-  - use the `coord` argument to tell `sf` what the spatial components are. 
+So far everything is the same. We have read in our dataset and created a tibble. The next step is to make this tibble a simple feature. Fortunately, sf keeps this process rather simple for us by representing spatial data in native R data formats—namely, the data frame. To make simple features from an existing tibble, we need to cast the object as an `sf` object. And we do this with `st_as_sf()`. 
+
+Generally when we cast objects we use functions like `as.integer()` or `as_tibble()`. Here, there is a prefixed `st_`. This stands for *spatial transformation*. All transformations are prefixed as such—this is in an effort to keep continuity between GIS tools. Most functions cast objects to other classes with no function arguments. `st_as_sf()` unfortunately cannot read your mind and is not aware of what the geometry is in the tibble. As such, we need to use the `coords` argument in `st_as_sf()`. `coords` gives us the ability to tell sf what the columns are that contain our coordinate points. For point data we need to provide a character vector of length two with the x and y dimensions aka longitude and latitude.
+
+> Note that we are likely used to saying _lat, long_, but that actually maps to _y, x_. This is something that trips everyone up! Just make sure you put longitude in the x spot and latitude in the y spot. 
+
+To convert the `locations` data frame to a simple feature we will use `st_as_sf()` and set the `coords` argument to `c("longitude", "latitude")`. 
+
+
+
+```r
+st_as_sf(locations,
+         coords = c("longitude", "latitude"))
+```
+
+```
+## Simple feature collection with 3799 features and 1 field
+## geometry type:  POINT
+## dimension:      XY
+## bbox:           xmin: -71.1728 ymin: 42.23576 xmax: -70.99595 ymax: 42.39549
+## epsg (SRID):    NA
+## proj4string:    NA
+## # A tibble: 3,799 x 2
+##       id             geometry
+##    <dbl>              <POINT>
+##  1  3781 (-71.02991 42.36413)
+##  2  5506 (-71.09559 42.32981)
+##  3  6695 (-71.09351 42.32994)
+##  4  8789 (-71.06265 42.35919)
+##  5 10730  (-71.06185 42.3584)
+##  6 10813 (-71.08904 42.34961)
+##  7 10986 (-71.05075 42.36352)
+##  8 16384  (-71.07132 42.3581)
+##  9 18711 (-71.06096 42.32212)
+## 10 22195  (-71.0793 42.34558)
+## # … with 3,789 more rows
+```
+
+Now that we have successfully created a simple feature we can see that we no longer have the columns `longitude` and `latitude` but a `geometry` column instead. Notice that when printed, the object tells us what type of geometry we are working with, it's dimensions, and the bounding box for these points.
+
+> A bounding box is the furthest extent that our data reaches in both latiude and longitude.
+
+The printed object informs us that there are actually two missing pieces of information the epsg and proj4string. This is because we failed to specify a **coordinate reference system** (CRS). While this book is not intended as an introduction to GIS, this is still worth briefly expanding upon. We use a CRS because we are trying to place points in two-dimensions when the Earth is round! Try peeling and orange and laying the peel flat. It's impossible. There is now way to visualize a circle as a rectangle without introducing _some_ error. This is what a CRS accounts for. There are many CRS for each type of map projection and each type of unit. Most, if not all, of the frustration you may encounter when working with spatial data will be due to mismatching CRS.
+
+Fortunately we will _most likely_ be working with data that is collected using the **WGS84** reference system. This is a CRS that is used to define a global reference system that is used consistently throughout government agencies, and typically in online data recording. The Airbnb data uses this references system. 
+
+Most other online data sources use this reference system as well. For example Google and Twitter provide their data using this CRS. The times when you are most likely to encounter a CRS isn't WGS84 is when working with data from local agencies that need highly accurate and tailored spatial data. This would be agencies like water departments, and forestry groups, etc. 
+
+To ensure that our data are properly represented in space, we need to provide the CRS in the creation of our simple features. We do this by specifying the `crs` argument. `crs` will accept a number that indicates what projection you are using. There are too many CRS identifiers to commit to memory. This information is usually recorded in the original data source. Be sure to confirm the spatial dimensions! For WGS84, the CRS identifier is `4326`. This is probably worth committing to memory. 
+
+https://confluence.qps.nl/qinsy/latest/en/world-geodetic-system-1984-wgs84-182618391.html#id-.WorldGeodeticSystem1984(WGS84)v9.1-WGS84definitions
+
+
+We will now create an object called `loc_sf` using `st_as_sf()` and providing both the `coords` and the `crs`. 
 
 
 ```r
@@ -97,30 +154,95 @@ loc_sf <- st_as_sf(locations,
          coords = c("longitude", "latitude"),
          crs = 4326)
 
-head(loc_sf)
+loc_sf
 ```
 
 ```
-## Simple feature collection with 6 features and 1 field
+## Simple feature collection with 3799 features and 1 field
 ## geometry type:  POINT
 ## dimension:      XY
-## bbox:           xmin: -71.09559 ymin: 42.32981 xmax: -71.02991 ymax: 42.36413
+## bbox:           xmin: -71.1728 ymin: 42.23576 xmax: -70.99595 ymax: 42.39549
 ## epsg (SRID):    4326
 ## proj4string:    +proj=longlat +datum=WGS84 +no_defs
-## # A tibble: 6 x 2
-##      id             geometry
-##   <dbl>          <POINT [°]>
-## 1  3781 (-71.02991 42.36413)
-## 2  5506 (-71.09559 42.32981)
-## 3  6695 (-71.09351 42.32994)
-## 4  8789 (-71.06265 42.35919)
-## 5 10730  (-71.06185 42.3584)
-## 6 10813 (-71.08904 42.34961)
+## # A tibble: 3,799 x 2
+##       id             geometry
+##    <dbl>          <POINT [°]>
+##  1  3781 (-71.02991 42.36413)
+##  2  5506 (-71.09559 42.32981)
+##  3  6695 (-71.09351 42.32994)
+##  4  8789 (-71.06265 42.35919)
+##  5 10730  (-71.06185 42.3584)
+##  6 10813 (-71.08904 42.34961)
+##  7 10986 (-71.05075 42.36352)
+##  8 16384  (-71.07132 42.3581)
+##  9 18711 (-71.06096 42.32212)
+## 10 22195  (-71.0793 42.34558)
+## # … with 3,789 more rows
 ```
 
-- We can now see that instead of a long and lat column we have a `geometry` column.
-- 
+Since an sf object is also a data frame we are able to perform all of the operations that we may with a normal tibble such as selecting columns, joining, mutating etc.
 
+
+
+```r
+count(loc_sf)
+```
+
+```
+## Simple feature collection with 1 feature and 1 field
+## geometry type:  MULTIPOINT
+## dimension:      XY
+## bbox:           xmin: -71.1728 ymin: 42.23576 xmax: -70.99595 ymax: 42.39549
+## epsg (SRID):    4326
+## proj4string:    +proj=longlat +datum=WGS84 +no_defs
+## # A tibble: 1 x 2
+##       n                                                            geometry
+## * <int>                                                    <MULTIPOINT [°]>
+## 1  3799 (-71.1728 42.34835, -71.17174 42.34854, -71.17173 42.34923, -71.17…
+```
+
+Notice that it keeps the geometry even when counting. When our data is spatial, we have to incorporate the geometry into our computations. This often times leads to slower processing times. So if you do not immediately need the geometry, my recommendation is that you join it back on as late as possible. You can cast an sf object to a tibble with `as_tibble()`
+
+
+```r
+as_tibble(loc_sf) %>% 
+  count()
+```
+
+```
+## # A tibble: 1 x 1
+##       n
+##   <int>
+## 1  3799
+```
+
+Notice that we now lose the geometry column. This is because we have stopped keeping track of the geometry. 
+
+
+## Plotting sf objects with ggplot
+
+Plotting sf objects is made rather straightforward with ggplot2. Since sf objects contain a ton of spatial information this is inferred from ggplot. As such, we are not required to map the aesthetics for x and y. We simple provide just the data argument to ggpplot and then add a `geom_sf()` layer. Inside of `geom_sf()` we can provide any and all arguments that we may like such as color, size, shape, etc. as this will be passed to the underlying `geom_*`—in the case of points, it will be `geom_point()`.
+
+
+```r
+ggplot(loc_sf) +
+  geom_sf(shape = ".")
+```
+
+<img src="10-spatial-analysis_files/figure-html/unnamed-chunk-6-1.png" width="672" />
+
+
+- this is great we can already somewhat see the shape of boston and suffolk county
+- these points are nice, but we want so supplement them with census data 
+- we can read in polygon data which represents the census tracts
+- perform spatial joins to associate the points with which tracts they fall in
+
+## Connecting points to polygons
+
+- st_join()
+- following the join we can associate it with normal tabular data
+- locations has an id column that joins back to listings data.
+- create a plot of census tracts colored by the number of listings in that tract
 
 
 https://geocompr.robinlovelace.net/

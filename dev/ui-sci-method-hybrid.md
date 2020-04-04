@@ -5,7 +5,6 @@ Two main approaches to this.
 Inductive and Deductive. Big data provides great opportunity for inductive research. There are many patterns waiting to be discovered. This is one of the reasons why it is so exciting to work in data science. inductive approaches can help us try and identify a theory but will not let us confirm that theory. We can observe the phenomenon, but
 
 
-
 ------
 
 traditionally it's been deductive for theory development.
