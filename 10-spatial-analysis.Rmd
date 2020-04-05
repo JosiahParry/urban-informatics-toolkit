@@ -109,18 +109,98 @@ ggplot(loc_sf) +
   geom_sf(shape = ".")
 ```
 
-
-- this is great we can already somewhat see the shape of boston and suffolk county
-- these points are nice, but we want so supplement them with census data 
-- we can read in polygon data which represents the census tracts
-- perform spatial joins to associate the points with which tracts they fall in
+This is great as we can already somewhat see the shape of Boston and Suffolk County. Since we have these Airbnb points located in space, we know we are able to associate them with their respective Census tracts.To do so we need another spatial data set which contains the shapes of each tract. In the next section we will read a dataset containing the shapes of each tract in Suffolk county. Following we will perform a spatial join to associate the points with the tracts. 
 
 ## Connecting points to polygons
 
-- st_join()
-- following the join we can associate it with normal tabular data
-- locations has an id column that joins back to listings data.
-- create a plot of census tracts colored by the number of listings in that tract
+Now that we have the point locations of each Airbnb listing we need to identify which tracts they belong to. In the `data` folder there is a file called `suffolk_acs.geojson`. This is a common spatial data format which is based on `json`. The difference is that `geojson` contains a lot of fields specific to spatial data. 
+
+Reading in data of this format is just as easy as in reading in a csv file. Using `sf::read_sf()` we can pass the path of the geojson file and be returned an sf object. 
+
+```{r}
+acs_tracts <- read_sf("data/suffolk_acs.geojson")
+
+acs_tracts
+```
+
+The first things you'll notice here is that it looks similar to our `loc_sf` object and, more importantly, that the CRS was picked up for us! If we briefly look under the hood of our file, we can see that in the third line the CRS is stated. You don't need to understand what is happening here. Just know that sometimes spatial data sets already have this information for you. 
+
+```{r, echo=FALSE}
+cat(read_lines("data/suffolk_acs.geojson", n_max = 4), sep = "\n")
+```
+
+Let's see what this file looks like! 
+
+```{r}
+  ggplot(acs_tracts) +
+  geom_sf()
+```
+
+Wonderful! There are two stylist adjustments I'd make here so that visualizing is a little easier. The first is to change the line width to something thinner, and adjust the transparency of tracts so that they are a little lighter. This makes the map a bit easier to read all in all. 
+
+```{r}
+ggplot(acs_tracts) +
+  geom_sf(lwd = 0.25, alpha = 0.5)
+```
+
+Now, here is where understanding the grammar of graphics comes in handy. We now have two different data sets that would be good to visualize together. Recall that when we specify the data in the top level `ggplot()` call that sets the default for every single layer. If we do that with multiple objects that may cause some conflicts. We do know, however, that we can set the data per layer. So, taking these two points together, we can plot both `loc_sf` _and_ `acs_tracts` on the same graph if we set the data argument in each respective `geom_sf()` layer. 
+
+```{r}
+ggplot() +
+  geom_sf(data = acs_tracts, lwd = 0.25, alpha = 0.5) +
+  geom_sf(data = loc_sf, shape = ".")
+```
+With the above plot we can get a sense of the density of Airbnb listings in Boston. There seems to be greater density near Back Bay and Beacon Hill. It would be great to be able to know how many listings there are for each tract and the average listing price. To do this, we need to perform two joins. The first one is spatial—joining point to polygon based on which tract each point intersects. The second is to join the listings information on to the spatially joined data set. In doing this we will have utilized data from three different sources! 
+
+### Spatial Joins
+
+Like a regular join, the intent behind a spatial join is to add the attributes of one data source to another. The utility of a spatial join comes when there is no shared attribute _other than_ space. More often than not when we want to perform a spatial join we are looking for what is called the **intersection**. That is essentially where two spatial features touch in some manner. The other type of spatial join that we will find useful is the nearest neighbor where we take the attributes to the next closest object.
+
+To perform a spatial join we use the function `sf::st_join()` which has three main arguments: `x`, `y`, and `join`. The default join type is `st_intersects` which will join attributes (columns) from `y` where `x` **intersects** (meaning touches or is within). The ordering of our `x` and `y` is very important as this will be the difference between a left or a right join. This ordering also determines what type of geometry we will be returned. Whatever type of geometry is in the `x` position is what will be returned. 
+
+Let's try using `st_join()` to join the tract level information to our point data. 
+
+```{r max.print=5}
+points_join <- st_join(loc_sf, acs_tracts) 
+
+points_join
+```
+
+This is great! We now have the `fips` (census tract code) associated with each listing `id`. But what happens when we plot the data?
+
+```{r}
+ggplot(points_join) +
+  geom_sf(shape = ".")
+```
+It is the same as before. What we would like to do at this moment is to plot the tracts and color by the number of listings contained in them. This means that we need to change up the order of our join.
+
+```{r, message=FALSE, max.print=5}
+polygon_join <- st_join(acs_tracts, loc_sf)
+polygon_join
+```
+
+Notice that there are 3,814 rows! That is well over the original 193 tracts. If we tried plotting this right away we may overwork R. What we need to do is _count_ the number of observations per fips code first.
+
+```{r max.print=5}
+tract_listings <- count(polygon_join, fips)
+
+tract_listings
+```
+
+After counting we now have our original 203 rows. This is the spatial equivalent of summarizing our data where all of the geometries of the aggregated rows (`fips`) are **dissolved**. Dissolving combines all of the geometries of by a shared attribute—it is `fips` in our case—into a single geometry. Since each `fips` has the same geometry,the resultant geometries are unaffected. But be aware of the behavior when grouping and summarizing sf objects! 
+
+Let's try plotting these counts now. 
+
+```{r}
+ggplot(tract_listings, aes(fill = n)) +
+  geom_sf(lwd = 0.25)
+```
+
+
+
+http://wiki.gis.com/wiki/index.php/Dissolve
+
+For a full list of spatial joins by data type I recommend visiting https://desktop.arcgis.com/en/arcmap/latest/manage-data/tables/spatial-joins-by-feature-type.htm.
 
 
 https://geocompr.robinlovelace.net/

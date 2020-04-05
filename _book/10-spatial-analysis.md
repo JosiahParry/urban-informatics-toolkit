@@ -48,7 +48,7 @@ library(tidyverse)
 ```
 
 ```
-## ── Attaching packages ─────────────────
+## ── Attaching packages ──────────────────────────────────────────────────────────── tidyverse 1.2.1 ──
 ```
 
 ```
@@ -59,7 +59,7 @@ library(tidyverse)
 ```
 
 ```
-## ── Conflicts ──────────────────────────
+## ── Conflicts ─────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
 ## x dplyr::filter() masks stats::filter()
 ## x dplyr::lag()    masks stats::lag()
 ```
@@ -231,18 +231,220 @@ ggplot(loc_sf) +
 
 <img src="10-spatial-analysis_files/figure-html/unnamed-chunk-6-1.png" width="672" />
 
-
-- this is great we can already somewhat see the shape of boston and suffolk county
-- these points are nice, but we want so supplement them with census data 
-- we can read in polygon data which represents the census tracts
-- perform spatial joins to associate the points with which tracts they fall in
+This is great as we can already somewhat see the shape of Boston and Suffolk County. Since we have these Airbnb points located in space, we know we are able to associate them with their respective Census tracts.To do so we need another spatial data set which contains the shapes of each tract. In the next section we will read a dataset containing the shapes of each tract in Suffolk county. Following we will perform a spatial join to associate the points with the tracts. 
 
 ## Connecting points to polygons
 
-- st_join()
-- following the join we can associate it with normal tabular data
-- locations has an id column that joins back to listings data.
-- create a plot of census tracts colored by the number of listings in that tract
+Now that we have the point locations of each Airbnb listing we need to identify which tracts they belong to. In the `data` folder there is a file called `suffolk_acs.geojson`. This is a common spatial data format which is based on `json`. The difference is that `geojson` contains a lot of fields specific to spatial data. 
+
+Reading in data of this format is just as easy as in reading in a csv file. Using `sf::read_sf()` we can pass the path of the geojson file and be returned an sf object. 
+
+
+```r
+acs_tracts <- read_sf("data/suffolk_acs.geojson")
+
+acs_tracts
+```
+
+```
+## Simple feature collection with 203 features and 1 field
+## geometry type:  MULTIPOLYGON
+## dimension:      XY
+## bbox:           xmin: -71.19125 ymin: 42.22793 xmax: -70.9201 ymax: 42.45012
+## epsg (SRID):    4326
+## proj4string:    +proj=longlat +datum=WGS84 +no_defs
+## # A tibble: 203 x 2
+##    fips                                                            geometry
+##    <chr>                                                 <MULTIPOLYGON [°]>
+##  1 250250921… (((-71.06249 42.29221, -71.06234 42.29273, -71.06226 42.2930…
+##  2 250251006… (((-71.05147 42.28931, -71.05136 42.28933, -71.05032 42.2896…
+##  3 250250101… (((-71.11093 42.35047, -71.11093 42.3505, -71.11092 42.35054…
+##  4 250250704… (((-71.06944 42.346, -71.0691 42.34661, -71.06884 42.3471, -…
+##  5 250251401… (((-71.13397 42.25431, -71.13353 42.25476, -71.13274 42.2556…
+##  6 250259812… (((-71.04707 42.3397, -71.04628 42.34037, -71.0449 42.34153,…
+##  7 250250511… (((-71.01324 42.38301, -71.01231 42.38371, -71.01162 42.3842…
+##  8 250259816… (((-71.00113 42.3871, -71.001 42.38722, -71.00074 42.3875, -…
+##  9 250250909… (((-71.05079 42.32083, -71.0506 42.32076, -71.05047 42.32079…
+## 10 250251103… (((-71.11952 42.28648, -71.11949 42.2878, -71.11949 42.28792…
+## # … with 193 more rows
+```
+
+The first things you'll notice here is that it looks similar to our `loc_sf` object and, more importantly, that the CRS was picked up for us! If we briefly look under the hood of our file, we can see that in the third line the CRS is stated. You don't need to understand what is happening here. Just know that sometimes spatial data sets already have this information for you. 
+
+
+```
+## {
+## "type": "FeatureCollection",
+## "name": "suffolk_acs",
+## "crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+```
+
+Let's see what this file looks like! 
+
+
+```r
+  ggplot(acs_tracts) +
+  geom_sf()
+```
+
+<img src="10-spatial-analysis_files/figure-html/unnamed-chunk-9-1.png" width="672" />
+
+Wonderful! There are two stylist adjustments I'd make here so that visualizing is a little easier. The first is to change the line width to something thinner, and adjust the transparency of tracts so that they are a little lighter. This makes the map a bit easier to read all in all. 
+
+
+```r
+ggplot(acs_tracts) +
+  geom_sf(lwd = 0.25, alpha = 0.5)
+```
+
+<img src="10-spatial-analysis_files/figure-html/unnamed-chunk-10-1.png" width="672" />
+
+Now, here is where understanding the grammar of graphics comes in handy. We now have two different data sets that would be good to visualize together. Recall that when we specify the data in the top level `ggplot()` call that sets the default for every single layer. If we do that with multiple objects that may cause some conflicts. We do know, however, that we can set the data per layer. So, taking these two points together, we can plot both `loc_sf` _and_ `acs_tracts` on the same graph if we set the data argument in each respective `geom_sf()` layer. 
+
+
+```r
+ggplot() +
+  geom_sf(data = acs_tracts, lwd = 0.25, alpha = 0.5) +
+  geom_sf(data = loc_sf, shape = ".")
+```
+
+<img src="10-spatial-analysis_files/figure-html/unnamed-chunk-11-1.png" width="672" />
+With the above plot we can get a sense of the density of Airbnb listings in Boston. There seems to be greater density near Back Bay and Beacon Hill. It would be great to be able to know how many listings there are for each tract and the average listing price. To do this, we need to perform two joins. The first one is spatial—joining point to polygon based on which tract each point intersects. The second is to join the listings information on to the spatially joined data set. In doing this we will have utilized data from three different sources! 
+
+### Spatial Joins
+
+Like a regular join, the intent behind a spatial join is to add the attributes of one data source to another. The utility of a spatial join comes when there is no shared attribute _other than_ space. More often than not when we want to perform a spatial join we are looking for what is called the **intersection**. That is essentially where two spatial features touch in some manner. The other type of spatial join that we will find useful is the nearest neighbor where we take the attributes to the next closest object.
+
+To perform a spatial join we use the function `sf::st_join()` which has three main arguments: `x`, `y`, and `join`. The default join type is `st_intersects` which will join attributes (columns) from `y` where `x` **intersects** (meaning touches or is within). The ordering of our `x` and `y` is very important as this will be the difference between a left or a right join. This ordering also determines what type of geometry we will be returned. Whatever type of geometry is in the `x` position is what will be returned. 
+
+Let's try using `st_join()` to join the tract level information to our point data. 
+
+
+```r
+points_join <- st_join(loc_sf, acs_tracts) 
+```
+
+```
+## although coordinates are longitude/latitude, st_intersects assumes that they are planar
+## although coordinates are longitude/latitude, st_intersects assumes that they are planar
+```
+
+```r
+points_join
+```
+
+```
+## Simple feature collection with 3799 features and 2 fields
+## geometry type:  POINT
+## dimension:      XY
+## bbox:           xmin: -71.1728 ymin: 42.23576 xmax: -70.99595 ymax: 42.39549
+## epsg (SRID):    4326
+## proj4string:    +proj=longlat +datum=WGS84 +no_defs
+## # A tibble: 3,799 x 3
+##       id             geometry fips       
+##    <dbl>          <POINT [°]> <chr>      
+##  1  3781 (-71.02991 42.36413) 25025051200
+##  2  5506 (-71.09559 42.32981) 25025081400
+##  3  6695 (-71.09351 42.32994) 25025081400
+##  4  8789 (-71.06265 42.35919) 25025030300
+##  5 10730  (-71.06185 42.3584) 25025030300
+##  6 10813 (-71.08904 42.34961) 25025010104
+##  7 10986 (-71.05075 42.36352) 25025030300
+##  8 16384  (-71.07132 42.3581) 25025020101
+##  9 18711 (-71.06096 42.32212) 25025090700
+## 10 22195  (-71.0793 42.34558) 25025010600
+## # … with 3,789 more rows
+```
+
+This is great! We now have the `fips` (census tract code) associated with each listing `id`. But what happens when we plot the data?
+
+
+```r
+ggplot(points_join) +
+  geom_sf(shape = ".")
+```
+
+<img src="10-spatial-analysis_files/figure-html/unnamed-chunk-13-1.png" width="672" />
+It is the same as before. What we would like to do at this moment is to plot the tracts and color by the number of listings contained in them. This means that we need to change up the order of our join.
+
+
+```r
+polygon_join <- st_join(acs_tracts, loc_sf)
+polygon_join
+```
+
+```
+## Simple feature collection with 3814 features and 2 fields
+## geometry type:  MULTIPOLYGON
+## dimension:      XY
+## bbox:           xmin: -71.19125 ymin: 42.22793 xmax: -70.9201 ymax: 42.45012
+## epsg (SRID):    4326
+## proj4string:    +proj=longlat +datum=WGS84 +no_defs
+## # A tibble: 3,814 x 3
+##    fips                                                    geometry      id
+##    <chr>                                         <MULTIPOLYGON [°]>   <dbl>
+##  1 25025092… (((-71.06249 42.29221, -71.06234 42.29273, -71.06226 …  3.63e6
+##  2 25025092… (((-71.06249 42.29221, -71.06234 42.29273, -71.06226 …  7.22e6
+##  3 25025092… (((-71.06249 42.29221, -71.06234 42.29273, -71.06226 …  7.29e6
+##  4 25025092… (((-71.06249 42.29221, -71.06234 42.29273, -71.06226 …  3.36e7
+##  5 25025092… (((-71.06249 42.29221, -71.06234 42.29273, -71.06226 …  3.63e7
+##  6 25025092… (((-71.06249 42.29221, -71.06234 42.29273, -71.06226 …  3.89e7
+##  7 25025092… (((-71.06249 42.29221, -71.06234 42.29273, -71.06226 …  4.02e7
+##  8 25025092… (((-71.06249 42.29221, -71.06234 42.29273, -71.06226 …  4.18e7
+##  9 25025100… (((-71.05147 42.28931, -71.05136 42.28933, -71.05032 …  2.64e7
+## 10 25025100… (((-71.05147 42.28931, -71.05136 42.28933, -71.05032 …  3.77e7
+## # … with 3,804 more rows
+```
+
+Notice that there are 3,814 rows! That is well over the original 193 tracts. If we tried plotting this right away we may overwork R. What we need to do is _count_ the number of observations per fips code first.
+
+
+```r
+tract_listings <- count(polygon_join, fips)
+
+tract_listings
+```
+
+```
+## Simple feature collection with 203 features and 2 fields
+## geometry type:  MULTIPOLYGON
+## dimension:      XY
+## bbox:           xmin: -71.19125 ymin: 42.22793 xmax: -70.9201 ymax: 42.45012
+## epsg (SRID):    4326
+## proj4string:    +proj=longlat +datum=WGS84 +no_defs
+## # A tibble: 203 x 3
+##    fips          n                                                 geometry
+##  * <chr>     <int>                                       <MULTIPOLYGON [°]>
+##  1 25025000…    53 (((-71.1609 42.35863, -71.16049 42.35881, -71.16021 42.…
+##  2 25025000…    18 (((-71.16782 42.35328, -71.16775 42.35351, -71.16764 42…
+##  3 25025000…     4 (((-71.16057 42.35267, -71.16018 42.35269, -71.16005 42…
+##  4 25025000…    19 (((-71.1748 42.35051, -71.17475 42.35066, -71.17471 42.…
+##  5 25025000…    19 (((-71.17458 42.35024, -71.17287 42.35005, -71.17283 42…
+##  6 25025000…    16 (((-71.15473 42.34121, -71.15455 42.34156, -71.15436 42…
+##  7 25025000…    23 (((-71.16613 42.34043, -71.16612 42.34059, -71.16611 42…
+##  8 25025000…    18 (((-71.16922 42.33807, -71.16909 42.33825, -71.16894 42…
+##  9 25025000…    16 (((-71.15336 42.33819, -71.15308 42.33833, -71.15296 42…
+## 10 25025000…     9 (((-71.1501 42.33719, -71.14984 42.33767, -71.14966 42.…
+## # … with 193 more rows
+```
+
+After counting we now have our original 203 rows. This is the spatial equivalent of summarizing our data where all of the geometries of the aggregated rows (`fips`) are **dissolved**. Dissolving combines all of the geometries of by a shared attribute—it is `fips` in our case—into a single geometry. Since each `fips` has the same geometry,the resultant geometries are unaffected. But be aware of the behavior when grouping and summarizing sf objects! 
+
+Let's try plotting these counts now. 
+
+
+```r
+ggplot(tract_listings, aes(fill = n)) +
+  geom_sf(lwd = 0.25)
+```
+
+<img src="10-spatial-analysis_files/figure-html/unnamed-chunk-16-1.png" width="672" />
+
+
+
+http://wiki.gis.com/wiki/index.php/Dissolve
+
+For a full list of spatial joins by data type I recommend visiting https://desktop.arcgis.com/en/arcmap/latest/manage-data/tables/spatial-joins-by-feature-type.htm.
 
 
 https://geocompr.robinlovelace.net/
