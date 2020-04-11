@@ -172,12 +172,37 @@ You now have developed the requisite skills to subset the commuting data to just
 
 ```{r max.print=5}
 
-gba_commute <- filter(commute,
-                      county == "SUFFOLK" | county == "NORFOLK" | county == "MIDDLESEX")
-
-gba_commute
+gba_commute <- filter(commute, county == "SUFFOLK" | county == "NORFOLK" | county == "MIDDLESEX")
 ```
 
+The above code is actually rather redundant as we have written `county ==` three different times. When we using the same equality comparison we can actually use the sepcial `%in%` operator. This lets us look for a value **in** a vector of values (we'll learn more about vectors very shortly). 
+
+For example:
+
+```{r}
+1 %in% c(1, 2, 3)
+```
+
+This looks to see if the value on the left hand side is any of the three values in the vector—the thing that looks like `c(val1, val2, ...)`. Using this we can rewrite `gba_commute` as: 
+
+```{r}
+gba_commute <- filter(commute, county %in% c("SUFFOLK", "NORFOLK", "MIDDLESEX"))
+```
+
+
+### Writing Data
+
+You have created the proper subset of data that is needed. However, there is one more hurdle of jump—sending the data. To do this we need to get the tibble out of R and into a data format that can be used—probably a csv. `readr` provides funcitonality to do this as well.
+
+While we used `read_csv()` earlier, to write a csv we will use `write_csv()`. The functionality is beautifully simple. The first argument here will be the tibble that you're going to write, `gba_commute` in this case. And the second is the path to where you will write the data.
+
+In general I recommend that your project has two folders. One titled `data-raw` where you will keep the scripts and raw data that you used to process the data. Then I suggest having a `data` folder as well. This is where you will keep your tidy, or finalized, data files. 
+
+```{r eval=FALSE}
+write_csv(gba_commute, "data/gba_commute.csv")
+```
+
+Now you have a csv file that can be shared! 
 
 ------
 

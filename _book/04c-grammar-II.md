@@ -139,9 +139,9 @@ To produce the examples outlined above we would call the function as such:
 
 ```r
 scales::dollar(2000)
-## [1] "$2,000"
+#> [1] "$2,000"
 scales::percent(.4)
-## [1] "40%"
+#> [1] "40%"
 ```
 
 Now we have an understanding of _how_ the function behaves, but where do we actually change the labels? This is where we come full cirlce back to our `scale_*_continuous()` layer. As we mentioned earlier, `ggplot()` will handle making the scales for us. But `ggplot()` doesn't know how we want to label our variables or how they should appear on the axes. And now the impetus is on us to make these changes manually. To change the axis labels we will specify which axis we are altering using the proper scale layer—i.e. `scale_y_` or `scale_x_`. Then, in each layer we set the `labels` argument to the respective labelling function we want—e.g. `scales::percent` and `scales::dollar`.

@@ -111,10 +111,7 @@ commute <- select(acs_raw,
        starts_with("commute"),
        starts_with("by"),
        med_house_income) %>% 
-  filter(county %in% c("SUFFOLK", "NORFOLK", "MIDDLESEX")) %>% 
-  mutate(hh_inc_quin = ntile(med_house_income, 5),
-         edu_attain = bach + master) %>% 
-  select(-bach, -master)
+  filter(county %in% c("SUFFOLK", "NORFOLK", "MIDDLESEX"))
 ```
 
 

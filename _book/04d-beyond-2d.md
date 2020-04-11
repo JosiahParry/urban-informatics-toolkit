@@ -44,7 +44,7 @@ To cover:
 ```r
 ggplot(acs_raw, aes(fam_house_per, age_u18, color = by_auto)) +
   geom_point()
-## Warning: Removed 17 rows containing missing values (geom_point).
+#> Warning: Removed 17 rows containing missing values (geom_point).
 ```
 
 <img src="04d-beyond-2d_files/figure-html/unnamed-chunk-2-1.png" width="672" />
@@ -56,7 +56,7 @@ ggplot(acs_raw, aes(fam_house_per, age_u18, color = by_auto)) +
 ```r
 ggplot(acs_raw, aes(fam_house_per, age_u18, color = by_auto, size = fem_head_per)) +
   geom_point(alpha = .2)
-## Warning: Removed 17 rows containing missing values (geom_point).
+#> Warning: Removed 17 rows containing missing values (geom_point).
 ```
 
 <img src="04d-beyond-2d_files/figure-html/unnamed-chunk-3-1.png" width="672" />

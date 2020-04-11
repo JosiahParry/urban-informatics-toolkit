@@ -2,7 +2,7 @@
 # THANK YOU ALISON :) 
 
 knitr::opts_chunk$set(
-  #$comment = "#>",
+  comment = "#>",
   collapse = TRUE,
   max.print=5
   # cache = TRUE,

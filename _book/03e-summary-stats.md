@@ -30,7 +30,7 @@ It is of course of interest to identify the average rate of 30-60 minute commuti
 ```r
 ggplot(commute, aes(commute3060)) +
   geom_histogram(bins = 20)
-## Warning: Removed 14 rows containing non-finite values (stat_bin).
+#> Warning: Removed 14 rows containing non-finite values (stat_bin).
 ```
 
 <img src="03e-summary-stats_files/figure-html/unnamed-chunk-3-1.png" width="672" />
@@ -52,13 +52,13 @@ We will first extract the `commute3060` column as a vector using `dplyr::pull()`
 
 ```r
 mean(commute_rate)
-## [1] NA
+#> [1] NA
 
 median(commute_rate)
-## [1] NA
+#> [1] NA
 
 sd(commute_rate)
-## [1] NA
+#> [1] NA
 ```
 
 The results of these functions bring good and bad news. The good news is that their output is a single value. The bad news is that the output is `NA`. To reiterate a previous point, `NA` will infect your analyses. The only way to get around this is to perform these calculations without them. 
@@ -68,13 +68,13 @@ Note that each of the functions used above have an argument called `na.rm`. `na.
 
 ```r
 mean(commute_rate, na.rm = TRUE)
-## [1] 0.3165169
+#> [1] 0.3165169
 
 median(commute_rate, na.rm = TRUE)
-## [1] 0.3179833
+#> [1] 0.3179833
 
 sd(commute_rate, na.rm = TRUE)
-## [1] 0.110289
+#> [1] 0.110289
 ```
 
 Let us look at one last example: identifying the range. The `range()` function returns the minimum and the maximum values.
@@ -82,7 +82,7 @@ Let us look at one last example: identifying the range. The `range()` function r
 
 ```r
 (commute_range <- range(commute_rate, na.rm = TRUE))
-## [1] 0.0000000 0.6327961
+#> [1] 0.0000000 0.6327961
 ```
 
 > Note: by wrapping an assignment in parentheses, the resultant object will be printed to the console. 
@@ -92,7 +92,7 @@ Let us look at one last example: identifying the range. The `range()` function r
 
 ```r
 length(commute_range)
-## [1] 2
+#> [1] 2
 ```
 
 A length two vector does not adhere to providing just out value. We will see why this is a problem illustrated in the next chapter. To recreate this, use the `min()` and `max()` functions. 
@@ -100,9 +100,9 @@ A length two vector does not adhere to providing just out value. We will see why
 
 ```r
 min(commute_rate, na.rm = TRUE)
-## [1] 0
+#> [1] 0
 max(commute_rate, na.rm = TRUE)
-## [1] 0.6327961
+#> [1] 0.6327961
 ```
 
 Each of these statistics—mean, median, standard deviation, etc—are a way to characterize a larger sample of data. The lesson to take away here is that we will always need a single value when summarising data. Often we will be taking a column (vector) and calculating a single metric from that.

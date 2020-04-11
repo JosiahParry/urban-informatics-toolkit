@@ -84,20 +84,20 @@ Print `acs_edu` to the console. What do you see?
 
 ```r
 acs_edu
-## # A tibble: 1,456 x 7
-##    med_house_income less_than_hs hs_grad some_coll  bach white   black
-##               <dbl>        <dbl>   <dbl>     <dbl> <dbl> <dbl>   <dbl>
-##  1           105735       0.0252   0.196     0.221 0.325 0.897 0.0122 
-##  2            69625       0.0577   0.253     0.316 0.262 0.885 0.0171 
-##  3            70679       0.0936   0.173     0.273 0.267 0.733 0.0795 
-##  4            74528       0.0843   0.253     0.353 0.231 0.824 0.0306 
-##  5            52885       0.145    0.310     0.283 0.168 0.737 0.0605 
-##  6            64100       0.0946   0.294     0.317 0.192 0.966 0.00256
-##  7            37093       0.253    0.394     0.235 0.101 0.711 0.0770 
-##  8            87750       0.0768   0.187     0.185 0.272 0.759 0.0310 
-##  9            97417       0.0625   0.254     0.227 0.284 0.969 0.00710
-## 10            43384       0.207    0.362     0.262 0.124 0.460 0.105  
-## # … with 1,446 more rows
+#> # A tibble: 1,456 x 7
+#>    med_house_income less_than_hs hs_grad some_coll  bach white   black
+#>               <dbl>        <dbl>   <dbl>     <dbl> <dbl> <dbl>   <dbl>
+#>  1           105735       0.0252   0.196     0.221 0.325 0.897 0.0122 
+#>  2            69625       0.0577   0.253     0.316 0.262 0.885 0.0171 
+#>  3            70679       0.0936   0.173     0.273 0.267 0.733 0.0795 
+#>  4            74528       0.0843   0.253     0.353 0.231 0.824 0.0306 
+#>  5            52885       0.145    0.310     0.283 0.168 0.737 0.0605 
+#>  6            64100       0.0946   0.294     0.317 0.192 0.966 0.00256
+#>  7            37093       0.253    0.394     0.235 0.101 0.711 0.0770 
+#>  8            87750       0.0768   0.187     0.185 0.272 0.759 0.0310 
+#>  9            97417       0.0625   0.254     0.227 0.284 0.969 0.00710
+#> 10            43384       0.207    0.362     0.262 0.124 0.460 0.105  
+#> # … with 1,446 more rows
 ```
 
 `## # A tibble: 1,456 x 7` is printed out at the top followed by column names, their types—e.g. `<dbl>`—their respective values and, to the far left we see the numbers 1 through 10 before each row of values. 
@@ -224,7 +224,7 @@ Using ggplot, we can plot the estimated linear regression line on top of our sca
 ggplot(acs_edu, aes(x = bach, y = med_house_income)) +
   geom_point() +
   geom_smooth(method = "lm")
-## `geom_smooth()` using formula 'y ~ x'
+#> `geom_smooth()` using formula 'y ~ x'
 ```
 
 <img src="01-visual-analysis_files/figure-html/unnamed-chunk-10-1.png" width="672" />
@@ -245,7 +245,7 @@ ggplot(acs_edu, aes(x = bach, y = med_house_income)) +
   labs(x = "% of population with a Bachelor's Degree",
        y = "Median Household Income",
        title = "Relationship between Education and Income")
-## `geom_smooth()` using formula 'y ~ x'
+#> `geom_smooth()` using formula 'y ~ x'
 ```
 
 <img src="01-visual-analysis_files/figure-html/unnamed-chunk-11-1.png" width="672" />
@@ -277,7 +277,7 @@ ggplot(acs_edu, aes(x = bach, y = med_house_income, color = white)) +
        y = "Median Household Income",
        title = "Relationship between Education and Income",
        subtitle = "Colored by whiteness") 
-## `geom_smooth()` using formula 'y ~ x'
+#> `geom_smooth()` using formula 'y ~ x'
 ```
 
 <img src="01-visual-analysis_files/figure-html/unnamed-chunk-12-1.png" width="672" />

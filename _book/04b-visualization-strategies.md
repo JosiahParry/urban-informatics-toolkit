@@ -74,14 +74,14 @@ The above histogram shows gaps in between buckets of the histogram. On a first g
 
 ```r
 (moved_counts <- table(acs$med_yr_moved_inraw))
-## 
-## 1991 1995 1996 1997 1998 1999 2000 2001 2002 2003 2004 2005 2006 2007 2008 2009 
-##    1    2    5    7   14   31   56   77  108  121  141  109  113   84   73   67 
-## 2010 2011 2012 2013 
-##  125  140   29    8
+#> 
+#> 1991 1995 1996 1997 1998 1999 2000 2001 2002 2003 2004 2005 2006 2007 2008 2009 
+#>    1    2    5    7   14   31   56   77  108  121  141  109  113   84   73   67 
+#> 2010 2011 2012 2013 
+#>  125  140   29    8
 
 glue::glue("There are {length(moved_counts)} unique values")
-## There are 20 unique values
+#> There are 20 unique values
 ```
 
 > The glue function provides a way to create strings by combining R expressions and plain text. More in the appendix.
@@ -390,23 +390,23 @@ county_counts <- acs %>%
   summarise(n = n())
 
 county_counts
-## # A tibble: 14 x 2
-##    county                n
-##    <chr>             <int>
-##  1 Barnstable County    49
-##  2 Berkshire County     38
-##  3 Bristol County      116
-##  4 Dukes County          4
-##  5 Essex County        151
-##  6 Franklin County      17
-##  7 Hampden County       89
-##  8 Hampshire County     30
-##  9 Middlesex County    283
-## 10 Nantucket County      2
-## 11 Norfolk County      115
-## 12 Plymouth County      89
-## 13 Suffolk County      168
-## 14 Worcester County    160
+#> # A tibble: 14 x 2
+#>    county                n
+#>    <chr>             <int>
+#>  1 Barnstable County    49
+#>  2 Berkshire County     38
+#>  3 Bristol County      116
+#>  4 Dukes County          4
+#>  5 Essex County        151
+#>  6 Franklin County      17
+#>  7 Hampden County       89
+#>  8 Hampshire County     30
+#>  9 Middlesex County    283
+#> 10 Nantucket County      2
+#> 11 Norfolk County      115
+#> 12 Plymouth County      89
+#> 13 Suffolk County      168
+#> 14 Worcester County    160
 ```
 
 Now that we've counted the number of points per value, we can plot that using either `geom_bar()` and setting `stat = "identity"` _or_ we can use `geom_col()`. I prefer the latter.
@@ -473,13 +473,13 @@ acs %>%
   mutate(county = fct_reorder(county, med_bach)) %>% 
   ggplot(aes(med_bach, county)) + 
   ggalt::geom_lollipop(horizontal = TRUE)
-## Registered S3 methods overwritten by 'ggalt':
-##   method                  from   
-##   grid.draw.absoluteGrob  ggplot2
-##   grobHeight.absoluteGrob ggplot2
-##   grobWidth.absoluteGrob  ggplot2
-##   grobX.absoluteGrob      ggplot2
-##   grobY.absoluteGrob      ggplot2
+#> Registered S3 methods overwritten by 'ggalt':
+#>   method                  from   
+#>   grid.draw.absoluteGrob  ggplot2
+#>   grobHeight.absoluteGrob ggplot2
+#>   grobWidth.absoluteGrob  ggplot2
+#>   grobX.absoluteGrob      ggplot2
+#>   grobY.absoluteGrob      ggplot2
 ```
 
 <img src="04b-visualization-strategies_files/figure-html/unnamed-chunk-26-1.png" width="672" />

@@ -327,31 +327,44 @@ You now have developed the requisite skills to subset the commuting data to just
 
 
 ```r
-gba_commute <- filter(commute,
-                      county == "SUFFOLK" | county == "NORFOLK" | county == "MIDDLESEX")
+gba_commute <- filter(commute, county == "SUFFOLK" | county == "NORFOLK" | county == "MIDDLESEX")
+```
 
-gba_commute
+The above code is actually rather redundant as we have written `county ==` three different times. When we using the same equality comparison we can actually use the sepcial `%in%` operator. This lets us look for a value **in** a vector of values (we'll learn more about vectors very shortly). 
+
+For example:
+
+
+```r
+1 %in% c(1, 2, 3)
 ```
 
 ```
-## # A tibble: 648 x 14
-##    county hs_grad  bach master commute_less10 commute1030 commute3060
-##    <chr>    <dbl> <dbl>  <dbl>          <dbl>       <dbl>       <dbl>
-##  1 MIDDL…   0.389 0.188 0.100          0.0916       0.357       0.375
-##  2 MIDDL…   0.167 0.400 0.130          0.0948       0.445       0.344
-##  3 MIDDL…   0.184 0.317 0.139          0.0720       0.404       0.382
-##  4 MIDDL…   0.258 0.322 0.144          0.0983       0.390       0.379
-##  5 MIDDL…   0.301 0.177 0.0742         0.0670       0.379       0.365
-##  6 MIDDL…   0.159 0.310 0.207          0.0573       0.453       0.352
-##  7 MIDDL…   0.268 0.247 0.149          0.0791       0.475       0.368
-##  8 MIDDL…   0.261 0.300 0.126          0.137        0.450       0.337
-##  9 MIDDL…   0.315 0.198 0.140          0.0752       0.478       0.329
-## 10 MIDDL…   0.151 0.348 0.151          0.0830       0.474       0.322
-## # … with 638 more rows, and 7 more variables: commute6090 <dbl>,
-## #   commute_over90 <dbl>, by_auto <dbl>, by_pub_trans <dbl>, by_bike <dbl>,
-## #   by_walk <dbl>, med_house_income <dbl>
+## [1] TRUE
 ```
 
+This looks to see if the value on the left hand side is any of the three values in the vector—the thing that looks like `c(val1, val2, ...)`. Using this we can rewrite `gba_commute` as: 
+
+
+```r
+gba_commute <- filter(commute, county %in% c("SUFFOLK", "NORFOLK", "MIDDLESEX"))
+```
+
+
+### Writing Data
+
+You have created the proper subset of data that is needed. However, there is one more hurdle of jump—sending the data. To do this we need to get the tibble out of R and into a data format that can be used—probably a csv. `readr` provides funcitonality to do this as well.
+
+While we used `read_csv()` earlier, to write a csv we will use `write_csv()`. The functionality is beautifully simple. The first argument here will be the tibble that you're going to write, `gba_commute` in this case. And the second is the path to where you will write the data.
+
+In general I recommend that your project has two folders. One titled `data-raw` where you will keep the scripts and raw data that you used to process the data. Then I suggest having a `data` folder as well. This is where you will keep your tidy, or finalized, data files. 
+
+
+```r
+write_csv(gba_commute, "data/gba_commute.csv")
+```
+
+Now you have a csv file that can be shared! 
 
 ------
 

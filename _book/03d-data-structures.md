@@ -23,7 +23,7 @@ For example if we wanted to create a vector of [Boston's unemployment rate](http
 ```r
 unemp <- c(3.2, 2.8, 2.8, 2.4, 2.8, 2.9, 2.7, 2.6, 2.7, 2.3)
 unemp
-##  [1] 3.2 2.8 2.8 2.4 2.8 2.9 2.7 2.6 2.7 2.3
+#>  [1] 3.2 2.8 2.8 2.4 2.8 2.9 2.7 2.6 2.7 2.3
 ```
 
 What is really great about vectors is that we can perform any number of operations on them—i.e. find the sum of all the values, the average, add a value to each element, etc. 
@@ -33,7 +33,7 @@ If we wanted to find the average unemployment rate for Boston  for Jan - Oct. 20
 
 ```r
 mean(unemp)
-## [1] 2.72
+#> [1] 2.72
 ```
 
 However, you may be thinking "there are 12 months in a year not 10 and that should be represented" and if you are, I totally agree with you. Since the data for November and December are missing, we should denote that and update `unemp` accordingly. R uses `NA` to represent missing data. To represent this we can append two `NA`s to the vector we have. There are two ways we can do this. We can either combine `unemp` with two `NA`s, or rewrite the above vector. 
@@ -42,7 +42,7 @@ However, you may be thinking "there are 12 months in a year not 10 and that shou
 ```r
 # combining existing with 2 NAs
 c(unemp, NA, NA)
-##  [1] 3.2 2.8 2.8 2.4 2.8 2.9 2.7 2.6 2.7 2.3  NA  NA
+#>  [1] 3.2 2.8 2.8 2.4 2.8 2.9 2.7 2.6 2.7 2.3  NA  NA
 ```
 
 This works, but since we will be saving this to `unemp` again it is not best practices to use the variable you are changing in that objects assignment.
@@ -59,7 +59,7 @@ The above is rather unclear and might confuse someone that will have to read you
 ```r
 unemp <- c(3.2, 2.8, 2.8, 2.4, 2.8, 2.9, 2.7, 2.6, 2.7, 2.3, NA, NA)
 unemp
-##  [1] 3.2 2.8 2.8 2.4 2.8 2.9 2.7 2.6 2.7 2.3  NA  NA
+#>  [1] 3.2 2.8 2.8 2.4 2.8 2.9 2.7 2.6 2.7 2.3  NA  NA
 ```
 
 We know that there are 12 elements in this vector, but sometimes it is quite nice to sanity check oneself. We can always find out how long (or how many elements are in) a vector is by supplying the vector to the `length()` function. 
@@ -68,7 +68,7 @@ We know that there are 12 elements in this vector, but sometimes it is quite nic
 ```r
 # how many observations are in `unemp`?
 length(unemp)
-## [1] 12
+#> [1] 12
 ```
 
 
@@ -86,7 +86,7 @@ We've already created a vector of type double, `unemp`. You can check what type 
 
 ```r
 typeof(unemp)
-## [1] "double"
+#> [1] "double"
 ```
 
 Say we create another vector called `month` with the numbers 1 through 12. 
@@ -96,7 +96,7 @@ Say we create another vector called `month` with the numbers 1 through 12.
 month <- c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12)
 
 typeof(month)
-## [1] "double"
+#> [1] "double"
 ```
 
 Notice that since we didn't specify the `L` after the numbers R defaulted to treating `month` as a double. When possible it is good to make the distinction between integer and numeric.
@@ -106,7 +106,7 @@ Notice that since we didn't specify the `L` after the numbers R defaulted to tre
 month <- c(1L, 2L, 3L, 4L, 5L, 6L, 7L, 8L, 9L, 10L, 11L, 12L)
 
 typeof(month)
-## [1] "integer"
+#> [1] "integer"
 ```
 
 R has a number of vectors that are built in these being the letters of the alphabet (`letters` and `LETTERS` respectively), as well as `month.abb`, `month.name`, and `pi`. `month.name` is already available to us so let's not recreate it. 
@@ -114,11 +114,11 @@ R has a number of vectors that are built in these being the letters of the alpha
 
 ```r
 month.name
-##  [1] "January"   "February"  "March"     "April"     "May"       "June"     
-##  [7] "July"      "August"    "September" "October"   "November"  "December"
+#>  [1] "January"   "February"  "March"     "April"     "May"       "June"     
+#>  [7] "July"      "August"    "September" "October"   "November"  "December"
 
 typeof(month.name)
-## [1] "character"
+#> [1] "character"
 ```
 
 Notice the quotes around each vector element. This is how we identify character vectors. 
@@ -132,7 +132,7 @@ Recall that vectors are atomic meaning that there can only be one type per vecto
 x <- c("a", 1)
 
 typeof(x)
-## [1] "character"
+#> [1] "character"
 ```
 
 Something similar happens when a logical value is in the presence of a numeric value 
@@ -140,7 +140,7 @@ Something similar happens when a logical value is in the presence of a numeric v
 
 ```r
 c(TRUE, 1, FALSE)
-## [1] 1 1 0
+#> [1] 1 1 0
 ```
 
 In the presence of a numeric value `TRUE` becomes equal to `1L` and `FALSE` equal to `0L`.This behavior exists whenever a logical value is presented where a numeric is expected such as the function call below. 
@@ -148,7 +148,7 @@ In the presence of a numeric value `TRUE` becomes equal to `1L` and `FALSE` equa
 
 ```r
 sum(TRUE, FALSE, FALSE)
-## [1] 1
+#> [1] 1
 ```
 
 While coersion occurs from other processes like combining values in a vector, _**casting**_ is the process of intentionally changing an object's class. There are a number of casting functions whice generaly take the shape of `as.class()` or `as_class()`. Each of the vector types covered have their own casting functions. 
@@ -156,13 +156,13 @@ While coersion occurs from other processes like combining values in a vector, _*
 
 ```r
 as.integer(TRUE)
-## [1] 1
+#> [1] 1
 as.character(123)
-## [1] "123"
+#> [1] "123"
 as.double("2.331")
-## [1] 2.331
+#> [1] 2.331
 as.logical(0)
-## [1] FALSE
+#> [1] FALSE
 ```
 
 As you progress in your R journey you will find scenarios in which you need to cast objects from one class to another and these functions are the trick.
@@ -174,7 +174,7 @@ To select the month of January from the `unemp` vector, the first element, we pr
 
 ```r
 unemp[1]
-## [1] 3.2
+#> [1] 3.2
 ```
 
 To extract more than one value, we provide a vector of the row indexes we desire.
@@ -182,7 +182,7 @@ To extract more than one value, we provide a vector of the row indexes we desire
 
 ```r
 unemp[c(1, 3)]
-## [1] 3.2 2.8
+#> [1] 3.2 2.8
 ```
 
 There is yet another way to extract values from these vectors. We can provide a logical vector to our square brackets. For example, we can identify every value of `unemp` that is above the average rate. 
@@ -196,7 +196,7 @@ avg_unemp <- mean(unemp, na.rm = TRUE)
 index <- unemp > avg_unemp
 
 index
-##  [1]  TRUE  TRUE  TRUE FALSE  TRUE  TRUE FALSE FALSE FALSE FALSE    NA    NA
+#>  [1]  TRUE  TRUE  TRUE FALSE  TRUE  TRUE FALSE FALSE FALSE FALSE    NA    NA
 ```
 
 Notice that the `NA`s stayed `NA`? They can be pesky. Hadley writes in Advanced R "missing values tend to be infectious: most computations involving a missing value will return another missing value." (https://adv-r.hadley.nz/vectors-chap.html)
@@ -205,7 +205,7 @@ Notice that the `NA`s stayed `NA`? They can be pesky. Hadley writes in Advanced 
 
 ```r
 unemp[index]
-## [1] 3.2 2.8 2.8 2.8 2.9  NA  NA
+#> [1] 3.2 2.8 2.8 2.8 2.9  NA  NA
 ```
 
 How annoying those NAs can be! To prevent these NAs from showing upwe can add another condition to our `index` line to remove NAs. Like there are `as.*()` functions for casting, there are also `is.*()` functions for testing. `is.*()` returns a logical vector of the same length as the provided vector.
@@ -215,7 +215,7 @@ How annoying those NAs can be! To prevent these NAs from showing upwe can add an
 
 ```r
 is.na(unemp)
-##  [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE
+#>  [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE
 ```
 
 As we learned, we can negate logical vectors with an `!`. We can negate the test results and include an an `&` condition to only identify unemployment values above average _and_ aren't missing.
@@ -225,7 +225,7 @@ As we learned, we can negate logical vectors with an `!`. We can negate the test
 index <- unemp > avg_unemp & !is.na(unemp)
 
 unemp[index]
-## [1] 3.2 2.8 2.8 2.8 2.9
+#> [1] 3.2 2.8 2.8 2.8 2.9
 ```
 
 There is one last thing to keep in mind and with subsetting vectors using a logical vector that is of a different length. When you use a logical vector to subset and they are of differing length, the logical vector will be recycled for the remaining values of the vector being subset. As always, an example will be the best.
@@ -236,7 +236,7 @@ Say we have an object called `x` which are the values from 0 to 10 and an `index
 ```r
 x <- 0:10
 x
-##  [1]  0  1  2  3  4  5  6  7  8  9 10
+#>  [1]  0  1  2  3  4  5  6  7  8  9 10
 ```
 
 
@@ -244,7 +244,7 @@ x
 index <- c(TRUE, FALSE)
 
 x[index]
-## [1]  0  2  4  6  8 10
+#> [1]  0  2  4  6  8 10
 ```
 
 And what happens when the only value is a single logical value?
@@ -252,13 +252,13 @@ And what happens when the only value is a single logical value?
 
 ```r
 x[TRUE]
-##  [1]  0  1  2  3  4  5  6  7  8  9 10
+#>  [1]  0  1  2  3  4  5  6  7  8  9 10
 ```
 
 
 ```r
 x[FALSE]
-## integer(0)
+#> integer(0)
 ```
 
 In this latter case see how the output says `integer(0)`. This is informing you that the vector contains 0 elements. 
@@ -280,21 +280,21 @@ library(dplyr)
 tibble(
   unemp_rate = unemp
 )
-## # A tibble: 12 x 1
-##    unemp_rate
-##         <dbl>
-##  1        3.2
-##  2        2.8
-##  3        2.8
-##  4        2.4
-##  5        2.8
-##  6        2.9
-##  7        2.7
-##  8        2.6
-##  9        2.7
-## 10        2.3
-## 11       NA  
-## 12       NA
+#> # A tibble: 12 x 1
+#>    unemp_rate
+#>         <dbl>
+#>  1        3.2
+#>  2        2.8
+#>  3        2.8
+#>  4        2.4
+#>  5        2.8
+#>  6        2.9
+#>  7        2.7
+#>  8        2.6
+#>  9        2.7
+#> 10        2.3
+#> 11       NA  
+#> 12       NA
 ```
 
 We can add the month name and create a new column to indicate if that month has a higher than average unemployment rate.
@@ -308,21 +308,21 @@ unemp_tbl <- tibble(
   mutate(above_avg = unemp_rate > avg_unemp)
 
 unemp_tbl
-## # A tibble: 12 x 3
-##    unemp_rate month     above_avg
-##         <dbl> <chr>     <lgl>    
-##  1        3.2 January   TRUE     
-##  2        2.8 February  TRUE     
-##  3        2.8 March     TRUE     
-##  4        2.4 April     FALSE    
-##  5        2.8 May       TRUE     
-##  6        2.9 June      TRUE     
-##  7        2.7 July      FALSE    
-##  8        2.6 August    FALSE    
-##  9        2.7 September FALSE    
-## 10        2.3 October   FALSE    
-## 11       NA   November  NA       
-## 12       NA   December  NA
+#> # A tibble: 12 x 3
+#>    unemp_rate month     above_avg
+#>         <dbl> <chr>     <lgl>    
+#>  1        3.2 January   TRUE     
+#>  2        2.8 February  TRUE     
+#>  3        2.8 March     TRUE     
+#>  4        2.4 April     FALSE    
+#>  5        2.8 May       TRUE     
+#>  6        2.9 June      TRUE     
+#>  7        2.7 July      FALSE    
+#>  8        2.6 August    FALSE    
+#>  9        2.7 September FALSE    
+#> 10        2.3 October   FALSE    
+#> 11       NA   November  NA       
+#> 12       NA   December  NA
 ```
 
 
@@ -333,7 +333,7 @@ For example, extracting the `unemp_rate` column looks like:
 
 ```r
 unemp_tbl$unemp_rate
-##  [1] 3.2 2.8 2.8 2.4 2.8 2.9 2.7 2.6 2.7 2.3  NA  NA
+#>  [1] 3.2 2.8 2.8 2.4 2.8 2.9 2.7 2.6 2.7 2.3  NA  NA
 ```
 
 Note the difference between `select(tbl, col)` and `tbl$col`.
@@ -341,21 +341,21 @@ Note the difference between `select(tbl, col)` and `tbl$col`.
 
 ```r
 select(unemp_tbl, unemp_rate)
-## # A tibble: 12 x 1
-##    unemp_rate
-##         <dbl>
-##  1        3.2
-##  2        2.8
-##  3        2.8
-##  4        2.4
-##  5        2.8
-##  6        2.9
-##  7        2.7
-##  8        2.6
-##  9        2.7
-## 10        2.3
-## 11       NA  
-## 12       NA
+#> # A tibble: 12 x 1
+#>    unemp_rate
+#>         <dbl>
+#>  1        3.2
+#>  2        2.8
+#>  3        2.8
+#>  4        2.4
+#>  5        2.8
+#>  6        2.9
+#>  7        2.7
+#>  8        2.6
+#>  9        2.7
+#> 10        2.3
+#> 11       NA  
+#> 12       NA
 ```
 
 The difference is that `$` returns the underlying vector whereas `select()` will always return another data frame. You now have the ability to both filter data and grab a subset of a vector. But we have yet to visit how to grab a single value from a data frame. 
@@ -367,10 +367,10 @@ You could try something like
 unemp_tbl %>% 
   select(1) %>% 
   slice(10)
-## # A tibble: 1 x 1
-##   unemp_rate
-##        <dbl>
-## 1        2.3
+#> # A tibble: 1 x 1
+#>   unemp_rate
+#>        <dbl>
+#> 1        2.3
 ```
 
 to grab the 10th value of the first column. But again, you still have a tibble and you are not able to use that directly like a standalone number.
@@ -382,26 +382,26 @@ In specifying our index, we are able to select all rows or all columns by leavin
 
 ```r
 unemp_tbl[,1]
-## # A tibble: 12 x 1
-##    unemp_rate
-##         <dbl>
-##  1        3.2
-##  2        2.8
-##  3        2.8
-##  4        2.4
-##  5        2.8
-##  6        2.9
-##  7        2.7
-##  8        2.6
-##  9        2.7
-## 10        2.3
-## 11       NA  
-## 12       NA
+#> # A tibble: 12 x 1
+#>    unemp_rate
+#>         <dbl>
+#>  1        3.2
+#>  2        2.8
+#>  3        2.8
+#>  4        2.4
+#>  5        2.8
+#>  6        2.9
+#>  7        2.7
+#>  8        2.6
+#>  9        2.7
+#> 10        2.3
+#> 11       NA  
+#> 12       NA
 unemp_tbl[10,]
-## # A tibble: 1 x 3
-##   unemp_rate month   above_avg
-##        <dbl> <chr>   <lgl>    
-## 1        2.3 October FALSE
+#> # A tibble: 1 x 3
+#>   unemp_rate month   above_avg
+#>        <dbl> <chr>   <lgl>    
+#> 1        2.3 October FALSE
 ```
 
 To replicate the above tidyverse example we would provide the indexes 10 and 1 respectively. 
@@ -409,10 +409,10 @@ To replicate the above tidyverse example we would provide the indexes 10 and 1 r
 
 ```r
 unemp_tbl[10,1]
-## # A tibble: 1 x 1
-##   unemp_rate
-##        <dbl>
-## 1        2.3
+#> # A tibble: 1 x 1
+#>   unemp_rate
+#>        <dbl>
+#> 1        2.3
 ```
 
 
@@ -421,7 +421,7 @@ This is great, we've rewritten our tidyverse code in base R. But, just like the 
 
 ```r
 unemp_tbl[[10,1]]
-## [1] 2.3
+#> [1] 2.3
 ```
 
 What that code is doing is narrowing the tibble down to a single column with a single row index and then extracting the underlying vector (the second bracket). To extract the underlying vector using the tidyverse, we can use the function `dplyr::pull()`.
@@ -432,7 +432,7 @@ unemp_tbl %>%
   select(1) %>% 
   slice(10) %>% 
   pull()
-## [1] 2.3
+#> [1] 2.3
 ```
 
 Now this brings us to the second-most fundamental structure in R: the list. Yes, second-most fundamental. I've been keeping a secret from you. Data frames are actually just lists in disguise. To prove it, I will remove the class from `unemp_tbl` and return the class of that unclassed object.
@@ -441,7 +441,7 @@ Now this brings us to the second-most fundamental structure in R: the list. Yes,
 ```r
 unclass(unemp_tbl) %>% 
   class()
-## [1] "list"
+#> [1] "list"
 ```
 
 That is right, data frames are actually just lists disguised as rectangles.
@@ -457,14 +457,14 @@ The most simple lists may resemble something like a vector.
 
 ```r
 list("Jan", "Feb", "Mar")
-## [[1]]
-## [1] "Jan"
-## 
-## [[2]]
-## [1] "Feb"
-## 
-## [[3]]
-## [1] "Mar"
+#> [[1]]
+#> [1] "Jan"
+#> 
+#> [[2]]
+#> [1] "Feb"
+#> 
+#> [[3]]
+#> [1] "Mar"
 ```
 
 Notice how this prints differently than
@@ -472,7 +472,7 @@ Notice how this prints differently than
 
 ```r
 c("Jan", "Feb", "Mar")
-## [1] "Jan" "Feb" "Mar"
+#> [1] "Jan" "Feb" "Mar"
 ```
 
 Each element of a list is self-contained. I think of lists somewhat like shipping containers where each element is its own container and all components of each element are together. We can include any type of R object in a list. For example, we can include the `unemp_tbl` and associated vectors.
@@ -487,13 +487,13 @@ We can view the structure of the list to get an idea of what is actually contain
 
 ```r
 str(l)
-## List of 3
-##  $ : tibble [12 × 3] (S3: tbl_df/tbl/data.frame)
-##   ..$ unemp_rate: num [1:12] 3.2 2.8 2.8 2.4 2.8 2.9 2.7 2.6 2.7 2.3 ...
-##   ..$ month     : chr [1:12] "January" "February" "March" "April" ...
-##   ..$ above_avg : logi [1:12] TRUE TRUE TRUE FALSE TRUE TRUE ...
-##  $ : num [1:12] 3.2 2.8 2.8 2.4 2.8 2.9 2.7 2.6 2.7 2.3 ...
-##  $ : chr [1:12] "January" "February" "March" "April" ...
+#> List of 3
+#>  $ : tibble [12 × 3] (S3: tbl_df/tbl/data.frame)
+#>   ..$ unemp_rate: num [1:12] 3.2 2.8 2.8 2.4 2.8 2.9 2.7 2.6 2.7 2.3 ...
+#>   ..$ month     : chr [1:12] "January" "February" "March" "April" ...
+#>   ..$ above_avg : logi [1:12] TRUE TRUE TRUE FALSE TRUE TRUE ...
+#>  $ : num [1:12] 3.2 2.8 2.8 2.4 2.8 2.9 2.7 2.6 2.7 2.3 ...
+#>  $ : chr [1:12] "January" "February" "March" "April" ...
 ```
 
 The structure of `l` shows us that the first element is a tibble (has class `tbl_df`), and the other elements are numeric and character vectors respectively. 
@@ -503,10 +503,10 @@ Because of this flexibility there are not predetermined dimensions that we can s
 
 ```r
 l[2]
-## [[1]]
-##  [1] 3.2 2.8 2.8 2.4 2.8 2.9 2.7 2.6 2.7 2.3  NA  NA
+#> [[1]]
+#>  [1] 3.2 2.8 2.8 2.4 2.8 2.9 2.7 2.6 2.7 2.3  NA  NA
 class(l[2])
-## [1] "list"
+#> [1] "list"
 ```
 
 When using the single bracket we are just selecting the first element of the list which is why we are returned another list.
@@ -514,9 +514,9 @@ When using the single bracket we are just selecting the first element of the lis
 
 ```r
 l[[2]]
-##  [1] 3.2 2.8 2.8 2.4 2.8 2.9 2.7 2.6 2.7 2.3  NA  NA
+#>  [1] 3.2 2.8 2.8 2.4 2.8 2.9 2.7 2.6 2.7 2.3  NA  NA
 class(l[[2]])
-## [1] "numeric"
+#> [1] "numeric"
 ```
 
 When we use the double bracket we are going inside of the container and actually plucking that element out of the list. Once you have plucked out that element, we can again use another set of brackets to subset that item. To grab the tenth row and first column of the `unemp_tbl` inside of `l` we can write. 
@@ -524,7 +524,7 @@ When we use the double bracket we are going inside of the container and actually
 
 ```r
 l[[1]][[10,1]]
-## [1] 2.3
+#> [1] 2.3
 ```
 
 Now that we know that data frames are lists we can actually extract the underlying vectors using `[[` as well as `$`. We can get the tenth row and first column a number of ways. 
@@ -533,15 +533,15 @@ Now that we know that data frames are lists we can actually extract the underlyi
 ```r
 # subsetting the data frame
 l[[1]][[10,1]]
-## [1] 2.3
+#> [1] 2.3
 
 # grabbing the first vector then position
 l[[1]][[1]][10]
-## [1] 2.3
+#> [1] 2.3
 
 # grabbing the vector by name then position
 l[[1]]$unemp_rate[10]
-## [1] 2.3
+#> [1] 2.3
 ```
 
 Frankly all of these brackets can get a little messy. The tidyverse package `purrr` has a super handy function called `pluck()` which handles all of these brackets for us. `purrr::pluck()` is meant for flexible indexing into data structures (documentation).
@@ -551,7 +551,7 @@ Frankly all of these brackets can get a little messy. The tidyverse package `pur
 
 ```r
 purrr::pluck(l, 1, 1, 10)
-## [1] 2.3
+#> [1] 2.3
 ```
 
 Congratulations! You made it to the end of this exceptionally dense chapter. You may feel a little overwhlemed and that is to be expected. Nonetheless you should be proud! I have a few more asks of you before you move on.
@@ -575,20 +575,20 @@ tibble(
   month = pluck(unemp_l, 2)
 ) %>% 
   mutate(above_avg = unemp_rate > pluck(unemp_l, 3))
-## # A tibble: 12 x 3
-##    unemp_rate month     above_avg
-##         <dbl> <chr>     <lgl>    
-##  1        3.2 January   TRUE     
-##  2        2.8 February  TRUE     
-##  3        2.8 March     TRUE     
-##  4        2.4 April     FALSE    
-##  5        2.8 May       TRUE     
-##  6        2.9 June      TRUE     
-##  7        2.7 July      FALSE    
-##  8        2.6 August    FALSE    
-##  9        2.7 September FALSE    
-## 10        2.3 October   FALSE    
-## 11       NA   November  NA       
-## 12       NA   December  NA
+#> # A tibble: 12 x 3
+#>    unemp_rate month     above_avg
+#>         <dbl> <chr>     <lgl>    
+#>  1        3.2 January   TRUE     
+#>  2        2.8 February  TRUE     
+#>  3        2.8 March     TRUE     
+#>  4        2.4 April     FALSE    
+#>  5        2.8 May       TRUE     
+#>  6        2.9 June      TRUE     
+#>  7        2.7 July      FALSE    
+#>  8        2.6 August    FALSE    
+#>  9        2.7 September FALSE    
+#> 10        2.3 October   FALSE    
+#> 11       NA   November  NA       
+#> 12       NA   December  NA
 ```
 

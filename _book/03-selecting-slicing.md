@@ -66,67 +66,67 @@ Oof, yikes. It's a bit messy! Not to mention that R did not even print out all o
 
 ```r
 glimpse(acs_raw)
-## Rows: 1,478
-## Columns: 59
-## $ ct_id_10             <dbl> 25027728100, 25027729200, 25027730700, 250277442…
-## $ name                 <chr> "Census Tract 7281, Worcester County, Massachuse…
-## $ total_pop            <dbl> 4585, 2165, 6917, 7278, 5059, 6632, 3259, 2097, …
-## $ pop_den              <dbl> 332.57409, 1069.69770, 2112.95261, 1345.59054, 2…
-## $ sex_ratio            <dbl> 1.1315667, 1.3179872, 1.1329016, 1.1156977, 1.29…
-## $ age_u18              <dbl> 0.2340240, 0.1810624, 0.1705942, 0.2033526, 0.17…
-## $ age1834              <dbl> 0.2023991, 0.1510393, 0.2143993, 0.2272602, 0.20…
-## $ age3564              <dbl> 0.3980371, 0.4609700, 0.4371838, 0.4359714, 0.43…
-## $ age_o65              <dbl> 0.1655398, 0.2069284, 0.1778228, 0.1334158, 0.18…
-## $ for_born             <dbl> 0.04383860, 0.08729792, 0.20586960, 0.15526243, …
-## $ white                <dbl> 0.8972737, 0.8849885, 0.7328322, 0.8235779, 0.73…
-## $ black                <dbl> 0.012213740, 0.017090069, 0.079514240, 0.0306402…
-## $ asian                <dbl> 0.006324973, 0.021709007, 0.019950846, 0.0342126…
-## $ hispanic             <dbl> 0.070229008, 0.047575058, 0.136330779, 0.0784556…
-## $ two_or_more          <dbl> 0.012431843, 0.027713626, 0.017348562, 0.0126408…
-## $ eth_het              <dbl> -17032656, -3685242, -26905553, -36365806, -1482…
-## $ med_house_income     <dbl> 105735, 69625, 70679, 74528, 52885, 64100, 37093…
-## $ pub_assist           <dbl> 0.020782396, 0.004667445, 0.021067926, 0.0333564…
-## $ gini                 <dbl> 0.4084, 0.3886, 0.4693, 0.4052, 0.5327, 0.4546, …
-## $ fam_pov_per          <dbl> 0.04754601, 0.06521739, 0.05843440, 0.02486772, …
-## $ unemp_rate           <dbl> 0.03361345, 0.03127572, 0.06124498, 0.03983382, …
-## $ total_house_h        <dbl> 1636, 857, 2753, 2878, 2326, 2635, 1245, 808, 11…
-## $ fam_house_per        <dbl> 0.7970660, 0.6977830, 0.6589175, 0.6567060, 0.53…
-## $ fem_head_per         <dbl> 0.08985330, 0.12018670, 0.11442063, 0.12126477, …
-## $ same_sex_coup_per    <dbl> 0.00000000, 0.00000000, 0.00000000, 0.00000000, …
-## $ grand_head_per       <dbl> 0.000000000, 0.005834306, 0.000000000, 0.0000000…
-## $ less_than_hs         <dbl> 0.02515518, 0.05773956, 0.09364548, 0.08426318, …
-## $ hs_grad              <dbl> 0.19568768, 0.25307125, 0.17332284, 0.25298192, …
-## $ some_coll            <dbl> 0.2211696, 0.3157248, 0.2726736, 0.3534052, 0.28…
-## $ bach                 <dbl> 0.32473048, 0.26167076, 0.26677159, 0.23124279, …
-## $ master               <dbl> 0.15942502, 0.09705160, 0.12059807, 0.06714121, …
-## $ prof                 <dbl> 0.0405096374, 0.0098280098, 0.0397403108, 0.0061…
-## $ doc                  <dbl> 0.033322444, 0.004914005, 0.033248082, 0.0048095…
-## $ commute_less10       <dbl> 0.07874016, 0.25109361, 0.05369894, 0.14119870, …
-## $ commute1030          <dbl> 0.5131234, 0.4636920, 0.6620965, 0.3941685, 0.51…
-## $ commute3060          <dbl> 0.33114611, 0.18110236, 0.17709226, 0.31263499, …
-## $ commute6090          <dbl> 0.055555556, 0.082239720, 0.086832334, 0.1325593…
-## $ commute_over90       <dbl> 0.021434821, 0.021872266, 0.020279920, 0.0194384…
-## $ by_auto              <dbl> 0.9267791, 0.9704861, 0.9248285, 0.9037018, 0.89…
-## $ by_pub_trans         <dbl> 0.000000000, 0.004340278, 0.020301783, 0.0178617…
-## $ by_bike              <dbl> 0.002879473, 0.000000000, 0.000000000, 0.0000000…
-## $ by_walk              <dbl> 0.002468120, 0.012152778, 0.004938272, 0.0217447…
-## $ total_house_units    <dbl> 1701, 886, 2928, 3181, 2511, 2713, 1581, 855, 12…
-## $ vacant_unit_per      <dbl> 0.03821282, 0.03273138, 0.05976776, 0.09525307, …
-## $ renters_per          <dbl> 0.1088020, 0.2100350, 0.2804214, 0.3425990, 0.57…
-## $ home_own_per         <dbl> 0.8911980, 0.7899650, 0.7195786, 0.6574010, 0.42…
-## $ med_gross_rent       <dbl> 1640, 894, 1454, 954, 1018, 867, 910, 1088, 1037…
-## $ med_home_val         <dbl> 349000, 230200, 207200, 268400, 223200, 232700, …
-## $ med_yr_built_raw     <dbl> 1988, 1955, 1959, 1973, 1964, 1966, 1939, 1939, …
-## $ med_yr_built         <chr> "1980 to 1989", "1950 to 1959", "1950 to 1959", …
-## $ med_yr_moved_inraw   <dbl> 2004, 2003, 2007, 2006, 2006, 2000, 2011, 2006, …
-## $ med_yr_rent_moved_in <dbl> 2012, 2010, 2012, 2011, 2011, 2009, 2012, 2012, …
-## $ area_acres           <dbl> 9407.9167, 1294.2828, 2123.4927, 3581.9026, 1154…
-## $ town_id              <dbl> 134, 321, 348, 185, 153, 151, 316, 348, 28, 348,…
-## $ town                 <chr> "HOLDEN", "WEST BOYLSTON", "WORCESTER", "MILFORD…
-## $ fips_stco            <dbl> 25027, 25027, 25027, 25027, 25027, 25027, 25027,…
-## $ county               <chr> "WORCESTER", "WORCESTER", "WORCESTER", "WORCESTE…
-## $ area_acr_1           <dbl> 23241.514, 8867.508, 24609.965, 9615.644, 18992.…
-## $ m_atown              <chr> "HOLDEN", "WEST BOYLSTON", "WORCESTER", "MILFORD…
+#> Rows: 1,478
+#> Columns: 59
+#> $ ct_id_10             <dbl> 25027728100, 25027729200, 25027730700, 250277442…
+#> $ name                 <chr> "Census Tract 7281, Worcester County, Massachuse…
+#> $ total_pop            <dbl> 4585, 2165, 6917, 7278, 5059, 6632, 3259, 2097, …
+#> $ pop_den              <dbl> 332.57409, 1069.69770, 2112.95261, 1345.59054, 2…
+#> $ sex_ratio            <dbl> 1.1315667, 1.3179872, 1.1329016, 1.1156977, 1.29…
+#> $ age_u18              <dbl> 0.2340240, 0.1810624, 0.1705942, 0.2033526, 0.17…
+#> $ age1834              <dbl> 0.2023991, 0.1510393, 0.2143993, 0.2272602, 0.20…
+#> $ age3564              <dbl> 0.3980371, 0.4609700, 0.4371838, 0.4359714, 0.43…
+#> $ age_o65              <dbl> 0.1655398, 0.2069284, 0.1778228, 0.1334158, 0.18…
+#> $ for_born             <dbl> 0.04383860, 0.08729792, 0.20586960, 0.15526243, …
+#> $ white                <dbl> 0.8972737, 0.8849885, 0.7328322, 0.8235779, 0.73…
+#> $ black                <dbl> 0.012213740, 0.017090069, 0.079514240, 0.0306402…
+#> $ asian                <dbl> 0.006324973, 0.021709007, 0.019950846, 0.0342126…
+#> $ hispanic             <dbl> 0.070229008, 0.047575058, 0.136330779, 0.0784556…
+#> $ two_or_more          <dbl> 0.012431843, 0.027713626, 0.017348562, 0.0126408…
+#> $ eth_het              <dbl> -17032656, -3685242, -26905553, -36365806, -1482…
+#> $ med_house_income     <dbl> 105735, 69625, 70679, 74528, 52885, 64100, 37093…
+#> $ pub_assist           <dbl> 0.020782396, 0.004667445, 0.021067926, 0.0333564…
+#> $ gini                 <dbl> 0.4084, 0.3886, 0.4693, 0.4052, 0.5327, 0.4546, …
+#> $ fam_pov_per          <dbl> 0.04754601, 0.06521739, 0.05843440, 0.02486772, …
+#> $ unemp_rate           <dbl> 0.03361345, 0.03127572, 0.06124498, 0.03983382, …
+#> $ total_house_h        <dbl> 1636, 857, 2753, 2878, 2326, 2635, 1245, 808, 11…
+#> $ fam_house_per        <dbl> 0.7970660, 0.6977830, 0.6589175, 0.6567060, 0.53…
+#> $ fem_head_per         <dbl> 0.08985330, 0.12018670, 0.11442063, 0.12126477, …
+#> $ same_sex_coup_per    <dbl> 0.00000000, 0.00000000, 0.00000000, 0.00000000, …
+#> $ grand_head_per       <dbl> 0.000000000, 0.005834306, 0.000000000, 0.0000000…
+#> $ less_than_hs         <dbl> 0.02515518, 0.05773956, 0.09364548, 0.08426318, …
+#> $ hs_grad              <dbl> 0.19568768, 0.25307125, 0.17332284, 0.25298192, …
+#> $ some_coll            <dbl> 0.2211696, 0.3157248, 0.2726736, 0.3534052, 0.28…
+#> $ bach                 <dbl> 0.32473048, 0.26167076, 0.26677159, 0.23124279, …
+#> $ master               <dbl> 0.15942502, 0.09705160, 0.12059807, 0.06714121, …
+#> $ prof                 <dbl> 0.0405096374, 0.0098280098, 0.0397403108, 0.0061…
+#> $ doc                  <dbl> 0.033322444, 0.004914005, 0.033248082, 0.0048095…
+#> $ commute_less10       <dbl> 0.07874016, 0.25109361, 0.05369894, 0.14119870, …
+#> $ commute1030          <dbl> 0.5131234, 0.4636920, 0.6620965, 0.3941685, 0.51…
+#> $ commute3060          <dbl> 0.33114611, 0.18110236, 0.17709226, 0.31263499, …
+#> $ commute6090          <dbl> 0.055555556, 0.082239720, 0.086832334, 0.1325593…
+#> $ commute_over90       <dbl> 0.021434821, 0.021872266, 0.020279920, 0.0194384…
+#> $ by_auto              <dbl> 0.9267791, 0.9704861, 0.9248285, 0.9037018, 0.89…
+#> $ by_pub_trans         <dbl> 0.000000000, 0.004340278, 0.020301783, 0.0178617…
+#> $ by_bike              <dbl> 0.002879473, 0.000000000, 0.000000000, 0.0000000…
+#> $ by_walk              <dbl> 0.002468120, 0.012152778, 0.004938272, 0.0217447…
+#> $ total_house_units    <dbl> 1701, 886, 2928, 3181, 2511, 2713, 1581, 855, 12…
+#> $ vacant_unit_per      <dbl> 0.03821282, 0.03273138, 0.05976776, 0.09525307, …
+#> $ renters_per          <dbl> 0.1088020, 0.2100350, 0.2804214, 0.3425990, 0.57…
+#> $ home_own_per         <dbl> 0.8911980, 0.7899650, 0.7195786, 0.6574010, 0.42…
+#> $ med_gross_rent       <dbl> 1640, 894, 1454, 954, 1018, 867, 910, 1088, 1037…
+#> $ med_home_val         <dbl> 349000, 230200, 207200, 268400, 223200, 232700, …
+#> $ med_yr_built_raw     <dbl> 1988, 1955, 1959, 1973, 1964, 1966, 1939, 1939, …
+#> $ med_yr_built         <chr> "1980 to 1989", "1950 to 1959", "1950 to 1959", …
+#> $ med_yr_moved_inraw   <dbl> 2004, 2003, 2007, 2006, 2006, 2000, 2011, 2006, …
+#> $ med_yr_rent_moved_in <dbl> 2012, 2010, 2012, 2011, 2011, 2009, 2012, 2012, …
+#> $ area_acres           <dbl> 9407.9167, 1294.2828, 2123.4927, 3581.9026, 1154…
+#> $ town_id              <dbl> 134, 321, 348, 185, 153, 151, 316, 348, 28, 348,…
+#> $ town                 <chr> "HOLDEN", "WEST BOYLSTON", "WORCESTER", "MILFORD…
+#> $ fips_stco            <dbl> 25027, 25027, 25027, 25027, 25027, 25027, 25027,…
+#> $ county               <chr> "WORCESTER", "WORCESTER", "WORCESTER", "WORCESTE…
+#> $ area_acr_1           <dbl> 23241.514, 8867.508, 24609.965, 9615.644, 18992.…
+#> $ m_atown              <chr> "HOLDEN", "WEST BOYLSTON", "WORCESTER", "MILFORD…
 ```
 
 Much better, right? It is frankly still a lot of text, but the way it is presented is rather useful. Each variable is written followed by its data type, i.e. `<dbl>`, and then a preview of values in that column. If the `<dbl>` does not make sense yet, do not worry. We will go over data types in depth later. Data types are not the most fun and I think it is important we have fun! 
@@ -168,7 +168,7 @@ What I want you to take away from this argument definition is `a tbl`. Whenever 
 
 ```r
 is.tbl(acs_raw)
-## [1] TRUE
+#> [1] TRUE
 ```
 
 > Aside: Each object type usually has a function that let's you test if objects are that type that follow the structure `is.obj_type()` or the occasional `is_obj_type()`. We will go over object types more later. 
@@ -205,20 +205,20 @@ Try it:
 
 ```r
 select(acs_raw, name)
-## # A tibble: 1,478 x 1
-##    name                                                 
-##    <chr>                                                
-##  1 Census Tract 7281, Worcester County, Massachusetts   
-##  2 Census Tract 7292, Worcester County, Massachusetts   
-##  3 Census Tract 7307, Worcester County, Massachusetts   
-##  4 Census Tract 7442, Worcester County, Massachusetts   
-##  5 Census Tract 7097.01, Worcester County, Massachusetts
-##  6 Census Tract 7351, Worcester County, Massachusetts   
-##  7 Census Tract 7543, Worcester County, Massachusetts   
-##  8 Census Tract 7308.02, Worcester County, Massachusetts
-##  9 Census Tract 7171, Worcester County, Massachusetts   
-## 10 Census Tract 7326, Worcester County, Massachusetts   
-## # … with 1,468 more rows
+#> # A tibble: 1,478 x 1
+#>    name                                                 
+#>    <chr>                                                
+#>  1 Census Tract 7281, Worcester County, Massachusetts   
+#>  2 Census Tract 7292, Worcester County, Massachusetts   
+#>  3 Census Tract 7307, Worcester County, Massachusetts   
+#>  4 Census Tract 7442, Worcester County, Massachusetts   
+#>  5 Census Tract 7097.01, Worcester County, Massachusetts
+#>  6 Census Tract 7351, Worcester County, Massachusetts   
+#>  7 Census Tract 7543, Worcester County, Massachusetts   
+#>  8 Census Tract 7308.02, Worcester County, Massachusetts
+#>  9 Census Tract 7171, Worcester County, Massachusetts   
+#> 10 Census Tract 7326, Worcester County, Massachusetts   
+#> # … with 1,468 more rows
 ```
 
 The column `name` was passed to `...`. Recall that dots allows us to pass "one ore more unquoted expressions separated by commas." To test this statement out, select `town` in addition to `name` from `acs_raw`
@@ -230,20 +230,20 @@ Try it:
 
 ```r
 select(acs_raw, name, town)
-## # A tibble: 1,478 x 2
-##    name                                                  town         
-##    <chr>                                                 <chr>        
-##  1 Census Tract 7281, Worcester County, Massachusetts    HOLDEN       
-##  2 Census Tract 7292, Worcester County, Massachusetts    WEST BOYLSTON
-##  3 Census Tract 7307, Worcester County, Massachusetts    WORCESTER    
-##  4 Census Tract 7442, Worcester County, Massachusetts    MILFORD      
-##  5 Census Tract 7097.01, Worcester County, Massachusetts LEOMINSTER   
-##  6 Census Tract 7351, Worcester County, Massachusetts    LEICESTER    
-##  7 Census Tract 7543, Worcester County, Massachusetts    WEBSTER      
-##  8 Census Tract 7308.02, Worcester County, Massachusetts WORCESTER    
-##  9 Census Tract 7171, Worcester County, Massachusetts    BERLIN       
-## 10 Census Tract 7326, Worcester County, Massachusetts    WORCESTER    
-## # … with 1,468 more rows
+#> # A tibble: 1,478 x 2
+#>    name                                                  town         
+#>    <chr>                                                 <chr>        
+#>  1 Census Tract 7281, Worcester County, Massachusetts    HOLDEN       
+#>  2 Census Tract 7292, Worcester County, Massachusetts    WEST BOYLSTON
+#>  3 Census Tract 7307, Worcester County, Massachusetts    WORCESTER    
+#>  4 Census Tract 7442, Worcester County, Massachusetts    MILFORD      
+#>  5 Census Tract 7097.01, Worcester County, Massachusetts LEOMINSTER   
+#>  6 Census Tract 7351, Worcester County, Massachusetts    LEICESTER    
+#>  7 Census Tract 7543, Worcester County, Massachusetts    WEBSTER      
+#>  8 Census Tract 7308.02, Worcester County, Massachusetts WORCESTER    
+#>  9 Census Tract 7171, Worcester County, Massachusetts    BERLIN       
+#> 10 Census Tract 7326, Worcester County, Massachusetts    WORCESTER    
+#> # … with 1,468 more rows
 ```
 
 Great, you're getting the hang of it. 
@@ -255,67 +255,67 @@ Let's refresh ourselves with what our data look like:
 
 ```r
 glimpse(acs_raw)
-## Rows: 1,478
-## Columns: 59
-## $ ct_id_10             <dbl> 25027728100, 25027729200, 25027730700, 250277442…
-## $ name                 <chr> "Census Tract 7281, Worcester County, Massachuse…
-## $ total_pop            <dbl> 4585, 2165, 6917, 7278, 5059, 6632, 3259, 2097, …
-## $ pop_den              <dbl> 332.57409, 1069.69770, 2112.95261, 1345.59054, 2…
-## $ sex_ratio            <dbl> 1.1315667, 1.3179872, 1.1329016, 1.1156977, 1.29…
-## $ age_u18              <dbl> 0.2340240, 0.1810624, 0.1705942, 0.2033526, 0.17…
-## $ age1834              <dbl> 0.2023991, 0.1510393, 0.2143993, 0.2272602, 0.20…
-## $ age3564              <dbl> 0.3980371, 0.4609700, 0.4371838, 0.4359714, 0.43…
-## $ age_o65              <dbl> 0.1655398, 0.2069284, 0.1778228, 0.1334158, 0.18…
-## $ for_born             <dbl> 0.04383860, 0.08729792, 0.20586960, 0.15526243, …
-## $ white                <dbl> 0.8972737, 0.8849885, 0.7328322, 0.8235779, 0.73…
-## $ black                <dbl> 0.012213740, 0.017090069, 0.079514240, 0.0306402…
-## $ asian                <dbl> 0.006324973, 0.021709007, 0.019950846, 0.0342126…
-## $ hispanic             <dbl> 0.070229008, 0.047575058, 0.136330779, 0.0784556…
-## $ two_or_more          <dbl> 0.012431843, 0.027713626, 0.017348562, 0.0126408…
-## $ eth_het              <dbl> -17032656, -3685242, -26905553, -36365806, -1482…
-## $ med_house_income     <dbl> 105735, 69625, 70679, 74528, 52885, 64100, 37093…
-## $ pub_assist           <dbl> 0.020782396, 0.004667445, 0.021067926, 0.0333564…
-## $ gini                 <dbl> 0.4084, 0.3886, 0.4693, 0.4052, 0.5327, 0.4546, …
-## $ fam_pov_per          <dbl> 0.04754601, 0.06521739, 0.05843440, 0.02486772, …
-## $ unemp_rate           <dbl> 0.03361345, 0.03127572, 0.06124498, 0.03983382, …
-## $ total_house_h        <dbl> 1636, 857, 2753, 2878, 2326, 2635, 1245, 808, 11…
-## $ fam_house_per        <dbl> 0.7970660, 0.6977830, 0.6589175, 0.6567060, 0.53…
-## $ fem_head_per         <dbl> 0.08985330, 0.12018670, 0.11442063, 0.12126477, …
-## $ same_sex_coup_per    <dbl> 0.00000000, 0.00000000, 0.00000000, 0.00000000, …
-## $ grand_head_per       <dbl> 0.000000000, 0.005834306, 0.000000000, 0.0000000…
-## $ less_than_hs         <dbl> 0.02515518, 0.05773956, 0.09364548, 0.08426318, …
-## $ hs_grad              <dbl> 0.19568768, 0.25307125, 0.17332284, 0.25298192, …
-## $ some_coll            <dbl> 0.2211696, 0.3157248, 0.2726736, 0.3534052, 0.28…
-## $ bach                 <dbl> 0.32473048, 0.26167076, 0.26677159, 0.23124279, …
-## $ master               <dbl> 0.15942502, 0.09705160, 0.12059807, 0.06714121, …
-## $ prof                 <dbl> 0.0405096374, 0.0098280098, 0.0397403108, 0.0061…
-## $ doc                  <dbl> 0.033322444, 0.004914005, 0.033248082, 0.0048095…
-## $ commute_less10       <dbl> 0.07874016, 0.25109361, 0.05369894, 0.14119870, …
-## $ commute1030          <dbl> 0.5131234, 0.4636920, 0.6620965, 0.3941685, 0.51…
-## $ commute3060          <dbl> 0.33114611, 0.18110236, 0.17709226, 0.31263499, …
-## $ commute6090          <dbl> 0.055555556, 0.082239720, 0.086832334, 0.1325593…
-## $ commute_over90       <dbl> 0.021434821, 0.021872266, 0.020279920, 0.0194384…
-## $ by_auto              <dbl> 0.9267791, 0.9704861, 0.9248285, 0.9037018, 0.89…
-## $ by_pub_trans         <dbl> 0.000000000, 0.004340278, 0.020301783, 0.0178617…
-## $ by_bike              <dbl> 0.002879473, 0.000000000, 0.000000000, 0.0000000…
-## $ by_walk              <dbl> 0.002468120, 0.012152778, 0.004938272, 0.0217447…
-## $ total_house_units    <dbl> 1701, 886, 2928, 3181, 2511, 2713, 1581, 855, 12…
-## $ vacant_unit_per      <dbl> 0.03821282, 0.03273138, 0.05976776, 0.09525307, …
-## $ renters_per          <dbl> 0.1088020, 0.2100350, 0.2804214, 0.3425990, 0.57…
-## $ home_own_per         <dbl> 0.8911980, 0.7899650, 0.7195786, 0.6574010, 0.42…
-## $ med_gross_rent       <dbl> 1640, 894, 1454, 954, 1018, 867, 910, 1088, 1037…
-## $ med_home_val         <dbl> 349000, 230200, 207200, 268400, 223200, 232700, …
-## $ med_yr_built_raw     <dbl> 1988, 1955, 1959, 1973, 1964, 1966, 1939, 1939, …
-## $ med_yr_built         <chr> "1980 to 1989", "1950 to 1959", "1950 to 1959", …
-## $ med_yr_moved_inraw   <dbl> 2004, 2003, 2007, 2006, 2006, 2000, 2011, 2006, …
-## $ med_yr_rent_moved_in <dbl> 2012, 2010, 2012, 2011, 2011, 2009, 2012, 2012, …
-## $ area_acres           <dbl> 9407.9167, 1294.2828, 2123.4927, 3581.9026, 1154…
-## $ town_id              <dbl> 134, 321, 348, 185, 153, 151, 316, 348, 28, 348,…
-## $ town                 <chr> "HOLDEN", "WEST BOYLSTON", "WORCESTER", "MILFORD…
-## $ fips_stco            <dbl> 25027, 25027, 25027, 25027, 25027, 25027, 25027,…
-## $ county               <chr> "WORCESTER", "WORCESTER", "WORCESTER", "WORCESTE…
-## $ area_acr_1           <dbl> 23241.514, 8867.508, 24609.965, 9615.644, 18992.…
-## $ m_atown              <chr> "HOLDEN", "WEST BOYLSTON", "WORCESTER", "MILFORD…
+#> Rows: 1,478
+#> Columns: 59
+#> $ ct_id_10             <dbl> 25027728100, 25027729200, 25027730700, 250277442…
+#> $ name                 <chr> "Census Tract 7281, Worcester County, Massachuse…
+#> $ total_pop            <dbl> 4585, 2165, 6917, 7278, 5059, 6632, 3259, 2097, …
+#> $ pop_den              <dbl> 332.57409, 1069.69770, 2112.95261, 1345.59054, 2…
+#> $ sex_ratio            <dbl> 1.1315667, 1.3179872, 1.1329016, 1.1156977, 1.29…
+#> $ age_u18              <dbl> 0.2340240, 0.1810624, 0.1705942, 0.2033526, 0.17…
+#> $ age1834              <dbl> 0.2023991, 0.1510393, 0.2143993, 0.2272602, 0.20…
+#> $ age3564              <dbl> 0.3980371, 0.4609700, 0.4371838, 0.4359714, 0.43…
+#> $ age_o65              <dbl> 0.1655398, 0.2069284, 0.1778228, 0.1334158, 0.18…
+#> $ for_born             <dbl> 0.04383860, 0.08729792, 0.20586960, 0.15526243, …
+#> $ white                <dbl> 0.8972737, 0.8849885, 0.7328322, 0.8235779, 0.73…
+#> $ black                <dbl> 0.012213740, 0.017090069, 0.079514240, 0.0306402…
+#> $ asian                <dbl> 0.006324973, 0.021709007, 0.019950846, 0.0342126…
+#> $ hispanic             <dbl> 0.070229008, 0.047575058, 0.136330779, 0.0784556…
+#> $ two_or_more          <dbl> 0.012431843, 0.027713626, 0.017348562, 0.0126408…
+#> $ eth_het              <dbl> -17032656, -3685242, -26905553, -36365806, -1482…
+#> $ med_house_income     <dbl> 105735, 69625, 70679, 74528, 52885, 64100, 37093…
+#> $ pub_assist           <dbl> 0.020782396, 0.004667445, 0.021067926, 0.0333564…
+#> $ gini                 <dbl> 0.4084, 0.3886, 0.4693, 0.4052, 0.5327, 0.4546, …
+#> $ fam_pov_per          <dbl> 0.04754601, 0.06521739, 0.05843440, 0.02486772, …
+#> $ unemp_rate           <dbl> 0.03361345, 0.03127572, 0.06124498, 0.03983382, …
+#> $ total_house_h        <dbl> 1636, 857, 2753, 2878, 2326, 2635, 1245, 808, 11…
+#> $ fam_house_per        <dbl> 0.7970660, 0.6977830, 0.6589175, 0.6567060, 0.53…
+#> $ fem_head_per         <dbl> 0.08985330, 0.12018670, 0.11442063, 0.12126477, …
+#> $ same_sex_coup_per    <dbl> 0.00000000, 0.00000000, 0.00000000, 0.00000000, …
+#> $ grand_head_per       <dbl> 0.000000000, 0.005834306, 0.000000000, 0.0000000…
+#> $ less_than_hs         <dbl> 0.02515518, 0.05773956, 0.09364548, 0.08426318, …
+#> $ hs_grad              <dbl> 0.19568768, 0.25307125, 0.17332284, 0.25298192, …
+#> $ some_coll            <dbl> 0.2211696, 0.3157248, 0.2726736, 0.3534052, 0.28…
+#> $ bach                 <dbl> 0.32473048, 0.26167076, 0.26677159, 0.23124279, …
+#> $ master               <dbl> 0.15942502, 0.09705160, 0.12059807, 0.06714121, …
+#> $ prof                 <dbl> 0.0405096374, 0.0098280098, 0.0397403108, 0.0061…
+#> $ doc                  <dbl> 0.033322444, 0.004914005, 0.033248082, 0.0048095…
+#> $ commute_less10       <dbl> 0.07874016, 0.25109361, 0.05369894, 0.14119870, …
+#> $ commute1030          <dbl> 0.5131234, 0.4636920, 0.6620965, 0.3941685, 0.51…
+#> $ commute3060          <dbl> 0.33114611, 0.18110236, 0.17709226, 0.31263499, …
+#> $ commute6090          <dbl> 0.055555556, 0.082239720, 0.086832334, 0.1325593…
+#> $ commute_over90       <dbl> 0.021434821, 0.021872266, 0.020279920, 0.0194384…
+#> $ by_auto              <dbl> 0.9267791, 0.9704861, 0.9248285, 0.9037018, 0.89…
+#> $ by_pub_trans         <dbl> 0.000000000, 0.004340278, 0.020301783, 0.0178617…
+#> $ by_bike              <dbl> 0.002879473, 0.000000000, 0.000000000, 0.0000000…
+#> $ by_walk              <dbl> 0.002468120, 0.012152778, 0.004938272, 0.0217447…
+#> $ total_house_units    <dbl> 1701, 886, 2928, 3181, 2511, 2713, 1581, 855, 12…
+#> $ vacant_unit_per      <dbl> 0.03821282, 0.03273138, 0.05976776, 0.09525307, …
+#> $ renters_per          <dbl> 0.1088020, 0.2100350, 0.2804214, 0.3425990, 0.57…
+#> $ home_own_per         <dbl> 0.8911980, 0.7899650, 0.7195786, 0.6574010, 0.42…
+#> $ med_gross_rent       <dbl> 1640, 894, 1454, 954, 1018, 867, 910, 1088, 1037…
+#> $ med_home_val         <dbl> 349000, 230200, 207200, 268400, 223200, 232700, …
+#> $ med_yr_built_raw     <dbl> 1988, 1955, 1959, 1973, 1964, 1966, 1939, 1939, …
+#> $ med_yr_built         <chr> "1980 to 1989", "1950 to 1959", "1950 to 1959", …
+#> $ med_yr_moved_inraw   <dbl> 2004, 2003, 2007, 2006, 2006, 2000, 2011, 2006, …
+#> $ med_yr_rent_moved_in <dbl> 2012, 2010, 2012, 2011, 2011, 2009, 2012, 2012, …
+#> $ area_acres           <dbl> 9407.9167, 1294.2828, 2123.4927, 3581.9026, 1154…
+#> $ town_id              <dbl> 134, 321, 348, 185, 153, 151, 316, 348, 28, 348,…
+#> $ town                 <chr> "HOLDEN", "WEST BOYLSTON", "WORCESTER", "MILFORD…
+#> $ fips_stco            <dbl> 25027, 25027, 25027, 25027, 25027, 25027, 25027,…
+#> $ county               <chr> "WORCESTER", "WORCESTER", "WORCESTER", "WORCESTE…
+#> $ area_acr_1           <dbl> 23241.514, 8867.508, 24609.965, 9615.644, 18992.…
+#> $ m_atown              <chr> "HOLDEN", "WEST BOYLSTON", "WORCESTER", "MILFORD…
 ```
 
 
@@ -326,20 +326,20 @@ Try it:
 
 ```r
 select(acs_raw, age_u18:age_o65)
-## # A tibble: 1,478 x 4
-##    age_u18 age1834 age3564 age_o65
-##      <dbl>   <dbl>   <dbl>   <dbl>
-##  1   0.234   0.202   0.398   0.166
-##  2   0.181   0.151   0.461   0.207
-##  3   0.171   0.214   0.437   0.178
-##  4   0.203   0.227   0.436   0.133
-##  5   0.177   0.203   0.430   0.190
-##  6   0.163   0.237   0.439   0.162
-##  7   0.191   0.326   0.380   0.102
-##  8   0.202   0.183   0.466   0.148
-##  9   0.188   0.150   0.462   0.200
-## 10   0.244   0.286   0.342   0.128
-## # … with 1,468 more rows
+#> # A tibble: 1,478 x 4
+#>    age_u18 age1834 age3564 age_o65
+#>      <dbl>   <dbl>   <dbl>   <dbl>
+#>  1   0.234   0.202   0.398   0.166
+#>  2   0.181   0.151   0.461   0.207
+#>  3   0.171   0.214   0.437   0.178
+#>  4   0.203   0.227   0.436   0.133
+#>  5   0.177   0.203   0.430   0.190
+#>  6   0.163   0.237   0.439   0.162
+#>  7   0.191   0.326   0.380   0.102
+#>  8   0.202   0.183   0.466   0.148
+#>  9   0.188   0.150   0.462   0.200
+#> 10   0.244   0.286   0.342   0.128
+#> # … with 1,468 more rows
 ```
 
 Now to really throw you off! You can even reverse the order of these ranges. 
@@ -351,20 +351,20 @@ Try it:
 
 ```r
 select(acs_raw, age_o65:age_u18)
-## # A tibble: 1,478 x 4
-##    age_o65 age3564 age1834 age_u18
-##      <dbl>   <dbl>   <dbl>   <dbl>
-##  1   0.166   0.398   0.202   0.234
-##  2   0.207   0.461   0.151   0.181
-##  3   0.178   0.437   0.214   0.171
-##  4   0.133   0.436   0.227   0.203
-##  5   0.190   0.430   0.203   0.177
-##  6   0.162   0.439   0.237   0.163
-##  7   0.102   0.380   0.326   0.191
-##  8   0.148   0.466   0.183   0.202
-##  9   0.200   0.462   0.150   0.188
-## 10   0.128   0.342   0.286   0.244
-## # … with 1,468 more rows
+#> # A tibble: 1,478 x 4
+#>    age_o65 age3564 age1834 age_u18
+#>      <dbl>   <dbl>   <dbl>   <dbl>
+#>  1   0.166   0.398   0.202   0.234
+#>  2   0.207   0.461   0.151   0.181
+#>  3   0.178   0.437   0.214   0.171
+#>  4   0.133   0.436   0.227   0.203
+#>  5   0.190   0.430   0.203   0.177
+#>  6   0.162   0.439   0.237   0.163
+#>  7   0.102   0.380   0.326   0.191
+#>  8   0.148   0.466   0.183   0.202
+#>  9   0.200   0.462   0.150   0.188
+#> 10   0.128   0.342   0.286   0.244
+#> # … with 1,468 more rows
 ```
 
 > NOTE: This is an awful scenario. SOMEONE HALP
@@ -378,20 +378,20 @@ Alright, so now we have gotten the hang of selecting columns based on their name
 
 ```r
 select(acs_raw, 2)
-## # A tibble: 1,478 x 1
-##    name                                                 
-##    <chr>                                                
-##  1 Census Tract 7281, Worcester County, Massachusetts   
-##  2 Census Tract 7292, Worcester County, Massachusetts   
-##  3 Census Tract 7307, Worcester County, Massachusetts   
-##  4 Census Tract 7442, Worcester County, Massachusetts   
-##  5 Census Tract 7097.01, Worcester County, Massachusetts
-##  6 Census Tract 7351, Worcester County, Massachusetts   
-##  7 Census Tract 7543, Worcester County, Massachusetts   
-##  8 Census Tract 7308.02, Worcester County, Massachusetts
-##  9 Census Tract 7171, Worcester County, Massachusetts   
-## 10 Census Tract 7326, Worcester County, Massachusetts   
-## # … with 1,468 more rows
+#> # A tibble: 1,478 x 1
+#>    name                                                 
+#>    <chr>                                                
+#>  1 Census Tract 7281, Worcester County, Massachusetts   
+#>  2 Census Tract 7292, Worcester County, Massachusetts   
+#>  3 Census Tract 7307, Worcester County, Massachusetts   
+#>  4 Census Tract 7442, Worcester County, Massachusetts   
+#>  5 Census Tract 7097.01, Worcester County, Massachusetts
+#>  6 Census Tract 7351, Worcester County, Massachusetts   
+#>  7 Census Tract 7543, Worcester County, Massachusetts   
+#>  8 Census Tract 7308.02, Worcester County, Massachusetts
+#>  9 Census Tract 7171, Worcester County, Massachusetts   
+#> 10 Census Tract 7326, Worcester County, Massachusetts   
+#> # … with 1,468 more rows
 ```
 
 Try it:
@@ -401,20 +401,20 @@ Try it:
 
 ```r
 select(acs_raw, 6, 9)
-## # A tibble: 1,478 x 2
-##    age_u18 age_o65
-##      <dbl>   <dbl>
-##  1   0.234   0.166
-##  2   0.181   0.207
-##  3   0.171   0.178
-##  4   0.203   0.133
-##  5   0.177   0.190
-##  6   0.163   0.162
-##  7   0.191   0.102
-##  8   0.202   0.148
-##  9   0.188   0.200
-## 10   0.244   0.128
-## # … with 1,468 more rows
+#> # A tibble: 1,478 x 2
+#>    age_u18 age_o65
+#>      <dbl>   <dbl>
+#>  1   0.234   0.166
+#>  2   0.181   0.207
+#>  3   0.171   0.178
+#>  4   0.203   0.133
+#>  5   0.177   0.190
+#>  6   0.163   0.162
+#>  7   0.191   0.102
+#>  8   0.202   0.148
+#>  9   0.188   0.200
+#> 10   0.244   0.128
+#> # … with 1,468 more rows
 ```
 
 You may see where I am going with this. Just like column names, we can select a range of columns using the same method `index_from:index_to`.
@@ -427,46 +427,46 @@ Try it:
 
 ```r
 select(acs_raw, 6:9)
-## # A tibble: 1,478 x 4
-##    age_u18 age1834 age3564 age_o65
-##      <dbl>   <dbl>   <dbl>   <dbl>
-##  1   0.234   0.202   0.398   0.166
-##  2   0.181   0.151   0.461   0.207
-##  3   0.171   0.214   0.437   0.178
-##  4   0.203   0.227   0.436   0.133
-##  5   0.177   0.203   0.430   0.190
-##  6   0.163   0.237   0.439   0.162
-##  7   0.191   0.326   0.380   0.102
-##  8   0.202   0.183   0.466   0.148
-##  9   0.188   0.150   0.462   0.200
-## 10   0.244   0.286   0.342   0.128
-## # … with 1,468 more rows
+#> # A tibble: 1,478 x 4
+#>    age_u18 age1834 age3564 age_o65
+#>      <dbl>   <dbl>   <dbl>   <dbl>
+#>  1   0.234   0.202   0.398   0.166
+#>  2   0.181   0.151   0.461   0.207
+#>  3   0.171   0.214   0.437   0.178
+#>  4   0.203   0.227   0.436   0.133
+#>  5   0.177   0.203   0.430   0.190
+#>  6   0.163   0.237   0.439   0.162
+#>  7   0.191   0.326   0.380   0.102
+#>  8   0.202   0.183   0.466   0.148
+#>  9   0.188   0.150   0.462   0.200
+#> 10   0.244   0.286   0.342   0.128
+#> # … with 1,468 more rows
 ```
 
 
 ```r
 select(acs_raw, 9:6)
-## # A tibble: 1,478 x 4
-##    age_o65 age3564 age1834 age_u18
-##      <dbl>   <dbl>   <dbl>   <dbl>
-##  1   0.166   0.398   0.202   0.234
-##  2   0.207   0.461   0.151   0.181
-##  3   0.178   0.437   0.214   0.171
-##  4   0.133   0.436   0.227   0.203
-##  5   0.190   0.430   0.203   0.177
-##  6   0.162   0.439   0.237   0.163
-##  7   0.102   0.380   0.326   0.191
-##  8   0.148   0.466   0.183   0.202
-##  9   0.200   0.462   0.150   0.188
-## 10   0.128   0.342   0.286   0.244
-## # … with 1,468 more rows
+#> # A tibble: 1,478 x 4
+#>    age_o65 age3564 age1834 age_u18
+#>      <dbl>   <dbl>   <dbl>   <dbl>
+#>  1   0.166   0.398   0.202   0.234
+#>  2   0.207   0.461   0.151   0.181
+#>  3   0.178   0.437   0.214   0.171
+#>  4   0.133   0.436   0.227   0.203
+#>  5   0.190   0.430   0.203   0.177
+#>  6   0.162   0.439   0.237   0.163
+#>  7   0.102   0.380   0.326   0.191
+#>  8   0.148   0.466   0.183   0.202
+#>  9   0.200   0.462   0.150   0.188
+#> 10   0.128   0.342   0.286   0.244
+#> # … with 1,468 more rows
 ```
 
 > Base R Side Bar: To help build your intuition, I want to point out some base R functionality. Using the colon `:` with integers (whole numbers) is actually not a `select()` specific functionality. This is something that is rather handy and built directly into R. Using the colon operator, we can create ranges of numbers in the same exact way as we did above. If we want create the range of numbers from 1 to 10, we write `1:10`. 1, 2, 3, 4, 5, 6, 7, 8, 9, 10.
 
 In our scenario, we want to select the last two columns. We may not know their names _or_ their position. Luckily, there's a function for that.
 
-![](https://i.imgflip.com/3p2zow.jpg)
+<!-- ![](https://i.imgflip.com/3p2zow.jpg) --> 
 
 `last_col()` is a handy function that enables us to select the last column. There is also an option to get an offset from the last column. An offset would allow us to grab the second to last column by setting the offset to 1. By setting the offset, `last_col()` will from the `offset + 1` from the last column. So if the offset is set to 1, we would be grabbing the second to last column.
 
@@ -475,50 +475,50 @@ Let's give it a shot:
 
 ```r
 select(acs_raw, last_col())
-## # A tibble: 1,478 x 1
-##    m_atown      
-##    <chr>        
-##  1 HOLDEN       
-##  2 WEST BOYLSTON
-##  3 WORCESTER    
-##  4 MILFORD      
-##  5 LEOMINSTER   
-##  6 LEICESTER    
-##  7 WEBSTER      
-##  8 WORCESTER    
-##  9 BERLIN       
-## 10 WORCESTER    
-## # … with 1,468 more rows
+#> # A tibble: 1,478 x 1
+#>    m_atown      
+#>    <chr>        
+#>  1 HOLDEN       
+#>  2 WEST BOYLSTON
+#>  3 WORCESTER    
+#>  4 MILFORD      
+#>  5 LEOMINSTER   
+#>  6 LEICESTER    
+#>  7 WEBSTER      
+#>  8 WORCESTER    
+#>  9 BERLIN       
+#> 10 WORCESTER    
+#> # … with 1,468 more rows
 select(acs_raw, last_col(offset = 1))
-## # A tibble: 1,478 x 1
-##    area_acr_1
-##         <dbl>
-##  1     23242.
-##  2      8868.
-##  3     24610.
-##  4      9616.
-##  5     18993.
-##  6     15763.
-##  7      9347.
-##  8     24610.
-##  9      8431.
-## 10     24610.
-## # … with 1,468 more rows
+#> # A tibble: 1,478 x 1
+#>    area_acr_1
+#>         <dbl>
+#>  1     23242.
+#>  2      8868.
+#>  3     24610.
+#>  4      9616.
+#>  5     18993.
+#>  6     15763.
+#>  7      9347.
+#>  8     24610.
+#>  9      8431.
+#> 10     24610.
+#> # … with 1,468 more rows
 select(acs_raw, last_col(offset = 1):last_col())
-## # A tibble: 1,478 x 2
-##    area_acr_1 m_atown      
-##         <dbl> <chr>        
-##  1     23242. HOLDEN       
-##  2      8868. WEST BOYLSTON
-##  3     24610. WORCESTER    
-##  4      9616. MILFORD      
-##  5     18993. LEOMINSTER   
-##  6     15763. LEICESTER    
-##  7      9347. WEBSTER      
-##  8     24610. WORCESTER    
-##  9      8431. BERLIN       
-## 10     24610. WORCESTER    
-## # … with 1,468 more rows
+#> # A tibble: 1,478 x 2
+#>    area_acr_1 m_atown      
+#>         <dbl> <chr>        
+#>  1     23242. HOLDEN       
+#>  2      8868. WEST BOYLSTON
+#>  3     24610. WORCESTER    
+#>  4      9616. MILFORD      
+#>  5     18993. LEOMINSTER   
+#>  6     15763. LEICESTER    
+#>  7      9347. WEBSTER      
+#>  8     24610. WORCESTER    
+#>  9      8431. BERLIN       
+#> 10     24610. WORCESTER    
+#> # … with 1,468 more rows
 ```
 
 
@@ -538,21 +538,21 @@ Try it out:
 
 ```r
 select(acs_raw, starts_with("med"))
-## # A tibble: 1,478 x 7
-##    med_house_income med_gross_rent med_home_val med_yr_built_raw med_yr_built
-##               <dbl>          <dbl>        <dbl>            <dbl> <chr>       
-##  1           105735           1640       349000             1988 1980 to 1989
-##  2            69625            894       230200             1955 1950 to 1959
-##  3            70679           1454       207200             1959 1950 to 1959
-##  4            74528            954       268400             1973 1970 to 1979
-##  5            52885           1018       223200             1964 1960 to 1969
-##  6            64100            867       232700             1966 1960 to 1969
-##  7            37093            910       170900             1939 Prior to 19…
-##  8            87750           1088       270100             1939 Prior to 19…
-##  9            97417           1037       379600             1981 1980 to 1989
-## 10            43384           1017       156500             1939 Prior to 19…
-## # … with 1,468 more rows, and 2 more variables: med_yr_moved_inraw <dbl>,
-## #   med_yr_rent_moved_in <dbl>
+#> # A tibble: 1,478 x 7
+#>    med_house_income med_gross_rent med_home_val med_yr_built_raw med_yr_built
+#>               <dbl>          <dbl>        <dbl>            <dbl> <chr>       
+#>  1           105735           1640       349000             1988 1980 to 1989
+#>  2            69625            894       230200             1955 1950 to 1959
+#>  3            70679           1454       207200             1959 1950 to 1959
+#>  4            74528            954       268400             1973 1970 to 1979
+#>  5            52885           1018       223200             1964 1960 to 1969
+#>  6            64100            867       232700             1966 1960 to 1969
+#>  7            37093            910       170900             1939 Prior to 19…
+#>  8            87750           1088       270100             1939 Prior to 19…
+#>  9            97417           1037       379600             1981 1980 to 1989
+#> 10            43384           1017       156500             1939 Prior to 19…
+#> # … with 1,468 more rows, and 2 more variables: med_yr_moved_inraw <dbl>,
+#> #   med_yr_rent_moved_in <dbl>
 ```
 
 - select columns that end with `"per"`
@@ -560,21 +560,21 @@ select(acs_raw, starts_with("med"))
 
 ```r
 select(acs_raw, ends_with("per"))
-## # A tibble: 1,478 x 8
-##    fam_pov_per fam_house_per fem_head_per same_sex_coup_p… grand_head_per
-##          <dbl>         <dbl>        <dbl>            <dbl>          <dbl>
-##  1      0.0475         0.797       0.0899            0            0      
-##  2      0.0652         0.698       0.120             0            0.00583
-##  3      0.0584         0.659       0.114             0            0      
-##  4      0.0249         0.657       0.121             0            0      
-##  5      0.198          0.531       0.158             0            0.00946
-##  6      0.0428         0.665       0.0603            0            0.0353 
-##  7      0.0762         0.632       0.227             0            0.00643
-##  8      0.101          0.636       0.0582            0.297        0.0260 
-##  9      0.0149         0.758       0.0721            0            0.00434
-## 10      0.0954         0.460       0.225             0            0.0279 
-## # … with 1,468 more rows, and 3 more variables: vacant_unit_per <dbl>,
-## #   renters_per <dbl>, home_own_per <dbl>
+#> # A tibble: 1,478 x 8
+#>    fam_pov_per fam_house_per fem_head_per same_sex_coup_p… grand_head_per
+#>          <dbl>         <dbl>        <dbl>            <dbl>          <dbl>
+#>  1      0.0475         0.797       0.0899            0            0      
+#>  2      0.0652         0.698       0.120             0            0.00583
+#>  3      0.0584         0.659       0.114             0            0      
+#>  4      0.0249         0.657       0.121             0            0      
+#>  5      0.198          0.531       0.158             0            0.00946
+#>  6      0.0428         0.665       0.0603            0            0.0353 
+#>  7      0.0762         0.632       0.227             0            0.00643
+#>  8      0.101          0.636       0.0582            0.297        0.0260 
+#>  9      0.0149         0.758       0.0721            0            0.00434
+#> 10      0.0954         0.460       0.225             0            0.0279 
+#> # … with 1,468 more rows, and 3 more variables: vacant_unit_per <dbl>,
+#> #   renters_per <dbl>, home_own_per <dbl>
 ```
 
 - find any column that contains the string `"yr"`
@@ -582,20 +582,20 @@ select(acs_raw, ends_with("per"))
 
 ```r
 select(acs_raw, contains("yr"))
-## # A tibble: 1,478 x 4
-##    med_yr_built_raw med_yr_built  med_yr_moved_inraw med_yr_rent_moved_in
-##               <dbl> <chr>                      <dbl>                <dbl>
-##  1             1988 1980 to 1989                2004                 2012
-##  2             1955 1950 to 1959                2003                 2010
-##  3             1959 1950 to 1959                2007                 2012
-##  4             1973 1970 to 1979                2006                 2011
-##  5             1964 1960 to 1969                2006                 2011
-##  6             1966 1960 to 1969                2000                 2009
-##  7             1939 Prior to 1940               2011                 2012
-##  8             1939 Prior to 1940               2006                 2012
-##  9             1981 1980 to 1989                2004                 2012
-## 10             1939 Prior to 1940               2011                   NA
-## # … with 1,468 more rows
+#> # A tibble: 1,478 x 4
+#>    med_yr_built_raw med_yr_built  med_yr_moved_inraw med_yr_rent_moved_in
+#>               <dbl> <chr>                      <dbl>                <dbl>
+#>  1             1988 1980 to 1989                2004                 2012
+#>  2             1955 1950 to 1959                2003                 2010
+#>  3             1959 1950 to 1959                2007                 2012
+#>  4             1973 1970 to 1979                2006                 2011
+#>  5             1964 1960 to 1969                2006                 2011
+#>  6             1966 1960 to 1969                2000                 2009
+#>  7             1939 Prior to 1940               2011                 2012
+#>  8             1939 Prior to 1940               2006                 2012
+#>  9             1981 1980 to 1989                2004                 2012
+#> 10             1939 Prior to 1940               2011                   NA
+#> # … with 1,468 more rows
 ```
 
 - select columns that start with `med` then select everything else
@@ -603,34 +603,34 @@ select(acs_raw, contains("yr"))
 
 ```r
 select(acs_raw, contains("yr"), everything())
-## # A tibble: 1,478 x 59
-##    med_yr_built_raw med_yr_built med_yr_moved_in… med_yr_rent_mov… ct_id_10
-##               <dbl> <chr>                   <dbl>            <dbl>    <dbl>
-##  1             1988 1980 to 1989             2004             2012  2.50e10
-##  2             1955 1950 to 1959             2003             2010  2.50e10
-##  3             1959 1950 to 1959             2007             2012  2.50e10
-##  4             1973 1970 to 1979             2006             2011  2.50e10
-##  5             1964 1960 to 1969             2006             2011  2.50e10
-##  6             1966 1960 to 1969             2000             2009  2.50e10
-##  7             1939 Prior to 19…             2011             2012  2.50e10
-##  8             1939 Prior to 19…             2006             2012  2.50e10
-##  9             1981 1980 to 1989             2004             2012  2.50e10
-## 10             1939 Prior to 19…             2011               NA  2.50e10
-## # … with 1,468 more rows, and 54 more variables: name <chr>, total_pop <dbl>,
-## #   pop_den <dbl>, sex_ratio <dbl>, age_u18 <dbl>, age1834 <dbl>,
-## #   age3564 <dbl>, age_o65 <dbl>, for_born <dbl>, white <dbl>, black <dbl>,
-## #   asian <dbl>, hispanic <dbl>, two_or_more <dbl>, eth_het <dbl>,
-## #   med_house_income <dbl>, pub_assist <dbl>, gini <dbl>, fam_pov_per <dbl>,
-## #   unemp_rate <dbl>, total_house_h <dbl>, fam_house_per <dbl>,
-## #   fem_head_per <dbl>, same_sex_coup_per <dbl>, grand_head_per <dbl>,
-## #   less_than_hs <dbl>, hs_grad <dbl>, some_coll <dbl>, bach <dbl>,
-## #   master <dbl>, prof <dbl>, doc <dbl>, commute_less10 <dbl>,
-## #   commute1030 <dbl>, commute3060 <dbl>, commute6090 <dbl>,
-## #   commute_over90 <dbl>, by_auto <dbl>, by_pub_trans <dbl>, by_bike <dbl>,
-## #   by_walk <dbl>, total_house_units <dbl>, vacant_unit_per <dbl>,
-## #   renters_per <dbl>, home_own_per <dbl>, med_gross_rent <dbl>,
-## #   med_home_val <dbl>, area_acres <dbl>, town_id <dbl>, town <chr>,
-## #   fips_stco <dbl>, county <chr>, area_acr_1 <dbl>, m_atown <chr>
+#> # A tibble: 1,478 x 59
+#>    med_yr_built_raw med_yr_built med_yr_moved_in… med_yr_rent_mov… ct_id_10
+#>               <dbl> <chr>                   <dbl>            <dbl>    <dbl>
+#>  1             1988 1980 to 1989             2004             2012  2.50e10
+#>  2             1955 1950 to 1959             2003             2010  2.50e10
+#>  3             1959 1950 to 1959             2007             2012  2.50e10
+#>  4             1973 1970 to 1979             2006             2011  2.50e10
+#>  5             1964 1960 to 1969             2006             2011  2.50e10
+#>  6             1966 1960 to 1969             2000             2009  2.50e10
+#>  7             1939 Prior to 19…             2011             2012  2.50e10
+#>  8             1939 Prior to 19…             2006             2012  2.50e10
+#>  9             1981 1980 to 1989             2004             2012  2.50e10
+#> 10             1939 Prior to 19…             2011               NA  2.50e10
+#> # … with 1,468 more rows, and 54 more variables: name <chr>, total_pop <dbl>,
+#> #   pop_den <dbl>, sex_ratio <dbl>, age_u18 <dbl>, age1834 <dbl>,
+#> #   age3564 <dbl>, age_o65 <dbl>, for_born <dbl>, white <dbl>, black <dbl>,
+#> #   asian <dbl>, hispanic <dbl>, two_or_more <dbl>, eth_het <dbl>,
+#> #   med_house_income <dbl>, pub_assist <dbl>, gini <dbl>, fam_pov_per <dbl>,
+#> #   unemp_rate <dbl>, total_house_h <dbl>, fam_house_per <dbl>,
+#> #   fem_head_per <dbl>, same_sex_coup_per <dbl>, grand_head_per <dbl>,
+#> #   less_than_hs <dbl>, hs_grad <dbl>, some_coll <dbl>, bach <dbl>,
+#> #   master <dbl>, prof <dbl>, doc <dbl>, commute_less10 <dbl>,
+#> #   commute1030 <dbl>, commute3060 <dbl>, commute6090 <dbl>,
+#> #   commute_over90 <dbl>, by_auto <dbl>, by_pub_trans <dbl>, by_bike <dbl>,
+#> #   by_walk <dbl>, total_house_units <dbl>, vacant_unit_per <dbl>,
+#> #   renters_per <dbl>, home_own_per <dbl>, med_gross_rent <dbl>,
+#> #   med_home_val <dbl>, area_acres <dbl>, town_id <dbl>, town <chr>,
+#> #   fips_stco <dbl>, county <chr>, area_acr_1 <dbl>, m_atown <chr>
 ```
 
 ## Selecting Rows
@@ -644,25 +644,25 @@ Similar to `last_col()` we have the function `n()`. `n()` is a rather handy litt
 
 ```r
 slice(acs_raw, n())
-## # A tibble: 1 x 59
-##   ct_id_10 name  total_pop pop_den sex_ratio age_u18 age1834 age3564 age_o65
-##      <dbl> <chr>     <dbl>   <dbl>     <dbl>   <dbl>   <dbl>   <dbl>   <dbl>
-## 1  2.50e10 Cens…      5821   2760.     0.885   0.181   0.204   0.435   0.180
-## # … with 50 more variables: for_born <dbl>, white <dbl>, black <dbl>,
-## #   asian <dbl>, hispanic <dbl>, two_or_more <dbl>, eth_het <dbl>,
-## #   med_house_income <dbl>, pub_assist <dbl>, gini <dbl>, fam_pov_per <dbl>,
-## #   unemp_rate <dbl>, total_house_h <dbl>, fam_house_per <dbl>,
-## #   fem_head_per <dbl>, same_sex_coup_per <dbl>, grand_head_per <dbl>,
-## #   less_than_hs <dbl>, hs_grad <dbl>, some_coll <dbl>, bach <dbl>,
-## #   master <dbl>, prof <dbl>, doc <dbl>, commute_less10 <dbl>,
-## #   commute1030 <dbl>, commute3060 <dbl>, commute6090 <dbl>,
-## #   commute_over90 <dbl>, by_auto <dbl>, by_pub_trans <dbl>, by_bike <dbl>,
-## #   by_walk <dbl>, total_house_units <dbl>, vacant_unit_per <dbl>,
-## #   renters_per <dbl>, home_own_per <dbl>, med_gross_rent <dbl>,
-## #   med_home_val <dbl>, med_yr_built_raw <dbl>, med_yr_built <chr>,
-## #   med_yr_moved_inraw <dbl>, med_yr_rent_moved_in <dbl>, area_acres <dbl>,
-## #   town_id <dbl>, town <chr>, fips_stco <dbl>, county <chr>, area_acr_1 <dbl>,
-## #   m_atown <chr>
+#> # A tibble: 1 x 59
+#>   ct_id_10 name  total_pop pop_den sex_ratio age_u18 age1834 age3564 age_o65
+#>      <dbl> <chr>     <dbl>   <dbl>     <dbl>   <dbl>   <dbl>   <dbl>   <dbl>
+#> 1  2.50e10 Cens…      5821   2760.     0.885   0.181   0.204   0.435   0.180
+#> # … with 50 more variables: for_born <dbl>, white <dbl>, black <dbl>,
+#> #   asian <dbl>, hispanic <dbl>, two_or_more <dbl>, eth_het <dbl>,
+#> #   med_house_income <dbl>, pub_assist <dbl>, gini <dbl>, fam_pov_per <dbl>,
+#> #   unemp_rate <dbl>, total_house_h <dbl>, fam_house_per <dbl>,
+#> #   fem_head_per <dbl>, same_sex_coup_per <dbl>, grand_head_per <dbl>,
+#> #   less_than_hs <dbl>, hs_grad <dbl>, some_coll <dbl>, bach <dbl>,
+#> #   master <dbl>, prof <dbl>, doc <dbl>, commute_less10 <dbl>,
+#> #   commute1030 <dbl>, commute3060 <dbl>, commute6090 <dbl>,
+#> #   commute_over90 <dbl>, by_auto <dbl>, by_pub_trans <dbl>, by_bike <dbl>,
+#> #   by_walk <dbl>, total_house_units <dbl>, vacant_unit_per <dbl>,
+#> #   renters_per <dbl>, home_own_per <dbl>, med_gross_rent <dbl>,
+#> #   med_home_val <dbl>, med_yr_built_raw <dbl>, med_yr_built <chr>,
+#> #   med_yr_moved_inraw <dbl>, med_yr_rent_moved_in <dbl>, area_acres <dbl>,
+#> #   town_id <dbl>, town <chr>, fips_stco <dbl>, county <chr>, area_acr_1 <dbl>,
+#> #   m_atown <chr>
 ```
 
 Unlike `last_col()`, `n()` provides us with a number. Instead of specifying an offset we can instead subtract directly from the output of `n()`. To grab the last three rows we can write `(n() - 3):n()`. We put `n()-3` inside of parantheses so R knows to process `n() - 3` first.
@@ -670,28 +670,28 @@ Unlike `last_col()`, `n()` provides us with a number. Instead of specifying an o
 
 ```r
 slice(acs_raw, (n() - 3):n())
-## # A tibble: 4 x 59
-##   ct_id_10 name  total_pop pop_den sex_ratio age_u18 age1834 age3564 age_o65
-##      <dbl> <chr>     <dbl>   <dbl>     <dbl>   <dbl>   <dbl>   <dbl>   <dbl>
-## 1  2.50e10 Cens…      2519   3083.     0.806   0.202   0.268   0.397   0.132
-## 2  2.50e10 Cens…      3500   5392.     1.05    0.205   0.277   0.395   0.122
-## 3  2.50e10 Cens…      5816   2677.     1.20    0.191   0.233   0.458   0.118
-## 4  2.50e10 Cens…      5821   2760.     0.885   0.181   0.204   0.435   0.180
-## # … with 50 more variables: for_born <dbl>, white <dbl>, black <dbl>,
-## #   asian <dbl>, hispanic <dbl>, two_or_more <dbl>, eth_het <dbl>,
-## #   med_house_income <dbl>, pub_assist <dbl>, gini <dbl>, fam_pov_per <dbl>,
-## #   unemp_rate <dbl>, total_house_h <dbl>, fam_house_per <dbl>,
-## #   fem_head_per <dbl>, same_sex_coup_per <dbl>, grand_head_per <dbl>,
-## #   less_than_hs <dbl>, hs_grad <dbl>, some_coll <dbl>, bach <dbl>,
-## #   master <dbl>, prof <dbl>, doc <dbl>, commute_less10 <dbl>,
-## #   commute1030 <dbl>, commute3060 <dbl>, commute6090 <dbl>,
-## #   commute_over90 <dbl>, by_auto <dbl>, by_pub_trans <dbl>, by_bike <dbl>,
-## #   by_walk <dbl>, total_house_units <dbl>, vacant_unit_per <dbl>,
-## #   renters_per <dbl>, home_own_per <dbl>, med_gross_rent <dbl>,
-## #   med_home_val <dbl>, med_yr_built_raw <dbl>, med_yr_built <chr>,
-## #   med_yr_moved_inraw <dbl>, med_yr_rent_moved_in <dbl>, area_acres <dbl>,
-## #   town_id <dbl>, town <chr>, fips_stco <dbl>, county <chr>, area_acr_1 <dbl>,
-## #   m_atown <chr>
+#> # A tibble: 4 x 59
+#>   ct_id_10 name  total_pop pop_den sex_ratio age_u18 age1834 age3564 age_o65
+#>      <dbl> <chr>     <dbl>   <dbl>     <dbl>   <dbl>   <dbl>   <dbl>   <dbl>
+#> 1  2.50e10 Cens…      2519   3083.     0.806   0.202   0.268   0.397   0.132
+#> 2  2.50e10 Cens…      3500   5392.     1.05    0.205   0.277   0.395   0.122
+#> 3  2.50e10 Cens…      5816   2677.     1.20    0.191   0.233   0.458   0.118
+#> 4  2.50e10 Cens…      5821   2760.     0.885   0.181   0.204   0.435   0.180
+#> # … with 50 more variables: for_born <dbl>, white <dbl>, black <dbl>,
+#> #   asian <dbl>, hispanic <dbl>, two_or_more <dbl>, eth_het <dbl>,
+#> #   med_house_income <dbl>, pub_assist <dbl>, gini <dbl>, fam_pov_per <dbl>,
+#> #   unemp_rate <dbl>, total_house_h <dbl>, fam_house_per <dbl>,
+#> #   fem_head_per <dbl>, same_sex_coup_per <dbl>, grand_head_per <dbl>,
+#> #   less_than_hs <dbl>, hs_grad <dbl>, some_coll <dbl>, bach <dbl>,
+#> #   master <dbl>, prof <dbl>, doc <dbl>, commute_less10 <dbl>,
+#> #   commute1030 <dbl>, commute3060 <dbl>, commute6090 <dbl>,
+#> #   commute_over90 <dbl>, by_auto <dbl>, by_pub_trans <dbl>, by_bike <dbl>,
+#> #   by_walk <dbl>, total_house_units <dbl>, vacant_unit_per <dbl>,
+#> #   renters_per <dbl>, home_own_per <dbl>, med_gross_rent <dbl>,
+#> #   med_home_val <dbl>, med_yr_built_raw <dbl>, med_yr_built <chr>,
+#> #   med_yr_moved_inraw <dbl>, med_yr_rent_moved_in <dbl>, area_acres <dbl>,
+#> #   town_id <dbl>, town <chr>, fips_stco <dbl>, county <chr>, area_acr_1 <dbl>,
+#> #   m_atown <chr>
 ```
 
 
@@ -702,32 +702,32 @@ Try it:
 
 ```r
 slice(acs_raw, 1, 100:105, n())
-## # A tibble: 8 x 59
-##   ct_id_10 name  total_pop pop_den sex_ratio age_u18 age1834 age3564 age_o65
-##      <dbl> <chr>     <dbl>   <dbl>     <dbl>   <dbl>   <dbl>   <dbl>   <dbl>
-## 1  2.50e10 Cens…      4585    333.     1.13    0.234  0.202    0.398  0.166 
-## 2  2.50e10 Cens…      5223   2402.     1.21    0.183  0.171    0.450  0.197 
-## 3  2.50e10 Cens…      5586    592.     1.09    0.278  0.116    0.413  0.193 
-## 4  2.50e10 Cens…      4474   1119.     0.962   0.282  0.0847   0.427  0.206 
-## 5  2.50e10 Cens…      6713    674.     0.928   0.223  0.216    0.423  0.139 
-## 6  2.50e10 Cens…      6676   3541.     0.999   0.249  0.266    0.395  0.0902
-## 7  2.50e10 Cens…      8141    820.     1.25    0.258  0.169    0.410  0.164 
-## 8  2.50e10 Cens…      5821   2760.     0.885   0.181  0.204    0.435  0.180 
-## # … with 50 more variables: for_born <dbl>, white <dbl>, black <dbl>,
-## #   asian <dbl>, hispanic <dbl>, two_or_more <dbl>, eth_het <dbl>,
-## #   med_house_income <dbl>, pub_assist <dbl>, gini <dbl>, fam_pov_per <dbl>,
-## #   unemp_rate <dbl>, total_house_h <dbl>, fam_house_per <dbl>,
-## #   fem_head_per <dbl>, same_sex_coup_per <dbl>, grand_head_per <dbl>,
-## #   less_than_hs <dbl>, hs_grad <dbl>, some_coll <dbl>, bach <dbl>,
-## #   master <dbl>, prof <dbl>, doc <dbl>, commute_less10 <dbl>,
-## #   commute1030 <dbl>, commute3060 <dbl>, commute6090 <dbl>,
-## #   commute_over90 <dbl>, by_auto <dbl>, by_pub_trans <dbl>, by_bike <dbl>,
-## #   by_walk <dbl>, total_house_units <dbl>, vacant_unit_per <dbl>,
-## #   renters_per <dbl>, home_own_per <dbl>, med_gross_rent <dbl>,
-## #   med_home_val <dbl>, med_yr_built_raw <dbl>, med_yr_built <chr>,
-## #   med_yr_moved_inraw <dbl>, med_yr_rent_moved_in <dbl>, area_acres <dbl>,
-## #   town_id <dbl>, town <chr>, fips_stco <dbl>, county <chr>, area_acr_1 <dbl>,
-## #   m_atown <chr>
+#> # A tibble: 8 x 59
+#>   ct_id_10 name  total_pop pop_den sex_ratio age_u18 age1834 age3564 age_o65
+#>      <dbl> <chr>     <dbl>   <dbl>     <dbl>   <dbl>   <dbl>   <dbl>   <dbl>
+#> 1  2.50e10 Cens…      4585    333.     1.13    0.234  0.202    0.398  0.166 
+#> 2  2.50e10 Cens…      5223   2402.     1.21    0.183  0.171    0.450  0.197 
+#> 3  2.50e10 Cens…      5586    592.     1.09    0.278  0.116    0.413  0.193 
+#> 4  2.50e10 Cens…      4474   1119.     0.962   0.282  0.0847   0.427  0.206 
+#> 5  2.50e10 Cens…      6713    674.     0.928   0.223  0.216    0.423  0.139 
+#> 6  2.50e10 Cens…      6676   3541.     0.999   0.249  0.266    0.395  0.0902
+#> 7  2.50e10 Cens…      8141    820.     1.25    0.258  0.169    0.410  0.164 
+#> 8  2.50e10 Cens…      5821   2760.     0.885   0.181  0.204    0.435  0.180 
+#> # … with 50 more variables: for_born <dbl>, white <dbl>, black <dbl>,
+#> #   asian <dbl>, hispanic <dbl>, two_or_more <dbl>, eth_het <dbl>,
+#> #   med_house_income <dbl>, pub_assist <dbl>, gini <dbl>, fam_pov_per <dbl>,
+#> #   unemp_rate <dbl>, total_house_h <dbl>, fam_house_per <dbl>,
+#> #   fem_head_per <dbl>, same_sex_coup_per <dbl>, grand_head_per <dbl>,
+#> #   less_than_hs <dbl>, hs_grad <dbl>, some_coll <dbl>, bach <dbl>,
+#> #   master <dbl>, prof <dbl>, doc <dbl>, commute_less10 <dbl>,
+#> #   commute1030 <dbl>, commute3060 <dbl>, commute6090 <dbl>,
+#> #   commute_over90 <dbl>, by_auto <dbl>, by_pub_trans <dbl>, by_bike <dbl>,
+#> #   by_walk <dbl>, total_house_units <dbl>, vacant_unit_per <dbl>,
+#> #   renters_per <dbl>, home_own_per <dbl>, med_gross_rent <dbl>,
+#> #   med_home_val <dbl>, med_yr_built_raw <dbl>, med_yr_built <chr>,
+#> #   med_yr_moved_inraw <dbl>, med_yr_rent_moved_in <dbl>, area_acres <dbl>,
+#> #   town_id <dbl>, town <chr>, fips_stco <dbl>, county <chr>, area_acr_1 <dbl>,
+#> #   m_atown <chr>
 ```
 
 

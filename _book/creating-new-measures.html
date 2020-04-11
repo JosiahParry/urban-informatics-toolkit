@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 9 Creating new measures | Urban Informatics Toolkit</title>
+  <meta name="description" content="A hands on introduction approach to analyzing the urban Commons." />
+  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 9 Creating new measures | Urban Informatics Toolkit" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="A hands on introduction approach to analyzing the urban Commons." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 9 Creating new measures | Urban Informatics Toolkit" />
+  
+  <meta name="twitter:description" content="A hands on introduction approach to analyzing the urban Commons." />
+  
+
+<meta name="author" content="Josiah Parry" />
+
+
+<meta name="date" content="2020-04-11" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="the-pipe.html"/>
+<link rel="next" href="data-structures.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Urban Informatics Toolkit</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Welcome</a></li>
+<li class="chapter" data-level="2" data-path="the-basics.html"><a href="the-basics.html"><i class="fa fa-check"></i><b>2</b> The basics</a></li>
+<li class="chapter" data-level="3" data-path="r-as-a-calculator.html"><a href="r-as-a-calculator.html"><i class="fa fa-check"></i><b>3</b> R as a calculator</a></li>
+<li class="part"><span><b>I Toolkit Foundations</b></span></li>
+<li class="chapter" data-level="4" data-path="exploratory-visual-analysis.html"><a href="exploratory-visual-analysis.html"><i class="fa fa-check"></i><b>4</b> Exploratory Visual Analysis</a></li>
+<li class="chapter" data-level="5" data-path="reading-data.html"><a href="reading-data.html"><i class="fa fa-check"></i><b>5</b> Reading data</a></li>
+<li class="chapter" data-level="6" data-path="general-data-manipulation.html"><a href="general-data-manipulation.html"><i class="fa fa-check"></i><b>6</b> General data manipulation</a></li>
+<li class="chapter" data-level="7" data-path="thats-too-much-data.html"><a href="thats-too-much-data.html"><i class="fa fa-check"></i><b>7</b> That’s <em>too much</em> data</a></li>
+<li class="chapter" data-level="8" data-path="the-pipe.html"><a href="the-pipe.html"><i class="fa fa-check"></i><b>8</b> The pipe <code>%&gt;%</code></a></li>
+<li class="chapter" data-level="9" data-path="creating-new-measures.html"><a href="creating-new-measures.html"><i class="fa fa-check"></i><b>9</b> Creating new measures</a></li>
+<li class="chapter" data-level="10" data-path="data-structures.html"><a href="data-structures.html"><i class="fa fa-check"></i><b>10</b> Data Structures</a></li>
+<li class="chapter" data-level="11" data-path="summary-statistics.html"><a href="summary-statistics.html"><i class="fa fa-check"></i><b>11</b> Summary statistics</a></li>
+<li class="chapter" data-level="12" data-path="summarizing-the-tidy-way.html"><a href="summarizing-the-tidy-way.html"><i class="fa fa-check"></i><b>12</b> summarizing the tidy way</a></li>
+<li class="part"><span><b>II Vizualization Strategies</b></span></li>
+<li class="chapter" data-level="13" data-path="layered-i.html"><a href="layered-i.html"><i class="fa fa-check"></i><b>13</b> Grammer of layered graphics I</a></li>
+<li class="chapter" data-level="14" data-path="visualizing-trends-and-relationships.html"><a href="visualizing-trends-and-relationships.html"><i class="fa fa-check"></i><b>14</b> Visualizing Trends and Relationships</a></li>
+<li class="chapter" data-level="15" data-path="grammer-of-layered-graphics-ii.html"><a href="grammer-of-layered-graphics-ii.html"><i class="fa fa-check"></i><b>15</b> Grammer of layered graphics II</a></li>
+<li class="chapter" data-level="16" data-path="visualizing-beyond-2-dimensions.html"><a href="visualizing-beyond-2-dimensions.html"><i class="fa fa-check"></i><b>16</b> Visualizing beyond 2-dimensions</a></li>
+<li class="part"><span><b>III More than hammer and nails</b></span></li>
+<li class="chapter" data-level="17" data-path="multiple-data-sets.html"><a href="multiple-data-sets.html"><i class="fa fa-check"></i><b>17</b> Multiple data sets</a></li>
+<li class="chapter" data-level="18" data-path="spatial-analysis.html"><a href="spatial-analysis.html"><i class="fa fa-check"></i><b>18</b> Spatial Analysis</a></li>
+<li class="chapter" data-level="19" data-path="creating-ecometrics.html"><a href="creating-ecometrics.html"><i class="fa fa-check"></i><b>19</b> Creating Ecometrics</a></li>
+<li class="part"><span><b>IV Case Studies</b></span></li>
+<li class="chapter" data-level="20" data-path="case-study-twitter-data.html"><a href="case-study-twitter-data.html"><i class="fa fa-check"></i><b>20</b> Case Study: Twitter Data</a></li>
+<li class="chapter" data-level="21" data-path="various-things-that-i-didnt-cover-well.html"><a href="various-things-that-i-didnt-cover-well.html"><i class="fa fa-check"></i><b>21</b> Various things that i didn’t cover well</a></li>
+<li class="chapter" data-level="22" data-path="approaches-to-and-schools-of-urban-informatics.html"><a href="approaches-to-and-schools-of-urban-informatics.html"><i class="fa fa-check"></i><b>22</b> Approaches to and Schools of Urban Informatics</a></li>
+<li class="chapter" data-level="23" data-path="broken-windows-and-the-origin-of-ecometrics.html"><a href="broken-windows-and-the-origin-of-ecometrics.html"><i class="fa fa-check"></i><b>23</b> Broken Windows and the origin of Ecometrics</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/josiahparry/urban-informatics-toolkit" target="blank">GitHub</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Urban Informatics Toolkit</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="creating-new-measures" class="section level1">
+<h1><span class="header-section-number">Chapter 9</span> Creating new measures</h1>
+<p>It’s been a week now and the non-profit has finally emailed you back. They were ecstatic with what you provided but it begat even more questions for them. They indicated that while the median household income data was very intruiging, that would be difficult for them to report on. As such, they would like you to report on the income quintiles as well. Moreover, they also would like to see the rate of Bachelor’s and Master’s degrees combined into one general educational attainment variable.</p>
+<p>This poses some challenges for you. You know <em>what</em> is being asked, just not necessarily <em>how</em> to achieve that from R. To accomplish this we’re going to have to learn how to use the <code>dplyr::mutate()</code> function. For the sake of example, let’s select only the columns that we’re going to need and make a tibble called <code>df</code> just to work with.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">library</span>(tidyverse)</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb1-3" data-line-number="3">commute &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data/gba_commute.csv&quot;</span>)</a>
+<a class="sourceLine" id="cb1-4" data-line-number="4">df &lt;-<span class="st"> </span><span class="kw">select</span>(commute, med_house_income, bach, master)</a>
+<a class="sourceLine" id="cb1-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb1-6" data-line-number="6">df</a>
+<a class="sourceLine" id="cb1-7" data-line-number="7"><span class="co">#&gt; # A tibble: 648 x 3</span></a>
+<a class="sourceLine" id="cb1-8" data-line-number="8"><span class="co">#&gt;    med_house_income  bach master</span></a>
+<a class="sourceLine" id="cb1-9" data-line-number="9"><span class="co">#&gt;               &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;</span></a>
+<a class="sourceLine" id="cb1-10" data-line-number="10"><span class="co">#&gt;  1            75085 0.188 0.100 </span></a>
+<a class="sourceLine" id="cb1-11" data-line-number="11"><span class="co">#&gt;  2           132727 0.400 0.130 </span></a>
+<a class="sourceLine" id="cb1-12" data-line-number="12"><span class="co">#&gt;  3           110694 0.317 0.139 </span></a>
+<a class="sourceLine" id="cb1-13" data-line-number="13"><span class="co">#&gt;  4           109125 0.322 0.144 </span></a>
+<a class="sourceLine" id="cb1-14" data-line-number="14"><span class="co">#&gt;  5            76746 0.177 0.0742</span></a>
+<a class="sourceLine" id="cb1-15" data-line-number="15"><span class="co">#&gt;  6           138700 0.310 0.207 </span></a>
+<a class="sourceLine" id="cb1-16" data-line-number="16"><span class="co">#&gt;  7           104673 0.247 0.149 </span></a>
+<a class="sourceLine" id="cb1-17" data-line-number="17"><span class="co">#&gt;  8            73191 0.300 0.126 </span></a>
+<a class="sourceLine" id="cb1-18" data-line-number="18"><span class="co">#&gt;  9           121488 0.198 0.140 </span></a>
+<a class="sourceLine" id="cb1-19" data-line-number="19"><span class="co">#&gt; 10            99358 0.348 0.151 </span></a>
+<a class="sourceLine" id="cb1-20" data-line-number="20"><span class="co">#&gt; # … with 638 more rows</span></a></code></pre></div>
+<p><code>mutate()</code> is a function that let’s us create or modify variables. The arguments for <code>mutate()</code> are the same as those for <code>select()</code>—<code>.data</code> and <code>...</code>. In the case of <code>mutate()</code> dots works a littble bit differently. After indicating our data, we create columns by specifying a name-value pair. More simply the names of our arguments will be the name of the columns that we are creating. The value is any expression. For example we could use <code>mutate(df, one = 1)</code> to create a column called <code>one</code> with the value of 1. When using mutate, however, the result from the expression needs to be either only <em>one</em> value, or as many values as there are rows.</p>
+<p>If we take our <code>df</code>, we can add the columns <code>bach</code> and <code>master</code> together to create a new column called <code>edu_attain</code>.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">mutate</span>(df, <span class="dt">edu_attain =</span> bach <span class="op">+</span><span class="st"> </span>master)</a>
+<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="co">#&gt; # A tibble: 648 x 4</span></a>
+<a class="sourceLine" id="cb2-3" data-line-number="3"><span class="co">#&gt;    med_house_income  bach master edu_attain</span></a>
+<a class="sourceLine" id="cb2-4" data-line-number="4"><span class="co">#&gt;               &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;      &lt;dbl&gt;</span></a>
+<a class="sourceLine" id="cb2-5" data-line-number="5"><span class="co">#&gt;  1            75085 0.188 0.100       0.288</span></a>
+<a class="sourceLine" id="cb2-6" data-line-number="6"><span class="co">#&gt;  2           132727 0.400 0.130       0.531</span></a>
+<a class="sourceLine" id="cb2-7" data-line-number="7"><span class="co">#&gt;  3           110694 0.317 0.139       0.456</span></a>
+<a class="sourceLine" id="cb2-8" data-line-number="8"><span class="co">#&gt;  4           109125 0.322 0.144       0.466</span></a>
+<a class="sourceLine" id="cb2-9" data-line-number="9"><span class="co">#&gt;  5            76746 0.177 0.0742      0.251</span></a>
+<a class="sourceLine" id="cb2-10" data-line-number="10"><span class="co">#&gt;  6           138700 0.310 0.207       0.516</span></a>
+<a class="sourceLine" id="cb2-11" data-line-number="11"><span class="co">#&gt;  7           104673 0.247 0.149       0.396</span></a>
+<a class="sourceLine" id="cb2-12" data-line-number="12"><span class="co">#&gt;  8            73191 0.300 0.126       0.426</span></a>
+<a class="sourceLine" id="cb2-13" data-line-number="13"><span class="co">#&gt;  9           121488 0.198 0.140       0.338</span></a>
+<a class="sourceLine" id="cb2-14" data-line-number="14"><span class="co">#&gt; 10            99358 0.348 0.151       0.499</span></a>
+<a class="sourceLine" id="cb2-15" data-line-number="15"><span class="co">#&gt; # … with 638 more rows</span></a></code></pre></div>
+<p>We could even think about ways that we can check if some observations are above some specified income threshold.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw">mutate</span>(df, <span class="dt">above_70k_inc =</span> med_house_income <span class="op">&gt;</span><span class="st"> </span><span class="dv">80000</span>) </a>
+<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="co">#&gt; # A tibble: 648 x 4</span></a>
+<a class="sourceLine" id="cb3-3" data-line-number="3"><span class="co">#&gt;    med_house_income  bach master above_70k_inc</span></a>
+<a class="sourceLine" id="cb3-4" data-line-number="4"><span class="co">#&gt;               &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;lgl&gt;        </span></a>
+<a class="sourceLine" id="cb3-5" data-line-number="5"><span class="co">#&gt;  1            75085 0.188 0.100  FALSE        </span></a>
+<a class="sourceLine" id="cb3-6" data-line-number="6"><span class="co">#&gt;  2           132727 0.400 0.130  TRUE         </span></a>
+<a class="sourceLine" id="cb3-7" data-line-number="7"><span class="co">#&gt;  3           110694 0.317 0.139  TRUE         </span></a>
+<a class="sourceLine" id="cb3-8" data-line-number="8"><span class="co">#&gt;  4           109125 0.322 0.144  TRUE         </span></a>
+<a class="sourceLine" id="cb3-9" data-line-number="9"><span class="co">#&gt;  5            76746 0.177 0.0742 FALSE        </span></a>
+<a class="sourceLine" id="cb3-10" data-line-number="10"><span class="co">#&gt;  6           138700 0.310 0.207  TRUE         </span></a>
+<a class="sourceLine" id="cb3-11" data-line-number="11"><span class="co">#&gt;  7           104673 0.247 0.149  TRUE         </span></a>
+<a class="sourceLine" id="cb3-12" data-line-number="12"><span class="co">#&gt;  8            73191 0.300 0.126  FALSE        </span></a>
+<a class="sourceLine" id="cb3-13" data-line-number="13"><span class="co">#&gt;  9           121488 0.198 0.140  TRUE         </span></a>
+<a class="sourceLine" id="cb3-14" data-line-number="14"><span class="co">#&gt; 10            99358 0.348 0.151  TRUE         </span></a>
+<a class="sourceLine" id="cb3-15" data-line-number="15"><span class="co">#&gt; # … with 638 more rows</span></a></code></pre></div>
+<p>This function is immensly useful and can be combined with almost any expression to create new data for us. Furthermore there are a number of handy functions built into dplyr that help us create new columns. Some of these are <code>case_when()</code>, <code>min_rank()</code>, and <code>ntile()</code> among others. You can always explore these with <code>?function_name()</code>. For our purposes, we will look at the use of <code>ntile()</code>.</p>
+<p><code>ntile()</code> is a function that will calculate percentiles for us. Given a column of data, <code>x</code>, and a number of buckets, <code>n</code>, we can create a new column of ranks. In our case, we are interested in calculating the quintile of <code>med_house_income</code>. This means we can provide <code>med_house_income</code> and <code>n = 5</code> as arguments to <code>ntile()</code> to group our observations by quintile.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw">mutate</span>(df, <span class="dt">inc_quintile =</span> <span class="kw">ntile</span>(med_house_income, <span class="dv">5</span>))</a>
+<a class="sourceLine" id="cb4-2" data-line-number="2"><span class="co">#&gt; # A tibble: 648 x 4</span></a>
+<a class="sourceLine" id="cb4-3" data-line-number="3"><span class="co">#&gt;    med_house_income  bach master inc_quintile</span></a>
+<a class="sourceLine" id="cb4-4" data-line-number="4"><span class="co">#&gt;               &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;        &lt;int&gt;</span></a>
+<a class="sourceLine" id="cb4-5" data-line-number="5"><span class="co">#&gt;  1            75085 0.188 0.100             2</span></a>
+<a class="sourceLine" id="cb4-6" data-line-number="6"><span class="co">#&gt;  2           132727 0.400 0.130             5</span></a>
+<a class="sourceLine" id="cb4-7" data-line-number="7"><span class="co">#&gt;  3           110694 0.317 0.139             4</span></a>
+<a class="sourceLine" id="cb4-8" data-line-number="8"><span class="co">#&gt;  4           109125 0.322 0.144             4</span></a>
+<a class="sourceLine" id="cb4-9" data-line-number="9"><span class="co">#&gt;  5            76746 0.177 0.0742            2</span></a>
+<a class="sourceLine" id="cb4-10" data-line-number="10"><span class="co">#&gt;  6           138700 0.310 0.207             5</span></a>
+<a class="sourceLine" id="cb4-11" data-line-number="11"><span class="co">#&gt;  7           104673 0.247 0.149             4</span></a>
+<a class="sourceLine" id="cb4-12" data-line-number="12"><span class="co">#&gt;  8            73191 0.300 0.126             2</span></a>
+<a class="sourceLine" id="cb4-13" data-line-number="13"><span class="co">#&gt;  9           121488 0.198 0.140             5</span></a>
+<a class="sourceLine" id="cb4-14" data-line-number="14"><span class="co">#&gt; 10            99358 0.348 0.151             4</span></a>
+<a class="sourceLine" id="cb4-15" data-line-number="15"><span class="co">#&gt; # … with 638 more rows</span></a></code></pre></div>
+<p>Now we can put everything together into one mutate call to create the new variables that were requested!</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">updated_commute &lt;-<span class="st"> </span>commute <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">edu_attain =</span> bach <span class="op">+</span><span class="st"> </span>master, </a>
+<a class="sourceLine" id="cb5-3" data-line-number="3">         <span class="dt">inc_quintile =</span> <span class="kw">ntile</span>(med_house_income, <span class="dv">5</span>))</a></code></pre></div>
+<p>As you have made these changes you can now write the data again to csv and share it. As this process becomes more and more iterative, it’s good to put <em>some</em> structure to the data so you have an idea of the history. One general practice that is good to get into is dating your files. So in this case I would label the file <code>yyyy-mm-dd-commute.csv</code>.</p>
+
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="the-pipe.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="data-structures.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["urban-commons-toolkit.pdf", "urban-commons-toolkit.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

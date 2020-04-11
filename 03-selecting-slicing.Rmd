@@ -220,7 +220,7 @@ select(acs_raw, 9:6)
 
 In our scenario, we want to select the last two columns. We may not know their names _or_ their position. Luckily, there's a function for that.
 
-![](https://i.imgflip.com/3p2zow.jpg)
+<!-- ![](https://i.imgflip.com/3p2zow.jpg) --> 
 
 `last_col()` is a handy function that enables us to select the last column. There is also an option to get an offset from the last column. An offset would allow us to grab the second to last column by setting the offset to 1. By setting the offset, `last_col()` will from the `offset + 1` from the last column. So if the offset is set to 1, we would be grabbing the second to last column.
 

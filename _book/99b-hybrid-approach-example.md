@@ -40,16 +40,31 @@ Explore what the data description from BARI looks like
 
 ```r
 library(tidyverse)
+```
+
+```
 ## ── Attaching packages ───────────────────────────────────────────────────────────────────────── tidyverse 1.3.0 ──
+```
+
+```
 ## ✓ ggplot2 3.3.0     ✓ purrr   0.3.3
 ## ✓ tibble  3.0.0     ✓ dplyr   0.8.5
 ## ✓ tidyr   1.0.2     ✓ stringr 1.4.0
 ## ✓ readr   1.3.1     ✓ forcats 0.5.0
+```
+
+```
 ## ── Conflicts ──────────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
 ## x dplyr::filter() masks stats::filter()
 ## x dplyr::lag()    masks stats::lag()
+```
+
+```r
 ecometrics <- readr::read_csv("data/911/911-ecometrics-2014-19.csv") %>% 
   janitor::clean_names()
+```
+
+```
 ## Parsed with column specification:
 ## cols(
 ##   TYPE = col_character(),
@@ -68,8 +83,13 @@ ecometrics <- readr::read_csv("data/911/911-ecometrics-2014-19.csv") %>%
 ##   yr.intro = col_double(),
 ##   last.yr = col_double()
 ## )
+```
 
+```r
 glimpse(ecometrics)
+```
+
+```
 ## Rows: 302
 ## Columns: 15
 ## $ type             <chr> "AB===>>>", "ABAN===>>>", "ABANBU", "ABANCELL", "ABA…

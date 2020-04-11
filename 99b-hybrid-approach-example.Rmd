@@ -1,9 +1,7 @@
 # Broken Windows and the origin of Ecometrics
 
 
-```{r, include=FALSE}
-source("common.R")
-```
+
 
 To Cover:
 

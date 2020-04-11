@@ -79,10 +79,10 @@ What happens if we provide all of this information to `geom_point()` and entirel
 
 ```r
 geom_point(aes(med_house_income, by_auto), acs)
-## mapping: x = ~med_house_income, y = ~by_auto 
-## geom_point: na.rm = FALSE
-## stat_identity: na.rm = FALSE
-## position_identity
+#> mapping: x = ~med_house_income, y = ~by_auto 
+#> geom_point: na.rm = FALSE
+#> stat_identity: na.rm = FALSE
+#> position_identity
 ```
 
 We see that we do not have the plot, but we do have all of the information required of a layer is printed out to the console. If we add an empty ggplot call ahead of the layer, we will be able to create the plot.
