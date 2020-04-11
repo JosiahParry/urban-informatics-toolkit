@@ -4,7 +4,7 @@
 knitr::opts_chunk$set(
   #$comment = "#>",
   collapse = TRUE,
-  max.print=20
+  max.print=5
   # cache = TRUE,
   # fig.retina = 0.8, # figures are either vectors or 300 dpi diagrams
   # dpi = 300,

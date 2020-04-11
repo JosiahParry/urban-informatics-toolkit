@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 3 R as a calculator | Urban Informatics Toolkit</title>
   <meta name="description" content="A hands on introduction approach to analyzing the urban Commons." />
-  <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 3 R as a calculator | Urban Informatics Toolkit" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Josiah Parry" />
 
 
-<meta name="date" content="2020-04-04" />
+<meta name="date" content="2020-04-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -53,9 +53,9 @@
 
 
 <style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
@@ -64,16 +64,14 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
 }
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
+    border: none; pointer-events: all; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -82,9 +80,9 @@ pre.numberSource code > span > a:first-child::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {   }
+  {  }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+a.sourceLine::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -157,7 +155,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="part"><span><b>IV Case Studies</b></span></li>
 <li class="chapter" data-level="19" data-path="case-study-twitter-data.html"><a href="case-study-twitter-data.html"><i class="fa fa-check"></i><b>19</b> Case Study: Twitter Data</a></li>
 <li class="chapter" data-level="20" data-path="various-things-that-i-didnt-cover-well.html"><a href="various-things-that-i-didnt-cover-well.html"><i class="fa fa-check"></i><b>20</b> Various things that i didn’t cover well</a></li>
-<li class="chapter" data-level="21" data-path="schools-of-urban-informatics.html"><a href="schools-of-urban-informatics.html"><i class="fa fa-check"></i><b>21</b> Schools of Urban Informatics</a></li>
+<li class="chapter" data-level="21" data-path="approaches-to-and-schools-of-urban-informatics.html"><a href="approaches-to-and-schools-of-urban-informatics.html"><i class="fa fa-check"></i><b>21</b> Approaches to, and Schools of, Urban Informatics</a></li>
 <li class="chapter" data-level="22" data-path="broken-windows-and-the-origin-of-ecometrics.html"><a href="broken-windows-and-the-origin-of-ecometrics.html"><i class="fa fa-check"></i><b>22</b> Broken Windows and the origin of Ecometrics</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/josiahparry/urban-informatics-toolkit" target="blank">GitHub</a></li>
@@ -213,14 +211,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>To create an object we need to assign it to some value. Object assignment is done with the assignment operator which looks like <code>&lt;-</code>. You can automagically insert the assignment operator with <code>opt + -</code>.</p>
 <p>Let’s work with the above example. We will solve for <code>y</code> when <code>x</code> is equal to 5.</p>
 <p>First, we need to assign 5 to the variable x.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="r-as-a-calculator.html#cb3-1"></a>x &lt;-<span class="st"> </span><span class="dv">5</span></span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="dv">5</span></a></code></pre></div>
 <p>If you want to see the contents of an object, you can print it. To print an object you can type the name of it.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="r-as-a-calculator.html#cb4-1"></a>x</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">x</a></code></pre></div>
 <pre><code>## [1] 5</code></pre>
 <p>We can reference the value that <code>x</code> stores in other mathematic expressions. Now what does <code>y</code> equal? Now solve for y in the above equation!</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="r-as-a-calculator.html#cb6-1"></a>y &lt;-<span class="st"> </span><span class="dv">3</span> <span class="op">*</span><span class="st"> </span>x <span class="op">-</span><span class="st"> </span><span class="dv">24</span></span>
-<span id="cb6-2"><a href="r-as-a-calculator.html#cb6-2"></a></span>
-<span id="cb6-3"><a href="r-as-a-calculator.html#cb6-3"></a>y</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">y &lt;-<span class="st"> </span><span class="dv">3</span> <span class="op">*</span><span class="st"> </span>x <span class="op">-</span><span class="st"> </span><span class="dv">24</span></a>
+<a class="sourceLine" id="cb6-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb6-3" data-line-number="3">y</a></code></pre></div>
 <pre><code>## [1] -9</code></pre>
 </div>
 <div id="functions" class="section level2">
@@ -229,14 +227,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>R has many functions that come built in. The collection of functions that come out of the box with R are called *Base R**.</p>
 <p>An example of a simple base R function is <code>sum()</code>. <code>sum()</code> takes any number of inputs and calculates the sum of those inputs.</p>
 <p>We can run <code>sum()</code> without providing any inputs.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="r-as-a-calculator.html#cb8-1"></a><span class="kw">sum</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="kw">sum</span>()</a></code></pre></div>
 <pre><code>## [1] 0</code></pre>
 <p>We can provide more inputs (formally called function arguments) to <code>sum()</code>. For example to find the sum of 10 we write</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="r-as-a-calculator.html#cb10-1"></a><span class="kw">sum</span>(<span class="dv">10</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="kw">sum</span>(<span class="dv">10</span>)</a></code></pre></div>
 <pre><code>## [1] 10</code></pre>
-<p>The sum of a single number is the number itself. We can provide more arguments to <code>sum()</code>. Additional arguments are specified by separating them with commas—e.g. <code>function(argument_1, argument_2)</code>.</p>
+<p>The sum of a single number is the number itself. We can provide more arguments to <code>sum()</code>. Additional arguments are specified by separating them with commas—e.g. <code>function(argument_1, argument_2)</code>.</p>
 <p>To find the sum of 10, 3, and 2 we write <code>sum(10, 3, 2)</code>.</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="r-as-a-calculator.html#cb12-1"></a><span class="kw">sum</span>(<span class="dv">10</span>, <span class="dv">3</span>, <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1"><span class="kw">sum</span>(<span class="dv">10</span>, <span class="dv">3</span>, <span class="dv">2</span>)</a></code></pre></div>
 <pre><code>## [1] 15</code></pre>
 <p>Much of the analysis we will do is done with functions. You will become much more comfortable with them rather quickly.</p>
 <p>If you ever need to know how a function works, you can look at its help page by typing <code>?function_name()</code> in your console. That will bring up the documentation page in the bottom right pane.</p>
@@ -246,7 +244,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>While R was created as a statistical programming language, it was designed with the intention of being extended to include even more functionality. Extensions to R are called <em>packages</em>. R packages often provide a set of functions to accomplish a specific kind of task.</p>
 <p>To analyse, manipulate, and visualize our data, we will use a number of different packages to do so. Throughout this book we will become familiar with a set of packages that together are known as the <a href="https://tidyverse.org">Tidyverse</a>.</p>
 <p>R packages do not come installed out of the box. We will need to install them our selves. Base R includes a function called <code>install.packages()</code>. <code>install.packages()</code> will download a specified package from CRAN and install it for us.</p>
-<p>To download packages, we must tell <code>install.packages()</code> which package to download. We will provide the name of the package as the only argument to <code>install.packages()</code>. The name of the package needs to be put into quotations such as <code>install.packages("package-name")</code>.</p>
+<p>To download packages, we must tell <code>install.packages()</code> which package to download. We will provide the name of the package as the only argument to <code>install.packages()</code>. The name of the package needs to be put into quotations such as <code>install.packages(&quot;package-name&quot;)</code>.</p>
 <blockquote>
 <p>Note: By putting text into quotations we are creating what is called a <strong>character string</strong>.</p>
 </blockquote>
@@ -257,7 +255,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="exercise" class="section level3">
 <h3><span class="header-section-number">3.4.1</span> Exercise</h3>
 <p>Use your new knowlege of functions and installing packages to install the tidyverse.</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="r-as-a-calculator.html#cb14-1"></a><span class="kw">install.packages</span>(<span class="st">&quot;tidyverse&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1"><span class="kw">install.packages</span>(<span class="st">&quot;tidyverse&quot;</span>)</a></code></pre></div>
 </div>
 </div>
 <div id="loading-packages" class="section level2">
@@ -266,13 +264,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <blockquote>
 <p>Note: It is best practice to load all of your packages at the top of your R script.</p>
 </blockquote>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="r-as-a-calculator.html#cb15-1"></a><span class="kw">library</span>(tidyverse)</span></code></pre></div>
-<pre><code>## ── Attaching packages ─────────────────</code></pre>
-<pre><code>## ✓ tibble  2.1.3     ✓ purrr   0.3.3
-## ✓ tidyr   1.0.2     ✓ dplyr   0.8.3
-## ✓ readr   1.3.1     ✓ stringr 1.4.0
-## ✓ tibble  2.1.3     ✓ forcats 0.4.0</code></pre>
-<pre><code>## ── Conflicts ──────────────────────────
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1"><span class="kw">library</span>(tidyverse)</a></code></pre></div>
+<pre><code>## ── Attaching packages ───────────────────────────────────────────────────────────────────────── tidyverse 1.3.0 ──</code></pre>
+<pre><code>## ✓ ggplot2 3.3.0     ✓ purrr   0.3.3
+## ✓ tibble  3.0.0     ✓ dplyr   0.8.5
+## ✓ tidyr   1.0.2     ✓ stringr 1.4.0
+## ✓ readr   1.3.1     ✓ forcats 0.5.0</code></pre>
+<pre><code>## ── Conflicts ──────────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
 ## x dplyr::filter() masks stats::filter()
 ## x dplyr::lag()    masks stats::lag()</code></pre>
 <p>Notice the message above. When we load the tidyverse, we are actually loading eight packages at once! Thesee are the packages listed under “<strong>Attaching packages</strong>.”</p>

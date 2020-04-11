@@ -40,12 +40,12 @@ Explore what the data description from BARI looks like
 
 ```r
 library(tidyverse)
-## ── Attaching packages ─────────────────
-## ✓ tibble  2.1.3     ✓ purrr   0.3.3
-## ✓ tidyr   1.0.2     ✓ dplyr   0.8.3
-## ✓ readr   1.3.1     ✓ stringr 1.4.0
-## ✓ tibble  2.1.3     ✓ forcats 0.4.0
-## ── Conflicts ──────────────────────────
+## ── Attaching packages ───────────────────────────────────────────────────────────────────────── tidyverse 1.3.0 ──
+## ✓ ggplot2 3.3.0     ✓ purrr   0.3.3
+## ✓ tibble  3.0.0     ✓ dplyr   0.8.5
+## ✓ tidyr   1.0.2     ✓ stringr 1.4.0
+## ✓ readr   1.3.1     ✓ forcats 0.5.0
+## ── Conflicts ──────────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
 ## x dplyr::filter() masks stats::filter()
 ## x dplyr::lag()    masks stats::lag()
 ecometrics <- readr::read_csv("data/911/911-ecometrics-2014-19.csv") %>% 
@@ -70,74 +70,31 @@ ecometrics <- readr::read_csv("data/911/911-ecometrics-2014-19.csv") %>%
 ## )
 
 glimpse(ecometrics)
-## Observations: 302
-## Variables: 15
-## $ type             <chr> "AB===>>>", "ABAN===>>>", "ABANBU", "ABANCELL",…
-## $ tycod            <chr> "AB", "ABAN", "ABAN", "ABAN", "ABAN", "ABAN", "…
-## $ typ_eng          <chr> "ASSAULT AND BATTERY", "ABANDONED CALL", "ABAND…
-## $ sub_tycod        <chr> "===>>>", "===>>>", "BU", "CELL", "INCCAL", "PH…
-## $ sub_eng          <chr> "PICK A SUB-TYPE", "PICK A SUB-TYPE", "FROM A B…
-## $ soc_dis          <dbl> 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,…
-## $ private_conflict <dbl> 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,…
-## $ violence         <dbl> 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0,…
-## $ guns             <dbl> 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0,…
-## $ frequency_2015   <dbl> 27, 40, 12768, 72081, 686, 1734, 3143, 194, 122…
-## $ frequency_2016   <dbl> 29, 26, 13287, 56074, 1188, 1205, 2687, 397, 19…
-## $ frequency_2017   <dbl> 29, 17, 12599, 39323, 124, 724, 1944, 253, 162,…
-## $ frequency_2018   <dbl> 14, 10, 6422, 19947, 70, 506, 840, 262, 169, 78…
-## $ yr_intro         <dbl> 2014, 2014, 2014, 2014, 2014, 2014, 2014, 2014,…
-## $ last_yr          <dbl> 2019, 2018, 2019, 2019, 2019, 2019, 2019, 2019,…
+## Rows: 302
+## Columns: 15
+## $ type             <chr> "AB===>>>", "ABAN===>>>", "ABANBU", "ABANCELL", "ABA…
+## $ tycod            <chr> "AB", "ABAN", "ABAN", "ABAN", "ABAN", "ABAN", "ABAN"…
+## $ typ_eng          <chr> "ASSAULT AND BATTERY", "ABANDONED CALL", "ABANDONED …
+## $ sub_tycod        <chr> "===>>>", "===>>>", "BU", "CELL", "INCCAL", "PH", "R…
+## $ sub_eng          <chr> "PICK A SUB-TYPE", "PICK A SUB-TYPE", "FROM A BUSINE…
+## $ soc_dis          <dbl> 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…
+## $ private_conflict <dbl> 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…
+## $ violence         <dbl> 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0…
+## $ guns             <dbl> 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0…
+## $ frequency_2015   <dbl> 27, 40, 12768, 72081, 686, 1734, 3143, 194, 122, 88,…
+## $ frequency_2016   <dbl> 29, 26, 13287, 56074, 1188, 1205, 2687, 397, 190, 94…
+## $ frequency_2017   <dbl> 29, 17, 12599, 39323, 124, 724, 1944, 253, 162, 74, …
+## $ frequency_2018   <dbl> 14, 10, 6422, 19947, 70, 506, 840, 262, 169, 78, 361…
+## $ yr_intro         <dbl> 2014, 2014, 2014, 2014, 2014, 2014, 2014, 2014, 2014…
+## $ last_yr          <dbl> 2019, 2018, 2019, 2019, 2019, 2019, 2019, 2019, 2019…
 ```
 
 Check out 
 
 
 ```r
-raw_911 <- read_csv("data/911/911-raw.csv", n_max = 5000) %>% 
-  janitor::clean_names()
-## Parsed with column specification:
-## cols(
-##   INCIDENT_NUMBER = col_character(),
-##   OFFENSE_CODE = col_character(),
-##   OFFENSE_CODE_GROUP = col_character(),
-##   OFFENSE_DESCRIPTION = col_character(),
-##   DISTRICT = col_character(),
-##   REPORTING_AREA = col_double(),
-##   SHOOTING = col_character(),
-##   OCCURRED_ON_DATE = col_datetime(format = ""),
-##   YEAR = col_double(),
-##   MONTH = col_double(),
-##   DAY_OF_WEEK = col_character(),
-##   HOUR = col_double(),
-##   UCR_PART = col_character(),
-##   STREET = col_character(),
-##   Lat = col_double(),
-##   Long = col_double(),
-##   Location = col_character()
-## )
-```
-
-
-```r
-raw_911 %>% 
-  filter(str_detect(offense_description, coll("battery", T)))
-## # A tibble: 342 x 17
-##    incident_number offense_code offense_code_gr… offense_descrip… district
-##    <chr>           <chr>        <chr>            <chr>            <chr>   
-##  1 I192078613      00802        Simple Assault   ASSAULT SIMPLE … A7      
-##  2 I192078603      00802        Simple Assault   ASSAULT SIMPLE … A7      
-##  3 I192078600      00413        Aggravated Assa… ASSAULT - AGGRA… C11     
-##  4 I192078573      00802        Simple Assault   ASSAULT SIMPLE … B2      
-##  5 I192078563      00413        Aggravated Assa… ASSAULT - AGGRA… B3      
-##  6 I192078563      00802        Simple Assault   ASSAULT SIMPLE … B3      
-##  7 I192078538      00802        Simple Assault   ASSAULT SIMPLE … C6      
-##  8 I192078531      00802        Simple Assault   ASSAULT SIMPLE … C11     
-##  9 I192078530      00413        Aggravated Assa… ASSAULT - AGGRA… C6      
-## 10 I192078529      00413        Aggravated Assa… ASSAULT - AGGRA… E5      
-## # … with 332 more rows, and 12 more variables: reporting_area <dbl>,
-## #   shooting <chr>, occurred_on_date <dttm>, year <dbl>, month <dbl>,
-## #   day_of_week <chr>, hour <dbl>, ucr_part <chr>, street <chr>,
-## #   lat <dbl>, long <dbl>, location <chr>
+# raw_911 <- read_csv("data/911/911-raw.csv", n_max = 5000) %>% 
+#   janitor::clean_names()
 ```
 
 

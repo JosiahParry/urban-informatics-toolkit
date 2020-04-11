@@ -72,20 +72,6 @@ ggplot(acs_raw, aes(fam_house_per, age_u18, color = by_auto, size = fem_head_per
 minors_lm <- lm(age_u18 ~ fam_house_per + by_auto + fem_head_per, data = acs_raw)
 
 huxtable::huxreg(minors_lm)
-## Registered S3 methods overwritten by 'broom.mixed':
-##   method         from 
-##   augment.lme    broom
-##   augment.merMod broom
-##   glance.lme     broom
-##   glance.merMod  broom
-##   glance.stanreg broom
-##   tidy.brmsfit   broom
-##   tidy.gamlss    broom
-##   tidy.lme       broom
-##   tidy.merMod    broom
-##   tidy.rjags     broom
-##   tidy.stanfit   broom
-##   tidy.stanreg   broom
 ```
 
 <!--html_preserve--><table class="huxtable" style="border-collapse: collapse; margin-bottom: 2em; margin-top: 2em; width: 50%; margin-left: auto; margin-right: auto;  ">

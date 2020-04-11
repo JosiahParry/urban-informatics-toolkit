@@ -20,13 +20,13 @@ glimpse(ecometrics)
 Check out the offense descriptions
 
 ```{r}
-raw_911 <- read_csv("data/911/911-raw.csv") %>% 
-  janitor::clean_names()
+# raw_911 <- read_csv("data/911/911-raw.csv") %>% 
+#   janitor::clean_names()
 ```
 
 ```{r}
-raw_911 %>% 
-  count(offense_code_group)
+# raw_911 %>% 
+#   count(offense_code_group)
 ```
 
 - There are fewer types of code groups. 
@@ -35,8 +35,8 @@ raw_911 %>%
 - is the same amount of missingness present in the descriptions?
 
 ```{r}
-raw_911 %>% 
-  count(offense_description)
+# raw_911 %>% 
+#   count(offense_description)
 ```
 
 - no missingness

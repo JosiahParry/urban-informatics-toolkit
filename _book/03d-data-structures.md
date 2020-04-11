@@ -114,9 +114,8 @@ R has a number of vectors that are built in these being the letters of the alpha
 
 ```r
 month.name
-##  [1] "January"   "February"  "March"     "April"     "May"      
-##  [6] "June"      "July"      "August"    "September" "October"  
-## [11] "November"  "December"
+##  [1] "January"   "February"  "March"     "April"     "May"       "June"     
+##  [7] "July"      "August"    "September" "October"   "November"  "December"
 
 typeof(month.name)
 ## [1] "character"
@@ -197,8 +196,7 @@ avg_unemp <- mean(unemp, na.rm = TRUE)
 index <- unemp > avg_unemp
 
 index
-##  [1]  TRUE  TRUE  TRUE FALSE  TRUE  TRUE FALSE FALSE FALSE FALSE    NA
-## [12]    NA
+##  [1]  TRUE  TRUE  TRUE FALSE  TRUE  TRUE FALSE FALSE FALSE FALSE    NA    NA
 ```
 
 Notice that the `NA`s stayed `NA`? They can be pesky. Hadley writes in Advanced R "missing values tend to be infectious: most computations involving a missing value will return another missing value." (https://adv-r.hadley.nz/vectors-chap.html)
@@ -217,8 +215,7 @@ How annoying those NAs can be! To prevent these NAs from showing upwe can add an
 
 ```r
 is.na(unemp)
-##  [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE
-## [12]  TRUE
+##  [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE
 ```
 
 As we learned, we can negate logical vectors with an `!`. We can negate the test results and include an an `&` condition to only identify unemployment values above average _and_ aren't missing.
@@ -491,7 +488,7 @@ We can view the structure of the list to get an idea of what is actually contain
 ```r
 str(l)
 ## List of 3
-##  $ :Classes 'tbl_df', 'tbl' and 'data.frame':	12 obs. of  3 variables:
+##  $ : tibble [12 × 3] (S3: tbl_df/tbl/data.frame)
 ##   ..$ unemp_rate: num [1:12] 3.2 2.8 2.8 2.4 2.8 2.9 2.7 2.6 2.7 2.3 ...
 ##   ..$ month     : chr [1:12] "January" "February" "March" "April" ...
 ##   ..$ above_avg : logi [1:12] TRUE TRUE TRUE FALSE TRUE TRUE ...

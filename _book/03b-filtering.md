@@ -348,8 +348,8 @@ gba_commute
 ##  9 MIDDL…   0.315 0.198 0.140          0.0752       0.478       0.329
 ## 10 MIDDL…   0.151 0.348 0.151          0.0830       0.474       0.322
 ## # … with 638 more rows, and 7 more variables: commute6090 <dbl>,
-## #   commute_over90 <dbl>, by_auto <dbl>, by_pub_trans <dbl>,
-## #   by_bike <dbl>, by_walk <dbl>, med_house_income <dbl>
+## #   commute_over90 <dbl>, by_auto <dbl>, by_pub_trans <dbl>, by_bike <dbl>,
+## #   by_walk <dbl>, med_house_income <dbl>
 ```
 
 

@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 4 Exploratory Visual Analysis | Urban Informatics Toolkit</title>
   <meta name="description" content="A hands on introduction approach to analyzing the urban Commons." />
-  <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 4 Exploratory Visual Analysis | Urban Informatics Toolkit" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Josiah Parry" />
 
 
-<meta name="date" content="2020-04-04" />
+<meta name="date" content="2020-04-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -53,9 +53,9 @@
 
 
 <style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
@@ -64,16 +64,14 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
 }
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
+    border: none; pointer-events: all; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -82,9 +80,9 @@ pre.numberSource code > span > a:first-child::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {   }
+  {  }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+a.sourceLine::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -157,7 +155,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="part"><span><b>IV Case Studies</b></span></li>
 <li class="chapter" data-level="19" data-path="case-study-twitter-data.html"><a href="case-study-twitter-data.html"><i class="fa fa-check"></i><b>19</b> Case Study: Twitter Data</a></li>
 <li class="chapter" data-level="20" data-path="various-things-that-i-didnt-cover-well.html"><a href="various-things-that-i-didnt-cover-well.html"><i class="fa fa-check"></i><b>20</b> Various things that i didn’t cover well</a></li>
-<li class="chapter" data-level="21" data-path="schools-of-urban-informatics.html"><a href="schools-of-urban-informatics.html"><i class="fa fa-check"></i><b>21</b> Schools of Urban Informatics</a></li>
+<li class="chapter" data-level="21" data-path="approaches-to-and-schools-of-urban-informatics.html"><a href="approaches-to-and-schools-of-urban-informatics.html"><i class="fa fa-check"></i><b>21</b> Approaches to, and Schools of, Urban Informatics</a></li>
 <li class="chapter" data-level="22" data-path="broken-windows-and-the-origin-of-ecometrics.html"><a href="broken-windows-and-the-origin-of-ecometrics.html"><i class="fa fa-check"></i><b>22</b> Broken Windows and the origin of Ecometrics</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/josiahparry/urban-informatics-toolkit" target="blank">GitHub</a></li>
@@ -212,7 +210,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <blockquote>
 <p>. . . [an] enumeration shall be made within three Years after the first Meeting of the Congress of the United States, and within every subsequent Term of ten Years, in such Manner as they shall by Law direct.</p>
 </blockquote>
-<p>The above clause requires the US government to conduct a complete counting of every single individual in the United States for the purposes of determining how many congressional representatives each state will have. These censuses provided a detailed image of <em>how many</em> people there were in the US, but lacked much information beyond that. The first census asked each household for “the number of free white males under 16 years” and of “16 years and upward”, the “number of free White females”, “number of other free persons, and the”number of slaves"<a href="#fn10" class="footnote-ref" id="fnref10"><sup>10</sup></a> Since then the breadth of questions asked during the census has increased as well as other supplementary sources of information.</p>
+<p>The above clause requires the US government to conduct a complete counting of every single individual in the United States for the purposes of determining how many congressional representatives each state will have. These censuses provided a detailed image of <em>how many</em> people there were in the US, but lacked much information beyond that. The first census asked each household for “the number of free white males under 16 years” and of “16 years and upward”, the “number of free White females”, “number of other free persons, and the”number of slaves&quot;<a href="#fn10" class="footnote-ref" id="fnref10"><sup>10</sup></a> Since then the breadth of questions asked during the census has increased as well as other supplementary sources of information.</p>
 <p>The ACS was developed in response to two shortcomings of the decennial census. The first being that the census only occurrs every ten years. There was, and still is, a need for more consistent and current data. Not only are the censuses too infrequent, but they also do not provide the most colorful picture of who it is that lives within the US. Local, state, and federal governments desired more context about who their constituents are.</p>
 <p>The ACS was developed and first officially released in 2005<a href="#fn11" class="footnote-ref" id="fnref11"><sup>11</sup></a>. The ACS uses a “series of monthly samples” to “produce annual estimates for the same small areas (census tracts and block groups) formerly surveyed via the decennial census long-form sample”<a href="#fn12" class="footnote-ref" id="fnref12"><sup>12</sup></a>. As Catherine Rampell wrote in the New York times</p>
 <blockquote>
@@ -236,22 +234,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">4.4.1</span> Familiarize yourself</h3>
 <p>There is no one best way to begin an exploratory analysis to guarantee interesting outcomes. But before one begins their EDA, they must know what their data actually contain. Loaded into your environment already is an object called <code>acs_edu</code>. <code>acs_edu</code> contains data demographic information about every census tract in Massachusetts.</p>
 <p>Print <code>acs_edu</code> to the console. What do you see?</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="exploratory-visual-analysis.html#cb19-1"></a>acs_edu</span>
-<span id="cb19-2"><a href="exploratory-visual-analysis.html#cb19-2"></a><span class="co">## # A tibble: 1,456 x 7</span></span>
-<span id="cb19-3"><a href="exploratory-visual-analysis.html#cb19-3"></a><span class="co">##    med_house_income less_than_hs hs_grad some_coll  bach white   black</span></span>
-<span id="cb19-4"><a href="exploratory-visual-analysis.html#cb19-4"></a><span class="co">##               &lt;dbl&gt;        &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;</span></span>
-<span id="cb19-5"><a href="exploratory-visual-analysis.html#cb19-5"></a><span class="co">##  1           105735       0.0252   0.196     0.221 0.325 0.897 0.0122 </span></span>
-<span id="cb19-6"><a href="exploratory-visual-analysis.html#cb19-6"></a><span class="co">##  2            69625       0.0577   0.253     0.316 0.262 0.885 0.0171 </span></span>
-<span id="cb19-7"><a href="exploratory-visual-analysis.html#cb19-7"></a><span class="co">##  3            70679       0.0936   0.173     0.273 0.267 0.733 0.0795 </span></span>
-<span id="cb19-8"><a href="exploratory-visual-analysis.html#cb19-8"></a><span class="co">##  4            74528       0.0843   0.253     0.353 0.231 0.824 0.0306 </span></span>
-<span id="cb19-9"><a href="exploratory-visual-analysis.html#cb19-9"></a><span class="co">##  5            52885       0.145    0.310     0.283 0.168 0.737 0.0605 </span></span>
-<span id="cb19-10"><a href="exploratory-visual-analysis.html#cb19-10"></a><span class="co">##  6            64100       0.0946   0.294     0.317 0.192 0.966 0.00256</span></span>
-<span id="cb19-11"><a href="exploratory-visual-analysis.html#cb19-11"></a><span class="co">##  7            37093       0.253    0.394     0.235 0.101 0.711 0.0770 </span></span>
-<span id="cb19-12"><a href="exploratory-visual-analysis.html#cb19-12"></a><span class="co">##  8            87750       0.0768   0.187     0.185 0.272 0.759 0.0310 </span></span>
-<span id="cb19-13"><a href="exploratory-visual-analysis.html#cb19-13"></a><span class="co">##  9            97417       0.0625   0.254     0.227 0.284 0.969 0.00710</span></span>
-<span id="cb19-14"><a href="exploratory-visual-analysis.html#cb19-14"></a><span class="co">## 10            43384       0.207    0.362     0.262 0.124 0.460 0.105  </span></span>
-<span id="cb19-15"><a href="exploratory-visual-analysis.html#cb19-15"></a><span class="co">## # … with 1,446 more rows</span></span></code></pre></div>
-<p><code>## # A tibble: 1,456 x 7</code> is printed out at the top followed by column names, their types—e.g. <code>&lt;dbl&gt;</code>—their respective values and, to the far left we see the numbers 1 through 10 before each row of values.</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" data-line-number="1">acs_edu</a>
+<a class="sourceLine" id="cb19-2" data-line-number="2"><span class="co">## # A tibble: 1,456 x 7</span></a>
+<a class="sourceLine" id="cb19-3" data-line-number="3"><span class="co">##    med_house_income less_than_hs hs_grad some_coll  bach white   black</span></a>
+<a class="sourceLine" id="cb19-4" data-line-number="4"><span class="co">##               &lt;dbl&gt;        &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;</span></a>
+<a class="sourceLine" id="cb19-5" data-line-number="5"><span class="co">##  1           105735       0.0252   0.196     0.221 0.325 0.897 0.0122 </span></a>
+<a class="sourceLine" id="cb19-6" data-line-number="6"><span class="co">##  2            69625       0.0577   0.253     0.316 0.262 0.885 0.0171 </span></a>
+<a class="sourceLine" id="cb19-7" data-line-number="7"><span class="co">##  3            70679       0.0936   0.173     0.273 0.267 0.733 0.0795 </span></a>
+<a class="sourceLine" id="cb19-8" data-line-number="8"><span class="co">##  4            74528       0.0843   0.253     0.353 0.231 0.824 0.0306 </span></a>
+<a class="sourceLine" id="cb19-9" data-line-number="9"><span class="co">##  5            52885       0.145    0.310     0.283 0.168 0.737 0.0605 </span></a>
+<a class="sourceLine" id="cb19-10" data-line-number="10"><span class="co">##  6            64100       0.0946   0.294     0.317 0.192 0.966 0.00256</span></a>
+<a class="sourceLine" id="cb19-11" data-line-number="11"><span class="co">##  7            37093       0.253    0.394     0.235 0.101 0.711 0.0770 </span></a>
+<a class="sourceLine" id="cb19-12" data-line-number="12"><span class="co">##  8            87750       0.0768   0.187     0.185 0.272 0.759 0.0310 </span></a>
+<a class="sourceLine" id="cb19-13" data-line-number="13"><span class="co">##  9            97417       0.0625   0.254     0.227 0.284 0.969 0.00710</span></a>
+<a class="sourceLine" id="cb19-14" data-line-number="14"><span class="co">## 10            43384       0.207    0.362     0.262 0.124 0.460 0.105  </span></a>
+<a class="sourceLine" id="cb19-15" data-line-number="15"><span class="co">## # … with 1,446 more rows</span></a></code></pre></div>
+<p><code>## # A tibble: 1,456 x 7</code> is printed out at the top followed by column names, their types—e.g. <code>&lt;dbl&gt;</code>—their respective values and, to the far left we see the numbers 1 through 10 before each row of values.</p>
 <p>Let us dissect <code># A tibble: 1,456 x 7</code> a little bit more. This alone is quite informative. It tells us that the type of object we are working with is a <code>tibble</code> with 1,456 rows and 7 columns.</p>
 <p>A tibble is a method of representing rectangular data and is very similar to a table one may create within Excel with rows an columns. When working with tibbles we try to adhere to what are called the principles of tidy data<a href="#fn16" class="footnote-ref" id="fnref16"><sup>16</sup></a>. There are three key principles that we ought to keep in mind when working with rectangular data.</p>
 <ol style="list-style-type: decimal">
@@ -278,23 +276,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <blockquote>
 <p>Reminder: <code>library(pkg_name)</code> loads a package into your workspace and makes the functions and objects it exports available to you.</p>
 </blockquote>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="exploratory-visual-analysis.html#cb20-1"></a><span class="kw">library</span>(ggplot2)</span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" data-line-number="1"><span class="kw">library</span>(ggplot2)</a></code></pre></div>
 <p>To begin building a ggplot, we use the function <code>ggplot()</code>. There are two function arguments these being <code>data</code> and the aesthetics <code>mapping</code>. The <code>data</code> is the tibble that we wish to visualize. In this case we want to visualize the data from <code>acs_edu</code>.</p>
 <p>We will begin constructing our first visualization with the <code>ggplot()</code> <strong>function</strong> using the <code>acs_edu</code> <strong>object</strong>.</p>
 <blockquote>
 <p>Reminder: Functions are characterised by the parentheses at the end of them. Functions do things whereas objects hold information.</p>
 </blockquote>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="exploratory-visual-analysis.html#cb21-1"></a><span class="kw">ggplot</span>(acs_edu)</span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1"><span class="kw">ggplot</span>(acs_edu)</a></code></pre></div>
 <p><img src="01-visual-analysis_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
 <p>Notice that this plot is entirely empty. This is because we have not defined what it is that we want to visualize. ggplot uses what is called a grammar of graphics (this is expanded upon in depth in the <em>Visualizing Trends and Relationships</em> chapter) which requires us to sequentiallly build our graphs by first defining what data and variables will be visualized and then adding layers to the plot.</p>
 <p>The next step we need to take is to define which columns we want to visualize. These are called the <em>aesthetics</em> and they are defined using the <code>aes()</code> function which is supplied to the <code>mapping</code> argument. The purpose of <code>aes()</code> is to tell ggplot which columns are mapped to what. The most important and fundamental of these are the <code>x</code> and <code>y</code> arguments. These refer to the x and y axes in the chart that we will begin to make.</p>
 <p>Before we begin to analyze the relationship between <code>med_house_income</code> and <code>bach</code> (bachelor’s degree attainment rate), we ought to do our due dilligence of looking at the distribution of each of these first. Let us start with the <code>med_house_income</code> column. When exploring only a single variable, we want to supply that to the <code>x</code> argument of <code>aes()</code>.</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="exploratory-visual-analysis.html#cb22-1"></a><span class="kw">ggplot</span>(acs_edu, <span class="kw">aes</span>(<span class="dt">x =</span> med_house_income))</span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" data-line-number="1"><span class="kw">ggplot</span>(acs_edu, <span class="kw">aes</span>(<span class="dt">x =</span> med_house_income))</a></code></pre></div>
 <p><img src="01-visual-analysis_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
 <p>Alright, we are making progress. We can see that the x axis is now filled out a bit more. The axis breaks have been labeled as has the axis itself. In order to see the data in a graphical representation, we need to determine how we want to see the data and what sort of geometry will be used to visualize it.</p>
 <p>To <strong>add</strong> geometry to our ggplot, we use the plus sign <code>+</code> which signifies that we are adding a layer on top of the basic graph. There are many ways we can visualize univariate data but the histogram has stood the test of time. To create a histogram we <strong>add</strong> the <code>geom_histogram()</code> layer to our existing ggplot code.</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="exploratory-visual-analysis.html#cb23-1"></a><span class="kw">ggplot</span>(acs_edu, <span class="kw">aes</span>(<span class="dt">x =</span> med_house_income)) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb23-2"><a href="exploratory-visual-analysis.html#cb23-2"></a><span class="st">  </span><span class="kw">geom_histogram</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" data-line-number="1"><span class="kw">ggplot</span>(acs_edu, <span class="kw">aes</span>(<span class="dt">x =</span> med_house_income)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb23-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_histogram</span>()</a></code></pre></div>
 <p><img src="01-visual-analysis_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
 <blockquote>
 <p>Note: To ensure that our code is legible we add each new layer on a line. R will manage the indentation for you. Code readibility is very important and you will thank yourself later for instilling good practices from the start.</p>
@@ -308,8 +306,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><strong>Censored data</strong>: data “in which the value of a measurement or observation is only partially known.”<a href="#fn18" class="footnote-ref" id="fnref18"><sup>18</sup></a><a href="#fn19" class="footnote-ref" id="fnref19"><sup>19</sup></a></p>
 </blockquote>
 <p>Let us now create a histogram of our second variable of interest, <code>bach</code>.</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="exploratory-visual-analysis.html#cb24-1"></a><span class="kw">ggplot</span>(acs_edu, <span class="kw">aes</span>(<span class="dt">x =</span> bach)) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb24-2"><a href="exploratory-visual-analysis.html#cb24-2"></a><span class="st">  </span><span class="kw">geom_histogram</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" data-line-number="1"><span class="kw">ggplot</span>(acs_edu, <span class="kw">aes</span>(<span class="dt">x =</span> bach)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb24-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_histogram</span>()</a></code></pre></div>
 <p><img src="01-visual-analysis_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
 <p>This histogram illustrates the distribution of the bachelor degree attainment rate (the proportion of people with a bachelor’s degree) across census tracts in Massachusetts. Because we did our homework ahead of time, we know that the national attainment rate in 2018 for people over 25 was ~35%<a href="#fn20" class="footnote-ref" id="fnref20"><sup>20</sup></a>. Our histogram shows that within MA there is a lot of variation in the attainment rate from a low of about 0% to a high of over 60%. There is not a steep peak in the distribution which tells us that there is a fair amount of variation in the distribution.</p>
 <p>Now that there is an intuition of the distribution and characteristics of both <code>med_house_income</code> and <code>bach</code>, we can begin to try and answer the question <em>what is the effect of education on median household income?</em> The phrasing of our question will determine how we visualize our data.</p>
@@ -318,31 +316,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>This structure and phrasing is useful for continuity in verbal communication, graphical representation, and hypothesis testing.</p>
 </blockquote>
 <p>We can visualize this relationship by adding additional mapped aesthetics. In this case, we will map both the x and y arguments of the <code>aes()</code> function. Rather than adding histogram layer, we will need to create a scatter plot. Scatter plots are created by plotting points for each (x, y) pair. To get such an effect we will use the <code>geom_point()</code> layer.</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="exploratory-visual-analysis.html#cb25-1"></a><span class="kw">ggplot</span>(acs_edu, <span class="kw">aes</span>(<span class="dt">x =</span> bach, <span class="dt">y =</span> med_house_income)) <span class="op">+</span></span>
-<span id="cb25-2"><a href="exploratory-visual-analysis.html#cb25-2"></a><span class="st">  </span><span class="kw">geom_point</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" data-line-number="1"><span class="kw">ggplot</span>(acs_edu, <span class="kw">aes</span>(<span class="dt">x =</span> bach, <span class="dt">y =</span> med_house_income)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb25-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>()</a></code></pre></div>
 <p><img src="01-visual-analysis_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
 <p>The above scatter plot provides a lot of information. We see that there is a positive linear trend—that is that when the <code>bach</code> value increases so does the <code>med_house_income</code> variable. When looking at a scatter plot we are looking to see if there is a consistent pattern that can be sussed out.</p>
 <p>In this scatterplot we can see that there is a linear pattern. When the points on the scatter plot are closer to eachother and demonstrate less spread, that means there is a stronger relationship between the two variables. Imagine if we drew a line through the middle of the points, we would want each point to be as close to that line as possible. The further the point is away from that line, the more variation there is. In these cases we often create linear regression models to estimate the relationship.</p>
-<p>Using ggplot, we can plot the estimated linear regression line on top of our scatterplot. This is done with a <code>geom_smooth()</code> layer. By default, <code>geom_smooth()</code> does not plot the linear relationship. To do that, we need to specify what kind of smoothing we would like. To plot the estimated linear model, we set <code>method = "lm"</code>.</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="exploratory-visual-analysis.html#cb26-1"></a><span class="kw">ggplot</span>(acs_edu, <span class="kw">aes</span>(<span class="dt">x =</span> bach, <span class="dt">y =</span> med_house_income)) <span class="op">+</span></span>
-<span id="cb26-2"><a href="exploratory-visual-analysis.html#cb26-2"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
-<span id="cb26-3"><a href="exploratory-visual-analysis.html#cb26-3"></a><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>)</span>
-<span id="cb26-4"><a href="exploratory-visual-analysis.html#cb26-4"></a><span class="co">## `geom_smooth()` using formula &#39;y ~ x&#39;</span></span></code></pre></div>
+<p>Using ggplot, we can plot the estimated linear regression line on top of our scatterplot. This is done with a <code>geom_smooth()</code> layer. By default, <code>geom_smooth()</code> does not plot the linear relationship. To do that, we need to specify what kind of smoothing we would like. To plot the estimated linear model, we set <code>method = &quot;lm&quot;</code>.</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" data-line-number="1"><span class="kw">ggplot</span>(acs_edu, <span class="kw">aes</span>(<span class="dt">x =</span> bach, <span class="dt">y =</span> med_house_income)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb26-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb26-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>)</a>
+<a class="sourceLine" id="cb26-4" data-line-number="4"><span class="co">## `geom_smooth()` using formula &#39;y ~ x&#39;</span></a></code></pre></div>
 <p><img src="01-visual-analysis_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
-<p>Wonderful! To finish up this graphic, we should add informative labels. Labels live in their own layer which is created with <code>labs()</code>. Each argument maps to an aesthetic—e.g. <code>x</code> and <code>y</code>. By default ggplot uses the column names for axis labels, but these labels are usually uninformative.</p>
+<p>Wonderful! To finish up this graphic, we should add informative labels. Labels live in their own layer which is created with <code>labs()</code>. Each argument maps to an aesthetic—e.g. <code>x</code> and <code>y</code>. By default ggplot uses the column names for axis labels, but these labels are usually uninformative.</p>
 <p>Let’s give the plot a title and better labels for its axes. We will set the following arguments to <code>labs()</code></p>
 <ul>
-<li><code>x = "% of population with a Bachelor's Degree"</code></li>
-<li><code>y = "Median Household Income"</code></li>
-<li><code>title = "Relationship between Education and Income"</code></li>
+<li><code>x = &quot;% of population with a Bachelor's Degree&quot;</code></li>
+<li><code>y = &quot;Median Household Income&quot;</code></li>
+<li><code>title = &quot;Relationship between Education and Income&quot;</code></li>
 </ul>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="exploratory-visual-analysis.html#cb27-1"></a><span class="kw">ggplot</span>(acs_edu, <span class="kw">aes</span>(<span class="dt">x =</span> bach, <span class="dt">y =</span> med_house_income)) <span class="op">+</span></span>
-<span id="cb27-2"><a href="exploratory-visual-analysis.html#cb27-2"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
-<span id="cb27-3"><a href="exploratory-visual-analysis.html#cb27-3"></a><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>) <span class="op">+</span></span>
-<span id="cb27-4"><a href="exploratory-visual-analysis.html#cb27-4"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;% of population with a Bachelor&#39;s Degree&quot;</span>,</span>
-<span id="cb27-5"><a href="exploratory-visual-analysis.html#cb27-5"></a>       <span class="dt">y =</span> <span class="st">&quot;Median Household Income&quot;</span>,</span>
-<span id="cb27-6"><a href="exploratory-visual-analysis.html#cb27-6"></a>       <span class="dt">title =</span> <span class="st">&quot;Relationship between Education and Income&quot;</span>)</span>
-<span id="cb27-7"><a href="exploratory-visual-analysis.html#cb27-7"></a><span class="co">## `geom_smooth()` using formula &#39;y ~ x&#39;</span></span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" data-line-number="1"><span class="kw">ggplot</span>(acs_edu, <span class="kw">aes</span>(<span class="dt">x =</span> bach, <span class="dt">y =</span> med_house_income)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb27-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb27-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb27-4" data-line-number="4"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;% of population with a Bachelor&#39;s Degree&quot;</span>,</a>
+<a class="sourceLine" id="cb27-5" data-line-number="5">       <span class="dt">y =</span> <span class="st">&quot;Median Household Income&quot;</span>,</a>
+<a class="sourceLine" id="cb27-6" data-line-number="6">       <span class="dt">title =</span> <span class="st">&quot;Relationship between Education and Income&quot;</span>)</a>
+<a class="sourceLine" id="cb27-7" data-line-number="7"><span class="co">## `geom_smooth()` using formula &#39;y ~ x&#39;</span></a></code></pre></div>
 <p><img src="01-visual-analysis_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
 <blockquote>
 <p>Note that each argument is placed on a new line. Again, this is to improve readability.</p>
@@ -361,14 +359,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>This chart ilicits further lines of inquiry. For example, in the sociological literature there is a well documented achievement gap. The achievement gap can be traced along racial lines—though it is not inherently <em>caused</em> by race but rather intertwined with it. Can this be seen in the tracts of Massachusetts?</p>
 <p>We can visualize a third variable on our chart by mapping another <code>aes</code>thetic. When we add a third variable to the visualization we are generally trying to illustrate group membership or size / magnitude of the third variable. Due to the large number of points on our chart already, we may benefit more from mapping color rather than size—imagine 1,000 points overlapping even more than they already do.</p>
 <p>We can map the proportion of the population that is white to the color of our points. We do this by setting the <code>color</code> aesthetic to <code>white</code>. While we’re at it, let us include a subtitle which is informative to the viewer.</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="exploratory-visual-analysis.html#cb28-1"></a><span class="kw">ggplot</span>(acs_edu, <span class="kw">aes</span>(<span class="dt">x =</span> bach, <span class="dt">y =</span> med_house_income, <span class="dt">color =</span> white)) <span class="op">+</span></span>
-<span id="cb28-2"><a href="exploratory-visual-analysis.html#cb28-2"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">.4</span>) <span class="op">+</span></span>
-<span id="cb28-3"><a href="exploratory-visual-analysis.html#cb28-3"></a><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb28-4"><a href="exploratory-visual-analysis.html#cb28-4"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;% of population with a Bachelor&#39;s Degree&quot;</span>,</span>
-<span id="cb28-5"><a href="exploratory-visual-analysis.html#cb28-5"></a>       <span class="dt">y =</span> <span class="st">&quot;Median Household Income&quot;</span>,</span>
-<span id="cb28-6"><a href="exploratory-visual-analysis.html#cb28-6"></a>       <span class="dt">title =</span> <span class="st">&quot;Relationship between Education and Income&quot;</span>,</span>
-<span id="cb28-7"><a href="exploratory-visual-analysis.html#cb28-7"></a>       <span class="dt">subtitle =</span> <span class="st">&quot;Colored by whiteness&quot;</span>) </span>
-<span id="cb28-8"><a href="exploratory-visual-analysis.html#cb28-8"></a><span class="co">## `geom_smooth()` using formula &#39;y ~ x&#39;</span></span></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" data-line-number="1"><span class="kw">ggplot</span>(acs_edu, <span class="kw">aes</span>(<span class="dt">x =</span> bach, <span class="dt">y =</span> med_house_income, <span class="dt">color =</span> white)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb28-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">.4</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb28-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb28-4" data-line-number="4"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;% of population with a Bachelor&#39;s Degree&quot;</span>,</a>
+<a class="sourceLine" id="cb28-5" data-line-number="5">       <span class="dt">y =</span> <span class="st">&quot;Median Household Income&quot;</span>,</a>
+<a class="sourceLine" id="cb28-6" data-line-number="6">       <span class="dt">title =</span> <span class="st">&quot;Relationship between Education and Income&quot;</span>,</a>
+<a class="sourceLine" id="cb28-7" data-line-number="7">       <span class="dt">subtitle =</span> <span class="st">&quot;Colored by whiteness&quot;</span>) </a>
+<a class="sourceLine" id="cb28-8" data-line-number="8"><span class="co">## `geom_smooth()` using formula &#39;y ~ x&#39;</span></a></code></pre></div>
 <p><img src="01-visual-analysis_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
 <p>What can we conclude now? Does the addition of the third variable increase or decrease the utility of our scatter plot? Does the trend seem to mediated by race? I’ll leave those questions to you to answer.</p>
 <p>You’ve now completed your first visual analysis. You’ve learned how to create publication ready histograms and scatter plots using ggplot2. This is no small feat!</p>
@@ -388,26 +386,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="footnotes">
 <hr />
 <ol start="1">
-<li id="fn1"><p>Boston Building Permits: <a href="https://www.boston.gov/departments/inspectional-services/how-find-historical-permit-records" class="uri">https://www.boston.gov/departments/inspectional-services/how-find-historical-permit-records</a><a href="exploratory-visual-analysis.html#fnref1" class="footnote-back">↩︎</a></p></li>
-<li id="fn2"><p>Some note about co-production.<a href="exploratory-visual-analysis.html#fnref2" class="footnote-back">↩︎</a></p></li>
-<li id="fn3"><p>BOS:311: <a href="https://itunes.apple.com/us/app/boston-citizens-connect/id330894558?mt=8" class="uri">https://itunes.apple.com/us/app/boston-citizens-connect/id330894558?mt=8</a><a href="exploratory-visual-analysis.html#fnref3" class="footnote-back">↩︎</a></p></li>
-<li id="fn4"><p>ParkBoston: <a href="https://apps.apple.com/us/app/parkboston/id953579075" class="uri">https://apps.apple.com/us/app/parkboston/id953579075</a><a href="exploratory-visual-analysis.html#fnref4" class="footnote-back">↩︎</a></p></li>
-<li id="fn5"><p>Boston PayTix: <a href="https://apps.apple.com/us/app/boston-paytix/id1068651854" class="uri">https://apps.apple.com/us/app/boston-paytix/id1068651854</a><a href="exploratory-visual-analysis.html#fnref5" class="footnote-back">↩︎</a></p></li>
-<li id="fn6"><p>BlueBikes:<a href="exploratory-visual-analysis.html#fnref6" class="footnote-back">↩︎</a></p></li>
-<li id="fn7"><p><a href="https://data.boston.gov/" class="uri">https://data.boston.gov/</a><a href="exploratory-visual-analysis.html#fnref7" class="footnote-back">↩︎</a></p></li>
-<li id="fn8"><p>“Relating to or denoting reasoning or knowledge which proceeds from theoretical deduction rather than from observation or experience.” <a href="https://www.lexico.com/definition/a_priori">Oxford Dictionary</a><a href="exploratory-visual-analysis.html#fnref8" class="footnote-back">↩︎</a></p></li>
-<li id="fn9"><p><a href="https://r4ds.had.co.nz/explore-intro.html" class="uri">https://r4ds.had.co.nz/explore-intro.html</a><a href="exploratory-visual-analysis.html#fnref9" class="footnote-back">↩︎</a></p></li>
-<li id="fn10"><p><a href="https://www.census.gov/history/www/through_the_decades/index_of_questions/1790_1.html" class="uri">https://www.census.gov/history/www/through_the_decades/index_of_questions/1790_1.html</a><a href="exploratory-visual-analysis.html#fnref10" class="footnote-back">↩︎</a></p></li>
-<li id="fn11"><p><a href="https://www2.census.gov/programs-surveys/acs/methodology/design_and_methodology/acs_design_methodology_report_2014.pdf" class="uri">https://www2.census.gov/programs-surveys/acs/methodology/design_and_methodology/acs_design_methodology_report_2014.pdf</a><a href="exploratory-visual-analysis.html#fnref11" class="footnote-back">↩︎</a></p></li>
-<li id="fn12"><p><a href="https://www.census.gov/programs-surveys/acs/methodology.html" class="uri">https://www.census.gov/programs-surveys/acs/methodology.html</a><a href="exploratory-visual-analysis.html#fnref12" class="footnote-back">↩︎</a></p></li>
-<li id="fn13"><p><a href="https://www.nytimes.com/2012/05/20/sunday-review/the-debate-over-the-american-community-survey.html" class="uri">https://www.nytimes.com/2012/05/20/sunday-review/the-debate-over-the-american-community-survey.html</a><a href="exploratory-visual-analysis.html#fnref13" class="footnote-back">↩︎</a></p></li>
-<li id="fn14"><p><a href="https://www2.census.gov/programs-surveys/acs/methodology/design_and_methodology/acs_design_methodology_report_2014.pdf" class="uri">https://www2.census.gov/programs-surveys/acs/methodology/design_and_methodology/acs_design_methodology_report_2014.pdf</a><a href="exploratory-visual-analysis.html#fnref14" class="footnote-back">↩︎</a></p></li>
-<li id="fn15"><p><a href="https://www.census.gov/content/dam/Census/library/publications/2018/acs/acs_general_handbook_2018_ch03.pdf" class="uri">https://www.census.gov/content/dam/Census/library/publications/2018/acs/acs_general_handbook_2018_ch03.pdf</a><a href="exploratory-visual-analysis.html#fnref15" class="footnote-back">↩︎</a></p></li>
-<li id="fn16"><p><a href="https://vita.had.co.nz/papers/tidy-data.pdf" class="uri">https://vita.had.co.nz/papers/tidy-data.pdf</a><a href="exploratory-visual-analysis.html#fnref16" class="footnote-back">↩︎</a></p></li>
-<li id="fn17"><p><a href="https://vita.had.co.nz/papers/tidy-data.pdf" class="uri">https://vita.had.co.nz/papers/tidy-data.pdf</a><a href="exploratory-visual-analysis.html#fnref17" class="footnote-back">↩︎</a></p></li>
-<li id="fn18"><p><a href="https://en.wikipedia.org/wiki/Censoring_(statistics)" class="uri">https://en.wikipedia.org/wiki/Censoring_(statistics)</a><a href="exploratory-visual-analysis.html#fnref18" class="footnote-back">↩︎</a></p></li>
-<li id="fn19"><p><a href="https://stats.stackexchange.com/questions/49443/how-to-model-this-odd-shaped-distribution-almost-a-reverse-j" class="uri">https://stats.stackexchange.com/questions/49443/how-to-model-this-odd-shaped-distribution-almost-a-reverse-j</a><a href="exploratory-visual-analysis.html#fnref19" class="footnote-back">↩︎</a></p></li>
-<li id="fn20"><p><a href="https://www.census.gov/data/tables/2018/demo/education-attainment/cps-detailed-tables.html" class="uri">https://www.census.gov/data/tables/2018/demo/education-attainment/cps-detailed-tables.html</a><a href="exploratory-visual-analysis.html#fnref20" class="footnote-back">↩︎</a></p></li>
+<li id="fn1"><p>Boston Building Permits: <a href="https://www.boston.gov/departments/inspectional-services/how-find-historical-permit-records" class="uri">https://www.boston.gov/departments/inspectional-services/how-find-historical-permit-records</a><a href="exploratory-visual-analysis.html#fnref1" class="footnote-back">↩</a></p></li>
+<li id="fn2"><p>Some note about co-production.<a href="exploratory-visual-analysis.html#fnref2" class="footnote-back">↩</a></p></li>
+<li id="fn3"><p>BOS:311: <a href="https://itunes.apple.com/us/app/boston-citizens-connect/id330894558?mt=8" class="uri">https://itunes.apple.com/us/app/boston-citizens-connect/id330894558?mt=8</a><a href="exploratory-visual-analysis.html#fnref3" class="footnote-back">↩</a></p></li>
+<li id="fn4"><p>ParkBoston: <a href="https://apps.apple.com/us/app/parkboston/id953579075" class="uri">https://apps.apple.com/us/app/parkboston/id953579075</a><a href="exploratory-visual-analysis.html#fnref4" class="footnote-back">↩</a></p></li>
+<li id="fn5"><p>Boston PayTix: <a href="https://apps.apple.com/us/app/boston-paytix/id1068651854" class="uri">https://apps.apple.com/us/app/boston-paytix/id1068651854</a><a href="exploratory-visual-analysis.html#fnref5" class="footnote-back">↩</a></p></li>
+<li id="fn6"><p>BlueBikes:<a href="exploratory-visual-analysis.html#fnref6" class="footnote-back">↩</a></p></li>
+<li id="fn7"><p><a href="https://data.boston.gov/" class="uri">https://data.boston.gov/</a><a href="exploratory-visual-analysis.html#fnref7" class="footnote-back">↩</a></p></li>
+<li id="fn8"><p>“Relating to or denoting reasoning or knowledge which proceeds from theoretical deduction rather than from observation or experience.” <a href="https://www.lexico.com/definition/a_priori">Oxford Dictionary</a><a href="exploratory-visual-analysis.html#fnref8" class="footnote-back">↩</a></p></li>
+<li id="fn9"><p><a href="https://r4ds.had.co.nz/explore-intro.html" class="uri">https://r4ds.had.co.nz/explore-intro.html</a><a href="exploratory-visual-analysis.html#fnref9" class="footnote-back">↩</a></p></li>
+<li id="fn10"><p><a href="https://www.census.gov/history/www/through_the_decades/index_of_questions/1790_1.html" class="uri">https://www.census.gov/history/www/through_the_decades/index_of_questions/1790_1.html</a><a href="exploratory-visual-analysis.html#fnref10" class="footnote-back">↩</a></p></li>
+<li id="fn11"><p><a href="https://www2.census.gov/programs-surveys/acs/methodology/design_and_methodology/acs_design_methodology_report_2014.pdf" class="uri">https://www2.census.gov/programs-surveys/acs/methodology/design_and_methodology/acs_design_methodology_report_2014.pdf</a><a href="exploratory-visual-analysis.html#fnref11" class="footnote-back">↩</a></p></li>
+<li id="fn12"><p><a href="https://www.census.gov/programs-surveys/acs/methodology.html" class="uri">https://www.census.gov/programs-surveys/acs/methodology.html</a><a href="exploratory-visual-analysis.html#fnref12" class="footnote-back">↩</a></p></li>
+<li id="fn13"><p><a href="https://www.nytimes.com/2012/05/20/sunday-review/the-debate-over-the-american-community-survey.html" class="uri">https://www.nytimes.com/2012/05/20/sunday-review/the-debate-over-the-american-community-survey.html</a><a href="exploratory-visual-analysis.html#fnref13" class="footnote-back">↩</a></p></li>
+<li id="fn14"><p><a href="https://www2.census.gov/programs-surveys/acs/methodology/design_and_methodology/acs_design_methodology_report_2014.pdf" class="uri">https://www2.census.gov/programs-surveys/acs/methodology/design_and_methodology/acs_design_methodology_report_2014.pdf</a><a href="exploratory-visual-analysis.html#fnref14" class="footnote-back">↩</a></p></li>
+<li id="fn15"><p><a href="https://www.census.gov/content/dam/Census/library/publications/2018/acs/acs_general_handbook_2018_ch03.pdf" class="uri">https://www.census.gov/content/dam/Census/library/publications/2018/acs/acs_general_handbook_2018_ch03.pdf</a><a href="exploratory-visual-analysis.html#fnref15" class="footnote-back">↩</a></p></li>
+<li id="fn16"><p><a href="https://vita.had.co.nz/papers/tidy-data.pdf" class="uri">https://vita.had.co.nz/papers/tidy-data.pdf</a><a href="exploratory-visual-analysis.html#fnref16" class="footnote-back">↩</a></p></li>
+<li id="fn17"><p><a href="https://vita.had.co.nz/papers/tidy-data.pdf" class="uri">https://vita.had.co.nz/papers/tidy-data.pdf</a><a href="exploratory-visual-analysis.html#fnref17" class="footnote-back">↩</a></p></li>
+<li id="fn18"><p><a href="https://en.wikipedia.org/wiki/Censoring_(statistics)" class="uri">https://en.wikipedia.org/wiki/Censoring_(statistics)</a><a href="exploratory-visual-analysis.html#fnref18" class="footnote-back">↩</a></p></li>
+<li id="fn19"><p><a href="https://stats.stackexchange.com/questions/49443/how-to-model-this-odd-shaped-distribution-almost-a-reverse-j" class="uri">https://stats.stackexchange.com/questions/49443/how-to-model-this-odd-shaped-distribution-almost-a-reverse-j</a><a href="exploratory-visual-analysis.html#fnref19" class="footnote-back">↩</a></p></li>
+<li id="fn20"><p><a href="https://www.census.gov/data/tables/2018/demo/education-attainment/cps-detailed-tables.html" class="uri">https://www.census.gov/data/tables/2018/demo/education-attainment/cps-detailed-tables.html</a><a href="exploratory-visual-analysis.html#fnref20" class="footnote-back">↩</a></p></li>
 </ol>
 </div>
             </section>

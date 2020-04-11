@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 15 Visualizing beyond 2-dimensions | Urban Informatics Toolkit</title>
   <meta name="description" content="A hands on introduction approach to analyzing the urban Commons." />
-  <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 15 Visualizing beyond 2-dimensions | Urban Informatics Toolkit" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Josiah Parry" />
 
 
-<meta name="date" content="2020-04-04" />
+<meta name="date" content="2020-04-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -53,9 +53,9 @@
 
 
 <style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
@@ -64,16 +64,14 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
 }
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
+    border: none; pointer-events: all; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -82,9 +80,9 @@ pre.numberSource code > span > a:first-child::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {   }
+  {  }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+a.sourceLine::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -157,7 +155,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="part"><span><b>IV Case Studies</b></span></li>
 <li class="chapter" data-level="19" data-path="case-study-twitter-data.html"><a href="case-study-twitter-data.html"><i class="fa fa-check"></i><b>19</b> Case Study: Twitter Data</a></li>
 <li class="chapter" data-level="20" data-path="various-things-that-i-didnt-cover-well.html"><a href="various-things-that-i-didnt-cover-well.html"><i class="fa fa-check"></i><b>20</b> Various things that i didn’t cover well</a></li>
-<li class="chapter" data-level="21" data-path="schools-of-urban-informatics.html"><a href="schools-of-urban-informatics.html"><i class="fa fa-check"></i><b>21</b> Schools of Urban Informatics</a></li>
+<li class="chapter" data-level="21" data-path="approaches-to-and-schools-of-urban-informatics.html"><a href="approaches-to-and-schools-of-urban-informatics.html"><i class="fa fa-check"></i><b>21</b> Approaches to, and Schools of, Urban Informatics</a></li>
 <li class="chapter" data-level="22" data-path="broken-windows-and-the-origin-of-ecometrics.html"><a href="broken-windows-and-the-origin-of-ecometrics.html"><i class="fa fa-check"></i><b>22</b> Broken Windows and the origin of Ecometrics</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/josiahparry/urban-informatics-toolkit" target="blank">GitHub</a></li>
@@ -221,9 +219,9 @@ Each aesthetic can serve a different purpose / used for a different kind of vari
 </ul></li>
 </ul></li>
 </ul>
-<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb216-1"><a href="visualizing-beyond-2-dimensions.html#cb216-1"></a><span class="kw">ggplot</span>(acs_raw, <span class="kw">aes</span>(fam_house_per, age_u18, <span class="dt">color =</span> by_auto)) <span class="op">+</span></span>
-<span id="cb216-2"><a href="visualizing-beyond-2-dimensions.html#cb216-2"></a><span class="st">  </span><span class="kw">geom_point</span>()</span>
-<span id="cb216-3"><a href="visualizing-beyond-2-dimensions.html#cb216-3"></a><span class="co">## Warning: Removed 17 rows containing missing values (geom_point).</span></span></code></pre></div>
+<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb216-1" data-line-number="1"><span class="kw">ggplot</span>(acs_raw, <span class="kw">aes</span>(fam_house_per, age_u18, <span class="dt">color =</span> by_auto)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb216-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>()</a>
+<a class="sourceLine" id="cb216-3" data-line-number="3"><span class="co">## Warning: Removed 17 rows containing missing values (geom_point).</span></a></code></pre></div>
 <p><img src="04d-beyond-2d_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
 <ul>
 <li>we can add size to this as well by setting the <code>size</code> aesthetic
@@ -231,9 +229,9 @@ Each aesthetic can serve a different purpose / used for a different kind of vari
 <li>lets see if the more female headed house holds there are affects commuting by car as minors increases</li>
 </ul></li>
 </ul>
-<div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb217-1"><a href="visualizing-beyond-2-dimensions.html#cb217-1"></a><span class="kw">ggplot</span>(acs_raw, <span class="kw">aes</span>(fam_house_per, age_u18, <span class="dt">color =</span> by_auto, <span class="dt">size =</span> fem_head_per)) <span class="op">+</span></span>
-<span id="cb217-2"><a href="visualizing-beyond-2-dimensions.html#cb217-2"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">.2</span>)</span>
-<span id="cb217-3"><a href="visualizing-beyond-2-dimensions.html#cb217-3"></a><span class="co">## Warning: Removed 17 rows containing missing values (geom_point).</span></span></code></pre></div>
+<div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb217-1" data-line-number="1"><span class="kw">ggplot</span>(acs_raw, <span class="kw">aes</span>(fam_house_per, age_u18, <span class="dt">color =</span> by_auto, <span class="dt">size =</span> fem_head_per)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb217-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">.2</span>)</a>
+<a class="sourceLine" id="cb217-3" data-line-number="3"><span class="co">## Warning: Removed 17 rows containing missing values (geom_point).</span></a></code></pre></div>
 <p><img src="04d-beyond-2d_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
 <ul>
 <li>from this chart we can see quite a few things:
@@ -244,23 +242,9 @@ Each aesthetic can serve a different purpose / used for a different kind of vari
 <li>this gives us a good idea of some relationships that we can test with our data at a later point</li>
 </ul></li>
 </ul>
-<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb218-1"><a href="visualizing-beyond-2-dimensions.html#cb218-1"></a>minors_lm &lt;-<span class="st"> </span><span class="kw">lm</span>(age_u18 <span class="op">~</span><span class="st"> </span>fam_house_per <span class="op">+</span><span class="st"> </span>by_auto <span class="op">+</span><span class="st"> </span>fem_head_per, <span class="dt">data =</span> acs_raw)</span>
-<span id="cb218-2"><a href="visualizing-beyond-2-dimensions.html#cb218-2"></a></span>
-<span id="cb218-3"><a href="visualizing-beyond-2-dimensions.html#cb218-3"></a>huxtable<span class="op">::</span><span class="kw">huxreg</span>(minors_lm)</span>
-<span id="cb218-4"><a href="visualizing-beyond-2-dimensions.html#cb218-4"></a><span class="co">## Registered S3 methods overwritten by &#39;broom.mixed&#39;:</span></span>
-<span id="cb218-5"><a href="visualizing-beyond-2-dimensions.html#cb218-5"></a><span class="co">##   method         from </span></span>
-<span id="cb218-6"><a href="visualizing-beyond-2-dimensions.html#cb218-6"></a><span class="co">##   augment.lme    broom</span></span>
-<span id="cb218-7"><a href="visualizing-beyond-2-dimensions.html#cb218-7"></a><span class="co">##   augment.merMod broom</span></span>
-<span id="cb218-8"><a href="visualizing-beyond-2-dimensions.html#cb218-8"></a><span class="co">##   glance.lme     broom</span></span>
-<span id="cb218-9"><a href="visualizing-beyond-2-dimensions.html#cb218-9"></a><span class="co">##   glance.merMod  broom</span></span>
-<span id="cb218-10"><a href="visualizing-beyond-2-dimensions.html#cb218-10"></a><span class="co">##   glance.stanreg broom</span></span>
-<span id="cb218-11"><a href="visualizing-beyond-2-dimensions.html#cb218-11"></a><span class="co">##   tidy.brmsfit   broom</span></span>
-<span id="cb218-12"><a href="visualizing-beyond-2-dimensions.html#cb218-12"></a><span class="co">##   tidy.gamlss    broom</span></span>
-<span id="cb218-13"><a href="visualizing-beyond-2-dimensions.html#cb218-13"></a><span class="co">##   tidy.lme       broom</span></span>
-<span id="cb218-14"><a href="visualizing-beyond-2-dimensions.html#cb218-14"></a><span class="co">##   tidy.merMod    broom</span></span>
-<span id="cb218-15"><a href="visualizing-beyond-2-dimensions.html#cb218-15"></a><span class="co">##   tidy.rjags     broom</span></span>
-<span id="cb218-16"><a href="visualizing-beyond-2-dimensions.html#cb218-16"></a><span class="co">##   tidy.stanfit   broom</span></span>
-<span id="cb218-17"><a href="visualizing-beyond-2-dimensions.html#cb218-17"></a><span class="co">##   tidy.stanreg   broom</span></span></code></pre></div>
+<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb218-1" data-line-number="1">minors_lm &lt;-<span class="st"> </span><span class="kw">lm</span>(age_u18 <span class="op">~</span><span class="st"> </span>fam_house_per <span class="op">+</span><span class="st"> </span>by_auto <span class="op">+</span><span class="st"> </span>fem_head_per, <span class="dt">data =</span> acs_raw)</a>
+<a class="sourceLine" id="cb218-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb218-3" data-line-number="3">huxtable<span class="op">::</span><span class="kw">huxreg</span>(minors_lm)</a></code></pre></div>
 <table class="huxtable" style="border-collapse: collapse; margin-bottom: 2em; margin-top: 2em; width: 50%; margin-left: auto; margin-right: auto;  ">
 <col><col><tr>
 <td style="vertical-align: top; text-align: center; white-space: nowrap; border-style: solid solid solid solid; border-width: 0.8pt 0pt 0pt 0pt; padding: 4pt 4pt 4pt 4pt;"></td>
@@ -326,12 +310,12 @@ Each aesthetic can serve a different purpose / used for a different kind of vari
 </ul>
 <p>Color Ramps:</p>
 <ul>
-<li><p>diverging when there is a true middle</p></li>
+<li>diverging when there is a true middle</li>
 <li><p>dark is low bright is high</p></li>
-<li><p>most data analyses start with a visualization.</p></li>
-<li><p>the data we have will dictate the type of visualizations we create</p></li>
-<li><p>there are many many different ways in which data can be represented</p></li>
-<li><p>generally these can be bucketed into a few major categories</p>
+<li>most data analyses start with a visualization.</li>
+<li>the data we have will dictate the type of visualizations we create</li>
+<li>there are many many different ways in which data can be represented</li>
+<li>generally these can be bucketed into a few major categories
 <ul>
 <li>numeric
 <ul>

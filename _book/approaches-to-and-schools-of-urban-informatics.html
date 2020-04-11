@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 21 Approaches to and Schools of Urban Informatics | Urban Informatics Toolkit</title>
+  <meta name="description" content="A hands on introduction approach to analyzing the urban Commons." />
+  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 21 Approaches to and Schools of Urban Informatics | Urban Informatics Toolkit" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="A hands on introduction approach to analyzing the urban Commons." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 21 Approaches to and Schools of Urban Informatics | Urban Informatics Toolkit" />
+  
+  <meta name="twitter:description" content="A hands on introduction approach to analyzing the urban Commons." />
+  
+
+<meta name="author" content="Josiah Parry" />
+
+
+<meta name="date" content="2020-04-11" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="various-things-that-i-didnt-cover-well.html"/>
+<link rel="next" href="broken-windows-and-the-origin-of-ecometrics.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Urban Informatics Toolkit</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Welcome</a></li>
+<li class="chapter" data-level="2" data-path="the-basics.html"><a href="the-basics.html"><i class="fa fa-check"></i><b>2</b> The basics</a></li>
+<li class="chapter" data-level="3" data-path="r-as-a-calculator.html"><a href="r-as-a-calculator.html"><i class="fa fa-check"></i><b>3</b> R as a calculator</a></li>
+<li class="part"><span><b>I Toolkit Foundations</b></span></li>
+<li class="chapter" data-level="4" data-path="exploratory-visual-analysis.html"><a href="exploratory-visual-analysis.html"><i class="fa fa-check"></i><b>4</b> Exploratory Visual Analysis</a></li>
+<li class="chapter" data-level="5" data-path="reading-data.html"><a href="reading-data.html"><i class="fa fa-check"></i><b>5</b> Reading data</a></li>
+<li class="chapter" data-level="6" data-path="general-data-manipulation.html"><a href="general-data-manipulation.html"><i class="fa fa-check"></i><b>6</b> General data manipulation</a></li>
+<li class="chapter" data-level="7" data-path="thats-too-much-data.html"><a href="thats-too-much-data.html"><i class="fa fa-check"></i><b>7</b> That’s <em>too much</em> data</a></li>
+<li class="chapter" data-level="8" data-path="the-pipe.html"><a href="the-pipe.html"><i class="fa fa-check"></i><b>8</b> The pipe <code>%&gt;%</code></a></li>
+<li class="chapter" data-level="9" data-path="data-structures.html"><a href="data-structures.html"><i class="fa fa-check"></i><b>9</b> Data Structures</a></li>
+<li class="chapter" data-level="10" data-path="summary-statistics.html"><a href="summary-statistics.html"><i class="fa fa-check"></i><b>10</b> Summary statistics</a></li>
+<li class="chapter" data-level="11" data-path="summarizing-the-tidy-way.html"><a href="summarizing-the-tidy-way.html"><i class="fa fa-check"></i><b>11</b> summarizing the tidy way</a></li>
+<li class="part"><span><b>II Vizualization Strategies</b></span></li>
+<li class="chapter" data-level="12" data-path="layered-i.html"><a href="layered-i.html"><i class="fa fa-check"></i><b>12</b> Grammer of layered graphics I</a></li>
+<li class="chapter" data-level="13" data-path="visualizing-trends-and-relationships.html"><a href="visualizing-trends-and-relationships.html"><i class="fa fa-check"></i><b>13</b> Visualizing Trends and Relationships</a></li>
+<li class="chapter" data-level="14" data-path="grammer-of-layered-graphics-ii.html"><a href="grammer-of-layered-graphics-ii.html"><i class="fa fa-check"></i><b>14</b> Grammer of layered graphics II</a></li>
+<li class="chapter" data-level="15" data-path="visualizing-beyond-2-dimensions.html"><a href="visualizing-beyond-2-dimensions.html"><i class="fa fa-check"></i><b>15</b> Visualizing beyond 2-dimensions</a></li>
+<li class="part"><span><b>III More than hammer and nails</b></span></li>
+<li class="chapter" data-level="16" data-path="multiple-data-sets.html"><a href="multiple-data-sets.html"><i class="fa fa-check"></i><b>16</b> Multiple data sets</a></li>
+<li class="chapter" data-level="17" data-path="spatial-analysis.html"><a href="spatial-analysis.html"><i class="fa fa-check"></i><b>17</b> Spatial Analysis</a></li>
+<li class="chapter" data-level="18" data-path="creating-ecometrics.html"><a href="creating-ecometrics.html"><i class="fa fa-check"></i><b>18</b> Creating Ecometrics</a></li>
+<li class="part"><span><b>IV Case Studies</b></span></li>
+<li class="chapter" data-level="19" data-path="case-study-twitter-data.html"><a href="case-study-twitter-data.html"><i class="fa fa-check"></i><b>19</b> Case Study: Twitter Data</a></li>
+<li class="chapter" data-level="20" data-path="various-things-that-i-didnt-cover-well.html"><a href="various-things-that-i-didnt-cover-well.html"><i class="fa fa-check"></i><b>20</b> Various things that i didn’t cover well</a></li>
+<li class="chapter" data-level="21" data-path="approaches-to-and-schools-of-urban-informatics.html"><a href="approaches-to-and-schools-of-urban-informatics.html"><i class="fa fa-check"></i><b>21</b> Approaches to and Schools of Urban Informatics</a></li>
+<li class="chapter" data-level="22" data-path="broken-windows-and-the-origin-of-ecometrics.html"><a href="broken-windows-and-the-origin-of-ecometrics.html"><i class="fa fa-check"></i><b>22</b> Broken Windows and the origin of Ecometrics</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/josiahparry/urban-informatics-toolkit" target="blank">GitHub</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Urban Informatics Toolkit</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="approaches-to-and-schools-of-urban-informatics" class="section level1">
+<h1><span class="header-section-number">Chapter 21</span> Approaches to and Schools of Urban Informatics</h1>
+<div id="scientific-approaches" class="section level2">
+<h2><span class="header-section-number">21.1</span> Scientific approaches</h2>
+<p>In the sciences generally, there are two approaches to scientific inquiry: inductive and deductive. These two approaches can be best characterized as “bottom up” and “top down” respectively. Each has their own origins, strengths, and weaknesses. An argument has been raging—in the scientific sense of raging—since the 17th century about which approach is the best one. My answer to this? Both, and neither. And you’ll see why shortly.</p>
+<p>Let’s start by getting a grasp on deductive approaches (also referred to as deduction). With deduction we start with a theory about the workings of some observed phenomenon. From this theory, we create a hypothesis, then observe (or collect data on) the phenomenon. With this data we then confirm or refute our theory. This is how we all have, most likely, been taught about the scientific method.</p>
+<p>Induction works in a reverse order. It works by looking at the natural world and doing just that, looking. It works by noticing something—a pattern, a unique occurrence—then noticing it again, and then again, and then under slightly different conditions. From those observations, we draw hypothesis. We then observe yet again and see if we can refute or add a little bit more credibility to our findings. Then from doing this time and again, we can build a theory. It’s somewhat like Sherlock and Watson finding clues and then coming to (frighteningly specific) conclusions. These theories, no matter how we get there, are the frameworks that we use to try and explain phenomena that we see.</p>
+</div>
+<div id="the-chicago-school" class="section level2">
+<h2><span class="header-section-number">21.2</span> The Chicago School</h2>
+<p>Much of what is known as the urban sciences today can be traced back to the late 19th and early 20th centuries at the University of Chicago. The University of Chicago was at the time the epicenter of the new field of American Sociology which came to be known as the Chicago School. In that era, the social sciences were seeking to create grand theories of the world. Take, for example, the new field of Anthropology that crafted theories about the origins of the human race. The Chicago School “fostered a very different view of sociology: first-hand data collection was to be emphasized; research on the particular case or setting was to be stressed; induction over deduction was to be promoted” (Turner, 1988).</p>
+<p>Scholars such as Robert Park, Ernest Burgess, and Louis Wirth developed a number of micro-theories to understand the city. Most notably is the culminating work The City by Park and Burgess, a collection of essays that encapsulate decades of careful observation that led to a number of theories that still have influence today. Their body of work, important in so many ways, is an early paragon of an inductive approach to social research.</p>
+</div>
+<div id="complexity-and-santa-fe-institute" class="section level2">
+<h2><span class="header-section-number">21.3</span> Complexity and Santa Fe Institute</h2>
+<p>On the other end of the spectrum rest the Santa Fe Institute (SFI) and their complexity science.</p>
+<hr />
+<ul>
+<li>inductive vs deductive approaches to science has been a point of argument since the 17th century.</li>
+<li>these two theories can be best characterized as “top down” and “bottom up” approaches to</li>
+<li>deductive approaches (i.e. we are deducing) start with a theory about the workings of some observed phenomenon
+<ul>
+<li>this is how we have most likely been taught science</li>
+<li>then a hypothesis is created about the function of a theory</li>
+<li>then we observe phenomena, collect data, and the confirm or refute our theory</li>
+</ul></li>
+<li>inductive approaches work in a reverse order
+<ul>
+<li>inductive approaches to science are characterized by making observations of the natural world</li>
+<li>observing some pattern in these observations</li>
+<li><em>then</em> drawing tentative conclusions from them</li>
+<li>try to observe the patten more frequently or in other locations and then confirm those hypothesis and then build a theory</li>
+<li>think of sherlock and watson looking for clues and them coming to conclusions from them</li>
+</ul></li>
+<li>what is a theory?
+<ul>
+<li>we can think of theories as frameworks that scientists use to explain observed phonemona</li>
+<li></li>
+</ul></li>
+</ul>
+</div>
+<div id="chicago-school" class="section level2">
+<h2><span class="header-section-number">21.4</span> Chicago School</h2>
+<ul>
+<li>The University of Chicago plays a central role in both the creation of the field of american sociology and urban theory.</li>
+<li>Research that came out of the sociology department of the University of Chicago in 1890s and early 20th century is called the chicago school.</li>
+<li>at the time the social sciences were dominated by political science, anthropology, history, the new field of economics.
+<ul>
+<li>they were highly critical of the new field of sociology</li>
+<li>it was believed that general theory “confer[ed] academic respectability” (Roscoe Hinkle 1980, p 207 from Turner)</li>
+<li>Chicago school “fostered a very different view of sociology: first-hand data collection was to be emphasized; research on the particular case or setting was to be stressed; induction over deduction was to be promoted”</li>
+</ul></li>
+<li>Sociological origins</li>
+<li>the chicago school
+<ul>
+<li>Park and Burgess</li>
+<li>the key findings from <em>The City</em></li>
+<li>Discuss <em>how</em> these findings were generated
+<ul>
+<li>inductive approaches to theory, ONLY</li>
+</ul></li>
+</ul></li>
+<li>the sante fe school
+<ul>
+<li>this is the complete other end of the example</li>
+<li>sante fe is a group of physical scientists looking to use hyper-modern techniques and apply theory to observed social data</li>
+<li>this group has a general set of theories that they use to evaluate urban life</li>
+</ul></li>
+<li>where does the Boston School fit in?
+<ul>
+<li>let’s step back to understand the two general approaches to scientific inquiry
+<ol style="list-style-type: decimal">
+<li>Inductive - finding something from the data (think chicago)</li>
+<li>Deductive - having a theory and setting out to explicitly test that (think psychology experiment)</li>
+</ol></li>
+<li>Overview of inductive</li>
+<li>Overview of deductive</li>
+<li>the Boston School is a hybrid approach</li>
+<li>Next Chapter: Let us use the example of broken windows theory and the development of ecometrics</li>
+</ul></li>
+</ul>
+<p>some questions to ponder:</p>
+<ul>
+<li>what is a strnegth of the chicago school?</li>
+<li>what is the strength of the santa fe institute?
+<ul>
+<li><a href="https://www.santafe.edu/research/projects/cities-scaling-sustainability" class="uri">https://www.santafe.edu/research/projects/cities-scaling-sustainability</a></li>
+</ul></li>
+<li>what do you think is the ideal approach? is it one or the other? a blend? something entirely new?</li>
+</ul>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="various-things-that-i-didnt-cover-well.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="broken-windows-and-the-origin-of-ecometrics.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["urban-commons-toolkit.pdf", "urban-commons-toolkit.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

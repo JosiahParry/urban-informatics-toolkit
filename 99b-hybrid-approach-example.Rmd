@@ -50,13 +50,8 @@ glimpse(ecometrics)
 Check out 
 
 ```{r}
-raw_911 <- read_csv("data/911/911-raw.csv", n_max = 5000) %>% 
-  janitor::clean_names()
-```
-
-```{r rows.max=20}
-raw_911 %>% 
-  filter(str_detect(offense_description, coll("battery", T)))
+# raw_911 <- read_csv("data/911/911-raw.csv", n_max = 5000) %>% 
+#   janitor::clean_names()
 ```
 
 

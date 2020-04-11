@@ -1,7 +1,65 @@
-# Schools of Urban Informatics 
+# Approaches to and Schools of Urban Informatics 
 
 
 
+## Scientific approaches
+
+In the sciences generally, there are two approaches to scientific inquiry: inductive and deductive. These two approaches can be best characterized as “bottom up” and “top down” respectively. Each has their own origins, strengths, and weaknesses. An argument has been raging—in the scientific sense of raging—since the 17th century about which approach is the best one. My answer to this? Both, and neither. And you’ll see why shortly. 
+
+Let’s start by getting a grasp on deductive approaches (also referred to as deduction). With deduction we start with a theory about the workings of some observed phenomenon. From this theory, we create a hypothesis, then observe (or collect data on) the phenomenon. With this data we then confirm or refute our theory. This is how we all have, most likely, been taught about the scientific method. 
+
+Induction works in a reverse order. It works by looking at the natural world and doing just that, looking. It works by noticing something—a pattern, a unique occurrence—then noticing it again, and then again, and then under slightly different conditions. From those observations, we draw hypothesis. We then observe yet again and see if we can refute or add a little bit more credibility to our findings. Then from doing this time and again, we can build a theory. It’s somewhat like Sherlock and Watson finding clues and then coming to (frighteningly specific) conclusions. These theories, no matter how we get there, are the frameworks that we use to try and explain phenomena that we see. 
+
+## The Chicago School
+
+Much of what is known as the urban sciences today can be traced back to the late 19th and early 20th centuries at the University of Chicago. The University of Chicago was at the time the epicenter of the new field of American Sociology which came to be known as the Chicago School. In that era, the social sciences were seeking to create grand theories of the world. Take, for example, the new field of Anthropology that crafted theories about the origins of the human race. The Chicago School "fostered a very different view of sociology: first-hand data collection was to be emphasized; research on the particular case or setting was to be stressed; induction over deduction was to be promoted" (Turner, 1988). 
+
+Scholars such as Robert Park, Ernest Burgess, and Louis Wirth developed a number of micro-theories to understand the city. Most notably is the culminating work The City by Park and Burgess, a collection of essays that encapsulate decades of careful observation that led to a number of theories that still have influence today. Their body of work, important in so many ways, is an early paragon of an inductive approach to social research. 
+
+## Complexity and Santa Fe Institute 
+
+On the other end of the spectrum rest the Santa Fe Institute (SFI) and their complexity science. 
+
+
+
+
+
+
+
+
+----------
+
+
+
+
+- inductive vs deductive approaches to science has been a point of argument since the 17th century. 
+- these two theories can be best characterized as "top down" and "bottom up" approaches to
+- deductive approaches (i.e. we are deducing) start with a theory about the workings of some observed phenomenon
+  - this is how we have most likely been taught science 
+  - then a hypothesis is created about the function of a theory
+  - then we observe phenomena, collect data, and the confirm or refute our theory
+- inductive approaches work in a reverse order
+  - inductive approaches to science are characterized by making observations of the natural world 
+  - observing some pattern in these observations
+  - _then_ drawing tentative conclusions from them
+  - try to observe the patten more frequently or in other locations and then confirm those hypothesis and then build a theory
+  - think of sherlock and watson looking for clues and them coming to conclusions from them 
+
+
+
+- what is a theory?
+  - we can think of theories as frameworks that scientists use to explain observed phonemona
+  - 
+  
+  
+## Chicago School
+
+- The University of Chicago plays a central role in both the creation of the field of american sociology and urban theory. 
+- Research that came out of the sociology department of the University of Chicago in 1890s and early 20th century is called the chicago school. 
+- at the time the social sciences were dominated by political science, anthropology, history, the new field of economics. 
+  - they were highly critical of the new field of sociology
+  - it was believed that general theory "confer[ed] academic respectability" (Roscoe Hinkle 1980, p 207 from Turner)
+  - Chicago school "fostered a very different view of sociology: first-hand data collection was to be emphasized; research on the particular case or setting was to be stressed; induction over deduction was to be promoted"
 
 
 - Sociological origins

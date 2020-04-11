@@ -108,8 +108,7 @@ commute %>%
 ##  9 WORCE…         0.139        0.455       0.256      0.126          0.0246
 ## 10 WORCE…         0.0912       0.649       0.218      0.0179         0.0235
 ## # … with 1,468 more rows, and 5 more variables: by_auto <dbl>,
-## #   by_pub_trans <dbl>, by_bike <dbl>, by_walk <dbl>,
-## #   med_house_income <dbl>
+## #   by_pub_trans <dbl>, by_bike <dbl>, by_walk <dbl>, med_house_income <dbl>
 ```
 
 However, if we look at comments above the tibble, we see something new: `# Groups: county [15]`. This tells us a couple of things. First that the groups were created using the `county` column, that there are fifteen groups, and that the data frame is now grouped implying that any future `mutate()` or `summarise()` calls will be performed on the specified groups. If we then look at the class of that grouped tibble we see that there is a new class introduced which is `grouped_df`.

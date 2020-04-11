@@ -75,10 +75,10 @@ The above histogram shows gaps in between buckets of the histogram. On a first g
 ```r
 (moved_counts <- table(acs$med_yr_moved_inraw))
 ## 
-## 1991 1995 1996 1997 1998 1999 2000 2001 2002 2003 2004 2005 2006 2007 2008 
-##    1    2    5    7   14   31   56   77  108  121  141  109  113   84   73 
-## 2009 2010 2011 2012 2013 
-##   67  125  140   29    8
+## 1991 1995 1996 1997 1998 1999 2000 2001 2002 2003 2004 2005 2006 2007 2008 2009 
+##    1    2    5    7   14   31   56   77  108  121  141  109  113   84   73   67 
+## 2010 2011 2012 2013 
+##  125  140   29    8
 
 glue::glue("There are {length(moved_counts)} unique values")
 ## There are 20 unique values
