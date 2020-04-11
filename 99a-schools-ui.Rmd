@@ -4,10 +4,13 @@
 source("common.R")
 ```
 
-In the field of Urban Informatics, and the digital humanities more generally, there are three distinct scientific approaches. I will first introduce two of them and the expemplary schools from which they may be traced back to in urban studies. 
 
-- i will first address inductive and deductive scientific processes each with an example
-- lastly i will discuss a newer, more hybrid approach 
+In the sciences generally, there are two approaches to scientific inquiry: inductive and deductive. These two approaches can be best characterized as “bottom up” and “top down” respectively. Each has their own origins, strengths, and weaknesses. An argument has been raging—in the scientific sense of raging—since the 17th century about which approach is the best one. My answer to this? Both, and neither. And you’ll see why shortly. 
+
+Let’s start by getting a grasp on deductive approaches (also referred to as deduction). With deduction we start with a theory about the workings of some observed phenomenon. From this theory, we create a hypothesis, then observe (or collect data on) the phenomenon. With this data we then confirm or refute our theory. This is how we all have, most likely, been taught about the scientific method. 
+
+Induction works in a reverse order. 
+
 
 
 - inductive vs deductive approaches to science has been a point of argument since the 17th century. 
