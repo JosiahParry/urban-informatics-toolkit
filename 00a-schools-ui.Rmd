@@ -1,6 +1,8 @@
 # Approaches to and Schools of Urban Informatics 
 
-
+```{r, include=FALSE}
+source("common.R")
+```
 
 ## Scientific approaches
 

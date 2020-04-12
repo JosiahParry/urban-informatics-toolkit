@@ -1,8 +1,6 @@
 # Approaches to and Schools of Urban Informatics 
 
-```{r, include=FALSE}
-source("common.R")
-```
+
 
 ## Scientific approaches
 
@@ -38,66 +36,21 @@ https://santafe.edu/research/themes/mental-models-complexity
 
 ## A Hybrid Approach 
 
-- Situated somewhere in the middle is the Boston Area Research Initiative (BARI).
+As part of this proliferation of big data we have more and better data within reach. As such we are able to, perhaps even encouraged to, take a much more hybrid approach. Within the these data are a multitude of opportunities to explore and glean patterns that we may have been so subtle that it hasn't been observed before. Or, alternatively, the data had not been collected before. This allows us to take a much more inductive approach where we can craft theories from the patterns that we observe, then we can test those theories in creative ways. It is here where, I believe, that the Boston Area Research Initiative (BARI) rests on the spectrum. 
+
+![](static/hybrid-approach.png)
+
+This hybrid methodology incorporates both inductive and deductive approaches.
 - BARI is a product of this proliferation of data with a lot of influence coming directly from the Chicago School 
 
 
 
-
-
-
-
-----------
-
-
-
-
-- inductive vs deductive approaches to science has been a point of argument since the 17th century. 
-- these two theories can be best characterized as "top down" and "bottom up" approaches to
-- deductive approaches (i.e. we are deducing) start with a theory about the workings of some observed phenomenon
-  - this is how we have most likely been taught science 
-  - then a hypothesis is created about the function of a theory
-  - then we observe phenomena, collect data, and the confirm or refute our theory
-- inductive approaches work in a reverse order
-  - inductive approaches to science are characterized by making observations of the natural world 
-  - observing some pattern in these observations
-  - _then_ drawing tentative conclusions from them
-  - try to observe the patten more frequently or in other locations and then confirm those hypothesis and then build a theory
-  - think of sherlock and watson looking for clues and them coming to conclusions from them 
-
+---------
 
 
 - what is a theory?
   - we can think of theories as frameworks that scientists use to explain observed phonemona
-  - 
-  
-  
-## Chicago School
 
-- The University of Chicago plays a central role in both the creation of the field of american sociology and urban theory. 
-- Research that came out of the sociology department of the University of Chicago in 1890s and early 20th century is called the chicago school. 
-- at the time the social sciences were dominated by political science, anthropology, history, the new field of economics. 
-  - they were highly critical of the new field of sociology
-  - it was believed that general theory "confer[ed] academic respectability" (Roscoe Hinkle 1980, p 207 from Turner)
-  - Chicago school "fostered a very different view of sociology: first-hand data collection was to be emphasized; research on the particular case or setting was to be stressed; induction over deduction was to be promoted"
-
-
-- Sociological origins
-- the chicago school
-  - Park and Burgess
-  - the key findings from _The City_
-  - Discuss _how_ these findings were generated
-    - inductive approaches to theory, ONLY
-- the sante fe school
-  - this is the complete other end of the example
-  - sante fe is a group of physical scientists looking to use hyper-modern techniques and apply theory to observed social data
-  - this group has a general set of theories that they use to evaluate urban life
-- where does the Boston School fit in?
-  - let's step back to understand the two general approaches to scientific inquiry
-    1. Inductive - finding something from the data (think chicago)
-    2. Deductive - having a theory and setting out to explicitly test that (think psychology experiment)
-  - Overview of inductive
-  - Overview of deductive
   - the Boston School is a hybrid approach
   - Next Chapter: Let us use the example of broken windows theory and the development of ecometrics
   
