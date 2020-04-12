@@ -1,32 +1,10 @@
 # Exploratory Visual Analysis 
 
 
-```{r, include=FALSE}
-source("common.R")
-```
-
-## Data in the municipal context
-
-The so called "proliferation of data" has created vast troves of data asking to be explored. We are, in essence, in the beginning of a new Gold Rush. But rather than discovering gold, today the gold is both being created an discovered. This explosion of data is the product of improved technology in both the collection and storage of data. 
-
-If we focus our gaze towards the municipal government, the story is similar, progress is slower, and the data are more familiar. Local governments have been collecting data for centuries but until recently it was not always accessible, or even considered "data". Take the city of Boston as an example. Since the 19th century boston has been issuing and recording building permits. Through a massive digitization effort these permits are now accessible in an online database [^1]. Not only are governments slowly turning to modern methods of data storage, but they are also creating applications to encourage citizens to engage with their local governments. Mobile and web applications will hopefully facilitate greater interaction between citizen and government [^2]. Each and every one of these citizen to government interactions are recorded and stored in database—though not all are open and accessible to the citizen scientist. 
-
-Boston has built a few mobile applications for its residents. Notable among these apps are the BOS:311[^3], ParkBoston[^4], the city's least favorite Boston PayTix[^5], and the new Blue Bikes[^6]. Through BOS:311 residents can communicate directly to the Department of Public Works by recording an issue, it's location, and even an image of the issue. Blue Bikes trips, 311 requests, and much more are provided to the public via Analyze Boston, Boston's data portal[^7]. 
-
-This new availability of data has unintentionally altered the way in which scientists interact with data. For the purposes of scientific inquiry, scientists and analysts have historically been rather close to the data generation process. While we as residents and citizens interact with governmental agencies, it is not in the name of science. And the governmental agencies are engagin with residents in for the purpose of governance, not science. As such, much—if not all—of the open and public data that we interact within the urban informatics—and greater digital humanities—fields was not generated with the express purpose of being analyzed. This inherently changes the way in which analyses are approached. 
-
-In approaching data of this nature, researchers have began embracing a paradigm of _exploratory data analysis_ (EDA). EDA is extremely useful for developing insights from data in which there were no a priori[^8] hypotheses. In their influential book R for Data Science, Garret Grolemund and Hadley Wickham describe this inductive approach of exploratory data analysis. 
-
-> Data exploration is the art of looking at your data, rapidly generating hypotheses, quickly testing them, then repeating again and again and again. [^9]
-
-When researchers set out to test a hypothesis they often will become closely involved with the data generation process. In this scenario, researchers are more likely to have preconceived hypotheses and expectiation of what they may find hidden in their data. 
-
-This condition is often not the case when working with open data. We do not always know at the outset of what we are looking for. With open data—and any data really—you never know what you may find if you begin to dig. Whip out your hand shovel and prepare to upturn the soil. You might find seedlings that may sprout into your next study. 
 
 
-## EDA lifecycle 
 
-This chapter will introduce you to visual data exploration through the use of the R package `ggplot2`. You will ask questions of your data, visualize relationships, and draw inferences from the graphics you develop. 
+In the next part of this book we will introduce to you visual data exploration through the use of the R package `ggplot2`. You will ask questions of your data, visualize relationships, and draw inferences from the graphics you develop. 
 
 The below image from R for Data Science is renowned for its representation of the data analysis workflow. The concept map encompasses the need to get data (import), clean it up (tidy), explore, and finally communicate insights. The box in blue is a representation of EDA. Within EDA we will find ourselves transforming our data—creating new variables, aggregating, etc.—visualizing it, and creating statistical models. 
 
@@ -79,15 +57,27 @@ For your first introduction to R, we will explore the relationship between educa
 
 There is no one best way to begin an exploratory analysis to guarantee interesting outcomes. But before one begins their EDA, they must know what their data actually contain. Loaded into your environment already is an object called `acs_edu`. `acs_edu` contains data demographic information about every census tract in Massachusetts. 
 
-```{r, include=FALSE}
-library(tidyverse)
-acs_edu <- read_csv("data/acs_edu.csv")
-```
+
 
 Print `acs_edu` to the console. What do you see?
 
-```{r max.print=10}
+
+```r
 acs_edu
+#> # A tibble: 1,456 x 7
+#>    med_house_income less_than_hs hs_grad some_coll  bach white   black
+#>               <dbl>        <dbl>   <dbl>     <dbl> <dbl> <dbl>   <dbl>
+#>  1           105735       0.0252   0.196     0.221 0.325 0.897 0.0122 
+#>  2            69625       0.0577   0.253     0.316 0.262 0.885 0.0171 
+#>  3            70679       0.0936   0.173     0.273 0.267 0.733 0.0795 
+#>  4            74528       0.0843   0.253     0.353 0.231 0.824 0.0306 
+#>  5            52885       0.145    0.310     0.283 0.168 0.737 0.0605 
+#>  6            64100       0.0946   0.294     0.317 0.192 0.966 0.00256
+#>  7            37093       0.253    0.394     0.235 0.101 0.711 0.0770 
+#>  8            87750       0.0768   0.187     0.185 0.272 0.759 0.0310 
+#>  9            97417       0.0625   0.254     0.227 0.284 0.969 0.00710
+#> 10            43384       0.207    0.362     0.262 0.124 0.460 0.105  
+#> # … with 1,446 more rows
 ```
 
 `## # A tibble: 1,456 x 7` is printed out at the top followed by column names, their types—e.g. `<dbl>`—their respective values and, to the far left we see the numbers 1 through 10 before each row of values. 
@@ -122,7 +112,8 @@ To create our visualizations we will use the package [`ggplot2`](https://ggplot2
 
 > Reminder: `library(pkg_name)` loads a package into your workspace and makes the functions and objects it exports available to you. 
 
-```{r}
+
+```r
 library(ggplot2)
 ```
 
@@ -132,9 +123,12 @@ We will begin constructing our first visualization with the `ggplot()` **functio
 
 > Reminder: Functions are characterised by the parentheses at the end of them. Functions do things whereas objects hold information. 
 
-```{r}
+
+```r
 ggplot(acs_edu)
 ```
+
+<img src="01c-visual-analysis_files/figure-html/unnamed-chunk-5-1.png" width="672" />
  
 Notice that this plot is entirely empty. This is because we have not defined what it is that we want to visualize. ggplot uses what is called a grammar of graphics (this is expanded upon in depth in the _Visualizing Trends and Relationships_ chapter) which requires us to sequentiallly build our graphs by first defining what data and variables will be visualized and then adding layers to the plot.
 
@@ -142,18 +136,24 @@ The next step we need to take is to define which columns we want to visualize. T
 
 Before we begin to analyze the relationship between `med_house_income` and `bach` (bachelor's degree attainment rate), we ought to do our due dilligence of looking at the distribution of each of these first. Let us start with the `med_house_income` column. When exploring only a single variable, we want to supply that to the `x` argument of `aes()`.
 
-```{r}
+
+```r
 ggplot(acs_edu, aes(x = med_house_income))
 ```
+
+<img src="01c-visual-analysis_files/figure-html/unnamed-chunk-6-1.png" width="672" />
 
 Alright, we are making progress. We can see that the x axis is now filled out a bit more. The axis breaks have been labeled as has the axis itself. In order to see the data in a graphical representation, we need to determine how we want to see the data and what sort of geometry will be used to visualize it. 
 
 To **add** geometry to our ggplot, we use the plus sign `+` which signifies that we are adding a layer on top of the basic graph. There are many ways we can visualize univariate data but the histogram has stood the test of time. To create a histogram we **add** the `geom_histogram()` layer to our existing ggplot code. 
 
-```{r, warning=FALSE, message=FALSE}
+
+```r
 ggplot(acs_edu, aes(x = med_house_income)) + 
   geom_histogram()
 ```
+
+<img src="01c-visual-analysis_files/figure-html/unnamed-chunk-7-1.png" width="672" />
 
 > Note: To ensure that our code is legible we add each new layer on a line. R will manage the indentation for you. Code readibility is very important and you will thank yourself later for instilling good practices from the start. 
 
@@ -167,10 +167,13 @@ Usually when we look at distributions of wealth they are extremely right skewed 
 
 Let us now create a histogram of our second variable of interest, `bach`.
 
-```{r, warning=FALSE, message=FALSE}
+
+```r
 ggplot(acs_edu, aes(x = bach)) + 
   geom_histogram()
 ```
+
+<img src="01c-visual-analysis_files/figure-html/unnamed-chunk-8-1.png" width="672" />
 
 This histogram illustrates the distribution of the bachelor degree attainment rate (the proportion of people with a bachelor's degree) across census tracts in Massachusetts. Because we did our homework ahead of time, we know that the national attainment rate in 2018 for people over 25 was ~35%[^acsedu]. Our histogram shows that within MA there is a lot of variation in the attainment rate from a low of about 0% to a high of over 60%. There is not a steep peak in the distribution which tells us that there is a fair amount of variation in the distribution.
 
@@ -182,10 +185,13 @@ When stating research questions we often phrase it as _what is the effect of x *
 
 We can visualize this relationship by adding additional mapped aesthetics. In this case, we will map both the x and y arguments of the `aes()` function. Rather than adding histogram layer, we will need to create a scatter plot. Scatter plots are created by plotting points for each (x, y) pair. To get such an effect we will use the `geom_point()` layer. 
 
-```{r}
+
+```r
 ggplot(acs_edu, aes(x = bach, y = med_house_income)) +
   geom_point()
 ```
+
+<img src="01c-visual-analysis_files/figure-html/unnamed-chunk-9-1.png" width="672" />
 
 The above scatter plot provides a lot of information. We see that there is a positive linear trend—that is that when the `bach` value increases so does the `med_house_income` variable. When looking at a scatter plot we are looking to see if there is a consistent pattern that can be sussed out. 
 
@@ -193,11 +199,15 @@ In this scatterplot we can see that there is a linear pattern. When the points o
 
 Using ggplot, we can plot the estimated linear regression line on top of our scatterplot. This is done with a `geom_smooth()` layer. By default, `geom_smooth()` does not plot the linear relationship. To do that, we need to specify what kind of smoothing we would like. To plot the estimated linear model, we set `method = "lm"`.  
 
-```{r}
+
+```r
 ggplot(acs_edu, aes(x = bach, y = med_house_income)) +
   geom_point() +
   geom_smooth(method = "lm")
+#> `geom_smooth()` using formula 'y ~ x'
 ```
+
+<img src="01c-visual-analysis_files/figure-html/unnamed-chunk-10-1.png" width="672" />
 
 Wonderful! To finish up this graphic, we should add informative labels. Labels live in their own layer which is created with `labs()`. Each argument maps to an aesthetic—e.g. `x` and `y`. By default ggplot uses the column names for axis labels, but these labels are usually uninformative.
 
@@ -207,14 +217,18 @@ Let's give the plot a title and better labels for its axes. We will set the foll
   - `y = "Median Household Income"`
   - `title = "Relationship between Education and Income"`
 
-```{r}
+
+```r
 ggplot(acs_edu, aes(x = bach, y = med_house_income)) +
   geom_point() +
   geom_smooth(method = "lm") +
   labs(x = "% of population with a Bachelor's Degree",
        y = "Median Household Income",
        title = "Relationship between Education and Income")
+#> `geom_smooth()` using formula 'y ~ x'
 ```
+
+<img src="01c-visual-analysis_files/figure-html/unnamed-chunk-11-1.png" width="672" />
 
 > Note that each argument is placed on a new line. Again, this is to improve readability.
 
@@ -234,7 +248,8 @@ We can visualize a third variable on our chart by mapping another `aes`thetic. W
 
 We can map the proportion of the population that is white to the color of our points. We do this by setting the `color` aesthetic to `white`. While we're at it, let us include a subtitle which is informative to the viewer.
 
-```{r}
+
+```r
 ggplot(acs_edu, aes(x = bach, y = med_house_income, color = white)) +
   geom_point(alpha = .4) +
   geom_smooth(method = "lm") + 
@@ -242,7 +257,10 @@ ggplot(acs_edu, aes(x = bach, y = med_house_income, color = white)) +
        y = "Median Household Income",
        title = "Relationship between Education and Income",
        subtitle = "Colored by whiteness") 
+#> `geom_smooth()` using formula 'y ~ x'
 ```
+
+<img src="01c-visual-analysis_files/figure-html/unnamed-chunk-12-1.png" width="672" />
 
 What can we conclude now? Does the addition of the third variable increase or decrease the utility of our scatter plot? Does the trend seem to mediated by race? I'll leave those questions to you to answer.
 
@@ -250,17 +268,7 @@ You've now completed your first visual analysis. You've learned how to create pu
 
 This chapter provided you with data that was used in our visualization exercises. You're going to want to be able to visualize and analyze your own data. The next chapter introduces you reading data and some of the most common file formats you may encounter.
 
-#### Resources and footnotes
 
-[^1]: Boston Building Permits: https://www.boston.gov/departments/inspectional-services/how-find-historical-permit-records
-[^2]: Some note about co-production.
-[^3]: BOS:311: https://itunes.apple.com/us/app/boston-citizens-connect/id330894558?mt=8
-[^4]: ParkBoston: https://apps.apple.com/us/app/parkboston/id953579075
-[^5]: Boston PayTix: https://apps.apple.com/us/app/boston-paytix/id1068651854
-[^6]: BlueBikes:
-[^7]: https://data.boston.gov/
-[^8]: "Relating to or denoting reasoning or knowledge which proceeds from theoretical deduction rather than from observation or experience." [Oxford Dictionary](https://www.lexico.com/definition/a_priori)
-[^9]: https://r4ds.had.co.nz/explore-intro.html
 [^12]: https://www.census.gov/history/www/through_the_decades/index_of_questions/1790_1.html
 [^13]: https://www2.census.gov/programs-surveys/acs/methodology/design_and_methodology/acs_design_methodology_report_2014.pdf
 [^14]: https://www.census.gov/programs-surveys/acs/methodology.html

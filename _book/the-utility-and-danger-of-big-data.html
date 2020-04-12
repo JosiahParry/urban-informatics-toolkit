@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 5 Broken Windows and the origin of Ecometrics | Urban Informatics Toolkit</title>
+  <title>Chapter 2 The Utility and Danger of Big Data | Urban Informatics Toolkit</title>
   <meta name="description" content="A hands on introduction approach to analyzing the urban Commons." />
   <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 5 Broken Windows and the origin of Ecometrics | Urban Informatics Toolkit" />
+  <meta property="og:title" content="Chapter 2 The Utility and Danger of Big Data | Urban Informatics Toolkit" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 5 Broken Windows and the origin of Ecometrics | Urban Informatics Toolkit" />
+  <meta name="twitter:title" content="Chapter 2 The Utility and Danger of Big Data | Urban Informatics Toolkit" />
   
   <meta name="twitter:description" content="A hands on introduction approach to analyzing the urban Commons." />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="approaches-to-and-schools-of-urban-informatics.html"/>
-<link rel="next" href="the-basics.html"/>
+<link rel="prev" href="index.html"/>
+<link rel="next" href="data-in-the-municipal-context.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -134,9 +134,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Welcome</a><ul>
 <li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#what-to-expect"><i class="fa fa-check"></i><b>1.1</b> What to expect</a></li>
 <li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#reminders"><i class="fa fa-check"></i><b>1.2</b> Reminders</a></li>
-<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#setting-the-context"><i class="fa fa-check"></i><b>1.3</b> Setting the Context</a></li>
-<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#timeline"><i class="fa fa-check"></i><b>1.4</b> Timeline</a></li>
-<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#progress-tracker"><i class="fa fa-check"></i><b>1.5</b> Progress Tracker</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#timeline"><i class="fa fa-check"></i><b>1.3</b> Timeline</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#progress-tracker"><i class="fa fa-check"></i><b>1.4</b> Progress Tracker</a></li>
 </ul></li>
 <li class="part"><span><b>I Foundations of Urban Informatics</b></span></li>
 <li class="chapter" data-level="2" data-path="the-utility-and-danger-of-big-data.html"><a href="the-utility-and-danger-of-big-data.html"><i class="fa fa-check"></i><b>2</b> The Utility and Danger of Big Data</a></li>
@@ -147,7 +146,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.3" data-path="approaches-to-and-schools-of-urban-informatics.html"><a href="approaches-to-and-schools-of-urban-informatics.html#complexity-and-santa-fe-institute"><i class="fa fa-check"></i><b>4.3</b> Complexity and Santa Fe Institute</a></li>
 <li class="chapter" data-level="4.4" data-path="approaches-to-and-schools-of-urban-informatics.html"><a href="approaches-to-and-schools-of-urban-informatics.html#a-hybrid-approach"><i class="fa fa-check"></i><b>4.4</b> A Hybrid Approach</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="broken-windows-and-the-origin-of-ecometrics.html"><a href="broken-windows-and-the-origin-of-ecometrics.html"><i class="fa fa-check"></i><b>5</b> Broken Windows and the origin of Ecometrics</a></li>
+<li class="chapter" data-level="5" data-path="ecometrics.html"><a href="ecometrics.html"><i class="fa fa-check"></i><b>5</b> Ecometrics</a></li>
 <li class="part"><span><b>II Toolkit Foundations</b></span></li>
 <li class="chapter" data-level="6" data-path="the-basics.html"><a href="the-basics.html"><i class="fa fa-check"></i><b>6</b> The basics</a><ul>
 <li class="chapter" data-level="6.1" data-path="the-basics.html"><a href="the-basics.html#what-is-r-and-why-do-i-care"><i class="fa fa-check"></i><b>6.1</b> What is R and why do I care?</a></li>
@@ -253,121 +252,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="broken-windows-and-the-origin-of-ecometrics" class="section level1">
-<h1><span class="header-section-number">Chapter 5</span> Broken Windows and the origin of Ecometrics</h1>
-<ul>
-<li>before we can understand ecometrics we need to take a step back and think more about the ways that we work with data</li>
-<li>like we stated earlier, administrative data aren’t collected for the purposes of analysis</li>
-<li>but within them are gems. beautifully inelegant capturing of the societal quotidien</li>
-<li>finding these social observation gems often requires to extract <strong>latent</strong> constructs</li>
-<li></li>
-</ul>
-<p>To Cover:</p>
-<ul>
-<li>sampson &amp; raudenbush systematic social observation: <a href="https://www.journals.uchicago.edu/doi/abs/10.1086/210356" class="uri">https://www.journals.uchicago.edu/doi/abs/10.1086/210356</a></li>
-<li>ecometrics: where was this first coined for the social sciences????</li>
-<li></li>
-</ul>
-<hr />
-<ul>
-<li>1980 “Broken Windows” in the Atlantic</li>
-<li>Posited that the presence of physical disorder led to crime</li>
-<li>this influenced policing policies like stop and frisk
-<ul>
-<li>led to the infamous implementation of <a href="https://nymag.com/intelligencer/2018/03/the-crime-fighting-program-that-changed-new-york-forever.html">CompStat</a></li>
-</ul></li>
-<li>the simplicity of the theory was appealing to public officials. media lapped it up</li>
-<li>social scientists were quick to shoot down the theory, seemed to not matter</li>
-<li>come 1999 Sampson and Raudenbush seek to test this find no conclusion</li>
-<li>much more work comes from it</li>
-<li>most noteably is the use of ecometrics in assessing this. I say most noteably because of its approach
-<ul>
-<li>it combines an inductive approach with a deductive one.</li>
-<li>this is the quintessence of the Boston approach, of course it comes from Dan O’Brien.
-<ul>
-<li>why?:
-<ol style="list-style-type: decimal">
-<li>big data (actually big-ish which is rare in social science)</li>
-<li>The development and use of ecometrics (induction)</li>
-<li>deliberately testing an existing theory (deduction)</li>
-<li>Absolutely crushing it.</li>
-</ol></li>
-</ul></li>
-</ul></li>
-<li>what is an ecometric?
-<ul>
-<li>why is it inductive?
-<ul>
-<li>taking naturally occuring data, and extracting latent (already existing variables)</li>
-<li></li>
-</ul></li>
-</ul></li>
-</ul>
+<div id="the-utility-and-danger-of-big-data" class="section level1">
+<h1><span class="header-section-number">Chapter 2</span> The Utility and Danger of Big Data</h1>
+<p>Urban Informatics is in a way a byproduct of the “deluge” or “proliferation” of data. In essence, as we as a society have progressed technologically, we have been able to capture and store data on a rather unprecedented scale. This has led to massive stores of data that are used primarily for record keeping that are updated at near-real-time. For example, think of every time you make a Facebook post or send a tweet. That post or tweet is subsequently recorded in a remote database to ensure that it can be accessed at a later time. Dan O’Brien notes that this characteristic of big data is of the utmost consequence for “the advancement of science and policy in the digital age” (O’Brien, Urban Commons, p. 59). These naturally occurring data are so useful because they are essentially a track record of individuals’ behavior over time. It is in a way as close as we can get to measuring behavior at real time.</p>
+<p>If we turn to the urban context, the importance of big data may become ever more apparent. For example, Boston local government has been keeping detailed records of property assessments, taxes owed and paid, by whom, their demographic characteristics, when and even where down to the ward level (Boston Public Library, recently digitized records). These administrative records have been kept on ink and paper until just a few decades ago. Through digitization efforts, these data are now accessible to historians, urban scholars, local government, and the general public. Having such data accessible provides a way to quantitatively inspect the development of the city from its geography, its policies, its demography, and much more that we have yet to see uncovered.</p>
+<p>There are a number of benefits that naturally occurring data provide. The first is that these are, in theory, comprehensive and contains information about all residents. Through administrative data we should, for example, be able to determine the number of employed tax paying citizens as well as the underemployed who receive government benefits. Additionally, since these data are already being collected, the associated costs are minimal. In contrast to empirically collected data, administrative data are not just a representation of a single moment in time, but rather continually changing and updating. And due to the fact that administrative data are collected at the municipal level we are inherently dealing with geospatial data—data that have a location associated it.</p>
+<p>While there are many benefits to administrative big data, there are a couple of dangers we ought to be aware of. The first is that even though big data are comprehensive in theory, we cannot always take them as objective observations of the natural world. We must be cognizant of the fact that the biases that humans have are also represented in data. We cannot and should not separate theory from data. To take from Dan O’Brien</p>
 <blockquote>
-<p>Note: a case study should be recreating these ecometrics</p>
+<p>“. . . the very point of science is to explain why things work the wsay they do. . .If we limit our inquiries only to correlation and eschew explanation, we are no longer conducting science.” (O’Brien, 2019, Urban Commons p.61)</p>
 </blockquote>
-<p>Explore what the data description from BARI looks like</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">library</span>(tidyverse)</a></code></pre></div>
-<pre><code>## ── Attaching packages ───────────────────────────────────────────────────────────────────────── tidyverse 1.3.0 ──</code></pre>
-<pre><code>## ✓ ggplot2 3.3.0     ✓ purrr   0.3.3
-## ✓ tibble  3.0.0     ✓ dplyr   0.8.5
-## ✓ tidyr   1.0.2     ✓ stringr 1.4.0
-## ✓ readr   1.3.1     ✓ forcats 0.5.0</code></pre>
-<pre><code>## ── Conflicts ──────────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
-## x dplyr::filter() masks stats::filter()
-## x dplyr::lag()    masks stats::lag()</code></pre>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">ecometrics &lt;-<span class="st"> </span>readr<span class="op">::</span><span class="kw">read_csv</span>(<span class="st">&quot;data/911/911-ecometrics-2014-19.csv&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="st">  </span>janitor<span class="op">::</span><span class="kw">clean_names</span>()</a></code></pre></div>
-<pre><code>## Parsed with column specification:
-## cols(
-##   TYPE = col_character(),
-##   tycod = col_character(),
-##   typ_eng = col_character(),
-##   sub_tycod = col_character(),
-##   sub_eng = col_character(),
-##   SocDis = col_double(),
-##   PrivateConflict = col_double(),
-##   Violence = col_double(),
-##   Guns = col_double(),
-##   Frequency_2015 = col_double(),
-##   Frequency_2016 = col_double(),
-##   Frequency_2017 = col_double(),
-##   Frequency_2018 = col_double(),
-##   yr.intro = col_double(),
-##   last.yr = col_double()
-## )</code></pre>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw">glimpse</span>(ecometrics)</a></code></pre></div>
-<pre><code>## Rows: 302
-## Columns: 15
-## $ type             &lt;chr&gt; &quot;AB===&gt;&gt;&gt;&quot;, &quot;ABAN===&gt;&gt;&gt;&quot;, &quot;ABANBU&quot;, &quot;ABANCELL&quot;, &quot;ABA…
-## $ tycod            &lt;chr&gt; &quot;AB&quot;, &quot;ABAN&quot;, &quot;ABAN&quot;, &quot;ABAN&quot;, &quot;ABAN&quot;, &quot;ABAN&quot;, &quot;ABAN&quot;…
-## $ typ_eng          &lt;chr&gt; &quot;ASSAULT AND BATTERY&quot;, &quot;ABANDONED CALL&quot;, &quot;ABANDONED …
-## $ sub_tycod        &lt;chr&gt; &quot;===&gt;&gt;&gt;&quot;, &quot;===&gt;&gt;&gt;&quot;, &quot;BU&quot;, &quot;CELL&quot;, &quot;INCCAL&quot;, &quot;PH&quot;, &quot;R…
-## $ sub_eng          &lt;chr&gt; &quot;PICK A SUB-TYPE&quot;, &quot;PICK A SUB-TYPE&quot;, &quot;FROM A BUSINE…
-## $ soc_dis          &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…
-## $ private_conflict &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…
-## $ violence         &lt;dbl&gt; 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0…
-## $ guns             &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0…
-## $ frequency_2015   &lt;dbl&gt; 27, 40, 12768, 72081, 686, 1734, 3143, 194, 122, 88,…
-## $ frequency_2016   &lt;dbl&gt; 29, 26, 13287, 56074, 1188, 1205, 2687, 397, 190, 94…
-## $ frequency_2017   &lt;dbl&gt; 29, 17, 12599, 39323, 124, 724, 1944, 253, 162, 74, …
-## $ frequency_2018   &lt;dbl&gt; 14, 10, 6422, 19947, 70, 506, 840, 262, 169, 78, 361…
-## $ yr_intro         &lt;dbl&gt; 2014, 2014, 2014, 2014, 2014, 2014, 2014, 2014, 2014…
-## $ last_yr          &lt;dbl&gt; 2019, 2018, 2019, 2019, 2019, 2019, 2019, 2019, 2019…</code></pre>
-<p>Check out</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="co"># raw_911 &lt;- read_csv(&quot;data/911/911-raw.csv&quot;, n_max = 5000) %&gt;% </span></a>
-<a class="sourceLine" id="cb9-2" data-line-number="2"><span class="co">#   janitor::clean_names()</span></a></code></pre></div>
-<div id="resources" class="section level3">
-<h3><span class="header-section-number">5.0.1</span> Resources:</h3>
-<ul>
-<li><a href="https://www.annualreviews.org/doi/abs/10.1146/annurev-criminol-011518-024638?journalCode=criminol" class="uri">https://www.annualreviews.org/doi/abs/10.1146/annurev-criminol-011518-024638?journalCode=criminol</a></li>
-<li>Large-scale data use, ecometrics to assess disorder: <a href="https://journals.sagepub.com/doi/abs/10.1177/0022427815577835" class="uri">https://journals.sagepub.com/doi/abs/10.1177/0022427815577835</a></li>
-</ul>
-
-</div>
-</div>
-
-
+<p>Furthermore, we should always be wary of the data that we use. Investigate its integrity, its source, its measurment constructs for what we may be using to understand one thing may be something else which we may not anticipate or expect. And laslty, always be aware of the ways in which you may be bringing in your own world views into your work as what we are after is not confirmation but understanding.</p>
 
 </div>
             </section>
@@ -375,8 +269,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="approaches-to-and-schools-of-urban-informatics.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="the-basics.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="data-in-the-municipal-context.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -426,6 +320,20 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>

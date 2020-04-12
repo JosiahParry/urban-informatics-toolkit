@@ -1,6 +1,10 @@
-# Broken Windows and the origin of Ecometrics
+# Ecometrics
 
-
+- before we can understand ecometrics we need to take a step back and think more about the ways that we work with data
+- like we stated earlier, administrative data aren't collected for the purposes of analysis
+- but within them are gems. beautifully inelegant capturing of the societal quotidien
+- finding these social observation gems often requires to extract **latent** constructs
+- 
 
 
 To Cover:

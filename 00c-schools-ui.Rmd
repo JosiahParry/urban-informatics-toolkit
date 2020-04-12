@@ -20,46 +20,19 @@ Scholars such as Robert Park, Ernest Burgess, and Louis Wirth developed a number
 
 ## Complexity and Santa Fe Institute 
 
-On the other end of the spectrum rest the Santa Fe Institute (SFI) and their complexity science. 
+On the other end of the spectrum rest the Santa Fe Institute (SFI) and their complexity science. The SFI's mission is to "endeavor to understand and unify the underlying, shared patterns in complex physical, biological, social, cultural, technological, and even possible astrobiological worlds."[^complexity] Crudely, it is their goal to unify theory into one general master theory. Central to their theoretical focus is the the view that "valuable ideas are often confined to the echo chambers of academia."[^complexity] In this view, they are not wrong. 
 
-
-
-https://santafe.edu/research/themes/mental-models-complexity
-
-
-- Their mission is to “Our researchers endeavor to understand and unify the underlying, shared patterns in complex physical, biological, social, cultural, technological, and even possible astrobiological worlds” 
-- In a sense they are after the master theory
-- they call this complexity science. 
-- They, like myself, take the view that “valuable ideas are often confined to the echo chambers of academia.” And for the most part, they aren’t wrong. 
-- Adapt scientific methods and theories from the physical sciences to those of the social nature
-- use  “theories of scaling from biology” to contribute to urban planning
-- focus on the interconnectivity of the world
-- that if you can understand the networks you can understand the world
+Their work is important for bridging many so called gaps between disciplines. They apply biological theories of scaling to those of human development. And their findings have been fruitful! Their focus on the interconnectivity of theory of both the natural and social worlds is in some ways the messy work that must be done. This too is in the spirit of the Chicago School as illustrated by it's view of the City as an organism. 
 
 ## A Hybrid Approach 
 
-As part of this proliferation of big data we have more and better data within reach. As such we are able to, perhaps even encouraged to, take a much more hybrid approach. Within the these data are a multitude of opportunities to explore and glean patterns that we may have been so subtle that it hasn't been observed before. Or, alternatively, the data had not been collected before. This allows us to take a much more inductive approach where we can craft theories from the patterns that we observe, then we can test those theories in creative ways. It is here where, I believe, that the Boston Area Research Initiative (BARI) rests on the spectrum. 
+As part of this proliferation of big data we have more and better data within reach. As such we are able to, perhaps even encouraged to, take a much more hybrid approach. Within the these data are a multitude of opportunities to explore and glean patterns that we may have been so subtle that it hasn't been observed before. Or, alternatively, the data had not been collected before. This allows us to take a much more inductive approach where we can craft theories from the patterns that we observe, then we can test those theories in creative ways. It is here where, I believe, that the Boston Area Research Initiative (BARI) rests on the spectrum. This hybrid methodology incorporates both inductive and deductive approaches.
 
 ![](static/hybrid-approach.png)
 
-This hybrid methodology incorporates both inductive and deductive approaches.
-- BARI is a product of this proliferation of data with a lot of influence coming directly from the Chicago School 
+The above graphic is m best attempt to illustrate this hybrid model. We start with data. We use publicly available (open) administrative data to explore. We get our metaphorical hands dirty with the data. After we munge it, transform it, and reaarange it, we will walk away with some tidbit of information. From that we discover more. And at the end of the day we develop a theory—a framework for understanding what we have observed. Next, we then develop a hypothesis using that new theory and apply it to some other set of data or some new circumstance to test and refine the theories we have developed. In this we both create theory from observation, and test those theories on new and unexplored observations. 
 
+Dan O'Brien, Director of BARI, claims to track more with the Chicago School in their approach—and this is correct. But, BARI also actively seeks to evaluate existing theory. There are no better examples of the BARI approach than the development and use of **ecometrics** to understand the City and test existing theory.
 
-
----------
-
-
-- what is a theory?
-  - we can think of theories as frameworks that scientists use to explain observed phonemona
-
-  - the Boston School is a hybrid approach
-  - Next Chapter: Let us use the example of broken windows theory and the development of ecometrics
-  
-some questions to ponder:
-
-- what is a strnegth of the chicago school?
-- what is the strength of the santa fe institute?
-  - https://www.santafe.edu/research/projects/cities-scaling-sustainability
-- what do you think is the ideal approach? is it one or the other? a blend? something entirely new?
+In the next chapter we will learn about ecometrics, their origins, and their use in evaluating the prominent crimonological _Broken Windows_ theory. 
 
