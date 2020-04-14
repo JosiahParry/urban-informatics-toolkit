@@ -1,19 +1,45 @@
 # Ecometrics
 
-- before we can understand ecometrics we need to take a step back and think more about the ways that we work with data
-- like we stated earlier, administrative data aren't collected for the purposes of analysis
-- but within them are gems. beautifully inelegant capturing of the societal quotidien
-- finding these social observation gems often requires to extract **latent** constructs
-- 
+Central to the work that is done at BARI are the development and utilization of  **ecometrics**. Ecometrics represent a quantitative representation of physical and social environment. In the Urban Informatics context, ecometrics are created to extract **latent constructs**—or variables that can only be inferred from a dataset—that illustrate some physical or social phenomenon. 
+
+To understand this, we need to again contextualize these datasets. They _are not_ created with the intention of beng analyzed or to measure the blight of a neighborhood or the social unrest of a city. The data may tell a story of an underserved neighborhood or of a gilded community with a beautiful brick façade with next to no collective efficacy efforts. These datasets contain gems—beautifully inelegant snapshots of the societal quotidien. But measuring that? That's the tough part and that is why we create ecometrics. They provide us with a way to adapt existing data to address new problems.
+
+Of the work that BARI conducts, the production of city-wide ecometrics of social and physical disorder are most emblematic of this hybrid approach. To understand this work we need to venture back to 1982 and an article from the Atlantic called _Broken Windows_.
+
+## Broken Windows Theory
+
+
+Broken windows theory is a framework for explaining the occurrence of crimes. Broken windows emphasizes the role that public disorder and private conflict have in predicting crime. The theory comes from a famous 1982 article in which the imagery of a broken window was used to illustrate social disorder (Wilson and Kelling, 1982). They then hypothesized that criminals are emboldened by the presence of disorder. 
+
+Broken windows has historically captured the attention of policy makers. The vast public support has led to a large body of work largely disputing the merits of this theory. In the process of doing so, much work has gone into actually quantifying disorder in a city. In a seminal article by Sampson and Raudenbush (1999), the practice of systematic social observation was created. 
+This is a process in which imagery of public spaces is taken and coded to identify disorder—i.e. the presence of empty beer cans—which can then be quantitatively analyzed. This has become known as ecometrics.
+
+
+
+O'Brien & Sampson, 2015 Public and Private 
+
+> It was the seminal article of Wilson and Kelling (1982), however, that launched disorder to the public stage. Writing in The Atlantic, they invoked the powerful metaphor of ‘‘broken windows’’ to capture the idea of public disorder and its hypothesized link to the unraveling of public spaces. Wilson and Kelling asserted that visual cues of disorder provoke fear among urban residents and that disorder begets predatory crime and neighborhood decline.1 As a basic description of the urban landscape, the broken windows claim of a connection between high levels of disorder and crime has largely been supported 
+
+> Traditional interpretations of broken windows theory argue that dis- order precipitates a cycle of ‘‘disorder and decline,’’ as it has been dubbed by Skogan 
+
+> Despite much research, the body of work on broken windows theory leaves open the central question: Does disorder contribute to the ongoing decline of a neighborhood? And, if so, through what behavioral and social pathways does it do so? 
+
+> Taking up this challenge, O’Brien, Sampson, and Winship (2015) have proposed a methodology for ecometrics in the age of digital data, identify- ing three main issues with such data and articulating steps for addressing each. These are (1) identifying relevant content, (2) assessing validity, and (3) establishing criteria for reliability. 
+
+> 􏰉 Public social disorder, such as panhandlers, drunks, and loud disturbances;
+􏰉 Public violence that did not involve a gun (e.g., fight);
+􏰉 Private conflict arising from personal relationships (e.g., domestic
+violence);
+􏰉 Prevalence of guns violence, as indicated by shootings or other inci-
+dents involving guns; and
+􏰉 Alcohol, including public drunkenness or public consumption of
+alcohol.
 
 
 To Cover:
 
 - sampson & raudenbush systematic social observation: https://www.journals.uchicago.edu/doi/abs/10.1086/210356
-- ecometrics: where was this first coined for the social sciences????
-- 
 
------
 
 - 1980 "Broken Windows" in the Atlantic
 - Posited that the presence of physical disorder led to crime
@@ -37,94 +63,10 @@ To Cover:
     - 
 
 
-> Note: a case study should be recreating these ecometrics
-
-Explore what the data description from BARI looks like
 
 
-```r
-library(tidyverse)
-```
-
-```
-## ── Attaching packages ───────────────────────────────────────────────────────────────────────── tidyverse 1.3.0 ──
-```
-
-```
-## ✓ ggplot2 3.3.0     ✓ purrr   0.3.3
-## ✓ tibble  3.0.0     ✓ dplyr   0.8.5
-## ✓ tidyr   1.0.2     ✓ stringr 1.4.0
-## ✓ readr   1.3.1     ✓ forcats 0.5.0
-```
-
-```
-## ── Conflicts ──────────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
-## x dplyr::filter() masks stats::filter()
-## x dplyr::lag()    masks stats::lag()
-```
-
-```r
-ecometrics <- readr::read_csv("data/911/911-ecometrics-2014-19.csv") %>% 
-  janitor::clean_names()
-```
-
-```
-## Parsed with column specification:
-## cols(
-##   TYPE = col_character(),
-##   tycod = col_character(),
-##   typ_eng = col_character(),
-##   sub_tycod = col_character(),
-##   sub_eng = col_character(),
-##   SocDis = col_double(),
-##   PrivateConflict = col_double(),
-##   Violence = col_double(),
-##   Guns = col_double(),
-##   Frequency_2015 = col_double(),
-##   Frequency_2016 = col_double(),
-##   Frequency_2017 = col_double(),
-##   Frequency_2018 = col_double(),
-##   yr.intro = col_double(),
-##   last.yr = col_double()
-## )
-```
-
-```r
-glimpse(ecometrics)
-```
-
-```
-## Rows: 302
-## Columns: 15
-## $ type             <chr> "AB===>>>", "ABAN===>>>", "ABANBU", "ABANCELL", "ABA…
-## $ tycod            <chr> "AB", "ABAN", "ABAN", "ABAN", "ABAN", "ABAN", "ABAN"…
-## $ typ_eng          <chr> "ASSAULT AND BATTERY", "ABANDONED CALL", "ABANDONED …
-## $ sub_tycod        <chr> "===>>>", "===>>>", "BU", "CELL", "INCCAL", "PH", "R…
-## $ sub_eng          <chr> "PICK A SUB-TYPE", "PICK A SUB-TYPE", "FROM A BUSINE…
-## $ soc_dis          <dbl> 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…
-## $ private_conflict <dbl> 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…
-## $ violence         <dbl> 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0…
-## $ guns             <dbl> 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0…
-## $ frequency_2015   <dbl> 27, 40, 12768, 72081, 686, 1734, 3143, 194, 122, 88,…
-## $ frequency_2016   <dbl> 29, 26, 13287, 56074, 1188, 1205, 2687, 397, 190, 94…
-## $ frequency_2017   <dbl> 29, 17, 12599, 39323, 124, 724, 1944, 253, 162, 74, …
-## $ frequency_2018   <dbl> 14, 10, 6422, 19947, 70, 506, 840, 262, 169, 78, 361…
-## $ yr_intro         <dbl> 2014, 2014, 2014, 2014, 2014, 2014, 2014, 2014, 2014…
-## $ last_yr          <dbl> 2019, 2018, 2019, 2019, 2019, 2019, 2019, 2019, 2019…
-```
-
-Check out 
-
-
-```r
-# raw_911 <- read_csv("data/911/911-raw.csv", n_max = 5000) %>% 
-#   janitor::clean_names()
-```
-
-
-
-
-### Resources:
+#    
+## Resources:
 
 - https://www.annualreviews.org/doi/abs/10.1146/annurev-criminol-011518-024638?journalCode=criminol
 - Large-scale data use, ecometrics to assess disorder: https://journals.sagepub.com/doi/abs/10.1177/0022427815577835
