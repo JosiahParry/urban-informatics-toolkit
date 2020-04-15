@@ -8,65 +8,52 @@ Of the work that BARI conducts, the production of city-wide ecometrics of social
 
 ## Broken Windows Theory
 
+During the beginning of the crack-cocaine epidemic George Kelling and James Wilson wrote a now [in]famous article titled _Broken Windows_ which outlined a new theory to explain the occurrence of crimes. The premise of this article is that the _presence_ of disorder is more concerning for a neighborhoods residents than the actual crime that occurs. Further, the "visual cues of disorder . . . begets predatory crime and neighborhood decline" (O'Brien and Sampson, 2015).
 
-Broken windows theory is a framework for explaining the occurrence of crimes. Broken windows emphasizes the role that public disorder and private conflict have in predicting crime. The theory comes from a famous 1982 article in which the imagery of a broken window was used to illustrate social disorder (Wilson and Kelling, 1982). They then hypothesized that criminals are emboldened by the presence of disorder. 
+Broken Windows captured the eyes of pundits and policy makers. The simplicity of the theory makes it easy to  Broken windows has historically captured the attention of policy makers. The vast public support has led to a large body of work largely disputing the merits of this theory. In the process of doing so, much work has gone into actually quantifying disorder in a city. In a seminal article by Sampson and Raudenbush (1999), the practice of systematic social observation was created. This is a process in which imagery of public spaces is taken and coded to identify disorder—i.e. the presence of empty beer cans—which can then be quantitatively analyzed. This is an early example of an ecometric. 
 
-Broken windows has historically captured the attention of policy makers. The vast public support has led to a large body of work largely disputing the merits of this theory. In the process of doing so, much work has gone into actually quantifying disorder in a city. In a seminal article by Sampson and Raudenbush (1999), the practice of systematic social observation was created. 
-This is a process in which imagery of public spaces is taken and coded to identify disorder—i.e. the presence of empty beer cans—which can then be quantitatively analyzed. This has become known as ecometrics.
+## Quantifying Disorder 
+
+In 2015, O'Brien and Sampson published the article _Public and Private Spheres of Neighborhood Disorder: Assessing Pathways to Violence Using Large-scale Digital Records_. This article epitomizes the hybrid aproach to urban studies. In it, O'Brien and Sampson utilize 911 dispatches and 311 call data to create measures of both social and physical disorder. These measures were then used to put Broken Windows theory to the test. The process of using existing administrative datasets as a method of estimating social and physical phenomena illustrates the inductive approach. Whereas testing testing the efficacy of Broken Windows is indicative of the more traditional deductive process.
+
+Quantifying disorder is no small task. In their 2015 paper the authors write 
+
+> Taking up this challenge, O’Brien, Sampson, and Winship (2015) have proposed a methodology for ecometrics in the age of digital data, identifying three main issues with such data and articulating steps for addressing each. These are (1) identifying relevant content, (2) assessing validity, and (3) establishing criteria for reliability. 
+
+The above is an astute summation of the problems that arise with big data and how they can be overcome. The biggest of concerns, as mentioned in the opening of this section, is the validity of the data we are using. 
+
+### Defining the phenomenon
+
+The method that they propose requires us to do three main The first is to clearly define the phenomenon that we are hoping to measure. Following, we must idenify the **relevant data**. For example, in O'Brien and Sampson (2015), they define five ecometrics as 
 
 
-
-O'Brien & Sampson, 2015 Public and Private 
-
-> It was the seminal article of Wilson and Kelling (1982), however, that launched disorder to the public stage. Writing in The Atlantic, they invoked the powerful metaphor of ‘‘broken windows’’ to capture the idea of public disorder and its hypothesized link to the unraveling of public spaces. Wilson and Kelling asserted that visual cues of disorder provoke fear among urban residents and that disorder begets predatory crime and neighborhood decline.1 As a basic description of the urban landscape, the broken windows claim of a connection between high levels of disorder and crime has largely been supported 
-
-> Traditional interpretations of broken windows theory argue that dis- order precipitates a cycle of ‘‘disorder and decline,’’ as it has been dubbed by Skogan 
-
-> Despite much research, the body of work on broken windows theory leaves open the central question: Does disorder contribute to the ongoing decline of a neighborhood? And, if so, through what behavioral and social pathways does it do so? 
-
-> Taking up this challenge, O’Brien, Sampson, and Winship (2015) have proposed a methodology for ecometrics in the age of digital data, identify- ing three main issues with such data and articulating steps for addressing each. These are (1) identifying relevant content, (2) assessing validity, and (3) establishing criteria for reliability. 
-
-> 􏰉 Public social disorder, such as panhandlers, drunks, and loud disturbances;
-􏰉 Public violence that did not involve a gun (e.g., fight);
-􏰉 Private conflict arising from personal relationships (e.g., domestic
+> * Public social disorder, such as panhandlers, drunks, and loud disturbances;
+* Public violence that did not involve a gun (e.g., fight);
+* Private conflict arising from personal relationships (e.g., domestic
 violence);
-􏰉 Prevalence of guns violence, as indicated by shootings or other inci-
+* Prevalence of guns violence, as indicated by shootings or other inci-
 dents involving guns; and
-􏰉 Alcohol, including public drunkenness or public consumption of
+* Alcohol, including public drunkenness or public consumption of
 alcohol.
 
+These definitions provide clear pictures as to what is being measured. The next step is to surf through your data and do your best to match variables or observations to these measures. Then, through some process—usually factor analys—ensure that these measures are truly relevant. 
 
-To Cover:
+### Validating the measure 
 
-- sampson & raudenbush systematic social observation: https://www.journals.uchicago.edu/doi/abs/10.1086/210356
+Once an ecometric has been defined and properly measured, the next step is to validate it. I think of this process similar to ground truthing in the geospatial sciences. Often when geographic coordinates are recorded an individual will go to that physical location and ensure that whatever that was recorded to be there actually is. This is what we are doing with our ecometrics. We have developed our measures, but we need to compare that to some objective truth so to say. 
 
+In Sampson & Raudenbush (1999), they develop measures of physical disorder through their systematic social observation. But in order to validate their measures, they compared their results to those of a neighborhood audit. This audit served as their ground truth and was used to make any adjustments if needed. 
 
-- 1980 "Broken Windows" in the Atlantic
-- Posited that the presence of physical disorder led to crime
-- this influenced policing policies like stop and frisk
-  - led to the infamous implementation of [CompStat](https://nymag.com/intelligencer/2018/03/the-crime-fighting-program-that-changed-new-york-forever.html)
-- the simplicity of the theory was appealing to public officials. media lapped it up
-- social scientists were quick to shoot down the theory, seemed to not matter
-- come 1999 Sampson and Raudenbush seek to test this find no conclusion
-- much more work comes from it
-- most noteably is the use of ecometrics in assessing this. I say most noteably because of its approach
-  - it combines an inductive approach with a deductive one.
-  - this is the quintessence of the Boston approach, of course it comes from Dan O'Brien.
-    - why?:
-      1. big data (actually big-ish which is rare in social science)
-      2. The development and use of ecometrics (induction)
-      3. deliberately testing an existing theory (deduction)
-      4. Absolutely crushing it.
-- what is an ecometric?
-  - why is it inductive?
-    - taking naturally occuring data, and extracting latent (already existing variables)
-    - 
+### Addressing reliability
 
+This ecometric, like most others, are naturually time bound snapshots of the social and physical world. These measures will naturally change over time. Because of this it is useful to know both how reliable the measure will be for different periods of time (O'Brien, Sampson, and Winship, 2015). The authors do with with a bit of statistical finesse that is best left to them to explain. But what we are to take away is that ecometrics are often time variant and it is important for us to know at what time scale the ecometrics are intended for. 
 
+References & Readings: 
 
-
-#    
-## Resources:
-
+- O’Brien, Daniel Tumminelli, Robert J. Sampson, and Christopher Winship. 2015.
+‘‘Ecometrics in the Age of Big Data: Measuring and Assessing ‘Broken Windows’
+Using Large-scale Administrative Records.’’ Sociological Methodology 45.
 - https://www.annualreviews.org/doi/abs/10.1146/annurev-criminol-011518-024638?journalCode=criminol
 - Large-scale data use, ecometrics to assess disorder: https://journals.sagepub.com/doi/abs/10.1177/0022427815577835
+- sampson & raudenbush systematic social observation: https://www.journals.uchicago.edu/doi/abs/10.1086/210356
+
