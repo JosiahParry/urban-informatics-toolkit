@@ -23,18 +23,70 @@ Over the duration of the last three chapters we have cultivated a fundamental un
 
 > Note that these will not be 3D, but rather visualize three variables. 
 
-To improve our graphics we will utilize the color, shape and size aesthetics as well as faceting. Of course, this begs the question of which aesthetic do I choose? Well, that depends upon what type of data you will be visualizing.
+To improve our graphics we will utilize the color, shape and size aesthetics as well as faceting. Of course, this begs the question of which aesthetic do I choose? Well, that depends upon what type of data you will be visualizing. Each aesthetic serves a different purposes and can be used for a different type of variable.
 
-Generally, if you want to visualize a continuous variable, color and then size will be preferable.
+In general we can use the below mappings: 
 
+- color -> continuous or discrete
+- size -> continuous
+- shape -> discrete
+
+- Let's first look at the use of color. 
+- lets first look at the use of color for discrete measures
+- look at the ecometrics for social disorder discussed earlier and developed in o'brien 2015
+
+
+- we have year, measure, and n, lets view year on the x and n on the y
+  - we now want to know these totals by measure
+  - set the `fill` to the `measure`. fill is used for polygons (a col is a rectangle that needs to be filled)
+  - by default this shows us a stacked bar chart which is useful
+- another way to do this is to change the position of these bars by setting the position argument to `"dodge"` this enables us to compare the heights of the bars more easily
+- also, we should always consider creating small multiples, or facetting, rather than adding more to our plots. We want the data to be consumable. Don't feel forced to put everything on to one graphic
+
+- Continuous use of color.
+  - there are two general ways in which continuous variables will be mapped to color. this is if there is a low value and a high value.
+  - secondly, we can think of a divergent color palette. This is used when there is a known middle value
+    - a common mistake is using a divergent palette when there is no natural middle. be wary of this. 
+    
+ 
+```{r message = FALSE}
+commute <- read_csv("data/acs_edu.csv")
+
+commute
+```
+ 
+ 
+ 
+
+
+
+```{r}
+ecometrics <- read_csv("data/ecometrics.csv")
+
+# viewing by fill
+ggplot(ecometrics, aes(year, n, fill = measure)) +
+  geom_col()
+
+
+# viewing by fill
+ggplot(ecometrics, aes(year, n, fill = measure)) +
+  geom_col()
+
+# viewing by fill and dodging
+ggplot(ecometrics, aes(year, n, fill = measure)) +
+  geom_col(position = "dodge")
+
+# faceting 
+ggplot(ecometrics, aes(year, n)) +
+  geom_col() + 
+  facet_wrap("measure", nrow = 1)
+
+
+```
 
 
 we can utilize color, size, and shape to tell a better story with our graphics. 
 Each aesthetic can serve a different purpose / used for a different kind of variable
-
-- color (continuous or discrete)
-- size (continuous)
-- shape (discrete) 
 
 others:
 - linetype 
