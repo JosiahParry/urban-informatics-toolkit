@@ -24,7 +24,7 @@
 <meta name="author" content="Josiah Parry" />
 
 
-<meta name="date" content="2020-04-12" />
+<meta name="date" content="2020-04-17" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -146,7 +146,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.3" data-path="approaches-to-and-schools-of-urban-informatics.html"><a href="approaches-to-and-schools-of-urban-informatics.html#complexity-and-santa-fe-institute"><i class="fa fa-check"></i><b>4.3</b> Complexity and Santa Fe Institute</a></li>
 <li class="chapter" data-level="4.4" data-path="approaches-to-and-schools-of-urban-informatics.html"><a href="approaches-to-and-schools-of-urban-informatics.html#a-hybrid-approach"><i class="fa fa-check"></i><b>4.4</b> A Hybrid Approach</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="ecometrics.html"><a href="ecometrics.html"><i class="fa fa-check"></i><b>5</b> Ecometrics</a></li>
+<li class="chapter" data-level="5" data-path="ecometrics.html"><a href="ecometrics.html"><i class="fa fa-check"></i><b>5</b> Ecometrics</a><ul>
+<li class="chapter" data-level="5.1" data-path="ecometrics.html"><a href="ecometrics.html#broken-windows-theory"><i class="fa fa-check"></i><b>5.1</b> Broken Windows Theory</a></li>
+<li class="chapter" data-level="5.2" data-path="ecometrics.html"><a href="ecometrics.html#quantifying-disorder"><i class="fa fa-check"></i><b>5.2</b> Quantifying Disorder</a></li>
+</ul></li>
 <li class="part"><span><b>II Toolkit Foundations</b></span></li>
 <li class="chapter" data-level="6" data-path="the-basics.html"><a href="the-basics.html"><i class="fa fa-check"></i><b>6</b> The basics</a><ul>
 <li class="chapter" data-level="6.1" data-path="the-basics.html"><a href="the-basics.html#what-is-r-and-why-do-i-care"><i class="fa fa-check"></i><b>6.1</b> What is R and why do I care?</a></li>
@@ -215,7 +218,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="19.3" data-path="grammer-of-layered-graphics-ii.html"><a href="grammer-of-layered-graphics-ii.html#facets"><i class="fa fa-check"></i><b>19.3</b> Facets</a></li>
 </ul></li>
 <li class="chapter" data-level="20" data-path="visualizing-beyond-2-dimensions.html"><a href="visualizing-beyond-2-dimensions.html"><i class="fa fa-check"></i><b>20</b> Visualizing beyond 2-dimensions</a><ul>
-<li class="chapter" data-level="20.1" data-path="visualizing-beyond-2-dimensions.html"><a href="visualizing-beyond-2-dimensions.html#expanding-bivariate-visualizations-to-trivariate-other-tri-variate"><i class="fa fa-check"></i><b>20.1</b> Expanding bivariate visualizations to trivariate &amp; other tri-variate</a></li>
+<li class="chapter" data-level="20.1" data-path="visualizing-beyond-2-dimensions.html"><a href="visualizing-beyond-2-dimensions.html#color"><i class="fa fa-check"></i><b>20.1</b> Color</a></li>
+<li class="chapter" data-level="20.2" data-path="visualizing-beyond-2-dimensions.html"><a href="visualizing-beyond-2-dimensions.html#expanding-bivariate-visualizations-to-trivariate-other-tri-variate"><i class="fa fa-check"></i><b>20.2</b> Expanding bivariate visualizations to trivariate &amp; other tri-variate</a></li>
 </ul></li>
 <li class="part"><span><b>IV More than hammer and nails</b></span></li>
 <li class="chapter" data-level="21" data-path="multiple-data-sets.html"><a href="multiple-data-sets.html"><i class="fa fa-check"></i><b>21</b> Multiple data sets</a><ul>
@@ -256,80 +260,80 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">Chapter 13</span> Creating new measures</h1>
 <p>It’s been a week now and the non-profit has finally emailed you back. They were ecstatic with what you provided but it begat even more questions for them. They indicated that while the median household income data was very intruiging, that would be difficult for them to report on. As such, they would like you to report on the income quintiles as well. Moreover, they also would like to see the rate of Bachelor’s and Master’s degrees combined into one general educational attainment variable.</p>
 <p>This poses some challenges for you. You know <em>what</em> is being asked, just not necessarily <em>how</em> to achieve that from R. To accomplish this we’re going to have to learn how to use the <code>dplyr::mutate()</code> function. For the sake of example, let’s select only the columns that we’re going to need and make a tibble called <code>df</code> just to work with.</p>
-<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb123-1" data-line-number="1"><span class="kw">library</span>(tidyverse)</a>
-<a class="sourceLine" id="cb123-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb123-3" data-line-number="3">commute &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data/gba_commute.csv&quot;</span>)</a>
-<a class="sourceLine" id="cb123-4" data-line-number="4">df &lt;-<span class="st"> </span><span class="kw">select</span>(commute, med_house_income, bach, master)</a>
-<a class="sourceLine" id="cb123-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb123-6" data-line-number="6">df</a>
-<a class="sourceLine" id="cb123-7" data-line-number="7"><span class="co">#&gt; # A tibble: 648 x 3</span></a>
-<a class="sourceLine" id="cb123-8" data-line-number="8"><span class="co">#&gt;    med_house_income  bach master</span></a>
-<a class="sourceLine" id="cb123-9" data-line-number="9"><span class="co">#&gt;               &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;</span></a>
-<a class="sourceLine" id="cb123-10" data-line-number="10"><span class="co">#&gt;  1            75085 0.188 0.100 </span></a>
-<a class="sourceLine" id="cb123-11" data-line-number="11"><span class="co">#&gt;  2           132727 0.400 0.130 </span></a>
-<a class="sourceLine" id="cb123-12" data-line-number="12"><span class="co">#&gt;  3           110694 0.317 0.139 </span></a>
-<a class="sourceLine" id="cb123-13" data-line-number="13"><span class="co">#&gt;  4           109125 0.322 0.144 </span></a>
-<a class="sourceLine" id="cb123-14" data-line-number="14"><span class="co">#&gt;  5            76746 0.177 0.0742</span></a>
-<a class="sourceLine" id="cb123-15" data-line-number="15"><span class="co">#&gt;  6           138700 0.310 0.207 </span></a>
-<a class="sourceLine" id="cb123-16" data-line-number="16"><span class="co">#&gt;  7           104673 0.247 0.149 </span></a>
-<a class="sourceLine" id="cb123-17" data-line-number="17"><span class="co">#&gt;  8            73191 0.300 0.126 </span></a>
-<a class="sourceLine" id="cb123-18" data-line-number="18"><span class="co">#&gt;  9           121488 0.198 0.140 </span></a>
-<a class="sourceLine" id="cb123-19" data-line-number="19"><span class="co">#&gt; 10            99358 0.348 0.151 </span></a>
-<a class="sourceLine" id="cb123-20" data-line-number="20"><span class="co">#&gt; # … with 638 more rows</span></a></code></pre></div>
+<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb114-1" data-line-number="1"><span class="kw">library</span>(tidyverse)</a>
+<a class="sourceLine" id="cb114-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb114-3" data-line-number="3">commute &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data/gba_commute.csv&quot;</span>)</a>
+<a class="sourceLine" id="cb114-4" data-line-number="4">df &lt;-<span class="st"> </span><span class="kw">select</span>(commute, med_house_income, bach, master)</a>
+<a class="sourceLine" id="cb114-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb114-6" data-line-number="6">df</a>
+<a class="sourceLine" id="cb114-7" data-line-number="7"><span class="co">#&gt; # A tibble: 648 x 3</span></a>
+<a class="sourceLine" id="cb114-8" data-line-number="8"><span class="co">#&gt;    med_house_income  bach master</span></a>
+<a class="sourceLine" id="cb114-9" data-line-number="9"><span class="co">#&gt;               &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;</span></a>
+<a class="sourceLine" id="cb114-10" data-line-number="10"><span class="co">#&gt;  1            75085 0.188 0.100 </span></a>
+<a class="sourceLine" id="cb114-11" data-line-number="11"><span class="co">#&gt;  2           132727 0.400 0.130 </span></a>
+<a class="sourceLine" id="cb114-12" data-line-number="12"><span class="co">#&gt;  3           110694 0.317 0.139 </span></a>
+<a class="sourceLine" id="cb114-13" data-line-number="13"><span class="co">#&gt;  4           109125 0.322 0.144 </span></a>
+<a class="sourceLine" id="cb114-14" data-line-number="14"><span class="co">#&gt;  5            76746 0.177 0.0742</span></a>
+<a class="sourceLine" id="cb114-15" data-line-number="15"><span class="co">#&gt;  6           138700 0.310 0.207 </span></a>
+<a class="sourceLine" id="cb114-16" data-line-number="16"><span class="co">#&gt;  7           104673 0.247 0.149 </span></a>
+<a class="sourceLine" id="cb114-17" data-line-number="17"><span class="co">#&gt;  8            73191 0.300 0.126 </span></a>
+<a class="sourceLine" id="cb114-18" data-line-number="18"><span class="co">#&gt;  9           121488 0.198 0.140 </span></a>
+<a class="sourceLine" id="cb114-19" data-line-number="19"><span class="co">#&gt; 10            99358 0.348 0.151 </span></a>
+<a class="sourceLine" id="cb114-20" data-line-number="20"><span class="co">#&gt; # … with 638 more rows</span></a></code></pre></div>
 <p><code>mutate()</code> is a function that let’s us create or modify variables. The arguments for <code>mutate()</code> are the same as those for <code>select()</code>—<code>.data</code> and <code>...</code>. In the case of <code>mutate()</code> dots works a littble bit differently. After indicating our data, we create columns by specifying a name-value pair. More simply the names of our arguments will be the name of the columns that we are creating. The value is any expression. For example we could use <code>mutate(df, one = 1)</code> to create a column called <code>one</code> with the value of 1. When using mutate, however, the result from the expression needs to be either only <em>one</em> value, or as many values as there are rows.</p>
 <p>If we take our <code>df</code>, we can add the columns <code>bach</code> and <code>master</code> together to create a new column called <code>edu_attain</code>.</p>
-<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb124-1" data-line-number="1"><span class="kw">mutate</span>(df, <span class="dt">edu_attain =</span> bach <span class="op">+</span><span class="st"> </span>master)</a>
-<a class="sourceLine" id="cb124-2" data-line-number="2"><span class="co">#&gt; # A tibble: 648 x 4</span></a>
-<a class="sourceLine" id="cb124-3" data-line-number="3"><span class="co">#&gt;    med_house_income  bach master edu_attain</span></a>
-<a class="sourceLine" id="cb124-4" data-line-number="4"><span class="co">#&gt;               &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;      &lt;dbl&gt;</span></a>
-<a class="sourceLine" id="cb124-5" data-line-number="5"><span class="co">#&gt;  1            75085 0.188 0.100       0.288</span></a>
-<a class="sourceLine" id="cb124-6" data-line-number="6"><span class="co">#&gt;  2           132727 0.400 0.130       0.531</span></a>
-<a class="sourceLine" id="cb124-7" data-line-number="7"><span class="co">#&gt;  3           110694 0.317 0.139       0.456</span></a>
-<a class="sourceLine" id="cb124-8" data-line-number="8"><span class="co">#&gt;  4           109125 0.322 0.144       0.466</span></a>
-<a class="sourceLine" id="cb124-9" data-line-number="9"><span class="co">#&gt;  5            76746 0.177 0.0742      0.251</span></a>
-<a class="sourceLine" id="cb124-10" data-line-number="10"><span class="co">#&gt;  6           138700 0.310 0.207       0.516</span></a>
-<a class="sourceLine" id="cb124-11" data-line-number="11"><span class="co">#&gt;  7           104673 0.247 0.149       0.396</span></a>
-<a class="sourceLine" id="cb124-12" data-line-number="12"><span class="co">#&gt;  8            73191 0.300 0.126       0.426</span></a>
-<a class="sourceLine" id="cb124-13" data-line-number="13"><span class="co">#&gt;  9           121488 0.198 0.140       0.338</span></a>
-<a class="sourceLine" id="cb124-14" data-line-number="14"><span class="co">#&gt; 10            99358 0.348 0.151       0.499</span></a>
-<a class="sourceLine" id="cb124-15" data-line-number="15"><span class="co">#&gt; # … with 638 more rows</span></a></code></pre></div>
+<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb115-1" data-line-number="1"><span class="kw">mutate</span>(df, <span class="dt">edu_attain =</span> bach <span class="op">+</span><span class="st"> </span>master)</a>
+<a class="sourceLine" id="cb115-2" data-line-number="2"><span class="co">#&gt; # A tibble: 648 x 4</span></a>
+<a class="sourceLine" id="cb115-3" data-line-number="3"><span class="co">#&gt;    med_house_income  bach master edu_attain</span></a>
+<a class="sourceLine" id="cb115-4" data-line-number="4"><span class="co">#&gt;               &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;      &lt;dbl&gt;</span></a>
+<a class="sourceLine" id="cb115-5" data-line-number="5"><span class="co">#&gt;  1            75085 0.188 0.100       0.288</span></a>
+<a class="sourceLine" id="cb115-6" data-line-number="6"><span class="co">#&gt;  2           132727 0.400 0.130       0.531</span></a>
+<a class="sourceLine" id="cb115-7" data-line-number="7"><span class="co">#&gt;  3           110694 0.317 0.139       0.456</span></a>
+<a class="sourceLine" id="cb115-8" data-line-number="8"><span class="co">#&gt;  4           109125 0.322 0.144       0.466</span></a>
+<a class="sourceLine" id="cb115-9" data-line-number="9"><span class="co">#&gt;  5            76746 0.177 0.0742      0.251</span></a>
+<a class="sourceLine" id="cb115-10" data-line-number="10"><span class="co">#&gt;  6           138700 0.310 0.207       0.516</span></a>
+<a class="sourceLine" id="cb115-11" data-line-number="11"><span class="co">#&gt;  7           104673 0.247 0.149       0.396</span></a>
+<a class="sourceLine" id="cb115-12" data-line-number="12"><span class="co">#&gt;  8            73191 0.300 0.126       0.426</span></a>
+<a class="sourceLine" id="cb115-13" data-line-number="13"><span class="co">#&gt;  9           121488 0.198 0.140       0.338</span></a>
+<a class="sourceLine" id="cb115-14" data-line-number="14"><span class="co">#&gt; 10            99358 0.348 0.151       0.499</span></a>
+<a class="sourceLine" id="cb115-15" data-line-number="15"><span class="co">#&gt; # … with 638 more rows</span></a></code></pre></div>
 <p>We could even think about ways that we can check if some observations are above some specified income threshold.</p>
-<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb125-1" data-line-number="1"><span class="kw">mutate</span>(df, <span class="dt">above_70k_inc =</span> med_house_income <span class="op">&gt;</span><span class="st"> </span><span class="dv">80000</span>) </a>
-<a class="sourceLine" id="cb125-2" data-line-number="2"><span class="co">#&gt; # A tibble: 648 x 4</span></a>
-<a class="sourceLine" id="cb125-3" data-line-number="3"><span class="co">#&gt;    med_house_income  bach master above_70k_inc</span></a>
-<a class="sourceLine" id="cb125-4" data-line-number="4"><span class="co">#&gt;               &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;lgl&gt;        </span></a>
-<a class="sourceLine" id="cb125-5" data-line-number="5"><span class="co">#&gt;  1            75085 0.188 0.100  FALSE        </span></a>
-<a class="sourceLine" id="cb125-6" data-line-number="6"><span class="co">#&gt;  2           132727 0.400 0.130  TRUE         </span></a>
-<a class="sourceLine" id="cb125-7" data-line-number="7"><span class="co">#&gt;  3           110694 0.317 0.139  TRUE         </span></a>
-<a class="sourceLine" id="cb125-8" data-line-number="8"><span class="co">#&gt;  4           109125 0.322 0.144  TRUE         </span></a>
-<a class="sourceLine" id="cb125-9" data-line-number="9"><span class="co">#&gt;  5            76746 0.177 0.0742 FALSE        </span></a>
-<a class="sourceLine" id="cb125-10" data-line-number="10"><span class="co">#&gt;  6           138700 0.310 0.207  TRUE         </span></a>
-<a class="sourceLine" id="cb125-11" data-line-number="11"><span class="co">#&gt;  7           104673 0.247 0.149  TRUE         </span></a>
-<a class="sourceLine" id="cb125-12" data-line-number="12"><span class="co">#&gt;  8            73191 0.300 0.126  FALSE        </span></a>
-<a class="sourceLine" id="cb125-13" data-line-number="13"><span class="co">#&gt;  9           121488 0.198 0.140  TRUE         </span></a>
-<a class="sourceLine" id="cb125-14" data-line-number="14"><span class="co">#&gt; 10            99358 0.348 0.151  TRUE         </span></a>
-<a class="sourceLine" id="cb125-15" data-line-number="15"><span class="co">#&gt; # … with 638 more rows</span></a></code></pre></div>
+<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb116-1" data-line-number="1"><span class="kw">mutate</span>(df, <span class="dt">above_70k_inc =</span> med_house_income <span class="op">&gt;</span><span class="st"> </span><span class="dv">80000</span>) </a>
+<a class="sourceLine" id="cb116-2" data-line-number="2"><span class="co">#&gt; # A tibble: 648 x 4</span></a>
+<a class="sourceLine" id="cb116-3" data-line-number="3"><span class="co">#&gt;    med_house_income  bach master above_70k_inc</span></a>
+<a class="sourceLine" id="cb116-4" data-line-number="4"><span class="co">#&gt;               &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;lgl&gt;        </span></a>
+<a class="sourceLine" id="cb116-5" data-line-number="5"><span class="co">#&gt;  1            75085 0.188 0.100  FALSE        </span></a>
+<a class="sourceLine" id="cb116-6" data-line-number="6"><span class="co">#&gt;  2           132727 0.400 0.130  TRUE         </span></a>
+<a class="sourceLine" id="cb116-7" data-line-number="7"><span class="co">#&gt;  3           110694 0.317 0.139  TRUE         </span></a>
+<a class="sourceLine" id="cb116-8" data-line-number="8"><span class="co">#&gt;  4           109125 0.322 0.144  TRUE         </span></a>
+<a class="sourceLine" id="cb116-9" data-line-number="9"><span class="co">#&gt;  5            76746 0.177 0.0742 FALSE        </span></a>
+<a class="sourceLine" id="cb116-10" data-line-number="10"><span class="co">#&gt;  6           138700 0.310 0.207  TRUE         </span></a>
+<a class="sourceLine" id="cb116-11" data-line-number="11"><span class="co">#&gt;  7           104673 0.247 0.149  TRUE         </span></a>
+<a class="sourceLine" id="cb116-12" data-line-number="12"><span class="co">#&gt;  8            73191 0.300 0.126  FALSE        </span></a>
+<a class="sourceLine" id="cb116-13" data-line-number="13"><span class="co">#&gt;  9           121488 0.198 0.140  TRUE         </span></a>
+<a class="sourceLine" id="cb116-14" data-line-number="14"><span class="co">#&gt; 10            99358 0.348 0.151  TRUE         </span></a>
+<a class="sourceLine" id="cb116-15" data-line-number="15"><span class="co">#&gt; # … with 638 more rows</span></a></code></pre></div>
 <p>This function is immensly useful and can be combined with almost any expression to create new data for us. Furthermore there are a number of handy functions built into dplyr that help us create new columns. Some of these are <code>case_when()</code>, <code>min_rank()</code>, and <code>ntile()</code> among others. You can always explore these with <code>?function_name()</code>. For our purposes, we will look at the use of <code>ntile()</code>.</p>
 <p><code>ntile()</code> is a function that will calculate percentiles for us. Given a column of data, <code>x</code>, and a number of buckets, <code>n</code>, we can create a new column of ranks. In our case, we are interested in calculating the quintile of <code>med_house_income</code>. This means we can provide <code>med_house_income</code> and <code>n = 5</code> as arguments to <code>ntile()</code> to group our observations by quintile.</p>
-<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb126-1" data-line-number="1"><span class="kw">mutate</span>(df, <span class="dt">inc_quintile =</span> <span class="kw">ntile</span>(med_house_income, <span class="dv">5</span>))</a>
-<a class="sourceLine" id="cb126-2" data-line-number="2"><span class="co">#&gt; # A tibble: 648 x 4</span></a>
-<a class="sourceLine" id="cb126-3" data-line-number="3"><span class="co">#&gt;    med_house_income  bach master inc_quintile</span></a>
-<a class="sourceLine" id="cb126-4" data-line-number="4"><span class="co">#&gt;               &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;        &lt;int&gt;</span></a>
-<a class="sourceLine" id="cb126-5" data-line-number="5"><span class="co">#&gt;  1            75085 0.188 0.100             2</span></a>
-<a class="sourceLine" id="cb126-6" data-line-number="6"><span class="co">#&gt;  2           132727 0.400 0.130             5</span></a>
-<a class="sourceLine" id="cb126-7" data-line-number="7"><span class="co">#&gt;  3           110694 0.317 0.139             4</span></a>
-<a class="sourceLine" id="cb126-8" data-line-number="8"><span class="co">#&gt;  4           109125 0.322 0.144             4</span></a>
-<a class="sourceLine" id="cb126-9" data-line-number="9"><span class="co">#&gt;  5            76746 0.177 0.0742            2</span></a>
-<a class="sourceLine" id="cb126-10" data-line-number="10"><span class="co">#&gt;  6           138700 0.310 0.207             5</span></a>
-<a class="sourceLine" id="cb126-11" data-line-number="11"><span class="co">#&gt;  7           104673 0.247 0.149             4</span></a>
-<a class="sourceLine" id="cb126-12" data-line-number="12"><span class="co">#&gt;  8            73191 0.300 0.126             2</span></a>
-<a class="sourceLine" id="cb126-13" data-line-number="13"><span class="co">#&gt;  9           121488 0.198 0.140             5</span></a>
-<a class="sourceLine" id="cb126-14" data-line-number="14"><span class="co">#&gt; 10            99358 0.348 0.151             4</span></a>
-<a class="sourceLine" id="cb126-15" data-line-number="15"><span class="co">#&gt; # … with 638 more rows</span></a></code></pre></div>
+<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb117-1" data-line-number="1"><span class="kw">mutate</span>(df, <span class="dt">inc_quintile =</span> <span class="kw">ntile</span>(med_house_income, <span class="dv">5</span>))</a>
+<a class="sourceLine" id="cb117-2" data-line-number="2"><span class="co">#&gt; # A tibble: 648 x 4</span></a>
+<a class="sourceLine" id="cb117-3" data-line-number="3"><span class="co">#&gt;    med_house_income  bach master inc_quintile</span></a>
+<a class="sourceLine" id="cb117-4" data-line-number="4"><span class="co">#&gt;               &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;        &lt;int&gt;</span></a>
+<a class="sourceLine" id="cb117-5" data-line-number="5"><span class="co">#&gt;  1            75085 0.188 0.100             2</span></a>
+<a class="sourceLine" id="cb117-6" data-line-number="6"><span class="co">#&gt;  2           132727 0.400 0.130             5</span></a>
+<a class="sourceLine" id="cb117-7" data-line-number="7"><span class="co">#&gt;  3           110694 0.317 0.139             4</span></a>
+<a class="sourceLine" id="cb117-8" data-line-number="8"><span class="co">#&gt;  4           109125 0.322 0.144             4</span></a>
+<a class="sourceLine" id="cb117-9" data-line-number="9"><span class="co">#&gt;  5            76746 0.177 0.0742            2</span></a>
+<a class="sourceLine" id="cb117-10" data-line-number="10"><span class="co">#&gt;  6           138700 0.310 0.207             5</span></a>
+<a class="sourceLine" id="cb117-11" data-line-number="11"><span class="co">#&gt;  7           104673 0.247 0.149             4</span></a>
+<a class="sourceLine" id="cb117-12" data-line-number="12"><span class="co">#&gt;  8            73191 0.300 0.126             2</span></a>
+<a class="sourceLine" id="cb117-13" data-line-number="13"><span class="co">#&gt;  9           121488 0.198 0.140             5</span></a>
+<a class="sourceLine" id="cb117-14" data-line-number="14"><span class="co">#&gt; 10            99358 0.348 0.151             4</span></a>
+<a class="sourceLine" id="cb117-15" data-line-number="15"><span class="co">#&gt; # … with 638 more rows</span></a></code></pre></div>
 <p>Now we can put everything together into one mutate call to create the new variables that were requested!</p>
-<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb127-1" data-line-number="1">updated_commute &lt;-<span class="st"> </span>commute <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb127-2" data-line-number="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">edu_attain =</span> bach <span class="op">+</span><span class="st"> </span>master, </a>
-<a class="sourceLine" id="cb127-3" data-line-number="3">         <span class="dt">inc_quintile =</span> <span class="kw">ntile</span>(med_house_income, <span class="dv">5</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb118-1" data-line-number="1">updated_commute &lt;-<span class="st"> </span>commute <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb118-2" data-line-number="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">edu_attain =</span> bach <span class="op">+</span><span class="st"> </span>master, </a>
+<a class="sourceLine" id="cb118-3" data-line-number="3">         <span class="dt">inc_quintile =</span> <span class="kw">ntile</span>(med_house_income, <span class="dv">5</span>))</a></code></pre></div>
 <p>As you have made these changes you can now write the data again to csv and share it. As this process becomes more and more iterative, it’s good to put <em>some</em> structure to the data so you have an idea of the history. One general practice that is good to get into is dating your files. So in this case I would label the file <code>yyyy-mm-dd-commute.csv</code>.</p>
 
 </div>

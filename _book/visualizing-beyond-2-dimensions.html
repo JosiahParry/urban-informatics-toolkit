@@ -24,7 +24,7 @@
 <meta name="author" content="Josiah Parry" />
 
 
-<meta name="date" content="2020-04-12" />
+<meta name="date" content="2020-04-17" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -146,7 +146,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.3" data-path="approaches-to-and-schools-of-urban-informatics.html"><a href="approaches-to-and-schools-of-urban-informatics.html#complexity-and-santa-fe-institute"><i class="fa fa-check"></i><b>4.3</b> Complexity and Santa Fe Institute</a></li>
 <li class="chapter" data-level="4.4" data-path="approaches-to-and-schools-of-urban-informatics.html"><a href="approaches-to-and-schools-of-urban-informatics.html#a-hybrid-approach"><i class="fa fa-check"></i><b>4.4</b> A Hybrid Approach</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="ecometrics.html"><a href="ecometrics.html"><i class="fa fa-check"></i><b>5</b> Ecometrics</a></li>
+<li class="chapter" data-level="5" data-path="ecometrics.html"><a href="ecometrics.html"><i class="fa fa-check"></i><b>5</b> Ecometrics</a><ul>
+<li class="chapter" data-level="5.1" data-path="ecometrics.html"><a href="ecometrics.html#broken-windows-theory"><i class="fa fa-check"></i><b>5.1</b> Broken Windows Theory</a></li>
+<li class="chapter" data-level="5.2" data-path="ecometrics.html"><a href="ecometrics.html#quantifying-disorder"><i class="fa fa-check"></i><b>5.2</b> Quantifying Disorder</a></li>
+</ul></li>
 <li class="part"><span><b>II Toolkit Foundations</b></span></li>
 <li class="chapter" data-level="6" data-path="the-basics.html"><a href="the-basics.html"><i class="fa fa-check"></i><b>6</b> The basics</a><ul>
 <li class="chapter" data-level="6.1" data-path="the-basics.html"><a href="the-basics.html#what-is-r-and-why-do-i-care"><i class="fa fa-check"></i><b>6.1</b> What is R and why do I care?</a></li>
@@ -215,7 +218,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="19.3" data-path="grammer-of-layered-graphics-ii.html"><a href="grammer-of-layered-graphics-ii.html#facets"><i class="fa fa-check"></i><b>19.3</b> Facets</a></li>
 </ul></li>
 <li class="chapter" data-level="20" data-path="visualizing-beyond-2-dimensions.html"><a href="visualizing-beyond-2-dimensions.html"><i class="fa fa-check"></i><b>20</b> Visualizing beyond 2-dimensions</a><ul>
-<li class="chapter" data-level="20.1" data-path="visualizing-beyond-2-dimensions.html"><a href="visualizing-beyond-2-dimensions.html#expanding-bivariate-visualizations-to-trivariate-other-tri-variate"><i class="fa fa-check"></i><b>20.1</b> Expanding bivariate visualizations to trivariate &amp; other tri-variate</a></li>
+<li class="chapter" data-level="20.1" data-path="visualizing-beyond-2-dimensions.html"><a href="visualizing-beyond-2-dimensions.html#color"><i class="fa fa-check"></i><b>20.1</b> Color</a></li>
+<li class="chapter" data-level="20.2" data-path="visualizing-beyond-2-dimensions.html"><a href="visualizing-beyond-2-dimensions.html#expanding-bivariate-visualizations-to-trivariate-other-tri-variate"><i class="fa fa-check"></i><b>20.2</b> Expanding bivariate visualizations to trivariate &amp; other tri-variate</a></li>
 </ul></li>
 <li class="part"><span><b>IV More than hammer and nails</b></span></li>
 <li class="chapter" data-level="21" data-path="multiple-data-sets.html"><a href="multiple-data-sets.html"><i class="fa fa-check"></i><b>21</b> Multiple data sets</a><ul>
@@ -258,15 +262,122 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <blockquote>
 <p>Note that these will not be 3D, but rather visualize three variables.</p>
 </blockquote>
-<p>To improve our graphics we will utilize the color, shape and size aesthetics as well as faceting. Of course, this begs the question of which aesthetic do I choose? Well, that depends upon what type of data you will be visualizing.</p>
-<p>Generally, if you want to visualize a continuous variable, color and then size will be preferable.</p>
+<p>To improve our graphics we will utilize the color, shape, and size aesthetics, as well as faceting. Of course, this begs the question of which aesthetic do I choose? Well, that depends upon what type of data you will be visualizing. Each aesthetic serves different purposes and can be used for a different type of variable.</p>
+<p>In general we can use the below mappings:</p>
+<ul>
+<li>color -&gt; continuous or discrete</li>
+<li>size -&gt; continuous</li>
+<li>shape -&gt; discrete</li>
+</ul>
+<div id="color" class="section level2">
+<h2><span class="header-section-number">20.1</span> Color</h2>
+<p>Let us first take a look at the use of color. Color is, after position, the easiest visual cue for we humans to distinguish (that viz book on my coffee table) between. It is also a rather versatile visual cue as it can be used to address both continuous and discrete variables. We will first explore the use of color for discrete measurements. In this context, I do not necessarily mean discrete as in integers, but more or less groups. This is where there is not <em>necessarily</em> an order or scale implied in the data. It <em>can</em> however be indicative of order—think for example age groups. To explore the use of color for groups or discrete data, we will look at Boston ecometrics of social disorder as discussed previously (O’Brien 2015 CITE NEEDED). Ecometrics are stored in a file called <code>ecometrics.csv</code> the <code>data</code> directory. Read it in as <code>ecometrics</code>.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">library</span>(tidyverse)</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb1-3" data-line-number="3">ecometrics &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data/ecometrics.csv&quot;</span>)</a></code></pre></div>
+<p>At this point in your learning, I think it is appropriate to introduce you to a new package that can be used to quickly summarize and visualize your data. That is called <code>skimr</code>. Within the package there is a function called <code>skim()</code>. This package is really useful for quickly getting an understanding of a dataset as it provides useful summary statistics for each variable as well as a histogram for numeric columns.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">skimr<span class="op">::</span><span class="kw">skim</span>(ecometrics)</a></code></pre></div>
+<pre><code>#&gt; ── Data Summary ────────────────────────
+#&gt;                            Values    
+#&gt; Name                       ecometrics
+#&gt; Number of rows             68        
+#&gt; Number of columns          4         
+#&gt; _______________________              
+#&gt; Column type frequency:               
+#&gt;   character                2         
+#&gt;   numeric                  2         
+#&gt; ________________________             
+#&gt; Group variables            None      
+#&gt; 
+#&gt; ── Variable type: character ────────────────────────────────────────────────────
+#&gt;   skim_variable n_missing complete_rate   min   max empty n_unique whitespace
+#&gt; 1 type                  0             1     5    34     0       15          0
+#&gt; 2 measure               0             1     4    16     0        4          0
+#&gt; 
+#&gt; ── Variable type: numeric ──────────────────────────────────────────────────────
+#&gt;   skim_variable n_missing complete_rate  mean      sd    p0   p25   p50   p75
+#&gt; 1 year                  0             1 2016.    1.13  2015 2016. 2016. 2017.
+#&gt; 2 n                     0             1 1929. 1857.      68  786  1230  2690.
+#&gt;    p100 hist 
+#&gt; 1  2018 ▇▇▁▇▇
+#&gt; 2  7392 ▇▂▁▁▁</code></pre>
+<p>A simple graphic here would be to evaluate the raw counts by year. A simple bar chart would look like this.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw">ggplot</span>(ecometrics, <span class="kw">aes</span>(year, n)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb4-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_col</span>()</a></code></pre></div>
+<p><img src="04d-beyond-2d_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<p>But, we are aware that there are different measurements. These were described previously and can be seen below.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw">distinct</span>(ecometrics, measure)</a>
+<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="co">#&gt; # A tibble: 4 x 1</span></a>
+<a class="sourceLine" id="cb5-3" data-line-number="3"><span class="co">#&gt;   measure         </span></a>
+<a class="sourceLine" id="cb5-4" data-line-number="4"><span class="co">#&gt;   &lt;chr&gt;           </span></a>
+<a class="sourceLine" id="cb5-5" data-line-number="5"><span class="co">#&gt; 1 violence        </span></a>
+<a class="sourceLine" id="cb5-6" data-line-number="6"><span class="co">#&gt; 2 guns            </span></a>
+<a class="sourceLine" id="cb5-7" data-line-number="7"><span class="co">#&gt; 3 private conflict</span></a>
+<a class="sourceLine" id="cb5-8" data-line-number="8"><span class="co">#&gt; 4 social disorder</span></a></code></pre></div>
+<p>How can we partition our visualization to illustrate the number of counts per ecometric per year? We can use color—each measurement will receive it’s own color. This will make it easier to determine the frequency of which each ecometric occurs. To do this we setting <code>fill</code> rather than <code>color</code> this is because we are working with a polygon shape. <code>color</code> is used in working with lines and points. A useful trick is to think of <code>color</code> as the border and <code>fill</code> as the body fill.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw">ggplot</span>(ecometrics, <span class="kw">aes</span>(year, n, <span class="dt">fill =</span> measure)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb6-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_col</span>()</a></code></pre></div>
+<p><img src="04d-beyond-2d_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<p>By mapping the fill to the <code>measure</code> variable we were able to create a stacked bar chart! It is apparent that <code>violence</code> is the most frequent of these ecometrics, followed by <code>private conflict</code>, <code>social disorder</code>, and then <code>guns</code>.</p>
+<p>One of the downsides about the stacked barchart is that it is difficult to compare the sizes of each group relative to ones that are not adjacent. For example comparing <code>guns</code> to <code>social disorder</code> is made difficult as <code>private conflict</code> is situated between them. We can adjust our chart so that each bar is situated next to eachother. We do this by setting the argument <code>position = &quot;dodge&quot;</code> within the <code>geom_col()</code> layer.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw">ggplot</span>(ecometrics, <span class="kw">aes</span>(year, n, <span class="dt">fill =</span> measure)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb7-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_col</span>(<span class="dt">position =</span> <span class="st">&quot;dodge&quot;</span>)</a></code></pre></div>
+<p><img src="04d-beyond-2d_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<p>The dodged bar chart makes it much easier to compare the heights of each bar. But now we are creating a somewhat cluttered graphic. In the situation where there are multiple groups and subgroups, it is often preferred to utilize facetting because the most important thing in any graphic is how easy it is to consume. We would rather make four plots than one messy plot.</p>
+<p>Let’s facet by <code>measure</code> and tell <code>facet_wrap()</code> to create only one row.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="kw">ggplot</span>(ecometrics, <span class="kw">aes</span>(year, n, <span class="dt">fill =</span> measure)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb8-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_col</span>() <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb8-3" data-line-number="3"><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="st">&quot;measure&quot;</span>, <span class="dt">nrow =</span> <span class="dv">1</span>)</a></code></pre></div>
+<p><img src="04d-beyond-2d_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<p>This is awesome! We have four different plots one for each measurement and it is extremely easy to see how each ecoemtrics has trended over the four year period. It seems like there has been a steady decrease! With this plot, however, we are labeling the ecometrics twice: once with the panel label and once with the legend. Since each facet is labeled individually and are not situated next to any other ecometrics, the color becomes redundant. Unless there is an important reason to visualize the color when facetting, it is most likely not needed. As such, a final visualization would look like below.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="kw">ggplot</span>(ecometrics, <span class="kw">aes</span>(year, n)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb9-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_col</span>() <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb9-3" data-line-number="3"><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="st">&quot;measure&quot;</span>, <span class="dt">nrow =</span> <span class="dv">1</span>)</a></code></pre></div>
+<p><img src="04d-beyond-2d_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<hr />
+<div id="notes" class="section level3">
+<h3><span class="header-section-number">20.1.1</span> Notes</h3>
+<ul>
+<li>we have year, measure, and n, lets view year on the x and n on the y
+<ul>
+<li>we now want to know these totals by measure</li>
+<li>set the <code>fill</code> to the <code>measure</code>. fill is used for polygons (a col is a rectangle that needs to be filled)</li>
+<li>by default this shows us a stacked bar chart which is useful</li>
+</ul></li>
+<li>another way to do this is to change the position of these bars by setting the position argument to <code>&quot;dodge&quot;</code> this enables us to compare the heights of the bars more easily</li>
+<li><p>also, we should always consider creating small multiples, or facetting, rather than adding more to our plots. We want the data to be consumable. Don’t feel forced to put everything on to one graphic</p></li>
+<li>Continuous use of color.
+<ul>
+<li>there are two general ways in which continuous variables will be mapped to color. this is if there is a low value and a high value.</li>
+<li>secondly, we can think of a divergent color palette. This is used when there is a known middle value
+<ul>
+<li>a common mistake is using a divergent palette when there is no natural middle. be wary of this.</li>
+</ul></li>
+</ul></li>
+<li><p>shape is only good when the magnitudes are very different</p></li>
+</ul>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="co"># commute &lt;- read_csv(&quot;data/acs_edu.csv&quot;)</span></a>
+<a class="sourceLine" id="cb10-2" data-line-number="2"><span class="co"># </span></a>
+<a class="sourceLine" id="cb10-3" data-line-number="3"><span class="co"># commute</span></a></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1"><span class="co"># # viewing by fill</span></a>
+<a class="sourceLine" id="cb11-2" data-line-number="2"><span class="co"># ggplot(ecometrics, aes(year, n, fill = measure)) +</span></a>
+<a class="sourceLine" id="cb11-3" data-line-number="3"><span class="co">#   geom_col()</span></a>
+<a class="sourceLine" id="cb11-4" data-line-number="4"><span class="co"># </span></a>
+<a class="sourceLine" id="cb11-5" data-line-number="5"><span class="co"># </span></a>
+<a class="sourceLine" id="cb11-6" data-line-number="6"><span class="co"># # viewing by fill</span></a>
+<a class="sourceLine" id="cb11-7" data-line-number="7"><span class="co"># ggplot(ecometrics, aes(year, n, fill = measure)) +</span></a>
+<a class="sourceLine" id="cb11-8" data-line-number="8"><span class="co">#   geom_col()</span></a>
+<a class="sourceLine" id="cb11-9" data-line-number="9"><span class="co"># </span></a>
+<a class="sourceLine" id="cb11-10" data-line-number="10"><span class="co"># # viewing by fill and dodging</span></a>
+<a class="sourceLine" id="cb11-11" data-line-number="11"><span class="co"># ggplot(ecometrics, aes(year, n, fill = measure)) +</span></a>
+<a class="sourceLine" id="cb11-12" data-line-number="12"><span class="co">#   geom_col(position = &quot;dodge&quot;)</span></a>
+<a class="sourceLine" id="cb11-13" data-line-number="13"><span class="co"># </span></a>
+<a class="sourceLine" id="cb11-14" data-line-number="14"><span class="co"># # faceting </span></a>
+<a class="sourceLine" id="cb11-15" data-line-number="15"><span class="co"># ggplot(ecometrics, aes(year, n)) +</span></a>
+<a class="sourceLine" id="cb11-16" data-line-number="16"><span class="co">#   geom_col() + </span></a>
+<a class="sourceLine" id="cb11-17" data-line-number="17"><span class="co">#   facet_wrap(&quot;measure&quot;, nrow = 1)</span></a></code></pre></div>
 <p>we can utilize color, size, and shape to tell a better story with our graphics.
 Each aesthetic can serve a different purpose / used for a different kind of variable</p>
-<ul>
-<li>color (continuous or discrete)</li>
-<li>size (continuous)</li>
-<li>shape (discrete)</li>
-</ul>
 <p>others:
 - linetype</p>
 <p>To cover:</p>
@@ -276,8 +387,10 @@ Each aesthetic can serve a different purpose / used for a different kind of vari
 <li>sizing</li>
 <li>faceting</li>
 </ul>
+</div>
+</div>
 <div id="expanding-bivariate-visualizations-to-trivariate-other-tri-variate" class="section level2">
-<h2><span class="header-section-number">20.1</span> Expanding bivariate visualizations to trivariate &amp; other tri-variate</h2>
+<h2><span class="header-section-number">20.2</span> Expanding bivariate visualizations to trivariate &amp; other tri-variate</h2>
 <ul>
 <li>we can visualize other vcariables by setting further aesthetics.
 <ul>
@@ -294,20 +407,16 @@ Each aesthetic can serve a different purpose / used for a different kind of vari
 </ul></li>
 </ul></li>
 </ul>
-<div class="sourceCode" id="cb233"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb233-1" data-line-number="1"><span class="kw">ggplot</span>(acs_raw, <span class="kw">aes</span>(fam_house_per, age_u18, <span class="dt">color =</span> by_auto)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb233-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>()</a>
-<a class="sourceLine" id="cb233-3" data-line-number="3"><span class="co">#&gt; Warning: Removed 17 rows containing missing values (geom_point).</span></a></code></pre></div>
-<p><img src="04d-beyond-2d_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1"><span class="co"># ggplot(acs_raw, aes(fam_house_per, age_u18, color = by_auto)) +</span></a>
+<a class="sourceLine" id="cb12-2" data-line-number="2"><span class="co">#   geom_point()</span></a></code></pre></div>
 <ul>
 <li>we can add size to this as well by setting the <code>size</code> aesthetic
 <ul>
 <li>lets see if the more female headed house holds there are affects commuting by car as minors increases</li>
 </ul></li>
 </ul>
-<div class="sourceCode" id="cb234"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb234-1" data-line-number="1"><span class="kw">ggplot</span>(acs_raw, <span class="kw">aes</span>(fam_house_per, age_u18, <span class="dt">color =</span> by_auto, <span class="dt">size =</span> fem_head_per)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb234-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">.2</span>)</a>
-<a class="sourceLine" id="cb234-3" data-line-number="3"><span class="co">#&gt; Warning: Removed 17 rows containing missing values (geom_point).</span></a></code></pre></div>
-<p><img src="04d-beyond-2d_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1"><span class="co"># ggplot(acs_raw, aes(fam_house_per, age_u18, color = by_auto, size = fem_head_per)) +</span></a>
+<a class="sourceLine" id="cb13-2" data-line-number="2"><span class="co">#   geom_point(alpha = .2)</span></a></code></pre></div>
 <ul>
 <li>from this chart we can see quite a few things:
 <ul>
@@ -317,67 +426,9 @@ Each aesthetic can serve a different purpose / used for a different kind of vari
 <li>this gives us a good idea of some relationships that we can test with our data at a later point</li>
 </ul></li>
 </ul>
-<div class="sourceCode" id="cb235"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb235-1" data-line-number="1">minors_lm &lt;-<span class="st"> </span><span class="kw">lm</span>(age_u18 <span class="op">~</span><span class="st"> </span>fam_house_per <span class="op">+</span><span class="st"> </span>by_auto <span class="op">+</span><span class="st"> </span>fem_head_per, <span class="dt">data =</span> acs_raw)</a>
-<a class="sourceLine" id="cb235-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb235-3" data-line-number="3">huxtable<span class="op">::</span><span class="kw">huxreg</span>(minors_lm)</a></code></pre></div>
-<table class="huxtable" style="border-collapse: collapse; margin-bottom: 2em; margin-top: 2em; width: 50%; margin-left: auto; margin-right: auto;  ">
-<col><col><tr>
-<td style="vertical-align: top; text-align: center; white-space: nowrap; border-style: solid solid solid solid; border-width: 0.8pt 0pt 0pt 0pt; padding: 4pt 4pt 4pt 4pt;"></td>
-<td style="vertical-align: top; text-align: center; white-space: nowrap; border-style: solid solid solid solid; border-width: 0.8pt 0pt 0.4pt 0pt; padding: 4pt 4pt 4pt 4pt;">(1)</td>
-</tr>
-<tr>
-<td style="vertical-align: top; text-align: left; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">(Intercept)</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">-0.007&nbsp;&nbsp;&nbsp;&nbsp;</td>
-</tr>
-<tr>
-<td style="vertical-align: top; text-align: left; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;"></td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">(0.005)&nbsp;&nbsp;&nbsp;</td>
-</tr>
-<tr>
-<td style="vertical-align: top; text-align: left; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">fam_house_per</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">0.229 ***</td>
-</tr>
-<tr>
-<td style="vertical-align: top; text-align: left; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;"></td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">(0.010)&nbsp;&nbsp;&nbsp;</td>
-</tr>
-<tr>
-<td style="vertical-align: top; text-align: left; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">by_auto</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">0.042 ***</td>
-</tr>
-<tr>
-<td style="vertical-align: top; text-align: left; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;"></td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">(0.007)&nbsp;&nbsp;&nbsp;</td>
-</tr>
-<tr>
-<td style="vertical-align: top; text-align: left; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">fem_head_per</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">0.228 ***</td>
-</tr>
-<tr>
-<td style="vertical-align: top; text-align: left; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;"></td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt; padding: 4pt 4pt 4pt 4pt;">(0.012)&nbsp;&nbsp;&nbsp;</td>
-</tr>
-<tr>
-<td style="vertical-align: top; text-align: left; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">N</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">1459&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-</tr>
-<tr>
-<td style="vertical-align: top; text-align: left; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">R2</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">0.547&nbsp;&nbsp;&nbsp;&nbsp;</td>
-</tr>
-<tr>
-<td style="vertical-align: top; text-align: left; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">logLik</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">2550.558&nbsp;&nbsp;&nbsp;&nbsp;</td>
-</tr>
-<tr>
-<td style="vertical-align: top; text-align: left; white-space: nowrap; border-style: solid solid solid solid; border-width: 0pt 0pt 0.8pt 0pt; padding: 4pt 4pt 4pt 4pt;">AIC</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; border-style: solid solid solid solid; border-width: 0pt 0pt 0.8pt 0pt; padding: 4pt 4pt 4pt 4pt;">-5091.116&nbsp;&nbsp;&nbsp;&nbsp;</td>
-</tr>
-<tr>
-<td colspan="2" style="vertical-align: top; text-align: left; white-space: normal; padding: 4pt 4pt 4pt 4pt;"> *** p &lt; 0.001;  ** p &lt; 0.01;  * p &lt; 0.05.</td>
-</tr>
-</table>
-
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1"><span class="co"># minors_lm &lt;- lm(age_u18 ~ fam_house_per + by_auto + fem_head_per, data = acs_raw)</span></a>
+<a class="sourceLine" id="cb14-2" data-line-number="2"><span class="co"># </span></a>
+<a class="sourceLine" id="cb14-3" data-line-number="3"><span class="co"># huxtable::huxreg(minors_lm)</span></a></code></pre></div>
 <p>Trivariate:</p>
 <ul>
 <li>grouped / stacked bar charts</li>
@@ -470,20 +521,6 @@ gitbook.start({
 });
 </script>
 
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
-  (function () {
-    var script = document.createElement("script");
-    script.type = "text/javascript";
-    var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:")
-      if (/^https?:/.test(src))
-        src = src.replace(/^https?:/, '');
-    script.src = src;
-    document.getElementsByTagName("head")[0].appendChild(script);
-  })();
-</script>
 </body>
 
 </html>

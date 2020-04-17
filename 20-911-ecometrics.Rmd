@@ -10,11 +10,11 @@ source("common.R")
 Explore what the data description from BARI looks like
 
 ```{r}
-library(tidyverse)
-ecometrics <- readr::read_csv("data/911/911-ecometrics-2014-19.csv") %>% 
-  janitor::clean_names()
-
-glimpse(ecometrics)
+# library(tidyverse)
+# ecometrics <- readr::read_csv("data/911/911-ecometrics-2014-19.csv") %>% 
+#   janitor::clean_names()
+# 
+# glimpse(ecometrics)
 ```
 
 Check out the offense descriptions

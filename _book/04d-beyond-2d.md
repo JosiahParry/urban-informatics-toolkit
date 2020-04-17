@@ -7,18 +7,191 @@ Over the duration of the last three chapters we have cultivated a fundamental un
 
 > Note that these will not be 3D, but rather visualize three variables. 
 
-To improve our graphics we will utilize the color, shape and size aesthetics as well as faceting. Of course, this begs the question of which aesthetic do I choose? Well, that depends upon what type of data you will be visualizing.
+To improve our graphics we will utilize the color, shape, and size aesthetics, as well as faceting. Of course, this begs the question of which aesthetic do I choose? Well, that depends upon what type of data you will be visualizing. Each aesthetic serves different purposes and can be used for a different type of variable.
 
-Generally, if you want to visualize a continuous variable, color and then size will be preferable.
+In general we can use the below mappings: 
 
+- color -> continuous or discrete
+- size -> continuous
+- shape -> discrete
+
+## Color
+
+Let us first take a look at the use of color. Color is, after position, the easiest visual cue for we humans to distinguish (that viz book on my coffee table) between. It is also a rather versatile visual cue as it can be used to address both continuous and discrete variables. We will first explore the use of color for discrete measurements. In this context, I do not necessarily mean discrete as in integers, but more or less groups. This is where there is not _necessarily_ an order or scale implied in the data. It _can_ however be indicative of order—think for example age groups. To explore the use of color for groups or discrete data, we will look at Boston ecometrics of social disorder as discussed previously (O'Brien 2015 CITE NEEDED). Ecometrics are stored in a file called `ecometrics.csv` the `data` directory. Read it in as `ecometrics`. 
+
+
+```r
+library(tidyverse)
+
+ecometrics <- read_csv("data/ecometrics.csv")
+```
+
+
+At this point in your learning, I think it is appropriate to introduce you to a new package that can be used to quickly summarize and visualize your data. That is called `skimr`. Within the package there is a function called `skim()`. This package is really useful for quickly getting an understanding of a dataset as it provides useful summary statistics for each variable as well as a histogram for numeric columns. 
+
+
+```r
+skimr::skim(ecometrics)
+```
+
+
+```
+#> ── Data Summary ────────────────────────
+#>                            Values    
+#> Name                       ecometrics
+#> Number of rows             68        
+#> Number of columns          4         
+#> _______________________              
+#> Column type frequency:               
+#>   character                2         
+#>   numeric                  2         
+#> ________________________             
+#> Group variables            None      
+#> 
+#> ── Variable type: character ────────────────────────────────────────────────────
+#>   skim_variable n_missing complete_rate   min   max empty n_unique whitespace
+#> 1 type                  0             1     5    34     0       15          0
+#> 2 measure               0             1     4    16     0        4          0
+#> 
+#> ── Variable type: numeric ──────────────────────────────────────────────────────
+#>   skim_variable n_missing complete_rate  mean      sd    p0   p25   p50   p75
+#> 1 year                  0             1 2016.    1.13  2015 2016. 2016. 2017.
+#> 2 n                     0             1 1929. 1857.      68  786  1230  2690.
+#>    p100 hist 
+#> 1  2018 ▇▇▁▇▇
+#> 2  7392 ▇▂▁▁▁
+```
+
+A simple graphic here would be to evaluate the raw counts by year. A simple bar chart would look like this.
+
+
+```r
+ggplot(ecometrics, aes(year, n)) +
+  geom_col()
+```
+
+<img src="04d-beyond-2d_files/figure-html/unnamed-chunk-5-1.png" width="672" />
+
+But, we are aware that there are different measurements. These were described previously and can be seen below.
+
+
+```r
+distinct(ecometrics, measure)
+#> # A tibble: 4 x 1
+#>   measure         
+#>   <chr>           
+#> 1 violence        
+#> 2 guns            
+#> 3 private conflict
+#> 4 social disorder
+```
+
+How can we partition our visualization to illustrate the number of counts per ecometric per year? We can use color—each measurement will receive it's own color. This will make it easier to determine the frequency of which each ecometric occurs. To do this we setting `fill` rather than `color` this is because we are working with a polygon shape. `color` is used in working with lines and points. A useful trick is to think of `color` as the border and `fill` as the body fill. 
+
+
+```r
+ggplot(ecometrics, aes(year, n, fill = measure)) +
+  geom_col()
+```
+
+<img src="04d-beyond-2d_files/figure-html/unnamed-chunk-7-1.png" width="672" />
+
+By mapping the fill to the `measure` variable we were able to create a stacked bar chart! It is apparent that `violence` is the most frequent of these ecometrics, followed by `private conflict`, `social disorder`, and then `guns`. 
+
+One of the downsides about the stacked barchart is that it is difficult to compare the sizes of each group relative to ones that are not adjacent. For example comparing `guns` to `social disorder` is made difficult as `private conflict` is situated between them. We can adjust our chart so that each bar is situated next to eachother. We do this by setting the argument `position = "dodge"` within the `geom_col()` layer.
+
+
+```r
+ggplot(ecometrics, aes(year, n, fill = measure)) +
+  geom_col(position = "dodge")
+```
+
+<img src="04d-beyond-2d_files/figure-html/unnamed-chunk-8-1.png" width="672" />
+
+The dodged bar chart makes it much easier to compare the heights of each bar. But now we are creating a somewhat cluttered graphic. In the situation where there are multiple groups and subgroups, it is often preferred to utilize facetting because the most important thing in any graphic is how easy it is to consume. We would rather make four plots than one messy plot. 
+
+Let's facet by `measure` and tell `facet_wrap()` to create only one row. 
+
+
+```r
+ggplot(ecometrics, aes(year, n, fill = measure)) +
+  geom_col() + 
+  facet_wrap("measure", nrow = 1)
+```
+
+<img src="04d-beyond-2d_files/figure-html/unnamed-chunk-9-1.png" width="672" />
+
+
+This is awesome! We have four different plots one for each measurement and it is extremely easy to see how each ecoemtrics has trended over the four year period. It seems like there has been a steady decrease! With this plot, however, we are labeling the ecometrics twice: once with the panel label and once with the legend. Since each facet is labeled individually and are not situated next to any other ecometrics, the color becomes redundant. Unless there is an important reason to visualize the color when facetting, it is most likely not needed. As such, a final visualization would look like below.
+
+
+```r
+ggplot(ecometrics, aes(year, n)) +
+  geom_col() + 
+  facet_wrap("measure", nrow = 1)
+```
+
+<img src="04d-beyond-2d_files/figure-html/unnamed-chunk-10-1.png" width="672" />
+
+
+
+------------
+
+### Notes
+
+
+- we have year, measure, and n, lets view year on the x and n on the y
+  - we now want to know these totals by measure
+  - set the `fill` to the `measure`. fill is used for polygons (a col is a rectangle that needs to be filled)
+  - by default this shows us a stacked bar chart which is useful
+- another way to do this is to change the position of these bars by setting the position argument to `"dodge"` this enables us to compare the heights of the bars more easily
+- also, we should always consider creating small multiples, or facetting, rather than adding more to our plots. We want the data to be consumable. Don't feel forced to put everything on to one graphic
+
+- Continuous use of color.
+  - there are two general ways in which continuous variables will be mapped to color. this is if there is a low value and a high value.
+  - secondly, we can think of a divergent color palette. This is used when there is a known middle value
+    - a common mistake is using a divergent palette when there is no natural middle. be wary of this. 
+    
+    
+- shape is only good when the magnitudes are very different
+ 
+
+```r
+# commute <- read_csv("data/acs_edu.csv")
+# 
+# commute
+```
+ 
+ 
+ 
+
+
+
+
+```r
+# # viewing by fill
+# ggplot(ecometrics, aes(year, n, fill = measure)) +
+#   geom_col()
+# 
+# 
+# # viewing by fill
+# ggplot(ecometrics, aes(year, n, fill = measure)) +
+#   geom_col()
+# 
+# # viewing by fill and dodging
+# ggplot(ecometrics, aes(year, n, fill = measure)) +
+#   geom_col(position = "dodge")
+# 
+# # faceting 
+# ggplot(ecometrics, aes(year, n)) +
+#   geom_col() + 
+#   facet_wrap("measure", nrow = 1)
+
+```
 
 
 we can utilize color, size, and shape to tell a better story with our graphics. 
 Each aesthetic can serve a different purpose / used for a different kind of variable
-
-- color (continuous or discrete)
-- size (continuous)
-- shape (discrete) 
 
 others:
 - linetype 
@@ -42,24 +215,18 @@ To cover:
     
 
 ```r
-ggplot(acs_raw, aes(fam_house_per, age_u18, color = by_auto)) +
-  geom_point()
-#> Warning: Removed 17 rows containing missing values (geom_point).
+# ggplot(acs_raw, aes(fam_house_per, age_u18, color = by_auto)) +
+#   geom_point()
 ```
-
-<img src="04d-beyond-2d_files/figure-html/unnamed-chunk-2-1.png" width="672" />
 
 - we can add size to this as well by setting the `size` aesthetic
   - lets see if the more female headed house holds there are affects commuting by car as minors increases
 
 
 ```r
-ggplot(acs_raw, aes(fam_house_per, age_u18, color = by_auto, size = fem_head_per)) +
-  geom_point(alpha = .2)
-#> Warning: Removed 17 rows containing missing values (geom_point).
+# ggplot(acs_raw, aes(fam_house_per, age_u18, color = by_auto, size = fem_head_per)) +
+#   geom_point(alpha = .2)
 ```
-
-<img src="04d-beyond-2d_files/figure-html/unnamed-chunk-3-1.png" width="672" />
 
 - from this chart we can see quite a few things:
   - as `fam_house_per` increases so does the under 18 pop,
@@ -69,69 +236,10 @@ ggplot(acs_raw, aes(fam_house_per, age_u18, color = by_auto, size = fem_head_per
 
 
 ```r
-minors_lm <- lm(age_u18 ~ fam_house_per + by_auto + fem_head_per, data = acs_raw)
-
-huxtable::huxreg(minors_lm)
+# minors_lm <- lm(age_u18 ~ fam_house_per + by_auto + fem_head_per, data = acs_raw)
+# 
+# huxtable::huxreg(minors_lm)
 ```
-
-<!--html_preserve--><table class="huxtable" style="border-collapse: collapse; margin-bottom: 2em; margin-top: 2em; width: 50%; margin-left: auto; margin-right: auto;  ">
-<col><col><tr>
-<td style="vertical-align: top; text-align: center; white-space: nowrap; border-style: solid solid solid solid; border-width: 0.8pt 0pt 0pt 0pt; padding: 4pt 4pt 4pt 4pt;"></td>
-<td style="vertical-align: top; text-align: center; white-space: nowrap; border-style: solid solid solid solid; border-width: 0.8pt 0pt 0.4pt 0pt; padding: 4pt 4pt 4pt 4pt;">(1)</td>
-</tr>
-<tr>
-<td style="vertical-align: top; text-align: left; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">(Intercept)</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">-0.007&nbsp;&nbsp;&nbsp;&nbsp;</td>
-</tr>
-<tr>
-<td style="vertical-align: top; text-align: left; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;"></td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">(0.005)&nbsp;&nbsp;&nbsp;</td>
-</tr>
-<tr>
-<td style="vertical-align: top; text-align: left; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">fam_house_per</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">0.229 ***</td>
-</tr>
-<tr>
-<td style="vertical-align: top; text-align: left; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;"></td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">(0.010)&nbsp;&nbsp;&nbsp;</td>
-</tr>
-<tr>
-<td style="vertical-align: top; text-align: left; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">by_auto</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">0.042 ***</td>
-</tr>
-<tr>
-<td style="vertical-align: top; text-align: left; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;"></td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">(0.007)&nbsp;&nbsp;&nbsp;</td>
-</tr>
-<tr>
-<td style="vertical-align: top; text-align: left; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">fem_head_per</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">0.228 ***</td>
-</tr>
-<tr>
-<td style="vertical-align: top; text-align: left; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;"></td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt; padding: 4pt 4pt 4pt 4pt;">(0.012)&nbsp;&nbsp;&nbsp;</td>
-</tr>
-<tr>
-<td style="vertical-align: top; text-align: left; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">N</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">1459&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-</tr>
-<tr>
-<td style="vertical-align: top; text-align: left; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">R2</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">0.547&nbsp;&nbsp;&nbsp;&nbsp;</td>
-</tr>
-<tr>
-<td style="vertical-align: top; text-align: left; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">logLik</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; padding: 4pt 4pt 4pt 4pt;">2550.558&nbsp;&nbsp;&nbsp;&nbsp;</td>
-</tr>
-<tr>
-<td style="vertical-align: top; text-align: left; white-space: nowrap; border-style: solid solid solid solid; border-width: 0pt 0pt 0.8pt 0pt; padding: 4pt 4pt 4pt 4pt;">AIC</td>
-<td style="vertical-align: top; text-align: right; white-space: nowrap; border-style: solid solid solid solid; border-width: 0pt 0pt 0.8pt 0pt; padding: 4pt 4pt 4pt 4pt;">-5091.116&nbsp;&nbsp;&nbsp;&nbsp;</td>
-</tr>
-<tr>
-<td colspan="2" style="vertical-align: top; text-align: left; white-space: normal; padding: 4pt 4pt 4pt 4pt;"> *** p &lt; 0.001;  ** p &lt; 0.01;  * p &lt; 0.05.</td>
-</tr>
-</table>
-<!--/html_preserve-->
 
 
 

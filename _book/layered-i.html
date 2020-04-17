@@ -24,7 +24,7 @@
 <meta name="author" content="Josiah Parry" />
 
 
-<meta name="date" content="2020-04-12" />
+<meta name="date" content="2020-04-17" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -146,7 +146,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.3" data-path="approaches-to-and-schools-of-urban-informatics.html"><a href="approaches-to-and-schools-of-urban-informatics.html#complexity-and-santa-fe-institute"><i class="fa fa-check"></i><b>4.3</b> Complexity and Santa Fe Institute</a></li>
 <li class="chapter" data-level="4.4" data-path="approaches-to-and-schools-of-urban-informatics.html"><a href="approaches-to-and-schools-of-urban-informatics.html#a-hybrid-approach"><i class="fa fa-check"></i><b>4.4</b> A Hybrid Approach</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="ecometrics.html"><a href="ecometrics.html"><i class="fa fa-check"></i><b>5</b> Ecometrics</a></li>
+<li class="chapter" data-level="5" data-path="ecometrics.html"><a href="ecometrics.html"><i class="fa fa-check"></i><b>5</b> Ecometrics</a><ul>
+<li class="chapter" data-level="5.1" data-path="ecometrics.html"><a href="ecometrics.html#broken-windows-theory"><i class="fa fa-check"></i><b>5.1</b> Broken Windows Theory</a></li>
+<li class="chapter" data-level="5.2" data-path="ecometrics.html"><a href="ecometrics.html#quantifying-disorder"><i class="fa fa-check"></i><b>5.2</b> Quantifying Disorder</a></li>
+</ul></li>
 <li class="part"><span><b>II Toolkit Foundations</b></span></li>
 <li class="chapter" data-level="6" data-path="the-basics.html"><a href="the-basics.html"><i class="fa fa-check"></i><b>6</b> The basics</a><ul>
 <li class="chapter" data-level="6.1" data-path="the-basics.html"><a href="the-basics.html#what-is-r-and-why-do-i-care"><i class="fa fa-check"></i><b>6.1</b> What is R and why do I care?</a></li>
@@ -215,7 +218,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="19.3" data-path="grammer-of-layered-graphics-ii.html"><a href="grammer-of-layered-graphics-ii.html#facets"><i class="fa fa-check"></i><b>19.3</b> Facets</a></li>
 </ul></li>
 <li class="chapter" data-level="20" data-path="visualizing-beyond-2-dimensions.html"><a href="visualizing-beyond-2-dimensions.html"><i class="fa fa-check"></i><b>20</b> Visualizing beyond 2-dimensions</a><ul>
-<li class="chapter" data-level="20.1" data-path="visualizing-beyond-2-dimensions.html"><a href="visualizing-beyond-2-dimensions.html#expanding-bivariate-visualizations-to-trivariate-other-tri-variate"><i class="fa fa-check"></i><b>20.1</b> Expanding bivariate visualizations to trivariate &amp; other tri-variate</a></li>
+<li class="chapter" data-level="20.1" data-path="visualizing-beyond-2-dimensions.html"><a href="visualizing-beyond-2-dimensions.html#color"><i class="fa fa-check"></i><b>20.1</b> Color</a></li>
+<li class="chapter" data-level="20.2" data-path="visualizing-beyond-2-dimensions.html"><a href="visualizing-beyond-2-dimensions.html#expanding-bivariate-visualizations-to-trivariate-other-tri-variate"><i class="fa fa-check"></i><b>20.2</b> Expanding bivariate visualizations to trivariate &amp; other tri-variate</a></li>
 </ul></li>
 <li class="part"><span><b>IV More than hammer and nails</b></span></li>
 <li class="chapter" data-level="21" data-path="multiple-data-sets.html"><a href="multiple-data-sets.html"><i class="fa fa-check"></i><b>21</b> Multiple data sets</a><ul>
@@ -254,14 +258,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="layered-i" class="section level1">
 <h1><span class="header-section-number">Chapter 17</span> Grammer of layered graphics I</h1>
-<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb189-1" data-line-number="1"><span class="kw">library</span>(tidyverse)</a>
-<a class="sourceLine" id="cb189-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb189-3" data-line-number="3">acs_messy &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data/ACS_1317_TRACT.csv&quot;</span>)</a>
-<a class="sourceLine" id="cb189-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb189-5" data-line-number="5">acs &lt;-<span class="st"> </span>acs_messy <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb189-6" data-line-number="6"><span class="st">  </span><span class="kw">separate</span>(name, <span class="dt">sep =</span> <span class="st">&quot;, &quot;</span>, <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;tract&quot;</span>, <span class="st">&quot;county&quot;</span>, <span class="st">&quot;state&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb189-7" data-line-number="7"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">tract =</span> <span class="kw">str_remove</span>(tract, <span class="st">&quot;Census Tract &quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb189-8" data-line-number="8"><span class="st">  </span><span class="kw">na.omit</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb180-1" data-line-number="1"><span class="kw">library</span>(tidyverse)</a>
+<a class="sourceLine" id="cb180-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb180-3" data-line-number="3">acs_messy &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data/ACS_1317_TRACT.csv&quot;</span>)</a>
+<a class="sourceLine" id="cb180-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb180-5" data-line-number="5">acs &lt;-<span class="st"> </span>acs_messy <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb180-6" data-line-number="6"><span class="st">  </span><span class="kw">separate</span>(name, <span class="dt">sep =</span> <span class="st">&quot;, &quot;</span>, <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;tract&quot;</span>, <span class="st">&quot;county&quot;</span>, <span class="st">&quot;state&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb180-7" data-line-number="7"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">tract =</span> <span class="kw">str_remove</span>(tract, <span class="st">&quot;Census Tract &quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb180-8" data-line-number="8"><span class="st">  </span><span class="kw">na.omit</span>()</a></code></pre></div>
 <p>You’ve made it quite far through this book. Now, I want to bring us back to the very beginning. In the first chapter we created a few visualizations with <code>ggplot2</code>. I want to unpack ggplot2 a bit more and also address some of the more philosophical underpinnings of visualization.</p>
 <p>This chapter introduces you to the idea of the grammar of graphics, discusses when which visualizations are appropriate, and some fundamental design principles follow.</p>
 <div id="the-grammar-of-layered-graphics" class="section level2">
@@ -291,28 +295,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="layers-and-defaults" class="section level2">
 <h2><span class="header-section-number">17.2</span> Layers and defaults</h2>
 <p>In the first chapter of this section we explored these principles but did not put a name to them. Recall that we can use <code>ggplot()</code> by itself and it returns a chart of nothing.</p>
-<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb190-1" data-line-number="1"><span class="kw">ggplot</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb181-1" data-line-number="1"><span class="kw">ggplot</span>()</a></code></pre></div>
 <p><img src="04a-grammar-I_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
 <p>This is because we have not specified any of the defaults. In order for us to plot anything at all, we need to specify what (the data object) will be visualized, which features (the aesthetic mappings), and how (the geoms). When we begin to specify our x and y aesthetics the scales are interpreted.</p>
-<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb191-1" data-line-number="1"><span class="kw">ggplot</span>(acs, <span class="kw">aes</span>(med_house_income, by_auto))</a></code></pre></div>
+<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb182-1" data-line-number="1"><span class="kw">ggplot</span>(acs, <span class="kw">aes</span>(med_house_income, by_auto))</a></code></pre></div>
 <p><img src="04a-grammar-I_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
 <p>The final step is to add the geom layer which will inherit the data, aesthetic mappings, scale, and position while the <code>geom_*()</code> layer dictates the geometry.</p>
-<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb192-1" data-line-number="1"><span class="kw">ggplot</span>(acs, <span class="kw">aes</span>(bach, med_house_income))<span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb192-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb183-1" data-line-number="1"><span class="kw">ggplot</span>(acs, <span class="kw">aes</span>(bach, med_house_income))<span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb183-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>()</a></code></pre></div>
 <p><img src="04a-grammar-I_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
 <p>While this is the most common way you might define a ggplot, you should also be aware of the fact that each layer can stand on its own without you defining any of the defaults in the <code>ggplot()</code> call. Each geom inherits the defaults from <code>ggplot()</code>, but each <code>geom_*()</code> also has arguments for <code>data</code>, and <code>mapping</code>, providing you with increased flexibility.</p>
 <blockquote>
 <p>Note: the <code>geom_*()</code>s have the data as the second argument so either put the data there or name the argument explicitly. The choice is yours. Choose wisely!</p>
 </blockquote>
 <p>What happens if we provide all of this information to <code>geom_point()</code> and entirely omit <code>ggplot()</code>?</p>
-<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb193-1" data-line-number="1"><span class="kw">geom_point</span>(<span class="kw">aes</span>(med_house_income, by_auto), acs)</a>
-<a class="sourceLine" id="cb193-2" data-line-number="2"><span class="co">#&gt; mapping: x = ~med_house_income, y = ~by_auto </span></a>
-<a class="sourceLine" id="cb193-3" data-line-number="3"><span class="co">#&gt; geom_point: na.rm = FALSE</span></a>
-<a class="sourceLine" id="cb193-4" data-line-number="4"><span class="co">#&gt; stat_identity: na.rm = FALSE</span></a>
-<a class="sourceLine" id="cb193-5" data-line-number="5"><span class="co">#&gt; position_identity</span></a></code></pre></div>
+<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb184-1" data-line-number="1"><span class="kw">geom_point</span>(<span class="kw">aes</span>(med_house_income, by_auto), acs)</a>
+<a class="sourceLine" id="cb184-2" data-line-number="2"><span class="co">#&gt; mapping: x = ~med_house_income, y = ~by_auto </span></a>
+<a class="sourceLine" id="cb184-3" data-line-number="3"><span class="co">#&gt; geom_point: na.rm = FALSE</span></a>
+<a class="sourceLine" id="cb184-4" data-line-number="4"><span class="co">#&gt; stat_identity: na.rm = FALSE</span></a>
+<a class="sourceLine" id="cb184-5" data-line-number="5"><span class="co">#&gt; position_identity</span></a></code></pre></div>
 <p>We see that we do not have the plot, but we do have all of the information required of a layer is printed out to the console. If we add an empty ggplot call ahead of the layer, we will be able to create the plot.</p>
-<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb194-1" data-line-number="1"><span class="kw">ggplot</span>() <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb194-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(med_house_income, by_auto), acs)</a></code></pre></div>
+<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb185-1" data-line-number="1"><span class="kw">ggplot</span>() <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb185-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(med_house_income, by_auto), acs)</a></code></pre></div>
 <p><img src="04a-grammar-I_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
 <p>Being able to specify different data objects within each layer will provie to be extraordinarily helpful when we begin to work with spatial data, or plotting two different data frames with the same axes, or any other creative problem you wish to solve.</p>
 
