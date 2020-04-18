@@ -41,7 +41,8 @@ bind_cols(neighborhood = aoi_sf$Name, big_belly) %>%
   summarise(n = n(),
             lat = mean(lat),
             long = mean(long)) %>% 
-  filter(neighborhood == "Downtown") %>% 
+  filter(neighborhood == "Downtown") %>%
+  ungroup() %>% 
   select(-neighborhood) %>% 
   write_csv("data/downtown-big-belly.csv")
 
