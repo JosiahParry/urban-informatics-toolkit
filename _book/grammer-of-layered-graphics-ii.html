@@ -33,6 +33,7 @@
   
 <link rel="prev" href="visualizing-trends-and-relationships.html"/>
 <link rel="next" href="visualizing-beyond-2-dimensions.html"/>
+<script src="libs/header-attrs-2.1/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -53,25 +54,26 @@
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -80,9 +82,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -131,7 +133,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">Urban Informatics Toolkit</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Welcome</a><ul>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Welcome</a>
+<ul>
 <li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#what-to-expect"><i class="fa fa-check"></i><b>1.1</b> What to expect</a></li>
 <li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#reminders"><i class="fa fa-check"></i><b>1.2</b> Reminders</a></li>
 <li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#timeline"><i class="fa fa-check"></i><b>1.3</b> Timeline</a></li>
@@ -140,92 +143,110 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="part"><span><b>I Foundations of Urban Informatics</b></span></li>
 <li class="chapter" data-level="2" data-path="the-utility-and-danger-of-big-data.html"><a href="the-utility-and-danger-of-big-data.html"><i class="fa fa-check"></i><b>2</b> The Utility and Danger of Big Data</a></li>
 <li class="chapter" data-level="3" data-path="data-in-the-municipal-context.html"><a href="data-in-the-municipal-context.html"><i class="fa fa-check"></i><b>3</b> Data in the municipal context</a></li>
-<li class="chapter" data-level="4" data-path="approaches-to-and-schools-of-urban-informatics.html"><a href="approaches-to-and-schools-of-urban-informatics.html"><i class="fa fa-check"></i><b>4</b> Approaches to and Schools of Urban Informatics</a><ul>
+<li class="chapter" data-level="4" data-path="approaches-to-and-schools-of-urban-informatics.html"><a href="approaches-to-and-schools-of-urban-informatics.html"><i class="fa fa-check"></i><b>4</b> Approaches to and Schools of Urban Informatics</a>
+<ul>
 <li class="chapter" data-level="4.1" data-path="approaches-to-and-schools-of-urban-informatics.html"><a href="approaches-to-and-schools-of-urban-informatics.html#scientific-approaches"><i class="fa fa-check"></i><b>4.1</b> Scientific approaches</a></li>
 <li class="chapter" data-level="4.2" data-path="approaches-to-and-schools-of-urban-informatics.html"><a href="approaches-to-and-schools-of-urban-informatics.html#the-chicago-school"><i class="fa fa-check"></i><b>4.2</b> The Chicago School</a></li>
 <li class="chapter" data-level="4.3" data-path="approaches-to-and-schools-of-urban-informatics.html"><a href="approaches-to-and-schools-of-urban-informatics.html#complexity-and-santa-fe-institute"><i class="fa fa-check"></i><b>4.3</b> Complexity and Santa Fe Institute</a></li>
 <li class="chapter" data-level="4.4" data-path="approaches-to-and-schools-of-urban-informatics.html"><a href="approaches-to-and-schools-of-urban-informatics.html#a-hybrid-approach"><i class="fa fa-check"></i><b>4.4</b> A Hybrid Approach</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="ecometrics.html"><a href="ecometrics.html"><i class="fa fa-check"></i><b>5</b> Ecometrics</a><ul>
+<li class="chapter" data-level="5" data-path="ecometrics.html"><a href="ecometrics.html"><i class="fa fa-check"></i><b>5</b> Ecometrics</a>
+<ul>
 <li class="chapter" data-level="5.1" data-path="ecometrics.html"><a href="ecometrics.html#broken-windows-theory"><i class="fa fa-check"></i><b>5.1</b> Broken Windows Theory</a></li>
 <li class="chapter" data-level="5.2" data-path="ecometrics.html"><a href="ecometrics.html#quantifying-disorder"><i class="fa fa-check"></i><b>5.2</b> Quantifying Disorder</a></li>
 </ul></li>
 <li class="part"><span><b>II Toolkit Foundations</b></span></li>
-<li class="chapter" data-level="6" data-path="the-basics.html"><a href="the-basics.html"><i class="fa fa-check"></i><b>6</b> The basics</a><ul>
+<li class="chapter" data-level="6" data-path="the-basics.html"><a href="the-basics.html"><i class="fa fa-check"></i><b>6</b> The basics</a>
+<ul>
 <li class="chapter" data-level="6.1" data-path="the-basics.html"><a href="the-basics.html#what-is-r-and-why-do-i-care"><i class="fa fa-check"></i><b>6.1</b> What is R and why do I care?</a></li>
 <li class="chapter" data-level="6.2" data-path="the-basics.html"><a href="the-basics.html#the-rstudio-ide"><i class="fa fa-check"></i><b>6.2</b> The RStudio IDE</a></li>
 <li class="chapter" data-level="6.3" data-path="the-basics.html"><a href="the-basics.html#installing-r-rstudio"><i class="fa fa-check"></i><b>6.3</b> Installing R &amp; RStudio</a></li>
 <li class="chapter" data-level="6.4" data-path="the-basics.html"><a href="the-basics.html#preventative-care"><i class="fa fa-check"></i><b>6.4</b> Preventative Care</a></li>
 <li class="chapter" data-level="6.5" data-path="the-basics.html"><a href="the-basics.html#before-we-embark"><i class="fa fa-check"></i><b>6.5</b> Before we embark</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="r-as-a-calculator.html"><a href="r-as-a-calculator.html"><i class="fa fa-check"></i><b>7</b> R as a calculator</a><ul>
+<li class="chapter" data-level="7" data-path="r-as-a-calculator.html"><a href="r-as-a-calculator.html"><i class="fa fa-check"></i><b>7</b> R as a calculator</a>
+<ul>
 <li class="chapter" data-level="7.1" data-path="r-as-a-calculator.html"><a href="r-as-a-calculator.html#arithmetic-operators"><i class="fa fa-check"></i><b>7.1</b> Arithmetic Operators</a></li>
 <li class="chapter" data-level="7.2" data-path="r-as-a-calculator.html"><a href="r-as-a-calculator.html#variable-assignment"><i class="fa fa-check"></i><b>7.2</b> Variable assignment</a></li>
 <li class="chapter" data-level="7.3" data-path="r-as-a-calculator.html"><a href="r-as-a-calculator.html#functions"><i class="fa fa-check"></i><b>7.3</b> Functions</a></li>
 <li class="chapter" data-level="7.4" data-path="r-as-a-calculator.html"><a href="r-as-a-calculator.html#extensions-to-r"><i class="fa fa-check"></i><b>7.4</b> Extensions to R</a></li>
 <li class="chapter" data-level="7.5" data-path="r-as-a-calculator.html"><a href="r-as-a-calculator.html#loading-packages"><i class="fa fa-check"></i><b>7.5</b> Loading Packages</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="exploratory-visual-analysis.html"><a href="exploratory-visual-analysis.html"><i class="fa fa-check"></i><b>8</b> Exploratory Visual Analysis</a><ul>
+<li class="chapter" data-level="8" data-path="exploratory-visual-analysis.html"><a href="exploratory-visual-analysis.html"><i class="fa fa-check"></i><b>8</b> Exploratory Visual Analysis</a>
+<ul>
 <li class="chapter" data-level="8.1" data-path="exploratory-visual-analysis.html"><a href="exploratory-visual-analysis.html#the-american-community-survey"><i class="fa fa-check"></i><b>8.1</b> The American Community Survey</a></li>
 <li class="chapter" data-level="8.2" data-path="exploratory-visual-analysis.html"><a href="exploratory-visual-analysis.html#a-first-visualization"><i class="fa fa-check"></i><b>8.2</b> A first visualization</a></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="reading-data.html"><a href="reading-data.html"><i class="fa fa-check"></i><b>9</b> Reading data</a><ul>
+<li class="chapter" data-level="9" data-path="reading-data.html"><a href="reading-data.html"><i class="fa fa-check"></i><b>9</b> Reading data</a>
+<ul>
 <li class="chapter" data-level="9.1" data-path="reading-data.html"><a href="reading-data.html#background"><i class="fa fa-check"></i><b>9.1</b> Background</a></li>
 <li class="chapter" data-level="9.2" data-path="reading-data.html"><a href="reading-data.html#actually-reading-data"><i class="fa fa-check"></i><b>9.2</b> Actually Reading Data</a></li>
 <li class="chapter" data-level="9.3" data-path="reading-data.html"><a href="reading-data.html#other-common-data-formats"><i class="fa fa-check"></i><b>9.3</b> Other common data formats</a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="general-data-manipulation.html"><a href="general-data-manipulation.html"><i class="fa fa-check"></i><b>10</b> General data manipulation</a><ul>
+<li class="chapter" data-level="10" data-path="general-data-manipulation.html"><a href="general-data-manipulation.html"><i class="fa fa-check"></i><b>10</b> General data manipulation</a>
+<ul>
 <li class="chapter" data-level="10.1" data-path="general-data-manipulation.html"><a href="general-data-manipulation.html#scenario"><i class="fa fa-check"></i><b>10.1</b> Scenario:</a></li>
 <li class="chapter" data-level="10.2" data-path="general-data-manipulation.html"><a href="general-data-manipulation.html#getting-physical-with-the-data"><i class="fa fa-check"></i><b>10.2</b> Getting physical with the data</a></li>
 <li class="chapter" data-level="10.3" data-path="general-data-manipulation.html"><a href="general-data-manipulation.html#selecting-rows"><i class="fa fa-check"></i><b>10.3</b> Selecting Rows</a></li>
 <li class="chapter" data-level="10.4" data-path="general-data-manipulation.html"><a href="general-data-manipulation.html#revisiting-commmuting"><i class="fa fa-check"></i><b>10.4</b> Revisiting commmuting</a></li>
 <li class="chapter" data-level="10.5" data-path="general-data-manipulation.html"><a href="general-data-manipulation.html#asking-good-questions"><i class="fa fa-check"></i><b>10.5</b> Asking good questions</a></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="thats-too-much-data.html"><a href="thats-too-much-data.html"><i class="fa fa-check"></i><b>11</b> That’s <em>too much</em> data</a><ul>
+<li class="chapter" data-level="11" data-path="thats-too-much-data.html"><a href="thats-too-much-data.html"><i class="fa fa-check"></i><b>11</b> That’s <em>too much</em> data</a>
+<ul>
 <li class="chapter" data-level="11.1" data-path="thats-too-much-data.html"><a href="thats-too-much-data.html#filtering"><i class="fa fa-check"></i><b>11.1</b> <code>filter()</code>ing</a></li>
 <li class="chapter" data-level="11.2" data-path="thats-too-much-data.html"><a href="thats-too-much-data.html#logical-operators"><i class="fa fa-check"></i><b>11.2</b> Logical operators</a></li>
 <li class="chapter" data-level="11.3" data-path="thats-too-much-data.html"><a href="thats-too-much-data.html#defining-the-greater-boston-area"><i class="fa fa-check"></i><b>11.3</b> Defining the Greater Boston Area</a></li>
 <li class="chapter" data-level="11.4" data-path="thats-too-much-data.html"><a href="thats-too-much-data.html#mutate"><i class="fa fa-check"></i><b>11.4</b> mutate</a></li>
 <li class="chapter" data-level="11.5" data-path="thats-too-much-data.html"><a href="thats-too-much-data.html#writing-data-1"><i class="fa fa-check"></i><b>11.5</b> Writing Data</a></li>
 </ul></li>
-<li class="chapter" data-level="12" data-path="the-pipe.html"><a href="the-pipe.html"><i class="fa fa-check"></i><b>12</b> The pipe <code>%&gt;%</code></a><ul>
+<li class="chapter" data-level="12" data-path="the-pipe.html"><a href="the-pipe.html"><i class="fa fa-check"></i><b>12</b> The pipe <code>%&gt;%</code></a>
+<ul>
 <li class="chapter" data-level="12.1" data-path="the-pipe.html"><a href="the-pipe.html#applying-the-pipe."><i class="fa fa-check"></i><b>12.1</b> Applying the pipe.</a></li>
 <li class="chapter" data-level="12.2" data-path="the-pipe.html"><a href="the-pipe.html#revisiting-our-scenario"><i class="fa fa-check"></i><b>12.2</b> Revisiting our scenario</a></li>
 </ul></li>
 <li class="chapter" data-level="13" data-path="creating-new-measures.html"><a href="creating-new-measures.html"><i class="fa fa-check"></i><b>13</b> Creating new measures</a></li>
-<li class="chapter" data-level="14" data-path="data-structures.html"><a href="data-structures.html"><i class="fa fa-check"></i><b>14</b> Data Structures</a><ul>
+<li class="chapter" data-level="14" data-path="data-structures.html"><a href="data-structures.html"><i class="fa fa-check"></i><b>14</b> Data Structures</a>
+<ul>
 <li class="chapter" data-level="14.1" data-path="data-structures.html"><a href="data-structures.html#atomic-vectors"><i class="fa fa-check"></i><b>14.1</b> Atomic Vectors</a></li>
 <li class="chapter" data-level="14.2" data-path="data-structures.html"><a href="data-structures.html#data-frames"><i class="fa fa-check"></i><b>14.2</b> Data Frames</a></li>
 <li class="chapter" data-level="14.3" data-path="data-structures.html"><a href="data-structures.html#lists"><i class="fa fa-check"></i><b>14.3</b> Lists</a></li>
 </ul></li>
 <li class="chapter" data-level="15" data-path="summary-statistics.html"><a href="summary-statistics.html"><i class="fa fa-check"></i><b>15</b> Summary statistics</a></li>
-<li class="chapter" data-level="16" data-path="summarizing-the-tidy-way.html"><a href="summarizing-the-tidy-way.html"><i class="fa fa-check"></i><b>16</b> summarizing the tidy way</a><ul>
+<li class="chapter" data-level="16" data-path="summarizing-the-tidy-way.html"><a href="summarizing-the-tidy-way.html"><i class="fa fa-check"></i><b>16</b> summarizing the tidy way</a>
+<ul>
 <li class="chapter" data-level="16.1" data-path="summarizing-the-tidy-way.html"><a href="summarizing-the-tidy-way.html#counting"><i class="fa fa-check"></i><b>16.1</b> Counting</a></li>
 </ul></li>
 <li class="part"><span><b>III Vizualization Strategies</b></span></li>
-<li class="chapter" data-level="17" data-path="layered-i.html"><a href="layered-i.html"><i class="fa fa-check"></i><b>17</b> Grammer of layered graphics I</a><ul>
+<li class="chapter" data-level="17" data-path="layered-i.html"><a href="layered-i.html"><i class="fa fa-check"></i><b>17</b> Grammer of layered graphics I</a>
+<ul>
 <li class="chapter" data-level="17.1" data-path="layered-i.html"><a href="layered-i.html#the-grammar-of-layered-graphics"><i class="fa fa-check"></i><b>17.1</b> The Grammar of Layered Graphics</a></li>
 <li class="chapter" data-level="17.2" data-path="layered-i.html"><a href="layered-i.html#layers-and-defaults"><i class="fa fa-check"></i><b>17.2</b> Layers and defaults</a></li>
 </ul></li>
-<li class="chapter" data-level="18" data-path="visualizing-trends-and-relationships.html"><a href="visualizing-trends-and-relationships.html"><i class="fa fa-check"></i><b>18</b> Visualizing Trends and Relationships</a><ul>
+<li class="chapter" data-level="18" data-path="visualizing-trends-and-relationships.html"><a href="visualizing-trends-and-relationships.html"><i class="fa fa-check"></i><b>18</b> Visualizing Trends and Relationships</a>
+<ul>
 <li class="chapter" data-level="18.1" data-path="visualizing-trends-and-relationships.html"><a href="visualizing-trends-and-relationships.html#univariate-visualizations"><i class="fa fa-check"></i><b>18.1</b> Univariate visualizations</a></li>
 <li class="chapter" data-level="18.2" data-path="visualizing-trends-and-relationships.html"><a href="visualizing-trends-and-relationships.html#bivariate-visualizations"><i class="fa fa-check"></i><b>18.2</b> Bivariate visualizations</a></li>
 <li class="chapter" data-level="18.3" data-path="visualizing-trends-and-relationships.html"><a href="visualizing-trends-and-relationships.html#review"><i class="fa fa-check"></i><b>18.3</b> Review:</a></li>
 </ul></li>
-<li class="chapter" data-level="19" data-path="grammer-of-layered-graphics-ii.html"><a href="grammer-of-layered-graphics-ii.html"><i class="fa fa-check"></i><b>19</b> Grammer of layered graphics II</a><ul>
+<li class="chapter" data-level="19" data-path="grammer-of-layered-graphics-ii.html"><a href="grammer-of-layered-graphics-ii.html"><i class="fa fa-check"></i><b>19</b> Grammer of layered graphics II</a>
+<ul>
 <li class="chapter" data-level="19.1" data-path="grammer-of-layered-graphics-ii.html"><a href="grammer-of-layered-graphics-ii.html#scales"><i class="fa fa-check"></i><b>19.1</b> Scales</a></li>
 <li class="chapter" data-level="19.2" data-path="grammer-of-layered-graphics-ii.html"><a href="grammer-of-layered-graphics-ii.html#coordinates"><i class="fa fa-check"></i><b>19.2</b> Coordinates</a></li>
 <li class="chapter" data-level="19.3" data-path="grammer-of-layered-graphics-ii.html"><a href="grammer-of-layered-graphics-ii.html#facets"><i class="fa fa-check"></i><b>19.3</b> Facets</a></li>
 </ul></li>
-<li class="chapter" data-level="20" data-path="visualizing-beyond-2-dimensions.html"><a href="visualizing-beyond-2-dimensions.html"><i class="fa fa-check"></i><b>20</b> Visualizing beyond 2-dimensions</a><ul>
+<li class="chapter" data-level="20" data-path="visualizing-beyond-2-dimensions.html"><a href="visualizing-beyond-2-dimensions.html"><i class="fa fa-check"></i><b>20</b> Visualizing beyond 2-dimensions</a>
+<ul>
 <li class="chapter" data-level="20.1" data-path="visualizing-beyond-2-dimensions.html"><a href="visualizing-beyond-2-dimensions.html#color"><i class="fa fa-check"></i><b>20.1</b> Color</a></li>
-<li class="chapter" data-level="20.2" data-path="visualizing-beyond-2-dimensions.html"><a href="visualizing-beyond-2-dimensions.html#expanding-bivariate-visualizations-to-trivariate-other-tri-variate"><i class="fa fa-check"></i><b>20.2</b> Expanding bivariate visualizations to trivariate &amp; other tri-variate</a></li>
+<li class="chapter" data-level="20.2" data-path="visualizing-beyond-2-dimensions.html"><a href="visualizing-beyond-2-dimensions.html#shape"><i class="fa fa-check"></i><b>20.2</b> shape</a></li>
+<li class="chapter" data-level="20.3" data-path="visualizing-beyond-2-dimensions.html"><a href="visualizing-beyond-2-dimensions.html#expanding-bivariate-visualizations-to-trivariate-other-tri-variate"><i class="fa fa-check"></i><b>20.3</b> Expanding bivariate visualizations to trivariate &amp; other tri-variate</a></li>
 </ul></li>
 <li class="part"><span><b>IV More than hammer and nails</b></span></li>
-<li class="chapter" data-level="21" data-path="multiple-data-sets.html"><a href="multiple-data-sets.html"><i class="fa fa-check"></i><b>21</b> Multiple data sets</a><ul>
+<li class="chapter" data-level="21" data-path="multiple-data-sets.html"><a href="multiple-data-sets.html"><i class="fa fa-check"></i><b>21</b> Multiple data sets</a>
+<ul>
 <li class="chapter" data-level="21.1" data-path="multiple-data-sets.html"><a href="multiple-data-sets.html#exercise-3"><i class="fa fa-check"></i><b>21.1</b> Exercise</a></li>
 </ul></li>
-<li class="chapter" data-level="22" data-path="spatial-analysis.html"><a href="spatial-analysis.html"><i class="fa fa-check"></i><b>22</b> Spatial Analysis</a><ul>
+<li class="chapter" data-level="22" data-path="spatial-analysis.html"><a href="spatial-analysis.html"><i class="fa fa-check"></i><b>22</b> Spatial Analysis</a>
+<ul>
 <li class="chapter" data-level="22.1" data-path="spatial-analysis.html"><a href="spatial-analysis.html#types-of-spatial-data"><i class="fa fa-check"></i><b>22.1</b> Types of spatial data</a></li>
 <li class="chapter" data-level="22.2" data-path="spatial-analysis.html"><a href="spatial-analysis.html#working-with-spatial-data"><i class="fa fa-check"></i><b>22.2</b> Working with spatial data</a></li>
 <li class="chapter" data-level="22.3" data-path="spatial-analysis.html"><a href="spatial-analysis.html#creating-simple-features-from-a-tibble"><i class="fa fa-check"></i><b>22.3</b> Creating simple features from a tibble</a></li>
@@ -256,24 +277,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="grammer-of-layered-graphics-ii" class="section level1">
+<div id="grammer-of-layered-graphics-ii" class="section level1" number="19">
 <h1><span class="header-section-number">Chapter 19</span> Grammer of layered graphics II</h1>
 <p>We’ve developed a strong foundation for building charts from the ground up by specifying our <strong>defaults</strong> (data, and aesthetic mappings), and adding geom <strong>layers</strong>. In order to take our charts to the next level we need to familiarize ourselves with the other components of the <em>Layered Grammar of Graphics</em>: scales, coordinates, and facets.</p>
-<div id="scales" class="section level2">
+<div id="scales" class="section level2" number="19.1">
 <h2><span class="header-section-number">19.1</span> Scales</h2>
 <p>Recall from <em><a href="layered-i.html#layered-i">Grammar of Layered Graphics I</a></em> that when we supply our aesthetic mappings our axes are filled out automatically.</p>
-<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb209-1" data-line-number="1">(p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(acs, <span class="kw">aes</span>(med_house_income, bach)))</a></code></pre></div>
+<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb209-1"><a href="grammer-of-layered-graphics-ii.html#cb209-1"></a>(p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(acs, <span class="kw">aes</span>(med_house_income, bach)))</span></code></pre></div>
 <p><img src="04c-grammar-II_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
 <p>By specifying our defaults in the <code>ggplot()</code> call, we implicitly are providing the x and y axes. From those mappings, ggplot2 is able to identify the type of variable mapped to each aesthetic and its values. That inference makes it possible for us to plot without having to explicitly state what our axes are.</p>
-<div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb210-1" data-line-number="1">p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(acs, <span class="kw">aes</span>(med_house_income, bach)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb210-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="dv">1</span><span class="op">/</span><span class="dv">3</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb210-1"><a href="grammer-of-layered-graphics-ii.html#cb210-1"></a>p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(acs, <span class="kw">aes</span>(med_house_income, bach)) <span class="op">+</span></span>
+<span id="cb210-2"><a href="grammer-of-layered-graphics-ii.html#cb210-2"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="dv">1</span><span class="op">/</span><span class="dv">3</span>)</span></code></pre></div>
 <p>In the above chart, each column is being mapped as a continuous variable. We are able to manually specify what each scale type is by using the various <code>scale_*_type()</code> layers from ggplot2. These layers follow a general format of first specifying <code>scale</code> followed by which aesthetic we’re scaling, and what data type. For example, to change the <code>med_house_income</code> axis to a discrete axis we can apply the layer <code>scale_x_discrete()</code></p>
-<div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb211-1" data-line-number="1">p <span class="op">+</span></a>
-<a class="sourceLine" id="cb211-2" data-line-number="2"><span class="st">  </span><span class="kw">scale_x_discrete</span>() </a></code></pre></div>
+<div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb211-1"><a href="grammer-of-layered-graphics-ii.html#cb211-1"></a>p <span class="op">+</span></span>
+<span id="cb211-2"><a href="grammer-of-layered-graphics-ii.html#cb211-2"></a><span class="st">  </span><span class="kw">scale_x_discrete</span>() </span></code></pre></div>
 <p><img src="04c-grammar-II_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
 <p>In doing so we have lost the axis labels! That is because ggplot2 considers both integers and floating point (numbers with decimals) as continuous and categorical variables as being discrete.</p>
 <p>Nonetheless, we have a lot of functions at our disposal to alter the axes to our liking!</p>
-<div id="transformations" class="section level3">
+<div id="transformations" class="section level3" number="19.1.1">
 <h3><span class="header-section-number">19.1.1</span> Transformations</h3>
 <p>In our data exploration, we will come across non-normal distributions of data.</p>
 <ul>
@@ -286,12 +307,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>we can apply this with <code>scale_x_sqrt()</code></li>
 </ul></li>
 </ul>
-<div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb212-1" data-line-number="1">p <span class="op">+</span></a>
-<a class="sourceLine" id="cb212-2" data-line-number="2"><span class="st">  </span><span class="kw">scale_x_sqrt</span>() </a></code></pre></div>
+<div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb212-1"><a href="grammer-of-layered-graphics-ii.html#cb212-1"></a>p <span class="op">+</span></span>
+<span id="cb212-2"><a href="grammer-of-layered-graphics-ii.html#cb212-2"></a><span class="st">  </span><span class="kw">scale_x_sqrt</span>() </span></code></pre></div>
 <p><img src="04c-grammar-II_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
 <p>We can apply a log10 transformation as well with <code>scale_*_log10()</code>.</p>
-<div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb213-1" data-line-number="1">p <span class="op">+</span></a>
-<a class="sourceLine" id="cb213-2" data-line-number="2"><span class="st">  </span><span class="kw">scale_x_log10</span>() </a></code></pre></div>
+<div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb213-1"><a href="grammer-of-layered-graphics-ii.html#cb213-1"></a>p <span class="op">+</span></span>
+<span id="cb213-2"><a href="grammer-of-layered-graphics-ii.html#cb213-2"></a><span class="st">  </span><span class="kw">scale_x_log10</span>() </span></code></pre></div>
 <p><img src="04c-grammar-II_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
 <p>This is an overcorrection. The slight upward arch in the original plotting is now inverted. Nonetheless, I hope the point is made.</p>
 <p>In addition to applying transformations, we will want to have more control over the limits of our graph. For example, say we want to have our y axis include all <em>possible</em> values of [0,1]. We can tell ggplot what range of values we want our axes to contain with <code>lims()</code>. <code>lims()</code> takes a name-value pair where the name is an aesthetic and the value is a numeric vector with two elements—the first being the value at the origin and the second being at the extent of the axis<a href="#fn25" class="footnote-ref" id="fnref25"><sup>25</sup></a>.</p>
@@ -299,64 +320,64 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Note: [0,1] means from 0 inclusive to 1 inclusive.</p>
 </blockquote>
 <p>We can modify our y axis to have the limits of [0,1] by adding a <code>lims()</code> layer where we set the <code>y</code> aesthetic to <code>c(0, 1)</code>.</p>
-<div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb214-1" data-line-number="1">p <span class="op">+</span></a>
-<a class="sourceLine" id="cb214-2" data-line-number="2"><span class="st">  </span><span class="kw">lims</span>(<span class="dt">y =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">1</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb214-1"><a href="grammer-of-layered-graphics-ii.html#cb214-1"></a>p <span class="op">+</span></span>
+<span id="cb214-2"><a href="grammer-of-layered-graphics-ii.html#cb214-2"></a><span class="st">  </span><span class="kw">lims</span>(<span class="dt">y =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">1</span>))</span></code></pre></div>
 <p><img src="04c-grammar-II_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
 <p>The graph we get we when expand our y axis limits definitely contains a bit too much white space. But by expanding ths grid, we can see this sort of flattening out of education at around $150,000 while income still continues to increase. Perhaps if we omit tose values, the relationship may seem even stronger. Let’s experiment with that.</p>
 <ul>
 <li>Set the x axis limit to be from [0, 150000]</li>
 <li>Set the y axis limits to be from [0, 0.5]</li>
 </ul>
-<div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb215-1" data-line-number="1">p <span class="op">+</span></a>
-<a class="sourceLine" id="cb215-2" data-line-number="2"><span class="st">  </span><span class="kw">lims</span>(</a>
-<a class="sourceLine" id="cb215-3" data-line-number="3">    <span class="dt">x =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">150000</span>),</a>
-<a class="sourceLine" id="cb215-4" data-line-number="4">    <span class="dt">y =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="fl">.5</span>)</a>
-<a class="sourceLine" id="cb215-5" data-line-number="5">    )</a></code></pre></div>
+<div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb215-1"><a href="grammer-of-layered-graphics-ii.html#cb215-1"></a>p <span class="op">+</span></span>
+<span id="cb215-2"><a href="grammer-of-layered-graphics-ii.html#cb215-2"></a><span class="st">  </span><span class="kw">lims</span>(</span>
+<span id="cb215-3"><a href="grammer-of-layered-graphics-ii.html#cb215-3"></a>    <span class="dt">x =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">150000</span>),</span>
+<span id="cb215-4"><a href="grammer-of-layered-graphics-ii.html#cb215-4"></a>    <span class="dt">y =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="fl">.5</span>)</span>
+<span id="cb215-5"><a href="grammer-of-layered-graphics-ii.html#cb215-5"></a>    )</span></code></pre></div>
 <p><img src="04c-grammar-II_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
 <p>By changing the extent of our axes this relationship seems much more robust! Such a visualization could spur further validation of this ACS data.</p>
 <blockquote>
 <p>Remember, ACS data come from samples and sometimes those samples are small. Because of these small sample sizes, we may very well get values that are not properly representative. It is on you to decide whether or not you should include or exclude the values!</p>
 </blockquote>
 </div>
-<div id="labeling" class="section level3">
+<div id="labeling" class="section level3" number="19.1.2">
 <h3><span class="header-section-number">19.1.2</span> Labeling</h3>
 <p>The plots we create, while lovely as they are, are somewhat lacking in the labeling department. I would put money on it that no publication would accept plots with labels such as the ones above for sole reason being that our axes titles and scale labels are hard to interpret.</p>
 <p>We’ve already used it befofe but to be extra clear, to add titles and axis labels to our plots (not adjusting the scale labels) we use a <code>labs()</code> layer. With <code>labs()</code>, you can label any aesthetic you have mapped as well as adding a <code>title</code>, <code>subtitle</code>, <code>caption</code>, and a <code>tag</code>.</p>
 <p>Let’s add some titles and labels to our plot.</p>
-<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb216-1" data-line-number="1">p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(acs, <span class="kw">aes</span>(med_house_income, bach)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb216-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="dv">1</span><span class="op">/</span><span class="dv">3</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb216-3" data-line-number="3"><span class="st">    </span><span class="kw">labs</span>(</a>
-<a class="sourceLine" id="cb216-4" data-line-number="4">       <span class="dt">y =</span> <span class="st">&quot;% of population with a Bachelor&#39;s Degree&quot;</span>,</a>
-<a class="sourceLine" id="cb216-5" data-line-number="5">       <span class="dt">x =</span> <span class="st">&quot;Median Household Income&quot;</span>,</a>
-<a class="sourceLine" id="cb216-6" data-line-number="6">       <span class="dt">title =</span> <span class="st">&quot;Relationship between Education and Income&quot;</span>,</a>
-<a class="sourceLine" id="cb216-7" data-line-number="7">       <span class="dt">subtitle =</span> <span class="st">&quot;All Massachusetts Tracts&quot;</span>,</a>
-<a class="sourceLine" id="cb216-8" data-line-number="8">       <span class="dt">caption =</span> <span class="st">&quot;Source: Boston Area Research Initiative</span><span class="ch">\n</span><span class="st">via US Census Bureau&quot;</span></a>
-<a class="sourceLine" id="cb216-9" data-line-number="9">      )</a>
-<a class="sourceLine" id="cb216-10" data-line-number="10"></a>
-<a class="sourceLine" id="cb216-11" data-line-number="11">p</a></code></pre></div>
+<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb216-1"><a href="grammer-of-layered-graphics-ii.html#cb216-1"></a>p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(acs, <span class="kw">aes</span>(med_house_income, bach)) <span class="op">+</span></span>
+<span id="cb216-2"><a href="grammer-of-layered-graphics-ii.html#cb216-2"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="dv">1</span><span class="op">/</span><span class="dv">3</span>) <span class="op">+</span></span>
+<span id="cb216-3"><a href="grammer-of-layered-graphics-ii.html#cb216-3"></a><span class="st">    </span><span class="kw">labs</span>(</span>
+<span id="cb216-4"><a href="grammer-of-layered-graphics-ii.html#cb216-4"></a>       <span class="dt">y =</span> <span class="st">&quot;% of population with a Bachelor&#39;s Degree&quot;</span>,</span>
+<span id="cb216-5"><a href="grammer-of-layered-graphics-ii.html#cb216-5"></a>       <span class="dt">x =</span> <span class="st">&quot;Median Household Income&quot;</span>,</span>
+<span id="cb216-6"><a href="grammer-of-layered-graphics-ii.html#cb216-6"></a>       <span class="dt">title =</span> <span class="st">&quot;Relationship between Education and Income&quot;</span>,</span>
+<span id="cb216-7"><a href="grammer-of-layered-graphics-ii.html#cb216-7"></a>       <span class="dt">subtitle =</span> <span class="st">&quot;All Massachusetts Tracts&quot;</span>,</span>
+<span id="cb216-8"><a href="grammer-of-layered-graphics-ii.html#cb216-8"></a>       <span class="dt">caption =</span> <span class="st">&quot;Source: Boston Area Research Initiative</span><span class="ch">\n</span><span class="st">via US Census Bureau&quot;</span></span>
+<span id="cb216-9"><a href="grammer-of-layered-graphics-ii.html#cb216-9"></a>      )</span>
+<span id="cb216-10"><a href="grammer-of-layered-graphics-ii.html#cb216-10"></a></span>
+<span id="cb216-11"><a href="grammer-of-layered-graphics-ii.html#cb216-11"></a>p</span></code></pre></div>
 <p><img src="04c-grammar-II_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
 <p>Friends, it’s looking pretty good. But there are just two more changes we need to make: our axes labels! The x and y axes labels are meant to illustrate dollar amounts and percentages but respectively. To change the <em>scale</em> labels. we will use some helper functions from the package <a href="https://scales.r-lib.org/"><code>scales</code></a></p>
-<p>{scales} provides handy functions for taking a variable and altering the labeling to match some other format. In our case, we are interested in printing our <code>med_house_income</code> as in a dollar format, i.e. <code>2000</code> becomes <code>\$2,000</code>, and <code>bach</code> as a percentage, i.e. <code>.4</code> becomes <code>%40</code>. To alter our labels we will use <code>scales::dollar()</code>, and <code>scales::percent()</code> respectively.</p>
+<p>{scales} provides handy functions for taking a variable and altering the labeling to match some other format. In our case, we are interested in printing our <code>med_house_income</code> as in a dollar format, i.e. <code>2000</code> becomes <code>\$2,000</code>, and <code>bach</code> as a percentage, i.e. <code>.4</code> becomes <code>%40</code>. To alter our labels we will use <code>scales::dollar()</code>, and <code>scales::percent()</code> respectively.</p>
 <blockquote>
 <p>Isn’t it nice how well named functions can be sometimes?</p>
 </blockquote>
 <p>To produce the examples outlined above we would call the function as such:</p>
-<div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb217-1" data-line-number="1">scales<span class="op">::</span><span class="kw">dollar</span>(<span class="dv">2000</span>)</a>
-<a class="sourceLine" id="cb217-2" data-line-number="2"><span class="co">#&gt; [1] &quot;$2,000&quot;</span></a>
-<a class="sourceLine" id="cb217-3" data-line-number="3">scales<span class="op">::</span><span class="kw">percent</span>(.<span class="dv">4</span>)</a>
-<a class="sourceLine" id="cb217-4" data-line-number="4"><span class="co">#&gt; [1] &quot;40%&quot;</span></a></code></pre></div>
-<p>Now we have an understanding of <em>how</em> the function behaves, but where do we actually change the labels? This is where we come full cirlce back to our <code>scale_*_continuous()</code> layer. As we mentioned earlier, <code>ggplot()</code> will handle making the scales for us. But <code>ggplot()</code> doesn’t know how we want to label our variables or how they should appear on the axes. And now the impetus is on us to make these changes manually. To change the axis labels we will specify which axis we are altering using the proper scale layer—i.e. <code>scale_y_</code> or <code>scale_x_</code>. Then, in each layer we set the <code>labels</code> argument to the respective labelling function we want—e.g. <code>scales::percent</code> and <code>scales::dollar</code>.</p>
+<div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb217-1"><a href="grammer-of-layered-graphics-ii.html#cb217-1"></a>scales<span class="op">::</span><span class="kw">dollar</span>(<span class="dv">2000</span>)</span>
+<span id="cb217-2"><a href="grammer-of-layered-graphics-ii.html#cb217-2"></a><span class="co">#&gt; [1] &quot;$2,000&quot;</span></span>
+<span id="cb217-3"><a href="grammer-of-layered-graphics-ii.html#cb217-3"></a>scales<span class="op">::</span><span class="kw">percent</span>(.<span class="dv">4</span>)</span>
+<span id="cb217-4"><a href="grammer-of-layered-graphics-ii.html#cb217-4"></a><span class="co">#&gt; [1] &quot;40%&quot;</span></span></code></pre></div>
+<p>Now we have an understanding of <em>how</em> the function behaves, but where do we actually change the labels? This is where we come full cirlce back to our <code>scale_*_continuous()</code> layer. As we mentioned earlier, <code>ggplot()</code> will handle making the scales for us. But <code>ggplot()</code> doesn’t know how we want to label our variables or how they should appear on the axes. And now the impetus is on us to make these changes manually. To change the axis labels we will specify which axis we are altering using the proper scale layer—i.e. <code>scale_y_</code> or <code>scale_x_</code>. Then, in each layer we set the <code>labels</code> argument to the respective labelling function we want—e.g. <code>scales::percent</code> and <code>scales::dollar</code>.</p>
 <blockquote>
 <p>Note: If you append parentheses like you normally would you will get an error. This case we want to ignore them because when they are present, R will try to evaluate that function. Rather, we are interested in providing the <em>function object</em> to the <code>labels</code> argument rather than provide it with a vector of output.</p>
 </blockquote>
-<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb218-1" data-line-number="1">p <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb218-2" data-line-number="2"><span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">labels =</span> scales<span class="op">::</span>dollar) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb218-3" data-line-number="3"><span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">labels =</span> scales<span class="op">::</span>percent)</a></code></pre></div>
+<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb218-1"><a href="grammer-of-layered-graphics-ii.html#cb218-1"></a>p <span class="op">+</span><span class="st"> </span></span>
+<span id="cb218-2"><a href="grammer-of-layered-graphics-ii.html#cb218-2"></a><span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">labels =</span> scales<span class="op">::</span>dollar) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb218-3"><a href="grammer-of-layered-graphics-ii.html#cb218-3"></a><span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">labels =</span> scales<span class="op">::</span>percent)</span></code></pre></div>
 <p><img src="04c-grammar-II_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
 <p>In addition to being able to control the <strong>defaults</strong>, the <strong>layers</strong>, and now the <strong>scales</strong> you are well equipped to create and manipulate your own plots.</p>
 </div>
 </div>
-<div id="coordinates" class="section level2">
+<div id="coordinates" class="section level2" number="19.2">
 <h2><span class="header-section-number">19.2</span> Coordinates</h2>
 <p>While you’re likely to create 98% of your visualizations without ever manipulating the coordinates, it is still good knowledge to have!</p>
 <p>As we have mentioned and alluded to, we are working in a two-dimensional space—meaning with x and y coordinates. When working in two-dimensions, thee cartesian plane is the natural choice for a coordinate reference system. In all of our plots, this has been the default. Behind the scenes, ggplot is essentially adding a <code>coord_cartesian()</code> layer to your plot.</p>
@@ -366,18 +387,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>If, however, we find the need to alter or manipulate the coordinate system the tools are available to us. We’ve actually already used one, <code>coord_flip()</code>. Like, with scales, all coordinate based functions are prefixed with <code>coord_()</code>. If you will need to use these coordinate layers, it will be to essentially change the aspect ratio of your plots.</p>
 <p>We will encounter coordinates much more when we talk about spatial data. For now, though, all you need to know is that they exist and are a major underlying part of your plots.</p>
 </div>
-<div id="facets" class="section level2">
+<div id="facets" class="section level2" number="19.3">
 <h2><span class="header-section-number">19.3</span> Facets</h2>
-<div class="sourceCode" id="cb219"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb219-1" data-line-number="1">commute &lt;-<span class="st"> </span><span class="kw">select</span>(acs_raw,</a>
-<a class="sourceLine" id="cb219-2" data-line-number="2">       county,</a>
-<a class="sourceLine" id="cb219-3" data-line-number="3">       hs_grad, bach, master,</a>
-<a class="sourceLine" id="cb219-4" data-line-number="4">       <span class="kw">starts_with</span>(<span class="st">&quot;commute&quot;</span>),</a>
-<a class="sourceLine" id="cb219-5" data-line-number="5">       <span class="kw">starts_with</span>(<span class="st">&quot;by&quot;</span>),</a>
-<a class="sourceLine" id="cb219-6" data-line-number="6">       med_house_income) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb219-7" data-line-number="7"><span class="st">  </span><span class="kw">filter</span>(county <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;SUFFOLK&quot;</span>, <span class="st">&quot;NORFOLK&quot;</span>, <span class="st">&quot;MIDDLESEX&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb219-8" data-line-number="8"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">hh_inc_quin =</span> <span class="kw">ntile</span>(med_house_income, <span class="dv">5</span>),</a>
-<a class="sourceLine" id="cb219-9" data-line-number="9">         <span class="dt">edu_attain =</span> bach <span class="op">+</span><span class="st"> </span>master) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb219-10" data-line-number="10"><span class="st">  </span><span class="kw">select</span>(<span class="op">-</span>bach, <span class="op">-</span>master)</a></code></pre></div>
+<div class="sourceCode" id="cb219"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb219-1"><a href="grammer-of-layered-graphics-ii.html#cb219-1"></a>commute &lt;-<span class="st"> </span><span class="kw">select</span>(acs_raw,</span>
+<span id="cb219-2"><a href="grammer-of-layered-graphics-ii.html#cb219-2"></a>       county,</span>
+<span id="cb219-3"><a href="grammer-of-layered-graphics-ii.html#cb219-3"></a>       hs_grad, bach, master,</span>
+<span id="cb219-4"><a href="grammer-of-layered-graphics-ii.html#cb219-4"></a>       <span class="kw">starts_with</span>(<span class="st">&quot;commute&quot;</span>),</span>
+<span id="cb219-5"><a href="grammer-of-layered-graphics-ii.html#cb219-5"></a>       <span class="kw">starts_with</span>(<span class="st">&quot;by&quot;</span>),</span>
+<span id="cb219-6"><a href="grammer-of-layered-graphics-ii.html#cb219-6"></a>       med_house_income) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb219-7"><a href="grammer-of-layered-graphics-ii.html#cb219-7"></a><span class="st">  </span><span class="kw">filter</span>(county <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;SUFFOLK&quot;</span>, <span class="st">&quot;NORFOLK&quot;</span>, <span class="st">&quot;MIDDLESEX&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb219-8"><a href="grammer-of-layered-graphics-ii.html#cb219-8"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">hh_inc_quin =</span> <span class="kw">ntile</span>(med_house_income, <span class="dv">5</span>),</span>
+<span id="cb219-9"><a href="grammer-of-layered-graphics-ii.html#cb219-9"></a>         <span class="dt">edu_attain =</span> bach <span class="op">+</span><span class="st"> </span>master) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb219-10"><a href="grammer-of-layered-graphics-ii.html#cb219-10"></a><span class="st">  </span><span class="kw">select</span>(<span class="op">-</span>bach, <span class="op">-</span>master)</span></code></pre></div>
 <p>The last portion of the grammar to visit is facetting. When we facet a plot we are creating what are called “small multiples”, a term coined by the prominent Edward Tufte. A facetting, in other words, creates a graph for each unique level in a categorical variable. Think of this like a <code>group_by()</code> for plotting.</p>
 <p>There are two types of facetting we can do: wrapped and grid. These are done with <code>facet_wrap()</code> and <code>facet_grid()</code> respectively. The reference documentation sums up the differences best:</p>
 <blockquote>
@@ -385,32 +406,32 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </blockquote>
 <p>Let’s look at <code>facet_wrap()</code> first. To create the facetting, we need to add <code>facet_wrap()</code> as a layer to our existing plot. There is only one argument that we are required to fulfill and that is the <code>facet</code> argument. <code>facet</code> expects a set of variables defined by the <code>vars()</code> function. <code>vars()</code> is a function used throughout the tidyverse to specify which columns are to be referenced used within the context of a the function it’s being used in.</p>
 <p>To recreate the above plot but facetting by county, we would add <code>facet_wrap(vars(county))</code> as a layer to our plot.</p>
-<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb220-1" data-line-number="1">p &lt;-<span class="st"> </span>commute <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb220-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(hh_inc_quin)) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb220-3" data-line-number="3"><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(med_house_income, edu_attain)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb220-4" data-line-number="4"><span class="st">  </span><span class="kw">geom_point</span>() </a>
-<a class="sourceLine" id="cb220-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb220-6" data-line-number="6">p <span class="op">+</span></a>
-<a class="sourceLine" id="cb220-7" data-line-number="7"><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="kw">vars</span>(county))</a></code></pre></div>
+<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb220-1"><a href="grammer-of-layered-graphics-ii.html#cb220-1"></a>p &lt;-<span class="st"> </span>commute <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb220-2"><a href="grammer-of-layered-graphics-ii.html#cb220-2"></a><span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(hh_inc_quin)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb220-3"><a href="grammer-of-layered-graphics-ii.html#cb220-3"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(med_house_income, edu_attain)) <span class="op">+</span></span>
+<span id="cb220-4"><a href="grammer-of-layered-graphics-ii.html#cb220-4"></a><span class="st">  </span><span class="kw">geom_point</span>() </span>
+<span id="cb220-5"><a href="grammer-of-layered-graphics-ii.html#cb220-5"></a></span>
+<span id="cb220-6"><a href="grammer-of-layered-graphics-ii.html#cb220-6"></a>p <span class="op">+</span></span>
+<span id="cb220-7"><a href="grammer-of-layered-graphics-ii.html#cb220-7"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="kw">vars</span>(county))</span></code></pre></div>
 <p><img src="04c-grammar-II_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
 <p>With <code>facet_wrap()</code> we are able to explicitly state how many rows or columns of plots there should be. The defaults may be nice, but it’s always good to be explicit about our expecvtations! We set the <code>nrow</code> or <code>ncol</code> argument to do this. Since our above example defaulted to <code>ncol = 3</code>, let’s try this with three rows.</p>
-<div class="sourceCode" id="cb221"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb221-1" data-line-number="1">p <span class="op">+</span></a>
-<a class="sourceLine" id="cb221-2" data-line-number="2"><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="kw">vars</span>(county), <span class="dt">nrow =</span> <span class="dv">3</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb221"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb221-1"><a href="grammer-of-layered-graphics-ii.html#cb221-1"></a>p <span class="op">+</span></span>
+<span id="cb221-2"><a href="grammer-of-layered-graphics-ii.html#cb221-2"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="kw">vars</span>(county), <span class="dt">nrow =</span> <span class="dv">3</span>)</span></code></pre></div>
 <p><img src="04c-grammar-II_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
 <p>The grid works a little bit differenly. Rather than specifying which columns to facet on and the number of rows or columns, we can create a grid (or matrix) of small multiples. With <code>facet_grid()</code> we use the <code>rows</code> and <code>cols</code>.</p>
 <p>We can recreate our above graphs by passing <code>vars(county)</code> to either <code>rows</code> or <code>cols</code>. But where <code>facet_grid()</code> shines is when you have data in every pairing of two categorical variables. For example we can we create a facet for each combination of <code>county</code> and <code>hh_inc_quin</code>.</p>
-<div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb222-1" data-line-number="1">p <span class="op">+</span></a>
-<a class="sourceLine" id="cb222-2" data-line-number="2"><span class="st">  </span><span class="kw">facet_grid</span>(<span class="dt">cols =</span> <span class="kw">vars</span>(county),</a>
-<a class="sourceLine" id="cb222-3" data-line-number="3">             <span class="dt">rows =</span> <span class="kw">vars</span>(hh_inc_quin))</a></code></pre></div>
+<div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb222-1"><a href="grammer-of-layered-graphics-ii.html#cb222-1"></a>p <span class="op">+</span></span>
+<span id="cb222-2"><a href="grammer-of-layered-graphics-ii.html#cb222-2"></a><span class="st">  </span><span class="kw">facet_grid</span>(<span class="dt">cols =</span> <span class="kw">vars</span>(county),</span>
+<span id="cb222-3"><a href="grammer-of-layered-graphics-ii.html#cb222-3"></a>             <span class="dt">rows =</span> <span class="kw">vars</span>(hh_inc_quin))</span></code></pre></div>
 <p><img src="04c-grammar-II_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
-<p>When we create facets, each panel has shares the same scales. We can change this by setting the <code>scales</code> argument to one of <code>&quot;free&quot;</code>, <code>&quot;free_x&quot;</code>, or <code>&quot;free_y&quot;</code>. These in essence, “free up” the scales for each panel. We can choose to share the scales on the x axis by setting <code>scales = &quot;free_y&quot;</code> or vice versa.</p>
-<div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb223-1" data-line-number="1">p <span class="op">+</span></a>
-<a class="sourceLine" id="cb223-2" data-line-number="2"><span class="st">  </span><span class="kw">facet_grid</span>(<span class="dt">cols =</span> <span class="kw">vars</span>(county),</a>
-<a class="sourceLine" id="cb223-3" data-line-number="3">             <span class="dt">rows =</span> <span class="kw">vars</span>(hh_inc_quin),</a>
-<a class="sourceLine" id="cb223-4" data-line-number="4">             <span class="dt">scales =</span> <span class="st">&quot;free&quot;</span>)</a></code></pre></div>
+<p>When we create facets, each panel has shares the same scales. We can change this by setting the <code>scales</code> argument to one of <code>"free"</code>, <code>"free_x"</code>, or <code>"free_y"</code>. These in essence, “free up” the scales for each panel. We can choose to share the scales on the x axis by setting <code>scales = "free_y"</code> or vice versa.</p>
+<div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb223-1"><a href="grammer-of-layered-graphics-ii.html#cb223-1"></a>p <span class="op">+</span></span>
+<span id="cb223-2"><a href="grammer-of-layered-graphics-ii.html#cb223-2"></a><span class="st">  </span><span class="kw">facet_grid</span>(<span class="dt">cols =</span> <span class="kw">vars</span>(county),</span>
+<span id="cb223-3"><a href="grammer-of-layered-graphics-ii.html#cb223-3"></a>             <span class="dt">rows =</span> <span class="kw">vars</span>(hh_inc_quin),</span>
+<span id="cb223-4"><a href="grammer-of-layered-graphics-ii.html#cb223-4"></a>             <span class="dt">scales =</span> <span class="st">&quot;free&quot;</span>)</span></code></pre></div>
 <p><img src="04c-grammar-II_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
 <blockquote>
-<p>Note: the behavior of <code>scales = &quot;free&quot;</code> changes behavior when set in the context of <code>facet_wrap()</code> vs <code>facet_grid()</code>. The former frees the scales for each panel. The latter frees the scales for either a column or row of panels.</p>
+<p>Note: the behavior of <code>scales = "free"</code> changes behavior when set in the context of <code>facet_wrap()</code> vs <code>facet_grid()</code>. The former frees the scales for each panel. The latter frees the scales for either a column or row of panels.</p>
 </blockquote>
 <p>It is also important to note that what we have gone through is by no means exhaustive. You should, at minimum, familiarize yourself with both <code>scale_*_reverse()</code>, and <code>scale_*_binned()</code> in your spare time. There are dozens, if not hundreds, of ggplot2 functions to suit your every whim. And, as you have already briefly seen, the ggplot function universe is not relegated to just ggplot2. There are many other packages which have built custom geoms and other enhancements that may benefit you.</p>
 
@@ -419,8 +440,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="footnotes">
 <hr />
 <ol start="25">
-<li id="fn25"><p><a href="https://ggplot2.tidyverse.org/reference/lims" class="uri">https://ggplot2.tidyverse.org/reference/lims</a><a href="grammer-of-layered-graphics-ii.html#fnref25" class="footnote-back">↩</a></p></li>
-<li id="fn26"><p><a href="https://ggplot2.tidyverse.org/reference/facet_grid.html" class="uri">https://ggplot2.tidyverse.org/reference/facet_grid.html</a><a href="grammer-of-layered-graphics-ii.html#fnref26" class="footnote-back">↩</a></p></li>
+<li id="fn25"><p><a href="https://ggplot2.tidyverse.org/reference/lims" class="uri">https://ggplot2.tidyverse.org/reference/lims</a><a href="grammer-of-layered-graphics-ii.html#fnref25" class="footnote-back">↩︎</a></p></li>
+<li id="fn26"><p><a href="https://ggplot2.tidyverse.org/reference/facet_grid.html" class="uri">https://ggplot2.tidyverse.org/reference/facet_grid.html</a><a href="grammer-of-layered-graphics-ii.html#fnref26" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>

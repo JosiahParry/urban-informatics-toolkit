@@ -33,6 +33,7 @@
   
 <link rel="prev" href="summary-statistics.html"/>
 <link rel="next" href="layered-i.html"/>
+<script src="libs/header-attrs-2.1/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -53,25 +54,26 @@
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -80,9 +82,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -131,7 +133,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">Urban Informatics Toolkit</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Welcome</a><ul>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Welcome</a>
+<ul>
 <li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#what-to-expect"><i class="fa fa-check"></i><b>1.1</b> What to expect</a></li>
 <li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#reminders"><i class="fa fa-check"></i><b>1.2</b> Reminders</a></li>
 <li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#timeline"><i class="fa fa-check"></i><b>1.3</b> Timeline</a></li>
@@ -140,92 +143,110 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="part"><span><b>I Foundations of Urban Informatics</b></span></li>
 <li class="chapter" data-level="2" data-path="the-utility-and-danger-of-big-data.html"><a href="the-utility-and-danger-of-big-data.html"><i class="fa fa-check"></i><b>2</b> The Utility and Danger of Big Data</a></li>
 <li class="chapter" data-level="3" data-path="data-in-the-municipal-context.html"><a href="data-in-the-municipal-context.html"><i class="fa fa-check"></i><b>3</b> Data in the municipal context</a></li>
-<li class="chapter" data-level="4" data-path="approaches-to-and-schools-of-urban-informatics.html"><a href="approaches-to-and-schools-of-urban-informatics.html"><i class="fa fa-check"></i><b>4</b> Approaches to and Schools of Urban Informatics</a><ul>
+<li class="chapter" data-level="4" data-path="approaches-to-and-schools-of-urban-informatics.html"><a href="approaches-to-and-schools-of-urban-informatics.html"><i class="fa fa-check"></i><b>4</b> Approaches to and Schools of Urban Informatics</a>
+<ul>
 <li class="chapter" data-level="4.1" data-path="approaches-to-and-schools-of-urban-informatics.html"><a href="approaches-to-and-schools-of-urban-informatics.html#scientific-approaches"><i class="fa fa-check"></i><b>4.1</b> Scientific approaches</a></li>
 <li class="chapter" data-level="4.2" data-path="approaches-to-and-schools-of-urban-informatics.html"><a href="approaches-to-and-schools-of-urban-informatics.html#the-chicago-school"><i class="fa fa-check"></i><b>4.2</b> The Chicago School</a></li>
 <li class="chapter" data-level="4.3" data-path="approaches-to-and-schools-of-urban-informatics.html"><a href="approaches-to-and-schools-of-urban-informatics.html#complexity-and-santa-fe-institute"><i class="fa fa-check"></i><b>4.3</b> Complexity and Santa Fe Institute</a></li>
 <li class="chapter" data-level="4.4" data-path="approaches-to-and-schools-of-urban-informatics.html"><a href="approaches-to-and-schools-of-urban-informatics.html#a-hybrid-approach"><i class="fa fa-check"></i><b>4.4</b> A Hybrid Approach</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="ecometrics.html"><a href="ecometrics.html"><i class="fa fa-check"></i><b>5</b> Ecometrics</a><ul>
+<li class="chapter" data-level="5" data-path="ecometrics.html"><a href="ecometrics.html"><i class="fa fa-check"></i><b>5</b> Ecometrics</a>
+<ul>
 <li class="chapter" data-level="5.1" data-path="ecometrics.html"><a href="ecometrics.html#broken-windows-theory"><i class="fa fa-check"></i><b>5.1</b> Broken Windows Theory</a></li>
 <li class="chapter" data-level="5.2" data-path="ecometrics.html"><a href="ecometrics.html#quantifying-disorder"><i class="fa fa-check"></i><b>5.2</b> Quantifying Disorder</a></li>
 </ul></li>
 <li class="part"><span><b>II Toolkit Foundations</b></span></li>
-<li class="chapter" data-level="6" data-path="the-basics.html"><a href="the-basics.html"><i class="fa fa-check"></i><b>6</b> The basics</a><ul>
+<li class="chapter" data-level="6" data-path="the-basics.html"><a href="the-basics.html"><i class="fa fa-check"></i><b>6</b> The basics</a>
+<ul>
 <li class="chapter" data-level="6.1" data-path="the-basics.html"><a href="the-basics.html#what-is-r-and-why-do-i-care"><i class="fa fa-check"></i><b>6.1</b> What is R and why do I care?</a></li>
 <li class="chapter" data-level="6.2" data-path="the-basics.html"><a href="the-basics.html#the-rstudio-ide"><i class="fa fa-check"></i><b>6.2</b> The RStudio IDE</a></li>
 <li class="chapter" data-level="6.3" data-path="the-basics.html"><a href="the-basics.html#installing-r-rstudio"><i class="fa fa-check"></i><b>6.3</b> Installing R &amp; RStudio</a></li>
 <li class="chapter" data-level="6.4" data-path="the-basics.html"><a href="the-basics.html#preventative-care"><i class="fa fa-check"></i><b>6.4</b> Preventative Care</a></li>
 <li class="chapter" data-level="6.5" data-path="the-basics.html"><a href="the-basics.html#before-we-embark"><i class="fa fa-check"></i><b>6.5</b> Before we embark</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="r-as-a-calculator.html"><a href="r-as-a-calculator.html"><i class="fa fa-check"></i><b>7</b> R as a calculator</a><ul>
+<li class="chapter" data-level="7" data-path="r-as-a-calculator.html"><a href="r-as-a-calculator.html"><i class="fa fa-check"></i><b>7</b> R as a calculator</a>
+<ul>
 <li class="chapter" data-level="7.1" data-path="r-as-a-calculator.html"><a href="r-as-a-calculator.html#arithmetic-operators"><i class="fa fa-check"></i><b>7.1</b> Arithmetic Operators</a></li>
 <li class="chapter" data-level="7.2" data-path="r-as-a-calculator.html"><a href="r-as-a-calculator.html#variable-assignment"><i class="fa fa-check"></i><b>7.2</b> Variable assignment</a></li>
 <li class="chapter" data-level="7.3" data-path="r-as-a-calculator.html"><a href="r-as-a-calculator.html#functions"><i class="fa fa-check"></i><b>7.3</b> Functions</a></li>
 <li class="chapter" data-level="7.4" data-path="r-as-a-calculator.html"><a href="r-as-a-calculator.html#extensions-to-r"><i class="fa fa-check"></i><b>7.4</b> Extensions to R</a></li>
 <li class="chapter" data-level="7.5" data-path="r-as-a-calculator.html"><a href="r-as-a-calculator.html#loading-packages"><i class="fa fa-check"></i><b>7.5</b> Loading Packages</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="exploratory-visual-analysis.html"><a href="exploratory-visual-analysis.html"><i class="fa fa-check"></i><b>8</b> Exploratory Visual Analysis</a><ul>
+<li class="chapter" data-level="8" data-path="exploratory-visual-analysis.html"><a href="exploratory-visual-analysis.html"><i class="fa fa-check"></i><b>8</b> Exploratory Visual Analysis</a>
+<ul>
 <li class="chapter" data-level="8.1" data-path="exploratory-visual-analysis.html"><a href="exploratory-visual-analysis.html#the-american-community-survey"><i class="fa fa-check"></i><b>8.1</b> The American Community Survey</a></li>
 <li class="chapter" data-level="8.2" data-path="exploratory-visual-analysis.html"><a href="exploratory-visual-analysis.html#a-first-visualization"><i class="fa fa-check"></i><b>8.2</b> A first visualization</a></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="reading-data.html"><a href="reading-data.html"><i class="fa fa-check"></i><b>9</b> Reading data</a><ul>
+<li class="chapter" data-level="9" data-path="reading-data.html"><a href="reading-data.html"><i class="fa fa-check"></i><b>9</b> Reading data</a>
+<ul>
 <li class="chapter" data-level="9.1" data-path="reading-data.html"><a href="reading-data.html#background"><i class="fa fa-check"></i><b>9.1</b> Background</a></li>
 <li class="chapter" data-level="9.2" data-path="reading-data.html"><a href="reading-data.html#actually-reading-data"><i class="fa fa-check"></i><b>9.2</b> Actually Reading Data</a></li>
 <li class="chapter" data-level="9.3" data-path="reading-data.html"><a href="reading-data.html#other-common-data-formats"><i class="fa fa-check"></i><b>9.3</b> Other common data formats</a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="general-data-manipulation.html"><a href="general-data-manipulation.html"><i class="fa fa-check"></i><b>10</b> General data manipulation</a><ul>
+<li class="chapter" data-level="10" data-path="general-data-manipulation.html"><a href="general-data-manipulation.html"><i class="fa fa-check"></i><b>10</b> General data manipulation</a>
+<ul>
 <li class="chapter" data-level="10.1" data-path="general-data-manipulation.html"><a href="general-data-manipulation.html#scenario"><i class="fa fa-check"></i><b>10.1</b> Scenario:</a></li>
 <li class="chapter" data-level="10.2" data-path="general-data-manipulation.html"><a href="general-data-manipulation.html#getting-physical-with-the-data"><i class="fa fa-check"></i><b>10.2</b> Getting physical with the data</a></li>
 <li class="chapter" data-level="10.3" data-path="general-data-manipulation.html"><a href="general-data-manipulation.html#selecting-rows"><i class="fa fa-check"></i><b>10.3</b> Selecting Rows</a></li>
 <li class="chapter" data-level="10.4" data-path="general-data-manipulation.html"><a href="general-data-manipulation.html#revisiting-commmuting"><i class="fa fa-check"></i><b>10.4</b> Revisiting commmuting</a></li>
 <li class="chapter" data-level="10.5" data-path="general-data-manipulation.html"><a href="general-data-manipulation.html#asking-good-questions"><i class="fa fa-check"></i><b>10.5</b> Asking good questions</a></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="thats-too-much-data.html"><a href="thats-too-much-data.html"><i class="fa fa-check"></i><b>11</b> That’s <em>too much</em> data</a><ul>
+<li class="chapter" data-level="11" data-path="thats-too-much-data.html"><a href="thats-too-much-data.html"><i class="fa fa-check"></i><b>11</b> That’s <em>too much</em> data</a>
+<ul>
 <li class="chapter" data-level="11.1" data-path="thats-too-much-data.html"><a href="thats-too-much-data.html#filtering"><i class="fa fa-check"></i><b>11.1</b> <code>filter()</code>ing</a></li>
 <li class="chapter" data-level="11.2" data-path="thats-too-much-data.html"><a href="thats-too-much-data.html#logical-operators"><i class="fa fa-check"></i><b>11.2</b> Logical operators</a></li>
 <li class="chapter" data-level="11.3" data-path="thats-too-much-data.html"><a href="thats-too-much-data.html#defining-the-greater-boston-area"><i class="fa fa-check"></i><b>11.3</b> Defining the Greater Boston Area</a></li>
 <li class="chapter" data-level="11.4" data-path="thats-too-much-data.html"><a href="thats-too-much-data.html#mutate"><i class="fa fa-check"></i><b>11.4</b> mutate</a></li>
 <li class="chapter" data-level="11.5" data-path="thats-too-much-data.html"><a href="thats-too-much-data.html#writing-data-1"><i class="fa fa-check"></i><b>11.5</b> Writing Data</a></li>
 </ul></li>
-<li class="chapter" data-level="12" data-path="the-pipe.html"><a href="the-pipe.html"><i class="fa fa-check"></i><b>12</b> The pipe <code>%&gt;%</code></a><ul>
+<li class="chapter" data-level="12" data-path="the-pipe.html"><a href="the-pipe.html"><i class="fa fa-check"></i><b>12</b> The pipe <code>%&gt;%</code></a>
+<ul>
 <li class="chapter" data-level="12.1" data-path="the-pipe.html"><a href="the-pipe.html#applying-the-pipe."><i class="fa fa-check"></i><b>12.1</b> Applying the pipe.</a></li>
 <li class="chapter" data-level="12.2" data-path="the-pipe.html"><a href="the-pipe.html#revisiting-our-scenario"><i class="fa fa-check"></i><b>12.2</b> Revisiting our scenario</a></li>
 </ul></li>
 <li class="chapter" data-level="13" data-path="creating-new-measures.html"><a href="creating-new-measures.html"><i class="fa fa-check"></i><b>13</b> Creating new measures</a></li>
-<li class="chapter" data-level="14" data-path="data-structures.html"><a href="data-structures.html"><i class="fa fa-check"></i><b>14</b> Data Structures</a><ul>
+<li class="chapter" data-level="14" data-path="data-structures.html"><a href="data-structures.html"><i class="fa fa-check"></i><b>14</b> Data Structures</a>
+<ul>
 <li class="chapter" data-level="14.1" data-path="data-structures.html"><a href="data-structures.html#atomic-vectors"><i class="fa fa-check"></i><b>14.1</b> Atomic Vectors</a></li>
 <li class="chapter" data-level="14.2" data-path="data-structures.html"><a href="data-structures.html#data-frames"><i class="fa fa-check"></i><b>14.2</b> Data Frames</a></li>
 <li class="chapter" data-level="14.3" data-path="data-structures.html"><a href="data-structures.html#lists"><i class="fa fa-check"></i><b>14.3</b> Lists</a></li>
 </ul></li>
 <li class="chapter" data-level="15" data-path="summary-statistics.html"><a href="summary-statistics.html"><i class="fa fa-check"></i><b>15</b> Summary statistics</a></li>
-<li class="chapter" data-level="16" data-path="summarizing-the-tidy-way.html"><a href="summarizing-the-tidy-way.html"><i class="fa fa-check"></i><b>16</b> summarizing the tidy way</a><ul>
+<li class="chapter" data-level="16" data-path="summarizing-the-tidy-way.html"><a href="summarizing-the-tidy-way.html"><i class="fa fa-check"></i><b>16</b> summarizing the tidy way</a>
+<ul>
 <li class="chapter" data-level="16.1" data-path="summarizing-the-tidy-way.html"><a href="summarizing-the-tidy-way.html#counting"><i class="fa fa-check"></i><b>16.1</b> Counting</a></li>
 </ul></li>
 <li class="part"><span><b>III Vizualization Strategies</b></span></li>
-<li class="chapter" data-level="17" data-path="layered-i.html"><a href="layered-i.html"><i class="fa fa-check"></i><b>17</b> Grammer of layered graphics I</a><ul>
+<li class="chapter" data-level="17" data-path="layered-i.html"><a href="layered-i.html"><i class="fa fa-check"></i><b>17</b> Grammer of layered graphics I</a>
+<ul>
 <li class="chapter" data-level="17.1" data-path="layered-i.html"><a href="layered-i.html#the-grammar-of-layered-graphics"><i class="fa fa-check"></i><b>17.1</b> The Grammar of Layered Graphics</a></li>
 <li class="chapter" data-level="17.2" data-path="layered-i.html"><a href="layered-i.html#layers-and-defaults"><i class="fa fa-check"></i><b>17.2</b> Layers and defaults</a></li>
 </ul></li>
-<li class="chapter" data-level="18" data-path="visualizing-trends-and-relationships.html"><a href="visualizing-trends-and-relationships.html"><i class="fa fa-check"></i><b>18</b> Visualizing Trends and Relationships</a><ul>
+<li class="chapter" data-level="18" data-path="visualizing-trends-and-relationships.html"><a href="visualizing-trends-and-relationships.html"><i class="fa fa-check"></i><b>18</b> Visualizing Trends and Relationships</a>
+<ul>
 <li class="chapter" data-level="18.1" data-path="visualizing-trends-and-relationships.html"><a href="visualizing-trends-and-relationships.html#univariate-visualizations"><i class="fa fa-check"></i><b>18.1</b> Univariate visualizations</a></li>
 <li class="chapter" data-level="18.2" data-path="visualizing-trends-and-relationships.html"><a href="visualizing-trends-and-relationships.html#bivariate-visualizations"><i class="fa fa-check"></i><b>18.2</b> Bivariate visualizations</a></li>
 <li class="chapter" data-level="18.3" data-path="visualizing-trends-and-relationships.html"><a href="visualizing-trends-and-relationships.html#review"><i class="fa fa-check"></i><b>18.3</b> Review:</a></li>
 </ul></li>
-<li class="chapter" data-level="19" data-path="grammer-of-layered-graphics-ii.html"><a href="grammer-of-layered-graphics-ii.html"><i class="fa fa-check"></i><b>19</b> Grammer of layered graphics II</a><ul>
+<li class="chapter" data-level="19" data-path="grammer-of-layered-graphics-ii.html"><a href="grammer-of-layered-graphics-ii.html"><i class="fa fa-check"></i><b>19</b> Grammer of layered graphics II</a>
+<ul>
 <li class="chapter" data-level="19.1" data-path="grammer-of-layered-graphics-ii.html"><a href="grammer-of-layered-graphics-ii.html#scales"><i class="fa fa-check"></i><b>19.1</b> Scales</a></li>
 <li class="chapter" data-level="19.2" data-path="grammer-of-layered-graphics-ii.html"><a href="grammer-of-layered-graphics-ii.html#coordinates"><i class="fa fa-check"></i><b>19.2</b> Coordinates</a></li>
 <li class="chapter" data-level="19.3" data-path="grammer-of-layered-graphics-ii.html"><a href="grammer-of-layered-graphics-ii.html#facets"><i class="fa fa-check"></i><b>19.3</b> Facets</a></li>
 </ul></li>
-<li class="chapter" data-level="20" data-path="visualizing-beyond-2-dimensions.html"><a href="visualizing-beyond-2-dimensions.html"><i class="fa fa-check"></i><b>20</b> Visualizing beyond 2-dimensions</a><ul>
+<li class="chapter" data-level="20" data-path="visualizing-beyond-2-dimensions.html"><a href="visualizing-beyond-2-dimensions.html"><i class="fa fa-check"></i><b>20</b> Visualizing beyond 2-dimensions</a>
+<ul>
 <li class="chapter" data-level="20.1" data-path="visualizing-beyond-2-dimensions.html"><a href="visualizing-beyond-2-dimensions.html#color"><i class="fa fa-check"></i><b>20.1</b> Color</a></li>
-<li class="chapter" data-level="20.2" data-path="visualizing-beyond-2-dimensions.html"><a href="visualizing-beyond-2-dimensions.html#expanding-bivariate-visualizations-to-trivariate-other-tri-variate"><i class="fa fa-check"></i><b>20.2</b> Expanding bivariate visualizations to trivariate &amp; other tri-variate</a></li>
+<li class="chapter" data-level="20.2" data-path="visualizing-beyond-2-dimensions.html"><a href="visualizing-beyond-2-dimensions.html#shape"><i class="fa fa-check"></i><b>20.2</b> shape</a></li>
+<li class="chapter" data-level="20.3" data-path="visualizing-beyond-2-dimensions.html"><a href="visualizing-beyond-2-dimensions.html#expanding-bivariate-visualizations-to-trivariate-other-tri-variate"><i class="fa fa-check"></i><b>20.3</b> Expanding bivariate visualizations to trivariate &amp; other tri-variate</a></li>
 </ul></li>
 <li class="part"><span><b>IV More than hammer and nails</b></span></li>
-<li class="chapter" data-level="21" data-path="multiple-data-sets.html"><a href="multiple-data-sets.html"><i class="fa fa-check"></i><b>21</b> Multiple data sets</a><ul>
+<li class="chapter" data-level="21" data-path="multiple-data-sets.html"><a href="multiple-data-sets.html"><i class="fa fa-check"></i><b>21</b> Multiple data sets</a>
+<ul>
 <li class="chapter" data-level="21.1" data-path="multiple-data-sets.html"><a href="multiple-data-sets.html#exercise-3"><i class="fa fa-check"></i><b>21.1</b> Exercise</a></li>
 </ul></li>
-<li class="chapter" data-level="22" data-path="spatial-analysis.html"><a href="spatial-analysis.html"><i class="fa fa-check"></i><b>22</b> Spatial Analysis</a><ul>
+<li class="chapter" data-level="22" data-path="spatial-analysis.html"><a href="spatial-analysis.html"><i class="fa fa-check"></i><b>22</b> Spatial Analysis</a>
+<ul>
 <li class="chapter" data-level="22.1" data-path="spatial-analysis.html"><a href="spatial-analysis.html#types-of-spatial-data"><i class="fa fa-check"></i><b>22.1</b> Types of spatial data</a></li>
 <li class="chapter" data-level="22.2" data-path="spatial-analysis.html"><a href="spatial-analysis.html#working-with-spatial-data"><i class="fa fa-check"></i><b>22.2</b> Working with spatial data</a></li>
 <li class="chapter" data-level="22.3" data-path="spatial-analysis.html"><a href="spatial-analysis.html#creating-simple-features-from-a-tibble"><i class="fa fa-check"></i><b>22.3</b> Creating simple features from a tibble</a></li>
@@ -256,94 +277,94 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="summarizing-the-tidy-way" class="section level1">
+<div id="summarizing-the-tidy-way" class="section level1" number="16">
 <h1><span class="header-section-number">Chapter 16</span> summarizing the tidy way</h1>
 <p>Now that we have a basic understanding of how to manipulate our dataset, summarising the dataset into a few useful metrics is important. When we have massive datasets with many subgroups, summary statistics will be very important for distilling all of that information into something consumable. Aggregation will also be very important for visualization purposes.</p>
 <p>We have already reviewed what constitutes a summary statistic and how to create them working with vectors. But we have not done so within the context of the tidyverse. We have figured out how to select, filter, mutate and all within a chain of functions. But we have not followed this to its natural next step, the <code>group_by()</code> and <code>summarise()</code> functions.</p>
-<div id="counting" class="section level2">
+<div id="counting" class="section level2" number="16.1">
 <h2><span class="header-section-number">16.1</span> Counting</h2>
 <p>dplyr incluides a wonderful helper function called <code>count()</code>. It does just what it says it does. It counts the number of observations in a tibble. Let’s recreate the <code>commute</code> tibble and see it for ourselves.</p>
-<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb171-1" data-line-number="1"><span class="kw">library</span>(tidyverse)</a>
-<a class="sourceLine" id="cb171-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb171-3" data-line-number="3">commute &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data/ACS_1317_TRACT.csv&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb171-4" data-line-number="4"><span class="st">  </span><span class="kw">select</span>(</a>
-<a class="sourceLine" id="cb171-5" data-line-number="5">    county,</a>
-<a class="sourceLine" id="cb171-6" data-line-number="6">    <span class="kw">starts_with</span>(<span class="st">&quot;commute&quot;</span>),</a>
-<a class="sourceLine" id="cb171-7" data-line-number="7">    <span class="kw">starts_with</span>(<span class="st">&quot;by&quot;</span>),</a>
-<a class="sourceLine" id="cb171-8" data-line-number="8">    med_house_income</a>
-<a class="sourceLine" id="cb171-9" data-line-number="9">  ) </a>
-<a class="sourceLine" id="cb171-10" data-line-number="10"></a>
-<a class="sourceLine" id="cb171-11" data-line-number="11"><span class="kw">count</span>(commute)</a>
-<a class="sourceLine" id="cb171-12" data-line-number="12"><span class="co">#&gt; # A tibble: 1 x 1</span></a>
-<a class="sourceLine" id="cb171-13" data-line-number="13"><span class="co">#&gt;       n</span></a>
-<a class="sourceLine" id="cb171-14" data-line-number="14"><span class="co">#&gt;   &lt;int&gt;</span></a>
-<a class="sourceLine" id="cb171-15" data-line-number="15"><span class="co">#&gt; 1  1478</span></a></code></pre></div>
+<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="summarizing-the-tidy-way.html#cb171-1"></a><span class="kw">library</span>(tidyverse)</span>
+<span id="cb171-2"><a href="summarizing-the-tidy-way.html#cb171-2"></a></span>
+<span id="cb171-3"><a href="summarizing-the-tidy-way.html#cb171-3"></a>commute &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data/ACS_1317_TRACT.csv&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb171-4"><a href="summarizing-the-tidy-way.html#cb171-4"></a><span class="st">  </span><span class="kw">select</span>(</span>
+<span id="cb171-5"><a href="summarizing-the-tidy-way.html#cb171-5"></a>    county,</span>
+<span id="cb171-6"><a href="summarizing-the-tidy-way.html#cb171-6"></a>    <span class="kw">starts_with</span>(<span class="st">&quot;commute&quot;</span>),</span>
+<span id="cb171-7"><a href="summarizing-the-tidy-way.html#cb171-7"></a>    <span class="kw">starts_with</span>(<span class="st">&quot;by&quot;</span>),</span>
+<span id="cb171-8"><a href="summarizing-the-tidy-way.html#cb171-8"></a>    med_house_income</span>
+<span id="cb171-9"><a href="summarizing-the-tidy-way.html#cb171-9"></a>  ) </span>
+<span id="cb171-10"><a href="summarizing-the-tidy-way.html#cb171-10"></a></span>
+<span id="cb171-11"><a href="summarizing-the-tidy-way.html#cb171-11"></a><span class="kw">count</span>(commute)</span>
+<span id="cb171-12"><a href="summarizing-the-tidy-way.html#cb171-12"></a><span class="co">#&gt; # A tibble: 1 x 1</span></span>
+<span id="cb171-13"><a href="summarizing-the-tidy-way.html#cb171-13"></a><span class="co">#&gt;       n</span></span>
+<span id="cb171-14"><a href="summarizing-the-tidy-way.html#cb171-14"></a><span class="co">#&gt;   &lt;int&gt;</span></span>
+<span id="cb171-15"><a href="summarizing-the-tidy-way.html#cb171-15"></a><span class="co">#&gt; 1  1478</span></span></code></pre></div>
 <p>We can also count by groups in a data set. For example, we can count how many observations there are per county.</p>
-<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb172-1" data-line-number="1"><span class="kw">count</span>(commute, county)</a>
-<a class="sourceLine" id="cb172-2" data-line-number="2"><span class="co">#&gt; # A tibble: 15 x 2</span></a>
-<a class="sourceLine" id="cb172-3" data-line-number="3"><span class="co">#&gt;    county         n</span></a>
-<a class="sourceLine" id="cb172-4" data-line-number="4"><span class="co">#&gt;    &lt;chr&gt;      &lt;int&gt;</span></a>
-<a class="sourceLine" id="cb172-5" data-line-number="5"><span class="co">#&gt;  1 BARNSTABLE    54</span></a>
-<a class="sourceLine" id="cb172-6" data-line-number="6"><span class="co">#&gt;  2 BERKSHIRE     39</span></a>
-<a class="sourceLine" id="cb172-7" data-line-number="7"><span class="co">#&gt;  3 BRISTOL      122</span></a>
-<a class="sourceLine" id="cb172-8" data-line-number="8"><span class="co">#&gt;  4 DUKES          4</span></a>
-<a class="sourceLine" id="cb172-9" data-line-number="9"><span class="co">#&gt;  5 ESSEX        160</span></a>
-<a class="sourceLine" id="cb172-10" data-line-number="10"><span class="co">#&gt;  6 FRANKLIN      18</span></a>
-<a class="sourceLine" id="cb172-11" data-line-number="11"><span class="co">#&gt;  7 HAMPDEN      103</span></a>
-<a class="sourceLine" id="cb172-12" data-line-number="12"><span class="co">#&gt;  8 HAMPSHIRE     36</span></a>
-<a class="sourceLine" id="cb172-13" data-line-number="13"><span class="co">#&gt;  9 MIDDLESEX    318</span></a>
-<a class="sourceLine" id="cb172-14" data-line-number="14"><span class="co">#&gt; 10 NANTUCKET      5</span></a>
-<a class="sourceLine" id="cb172-15" data-line-number="15"><span class="co">#&gt; 11 NORFOLK      130</span></a>
-<a class="sourceLine" id="cb172-16" data-line-number="16"><span class="co">#&gt; 12 PLYMOUTH      99</span></a>
-<a class="sourceLine" id="cb172-17" data-line-number="17"><span class="co">#&gt; 13 SUFFOLK      200</span></a>
-<a class="sourceLine" id="cb172-18" data-line-number="18"><span class="co">#&gt; 14 WORCESTER    172</span></a>
-<a class="sourceLine" id="cb172-19" data-line-number="19"><span class="co">#&gt; 15 &lt;NA&gt;          18</span></a></code></pre></div>
+<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb172-1"><a href="summarizing-the-tidy-way.html#cb172-1"></a><span class="kw">count</span>(commute, county)</span>
+<span id="cb172-2"><a href="summarizing-the-tidy-way.html#cb172-2"></a><span class="co">#&gt; # A tibble: 15 x 2</span></span>
+<span id="cb172-3"><a href="summarizing-the-tidy-way.html#cb172-3"></a><span class="co">#&gt;    county         n</span></span>
+<span id="cb172-4"><a href="summarizing-the-tidy-way.html#cb172-4"></a><span class="co">#&gt;    &lt;chr&gt;      &lt;int&gt;</span></span>
+<span id="cb172-5"><a href="summarizing-the-tidy-way.html#cb172-5"></a><span class="co">#&gt;  1 BARNSTABLE    54</span></span>
+<span id="cb172-6"><a href="summarizing-the-tidy-way.html#cb172-6"></a><span class="co">#&gt;  2 BERKSHIRE     39</span></span>
+<span id="cb172-7"><a href="summarizing-the-tidy-way.html#cb172-7"></a><span class="co">#&gt;  3 BRISTOL      122</span></span>
+<span id="cb172-8"><a href="summarizing-the-tidy-way.html#cb172-8"></a><span class="co">#&gt;  4 DUKES          4</span></span>
+<span id="cb172-9"><a href="summarizing-the-tidy-way.html#cb172-9"></a><span class="co">#&gt;  5 ESSEX        160</span></span>
+<span id="cb172-10"><a href="summarizing-the-tidy-way.html#cb172-10"></a><span class="co">#&gt;  6 FRANKLIN      18</span></span>
+<span id="cb172-11"><a href="summarizing-the-tidy-way.html#cb172-11"></a><span class="co">#&gt;  7 HAMPDEN      103</span></span>
+<span id="cb172-12"><a href="summarizing-the-tidy-way.html#cb172-12"></a><span class="co">#&gt;  8 HAMPSHIRE     36</span></span>
+<span id="cb172-13"><a href="summarizing-the-tidy-way.html#cb172-13"></a><span class="co">#&gt;  9 MIDDLESEX    318</span></span>
+<span id="cb172-14"><a href="summarizing-the-tidy-way.html#cb172-14"></a><span class="co">#&gt; 10 NANTUCKET      5</span></span>
+<span id="cb172-15"><a href="summarizing-the-tidy-way.html#cb172-15"></a><span class="co">#&gt; 11 NORFOLK      130</span></span>
+<span id="cb172-16"><a href="summarizing-the-tidy-way.html#cb172-16"></a><span class="co">#&gt; 12 PLYMOUTH      99</span></span>
+<span id="cb172-17"><a href="summarizing-the-tidy-way.html#cb172-17"></a><span class="co">#&gt; 13 SUFFOLK      200</span></span>
+<span id="cb172-18"><a href="summarizing-the-tidy-way.html#cb172-18"></a><span class="co">#&gt; 14 WORCESTER    172</span></span>
+<span id="cb172-19"><a href="summarizing-the-tidy-way.html#cb172-19"></a><span class="co">#&gt; 15 &lt;NA&gt;          18</span></span></code></pre></div>
 <p><code>count()</code> is actually a wrapper around the function <code>summarise()</code> which is a much more flexible function. <code>summarise()</code> is the aggregate analog to <code>mutate()</code>. The difference between <code>mutate()</code> and <code>summarise()</code> is that the result of an expression in <code>mutate()</code> must have the same number of values as there are rows—unless of course you are specifying a scalar value like <code>TRUE</code>—whereas <code>summarise()</code> requires the result to be one an element of length one.</p>
 <blockquote>
 <p>Note: A scalar is a vector of length one.</p>
 </blockquote>
 <p>We can recreate the first above <code>count()</code> call with <code>summarise()</code> and the handy <code>n()</code> function we learned a while ago. Here we follow the same pattern of assigning column names to expressions as we do with.</p>
-<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb173-1" data-line-number="1"><span class="kw">summarise</span>(commute, <span class="dt">n =</span> <span class="kw">n</span>())</a>
-<a class="sourceLine" id="cb173-2" data-line-number="2"><span class="co">#&gt; # A tibble: 1 x 1</span></a>
-<a class="sourceLine" id="cb173-3" data-line-number="3"><span class="co">#&gt;       n</span></a>
-<a class="sourceLine" id="cb173-4" data-line-number="4"><span class="co">#&gt;   &lt;int&gt;</span></a>
-<a class="sourceLine" id="cb173-5" data-line-number="5"><span class="co">#&gt; 1  1478</span></a></code></pre></div>
+<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="summarizing-the-tidy-way.html#cb173-1"></a><span class="kw">summarise</span>(commute, <span class="dt">n =</span> <span class="kw">n</span>())</span>
+<span id="cb173-2"><a href="summarizing-the-tidy-way.html#cb173-2"></a><span class="co">#&gt; # A tibble: 1 x 1</span></span>
+<span id="cb173-3"><a href="summarizing-the-tidy-way.html#cb173-3"></a><span class="co">#&gt;       n</span></span>
+<span id="cb173-4"><a href="summarizing-the-tidy-way.html#cb173-4"></a><span class="co">#&gt;   &lt;int&gt;</span></span>
+<span id="cb173-5"><a href="summarizing-the-tidy-way.html#cb173-5"></a><span class="co">#&gt; 1  1478</span></span></code></pre></div>
 <p>Like <code>mutate()</code> there is no restriction on the number of new columns we can create. Previously we calculated the min, max, mean, and standard deviation of the <code>commute3060</code> variable. This is done rather neatly with <code>summarise()</code>.</p>
-<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb174-1" data-line-number="1">commute <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb174-2" data-line-number="2"><span class="st">  </span><span class="kw">summarise</span>(</a>
-<a class="sourceLine" id="cb174-3" data-line-number="3">    <span class="dt">min_commute =</span> <span class="kw">min</span>(commute3060, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),</a>
-<a class="sourceLine" id="cb174-4" data-line-number="4">    <span class="dt">max_commute =</span> <span class="kw">max</span>(commute3060, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),</a>
-<a class="sourceLine" id="cb174-5" data-line-number="5">    <span class="dt">avg_commute =</span> <span class="kw">mean</span>(commute3060, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),</a>
-<a class="sourceLine" id="cb174-6" data-line-number="6">    <span class="dt">sd_commute  =</span> <span class="kw">sd</span>(commute3060, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb174-7" data-line-number="7">    )</a>
-<a class="sourceLine" id="cb174-8" data-line-number="8"><span class="co">#&gt; # A tibble: 1 x 4</span></a>
-<a class="sourceLine" id="cb174-9" data-line-number="9"><span class="co">#&gt;   min_commute max_commute avg_commute sd_commute</span></a>
-<a class="sourceLine" id="cb174-10" data-line-number="10"><span class="co">#&gt;         &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt;      &lt;dbl&gt;</span></a>
-<a class="sourceLine" id="cb174-11" data-line-number="11"><span class="co">#&gt; 1           0       0.633       0.317      0.110</span></a></code></pre></div>
+<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="summarizing-the-tidy-way.html#cb174-1"></a>commute <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb174-2"><a href="summarizing-the-tidy-way.html#cb174-2"></a><span class="st">  </span><span class="kw">summarise</span>(</span>
+<span id="cb174-3"><a href="summarizing-the-tidy-way.html#cb174-3"></a>    <span class="dt">min_commute =</span> <span class="kw">min</span>(commute3060, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),</span>
+<span id="cb174-4"><a href="summarizing-the-tidy-way.html#cb174-4"></a>    <span class="dt">max_commute =</span> <span class="kw">max</span>(commute3060, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),</span>
+<span id="cb174-5"><a href="summarizing-the-tidy-way.html#cb174-5"></a>    <span class="dt">avg_commute =</span> <span class="kw">mean</span>(commute3060, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),</span>
+<span id="cb174-6"><a href="summarizing-the-tidy-way.html#cb174-6"></a>    <span class="dt">sd_commute  =</span> <span class="kw">sd</span>(commute3060, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb174-7"><a href="summarizing-the-tidy-way.html#cb174-7"></a>    )</span>
+<span id="cb174-8"><a href="summarizing-the-tidy-way.html#cb174-8"></a><span class="co">#&gt; # A tibble: 1 x 4</span></span>
+<span id="cb174-9"><a href="summarizing-the-tidy-way.html#cb174-9"></a><span class="co">#&gt;   min_commute max_commute avg_commute sd_commute</span></span>
+<span id="cb174-10"><a href="summarizing-the-tidy-way.html#cb174-10"></a><span class="co">#&gt;         &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt;      &lt;dbl&gt;</span></span>
+<span id="cb174-11"><a href="summarizing-the-tidy-way.html#cb174-11"></a><span class="co">#&gt; 1           0       0.633       0.317      0.110</span></span></code></pre></div>
 <p>Frankly this alone is somewhat unimpressive. The power of <code>summarise()</code> comes from incorporating <code>group_by()</code> into the function chain. <code>group_by()</code> allows us to explicitly identify groups within a tibble as defined by a given variable. The resulting tibble from a <code>group_by()</code> call is seemingly unchanged.</p>
-<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb175-1" data-line-number="1">commute <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb175-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>(county)</a>
-<a class="sourceLine" id="cb175-3" data-line-number="3"><span class="co">#&gt; # A tibble: 1,478 x 11</span></a>
-<a class="sourceLine" id="cb175-4" data-line-number="4"><span class="co">#&gt; # Groups:   county [15]</span></a>
-<a class="sourceLine" id="cb175-5" data-line-number="5"><span class="co">#&gt;    county commute_less10 commute1030 commute3060 commute6090 commute_over90</span></a>
-<a class="sourceLine" id="cb175-6" data-line-number="6"><span class="co">#&gt;    &lt;chr&gt;           &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt;          &lt;dbl&gt;</span></a>
-<a class="sourceLine" id="cb175-7" data-line-number="7"><span class="co">#&gt;  1 WORCE…         0.0787       0.513       0.331      0.0556         0.0214</span></a>
-<a class="sourceLine" id="cb175-8" data-line-number="8"><span class="co">#&gt;  2 WORCE…         0.251        0.464       0.181      0.0822         0.0219</span></a>
-<a class="sourceLine" id="cb175-9" data-line-number="9"><span class="co">#&gt;  3 WORCE…         0.0537       0.662       0.177      0.0868         0.0203</span></a>
-<a class="sourceLine" id="cb175-10" data-line-number="10"><span class="co">#&gt;  4 WORCE…         0.141        0.394       0.313      0.133          0.0194</span></a>
-<a class="sourceLine" id="cb175-11" data-line-number="11"><span class="co">#&gt;  5 WORCE…         0.175        0.511       0.203      0.0704         0.0411</span></a>
-<a class="sourceLine" id="cb175-12" data-line-number="12"><span class="co">#&gt;  6 WORCE…         0.109        0.440       0.330      0.0830         0.0378</span></a>
-<a class="sourceLine" id="cb175-13" data-line-number="13"><span class="co">#&gt;  7 WORCE…         0.189        0.457       0.303      0.0346         0.0166</span></a>
-<a class="sourceLine" id="cb175-14" data-line-number="14"><span class="co">#&gt;  8 WORCE…         0.187        0.560       0.133      0.0839         0.0358</span></a>
-<a class="sourceLine" id="cb175-15" data-line-number="15"><span class="co">#&gt;  9 WORCE…         0.139        0.455       0.256      0.126          0.0246</span></a>
-<a class="sourceLine" id="cb175-16" data-line-number="16"><span class="co">#&gt; 10 WORCE…         0.0912       0.649       0.218      0.0179         0.0235</span></a>
-<a class="sourceLine" id="cb175-17" data-line-number="17"><span class="co">#&gt; # … with 1,468 more rows, and 5 more variables: by_auto &lt;dbl&gt;,</span></a>
-<a class="sourceLine" id="cb175-18" data-line-number="18"><span class="co">#&gt; #   by_pub_trans &lt;dbl&gt;, by_bike &lt;dbl&gt;, by_walk &lt;dbl&gt;, med_house_income &lt;dbl&gt;</span></a></code></pre></div>
+<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="summarizing-the-tidy-way.html#cb175-1"></a>commute <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb175-2"><a href="summarizing-the-tidy-way.html#cb175-2"></a><span class="st">  </span><span class="kw">group_by</span>(county)</span>
+<span id="cb175-3"><a href="summarizing-the-tidy-way.html#cb175-3"></a><span class="co">#&gt; # A tibble: 1,478 x 11</span></span>
+<span id="cb175-4"><a href="summarizing-the-tidy-way.html#cb175-4"></a><span class="co">#&gt; # Groups:   county [15]</span></span>
+<span id="cb175-5"><a href="summarizing-the-tidy-way.html#cb175-5"></a><span class="co">#&gt;    county commute_less10 commute1030 commute3060 commute6090 commute_over90</span></span>
+<span id="cb175-6"><a href="summarizing-the-tidy-way.html#cb175-6"></a><span class="co">#&gt;    &lt;chr&gt;           &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt;          &lt;dbl&gt;</span></span>
+<span id="cb175-7"><a href="summarizing-the-tidy-way.html#cb175-7"></a><span class="co">#&gt;  1 WORCE…         0.0787       0.513       0.331      0.0556         0.0214</span></span>
+<span id="cb175-8"><a href="summarizing-the-tidy-way.html#cb175-8"></a><span class="co">#&gt;  2 WORCE…         0.251        0.464       0.181      0.0822         0.0219</span></span>
+<span id="cb175-9"><a href="summarizing-the-tidy-way.html#cb175-9"></a><span class="co">#&gt;  3 WORCE…         0.0537       0.662       0.177      0.0868         0.0203</span></span>
+<span id="cb175-10"><a href="summarizing-the-tidy-way.html#cb175-10"></a><span class="co">#&gt;  4 WORCE…         0.141        0.394       0.313      0.133          0.0194</span></span>
+<span id="cb175-11"><a href="summarizing-the-tidy-way.html#cb175-11"></a><span class="co">#&gt;  5 WORCE…         0.175        0.511       0.203      0.0704         0.0411</span></span>
+<span id="cb175-12"><a href="summarizing-the-tidy-way.html#cb175-12"></a><span class="co">#&gt;  6 WORCE…         0.109        0.440       0.330      0.0830         0.0378</span></span>
+<span id="cb175-13"><a href="summarizing-the-tidy-way.html#cb175-13"></a><span class="co">#&gt;  7 WORCE…         0.189        0.457       0.303      0.0346         0.0166</span></span>
+<span id="cb175-14"><a href="summarizing-the-tidy-way.html#cb175-14"></a><span class="co">#&gt;  8 WORCE…         0.187        0.560       0.133      0.0839         0.0358</span></span>
+<span id="cb175-15"><a href="summarizing-the-tidy-way.html#cb175-15"></a><span class="co">#&gt;  9 WORCE…         0.139        0.455       0.256      0.126          0.0246</span></span>
+<span id="cb175-16"><a href="summarizing-the-tidy-way.html#cb175-16"></a><span class="co">#&gt; 10 WORCE…         0.0912       0.649       0.218      0.0179         0.0235</span></span>
+<span id="cb175-17"><a href="summarizing-the-tidy-way.html#cb175-17"></a><span class="co">#&gt; # … with 1,468 more rows, and 5 more variables: by_auto &lt;dbl&gt;,</span></span>
+<span id="cb175-18"><a href="summarizing-the-tidy-way.html#cb175-18"></a><span class="co">#&gt; #   by_pub_trans &lt;dbl&gt;, by_bike &lt;dbl&gt;, by_walk &lt;dbl&gt;, med_house_income &lt;dbl&gt;</span></span></code></pre></div>
 <p>However, if we look at comments above the tibble, we see something new: <code># Groups: county [15]</code>. This tells us a couple of things. First that the groups were created using the <code>county</code> column, that there are fifteen groups, and that the data frame is now grouped implying that any future <code>mutate()</code> or <code>summarise()</code> calls will be performed on the specified groups. If we then look at the class of that grouped tibble we see that there is a new class introduced which is <code>grouped_df</code>.</p>
-<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb176-1" data-line-number="1">commute <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb176-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>(county) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb176-3" data-line-number="3"><span class="st">  </span><span class="kw">class</span>()</a>
-<a class="sourceLine" id="cb176-4" data-line-number="4"><span class="co">#&gt; [1] &quot;grouped_df&quot; &quot;tbl_df&quot;     &quot;tbl&quot;        &quot;data.frame&quot;</span></a></code></pre></div>
+<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb176-1"><a href="summarizing-the-tidy-way.html#cb176-1"></a>commute <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb176-2"><a href="summarizing-the-tidy-way.html#cb176-2"></a><span class="st">  </span><span class="kw">group_by</span>(county) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb176-3"><a href="summarizing-the-tidy-way.html#cb176-3"></a><span class="st">  </span><span class="kw">class</span>()</span>
+<span id="cb176-4"><a href="summarizing-the-tidy-way.html#cb176-4"></a><span class="co">#&gt; [1] &quot;grouped_df&quot; &quot;tbl_df&quot;     &quot;tbl&quot;        &quot;data.frame&quot;</span></span></code></pre></div>
 <blockquote>
 <p>Note: a tibble has the classes <code>tbl</code> and <code>tbl_df</code> in addition</p>
 </blockquote>
@@ -352,76 +373,76 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <blockquote>
 <p>I am including the <code>commute3060</code> column to illustrate that the new <code>n</code> column will be the same for each group value.</p>
 </blockquote>
-<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb177-1" data-line-number="1">commute <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb177-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>(county) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb177-3" data-line-number="3"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">n =</span> <span class="kw">n</span>()) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb177-4" data-line-number="4"><span class="st">  </span><span class="kw">select</span>(county, commute3060, n) </a>
-<a class="sourceLine" id="cb177-5" data-line-number="5"><span class="co">#&gt; # A tibble: 1,478 x 3</span></a>
-<a class="sourceLine" id="cb177-6" data-line-number="6"><span class="co">#&gt; # Groups:   county [15]</span></a>
-<a class="sourceLine" id="cb177-7" data-line-number="7"><span class="co">#&gt;    county    commute3060     n</span></a>
-<a class="sourceLine" id="cb177-8" data-line-number="8"><span class="co">#&gt;    &lt;chr&gt;           &lt;dbl&gt; &lt;int&gt;</span></a>
-<a class="sourceLine" id="cb177-9" data-line-number="9"><span class="co">#&gt;  1 WORCESTER       0.331   172</span></a>
-<a class="sourceLine" id="cb177-10" data-line-number="10"><span class="co">#&gt;  2 WORCESTER       0.181   172</span></a>
-<a class="sourceLine" id="cb177-11" data-line-number="11"><span class="co">#&gt;  3 WORCESTER       0.177   172</span></a>
-<a class="sourceLine" id="cb177-12" data-line-number="12"><span class="co">#&gt;  4 WORCESTER       0.313   172</span></a>
-<a class="sourceLine" id="cb177-13" data-line-number="13"><span class="co">#&gt;  5 WORCESTER       0.203   172</span></a>
-<a class="sourceLine" id="cb177-14" data-line-number="14"><span class="co">#&gt;  6 WORCESTER       0.330   172</span></a>
-<a class="sourceLine" id="cb177-15" data-line-number="15"><span class="co">#&gt;  7 WORCESTER       0.303   172</span></a>
-<a class="sourceLine" id="cb177-16" data-line-number="16"><span class="co">#&gt;  8 WORCESTER       0.133   172</span></a>
-<a class="sourceLine" id="cb177-17" data-line-number="17"><span class="co">#&gt;  9 WORCESTER       0.256   172</span></a>
-<a class="sourceLine" id="cb177-18" data-line-number="18"><span class="co">#&gt; 10 WORCESTER       0.218   172</span></a>
-<a class="sourceLine" id="cb177-19" data-line-number="19"><span class="co">#&gt; # … with 1,468 more rows</span></a></code></pre></div>
+<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="summarizing-the-tidy-way.html#cb177-1"></a>commute <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb177-2"><a href="summarizing-the-tidy-way.html#cb177-2"></a><span class="st">  </span><span class="kw">group_by</span>(county) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb177-3"><a href="summarizing-the-tidy-way.html#cb177-3"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">n =</span> <span class="kw">n</span>()) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb177-4"><a href="summarizing-the-tidy-way.html#cb177-4"></a><span class="st">  </span><span class="kw">select</span>(county, commute3060, n) </span>
+<span id="cb177-5"><a href="summarizing-the-tidy-way.html#cb177-5"></a><span class="co">#&gt; # A tibble: 1,478 x 3</span></span>
+<span id="cb177-6"><a href="summarizing-the-tidy-way.html#cb177-6"></a><span class="co">#&gt; # Groups:   county [15]</span></span>
+<span id="cb177-7"><a href="summarizing-the-tidy-way.html#cb177-7"></a><span class="co">#&gt;    county    commute3060     n</span></span>
+<span id="cb177-8"><a href="summarizing-the-tidy-way.html#cb177-8"></a><span class="co">#&gt;    &lt;chr&gt;           &lt;dbl&gt; &lt;int&gt;</span></span>
+<span id="cb177-9"><a href="summarizing-the-tidy-way.html#cb177-9"></a><span class="co">#&gt;  1 WORCESTER       0.331   172</span></span>
+<span id="cb177-10"><a href="summarizing-the-tidy-way.html#cb177-10"></a><span class="co">#&gt;  2 WORCESTER       0.181   172</span></span>
+<span id="cb177-11"><a href="summarizing-the-tidy-way.html#cb177-11"></a><span class="co">#&gt;  3 WORCESTER       0.177   172</span></span>
+<span id="cb177-12"><a href="summarizing-the-tidy-way.html#cb177-12"></a><span class="co">#&gt;  4 WORCESTER       0.313   172</span></span>
+<span id="cb177-13"><a href="summarizing-the-tidy-way.html#cb177-13"></a><span class="co">#&gt;  5 WORCESTER       0.203   172</span></span>
+<span id="cb177-14"><a href="summarizing-the-tidy-way.html#cb177-14"></a><span class="co">#&gt;  6 WORCESTER       0.330   172</span></span>
+<span id="cb177-15"><a href="summarizing-the-tidy-way.html#cb177-15"></a><span class="co">#&gt;  7 WORCESTER       0.303   172</span></span>
+<span id="cb177-16"><a href="summarizing-the-tidy-way.html#cb177-16"></a><span class="co">#&gt;  8 WORCESTER       0.133   172</span></span>
+<span id="cb177-17"><a href="summarizing-the-tidy-way.html#cb177-17"></a><span class="co">#&gt;  9 WORCESTER       0.256   172</span></span>
+<span id="cb177-18"><a href="summarizing-the-tidy-way.html#cb177-18"></a><span class="co">#&gt; 10 WORCESTER       0.218   172</span></span>
+<span id="cb177-19"><a href="summarizing-the-tidy-way.html#cb177-19"></a><span class="co">#&gt; # … with 1,468 more rows</span></span></code></pre></div>
 <p>Here each group only has one unique value for <code>n</code>. As discussed previously, when we want to calculate aggregate measures, there ought to only value per-group. This ability to perform grouped calculation within <code>mutate()</code>can be extremely powerful, but does not create a proper aggregated dataset. For this, we can again use <code>summarise()</code></p>
 <p>Let’s recreate the grouped count from before.</p>
-<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb178-1" data-line-number="1">commute <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb178-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>(county) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb178-3" data-line-number="3"><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">n =</span> <span class="kw">n</span>())</a>
-<a class="sourceLine" id="cb178-4" data-line-number="4"><span class="co">#&gt; # A tibble: 15 x 2</span></a>
-<a class="sourceLine" id="cb178-5" data-line-number="5"><span class="co">#&gt;    county         n</span></a>
-<a class="sourceLine" id="cb178-6" data-line-number="6"><span class="co">#&gt;    &lt;chr&gt;      &lt;int&gt;</span></a>
-<a class="sourceLine" id="cb178-7" data-line-number="7"><span class="co">#&gt;  1 BARNSTABLE    54</span></a>
-<a class="sourceLine" id="cb178-8" data-line-number="8"><span class="co">#&gt;  2 BERKSHIRE     39</span></a>
-<a class="sourceLine" id="cb178-9" data-line-number="9"><span class="co">#&gt;  3 BRISTOL      122</span></a>
-<a class="sourceLine" id="cb178-10" data-line-number="10"><span class="co">#&gt;  4 DUKES          4</span></a>
-<a class="sourceLine" id="cb178-11" data-line-number="11"><span class="co">#&gt;  5 ESSEX        160</span></a>
-<a class="sourceLine" id="cb178-12" data-line-number="12"><span class="co">#&gt;  6 FRANKLIN      18</span></a>
-<a class="sourceLine" id="cb178-13" data-line-number="13"><span class="co">#&gt;  7 HAMPDEN      103</span></a>
-<a class="sourceLine" id="cb178-14" data-line-number="14"><span class="co">#&gt;  8 HAMPSHIRE     36</span></a>
-<a class="sourceLine" id="cb178-15" data-line-number="15"><span class="co">#&gt;  9 MIDDLESEX    318</span></a>
-<a class="sourceLine" id="cb178-16" data-line-number="16"><span class="co">#&gt; 10 NANTUCKET      5</span></a>
-<a class="sourceLine" id="cb178-17" data-line-number="17"><span class="co">#&gt; 11 NORFOLK      130</span></a>
-<a class="sourceLine" id="cb178-18" data-line-number="18"><span class="co">#&gt; 12 PLYMOUTH      99</span></a>
-<a class="sourceLine" id="cb178-19" data-line-number="19"><span class="co">#&gt; 13 SUFFOLK      200</span></a>
-<a class="sourceLine" id="cb178-20" data-line-number="20"><span class="co">#&gt; 14 WORCESTER    172</span></a>
-<a class="sourceLine" id="cb178-21" data-line-number="21"><span class="co">#&gt; 15 &lt;NA&gt;          18</span></a></code></pre></div>
+<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb178-1"><a href="summarizing-the-tidy-way.html#cb178-1"></a>commute <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb178-2"><a href="summarizing-the-tidy-way.html#cb178-2"></a><span class="st">  </span><span class="kw">group_by</span>(county) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb178-3"><a href="summarizing-the-tidy-way.html#cb178-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">n =</span> <span class="kw">n</span>())</span>
+<span id="cb178-4"><a href="summarizing-the-tidy-way.html#cb178-4"></a><span class="co">#&gt; # A tibble: 15 x 2</span></span>
+<span id="cb178-5"><a href="summarizing-the-tidy-way.html#cb178-5"></a><span class="co">#&gt;    county         n</span></span>
+<span id="cb178-6"><a href="summarizing-the-tidy-way.html#cb178-6"></a><span class="co">#&gt;    &lt;chr&gt;      &lt;int&gt;</span></span>
+<span id="cb178-7"><a href="summarizing-the-tidy-way.html#cb178-7"></a><span class="co">#&gt;  1 BARNSTABLE    54</span></span>
+<span id="cb178-8"><a href="summarizing-the-tidy-way.html#cb178-8"></a><span class="co">#&gt;  2 BERKSHIRE     39</span></span>
+<span id="cb178-9"><a href="summarizing-the-tidy-way.html#cb178-9"></a><span class="co">#&gt;  3 BRISTOL      122</span></span>
+<span id="cb178-10"><a href="summarizing-the-tidy-way.html#cb178-10"></a><span class="co">#&gt;  4 DUKES          4</span></span>
+<span id="cb178-11"><a href="summarizing-the-tidy-way.html#cb178-11"></a><span class="co">#&gt;  5 ESSEX        160</span></span>
+<span id="cb178-12"><a href="summarizing-the-tidy-way.html#cb178-12"></a><span class="co">#&gt;  6 FRANKLIN      18</span></span>
+<span id="cb178-13"><a href="summarizing-the-tidy-way.html#cb178-13"></a><span class="co">#&gt;  7 HAMPDEN      103</span></span>
+<span id="cb178-14"><a href="summarizing-the-tidy-way.html#cb178-14"></a><span class="co">#&gt;  8 HAMPSHIRE     36</span></span>
+<span id="cb178-15"><a href="summarizing-the-tidy-way.html#cb178-15"></a><span class="co">#&gt;  9 MIDDLESEX    318</span></span>
+<span id="cb178-16"><a href="summarizing-the-tidy-way.html#cb178-16"></a><span class="co">#&gt; 10 NANTUCKET      5</span></span>
+<span id="cb178-17"><a href="summarizing-the-tidy-way.html#cb178-17"></a><span class="co">#&gt; 11 NORFOLK      130</span></span>
+<span id="cb178-18"><a href="summarizing-the-tidy-way.html#cb178-18"></a><span class="co">#&gt; 12 PLYMOUTH      99</span></span>
+<span id="cb178-19"><a href="summarizing-the-tidy-way.html#cb178-19"></a><span class="co">#&gt; 13 SUFFOLK      200</span></span>
+<span id="cb178-20"><a href="summarizing-the-tidy-way.html#cb178-20"></a><span class="co">#&gt; 14 WORCESTER    172</span></span>
+<span id="cb178-21"><a href="summarizing-the-tidy-way.html#cb178-21"></a><span class="co">#&gt; 15 &lt;NA&gt;          18</span></span></code></pre></div>
 <p>We can also include the summary statistic calculations from before.</p>
-<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb179-1" data-line-number="1">commute <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb179-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>(county) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb179-3" data-line-number="3"><span class="st">  </span><span class="kw">summarise</span>(</a>
-<a class="sourceLine" id="cb179-4" data-line-number="4">    <span class="dt">n =</span> <span class="kw">n</span>(),</a>
-<a class="sourceLine" id="cb179-5" data-line-number="5">    <span class="dt">min_commute =</span> <span class="kw">min</span>(commute3060, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),</a>
-<a class="sourceLine" id="cb179-6" data-line-number="6">    <span class="dt">max_commute =</span> <span class="kw">max</span>(commute3060, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),</a>
-<a class="sourceLine" id="cb179-7" data-line-number="7">    <span class="dt">avg_commute =</span> <span class="kw">mean</span>(commute3060, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),</a>
-<a class="sourceLine" id="cb179-8" data-line-number="8">    <span class="dt">sd_commute  =</span> <span class="kw">sd</span>(commute3060, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb179-9" data-line-number="9">    )</a>
-<a class="sourceLine" id="cb179-10" data-line-number="10"><span class="co">#&gt; # A tibble: 15 x 6</span></a>
-<a class="sourceLine" id="cb179-11" data-line-number="11"><span class="co">#&gt;    county         n min_commute max_commute avg_commute sd_commute</span></a>
-<a class="sourceLine" id="cb179-12" data-line-number="12"><span class="co">#&gt;    &lt;chr&gt;      &lt;int&gt;       &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt;      &lt;dbl&gt;</span></a>
-<a class="sourceLine" id="cb179-13" data-line-number="13"><span class="co">#&gt;  1 BARNSTABLE    54     0.0402        0.305      0.171      0.0611</span></a>
-<a class="sourceLine" id="cb179-14" data-line-number="14"><span class="co">#&gt;  2 BERKSHIRE     39     0.0701        0.510      0.190      0.102 </span></a>
-<a class="sourceLine" id="cb179-15" data-line-number="15"><span class="co">#&gt;  3 BRISTOL      122     0.0599        0.442      0.249      0.0796</span></a>
-<a class="sourceLine" id="cb179-16" data-line-number="16"><span class="co">#&gt;  4 DUKES          4     0.0459        0.110      0.0744     0.0277</span></a>
-<a class="sourceLine" id="cb179-17" data-line-number="17"><span class="co">#&gt;  5 ESSEX        160     0.151         0.458      0.287      0.0664</span></a>
-<a class="sourceLine" id="cb179-18" data-line-number="18"><span class="co">#&gt;  6 FRANKLIN      18     0.186         0.454      0.283      0.0814</span></a>
-<a class="sourceLine" id="cb179-19" data-line-number="19"><span class="co">#&gt;  7 HAMPDEN      103     0.0495        0.480      0.226      0.0932</span></a>
-<a class="sourceLine" id="cb179-20" data-line-number="20"><span class="co">#&gt;  8 HAMPSHIRE     36     0.0318        0.569      0.264      0.138 </span></a>
-<a class="sourceLine" id="cb179-21" data-line-number="21"><span class="co">#&gt;  9 MIDDLESEX    318     0.104         0.612      0.383      0.0825</span></a>
-<a class="sourceLine" id="cb179-22" data-line-number="22"><span class="co">#&gt; 10 NANTUCKET      5     0.00587       0.120      0.0390     0.0470</span></a>
-<a class="sourceLine" id="cb179-23" data-line-number="23"><span class="co">#&gt; 11 NORFOLK      130     0.186         0.613      0.392      0.0761</span></a>
-<a class="sourceLine" id="cb179-24" data-line-number="24"><span class="co">#&gt; 12 PLYMOUTH      99     0.125         0.533      0.303      0.0596</span></a>
-<a class="sourceLine" id="cb179-25" data-line-number="25"><span class="co">#&gt; 13 SUFFOLK      200     0             0.633      0.400      0.0972</span></a>
-<a class="sourceLine" id="cb179-26" data-line-number="26"><span class="co">#&gt; 14 WORCESTER    172     0.0550        0.536      0.288      0.0810</span></a>
-<a class="sourceLine" id="cb179-27" data-line-number="27"><span class="co">#&gt; 15 &lt;NA&gt;          18     0.109         0.507      0.238      0.112</span></a></code></pre></div>
+<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb179-1"><a href="summarizing-the-tidy-way.html#cb179-1"></a>commute <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb179-2"><a href="summarizing-the-tidy-way.html#cb179-2"></a><span class="st">  </span><span class="kw">group_by</span>(county) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb179-3"><a href="summarizing-the-tidy-way.html#cb179-3"></a><span class="st">  </span><span class="kw">summarise</span>(</span>
+<span id="cb179-4"><a href="summarizing-the-tidy-way.html#cb179-4"></a>    <span class="dt">n =</span> <span class="kw">n</span>(),</span>
+<span id="cb179-5"><a href="summarizing-the-tidy-way.html#cb179-5"></a>    <span class="dt">min_commute =</span> <span class="kw">min</span>(commute3060, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),</span>
+<span id="cb179-6"><a href="summarizing-the-tidy-way.html#cb179-6"></a>    <span class="dt">max_commute =</span> <span class="kw">max</span>(commute3060, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),</span>
+<span id="cb179-7"><a href="summarizing-the-tidy-way.html#cb179-7"></a>    <span class="dt">avg_commute =</span> <span class="kw">mean</span>(commute3060, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),</span>
+<span id="cb179-8"><a href="summarizing-the-tidy-way.html#cb179-8"></a>    <span class="dt">sd_commute  =</span> <span class="kw">sd</span>(commute3060, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb179-9"><a href="summarizing-the-tidy-way.html#cb179-9"></a>    )</span>
+<span id="cb179-10"><a href="summarizing-the-tidy-way.html#cb179-10"></a><span class="co">#&gt; # A tibble: 15 x 6</span></span>
+<span id="cb179-11"><a href="summarizing-the-tidy-way.html#cb179-11"></a><span class="co">#&gt;    county         n min_commute max_commute avg_commute sd_commute</span></span>
+<span id="cb179-12"><a href="summarizing-the-tidy-way.html#cb179-12"></a><span class="co">#&gt;    &lt;chr&gt;      &lt;int&gt;       &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt;      &lt;dbl&gt;</span></span>
+<span id="cb179-13"><a href="summarizing-the-tidy-way.html#cb179-13"></a><span class="co">#&gt;  1 BARNSTABLE    54     0.0402        0.305      0.171      0.0611</span></span>
+<span id="cb179-14"><a href="summarizing-the-tidy-way.html#cb179-14"></a><span class="co">#&gt;  2 BERKSHIRE     39     0.0701        0.510      0.190      0.102 </span></span>
+<span id="cb179-15"><a href="summarizing-the-tidy-way.html#cb179-15"></a><span class="co">#&gt;  3 BRISTOL      122     0.0599        0.442      0.249      0.0796</span></span>
+<span id="cb179-16"><a href="summarizing-the-tidy-way.html#cb179-16"></a><span class="co">#&gt;  4 DUKES          4     0.0459        0.110      0.0744     0.0277</span></span>
+<span id="cb179-17"><a href="summarizing-the-tidy-way.html#cb179-17"></a><span class="co">#&gt;  5 ESSEX        160     0.151         0.458      0.287      0.0664</span></span>
+<span id="cb179-18"><a href="summarizing-the-tidy-way.html#cb179-18"></a><span class="co">#&gt;  6 FRANKLIN      18     0.186         0.454      0.283      0.0814</span></span>
+<span id="cb179-19"><a href="summarizing-the-tidy-way.html#cb179-19"></a><span class="co">#&gt;  7 HAMPDEN      103     0.0495        0.480      0.226      0.0932</span></span>
+<span id="cb179-20"><a href="summarizing-the-tidy-way.html#cb179-20"></a><span class="co">#&gt;  8 HAMPSHIRE     36     0.0318        0.569      0.264      0.138 </span></span>
+<span id="cb179-21"><a href="summarizing-the-tidy-way.html#cb179-21"></a><span class="co">#&gt;  9 MIDDLESEX    318     0.104         0.612      0.383      0.0825</span></span>
+<span id="cb179-22"><a href="summarizing-the-tidy-way.html#cb179-22"></a><span class="co">#&gt; 10 NANTUCKET      5     0.00587       0.120      0.0390     0.0470</span></span>
+<span id="cb179-23"><a href="summarizing-the-tidy-way.html#cb179-23"></a><span class="co">#&gt; 11 NORFOLK      130     0.186         0.613      0.392      0.0761</span></span>
+<span id="cb179-24"><a href="summarizing-the-tidy-way.html#cb179-24"></a><span class="co">#&gt; 12 PLYMOUTH      99     0.125         0.533      0.303      0.0596</span></span>
+<span id="cb179-25"><a href="summarizing-the-tidy-way.html#cb179-25"></a><span class="co">#&gt; 13 SUFFOLK      200     0             0.633      0.400      0.0972</span></span>
+<span id="cb179-26"><a href="summarizing-the-tidy-way.html#cb179-26"></a><span class="co">#&gt; 14 WORCESTER    172     0.0550        0.536      0.288      0.0810</span></span>
+<span id="cb179-27"><a href="summarizing-the-tidy-way.html#cb179-27"></a><span class="co">#&gt; 15 &lt;NA&gt;          18     0.109         0.507      0.238      0.112</span></span></code></pre></div>
 
 </div>
 </div>

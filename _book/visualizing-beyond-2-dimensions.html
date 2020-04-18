@@ -33,6 +33,7 @@
   
 <link rel="prev" href="grammer-of-layered-graphics-ii.html"/>
 <link rel="next" href="multiple-data-sets.html"/>
+<script src="libs/header-attrs-2.1/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -53,25 +54,26 @@
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -80,9 +82,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -131,7 +133,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">Urban Informatics Toolkit</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Welcome</a><ul>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Welcome</a>
+<ul>
 <li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#what-to-expect"><i class="fa fa-check"></i><b>1.1</b> What to expect</a></li>
 <li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#reminders"><i class="fa fa-check"></i><b>1.2</b> Reminders</a></li>
 <li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#timeline"><i class="fa fa-check"></i><b>1.3</b> Timeline</a></li>
@@ -140,92 +143,110 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="part"><span><b>I Foundations of Urban Informatics</b></span></li>
 <li class="chapter" data-level="2" data-path="the-utility-and-danger-of-big-data.html"><a href="the-utility-and-danger-of-big-data.html"><i class="fa fa-check"></i><b>2</b> The Utility and Danger of Big Data</a></li>
 <li class="chapter" data-level="3" data-path="data-in-the-municipal-context.html"><a href="data-in-the-municipal-context.html"><i class="fa fa-check"></i><b>3</b> Data in the municipal context</a></li>
-<li class="chapter" data-level="4" data-path="approaches-to-and-schools-of-urban-informatics.html"><a href="approaches-to-and-schools-of-urban-informatics.html"><i class="fa fa-check"></i><b>4</b> Approaches to and Schools of Urban Informatics</a><ul>
+<li class="chapter" data-level="4" data-path="approaches-to-and-schools-of-urban-informatics.html"><a href="approaches-to-and-schools-of-urban-informatics.html"><i class="fa fa-check"></i><b>4</b> Approaches to and Schools of Urban Informatics</a>
+<ul>
 <li class="chapter" data-level="4.1" data-path="approaches-to-and-schools-of-urban-informatics.html"><a href="approaches-to-and-schools-of-urban-informatics.html#scientific-approaches"><i class="fa fa-check"></i><b>4.1</b> Scientific approaches</a></li>
 <li class="chapter" data-level="4.2" data-path="approaches-to-and-schools-of-urban-informatics.html"><a href="approaches-to-and-schools-of-urban-informatics.html#the-chicago-school"><i class="fa fa-check"></i><b>4.2</b> The Chicago School</a></li>
 <li class="chapter" data-level="4.3" data-path="approaches-to-and-schools-of-urban-informatics.html"><a href="approaches-to-and-schools-of-urban-informatics.html#complexity-and-santa-fe-institute"><i class="fa fa-check"></i><b>4.3</b> Complexity and Santa Fe Institute</a></li>
 <li class="chapter" data-level="4.4" data-path="approaches-to-and-schools-of-urban-informatics.html"><a href="approaches-to-and-schools-of-urban-informatics.html#a-hybrid-approach"><i class="fa fa-check"></i><b>4.4</b> A Hybrid Approach</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="ecometrics.html"><a href="ecometrics.html"><i class="fa fa-check"></i><b>5</b> Ecometrics</a><ul>
+<li class="chapter" data-level="5" data-path="ecometrics.html"><a href="ecometrics.html"><i class="fa fa-check"></i><b>5</b> Ecometrics</a>
+<ul>
 <li class="chapter" data-level="5.1" data-path="ecometrics.html"><a href="ecometrics.html#broken-windows-theory"><i class="fa fa-check"></i><b>5.1</b> Broken Windows Theory</a></li>
 <li class="chapter" data-level="5.2" data-path="ecometrics.html"><a href="ecometrics.html#quantifying-disorder"><i class="fa fa-check"></i><b>5.2</b> Quantifying Disorder</a></li>
 </ul></li>
 <li class="part"><span><b>II Toolkit Foundations</b></span></li>
-<li class="chapter" data-level="6" data-path="the-basics.html"><a href="the-basics.html"><i class="fa fa-check"></i><b>6</b> The basics</a><ul>
+<li class="chapter" data-level="6" data-path="the-basics.html"><a href="the-basics.html"><i class="fa fa-check"></i><b>6</b> The basics</a>
+<ul>
 <li class="chapter" data-level="6.1" data-path="the-basics.html"><a href="the-basics.html#what-is-r-and-why-do-i-care"><i class="fa fa-check"></i><b>6.1</b> What is R and why do I care?</a></li>
 <li class="chapter" data-level="6.2" data-path="the-basics.html"><a href="the-basics.html#the-rstudio-ide"><i class="fa fa-check"></i><b>6.2</b> The RStudio IDE</a></li>
 <li class="chapter" data-level="6.3" data-path="the-basics.html"><a href="the-basics.html#installing-r-rstudio"><i class="fa fa-check"></i><b>6.3</b> Installing R &amp; RStudio</a></li>
 <li class="chapter" data-level="6.4" data-path="the-basics.html"><a href="the-basics.html#preventative-care"><i class="fa fa-check"></i><b>6.4</b> Preventative Care</a></li>
 <li class="chapter" data-level="6.5" data-path="the-basics.html"><a href="the-basics.html#before-we-embark"><i class="fa fa-check"></i><b>6.5</b> Before we embark</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="r-as-a-calculator.html"><a href="r-as-a-calculator.html"><i class="fa fa-check"></i><b>7</b> R as a calculator</a><ul>
+<li class="chapter" data-level="7" data-path="r-as-a-calculator.html"><a href="r-as-a-calculator.html"><i class="fa fa-check"></i><b>7</b> R as a calculator</a>
+<ul>
 <li class="chapter" data-level="7.1" data-path="r-as-a-calculator.html"><a href="r-as-a-calculator.html#arithmetic-operators"><i class="fa fa-check"></i><b>7.1</b> Arithmetic Operators</a></li>
 <li class="chapter" data-level="7.2" data-path="r-as-a-calculator.html"><a href="r-as-a-calculator.html#variable-assignment"><i class="fa fa-check"></i><b>7.2</b> Variable assignment</a></li>
 <li class="chapter" data-level="7.3" data-path="r-as-a-calculator.html"><a href="r-as-a-calculator.html#functions"><i class="fa fa-check"></i><b>7.3</b> Functions</a></li>
 <li class="chapter" data-level="7.4" data-path="r-as-a-calculator.html"><a href="r-as-a-calculator.html#extensions-to-r"><i class="fa fa-check"></i><b>7.4</b> Extensions to R</a></li>
 <li class="chapter" data-level="7.5" data-path="r-as-a-calculator.html"><a href="r-as-a-calculator.html#loading-packages"><i class="fa fa-check"></i><b>7.5</b> Loading Packages</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="exploratory-visual-analysis.html"><a href="exploratory-visual-analysis.html"><i class="fa fa-check"></i><b>8</b> Exploratory Visual Analysis</a><ul>
+<li class="chapter" data-level="8" data-path="exploratory-visual-analysis.html"><a href="exploratory-visual-analysis.html"><i class="fa fa-check"></i><b>8</b> Exploratory Visual Analysis</a>
+<ul>
 <li class="chapter" data-level="8.1" data-path="exploratory-visual-analysis.html"><a href="exploratory-visual-analysis.html#the-american-community-survey"><i class="fa fa-check"></i><b>8.1</b> The American Community Survey</a></li>
 <li class="chapter" data-level="8.2" data-path="exploratory-visual-analysis.html"><a href="exploratory-visual-analysis.html#a-first-visualization"><i class="fa fa-check"></i><b>8.2</b> A first visualization</a></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="reading-data.html"><a href="reading-data.html"><i class="fa fa-check"></i><b>9</b> Reading data</a><ul>
+<li class="chapter" data-level="9" data-path="reading-data.html"><a href="reading-data.html"><i class="fa fa-check"></i><b>9</b> Reading data</a>
+<ul>
 <li class="chapter" data-level="9.1" data-path="reading-data.html"><a href="reading-data.html#background"><i class="fa fa-check"></i><b>9.1</b> Background</a></li>
 <li class="chapter" data-level="9.2" data-path="reading-data.html"><a href="reading-data.html#actually-reading-data"><i class="fa fa-check"></i><b>9.2</b> Actually Reading Data</a></li>
 <li class="chapter" data-level="9.3" data-path="reading-data.html"><a href="reading-data.html#other-common-data-formats"><i class="fa fa-check"></i><b>9.3</b> Other common data formats</a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="general-data-manipulation.html"><a href="general-data-manipulation.html"><i class="fa fa-check"></i><b>10</b> General data manipulation</a><ul>
+<li class="chapter" data-level="10" data-path="general-data-manipulation.html"><a href="general-data-manipulation.html"><i class="fa fa-check"></i><b>10</b> General data manipulation</a>
+<ul>
 <li class="chapter" data-level="10.1" data-path="general-data-manipulation.html"><a href="general-data-manipulation.html#scenario"><i class="fa fa-check"></i><b>10.1</b> Scenario:</a></li>
 <li class="chapter" data-level="10.2" data-path="general-data-manipulation.html"><a href="general-data-manipulation.html#getting-physical-with-the-data"><i class="fa fa-check"></i><b>10.2</b> Getting physical with the data</a></li>
 <li class="chapter" data-level="10.3" data-path="general-data-manipulation.html"><a href="general-data-manipulation.html#selecting-rows"><i class="fa fa-check"></i><b>10.3</b> Selecting Rows</a></li>
 <li class="chapter" data-level="10.4" data-path="general-data-manipulation.html"><a href="general-data-manipulation.html#revisiting-commmuting"><i class="fa fa-check"></i><b>10.4</b> Revisiting commmuting</a></li>
 <li class="chapter" data-level="10.5" data-path="general-data-manipulation.html"><a href="general-data-manipulation.html#asking-good-questions"><i class="fa fa-check"></i><b>10.5</b> Asking good questions</a></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="thats-too-much-data.html"><a href="thats-too-much-data.html"><i class="fa fa-check"></i><b>11</b> That’s <em>too much</em> data</a><ul>
+<li class="chapter" data-level="11" data-path="thats-too-much-data.html"><a href="thats-too-much-data.html"><i class="fa fa-check"></i><b>11</b> That’s <em>too much</em> data</a>
+<ul>
 <li class="chapter" data-level="11.1" data-path="thats-too-much-data.html"><a href="thats-too-much-data.html#filtering"><i class="fa fa-check"></i><b>11.1</b> <code>filter()</code>ing</a></li>
 <li class="chapter" data-level="11.2" data-path="thats-too-much-data.html"><a href="thats-too-much-data.html#logical-operators"><i class="fa fa-check"></i><b>11.2</b> Logical operators</a></li>
 <li class="chapter" data-level="11.3" data-path="thats-too-much-data.html"><a href="thats-too-much-data.html#defining-the-greater-boston-area"><i class="fa fa-check"></i><b>11.3</b> Defining the Greater Boston Area</a></li>
 <li class="chapter" data-level="11.4" data-path="thats-too-much-data.html"><a href="thats-too-much-data.html#mutate"><i class="fa fa-check"></i><b>11.4</b> mutate</a></li>
 <li class="chapter" data-level="11.5" data-path="thats-too-much-data.html"><a href="thats-too-much-data.html#writing-data-1"><i class="fa fa-check"></i><b>11.5</b> Writing Data</a></li>
 </ul></li>
-<li class="chapter" data-level="12" data-path="the-pipe.html"><a href="the-pipe.html"><i class="fa fa-check"></i><b>12</b> The pipe <code>%&gt;%</code></a><ul>
+<li class="chapter" data-level="12" data-path="the-pipe.html"><a href="the-pipe.html"><i class="fa fa-check"></i><b>12</b> The pipe <code>%&gt;%</code></a>
+<ul>
 <li class="chapter" data-level="12.1" data-path="the-pipe.html"><a href="the-pipe.html#applying-the-pipe."><i class="fa fa-check"></i><b>12.1</b> Applying the pipe.</a></li>
 <li class="chapter" data-level="12.2" data-path="the-pipe.html"><a href="the-pipe.html#revisiting-our-scenario"><i class="fa fa-check"></i><b>12.2</b> Revisiting our scenario</a></li>
 </ul></li>
 <li class="chapter" data-level="13" data-path="creating-new-measures.html"><a href="creating-new-measures.html"><i class="fa fa-check"></i><b>13</b> Creating new measures</a></li>
-<li class="chapter" data-level="14" data-path="data-structures.html"><a href="data-structures.html"><i class="fa fa-check"></i><b>14</b> Data Structures</a><ul>
+<li class="chapter" data-level="14" data-path="data-structures.html"><a href="data-structures.html"><i class="fa fa-check"></i><b>14</b> Data Structures</a>
+<ul>
 <li class="chapter" data-level="14.1" data-path="data-structures.html"><a href="data-structures.html#atomic-vectors"><i class="fa fa-check"></i><b>14.1</b> Atomic Vectors</a></li>
 <li class="chapter" data-level="14.2" data-path="data-structures.html"><a href="data-structures.html#data-frames"><i class="fa fa-check"></i><b>14.2</b> Data Frames</a></li>
 <li class="chapter" data-level="14.3" data-path="data-structures.html"><a href="data-structures.html#lists"><i class="fa fa-check"></i><b>14.3</b> Lists</a></li>
 </ul></li>
 <li class="chapter" data-level="15" data-path="summary-statistics.html"><a href="summary-statistics.html"><i class="fa fa-check"></i><b>15</b> Summary statistics</a></li>
-<li class="chapter" data-level="16" data-path="summarizing-the-tidy-way.html"><a href="summarizing-the-tidy-way.html"><i class="fa fa-check"></i><b>16</b> summarizing the tidy way</a><ul>
+<li class="chapter" data-level="16" data-path="summarizing-the-tidy-way.html"><a href="summarizing-the-tidy-way.html"><i class="fa fa-check"></i><b>16</b> summarizing the tidy way</a>
+<ul>
 <li class="chapter" data-level="16.1" data-path="summarizing-the-tidy-way.html"><a href="summarizing-the-tidy-way.html#counting"><i class="fa fa-check"></i><b>16.1</b> Counting</a></li>
 </ul></li>
 <li class="part"><span><b>III Vizualization Strategies</b></span></li>
-<li class="chapter" data-level="17" data-path="layered-i.html"><a href="layered-i.html"><i class="fa fa-check"></i><b>17</b> Grammer of layered graphics I</a><ul>
+<li class="chapter" data-level="17" data-path="layered-i.html"><a href="layered-i.html"><i class="fa fa-check"></i><b>17</b> Grammer of layered graphics I</a>
+<ul>
 <li class="chapter" data-level="17.1" data-path="layered-i.html"><a href="layered-i.html#the-grammar-of-layered-graphics"><i class="fa fa-check"></i><b>17.1</b> The Grammar of Layered Graphics</a></li>
 <li class="chapter" data-level="17.2" data-path="layered-i.html"><a href="layered-i.html#layers-and-defaults"><i class="fa fa-check"></i><b>17.2</b> Layers and defaults</a></li>
 </ul></li>
-<li class="chapter" data-level="18" data-path="visualizing-trends-and-relationships.html"><a href="visualizing-trends-and-relationships.html"><i class="fa fa-check"></i><b>18</b> Visualizing Trends and Relationships</a><ul>
+<li class="chapter" data-level="18" data-path="visualizing-trends-and-relationships.html"><a href="visualizing-trends-and-relationships.html"><i class="fa fa-check"></i><b>18</b> Visualizing Trends and Relationships</a>
+<ul>
 <li class="chapter" data-level="18.1" data-path="visualizing-trends-and-relationships.html"><a href="visualizing-trends-and-relationships.html#univariate-visualizations"><i class="fa fa-check"></i><b>18.1</b> Univariate visualizations</a></li>
 <li class="chapter" data-level="18.2" data-path="visualizing-trends-and-relationships.html"><a href="visualizing-trends-and-relationships.html#bivariate-visualizations"><i class="fa fa-check"></i><b>18.2</b> Bivariate visualizations</a></li>
 <li class="chapter" data-level="18.3" data-path="visualizing-trends-and-relationships.html"><a href="visualizing-trends-and-relationships.html#review"><i class="fa fa-check"></i><b>18.3</b> Review:</a></li>
 </ul></li>
-<li class="chapter" data-level="19" data-path="grammer-of-layered-graphics-ii.html"><a href="grammer-of-layered-graphics-ii.html"><i class="fa fa-check"></i><b>19</b> Grammer of layered graphics II</a><ul>
+<li class="chapter" data-level="19" data-path="grammer-of-layered-graphics-ii.html"><a href="grammer-of-layered-graphics-ii.html"><i class="fa fa-check"></i><b>19</b> Grammer of layered graphics II</a>
+<ul>
 <li class="chapter" data-level="19.1" data-path="grammer-of-layered-graphics-ii.html"><a href="grammer-of-layered-graphics-ii.html#scales"><i class="fa fa-check"></i><b>19.1</b> Scales</a></li>
 <li class="chapter" data-level="19.2" data-path="grammer-of-layered-graphics-ii.html"><a href="grammer-of-layered-graphics-ii.html#coordinates"><i class="fa fa-check"></i><b>19.2</b> Coordinates</a></li>
 <li class="chapter" data-level="19.3" data-path="grammer-of-layered-graphics-ii.html"><a href="grammer-of-layered-graphics-ii.html#facets"><i class="fa fa-check"></i><b>19.3</b> Facets</a></li>
 </ul></li>
-<li class="chapter" data-level="20" data-path="visualizing-beyond-2-dimensions.html"><a href="visualizing-beyond-2-dimensions.html"><i class="fa fa-check"></i><b>20</b> Visualizing beyond 2-dimensions</a><ul>
+<li class="chapter" data-level="20" data-path="visualizing-beyond-2-dimensions.html"><a href="visualizing-beyond-2-dimensions.html"><i class="fa fa-check"></i><b>20</b> Visualizing beyond 2-dimensions</a>
+<ul>
 <li class="chapter" data-level="20.1" data-path="visualizing-beyond-2-dimensions.html"><a href="visualizing-beyond-2-dimensions.html#color"><i class="fa fa-check"></i><b>20.1</b> Color</a></li>
-<li class="chapter" data-level="20.2" data-path="visualizing-beyond-2-dimensions.html"><a href="visualizing-beyond-2-dimensions.html#expanding-bivariate-visualizations-to-trivariate-other-tri-variate"><i class="fa fa-check"></i><b>20.2</b> Expanding bivariate visualizations to trivariate &amp; other tri-variate</a></li>
+<li class="chapter" data-level="20.2" data-path="visualizing-beyond-2-dimensions.html"><a href="visualizing-beyond-2-dimensions.html#shape"><i class="fa fa-check"></i><b>20.2</b> Shape</a></li>
+<li class="chapter" data-level="20.3" data-path="visualizing-beyond-2-dimensions.html"><a href="visualizing-beyond-2-dimensions.html#expanding-bivariate-visualizations-to-trivariate-other-tri-variate"><i class="fa fa-check"></i><b>20.3</b> Expanding bivariate visualizations to trivariate &amp; other tri-variate</a></li>
 </ul></li>
 <li class="part"><span><b>IV More than hammer and nails</b></span></li>
-<li class="chapter" data-level="21" data-path="multiple-data-sets.html"><a href="multiple-data-sets.html"><i class="fa fa-check"></i><b>21</b> Multiple data sets</a><ul>
+<li class="chapter" data-level="21" data-path="multiple-data-sets.html"><a href="multiple-data-sets.html"><i class="fa fa-check"></i><b>21</b> Multiple data sets</a>
+<ul>
 <li class="chapter" data-level="21.1" data-path="multiple-data-sets.html"><a href="multiple-data-sets.html#exercise-3"><i class="fa fa-check"></i><b>21.1</b> Exercise</a></li>
 </ul></li>
-<li class="chapter" data-level="22" data-path="spatial-analysis.html"><a href="spatial-analysis.html"><i class="fa fa-check"></i><b>22</b> Spatial Analysis</a><ul>
+<li class="chapter" data-level="22" data-path="spatial-analysis.html"><a href="spatial-analysis.html"><i class="fa fa-check"></i><b>22</b> Spatial Analysis</a>
+<ul>
 <li class="chapter" data-level="22.1" data-path="spatial-analysis.html"><a href="spatial-analysis.html#types-of-spatial-data"><i class="fa fa-check"></i><b>22.1</b> Types of spatial data</a></li>
 <li class="chapter" data-level="22.2" data-path="spatial-analysis.html"><a href="spatial-analysis.html#working-with-spatial-data"><i class="fa fa-check"></i><b>22.2</b> Working with spatial data</a></li>
 <li class="chapter" data-level="22.3" data-path="spatial-analysis.html"><a href="spatial-analysis.html#creating-simple-features-from-a-tibble"><i class="fa fa-check"></i><b>22.3</b> Creating simple features from a tibble</a></li>
@@ -256,7 +277,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="visualizing-beyond-2-dimensions" class="section level1">
+<div id="visualizing-beyond-2-dimensions" class="section level1" number="20">
 <h1><span class="header-section-number">Chapter 20</span> Visualizing beyond 2-dimensions</h1>
 <p>Over the duration of the last three chapters we have cultivated a fundamental understanding of the grammar of graphics and have discussed how to craft univariate visualizations and explore bivariate relationships. In those graphics we have not gone beyond two-dimensions. We only utilized two aesthetics to map. Howver, there is many more that we can incorporate into our visualizations which will in turn enable us to explore three or for variables at once.</p>
 <blockquote>
@@ -269,14 +290,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>size -&gt; continuous</li>
 <li>shape -&gt; discrete</li>
 </ul>
-<div id="color" class="section level2">
+<div id="color" class="section level2" number="20.1">
 <h2><span class="header-section-number">20.1</span> Color</h2>
 <p>Let us first take a look at the use of color. Color is, after position, the easiest visual cue for we humans to distinguish (that viz book on my coffee table) between. It is also a rather versatile visual cue as it can be used to address both continuous and discrete variables. We will first explore the use of color for discrete measurements. In this context, I do not necessarily mean discrete as in integers, but more or less groups. This is where there is not <em>necessarily</em> an order or scale implied in the data. It <em>can</em> however be indicative of order—think for example age groups. To explore the use of color for groups or discrete data, we will look at Boston ecometrics of social disorder as discussed previously (O’Brien 2015 CITE NEEDED). Ecometrics are stored in a file called <code>ecometrics.csv</code> the <code>data</code> directory. Read it in as <code>ecometrics</code>.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">library</span>(tidyverse)</a>
-<a class="sourceLine" id="cb1-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb1-3" data-line-number="3">ecometrics &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data/ecometrics.csv&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="visualizing-beyond-2-dimensions.html#cb1-1"></a><span class="kw">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="visualizing-beyond-2-dimensions.html#cb1-2"></a></span>
+<span id="cb1-3"><a href="visualizing-beyond-2-dimensions.html#cb1-3"></a>ecometrics &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data/ecometrics.csv&quot;</span>)</span></code></pre></div>
 <p>At this point in your learning, I think it is appropriate to introduce you to a new package that can be used to quickly summarize and visualize your data. That is called <code>skimr</code>. Within the package there is a function called <code>skim()</code>. This package is really useful for quickly getting an understanding of a dataset as it provides useful summary statistics for each variable as well as a histogram for numeric columns.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">skimr<span class="op">::</span><span class="kw">skim</span>(ecometrics)</a></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="visualizing-beyond-2-dimensions.html#cb2-1"></a>skimr<span class="op">::</span><span class="kw">skim</span>(ecometrics)</span></code></pre></div>
 <pre><code>#&gt; ── Data Summary ────────────────────────
 #&gt;                            Values    
 #&gt; Name                       ecometrics
@@ -302,84 +323,241 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 #&gt; 1  2018 ▇▇▁▇▇
 #&gt; 2  7392 ▇▂▁▁▁</code></pre>
 <p>A simple graphic here would be to evaluate the raw counts by year. A simple bar chart would look like this.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw">ggplot</span>(ecometrics, <span class="kw">aes</span>(year, n)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb4-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_col</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="visualizing-beyond-2-dimensions.html#cb4-1"></a><span class="kw">ggplot</span>(ecometrics, <span class="kw">aes</span>(year, n)) <span class="op">+</span></span>
+<span id="cb4-2"><a href="visualizing-beyond-2-dimensions.html#cb4-2"></a><span class="st">  </span><span class="kw">geom_col</span>()</span></code></pre></div>
 <p><img src="04d-beyond-2d_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
 <p>But, we are aware that there are different measurements. These were described previously and can be seen below.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw">distinct</span>(ecometrics, measure)</a>
-<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="co">#&gt; # A tibble: 4 x 1</span></a>
-<a class="sourceLine" id="cb5-3" data-line-number="3"><span class="co">#&gt;   measure         </span></a>
-<a class="sourceLine" id="cb5-4" data-line-number="4"><span class="co">#&gt;   &lt;chr&gt;           </span></a>
-<a class="sourceLine" id="cb5-5" data-line-number="5"><span class="co">#&gt; 1 violence        </span></a>
-<a class="sourceLine" id="cb5-6" data-line-number="6"><span class="co">#&gt; 2 guns            </span></a>
-<a class="sourceLine" id="cb5-7" data-line-number="7"><span class="co">#&gt; 3 private conflict</span></a>
-<a class="sourceLine" id="cb5-8" data-line-number="8"><span class="co">#&gt; 4 social disorder</span></a></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="visualizing-beyond-2-dimensions.html#cb5-1"></a><span class="kw">distinct</span>(ecometrics, measure)</span>
+<span id="cb5-2"><a href="visualizing-beyond-2-dimensions.html#cb5-2"></a><span class="co">#&gt; # A tibble: 4 x 1</span></span>
+<span id="cb5-3"><a href="visualizing-beyond-2-dimensions.html#cb5-3"></a><span class="co">#&gt;   measure         </span></span>
+<span id="cb5-4"><a href="visualizing-beyond-2-dimensions.html#cb5-4"></a><span class="co">#&gt;   &lt;chr&gt;           </span></span>
+<span id="cb5-5"><a href="visualizing-beyond-2-dimensions.html#cb5-5"></a><span class="co">#&gt; 1 violence        </span></span>
+<span id="cb5-6"><a href="visualizing-beyond-2-dimensions.html#cb5-6"></a><span class="co">#&gt; 2 guns            </span></span>
+<span id="cb5-7"><a href="visualizing-beyond-2-dimensions.html#cb5-7"></a><span class="co">#&gt; 3 private conflict</span></span>
+<span id="cb5-8"><a href="visualizing-beyond-2-dimensions.html#cb5-8"></a><span class="co">#&gt; 4 social disorder</span></span></code></pre></div>
 <p>How can we partition our visualization to illustrate the number of counts per ecometric per year? We can use color—each measurement will receive it’s own color. This will make it easier to determine the frequency of which each ecometric occurs. To do this we setting <code>fill</code> rather than <code>color</code> this is because we are working with a polygon shape. <code>color</code> is used in working with lines and points. A useful trick is to think of <code>color</code> as the border and <code>fill</code> as the body fill.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw">ggplot</span>(ecometrics, <span class="kw">aes</span>(year, n, <span class="dt">fill =</span> measure)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb6-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_col</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="visualizing-beyond-2-dimensions.html#cb6-1"></a><span class="kw">ggplot</span>(ecometrics, <span class="kw">aes</span>(year, n, <span class="dt">fill =</span> measure)) <span class="op">+</span></span>
+<span id="cb6-2"><a href="visualizing-beyond-2-dimensions.html#cb6-2"></a><span class="st">  </span><span class="kw">geom_col</span>()</span></code></pre></div>
 <p><img src="04d-beyond-2d_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
 <p>By mapping the fill to the <code>measure</code> variable we were able to create a stacked bar chart! It is apparent that <code>violence</code> is the most frequent of these ecometrics, followed by <code>private conflict</code>, <code>social disorder</code>, and then <code>guns</code>.</p>
-<p>One of the downsides about the stacked barchart is that it is difficult to compare the sizes of each group relative to ones that are not adjacent. For example comparing <code>guns</code> to <code>social disorder</code> is made difficult as <code>private conflict</code> is situated between them. We can adjust our chart so that each bar is situated next to eachother. We do this by setting the argument <code>position = &quot;dodge&quot;</code> within the <code>geom_col()</code> layer.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw">ggplot</span>(ecometrics, <span class="kw">aes</span>(year, n, <span class="dt">fill =</span> measure)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb7-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_col</span>(<span class="dt">position =</span> <span class="st">&quot;dodge&quot;</span>)</a></code></pre></div>
+<p>One of the downsides about the stacked barchart is that it is difficult to compare the sizes of each group relative to ones that are not adjacent. For example comparing <code>guns</code> to <code>social disorder</code> is made difficult as <code>private conflict</code> is situated between them. We can adjust our chart so that each bar is situated next to eachother. We do this by setting the argument <code>position = "dodge"</code> within the <code>geom_col()</code> layer.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="visualizing-beyond-2-dimensions.html#cb7-1"></a><span class="kw">ggplot</span>(ecometrics, <span class="kw">aes</span>(year, n, <span class="dt">fill =</span> measure)) <span class="op">+</span></span>
+<span id="cb7-2"><a href="visualizing-beyond-2-dimensions.html#cb7-2"></a><span class="st">  </span><span class="kw">geom_col</span>(<span class="dt">position =</span> <span class="st">&quot;dodge&quot;</span>)</span></code></pre></div>
 <p><img src="04d-beyond-2d_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
 <p>The dodged bar chart makes it much easier to compare the heights of each bar. But now we are creating a somewhat cluttered graphic. In the situation where there are multiple groups and subgroups, it is often preferred to utilize facetting because the most important thing in any graphic is how easy it is to consume. We would rather make four plots than one messy plot.</p>
 <p>Let’s facet by <code>measure</code> and tell <code>facet_wrap()</code> to create only one row.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="kw">ggplot</span>(ecometrics, <span class="kw">aes</span>(year, n, <span class="dt">fill =</span> measure)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb8-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_col</span>() <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb8-3" data-line-number="3"><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="st">&quot;measure&quot;</span>, <span class="dt">nrow =</span> <span class="dv">1</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="visualizing-beyond-2-dimensions.html#cb8-1"></a><span class="kw">ggplot</span>(ecometrics, <span class="kw">aes</span>(year, n, <span class="dt">fill =</span> measure)) <span class="op">+</span></span>
+<span id="cb8-2"><a href="visualizing-beyond-2-dimensions.html#cb8-2"></a><span class="st">  </span><span class="kw">geom_col</span>() <span class="op">+</span><span class="st"> </span></span>
+<span id="cb8-3"><a href="visualizing-beyond-2-dimensions.html#cb8-3"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="st">&quot;measure&quot;</span>, <span class="dt">nrow =</span> <span class="dv">1</span>)</span></code></pre></div>
 <p><img src="04d-beyond-2d_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
-<p>This is awesome! We have four different plots one for each measurement and it is extremely easy to see how each ecoemtrics has trended over the four year period. It seems like there has been a steady decrease! With this plot, however, we are labeling the ecometrics twice: once with the panel label and once with the legend. Since each facet is labeled individually and are not situated next to any other ecometrics, the color becomes redundant. Unless there is an important reason to visualize the color when facetting, it is most likely not needed. As such, a final visualization would look like below.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="kw">ggplot</span>(ecometrics, <span class="kw">aes</span>(year, n)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb9-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_col</span>() <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb9-3" data-line-number="3"><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="st">&quot;measure&quot;</span>, <span class="dt">nrow =</span> <span class="dv">1</span>)</a></code></pre></div>
+<p>This is awesome! We have four different plots one for each measurement and it is extremely easy to see how each ecoemtrics has trended over the four year period. It seems like there has been a steady decrease! With this plot, however, we are labeling the ecometrics twice: once with the panel label and once with the legend. Since each facet is labeled individually and are not situated next to any other ecometrics, the color becomes redundant. Unless there is an important reason to visualize the color when faceting, it is most likely not needed. As such, a final visualization would look like below.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="visualizing-beyond-2-dimensions.html#cb9-1"></a><span class="kw">ggplot</span>(ecometrics, <span class="kw">aes</span>(year, n)) <span class="op">+</span></span>
+<span id="cb9-2"><a href="visualizing-beyond-2-dimensions.html#cb9-2"></a><span class="st">  </span><span class="kw">geom_col</span>() <span class="op">+</span><span class="st"> </span></span>
+<span id="cb9-3"><a href="visualizing-beyond-2-dimensions.html#cb9-3"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="st">&quot;measure&quot;</span>, <span class="dt">nrow =</span> <span class="dv">1</span>)</span></code></pre></div>
 <p><img src="04d-beyond-2d_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
-<hr />
-<div id="notes" class="section level3">
-<h3><span class="header-section-number">20.1.1</span> Notes</h3>
+<div id="continuous-color-scales" class="section level3" number="20.1.1">
+<h3><span class="header-section-number">20.1.1</span> Continuous color scales</h3>
+<p>In the cases where our variable of interest is a continuous numeric one, we ought to be using a continuous color scale. These are scales that change from one color to another to illustrate a range of values—for example we could use this to visualize probabilities from 0 - 1. The below is an example of one of these color palettes.</p>
+<p><img src="04d-beyond-2d_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<p>Often you’ll encounter visualizations that use a rainbow color palette or some other number of colors. To illustrate a range of values. This is <em>not</em> recommended. When we are looking at color, we are best able to detect changes in the luminescence (perceived brightness) and saturation [^flowingdata]. As such, we should work with color palettes that are easiest to interpret. First we’ll visualize what changing saturation and brightness looks like.</p>
+<p>Below is is an image of 10 colors. Starting at the left is the color yellow (hex code <code>#FFFF00FF</code>). Each step it is desaturated by 10 percent ending with the color grey (hex code <code>#808080FF</code>). We can think of saturation as how much color there is.</p>
+<p><img src="04d-beyond-2d_files/figure-html/unnamed-chunk-12-1.png" width="672" />
+Below is an example of what changing the brightness can look like.</p>
+<p><img src="04d-beyond-2d_files/figure-html/unnamed-chunk-13-1.png" width="672" />
+If we put all of these together we can get something that looks like the below.</p>
+<p><img src="04d-beyond-2d_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+<p>You may find that in the course of your work that individuals will use a color palette like the below.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="visualizing-beyond-2-dimensions.html#cb10-1"></a>prismatic<span class="op">:::</span><span class="kw">plot.colors</span>(<span class="kw">rainbow</span>(<span class="dv">20</span>))</span></code></pre></div>
+<p><img src="04d-beyond-2d_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+<p>I strongly <strong>advise against</strong> this. These colors make it extremely difficult to tell changing values. Consider for a moment how you would try and tell the difference in numeric value between a magenta and a maroon. It would be rather difficult. Moreover, this color palette is not very accessible to those who are color deficient. The below is an approximation of what those with varying types of color blindness might see.</p>
+<p><img src="04d-beyond-2d_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
+<p>Compare this with the earlier example of dark to light yellows.</p>
+<p><img src="04d-beyond-2d_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
+<p>This is much more accessible to those who are color deficient as well as providing a clearer understanding of a <em>range</em> of values.</p>
+<div id="example" class="section level4" number="20.1.1.1">
+<h4><span class="header-section-number">20.1.1.1</span> Example</h4>
+<p>To explore this in R, we will return to the commute data set we created from BARI’s Census Indicators very early on. We will visualize the relationship of commuting by automobile and median household income. Moreover, we will color each point by the rate of Bachelor’s degree attainment. As educational attainment tends to increase with income, we should expect the coloring to somewhat follow household income.</p>
+<p>Create the visualization following the below steps.</p>
 <ul>
-<li>we have year, measure, and n, lets view year on the x and n on the y
-<ul>
-<li>we now want to know these totals by measure</li>
-<li>set the <code>fill</code> to the <code>measure</code>. fill is used for polygons (a col is a rectangle that needs to be filled)</li>
-<li>by default this shows us a stacked bar chart which is useful</li>
-</ul></li>
-<li>another way to do this is to change the position of these bars by setting the position argument to <code>&quot;dodge&quot;</code> this enables us to compare the heights of the bars more easily</li>
-<li><p>also, we should always consider creating small multiples, or facetting, rather than adding more to our plots. We want the data to be consumable. Don’t feel forced to put everything on to one graphic</p></li>
-<li>Continuous use of color.
-<ul>
-<li>there are two general ways in which continuous variables will be mapped to color. this is if there is a low value and a high value.</li>
-<li>secondly, we can think of a divergent color palette. This is used when there is a known middle value
-<ul>
-<li>a common mistake is using a divergent palette when there is no natural middle. be wary of this.</li>
-</ul></li>
-</ul></li>
-<li><p>shape is only good when the magnitudes are very different</p></li>
+<li>Read in <code>data/gba_commute.csv</code></li>
+<li>Plot <code>med_house_income</code> against (on the y axis) <code>by_auto</code></li>
+<li>Color the plot by <code>bach</code></li>
+<li>Add the appropriate geometry</li>
 </ul>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="co"># commute &lt;- read_csv(&quot;data/acs_edu.csv&quot;)</span></a>
-<a class="sourceLine" id="cb10-2" data-line-number="2"><span class="co"># </span></a>
-<a class="sourceLine" id="cb10-3" data-line-number="3"><span class="co"># commute</span></a></code></pre></div>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1"><span class="co"># # viewing by fill</span></a>
-<a class="sourceLine" id="cb11-2" data-line-number="2"><span class="co"># ggplot(ecometrics, aes(year, n, fill = measure)) +</span></a>
-<a class="sourceLine" id="cb11-3" data-line-number="3"><span class="co">#   geom_col()</span></a>
-<a class="sourceLine" id="cb11-4" data-line-number="4"><span class="co"># </span></a>
-<a class="sourceLine" id="cb11-5" data-line-number="5"><span class="co"># </span></a>
-<a class="sourceLine" id="cb11-6" data-line-number="6"><span class="co"># # viewing by fill</span></a>
-<a class="sourceLine" id="cb11-7" data-line-number="7"><span class="co"># ggplot(ecometrics, aes(year, n, fill = measure)) +</span></a>
-<a class="sourceLine" id="cb11-8" data-line-number="8"><span class="co">#   geom_col()</span></a>
-<a class="sourceLine" id="cb11-9" data-line-number="9"><span class="co"># </span></a>
-<a class="sourceLine" id="cb11-10" data-line-number="10"><span class="co"># # viewing by fill and dodging</span></a>
-<a class="sourceLine" id="cb11-11" data-line-number="11"><span class="co"># ggplot(ecometrics, aes(year, n, fill = measure)) +</span></a>
-<a class="sourceLine" id="cb11-12" data-line-number="12"><span class="co">#   geom_col(position = &quot;dodge&quot;)</span></a>
-<a class="sourceLine" id="cb11-13" data-line-number="13"><span class="co"># </span></a>
-<a class="sourceLine" id="cb11-14" data-line-number="14"><span class="co"># # faceting </span></a>
-<a class="sourceLine" id="cb11-15" data-line-number="15"><span class="co"># ggplot(ecometrics, aes(year, n)) +</span></a>
-<a class="sourceLine" id="cb11-16" data-line-number="16"><span class="co">#   geom_col() + </span></a>
-<a class="sourceLine" id="cb11-17" data-line-number="17"><span class="co">#   facet_wrap(&quot;measure&quot;, nrow = 1)</span></a></code></pre></div>
-<p>we can utilize color, size, and shape to tell a better story with our graphics.
-Each aesthetic can serve a different purpose / used for a different kind of variable</p>
-<p>others:
-- linetype</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="visualizing-beyond-2-dimensions.html#cb11-1"></a>commute &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data/gba_commute.csv&quot;</span>)</span>
+<span id="cb11-2"><a href="visualizing-beyond-2-dimensions.html#cb11-2"></a></span>
+<span id="cb11-3"><a href="visualizing-beyond-2-dimensions.html#cb11-3"></a>(p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(commute, <span class="kw">aes</span>(by_auto, med_house_income, <span class="dt">color =</span> bach)) <span class="op">+</span></span>
+<span id="cb11-4"><a href="visualizing-beyond-2-dimensions.html#cb11-4"></a><span class="st">  </span><span class="kw">geom_point</span>())</span></code></pre></div>
+<p><img src="04d-beyond-2d_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
+<p>Wonderful! As anticipated, the color of the points are darkest at the bottom where median household income is the lowest. And as income increases, so does the brightness and saturation of our color scale. If we return to the grammar of graphics, we can take further control of the scales. In this case, the color of the scales. One of the ways we can change the color scale is to add the layer <code>scale_color_gradient()</code> to manually choose what colors to use in our scale. This provides a lot of flexibility to you as a information designer. Think of how you can use the color to represent what it is thatyou are visualizing. Or, how you can use colors to adhere to a color palette of your own or an organization you are working with.</p>
+<p><code>scale_color_gradient()</code> allows us to provide the colors for low values and high values. In general, you should choose a darker color to represent lower values and brighter colors for higher values. Below we add the layer and provide color codes.</p>
+<blockquote>
+<p>You can find color codes via google by searching “color picker.” Or, you can use any number of free color palette generators online. I am personally a fan of <a href="https://coolors.co">coolors.co</a>.</p>
+</blockquote>
+<p>Below we’ve changed the plot to transition from a dark red to a white as values increase.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="visualizing-beyond-2-dimensions.html#cb12-1"></a>p <span class="op">+</span></span>
+<span id="cb12-2"><a href="visualizing-beyond-2-dimensions.html#cb12-2"></a><span class="st">  </span><span class="kw">scale_color_gradient</span>(<span class="dt">low =</span> <span class="st">&quot;#360002&quot;</span>, <span class="dt">high =</span> <span class="st">&quot;white&quot;</span>)</span></code></pre></div>
+<p><img src="04d-beyond-2d_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
+<p>Try modifying the above plot by picking two colors that you think do a good job of visualizing a range of values.</p>
+</div>
+<div id="diverging-colors" class="section level4" number="20.1.1.2">
+<h4><span class="header-section-number">20.1.1.2</span> Diverging colors</h4>
+<p>There are many a time when our variable of interest has a middle value and illustrating the center as well as the deviation from that center is important. To visually represent this we use what is called a diverging color scale. Diverging color scales are characterized by a middle color from which both ends of the spectrum originate. The center is to represent some middle value. If we contextualize this as z-scores and the color palette below, the center would be <code>0</code> and any negative scores would trend towards red. Whereas if they trended positive they would become more blue.</p>
+<p><img src="04d-beyond-2d_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
+<p>One thing to be wary of is using a divergent color scale when it is not necessary. This is an easy trap to fall into since they’re pretty cool. Remember, <em>only</em> use diverging color palettes if there is an existing middle value.</p>
+</div>
+<div id="example-1" class="section level4" number="20.1.1.3">
+<h4><span class="header-section-number">20.1.1.3</span> Example</h4>
+<p>Take our ecometrics again. Say we are interested in what the annual deviation is from the sample mean—the average for all years—of each ecometric. This is the perfect use case for a diverging color scale. This will require a bit of computational creativity. So lets work through this.</p>
+<p>Let’s think about each of the measures we need to calculate. We need to:</p>
+<ul>
+<li>Find the number of counts for each year by ecometric.</li>
+<li>Find the average count for all years for each ecometric.</li>
+<li>Identify the deviation from the mean.</li>
+</ul>
+<p>We will work through this sequentially. First and foremost we need to calculate the total number of crime reports by ecometric by year. The dataset has more than one observation per year per ecometric. We can see this by running a quick count.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="visualizing-beyond-2-dimensions.html#cb13-1"></a><span class="kw">count</span>(ecometrics, measure, year)</span>
+<span id="cb13-2"><a href="visualizing-beyond-2-dimensions.html#cb13-2"></a><span class="co">#&gt; # A tibble: 16 x 3</span></span>
+<span id="cb13-3"><a href="visualizing-beyond-2-dimensions.html#cb13-3"></a><span class="co">#&gt;    measure           year     n</span></span>
+<span id="cb13-4"><a href="visualizing-beyond-2-dimensions.html#cb13-4"></a><span class="co">#&gt;    &lt;chr&gt;            &lt;dbl&gt; &lt;int&gt;</span></span>
+<span id="cb13-5"><a href="visualizing-beyond-2-dimensions.html#cb13-5"></a><span class="co">#&gt;  1 guns              2015     5</span></span>
+<span id="cb13-6"><a href="visualizing-beyond-2-dimensions.html#cb13-6"></a><span class="co">#&gt;  2 guns              2016     5</span></span>
+<span id="cb13-7"><a href="visualizing-beyond-2-dimensions.html#cb13-7"></a><span class="co">#&gt;  3 guns              2017     5</span></span>
+<span id="cb13-8"><a href="visualizing-beyond-2-dimensions.html#cb13-8"></a><span class="co">#&gt;  4 guns              2018     5</span></span>
+<span id="cb13-9"><a href="visualizing-beyond-2-dimensions.html#cb13-9"></a><span class="co">#&gt;  5 private conflict  2015     4</span></span>
+<span id="cb13-10"><a href="visualizing-beyond-2-dimensions.html#cb13-10"></a><span class="co">#&gt;  6 private conflict  2016     4</span></span>
+<span id="cb13-11"><a href="visualizing-beyond-2-dimensions.html#cb13-11"></a><span class="co">#&gt;  7 private conflict  2017     4</span></span>
+<span id="cb13-12"><a href="visualizing-beyond-2-dimensions.html#cb13-12"></a><span class="co">#&gt;  8 private conflict  2018     4</span></span>
+<span id="cb13-13"><a href="visualizing-beyond-2-dimensions.html#cb13-13"></a><span class="co">#&gt;  9 social disorder   2015     3</span></span>
+<span id="cb13-14"><a href="visualizing-beyond-2-dimensions.html#cb13-14"></a><span class="co">#&gt; 10 social disorder   2016     3</span></span>
+<span id="cb13-15"><a href="visualizing-beyond-2-dimensions.html#cb13-15"></a><span class="co">#&gt; 11 social disorder   2017     3</span></span>
+<span id="cb13-16"><a href="visualizing-beyond-2-dimensions.html#cb13-16"></a><span class="co">#&gt; 12 social disorder   2018     3</span></span>
+<span id="cb13-17"><a href="visualizing-beyond-2-dimensions.html#cb13-17"></a><span class="co">#&gt; 13 violence          2015     5</span></span>
+<span id="cb13-18"><a href="visualizing-beyond-2-dimensions.html#cb13-18"></a><span class="co">#&gt; 14 violence          2016     5</span></span>
+<span id="cb13-19"><a href="visualizing-beyond-2-dimensions.html#cb13-19"></a><span class="co">#&gt; 15 violence          2017     5</span></span>
+<span id="cb13-20"><a href="visualizing-beyond-2-dimensions.html#cb13-20"></a><span class="co">#&gt; 16 violence          2018     5</span></span></code></pre></div>
+<p>We need to tidy this up and ensure that each row is only one observation—in this case one ecometric per year—with the total count. The logic to accomplish this is to first <code>group_by()</code> <em>both</em> <code>measure</code> and <code>year</code> and then sum the <code>n</code> values. As such:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="visualizing-beyond-2-dimensions.html#cb14-1"></a>ecometrics <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb14-2"><a href="visualizing-beyond-2-dimensions.html#cb14-2"></a><span class="st">  </span><span class="kw">group_by</span>(measure, year) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb14-3"><a href="visualizing-beyond-2-dimensions.html#cb14-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">n =</span> <span class="kw">sum</span>(n))</span>
+<span id="cb14-4"><a href="visualizing-beyond-2-dimensions.html#cb14-4"></a><span class="co">#&gt; # A tibble: 16 x 3</span></span>
+<span id="cb14-5"><a href="visualizing-beyond-2-dimensions.html#cb14-5"></a><span class="co">#&gt; # Groups:   measure [4]</span></span>
+<span id="cb14-6"><a href="visualizing-beyond-2-dimensions.html#cb14-6"></a><span class="co">#&gt;    measure           year     n</span></span>
+<span id="cb14-7"><a href="visualizing-beyond-2-dimensions.html#cb14-7"></a><span class="co">#&gt;    &lt;chr&gt;            &lt;dbl&gt; &lt;dbl&gt;</span></span>
+<span id="cb14-8"><a href="visualizing-beyond-2-dimensions.html#cb14-8"></a><span class="co">#&gt;  1 guns              2015  3146</span></span>
+<span id="cb14-9"><a href="visualizing-beyond-2-dimensions.html#cb14-9"></a><span class="co">#&gt;  2 guns              2016  3111</span></span>
+<span id="cb14-10"><a href="visualizing-beyond-2-dimensions.html#cb14-10"></a><span class="co">#&gt;  3 guns              2017  3190</span></span>
+<span id="cb14-11"><a href="visualizing-beyond-2-dimensions.html#cb14-11"></a><span class="co">#&gt;  4 guns              2018  2585</span></span>
+<span id="cb14-12"><a href="visualizing-beyond-2-dimensions.html#cb14-12"></a><span class="co">#&gt;  5 private conflict  2015  8063</span></span>
+<span id="cb14-13"><a href="visualizing-beyond-2-dimensions.html#cb14-13"></a><span class="co">#&gt;  6 private conflict  2016  7807</span></span>
+<span id="cb14-14"><a href="visualizing-beyond-2-dimensions.html#cb14-14"></a><span class="co">#&gt;  7 private conflict  2017  7410</span></span>
+<span id="cb14-15"><a href="visualizing-beyond-2-dimensions.html#cb14-15"></a><span class="co">#&gt;  8 private conflict  2018  6592</span></span>
+<span id="cb14-16"><a href="visualizing-beyond-2-dimensions.html#cb14-16"></a><span class="co">#&gt;  9 social disorder   2015  5043</span></span>
+<span id="cb14-17"><a href="visualizing-beyond-2-dimensions.html#cb14-17"></a><span class="co">#&gt; 10 social disorder   2016  4707</span></span>
+<span id="cb14-18"><a href="visualizing-beyond-2-dimensions.html#cb14-18"></a><span class="co">#&gt; 11 social disorder   2017  4876</span></span>
+<span id="cb14-19"><a href="visualizing-beyond-2-dimensions.html#cb14-19"></a><span class="co">#&gt; 12 social disorder   2018  4168</span></span>
+<span id="cb14-20"><a href="visualizing-beyond-2-dimensions.html#cb14-20"></a><span class="co">#&gt; 13 violence          2015 18621</span></span>
+<span id="cb14-21"><a href="visualizing-beyond-2-dimensions.html#cb14-21"></a><span class="co">#&gt; 14 violence          2016 18080</span></span>
+<span id="cb14-22"><a href="visualizing-beyond-2-dimensions.html#cb14-22"></a><span class="co">#&gt; 15 violence          2017 17172</span></span>
+<span id="cb14-23"><a href="visualizing-beyond-2-dimensions.html#cb14-23"></a><span class="co">#&gt; 16 violence          2018 16630</span></span></code></pre></div>
+<p>One of the dplyr quirks is that after you <code>summarise()</code>, one level of grouping is removed. This is because we have already performed our aggregate measure and the last level of grouping is now unit of analysis (a row). Since we are currently grouped at the <code>measure</code> level and each row represent one year we are already ready to calculate the average <code>n</code> value by group. Rather than using <code>summarise()</code> as we are used to doing with summary statistics, we will use <code>mutate()</code> and create a column called <code>avg</code> with the average <code>n</code> value for each group. This is because we want to be able to perform a column-wise operation to subtract the average from each row’s <code>n</code> value.</p>
+<p>I continue by creating three new columns. The first is <code>avg</code> which is set to the mean of <code>n</code> by group. Since the resulting value of <code>mean(n)</code> is a single value, each observation in the group gets that value. Second, I create a new column called <code>deviation</code> which subtracts the new column we created from the <code>n</code> column. The lastly I created a new column to contain the name of the ecometric as well as the year. This is done to ensure that in the visualization each row can be plotted.</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="visualizing-beyond-2-dimensions.html#cb15-1"></a>annual_metrics &lt;-<span class="st"> </span>ecometrics <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb15-2"><a href="visualizing-beyond-2-dimensions.html#cb15-2"></a><span class="st">  </span><span class="co"># group by measure and year</span></span>
+<span id="cb15-3"><a href="visualizing-beyond-2-dimensions.html#cb15-3"></a><span class="st">  </span><span class="kw">group_by</span>(measure, year) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb15-4"><a href="visualizing-beyond-2-dimensions.html#cb15-4"></a><span class="st">  </span><span class="co"># find the total n for each measure and year</span></span>
+<span id="cb15-5"><a href="visualizing-beyond-2-dimensions.html#cb15-5"></a><span class="st">  </span><span class="co"># summarise loses the last level of grouping</span></span>
+<span id="cb15-6"><a href="visualizing-beyond-2-dimensions.html#cb15-6"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">n =</span> <span class="kw">sum</span>(n)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb15-7"><a href="visualizing-beyond-2-dimensions.html#cb15-7"></a><span class="st">  </span><span class="kw">mutate</span>(</span>
+<span id="cb15-8"><a href="visualizing-beyond-2-dimensions.html#cb15-8"></a>    <span class="co"># calculate average `n` by ecometric</span></span>
+<span id="cb15-9"><a href="visualizing-beyond-2-dimensions.html#cb15-9"></a>    <span class="dt">avg =</span> <span class="kw">mean</span>(n),</span>
+<span id="cb15-10"><a href="visualizing-beyond-2-dimensions.html#cb15-10"></a>    <span class="co"># calculate the deviation from the mean </span></span>
+<span id="cb15-11"><a href="visualizing-beyond-2-dimensions.html#cb15-11"></a>    <span class="dt">deviation =</span> n <span class="op">-</span><span class="st"> </span>avg,</span>
+<span id="cb15-12"><a href="visualizing-beyond-2-dimensions.html#cb15-12"></a>    <span class="co"># creating a new column that combines the name of the ecometric and the year</span></span>
+<span id="cb15-13"><a href="visualizing-beyond-2-dimensions.html#cb15-13"></a>    <span class="dt">name =</span> glue<span class="op">::</span><span class="kw">glue</span>(<span class="st">&quot;{measure}: {year}&quot;</span>),</span>
+<span id="cb15-14"><a href="visualizing-beyond-2-dimensions.html#cb15-14"></a>  ) </span></code></pre></div>
+<p>I snuck in a new package right there. <code>glue</code> is a package that let’s us incorporate R expressions with plain text. Whatever is inside of the brackets <code>{</code> will be run as an R expression. So since I referenced the columns <code>measure</code> and <code>year</code> as <code>"{measure}: {year}"</code> each value of <code>name</code> will look something like <code>social disorder: 2017</code>.</p>
+<p>Now that we have a data frame with all of the values we want to plot, let’s go ahead and do that! We will use a lollipop chart here to do so.</p>
+<blockquote>
+<p>Remember that <code>geom_lollipop()</code> comes from the <code>ggalt</code> package. We can use the function without loading the whole package by referencing the <code>pkgname::function_name()</code>.</p>
+</blockquote>
+<p>Within the chart we map <code>devation</code> to the color aesthetic.</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="visualizing-beyond-2-dimensions.html#cb16-1"></a>(p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(annual_metrics, <span class="kw">aes</span>(<span class="dt">y =</span> deviation, <span class="dt">x =</span> name, <span class="dt">color =</span> deviation)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb16-2"><a href="visualizing-beyond-2-dimensions.html#cb16-2"></a><span class="st">  </span>ggalt<span class="op">::</span><span class="kw">geom_lollipop</span>(<span class="dt">size =</span> <span class="dv">2</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb16-3"><a href="visualizing-beyond-2-dimensions.html#cb16-3"></a><span class="st">  </span><span class="kw">coord_flip</span>())</span>
+<span id="cb16-4"><a href="visualizing-beyond-2-dimensions.html#cb16-4"></a><span class="co">#&gt; Registered S3 methods overwritten by &#39;ggalt&#39;:</span></span>
+<span id="cb16-5"><a href="visualizing-beyond-2-dimensions.html#cb16-5"></a><span class="co">#&gt;   method                  from   </span></span>
+<span id="cb16-6"><a href="visualizing-beyond-2-dimensions.html#cb16-6"></a><span class="co">#&gt;   grid.draw.absoluteGrob  ggplot2</span></span>
+<span id="cb16-7"><a href="visualizing-beyond-2-dimensions.html#cb16-7"></a><span class="co">#&gt;   grobHeight.absoluteGrob ggplot2</span></span>
+<span id="cb16-8"><a href="visualizing-beyond-2-dimensions.html#cb16-8"></a><span class="co">#&gt;   grobWidth.absoluteGrob  ggplot2</span></span>
+<span id="cb16-9"><a href="visualizing-beyond-2-dimensions.html#cb16-9"></a><span class="co">#&gt;   grobX.absoluteGrob      ggplot2</span></span>
+<span id="cb16-10"><a href="visualizing-beyond-2-dimensions.html#cb16-10"></a><span class="co">#&gt;   grobY.absoluteGrob      ggplot2</span></span></code></pre></div>
+<p><img src="04d-beyond-2d_files/figure-html/unnamed-chunk-24-1.png" width="672" />
+The above graphic doesn’t take into account the middle value of <code>0</code>. Because of this, we need to tell ggplot2 that this is a diverging color scale. When we were working with a normal continuous color scale we used <code>scale_color_gradient()</code>. Instead, since we have a middle value, to create the diverging color gradient we use <code>scale_color_gradient2()</code>. This adds two more arguments <code>mid</code> and <code>midpoint</code>. The former is the color of that middle value. The second is what that middle value maps to—defaults to 0, which is fine for our example.</p>
+<p>Now if we add the below colors—a red, yellow-ish beige, and a blue—we will have a diverging color scale on the plot!</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="visualizing-beyond-2-dimensions.html#cb17-1"></a>p <span class="op">+</span><span class="st"> </span></span>
+<span id="cb17-2"><a href="visualizing-beyond-2-dimensions.html#cb17-2"></a><span class="st">  </span><span class="kw">scale_color_gradient2</span>(<span class="dt">low =</span> <span class="st">&quot;#A12106&quot;</span>, <span class="dt">mid =</span> <span class="st">&quot;#B2CEB7&quot;</span>, <span class="dt">high =</span> <span class="st">&quot;#004C76&quot;</span>)</span></code></pre></div>
+<p><img src="04d-beyond-2d_files/figure-html/unnamed-chunk-25-1.png" width="672" /></p>
+<p>Information design is a seemingly endless field of which we only touched on a very small amount. The R community has put a lot of work into enabling the use of color for visualization purposes. The above images of color palettes were created with the help of the wonderful packages <code>prismatic</code> and <code>paletteer</code></p>
+<p>To explore color more check out the packages <a href="https://github.com/EmilHvitfeldt/prismatic"><code>prsimatic</code></a> and <a href="https://github.com/EmilHvitfeldt/paletteer"><code>paletteer</code></a> by <a href="https://www.hvitfeldt.me/blog/">Emil Hvitfeld</a>. He</p>
+</div>
+</div>
+</div>
+<div id="shape" class="section level2" number="20.2">
+<h2><span class="header-section-number">20.2</span> Shape</h2>
+<ul>
+<li><p>another way of visualizing categories in our data is by shape.</p></li>
+<li><p>only do this if color is not an option</p></li>
+<li><p>it is more difficult for the eyes to pick up on</p></li>
+<li><p>can be somewhat distracting</p></li>
+<li><p>please do not map both color and shape to the same variable, that is redundant, and adds too much complexity to the visual.</p></li>
+<li><p>lets use some airbnb data. you will get more comfortable with this data later on in the section on spatial analysis</p></li>
+<li><p>the simple dataset exists in <code>data/airbnb/airbnb.csv</code>.</p></li>
+<li><p>read that in. For the sake of simplicity we will filter our data down to only Back Bay.</p></li>
+<li><p>we will then visualize the points by their place in space—aka their longitude and latitude.</p></li>
+<li><p>mapping shape tothe room type. This will help us see where these room types are located.</p></li>
+</ul>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="visualizing-beyond-2-dimensions.html#cb18-1"></a>airbnb &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data/airbnb/airbnb.csv&quot;</span>)</span>
+<span id="cb18-2"><a href="visualizing-beyond-2-dimensions.html#cb18-2"></a><span class="co">#&gt; Parsed with column specification:</span></span>
+<span id="cb18-3"><a href="visualizing-beyond-2-dimensions.html#cb18-3"></a><span class="co">#&gt; cols(</span></span>
+<span id="cb18-4"><a href="visualizing-beyond-2-dimensions.html#cb18-4"></a><span class="co">#&gt;   id = col_double(),</span></span>
+<span id="cb18-5"><a href="visualizing-beyond-2-dimensions.html#cb18-5"></a><span class="co">#&gt;   neighborhood = col_character(),</span></span>
+<span id="cb18-6"><a href="visualizing-beyond-2-dimensions.html#cb18-6"></a><span class="co">#&gt;   room_type = col_character(),</span></span>
+<span id="cb18-7"><a href="visualizing-beyond-2-dimensions.html#cb18-7"></a><span class="co">#&gt;   price = col_double(),</span></span>
+<span id="cb18-8"><a href="visualizing-beyond-2-dimensions.html#cb18-8"></a><span class="co">#&gt;   longitude = col_double(),</span></span>
+<span id="cb18-9"><a href="visualizing-beyond-2-dimensions.html#cb18-9"></a><span class="co">#&gt;   latitude = col_double()</span></span>
+<span id="cb18-10"><a href="visualizing-beyond-2-dimensions.html#cb18-10"></a><span class="co">#&gt; )</span></span>
+<span id="cb18-11"><a href="visualizing-beyond-2-dimensions.html#cb18-11"></a></span>
+<span id="cb18-12"><a href="visualizing-beyond-2-dimensions.html#cb18-12"></a>bb &lt;-<span class="st"> </span>airbnb <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb18-13"><a href="visualizing-beyond-2-dimensions.html#cb18-13"></a><span class="st">  </span><span class="kw">filter</span>(neighborhood <span class="op">==</span><span class="st"> &quot;Back Bay&quot;</span>) </span>
+<span id="cb18-14"><a href="visualizing-beyond-2-dimensions.html#cb18-14"></a></span>
+<span id="cb18-15"><a href="visualizing-beyond-2-dimensions.html#cb18-15"></a></span>
+<span id="cb18-16"><a href="visualizing-beyond-2-dimensions.html#cb18-16"></a><span class="kw">ggplot</span>(bb,  <span class="kw">aes</span>(longitude, latitude, <span class="dt">shape =</span> room_type)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb18-17"><a href="visualizing-beyond-2-dimensions.html#cb18-17"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">.5</span>, <span class="dt">size =</span> <span class="dv">3</span>) </span></code></pre></div>
+<p><img src="04d-beyond-2d_files/figure-html/unnamed-chunk-26-1.png" width="672" /></p>
+<ul>
+<li>compare this with the use of color for looking at groups</li>
+</ul>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="visualizing-beyond-2-dimensions.html#cb19-1"></a>bb_s &lt;-<span class="st"> </span><span class="kw">ggplot</span>(bb,  <span class="kw">aes</span>(longitude, latitude, <span class="dt">shape =</span> room_type)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb19-2"><a href="visualizing-beyond-2-dimensions.html#cb19-2"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">.5</span>, <span class="dt">size =</span> <span class="dv">3</span>) <span class="op">+</span></span>
+<span id="cb19-3"><a href="visualizing-beyond-2-dimensions.html#cb19-3"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;none&quot;</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb19-4"><a href="visualizing-beyond-2-dimensions.html#cb19-4"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;&quot;</span>)</span>
+<span id="cb19-5"><a href="visualizing-beyond-2-dimensions.html#cb19-5"></a></span>
+<span id="cb19-6"><a href="visualizing-beyond-2-dimensions.html#cb19-6"></a></span>
+<span id="cb19-7"><a href="visualizing-beyond-2-dimensions.html#cb19-7"></a>bb_c &lt;-<span class="st"> </span><span class="kw">ggplot</span>(bb,  <span class="kw">aes</span>(longitude, latitude, <span class="dt">color =</span> room_type)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb19-8"><a href="visualizing-beyond-2-dimensions.html#cb19-8"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">.5</span>, <span class="dt">size =</span> <span class="dv">3</span>) <span class="op">+</span></span>
+<span id="cb19-9"><a href="visualizing-beyond-2-dimensions.html#cb19-9"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;none&quot;</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb19-10"><a href="visualizing-beyond-2-dimensions.html#cb19-10"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;&quot;</span>)</span>
+<span id="cb19-11"><a href="visualizing-beyond-2-dimensions.html#cb19-11"></a></span>
+<span id="cb19-12"><a href="visualizing-beyond-2-dimensions.html#cb19-12"></a>bb_s <span class="op">/</span><span class="st"> </span>bb_c </span></code></pre></div>
+<p><img src="04d-beyond-2d_files/figure-html/unnamed-chunk-27-1.png" width="672" /></p>
+<ul>
+<li>which do you prefer?</li>
+<li>which getsthe message accross better?</li>
+<li>again, we are delving into the world of design and there is never a “correct” answer, but sometimes there may be a consensus. Just do what you think is best and be open to constructive feedback</li>
+</ul>
+<div id="size" class="section level3" number="20.2.1">
+<h3><span class="header-section-number">20.2.1</span> size</h3>
 <p>To cover:</p>
 <ul>
 <li>coloring / filling</li>
@@ -389,75 +567,11 @@ Each aesthetic can serve a different purpose / used for a different kind of vari
 </ul>
 </div>
 </div>
-<div id="expanding-bivariate-visualizations-to-trivariate-other-tri-variate" class="section level2">
-<h2><span class="header-section-number">20.2</span> Expanding bivariate visualizations to trivariate &amp; other tri-variate</h2>
-<ul>
-<li>we can visualize other vcariables by setting further aesthetics.
-<ul>
-<li>can set the color or fill, size, and shape</li>
-</ul></li>
-<li>we alreay did this previously when we set the color, let’s do that here.
-<ul>
-<li>lets see how commuting by walking changes with the family house and under 18 pop
-<ul>
-<li>set the color argument of the <code>aes()</code> function as <code>color = by_walk</code>
-<ul>
-<li>it’s important you do this within the aesthetics function</li>
-</ul></li>
-</ul></li>
-</ul></li>
-</ul>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1"><span class="co"># ggplot(acs_raw, aes(fam_house_per, age_u18, color = by_auto)) +</span></a>
-<a class="sourceLine" id="cb12-2" data-line-number="2"><span class="co">#   geom_point()</span></a></code></pre></div>
-<ul>
-<li>we can add size to this as well by setting the <code>size</code> aesthetic
-<ul>
-<li>lets see if the more female headed house holds there are affects commuting by car as minors increases</li>
-</ul></li>
-</ul>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1"><span class="co"># ggplot(acs_raw, aes(fam_house_per, age_u18, color = by_auto, size = fem_head_per)) +</span></a>
-<a class="sourceLine" id="cb13-2" data-line-number="2"><span class="co">#   geom_point(alpha = .2)</span></a></code></pre></div>
-<ul>
-<li>from this chart we can see quite a few things:
-<ul>
-<li>as <code>fam_house_per</code> increases so does the under 18 pop,</li>
-<li>as both <code>age_u18</code> and <code>fam_house_per</code> increase so does the rate of communiting by car</li>
-<li>as both <code>age_u18</code> and <code>fam_house_per</code> so does female headed houses, but to a lesser degree</li>
-<li>this gives us a good idea of some relationships that we can test with our data at a later point</li>
-</ul></li>
-</ul>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1"><span class="co"># minors_lm &lt;- lm(age_u18 ~ fam_house_per + by_auto + fem_head_per, data = acs_raw)</span></a>
-<a class="sourceLine" id="cb14-2" data-line-number="2"><span class="co"># </span></a>
-<a class="sourceLine" id="cb14-3" data-line-number="3"><span class="co"># huxtable::huxreg(minors_lm)</span></a></code></pre></div>
-<p>Trivariate:</p>
-<ul>
-<li>grouped / stacked bar charts</li>
-<li>heatmaps</li>
-</ul>
-<p>Color Ramps:</p>
-<ul>
-<li>diverging when there is a true middle</li>
-<li><p>dark is low bright is high</p></li>
-<li>most data analyses start with a visualization.</li>
-<li>the data we have will dictate the type of visualizations we create</li>
-<li>there are many many different ways in which data can be represented</li>
-<li>generally these can be bucketed into a few major categories
-<ul>
-<li>numeric
-<ul>
-<li>integer</li>
-<li>double</li>
-</ul></li>
-<li>character
-<ul>
-<li>think groups, factors, nominal, anything that doesn’t have a numeric value that makes sense to count, aggregate, etc.</li>
-</ul></li>
-<li>time / order</li>
-</ul></li>
-</ul>
-<hr />
+<div id="expanding-bivariate-visualizations-to-trivariate-other-tri-variate" class="section level2" number="20.3">
+<h2><span class="header-section-number">20.3</span> Expanding bivariate visualizations to trivariate &amp; other tri-variate</h2>
 <p>Notes:</p>
 <p><a href="https://extremepresentation.typepad.com/files/choosing-a-good-chart-09.pdf" class="uri">https://extremepresentation.typepad.com/files/choosing-a-good-chart-09.pdf</a></p>
+<p>[^flowingdata](<a href="https://flowingdata.com/2008/04/29/why-should-engineers-and-scientists-care-about-color-and-design/" class="uri">https://flowingdata.com/2008/04/29/why-should-engineers-and-scientists-care-about-color-and-design/</a>)</p>
 
 </div>
 </div>
