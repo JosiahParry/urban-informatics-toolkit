@@ -1,8 +1,13 @@
 # That's _too much_ data
 
+Let us continue with the scenario developed in the last chapter. There is a non-profit who is seeking graduate student assistance to provide a curated dataset that provides insight into the commuting behavior of the Greater Boston Area. Using BARI's Massachussett's Census Indicators dataset, we were able to reduce the 52 initial columns down to 11. However these data are for the entire state not just the Greater Boston Area. This leaves us with two tasks: 1) definine the Greater Boston Area and 2) create a subset of our data that fit our criteria defined in 1. 
+
+Execute the below code to recreate to `commute` tibble. This will be the *second to last* time we write this chunk of code. 
+
 
 ```r
 library(tidyverse)
+
 acs_raw <- read_csv("data/ACS_1317_TRACT.csv")
 
 commute <- select(acs_raw,
@@ -12,9 +17,6 @@ commute <- select(acs_raw,
                   starts_with("by"),
                   med_house_income)
 ```
-
-Let us continue with the scenario developed in the last chapter. There is a non-profit who is seeking graduate student assistance to provide a curated dataset that provides insight into the commuting behavior of the Greater Boston Area. Using BARI's Massachussett's Census Indicators dataset, we were able to reduce the 52 initial columns down to 11. However these data are for the entire state not just the Greater Boston Area. This leaves us with two tasks: 1) definine the Greater Boston Area and 2) create a subset of our data that fit our criteria defined in 1. 
-
 
 ## `filter()`ing
 
@@ -28,7 +30,8 @@ Almost every time you purchase something online whether that is from Amazon or E
 
 We can create these types of filters on our own data and to do so, we will need to understand how logical expressions work. A logical expression is any expression that can be boiled down to true or false. 
 
-For example, using our `commute` dataset, we can check to see which Census Tracts have more than 75% of commuters travelling by auto.
+For example, using our `commute` dataset, we can check to see which Census Tracts have more than 75% of commuters traveling by auto.
+
 
 
 ```r
@@ -68,6 +71,7 @@ R has myriad ways to create logical expressions. Here we will focus on the six m
 * `>=` : greater than or equal to
 * `==` : exactly equal (I like to think of it as _"are these the same thing?"_)
 * `!=` : not equal ( _"are these things not the same"_)
+* `!`: Negation. This returns the opposite value.
 
 Let's bring it back to early algebra and work with the variable x and y. Let's say `x = 3` and `y = 5`. 
 
@@ -320,6 +324,43 @@ select(low_inc_or_walk, by_walk, by_auto, med_house_income)
 ## # … with 214 more rows
 ```
 
+### Negation
+
+Many times it will be easier to create a logical statement and say you want the _opposite_ of those results. In this case we will use the bang operator or the exclamation mark, `!`. To negate a logical value or logical statement put the bang **in front** of the statement or value.
+
+For example we can make `FALSE` true by negating it.
+
+
+```r
+!FALSE
+```
+
+```
+## [1] TRUE
+```
+
+We can take a previous example 
+
+
+```r
+# The first statement is TRUE and the second is TRUE, expect TRUE
+(1 == 1) & (1 <= 1)
+```
+
+```
+## [1] TRUE
+```
+
+```r
+# negate it
+!(1 == 1) & (1 <= 1)
+```
+
+```
+## [1] FALSE
+```
+
+Keep this in your pocket for later. 
 
 ## Defining the Greater Boston Area
 
@@ -366,73 +407,3 @@ write_csv(gba_commute, "data/gba_commute.csv")
 
 Now you have a csv file that can be shared! 
 
-------
-
-## mutate
-
-### scenario
-
-- The non-profit has emailed you back and indicated that they want to report on the income quintiles and measures of educational attainment and requested that you do this for them. You're a rockstar and a kickass programmer so you oblige
-- they also ask for:
-  - tract
-  - a combined measure of bach masters and doctoral
-  
-
-```r
-commute <- mutate(commute, hh_inc_quin = ntile(med_house_income, 5),
-         edu_attain = bach + master)
-
-commute <- select(commute, -bach, -master)
-```
-
-
-
-
-## Writing Data
-
-
-
-They define the greater boston area as Suffolk, Middlesex, and Norfolk counties. 
-
-before we go ahead and start cleaning this data, we need to learn the tools to do so. Please bear with me! 
-  
-  
-  - recall how to load the tidyverse
-- we'll read in the `ACS_1317_TRACT.csv` file located in the `data` directory
-  - putting this together the file path is `data/ACS_1317_TRACT.csv`.
-  - store it in the variable `acs_raw`
-
-
-
-
-
-------
-
-old notes
-
-To learn these tools we will work with a role-play / workthrough. 
-a local non-profit is interested in learning about the demographic characteristics of the greater boston area. They are specifically interested to learn more about the relationship between the age, race, and economic status. They've come to you to provide them with the relevant data. you have acces to the annual BARI census data and you will curate the data for them. 
-
-
-Alright, so now I want to talk about the `!` (called the _**bang**_ operator) and its nuance. See how we put `!` in front of our `=`? The bang operator essentially checks the opposite of a thing. So in this case it checked the opposite of equals. If we put `!` in front of a logical expression, it will reverse the outcome. 
-
-
-```r
-1 == 1
-```
-
-```
-## [1] TRUE
-```
-
-```r
-!(1 == 1)
-```
-
-```
-## [1] FALSE
-```
-
-
-- we have now selected the columns we need to provide
--

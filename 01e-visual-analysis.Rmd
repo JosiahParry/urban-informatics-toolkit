@@ -1,10 +1,8 @@
 # Exploratory Visual Analysis 
 
-
 ```{r, include=FALSE}
 source("common.R")
 ```
-
 
 In the next part of this book we will introduce to you visual data exploration through the use of the R package `ggplot2`. You will ask questions of your data, visualize relationships, and draw inferences from the graphics you develop. 
 
@@ -57,16 +55,16 @@ For your first introduction to R, we will explore the relationship between educa
 
 ### Familiarize yourself
 
-There is no one best way to begin an exploratory analysis to guarantee interesting outcomes. But before one begins their EDA, they must know what their data actually contain. Loaded into your environment already is an object called `acs_edu`. `acs_edu` contains data demographic information about every census tract in Massachusetts. 
+There is no one best way to begin an exploratory analysis to guarantee interesting outcomes. But before one begins their EDA, they must know what their data actually contain. We will use the `read_csv()` function from the last chapter to read in the `acs_edu` dataset. Save it to a variable called `acs_edu`. 
 
-```{r, include=FALSE}
+```{r, message=FALSE}
 library(tidyverse)
 acs_edu <- read_csv("data/acs_edu.csv")
 ```
 
-Print `acs_edu` to the console. What do you see?
+`acs_edu` contains data demographic information about every census tract in Massachusetts. Print `acs_edu` to the console. What do you see?
 
-```{r max.print=10}
+```{r max.print=5}
 acs_edu
 ```
 

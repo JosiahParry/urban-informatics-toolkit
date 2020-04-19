@@ -1,4 +1,4 @@
-# summarizing the tidy way
+# Summarizing the tidy way
 
 ```{r, include=FALSE}
 source("common.R")
@@ -8,20 +8,12 @@ Now that we have a basic understanding of how to manipulate our dataset, summari
 
 We have already reviewed what constitutes a summary statistic and how to create them working with vectors. But we have not done so within the context of the tidyverse. We have figured out how to select, filter, mutate and all within a chain of functions. But we have not followed this to its natural next step, the `group_by()` and `summarise()` functions. 
 
-## Counting
-
 dplyr incluides a wonderful helper function called `count()`. It does just what it says it does. It counts the number of observations in a tibble. Let's recreate the `commute` tibble and see it for ourselves. 
 
 ```{r message=FALSE}
 library(tidyverse)
 
-commute <- read_csv("data/ACS_1317_TRACT.csv") %>% 
-  select(
-    county,
-    starts_with("commute"),
-    starts_with("by"),
-    med_house_income
-  ) 
+commute <- read_csv("data/gba_commute.csv") 
 
 count(commute)
 ```
@@ -35,7 +27,9 @@ count(commute, county)
 
 `count()` is actually a wrapper around the function `summarise()` which is a much more flexible function. `summarise()` is the aggregate analog to `mutate()`. The difference between `mutate()` and `summarise()` is that the result of an expression in `mutate()` must have the same number of values as there are rows—unless of course you are specifying a scalar value like `TRUE`—whereas `summarise()` requires the result to be one an element of length one.
 
-> Note: A scalar is a vector of length one.
+> Notes: 
+- A wrapper is function that executes another function.
+- A scalar is a vector of length one.
 
 We can recreate the first above `count()` call with `summarise()` and the handy `n()` function we learned a while ago. Here we follow the same pattern of assigning column names to expressions as we do with. 
 
@@ -62,7 +56,7 @@ commute %>%
   group_by(county)
 ```
 
-However, if we look at comments above the tibble, we see something new: `# Groups: county [15]`. This tells us a couple of things. First that the groups were created using the `county` column, that there are fifteen groups, and that the data frame is now grouped implying that any future `mutate()` or `summarise()` calls will be performed on the specified groups. If we then look at the class of that grouped tibble we see that there is a new class introduced which is `grouped_df`.
+However, if we look at comments above the tibble, we see something new: `# Groups: county [3]`. This tells us a couple of things. First that the groups were created using the `county` column, that there are fifteen groups, and that the data frame is now grouped implying that any future `mutate()` or `summarise()` calls will be performed on the specified groups. If we then look at the class of that grouped tibble we see that there is a new class introduced which is `grouped_df`.
 
 ```{r}
 commute %>% 
@@ -70,11 +64,10 @@ commute %>%
   class()
 ```
 
-> Note: a tibble has the classes `tbl` and `tbl_df` in addition
+> Note: a tibble has the classes `tbl` and `tbl_df` on top of the Base R class `data.frame`.
 
 When a tibble has this object class, dplyr knows that operations should be grouped. For example if you were to calculate the mean, this would be the mean for the specified groups rather than the mean for the entire dataset. 
-
-We can use the `n()` function to identify how many observations there are per group inside of a mutate call.
+One function that is extremely useful is the `n()` function to identify how many observations there are per group inside of a mutate call.
 
 > I am including the `commute3060` column to illustrate that the new `n` column will be the same for each group value. 
 

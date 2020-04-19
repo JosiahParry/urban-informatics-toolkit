@@ -108,29 +108,3 @@ max(commute_rate, na.rm = TRUE)
 Each of these statistics—mean, median, standard deviation, etc—are a way to characterize a larger sample of data. The lesson to take away here is that we will always need a single value when summarising data. Often we will be taking a column (vector) and calculating a single metric from that.
 
 In the following chapter we will learn how to calculate summary statistics using the tidyverse. 
-
-
-----
-
-- the lessons to take away from here is that:
-  - when creating aggregate measures, there can only be one observation per subset
-  - we are creating these aggregate measures we will be doing them on one column (aka a vector) at a time
-
-- what is a summary stat?
-- measures of central tendency
-- measures of spread
-- basic functions used
-  - mean, median, & sd
-  
-  
-2020-02-20 twitter responses:
-https://twitter.com/JosiahParry/status/1230485651306549248?s=20
-
-https://twitter.com/rhlvenugopal/status/1230489011073896449?s=20
-- confidence intervals
-- standard error 
-- effect size
-
-https://twitter.com/thomas_mock/status/1230489855425175552?s=20
-- missing values! 
-  

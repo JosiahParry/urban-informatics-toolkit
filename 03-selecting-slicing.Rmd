@@ -6,26 +6,26 @@ source("common.R")
 ```
 
 
-Now that you have the ability to read in data, it is important that you get comfortable handling it. Some people call the process of rearranging, cleaning, and reshaping data massaging, plumbing, engineering, and myriad other names. Here, we will refer to this as data manipulation. This is a preferrable catch-all term that does not ilicit images of toilets or Phoebe Buffay (she was a masseuse!). 
+We spent the last chapter performing our first exploratory visual analysis. From our visualizations we were able to inductively conlcude that as both median household income and the proportion of the population with a bachelors degree increases, so does the share of the population is white. 
+
+While we were able to make wonderful visualizations, we did skip a number of steps in the exploratory analysis process! Arguably the most important is that we skipped the curating of our dataset. The ACS dataset was already cleaned and curated for you. This almost always will not be the case. As such, we're going to spend this chapter learning about ways of selecting subsets of our data.
+
+Now that you have the ability to read in data, it is important that you get comfortable handling it. Some people call the process of rearranging, cleaning, and reshaping data massaging, plumbing, engineering, and myriad other names. Here, we will refer to this as data manipulation. This is a preferable catch-all term that does not illicit images of toilets or Phoebe Buffay (she was a masseuse!). 
 
 You may have heard of the 80/20 rule, or at least one of the many 80/20 rules. The 80/20 rule I'm referring to, is the idea that data scientists will spend 80% or more of their time cleaning and manipulating their data. The other 20% is the analysis part—creating statistics and models. I mention this because working with data is _mostly_ data manipulation and only _some_ statistics. Be prepared to get your hands dirty with data—euphamisms like this is probably why the phrase _data plumbing_ ever came about. 
 
 In this chapter we will learn how to preview data, select columns, arrange rows, and filter rows. This is where we get hands on with our data. This is just about as physical as we will be able to get unless you want to open up the raw csv and edit the data there!
 
-> Note: I do not recommend editing any csvs directly. That statement was in jest. We will cover the concept of reproducibility.
+> Note: I do not recommend editing any csvs directly. That statement was in jest.
 
 
 This is all to say that you will find yourself with messy, unsanitized, gross, not fun to look at data most of the time. Because of this, it is really important that we have the skills to clean our data. Right now we're going to go over the foundational skills we will learn how to select columns and rows, filter data, and create new columns, and arrange our data. To do this, we will be using the [`dplyr`](https://dplyr.tidyverse.org) package from the tidyverse. 
 
 The data we read in in the last chapter was only a select few variables from the annual census data release that the team at the Boston Area Research Initiative (BARI) provides. These census indicators are used to provide a picture into the changing landscape of Boston and Massachussettes more gnerally. In this chapter we will work through a rather real life scenario that you may very well encounter using the BARI data. 
 
-## Scenario:
+## Scenario
 
 A local non-profit is interested in the commuting behavior of Greater Boston residents. Your advisor suggested that you assist the non-profit in their work. You've just had coffee with the project manager to learn more about what their specific research question is. It seems that the extension of the Green Line is of great interest to them. She spoke at length about the history of the Big Dig and its impact on commuters working in the city. This poured over into a conversation about the spatial and social stratification of a city. She looks at her watch and realizes she's about to miss the commuter train home. You shake their hand, thank them for their time (and the free coffee because you're a grad student), and affirm that you will email them in a week or so with some data for them to work with.
-
-https://www.mass.gov/green-line-extension-project-glx
-https://en.wikipedia.org/wiki/Big_Dig
-
 
 You're back at your apartment, french press next your laptop—though not too close—notes open, and ready to begin. You pore over your notes and realize while you now have a rather good understanding of _what_ the Green Line Extensions is and the impact that the Big Dig had, you really have no idea what about commuting behavior in Greater Boston they are interested in. You realize you did not even confirm what constitutes the Greater Boston area. You push down the coffee grinds and pour your first cup of coffee. This will take at least two cups of coffee. 
 
@@ -35,9 +35,9 @@ The above scenario sounds like something out of a stress dream. This is scenario
 
 ## Getting physical with the data 
 
-The data we used in both chapters one and two were curated from the [annual census indicator release](https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/XZXAUP) from BARI. This is the dataset from which `acs_edu` was created. We will use these data to provide relevant data relating to commuting in the Greater Boston Area.
+The data we used in both chapters one and two were curated from the [annual census indicator release](https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/XZXAUP) from BARI. This is the dataset from which `acs_edu` was created. We will use these data to provide relevant data relating to commuting in the Greater Boston Area. The first thing you'll notice is that these data are large and somewhat unforgiving to work with. What a better way to get started than with big data?
 
-To do so, we will be using the tidyverse to read in and manipulate our data (as we did last chapter). Recall that we will load the tidyverse using `library(tidyverse)`. 
+We will be using the tidyverse to read in and manipulate our data (as we did last chapter). Recall that we will load the tidyverse using `library(tidyverse)`. 
 
 > Refresher: the tidyverse is a collection of packages used for data analysis. When you load the tidyverse it loads `readr`, `ggplot2`, and `dplyr` for us, among other packages. For now, though, these are the only relevant packages. 
 
@@ -48,6 +48,7 @@ To do so, we will be using the tidyverse to read in and manipulate our data (as 
 
 ```{r message=FALSE}
 library(tidyverse)
+
 acs_raw <- read_csv("data/ACS_1317_TRACT.csv")
 ```
 
@@ -313,7 +314,7 @@ When making decisions like this, I like to think of a quote from The Master of D
 
 Save the resultant tibble to an object named `commute` or something else informative. 
 
-Below is one approach to this question. For this, I have selected all columns pertaining to commute time (columns that start with `commute`), the method by which people commute (begin with `by`), meidan household income, and the name of the census tract. The name of the census tract will be helpful for identifying "where". 
+Below is one approach to this question. For this, I have selected all columns pertaining to commute time (columns that start with `commute`), the method by which people commute (begin with `by`), medisan household income, and the name of the census tract. The name of the census tract will be helpful for identifying "where". 
 
 ```{r}
 commute <- select(acs_raw,
@@ -325,6 +326,10 @@ commute <- select(acs_raw,
 ```
 
 
+----
 
-## Asking good questions 
+### Resources 
+
+- https://www.mass.gov/green-line-extension-project-glx
+- https://en.wikipedia.org/wiki/Big_Dig
 

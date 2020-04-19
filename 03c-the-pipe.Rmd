@@ -10,7 +10,7 @@ Well then, "what do we do instead?" you may be asking. And my answer is "use the
 
 **What it does**: The pipe operator takes the object or the output an expression on it's left hand side `lhs` and provides that as the first argument in the function of the right hand side. Additionally, it exposes the `lhs` as a temporary variable `.`. It is documented as `lhs %>% rhs`.
 
-The creator of [#TidyTuesday](https://github.com/rfordatascience/tidytuesday) and RStudio employee Thomas Mock has created a very illustrative example of how the pipe can simplify complex R function calls. 
+The creator of [#TidyTuesday](https://github.com/rfordatascience/tidytuesday) and RStudio employee, Thomas Mock has created a very illustrative example of how the pipe can simplify complex R function calls. 
 
 The first example illustrates the creation of intermediate variables. 
 
@@ -72,7 +72,7 @@ data %>%
   select()
 ```
 
-In the chapter on filtering data we began by reading in the data, selecting columns, and then filtered data. Here we will recreate the `low_inc_or_walk` object which identified Census Tracts that have a higher rate of commuters who walk than drive or have a median household income below $40,000. 
+In the chapter on filtering data we began by reading in the data, selecting columns, and then filtered data. Here we will recreate the `low_inc_or_walk` object which identified Census Tracts that have a higher rate of commuters who walk than drive or have a median household income below $40,000.
 
 ```{r, message=FALSE}
 library(tidyverse)
@@ -88,7 +88,6 @@ low_inc_or_walk <- read_csv("data/ACS_1317_TRACT.csv") %>%
     by_walk > by_auto,
     med_house_income < 40000
   )
-
 glimpse(low_inc_or_walk)
 ```
 

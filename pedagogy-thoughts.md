@@ -92,3 +92,32 @@ Topics that I need to find a way to include:
 
 
 
+---
+2020-04-19
+
+Old notes from 03e-summary-stats.Rmd
+
+- the lessons to take away from here is that:
+  - when creating aggregate measures, there can only be one observation per subset
+  - we are creating these aggregate measures we will be doing them on one column (aka a vector) at a time
+
+- what is a summary stat?
+- measures of central tendency
+- measures of spread
+- basic functions used
+  - mean, median, & sd
+  
+  
+2020-02-20 twitter responses:
+https://twitter.com/JosiahParry/status/1230485651306549248?s=20
+
+https://twitter.com/rhlvenugopal/status/1230489011073896449?s=20
+- confidence intervals
+- standard error 
+- effect size
+
+https://twitter.com/thomas_mock/status/1230489855425175552?s=20
+- missing values! 
+  
+
+
