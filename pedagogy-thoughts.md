@@ -38,3 +38,57 @@ remind students to take a break
 remind students what they've done so far
 build in excersizes that review from earlier chapters that they should feel comfortable with
 reminder that r4ds.online has office hours
+
+
+2020-04-19 Moving notes from index.Rmd
+
+
+## Timeline
+
+Advanced Topics:
+
+- Draft data reshaping
+
+- Draft text analysis
+
+
+Text analysis
+
+* unstructured text as data
+* what is the scope and limitations of text data?
+* working with text data:
+  * stop words
+  * tokenization
+
+
+
+Editing
+
+- Review data sources
+- Review scenarios
+- Create post-chapter exercises
+- Create post-chapter TL;DR
+- Make into package
+- Create rstudio.cloud image
+
+
+Topics that I need to find a way to include:
+
+- stringr
+- dplyr helpers: 
+  - case_when()
+  - arrange()
+  - n_distinct()
+- ! negation
+----------------
+
+## Progress Tracker 
+
+* 2020-02-24:
+  - fleshed out the introduction of visual analysis
+  - next:
+    - introduce the EDA workflow
+    - introduce the ACS and it's role in social sciences
+
+
+

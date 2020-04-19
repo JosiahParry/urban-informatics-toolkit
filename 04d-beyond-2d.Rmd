@@ -29,8 +29,9 @@ To improve our graphics we will utilize the color, shape, and size aesthetics, a
 In general we can use the below mappings: 
 
 - color -> continuous or discrete
-- size -> continuous
 - shape -> discrete
+- size -> continuous
+
 
 ## Color
 
@@ -273,36 +274,40 @@ Information design is a seemingly endless field of which we only touched on a ve
 To explore color more check out the packages [`prsimatic`](https://github.com/EmilHvitfeldt/prismatic) and [`paletteer`](https://github.com/EmilHvitfeldt/paletteer) by [Emil Hvitfeld](https://www.hvitfeldt.me/blog/). He
 
 
-## Shape
+## Shape and Size 
 
-- another way of visualizing categories in our data is by shape. 
-- only do this if color is not an option
-- it is more difficult for the eyes to pick up on
-- can be somewhat distracting
-- please do not map both color and shape to the same variable, that is redundant, and adds too much complexity to the visual.
+We spent a fair amount of time looking at a number of the ways that color can be used. Color can be used to visualize such a wide variety and as such was deserving of such a long section. Here we will briefly look at the other two aesthetics: shape and color. 
 
-- lets use some airbnb data. you will get more comfortable with this data later on in the section on spatial analysis
-- the simple dataset exists in `data/airbnb/airbnb.csv`.
-- read that in. For the sake of simplicity we will filter our data down to only Back Bay.
-- we will then visualize the points by their place in space—aka their longitude and latitude.
-- mapping shape tothe room type. This will help us see where these room types are located.
+### Shape
 
+Shape is another useful way to visualize groups or categories in our data. In general we should use shape only if color is not an option for us. Variations in shapes can be more difficult to discern—particularly when the number of groups to be visualized reaches beyond ~4. Moreover, shapes, depending on choice and intricacy can become overly distracting and can detract from the visualization as a whole. As a heuristic, do not map both shape and color to the same variable. 
+
+To illustrate the use of shape we will use data from Inside Airbnb[^insideairbnb]. This dataset contains Airbnb listings for Boston as well. The dataset can be found at  `data/airbnb/airbnb.csv`. We will go into the dataset in more depth in the chapter on spatial analysis. 
+
+For this visualization we will read in the dataset, filter it down to just `"Back Bay"`, and then plot ponts based on their place in space—aka latitude and longitude. We will also map shape to the `room_type`. Doing this will show us the spatial distribution of Airbnbs as well as the different kinds.
+
+> Note that while we normally say "latitude and longitude", that actually is saying "y and x" respectively. So be sure to put the latitude in the y aesthetic position and _not_ longitude.
 
 ```{r}
+# read in data
 airbnb <- read_csv("data/airbnb/airbnb.csv")
 
+# filter to backbay
 bb <- airbnb %>% 
   filter(neighborhood == "Back Bay") 
 
-
+# plot the points by shape
 ggplot(bb,  aes(longitude, latitude, shape = room_type)) + 
   geom_point(alpha = .5, size = 3) 
 ```
 
+By changing each point's shape by their associated room type we can get a somewhat better idea of the spatial distribution by type. 
 
-- compare this with the use of color for looking at groups
+What can we tell from this visualization? It looks like most Airbnbs are overwhelmingly the entire home or appartment. We can infer from this that most Airbnbs _are not_being used as additional revenue for residents. But rather that each Airbnb might be a unit of housing that is no longer available to Boston residents. Could this be increasing demand for housing? Is the rise in Airbnbs creating a shortage of housing and can it be one of the factors behind the rising Boston rents? 
 
-```{r}
+The above visualization is good, but lets compare that with the use of color.
+
+```{r echo=FALSE}
 bb_s <- ggplot(bb,  aes(longitude, latitude, shape = room_type)) + 
   geom_point(alpha = .5, size = 3) +
   theme(legend.position = "none") + 
@@ -317,24 +322,44 @@ bb_c <- ggplot(bb,  aes(longitude, latitude, color = room_type)) +
 bb_s / bb_c 
 ```
 
-- which do you prefer?
-- which getsthe message accross better?
-- again, we are delving into the world of design and there is never a "correct" answer, but sometimes there may be a consensus. Just do what you think is best and be open to constructive feedback
+Which do you prefer? Which do you feel does a better job getting this message across? Again, we are delving into the world of design and there is never a _correct_ answer. But sometimes there may be a consensus. So just do your best and ask others for their thoughts on your visualizations. 
 
-### size 
+### Size
 
-To cover:
+Moving onto size. Size is an aesthetic that is one of the hardest for humans to properly distinguish between. Because of this, size should usually be used when comparing observations with large discrepancies between them. Doing this with ggplot is again rather straight forward as here the only difference is, is that we set the aesthetic `size` to some other column (this must be numeric).
 
-- coloring / filling
-- shaping
-- sizing
-- faceting
+This visualization will use data from Analyze Boston's legacy database. Analyze Boston has previously released all signals from their Big Belly trashcans for the year of 2014^[[Analyze Boston: Big Belly Alerts 2014](https://data.boston.gov/dataset/big-belly-alerts-2014/resource/8fb74119-97b9-4114-b773-ea0a82142d3b)
+]. In the words of the data dictionary: 
 
-## Expanding bivariate visualizations to trivariate & other tri-variate
+> Bigbelly's contain compactors which crush waste within their waste bins in order to reduce the volume required to store the waste deposited into the Bigbelly.  The compactors are able provide an average compaction ratio of 5:1, meaning a Bigbelly can store the equivalent of 150G (gallons) of uncompactedwaste within a standard 30G waste bin.  The compactor in a Bigbelly will run when it has detected that waste within the bin has reached a certain level.  After a compaction cycle the waste will be crushed to occupy a smaller amount of space within the waste bin.  These cycles are repeated as more waste is added to the Bigbelly.  After approximately 150G of uncompacted waste has been added to the Bigbelly the compactor will not be able to compress the waste further, this condition is detected and thewaste bin is considered to be full.
+
+For the sake of example, I have created an aggregate count of signals from all Big Belly receptacles for 2014. This file can be found at `data/downtown-big-belly.csv`.
+
+
+```{r, message = FALSE}
+big_belly <- read_csv("data/downtown-big-belly.csv")
+
+glimpse(big_belly)
+```
+
+Similar to the Airbnb data, we will visualize by latitude and longitude (`lat` and `long` respectively) while mapping the `size` aesthetic to `n`. 
+
+```{r}
+ggplot(big_belly, aes(long, lat, size = n)) +
+  geom_point(alpha = 1/2)
+```
+
+
+
+
 
 
 Notes:
 
-https://extremepresentation.typepad.com/files/choosing-a-good-chart-09.pdf
+[^goodcharts](https://extremepresentation.typepad.com/files/choosing-a-good-chart-09.pdf): Choosing good charts
 
-[^flowingdata](https://flowingdata.com/2008/04/29/why-should-engineers-and-scientists-care-about-color-and-design/)
+[^flowingdata](https://flowingdata.com/2008/04/29/why-should-engineers-and-scientists-care-about-color-and-design/): Why should engineers and scientists care about color and design? _Flowing Data_.
+
+[^interaction-design](https://www.interaction-design.org/literature/article/visual-mapping-the-elements-of-information-visualization): Visual Mapping – The Elements of Information Visualization. _Interaction Design Foundation_.
+[^insideairbnb](http://insideairbnb.com/): Inside Airbnb.
+^[bigbelly]: 

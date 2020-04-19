@@ -17,113 +17,32 @@ source("common.R")
 ```
 
 
-# Welcome
+# Welcome!
 
-Welcome to the Urban Informatics Toolkit! 
-This book will provide you with an introduction to some of the history of Urban Informatics as a field, important concepts in the field, and provide you with the skills required to jumpstart your own exploration of the urban commons.
+Welcome to the Urban Informatics Toolkit! This is an online book that is intended to jumpstart your work of analyzing and developing understanding of the urban commons. In it you will find material on the theoretical underpinnings of Urban Informatics and a (mostly) thorough introduction to the statistical programming language R to get you hands on and working with data that you will encounter in your research, coursework, and in the wild west of open data. 
 
-I have always struggled with overly academic writing and overly technical and obtuse descriptions of concepts, tasks, and phenomena that can be written in easy to understand ways. 
+This book represent to me many things. Of which are the two years of study in the Urban Informatics program at Northeastern, nearly five years of self-directed learning of the R programming language, two years of teach R, and many, many, many hours of frustration trying to understand and grasp concepts that could have been distilled into simple and easy to understand language. 
 
-my goal for this text is to provide you with a non-technical instruction to a technical topic. I want this to be friendly and not adversarial nor patronizing. I will do my best to try and explain this language and topics the way that I would to my friends over a beer.
+In the following chapters I will do my best to avoid overly technical and verbose descriptions of theory and technical concepts. I will attempt to explain everything in a manner that I would to my friends over a beer, coffee, or, as these strange times would have it, a zoom call. 
 
+By the end of these pages I hope that you have become self-sufficient in your analyses. My intention is not to teach you everything that you will need to know because this is _impossible_. Data analytics are always changing and what is current will be dated—perhaps by tomorrow. In fact, whilst in the middle of writing this one of the most commonly used tools was changed in such a way that much of what I wrote became bad practice. This is all to say that the purpose of this book is to make you **self-sufficient**. The goal is to ensure that _you_ are able to understand the fundamental concepts of scientific inquiry in the big data era, how to think about data analysis, and be equipped with the fundamental knowledge of R to understand what is happening—to some degree—under the hood and what and why.
 
-## What to expect
+## Structure of the book
 
-- This book is partitioned into chapters where each goes over a small subset of skills that is important to know and a few case studies. 
-- the first half of the book will introduce you to the basic tools that you will need to know to become self-sufficient. From there on, we will work with case studies that also introduce new topics and further more advances skills
-- In Part II each chapter, with a few exceptions, will introduce you to a social phenomenon. We will ask a question, and use a relevant dataset to answer this question. While we work to approach each question, we will pause to learn about the tools that we are using, understand what they are doing and why. There will _always_ be a TL;DR for each chapter recapping what we covered, and links to further resources. 
-- technical chapters will be interspersed with non-techinical chapters.
+This book is partitioned into four sections each with it's own theme. In the first section _Foundations of Urban Informatics_ we will first begin by exploring the nature of big data and its role in the field. Then, we review different approaches to scientific inquiry and seek to understand how big data has further enabled a newer approach. And finally, we review Broken Windows theory as well as the development of **ecometrics**. 
 
-### Structure of the Book
+The second section is dediated to introducing you to R as a programming language for data analysis. This is where we begin our technical work. We will ensure that you have all of the software and data that you will need to follow along with the exercises in this book. This section will be the most difficult to overcome. This is because you must learn an entirely new mental framework—even if you know how to program in another language. In this section we will work from reading in data to manipulating it while along the way learning some fundamental theory. 
 
-## Reminders
+The third section is the largest and is dedicated entirely to information visualization. In this you will learn how to craft visualizations and understand when to make what kind of graphic. Furthermore we will dive into expanding upon traditional graphics by incorporating many different aesthetics. This section is expansive due to the importance of visualization. Visualization is our method of communication. While the written word is powerful, it requires more work to get someone to read than to look. If we can improve upon our visualization, we can make the work that we do more accessible to the public. 
 
-Learning to program can be exceptionally difficult at times. It can be a roller coaster of emotions. It is expected that you will not understand everything the first go around. Do not get down on yourself. I encourage you to take breaks and not push yourself too hard. I understand you have deadlines, but sometimes it is better if you take a break, eat a healthy snack, go exercise, sleep, be social, etc and then come back. You will be much happier and your work will be even better and that I promise you! 
+Finally, we will close by learning how to work with multiple datasets and spatial data. These are two of the more advanced topics and as such will be reserved for when the fundamentals have been reinforced. With regards to spatial analysis, many of you who may come from a geography or GIS background may find this section lacking. You would be right. Given the immense depth of the geospatial sciences, that is a topic that is deserving of its own book. 
 
-Perhaps I am showing my cards a bit too much, but I have always found that with tough assignments it is better to go to bed early and finish them in the morning than it is to stay up exceptionally late. Moral of that story is, get some sleep and take care of yourself! I'll be sure to remind you from time to time.
+## Considerations
 
+Before we continue, I want to reitaterate that this book will not introduce you to everything that you will need to know. As the field continues to grow and as the number of tools available in R increase I will work to continually add to and improve this writing. If there are topics that you would like to see included or expanded upon, please submit an issue on GitHub https://github.com/JosiahParry/urban-informatics-toolkit/issues or reach out to me [directly](mailto:josiah.parry@gmail.com?subject=[UITK]%20Feedback).
 
-Text analysis
+In this next chapter we will discuss big data. 
 
-* unstructured text as data
-* what is the scope and limitations of text data?
-* working with text data:
-  * stop words
-  * tokenization
-
-
-
-
-
-## Timeline
-
-To Do: put dates to these.
-
-Core Toolkit
-
-- Draft intro to R, RStudio (R files, and R projects) 
-  - done 2020-02-15
-- Draft exploratory analysis
-  - done
-- Draft filtering data (logical statements)
-   - done
-- Draft mutate
-  - done
-- Draft %>% 
-  - done 2020-02-18
-- Draft data structures
-  - done 2020-02-16
-- Draft summary statistics
-  - done 2020-02-20
-- Draft group_by and summarize
-  - done 2020-02-21
-- Draft visualization principles
-  - done
-- Draft multiple data sources
-  - done
-
-UI Specific:
-
-- Draft approaches to UI (inductive vs deductive) 
-  - done
-- Draft schools of UI (hybrid approach)
-- Draft ecometrics
-
-Advanced Topics:
-
-- Draft data reshaping
-- Draft spatial analysis
-  - done
-- Draft text analysis
-
-Editing
-
-- Review data sources
-- Review scenarios
-- Create post-chapter exercises
-- Create post-chapter TL;DR
-- Make into package
-- Create rstudio.cloud image
-
-
-Topics that I need to find a way to include:
-
-- stringr
-- dplyr helpers: 
-  - case_when()
-  - ntile() - done
-  - arrange()
-  - n_distinct()
-- ! negation
-----------------
-
-## Progress Tracker 
-
-* 2020-02-24:
-  - fleshed out the introduction of visual analysis
-  - next:
-    - introduce the EDA workflow
-    - introduce the ACS and it's role in social sciences
-
+Without further ado, let's get on with it!
 
 

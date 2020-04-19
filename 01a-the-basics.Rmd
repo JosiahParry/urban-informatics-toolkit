@@ -84,8 +84,6 @@ Once both have been installed you can open RStudio to get started. Look for the 
 knitr::include_graphics("https://digitalhumanities.berkeley.edu/sites/default/files/styles/large/public/field/image/cropped-rstudio.png?itok=C_QdRROx")
 ```
 
-
-
 If you get lost navigating the RStudio IDE, be sure to refer to the [cheat sheet](https://github.com/rstudio/cheatsheets/raw/master/rstudio-ide.pdf). 
 
 
@@ -96,7 +94,7 @@ If you get lost navigating the RStudio IDE, be sure to refer to the [cheat sheet
 Once you open up RStudio you will be able to get rocking and rolling. Though, I want to instill some best practices from the get go. This following section will save you and anyone who you collaborate with an undescribable amount of headaches. 
 Folks are tempted to open up RStudio and begin doing analysis. That is all well and good though this leads to many problems. We need to contextualize each and every analysis as it's own **project**. Currently I mean project in the conceptual manner. If there is a common overarching theme, intent, or purpose, that analysis should be delineated as its own project and should be identifiable from others. 
 
-You probably already have a notion of projects implemented in your life. Consider your school work. I suspect, and frankly hope, that you have a somewhat organized folder structure where each semester is its own folder, and each course is its own folder within that. An example of what some of my folder organization looks like below. 
+You probably already have a notion of projects implemented in your life. Consider your school work. I suspect, and frankly hope, that you have a somewhat organized folder structure where each semester is its own folder, and each course is its own folder within that. An example of what some of my folder organization looks like is below. 
 
 ```
 fall/
@@ -161,5 +159,29 @@ It can be used to make beautiful graphics for the BBC.
  
 R can be found in the infrastructure of our modern world. R is utilized in our global financial institutions, civil rights groups such as the ACLU, investigative journalism, national defense, and so much more. Do not feel that the _only_ thing you will get from learning R is how to do some simple statistics. 
 
-Now, let's get going.
+## Getting Help 
 
+Undoubtedly you will run into problems when programming and you're going to want or need help. If you don't know where to go, getting help may feel impossible. There are two main places that I recommend you go to for help when you encounter problems: StackOverflow and RStudio community. 
+
+[Stack Overflow](https://stackoverflow.com) is one piece of the large Stack Exchange network that is dedicated strictly to programming issues. There is a good chance that you've encountered Stack Exchange at some point in your various google searches. Stack Exchange is a network that is strictly dedicated to a question and answer format. Each topic has their own subdomain. For those who are unfamiliar, think of Stack Exchange like Reddit where each subreddit is their own own Q&A page. And for those who are unfamiliar with Reddit, think of Stack Overflow like Yahoo! Answers or Quora. Stack Overflow has a huge database of questions and answers for all of the programming problems that folks have encountered. It is very unlikely to have a question that has not been answered on Stack Overflow before. 
+
+The [RStudio Community](https://community.rstudio.com/) page is a community forum created by RStudio. This is a location for members of the R community—which you can now count yourself a part of—to ask questions, engage in thoughtful dialogue, and much more. While Stack Overflow is committed to all programming languages, of which R is just one of them, the RStudio Community is maintained entirely by R users.
+
+If you have never asked a technical question before I would recommend spending doing so on RStudio Community as Stack Overflow has a [history](https://meta.stackoverflow.com/questions/262791/the-rudeness-on-stack-overflow-is-too-damn-high) of somewhat rude community. Before you do so, be sure to create a [**rep**roducible **ex**ample](https://www.tidyverse.org/help/#reprex) so that the community can best help you. 
+
+
+## Reminders 
+
+Learning to program can be exceptionally difficult and frustrating at times. It can be a roller coaster of emotions. It is expected that you will not understand everything the first go around. Do not get down on yourself. I encourage you to take breaks and not push yourself too hard or even be self-critical. I understand you have deadlines, but sometimes it is better if you take a break, eat a healthy snack, go exercise, sleep, be social, or do whatever makes you happy and then come back. You will be much happier and your work will be even better and that I promise you! 
+
+If you ever find yourself in a bout of programming induced frustration try one of the below:
+
+* Drink water! Just do this even if you don't feel like it. Water is always good. 
+* Get some sleep. Without sleep you wil be running at 60% or less. 
+* Eat your greens. You are what you eat! 
+* Shower. Feeling clean can change your perspective and approach. 
+* Get your blood flowing! Go for a walk. Do some squats or pushups. Making sure your blood is moving is important. 
+* And take care of yourself!
+
+
+Now, let's get going.

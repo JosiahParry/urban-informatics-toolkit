@@ -13,6 +13,7 @@ Before we get going, let's find our footing. R is a statistical programming lang
   - i recommend learning the key strokes. it will be immensely helpful
   - this brings us to the console
 
+support document for executing code https://support.rstudio.com/hc/en-us/articles/200484448-Editing-and-Executing-Code#executing
 
 ## Arithmetic Operators 
 
@@ -170,6 +171,7 @@ library(tidyverse)
 Notice the message above. When we load the tidyverse, we are actually loading eight packages at once! Thesee are the packages listed under "**Attaching packages**."
 
 You have now successfully installed and loaded the tidyverse. Next, we will begin to learn how to visually analyze data!  
+
 
 ### Resources:
 

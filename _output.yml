@@ -3,6 +3,7 @@ bookdown::gitbook:
   toc_depth: 2
   config:
     toc:
+      collapse: section
       before: |
         <li><a href="./">Urban Informatics Toolkit</a></li>
       after: |
