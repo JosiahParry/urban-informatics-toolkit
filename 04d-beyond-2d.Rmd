@@ -282,7 +282,7 @@ We spent a fair amount of time looking at a number of the ways that color can be
 
 Shape is another useful way to visualize groups or categories in our data. In general we should use shape only if color is not an option for us. Variations in shapes can be more difficult to discern—particularly when the number of groups to be visualized reaches beyond ~4. Moreover, shapes, depending on choice and intricacy can become overly distracting and can detract from the visualization as a whole. As a heuristic, do not map both shape and color to the same variable. 
 
-To illustrate the use of shape we will use data from Inside Airbnb[^insideairbnb]. This dataset contains Airbnb listings for Boston as well. The dataset can be found at  `data/airbnb/airbnb.csv`. We will go into the dataset in more depth in the chapter on spatial analysis. 
+To illustrate the use of shape we will use data from Inside Airbnb [^insideairbnb]. This dataset contains Airbnb listings for Boston as well. The dataset can be found at  `data/airbnb/airbnb.csv`. We will go into the dataset in more depth in the chapter on spatial analysis. 
 
 For this visualization we will read in the dataset, filter it down to just `"Back Bay"`, and then plot ponts based on their place in space—aka latitude and longitude. We will also map shape to the `room_type`. Doing this will show us the spatial distribution of Airbnbs as well as the different kinds.
 
@@ -351,15 +351,10 @@ ggplot(big_belly, aes(long, lat, size = n)) +
 
 
 
+[^goodcharts]: (https://extremepresentation.typepad.com/files/choosing-a-good-chart-09.pdf): Choosing good charts
 
+[^flowingdata]: (https://flowingdata.com/2008/04/29/why-should-engineers-and-scientists-care-about-color-and-design/): Why should engineers and scientists care about color and design? _Flowing Data_.
 
-
-Notes:
-
-[^goodcharts](https://extremepresentation.typepad.com/files/choosing-a-good-chart-09.pdf): Choosing good charts
-
-[^flowingdata](https://flowingdata.com/2008/04/29/why-should-engineers-and-scientists-care-about-color-and-design/): Why should engineers and scientists care about color and design? _Flowing Data_.
-
-[^interaction-design](https://www.interaction-design.org/literature/article/visual-mapping-the-elements-of-information-visualization): Visual Mapping – The Elements of Information Visualization. _Interaction Design Foundation_.
-[^insideairbnb](http://insideairbnb.com/): Inside Airbnb.
+[^interaction-design]: (https://www.interaction-design.org/literature/article/visual-mapping-the-elements-of-information-visualization): Visual Mapping – The Elements of Information Visualization. _Interaction Design Foundation_.
+[^insideairbnb]:    (http://insideairbnb.com/): Inside Airbnb.
 ^[bigbelly]: 

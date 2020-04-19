@@ -10,6 +10,7 @@ Only covering two-sample
 - two vectors
 - using a data frame
 - the formula interface
+  - y ~ (by) x
 
 ## ANOVA
 
@@ -30,4 +31,15 @@ Stands for Honestly Significant Difference
 The function is `TukeyHSD()`
 
 creates comparisons for all pairings 
+
+pretty cool, huh
+
+## Linear regression
+
+regression uses the formula interface as well
+
+- y ~ beta
+- create interaction terms with via multiplication `*`
+- use the `lm()` function
+
 

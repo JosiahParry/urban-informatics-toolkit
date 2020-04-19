@@ -1,20 +1,11 @@
 # Toolkit review
 
-We've now come to the end of the first technical section of the Urban Informatics Toolkit.
+We've now come to the end of the first technical section of the Urban Informatics Toolkit. And you have officially covered _**a lot**_ of ground. You've installed both R and RStudio. You've learned the basics of R operations and data structures. You've read and manipulated a large dataset, selected columns, created new ones, and even created a few visualization. You've learned to chain multiple functions together and have even created your own sets of summary statistics. These are all very important useful skills which will serve the foundation of everything else you will do in R. 
 
+The next section of this book will focus entirely on data visualization. We will begin by learning about the Grammar of Graphics. Next we will learn how to apply that grammar in R with ggplot2. Following, we will create a _ton_ of graphics and build intuition about when and how to create different types of graphics. 
 
-- At this point you've learned the vast majority of the skills that you will need to know to become self-sufficient in R
-- you have learned how to use R at a basic level
-- you have learned about the fundamental data structures in R
-- principles of tidy data
-- Know how to read data
-- you've created a visualization
-- learned how to select, filter, and mutate data
-- create summary statistics 
-- chain functions together
+Are you ready?
 
-These are all important skills
+Are you hydrated?
 
-The next part of of this book will focus entirely on data visualization
-we will walk through what is known as the grammar of graphics
-Different visualization types for both univariate ad bivariate data 
+Take a deep breath and let's get after it! 
