@@ -191,46 +191,38 @@ p +
   labs(title = "{closest_state}")
 ```
 
+This ts the scaffolding for a great visualization. We can take this existing plot and add or adjust the layers to adjust the styling to be more engaging. 
 
-another fun way to do this is to make an animation. We can create an animation of our barchart where we transition through the different years.
-
-Making an animation is as simple as adding an extra layer.
-
-Before we do this we need to make sure we have the requisite packages 
-
-please install the following make sure the below packages are available
-
-
-
-- also need `transformr` to transition between points and lines
-
-
-```{r}
-
-```
-
-
-+
-  transition_states(year, 
-                    transition_length = 2,
-                    state_length = 1) +
-  ease_aes('sine-in-out') +
-  labs(title = "Year: {closest_state}")
-
-animate(annual_ecometrics, fps = 24, duration = 4)
-```
-
+We can also add animation to our previous line plot. We can use the `transition_reveal()` layer to reveal changes over time. 
 
 ```{r eval=FALSE}
-group_by(ecometrics, measure, year) %>% 
-  summarise(n = sum(n)) %>% 
-  ungroup() %>% 
-  ggplot(aes(year, n, color = measure)) +
-  geom_line() +
+count(bb, month, fullness) %>% 
+  ggplot(aes(month, n, group = fullness, color = fullness)) +
+  geom_line() + 
   geom_point() +
-  transition_reveal(year)
+  transition_reveal(month)
+
+Error: along data must either be integer, numeric, POSIXct, Date, difftime, orhms
 ```
 
+Note the above error. This is telling us that since our x, or time dimension is actually being treated as a factor, it cannot move along the axis. The error message is informative enough to let us know that we need to change month to a numeric value. As a way to address this but yet maintain the nice labeling on the x axis we can create another column called `month_integer` which is jsut the integer value of the month—so Jan is 1 etc. We can provide that value to `transition_reveal()`. Moreover `transition_reveal()` creates the `frame_along` temporary variable if you'd so like to use it.
+
+```{r}
+count(bb, month, fullness) %>% 
+  mutate(month_integer = as.integer(month)) %>% 
+  ggplot(aes(month, n, group = fullness, color = fullness)) +
+  geom_line() + 
+  geom_point() +
+  transition_reveal(month_integer)
+```
+
+This animation does a great job of illustrating the changing slopes of the fullness measures. 
+
+While it may seem a little underwhelming, these two functions can provide you with most of the functionality you will need for creating animations. Explore the functions in the package to explore how you can add to your animation and make it truly yours. 
+
+> `help(package = "gganimate")` will bring up all of the help documentation for the package. 
+
+And with that, we can conclude this section. Congratulations!
 
 [^anim08]: [Effectiveness of Animation in Trend Visualization](https://www.cc.gatech.edu/~stasko/papers/infovis08-anim.pdf)
 [^hans]: [Hans Rosling](https://www.ted.com/talks/hans_rosling_the_best_stats_you_ve_ever_seen/transcript)

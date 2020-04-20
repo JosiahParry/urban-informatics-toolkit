@@ -24,7 +24,7 @@
 <meta name="author" content="Josiah Parry" />
 
 
-<meta name="date" content="2020-04-19" />
+<meta name="date" content="2020-04-20" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -433,30 +433,29 @@ All that is needed to add animation to this plot is a transition layer. For the 
 <span id="cb278-2"><a href="visualizing-through-time.html#cb278-2"></a><span class="st">  </span><span class="kw">transition_states</span>(month)  <span class="op">+</span></span>
 <span id="cb278-3"><a href="visualizing-through-time.html#cb278-3"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;{closest_state}&quot;</span>)</span></code></pre></div>
 <p><img src="04e-through-time_files/figure-html/unnamed-chunk-16-1.gif" /><!-- --></p>
-<p>another fun way to do this is to make an animation. We can create an animation of our barchart where we transition through the different years.</p>
-<p>Making an animation is as simple as adding an extra layer.</p>
-<p>Before we do this we need to make sure we have the requisite packages</p>
-<p>please install the following make sure the below packages are available</p>
-<ul>
-<li><p>also need <code>transformr</code> to transition between points and lines</p></li>
-<li><p>transition_states(year,
-transition_length = 2,
-state_length = 1) +
-ease_aes(‘sine-in-out’) +
-labs(title = “Year: {closest_state}”)</p></li>
-</ul>
-<p>animate(annual_ecometrics, fps = 24, duration = 4)</p>
-<pre><code>
-
-
-```r
-group_by(ecometrics, measure, year) %&gt;% 
-  summarise(n = sum(n)) %&gt;% 
-  ungroup() %&gt;% 
-  ggplot(aes(year, n, color = measure)) +
-  geom_line() +
-  geom_point() +
-  transition_reveal(year)</code></pre>
+<p>This ts the scaffolding for a great visualization. We can take this existing plot and add or adjust the layers to adjust the styling to be more engaging.</p>
+<p>We can also add animation to our previous line plot. We can use the <code>transition_reveal()</code> layer to reveal changes over time.</p>
+<div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb279-1"><a href="visualizing-through-time.html#cb279-1"></a><span class="kw">count</span>(bb, month, fullness) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb279-2"><a href="visualizing-through-time.html#cb279-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(month, n, <span class="dt">group =</span> fullness, <span class="dt">color =</span> fullness)) <span class="op">+</span></span>
+<span id="cb279-3"><a href="visualizing-through-time.html#cb279-3"></a><span class="st">  </span><span class="kw">geom_line</span>() <span class="op">+</span><span class="st"> </span></span>
+<span id="cb279-4"><a href="visualizing-through-time.html#cb279-4"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
+<span id="cb279-5"><a href="visualizing-through-time.html#cb279-5"></a><span class="st">  </span><span class="kw">transition_reveal</span>(month)</span>
+<span id="cb279-6"><a href="visualizing-through-time.html#cb279-6"></a></span>
+<span id="cb279-7"><a href="visualizing-through-time.html#cb279-7"></a>Error<span class="op">:</span><span class="st"> </span>along data must either be integer, numeric, POSIXct, Date, difftime, orhms</span></code></pre></div>
+<p>Note the above error. This is telling us that since our x, or time dimension is actually being treated as a factor, it cannot move along the axis. The error message is informative enough to let us know that we need to change month to a numeric value. As a way to address this but yet maintain the nice labeling on the x axis we can create another column called <code>month_integer</code> which is jsut the integer value of the month—so Jan is 1 etc. We can provide that value to <code>transition_reveal()</code>. Moreover <code>transition_reveal()</code> creates the <code>frame_along</code> temporary variable if you’d so like to use it.</p>
+<div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb280-1"><a href="visualizing-through-time.html#cb280-1"></a><span class="kw">count</span>(bb, month, fullness) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb280-2"><a href="visualizing-through-time.html#cb280-2"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">month_integer =</span> <span class="kw">as.integer</span>(month)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb280-3"><a href="visualizing-through-time.html#cb280-3"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(month, n, <span class="dt">group =</span> fullness, <span class="dt">color =</span> fullness)) <span class="op">+</span></span>
+<span id="cb280-4"><a href="visualizing-through-time.html#cb280-4"></a><span class="st">  </span><span class="kw">geom_line</span>() <span class="op">+</span><span class="st"> </span></span>
+<span id="cb280-5"><a href="visualizing-through-time.html#cb280-5"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
+<span id="cb280-6"><a href="visualizing-through-time.html#cb280-6"></a><span class="st">  </span><span class="kw">transition_reveal</span>(month_integer)</span></code></pre></div>
+<p><img src="04e-through-time_files/figure-html/unnamed-chunk-18-1.gif" /><!-- --></p>
+<p>This animation does a great job of illustrating the changing slopes of the fullness measures.</p>
+<p>While it may seem a little underwhelming, these two functions can provide you with most of the functionality you will need for creating animations. Explore the functions in the package to explore how you can add to your animation and make it truly yours.</p>
+<blockquote>
+<p><code>help(package = "gganimate")</code> will bring up all of the help documentation for the package.</p>
+</blockquote>
+<p>And with that, we can conclude this section. Congratulations!</p>
 
 </div>
 </div>

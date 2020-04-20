@@ -24,7 +24,7 @@
 <meta name="author" content="Josiah Parry" />
 
 
-<meta name="date" content="2020-04-19" />
+<meta name="date" content="2020-04-20" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -277,13 +277,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="visualization-review" class="section level1" number="24">
 <h1><span class="header-section-number">Chapter 24</span> Visualization Review</h1>
+<p>So here we are, at the end of the third and longest section of the Urban Informatics Toolkit. We’ve covered a lot of ground and rather quickly so let’s recap.</p>
+<p>We started by going over the grammar of graphics. The grammar is used to define the components of a visualization and ggplot2 is the R implementation of the graphics. The grammar has five main components:</p>
+<ol style="list-style-type: decimal">
+<li>Defaults:
 <ul>
-<li>the grammar of graphics:
-<ul>
-<li>5 componenets</li>
+<li>Data</li>
+<li>Mapping</li>
 </ul></li>
-<li>how to visualize</li>
-</ul>
+<li>Layers:
+<ul>
+<li>Data</li>
+<li>Mapping</li>
+<li>Geom</li>
+<li>Stat</li>
+<li>Position</li>
+</ul></li>
+<li>Scales</li>
+<li>Coordinates</li>
+<li>Facets</li>
+</ol>
+<p>We build plots by providing data either to <code>ggplot()</code> which sets the defaults, or the data can be provided directly to the geom layers. Remember that the <code>geom_*()</code> layers are what creates the geometry on the plots. Without them we do not populate the graphic. The layers figure out the positions, scales, and coordinates from the data. We can also adjust these to fit our preference by using <code>scale_*()</code> and <code>coord_()</code> layerss if we would so desire.</p>
+<p>Following this, we explored the ways in which univariate and bivariate relationships can be explored visually. In this we explored the use of a number of different plots which can be added to your repertoire. Then we looked at how we can use facetting, color, shape, and size to explore beyond two dimensions. And finally, we briefly looked at the use of animation to explore data through time.</p>
+<p>All of the visualization strategies can be used either independently or in combination to create compelling graphics thats tell a story from data.</p>
+<p>In the next sectino we will cover a few more advanced and disparate topics which are important to have in your tool kit. It may be good to take a break right now before we continue.</p>
+<p>Are you hydrated?</p>
 
 </div>
 

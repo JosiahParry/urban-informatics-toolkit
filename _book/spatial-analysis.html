@@ -24,7 +24,7 @@
 <meta name="author" content="Josiah Parry" />
 
 
-<meta name="date" content="2020-04-19" />
+<meta name="date" content="2020-04-20" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -297,26 +297,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="creating-simple-features-from-a-tibble" class="section level2" number="26.3">
 <h2><span class="header-section-number">26.3</span> Creating simple features from a tibble</h2>
 <p>Begin by installing the <code>sf</code> (simple-features) package and loading the <code>locations</code> Airbnb dataset.</p>
-<div class="sourceCode" id="cb293"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb293-1"><a href="spatial-analysis.html#cb293-1"></a><span class="co"># install.packages(&quot;sf&quot;)</span></span>
-<span id="cb293-2"><a href="spatial-analysis.html#cb293-2"></a><span class="kw">library</span>(sf)</span></code></pre></div>
+<div class="sourceCode" id="cb294"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb294-1"><a href="spatial-analysis.html#cb294-1"></a><span class="co"># install.packages(&quot;sf&quot;)</span></span>
+<span id="cb294-2"><a href="spatial-analysis.html#cb294-2"></a><span class="kw">library</span>(sf)</span></code></pre></div>
 <pre><code>## Linking to GEOS 3.7.2, GDAL 2.4.2, PROJ 5.2.0</code></pre>
-<div class="sourceCode" id="cb295"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb295-1"><a href="spatial-analysis.html#cb295-1"></a><span class="kw">library</span>(tidyverse)</span></code></pre></div>
-<pre><code>## ── Attaching packages ────────────────────────────────────────────────────────────────────────────────────── tidyverse 1.3.0 ──</code></pre>
+<div class="sourceCode" id="cb296"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb296-1"><a href="spatial-analysis.html#cb296-1"></a><span class="kw">library</span>(tidyverse)</span></code></pre></div>
+<pre><code>## ── Attaching packages ──────────────────────────────────────── tidyverse 1.3.0 ──</code></pre>
 <pre><code>## ✓ ggplot2 3.3.0     ✓ purrr   0.3.3
 ## ✓ tibble  3.0.0     ✓ dplyr   0.8.5
 ## ✓ tidyr   1.0.2     ✓ stringr 1.4.0
 ## ✓ readr   1.3.1     ✓ forcats 0.5.0</code></pre>
-<pre><code>## ── Conflicts ───────────────────────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
+<pre><code>## ── Conflicts ─────────────────────────────────────────── tidyverse_conflicts() ──
 ## x dplyr::filter() masks stats::filter()
 ## x dplyr::lag()    masks stats::lag()</code></pre>
-<div class="sourceCode" id="cb299"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb299-1"><a href="spatial-analysis.html#cb299-1"></a>locations &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data/airbnb/locations.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb300"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb300-1"><a href="spatial-analysis.html#cb300-1"></a>locations &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data/airbnb/locations.csv&quot;</span>)</span></code></pre></div>
 <pre><code>## Parsed with column specification:
 ## cols(
 ##   id = col_double(),
 ##   longitude = col_double(),
 ##   latitude = col_double()
 ## )</code></pre>
-<div class="sourceCode" id="cb301"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb301-1"><a href="spatial-analysis.html#cb301-1"></a><span class="kw">head</span>(locations)</span></code></pre></div>
+<div class="sourceCode" id="cb302"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb302-1"><a href="spatial-analysis.html#cb302-1"></a><span class="kw">head</span>(locations)</span></code></pre></div>
 <pre><code>## # A tibble: 6 x 3
 ##      id longitude latitude
 ##   &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
@@ -332,8 +332,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Note that we are likely used to saying <em>lat, long</em>, but that actually maps to <em>y, x</em>. This is something that trips everyone up! Just make sure you put longitude in the x spot and latitude in the y spot.</p>
 </blockquote>
 <p>To convert the <code>locations</code> data frame to a simple feature we will use <code>st_as_sf()</code> and set the <code>coords</code> argument to <code>c("longitude", "latitude")</code>.</p>
-<div class="sourceCode" id="cb303"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb303-1"><a href="spatial-analysis.html#cb303-1"></a><span class="kw">st_as_sf</span>(locations,</span>
-<span id="cb303-2"><a href="spatial-analysis.html#cb303-2"></a>         <span class="dt">coords =</span> <span class="kw">c</span>(<span class="st">&quot;longitude&quot;</span>, <span class="st">&quot;latitude&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb304"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb304-1"><a href="spatial-analysis.html#cb304-1"></a><span class="kw">st_as_sf</span>(locations,</span>
+<span id="cb304-2"><a href="spatial-analysis.html#cb304-2"></a>         <span class="dt">coords =</span> <span class="kw">c</span>(<span class="st">&quot;longitude&quot;</span>, <span class="st">&quot;latitude&quot;</span>))</span></code></pre></div>
 <pre><code>## Simple feature collection with 3799 features and 1 field
 ## geometry type:  POINT
 ## dimension:      XY
@@ -363,11 +363,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>To ensure that our data are properly represented in space, we need to provide the CRS in the creation of our simple features. We do this by specifying the <code>crs</code> argument. <code>crs</code> will accept a number that indicates what projection you are using. There are too many CRS identifiers to commit to memory. This information is usually recorded in the original data source. Be sure to confirm the spatial dimensions! For WGS84, the CRS identifier is <code>4326</code>. This is probably worth committing to memory.</p>
 <p><a href="https://confluence.qps.nl/qinsy/latest/en/world-geodetic-system-1984-wgs84-182618391.html#id-.WorldGeodeticSystem1984(WGS84)v9.1-WGS84definitions" class="uri">https://confluence.qps.nl/qinsy/latest/en/world-geodetic-system-1984-wgs84-182618391.html#id-.WorldGeodeticSystem1984(WGS84)v9.1-WGS84definitions</a></p>
 <p>We will now create an object called <code>loc_sf</code> using <code>st_as_sf()</code> and providing both the <code>coords</code> and the <code>crs</code>.</p>
-<div class="sourceCode" id="cb305"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb305-1"><a href="spatial-analysis.html#cb305-1"></a>loc_sf &lt;-<span class="st"> </span><span class="kw">st_as_sf</span>(locations,</span>
-<span id="cb305-2"><a href="spatial-analysis.html#cb305-2"></a>         <span class="dt">coords =</span> <span class="kw">c</span>(<span class="st">&quot;longitude&quot;</span>, <span class="st">&quot;latitude&quot;</span>),</span>
-<span id="cb305-3"><a href="spatial-analysis.html#cb305-3"></a>         <span class="dt">crs =</span> <span class="dv">4326</span>)</span>
-<span id="cb305-4"><a href="spatial-analysis.html#cb305-4"></a></span>
-<span id="cb305-5"><a href="spatial-analysis.html#cb305-5"></a>loc_sf</span></code></pre></div>
+<div class="sourceCode" id="cb306"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb306-1"><a href="spatial-analysis.html#cb306-1"></a>loc_sf &lt;-<span class="st"> </span><span class="kw">st_as_sf</span>(locations,</span>
+<span id="cb306-2"><a href="spatial-analysis.html#cb306-2"></a>         <span class="dt">coords =</span> <span class="kw">c</span>(<span class="st">&quot;longitude&quot;</span>, <span class="st">&quot;latitude&quot;</span>),</span>
+<span id="cb306-3"><a href="spatial-analysis.html#cb306-3"></a>         <span class="dt">crs =</span> <span class="dv">4326</span>)</span>
+<span id="cb306-4"><a href="spatial-analysis.html#cb306-4"></a></span>
+<span id="cb306-5"><a href="spatial-analysis.html#cb306-5"></a>loc_sf</span></code></pre></div>
 <pre><code>## Simple feature collection with 3799 features and 1 field
 ## geometry type:  POINT
 ## dimension:      XY
@@ -388,7 +388,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 10 22195  (-71.0793 42.34558)
 ## # … with 3,789 more rows</code></pre>
 <p>Since an sf object is also a data frame we are able to perform all of the operations that we may with a normal tibble such as selecting columns, joining, mutating etc.</p>
-<div class="sourceCode" id="cb307"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb307-1"><a href="spatial-analysis.html#cb307-1"></a><span class="kw">count</span>(loc_sf)</span></code></pre></div>
+<div class="sourceCode" id="cb308"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb308-1"><a href="spatial-analysis.html#cb308-1"></a><span class="kw">count</span>(loc_sf)</span></code></pre></div>
 <pre><code>## Simple feature collection with 1 feature and 1 field
 ## geometry type:  MULTIPOINT
 ## dimension:      XY
@@ -399,8 +399,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##   &lt;int&gt;                                                         &lt;MULTIPOINT [°]&gt;
 ## 1  3799 ((-71.1728 42.34835), (-71.17174 42.34854), (-71.17173 42.34923), (-71.…</code></pre>
 <p>Notice that it keeps the geometry even when counting. When our data is spatial, we have to incorporate the geometry into our computations. This often times leads to slower processing times. So if you do not immediately need the geometry, my recommendation is that you join it back on as late as possible. You can cast an sf object to a tibble with <code>as_tibble()</code></p>
-<div class="sourceCode" id="cb309"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb309-1"><a href="spatial-analysis.html#cb309-1"></a><span class="kw">as_tibble</span>(loc_sf) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb309-2"><a href="spatial-analysis.html#cb309-2"></a><span class="st">  </span><span class="kw">count</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb310"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb310-1"><a href="spatial-analysis.html#cb310-1"></a><span class="kw">as_tibble</span>(loc_sf) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb310-2"><a href="spatial-analysis.html#cb310-2"></a><span class="st">  </span><span class="kw">count</span>()</span></code></pre></div>
 <pre><code>## # A tibble: 1 x 1
 ##       n
 ##   &lt;int&gt;
@@ -410,8 +410,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="plotting-sf-objects-with-ggplot" class="section level2" number="26.4">
 <h2><span class="header-section-number">26.4</span> Plotting sf objects with ggplot</h2>
 <p>Plotting sf objects is made rather straightforward with ggplot2. Since sf objects contain a ton of spatial information this is inferred from ggplot. As such, we are not required to map the aesthetics for x and y. We simple provide just the data argument to ggpplot and then add a <code>geom_sf()</code> layer. Inside of <code>geom_sf()</code> we can provide any and all arguments that we may like such as color, size, shape, etc. as this will be passed to the underlying <code>geom_*</code>—in the case of points, it will be <code>geom_point()</code>.</p>
-<div class="sourceCode" id="cb311"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb311-1"><a href="spatial-analysis.html#cb311-1"></a><span class="kw">ggplot</span>(loc_sf) <span class="op">+</span></span>
-<span id="cb311-2"><a href="spatial-analysis.html#cb311-2"></a><span class="st">  </span><span class="kw">geom_sf</span>(<span class="dt">shape =</span> <span class="st">&quot;.&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb312"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb312-1"><a href="spatial-analysis.html#cb312-1"></a><span class="kw">ggplot</span>(loc_sf) <span class="op">+</span></span>
+<span id="cb312-2"><a href="spatial-analysis.html#cb312-2"></a><span class="st">  </span><span class="kw">geom_sf</span>(<span class="dt">shape =</span> <span class="st">&quot;.&quot;</span>)</span></code></pre></div>
 <p><img src="10-spatial-analysis_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
 <p>This is great as we can already somewhat see the shape of Boston and Suffolk County. Since we have these Airbnb points located in space, we know we are able to associate them with their respective Census tracts.To do so we need another spatial data set which contains the shapes of each tract. In the next section we will read a dataset containing the shapes of each tract in Suffolk county. Following we will perform a spatial join to associate the points with the tracts.</p>
 </div>
@@ -419,9 +419,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">26.5</span> Connecting points to polygons</h2>
 <p>Now that we have the point locations of each Airbnb listing we need to identify which tracts they belong to. In the <code>data</code> folder there is a file called <code>suffolk_acs.geojson</code>. This is a common spatial data format which is based on <code>json</code>. The difference is that <code>geojson</code> contains a lot of fields specific to spatial data.</p>
 <p>Reading in data of this format is just as easy as in reading in a csv file. Using <code>sf::read_sf()</code> we can pass the path of the geojson file and be returned an sf object.</p>
-<div class="sourceCode" id="cb312"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb312-1"><a href="spatial-analysis.html#cb312-1"></a>acs_tracts &lt;-<span class="st"> </span><span class="kw">read_sf</span>(<span class="st">&quot;data/suffolk_acs.geojson&quot;</span>)</span>
-<span id="cb312-2"><a href="spatial-analysis.html#cb312-2"></a></span>
-<span id="cb312-3"><a href="spatial-analysis.html#cb312-3"></a>acs_tracts</span></code></pre></div>
+<div class="sourceCode" id="cb313"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb313-1"><a href="spatial-analysis.html#cb313-1"></a>acs_tracts &lt;-<span class="st"> </span><span class="kw">read_sf</span>(<span class="st">&quot;data/suffolk_acs.geojson&quot;</span>)</span>
+<span id="cb313-2"><a href="spatial-analysis.html#cb313-2"></a></span>
+<span id="cb313-3"><a href="spatial-analysis.html#cb313-3"></a>acs_tracts</span></code></pre></div>
 <pre><code>## Simple feature collection with 203 features and 1 field
 ## geometry type:  MULTIPOLYGON
 ## dimension:      XY
@@ -447,17 +447,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## &quot;name&quot;: &quot;suffolk_acs&quot;,
 ## &quot;crs&quot;: { &quot;type&quot;: &quot;name&quot;, &quot;properties&quot;: { &quot;name&quot;: &quot;urn:ogc:def:crs:OGC:1.3:CRS84&quot; } },</code></pre>
 <p>Let’s see what this file looks like!</p>
-<div class="sourceCode" id="cb315"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb315-1"><a href="spatial-analysis.html#cb315-1"></a>  <span class="kw">ggplot</span>(acs_tracts) <span class="op">+</span></span>
-<span id="cb315-2"><a href="spatial-analysis.html#cb315-2"></a><span class="st">  </span><span class="kw">geom_sf</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb316"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb316-1"><a href="spatial-analysis.html#cb316-1"></a>  <span class="kw">ggplot</span>(acs_tracts) <span class="op">+</span></span>
+<span id="cb316-2"><a href="spatial-analysis.html#cb316-2"></a><span class="st">  </span><span class="kw">geom_sf</span>()</span></code></pre></div>
 <p><img src="10-spatial-analysis_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
 <p>Wonderful! There are two stylist adjustments I’d make here so that visualizing is a little easier. The first is to change the line width to something thinner, and adjust the transparency of tracts so that they are a little lighter. This makes the map a bit easier to read all in all.</p>
-<div class="sourceCode" id="cb316"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb316-1"><a href="spatial-analysis.html#cb316-1"></a><span class="kw">ggplot</span>(acs_tracts) <span class="op">+</span></span>
-<span id="cb316-2"><a href="spatial-analysis.html#cb316-2"></a><span class="st">  </span><span class="kw">geom_sf</span>(<span class="dt">lwd =</span> <span class="fl">0.25</span>, <span class="dt">alpha =</span> <span class="fl">0.5</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb317"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb317-1"><a href="spatial-analysis.html#cb317-1"></a><span class="kw">ggplot</span>(acs_tracts) <span class="op">+</span></span>
+<span id="cb317-2"><a href="spatial-analysis.html#cb317-2"></a><span class="st">  </span><span class="kw">geom_sf</span>(<span class="dt">lwd =</span> <span class="fl">0.25</span>, <span class="dt">alpha =</span> <span class="fl">0.5</span>)</span></code></pre></div>
 <p><img src="10-spatial-analysis_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
 <p>Now, here is where understanding the grammar of graphics comes in handy. We now have two different data sets that would be good to visualize together. Recall that when we specify the data in the top level <code>ggplot()</code> call that sets the default for every single layer. If we do that with multiple objects that may cause some conflicts. We do know, however, that we can set the data per layer. So, taking these two points together, we can plot both <code>loc_sf</code> <em>and</em> <code>acs_tracts</code> on the same graph if we set the data argument in each respective <code>geom_sf()</code> layer.</p>
-<div class="sourceCode" id="cb317"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb317-1"><a href="spatial-analysis.html#cb317-1"></a><span class="kw">ggplot</span>() <span class="op">+</span></span>
-<span id="cb317-2"><a href="spatial-analysis.html#cb317-2"></a><span class="st">  </span><span class="kw">geom_sf</span>(<span class="dt">data =</span> acs_tracts, <span class="dt">lwd =</span> <span class="fl">0.25</span>, <span class="dt">alpha =</span> <span class="fl">0.5</span>) <span class="op">+</span></span>
-<span id="cb317-3"><a href="spatial-analysis.html#cb317-3"></a><span class="st">  </span><span class="kw">geom_sf</span>(<span class="dt">data =</span> loc_sf, <span class="dt">shape =</span> <span class="st">&quot;.&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb318"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb318-1"><a href="spatial-analysis.html#cb318-1"></a><span class="kw">ggplot</span>() <span class="op">+</span></span>
+<span id="cb318-2"><a href="spatial-analysis.html#cb318-2"></a><span class="st">  </span><span class="kw">geom_sf</span>(<span class="dt">data =</span> acs_tracts, <span class="dt">lwd =</span> <span class="fl">0.25</span>, <span class="dt">alpha =</span> <span class="fl">0.5</span>) <span class="op">+</span></span>
+<span id="cb318-3"><a href="spatial-analysis.html#cb318-3"></a><span class="st">  </span><span class="kw">geom_sf</span>(<span class="dt">data =</span> loc_sf, <span class="dt">shape =</span> <span class="st">&quot;.&quot;</span>)</span></code></pre></div>
 <p><img src="10-spatial-analysis_files/figure-html/unnamed-chunk-11-1.png" width="672" />
 With the above plot we can get a sense of the density of Airbnb listings in Boston. There seems to be greater density near Back Bay and Beacon Hill. It would be great to be able to know how many listings there are for each tract and the average listing price. To do this, we need to perform two joins. The first one is spatial—joining point to polygon based on which tract each point intersects. The second is to join the listings information on to the spatially joined data set. In doing this we will have utilized data from three different sources!</p>
 <div id="spatial-joins" class="section level3" number="26.5.1">
@@ -465,10 +465,10 @@ With the above plot we can get a sense of the density of Airbnb listings in Bost
 <p>Like a regular join, the intent behind a spatial join is to add the attributes of one data source to another. The utility of a spatial join comes when there is no shared attribute <em>other than</em> space. More often than not when we want to perform a spatial join we are looking for what is called the <strong>intersection</strong>. That is essentially where two spatial features touch in some manner. The other type of spatial join that we will find useful is the nearest neighbor where we take the attributes to the next closest object.</p>
 <p>To perform a spatial join we use the function <code>sf::st_join()</code> which has three main arguments: <code>x</code>, <code>y</code>, and <code>join</code>. The default join type is <code>st_intersects</code> which will join attributes (columns) from <code>y</code> where <code>x</code> <strong>intersects</strong> (meaning touches or is within). The ordering of our <code>x</code> and <code>y</code> is very important as this will be the difference between a left or a right join. This ordering also determines what type of geometry we will be returned. Whatever type of geometry is in the <code>x</code> position is what will be returned.</p>
 <p>Let’s try using <code>st_join()</code> to join the tract level information to our point data.</p>
-<div class="sourceCode" id="cb318"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb318-1"><a href="spatial-analysis.html#cb318-1"></a>points_join &lt;-<span class="st"> </span><span class="kw">st_join</span>(loc_sf, acs_tracts) </span></code></pre></div>
+<div class="sourceCode" id="cb319"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb319-1"><a href="spatial-analysis.html#cb319-1"></a>points_join &lt;-<span class="st"> </span><span class="kw">st_join</span>(loc_sf, acs_tracts) </span></code></pre></div>
 <pre><code>## although coordinates are longitude/latitude, st_intersects assumes that they are planar
 ## although coordinates are longitude/latitude, st_intersects assumes that they are planar</code></pre>
-<div class="sourceCode" id="cb320"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb320-1"><a href="spatial-analysis.html#cb320-1"></a>points_join</span></code></pre></div>
+<div class="sourceCode" id="cb321"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb321-1"><a href="spatial-analysis.html#cb321-1"></a>points_join</span></code></pre></div>
 <pre><code>## Simple feature collection with 3799 features and 2 fields
 ## geometry type:  POINT
 ## dimension:      XY
@@ -489,12 +489,12 @@ With the above plot we can get a sense of the density of Airbnb listings in Bost
 ## 10 22195  (-71.0793 42.34558) 25025010600
 ## # … with 3,789 more rows</code></pre>
 <p>This is great! We now have the <code>fips</code> (census tract code) associated with each listing <code>id</code>. But what happens when we plot the data?</p>
-<div class="sourceCode" id="cb322"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb322-1"><a href="spatial-analysis.html#cb322-1"></a><span class="kw">ggplot</span>(points_join) <span class="op">+</span></span>
-<span id="cb322-2"><a href="spatial-analysis.html#cb322-2"></a><span class="st">  </span><span class="kw">geom_sf</span>(<span class="dt">shape =</span> <span class="st">&quot;.&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb323"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb323-1"><a href="spatial-analysis.html#cb323-1"></a><span class="kw">ggplot</span>(points_join) <span class="op">+</span></span>
+<span id="cb323-2"><a href="spatial-analysis.html#cb323-2"></a><span class="st">  </span><span class="kw">geom_sf</span>(<span class="dt">shape =</span> <span class="st">&quot;.&quot;</span>)</span></code></pre></div>
 <p><img src="10-spatial-analysis_files/figure-html/unnamed-chunk-13-1.png" width="672" />
 It is the same as before. What we would like to do at this moment is to plot the tracts and color by the number of listings contained in them. This means that we need to change up the order of our join.</p>
-<div class="sourceCode" id="cb323"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb323-1"><a href="spatial-analysis.html#cb323-1"></a>polygon_join &lt;-<span class="st"> </span><span class="kw">st_join</span>(acs_tracts, loc_sf)</span>
-<span id="cb323-2"><a href="spatial-analysis.html#cb323-2"></a>polygon_join</span></code></pre></div>
+<div class="sourceCode" id="cb324"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb324-1"><a href="spatial-analysis.html#cb324-1"></a>polygon_join &lt;-<span class="st"> </span><span class="kw">st_join</span>(acs_tracts, loc_sf)</span>
+<span id="cb324-2"><a href="spatial-analysis.html#cb324-2"></a>polygon_join</span></code></pre></div>
 <pre><code>## Simple feature collection with 3814 features and 2 fields
 ## geometry type:  MULTIPOLYGON
 ## dimension:      XY
@@ -515,9 +515,9 @@ It is the same as before. What we would like to do at this moment is to plot the
 ## 10 25025100… (((-71.05147 42.28931, -71.05136 42.28933, -71.05032 42.28…  3.77e7
 ## # … with 3,804 more rows</code></pre>
 <p>Notice that there are 3,814 rows! That is well over the original 193 tracts. If we tried plotting this right away we may overwork R. What we need to do is <em>count</em> the number of observations per fips code first.</p>
-<div class="sourceCode" id="cb325"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb325-1"><a href="spatial-analysis.html#cb325-1"></a>tract_listings &lt;-<span class="st"> </span><span class="kw">count</span>(polygon_join, fips)</span>
-<span id="cb325-2"><a href="spatial-analysis.html#cb325-2"></a></span>
-<span id="cb325-3"><a href="spatial-analysis.html#cb325-3"></a>tract_listings</span></code></pre></div>
+<div class="sourceCode" id="cb326"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb326-1"><a href="spatial-analysis.html#cb326-1"></a>tract_listings &lt;-<span class="st"> </span><span class="kw">count</span>(polygon_join, fips)</span>
+<span id="cb326-2"><a href="spatial-analysis.html#cb326-2"></a></span>
+<span id="cb326-3"><a href="spatial-analysis.html#cb326-3"></a>tract_listings</span></code></pre></div>
 <pre><code>## Simple feature collection with 203 features and 2 fields
 ## geometry type:  MULTIPOLYGON
 ## dimension:      XY
@@ -539,8 +539,8 @@ It is the same as before. What we would like to do at this moment is to plot the
 ## # … with 193 more rows</code></pre>
 <p>After counting we now have our original 203 rows. This is the spatial equivalent of summarizing our data where all of the geometries of the aggregated rows (<code>fips</code>) are <strong>dissolved</strong>. Dissolving combines all of the geometries of by a shared attribute—it is <code>fips</code> in our case—into a single geometry. Since each <code>fips</code> has the same geometry,the resultant geometries are unaffected. But be aware of the behavior when grouping and summarizing sf objects!</p>
 <p>Let’s try plotting these counts now.</p>
-<div class="sourceCode" id="cb327"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb327-1"><a href="spatial-analysis.html#cb327-1"></a><span class="kw">ggplot</span>(tract_listings, <span class="kw">aes</span>(<span class="dt">fill =</span> n)) <span class="op">+</span></span>
-<span id="cb327-2"><a href="spatial-analysis.html#cb327-2"></a><span class="st">  </span><span class="kw">geom_sf</span>(<span class="dt">lwd =</span> <span class="fl">0.25</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb328"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb328-1"><a href="spatial-analysis.html#cb328-1"></a><span class="kw">ggplot</span>(tract_listings, <span class="kw">aes</span>(<span class="dt">fill =</span> n)) <span class="op">+</span></span>
+<span id="cb328-2"><a href="spatial-analysis.html#cb328-2"></a><span class="st">  </span><span class="kw">geom_sf</span>(<span class="dt">lwd =</span> <span class="fl">0.25</span>)</span></code></pre></div>
 <p><img src="10-spatial-analysis_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
 <p><a href="http://wiki.gis.com/wiki/index.php/Dissolve" class="uri">http://wiki.gis.com/wiki/index.php/Dissolve</a></p>
 <p>For a full list of spatial joins by data type I recommend visiting <a href="https://desktop.arcgis.com/en/arcmap/latest/manage-data/tables/spatial-joins-by-feature-type.htm" class="uri">https://desktop.arcgis.com/en/arcmap/latest/manage-data/tables/spatial-joins-by-feature-type.htm</a>.</p>
