@@ -235,7 +235,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="22.1" data-path="visualizing-beyond-2-dimensions.html"><a href="visualizing-beyond-2-dimensions.html#color"><i class="fa fa-check"></i><b>22.1</b> Color</a></li>
 <li class="chapter" data-level="22.2" data-path="visualizing-beyond-2-dimensions.html"><a href="visualizing-beyond-2-dimensions.html#shape-and-size"><i class="fa fa-check"></i><b>22.2</b> Shape and Size</a></li>
 </ul></li>
-<li class="chapter" data-level="23" data-path="visualizing-through-time.html"><a href="visualizing-through-time.html"><i class="fa fa-check"></i><b>23</b> Visualizing through time</a></li>
+<li class="chapter" data-level="23" data-path="visualizing-through-time.html"><a href="visualizing-through-time.html"><i class="fa fa-check"></i><b>23</b> Visualizing through time</a>
+<ul>
+<li class="chapter" data-level="23.1" data-path="visualizing-through-time.html"><a href="visualizing-through-time.html#working-with-dates"><i class="fa fa-check"></i><b>23.1</b> Working with dates</a></li>
+<li class="chapter" data-level="23.2" data-path="visualizing-through-time.html"><a href="visualizing-through-time.html#standard-visual-approach"><i class="fa fa-check"></i><b>23.2</b> Standard visual approach</a></li>
+<li class="chapter" data-level="23.3" data-path="visualizing-through-time.html"><a href="visualizing-through-time.html#animation-as-time"><i class="fa fa-check"></i><b>23.3</b> Animation as time</a></li>
+</ul></li>
 <li class="chapter" data-level="24" data-path="visualization-review.html"><a href="visualization-review.html"><i class="fa fa-check"></i><b>24</b> Visualization Review</a></li>
 <li class="part"><span><b>IV More than hammer and nails</b></span></li>
 <li class="chapter" data-level="25" data-path="multiple-data-sets.html"><a href="multiple-data-sets.html"><i class="fa fa-check"></i><b>25</b> Multiple data sets</a>
@@ -272,50 +277,166 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="visualizing-through-time" class="section level1" number="23">
 <h1><span class="header-section-number">Chapter 23</span> Visualizing through time</h1>
-<div class="sourceCode" id="cb245"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb245-1"><a href="visualizing-through-time.html#cb245-1"></a><span class="kw">library</span>(tidyverse)</span></code></pre></div>
-<pre><code>## ── Attaching packages ──────────────────────────────────────────────────────────────────────────── tidyverse 1.3.0 ──</code></pre>
-<pre><code>## ✓ ggplot2 3.3.0     ✓ purrr   0.3.3
-## ✓ tibble  3.0.0     ✓ dplyr   0.8.5
-## ✓ tidyr   1.0.2     ✓ stringr 1.4.0
-## ✓ readr   1.3.1     ✓ forcats 0.5.0</code></pre>
-<pre><code>## ── Conflicts ─────────────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
-## x dplyr::filter() masks stats::filter()
-## x dplyr::lag()    masks stats::lag()</code></pre>
-<div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb249-1"><a href="visualizing-through-time.html#cb249-1"></a><span class="kw">library</span>(gganimate)</span>
-<span id="cb249-2"><a href="visualizing-through-time.html#cb249-2"></a></span>
-<span id="cb249-3"><a href="visualizing-through-time.html#cb249-3"></a>ecometrics &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data/ecometrics.csv&quot;</span>)</span></code></pre></div>
-<pre><code>## Parsed with column specification:
-## cols(
-##   type = col_character(),
-##   measure = col_character(),
-##   year = col_double(),
-##   n = col_double()
-## )</code></pre>
-<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb251-1"><a href="visualizing-through-time.html#cb251-1"></a>annual_ecometrics &lt;-<span class="st"> </span><span class="kw">group_by</span>(ecometrics, measure, year) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb251-2"><a href="visualizing-through-time.html#cb251-2"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">n =</span> <span class="kw">sum</span>(n)) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb251-3"><a href="visualizing-through-time.html#cb251-3"></a><span class="st">  </span><span class="kw">ungroup</span>()</span></code></pre></div>
-<p>A normal plot</p>
-<div class="sourceCode" id="cb252"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb252-1"><a href="visualizing-through-time.html#cb252-1"></a>annual_ecometrics <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb252-2"><a href="visualizing-through-time.html#cb252-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(measure, n)) <span class="op">+</span></span>
-<span id="cb252-3"><a href="visualizing-through-time.html#cb252-3"></a><span class="st">  </span><span class="kw">geom_col</span>()</span></code></pre></div>
-<p><img src="04e-through-time_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
-<p>to illustrate the years</p>
-<div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb253-1"><a href="visualizing-through-time.html#cb253-1"></a>annual_ecometrics <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb253-2"><a href="visualizing-through-time.html#cb253-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(measure, n)) <span class="op">+</span></span>
-<span id="cb253-3"><a href="visualizing-through-time.html#cb253-3"></a><span class="st">  </span><span class="kw">geom_col</span>() <span class="op">+</span></span>
-<span id="cb253-4"><a href="visualizing-through-time.html#cb253-4"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="st">&quot;year&quot;</span>)</span></code></pre></div>
-<p><img src="04e-through-time_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
-<p>Anoter way to visualize this would be with a line graph where year is the x and y is the n colored by the ecometric. will also add a point layer as well as the combination makes for a good looking chart</p>
-<div class="sourceCode" id="cb254"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb254-1"><a href="visualizing-through-time.html#cb254-1"></a>annual_ecometrics <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb254-2"><a href="visualizing-through-time.html#cb254-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(year, n, <span class="dt">color =</span> measure)) <span class="op">+</span></span>
-<span id="cb254-3"><a href="visualizing-through-time.html#cb254-3"></a><span class="st">  </span><span class="kw">geom_line</span>() <span class="op">+</span></span>
-<span id="cb254-4"><a href="visualizing-through-time.html#cb254-4"></a><span class="st">  </span><span class="kw">geom_point</span>()</span></code></pre></div>
-<p><img src="04e-through-time_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p>Throughout this section, one type of visualization has been missing from our repetoire—the timeseries plot. This is because time series data is rather cumbersome to work with. Time series are unique because each observation represents some point in time. There is order inherent to the data. Because of this natural ordering of the data it makes the problem a bit trickier. But now that we have the visual tools and principles sorted out, we can apply them to time series data and visualize them as well.</p>
+<p>For this section we will work with the 2014 Big Belly data again. Our goal will be to visualize the reports by fullness over the course of the year. In this chapter we will first learn how to work with dates. Then we will use our new skills to aggregate our observations and view them over time. Next, we will discuss traditional methods of time series visualization. And finally we will quickly touch on the use of animation for viewing time-series.</p>
+<div id="working-with-dates" class="section level2" number="23.1">
+<h2><span class="header-section-number">23.1</span> Working with dates</h2>
+<p>The file that we will use is located at <code>data/big-belly-2014.csv</code>. Read in the dataset and assign it to the tibble <code>big_belly</code> and then preview it with <code>glimpse()</code>.</p>
+<div class="sourceCode" id="cb245"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb245-1"><a href="visualizing-through-time.html#cb245-1"></a><span class="kw">library</span>(tidyverse)</span>
+<span id="cb245-2"><a href="visualizing-through-time.html#cb245-2"></a></span>
+<span id="cb245-3"><a href="visualizing-through-time.html#cb245-3"></a>big_belly &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data/big-belly-2014.csv&quot;</span>)</span>
+<span id="cb245-4"><a href="visualizing-through-time.html#cb245-4"></a></span>
+<span id="cb245-5"><a href="visualizing-through-time.html#cb245-5"></a><span class="kw">glimpse</span>(big_belly)</span></code></pre></div>
+<pre><code>## Rows: 51,440
+## Columns: 6
+## $ description &lt;chr&gt; &quot;Atlantic &amp; Milk&quot;, &quot;1330 Boylston @ Jersey Street&quot;, &quot;SE B…
+## $ timestamp   &lt;dttm&gt; 2014-01-01 00:41:00, 2014-01-01 01:19:00, 2014-01-01 01:…
+## $ fullness    &lt;chr&gt; &quot;YELLOW&quot;, &quot;YELLOW&quot;, &quot;YELLOW&quot;, &quot;RED&quot;, &quot;GREEN&quot;, &quot;YELLOW&quot;, &quot;…
+## $ collection  &lt;lgl&gt; FALSE, FALSE, FALSE, FALSE, TRUE, TRUE, FALSE, TRUE, FALS…
+## $ lat         &lt;dbl&gt; 42.35870, 42.34457, 42.34818, 42.34818, 42.34933, 42.3481…
+## $ long        &lt;dbl&gt; -71.05144, -71.09783, -71.09744, -71.09744, -71.07702, -7…</code></pre>
+<p>What we can see is that the data are rather large and contains a column with the type <code>&lt;dttm&gt;</code> which is new to us. <code>&lt;dttm&gt;</code> is the way that a tibble represents a column of the type date time.</p>
+<blockquote>
+<p>Note that the formal class for date time data is <code>POSIXct</code>. Working with date times with any computer is a tricky process.</p>
+</blockquote>
+<p>Date time objects follow the format of <code>YYYY-MM-DD HH:MM:SS</code> where <code>Y</code> is year, <code>M</code> month, <code>D</code> day, <code>H</code> hours, <code>M</code> minutes, and <code>S</code> seconds.</p>
+<p>This begs the question “how can we aggregate based on time?” The easiest way to do this is to group our observations by some interval. To do this we will solicit the help of the package <a href="https://lubridate.tidyverse.org"><code>lubridate</code></a>. lubridate is part of the tidyverse, but it doesn’t loadwith the tidyverse. As such, we will have to load the package ourselves.</p>
+<div class="sourceCode" id="cb247"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb247-1"><a href="visualizing-through-time.html#cb247-1"></a><span class="kw">library</span>(lubridate)</span></code></pre></div>
+<pre><code>## 
+## Attaching package: &#39;lubridate&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:dplyr&#39;:
+## 
+##     intersect, setdiff, union</code></pre>
+<pre><code>## The following objects are masked from &#39;package:base&#39;:
+## 
+##     date, intersect, setdiff, union</code></pre>
+<p>The package contains dozens of useful functions for working with dates in R. By no means will we go over each of them.</p>
+<blockquote>
+<p>To explore all of the functions in a package click on the <code>Packages</code> pane and search for the package you are interested in. Click the hyper link with the package name and then all of the exported functions and objects <em>should</em> be documented there.</p>
+</blockquote>
+<p>We will, however quickly touch on <code>ymd()</code>, <code>month()</code>, and <code>floor_date()</code>.</p>
+<p>The first is not useful in this example since <code>read_csv()</code> already parsed the column as a date time for us, but is important nonetheless. <code>ymd()</code> will convert a character string into a date object. The letters stand for <em>year</em>, <em>month</em>, and <em>date</em>. This function parses dates in the format of yup, you guessed it, year-month-day. For example:</p>
+<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb251-1"><a href="visualizing-through-time.html#cb251-1"></a><span class="kw">ymd</span>(<span class="st">&quot;2020 01 20&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;2020-01-20&quot;</code></pre>
+<div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb253-1"><a href="visualizing-through-time.html#cb253-1"></a><span class="kw">ymd</span>(<span class="st">&quot;2020 jan. 20&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;2020-01-20&quot;</code></pre>
+<div class="sourceCode" id="cb255"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb255-1"><a href="visualizing-through-time.html#cb255-1"></a><span class="kw">ymd</span>(<span class="st">&quot;20, january-20&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;2020-01-20&quot;</code></pre>
+<p>There are others such as <code>mdy()</code> and <code>dmy()</code> which you can use to parse dates as well.</p>
+<blockquote>
+<p>The next time you are trying to parse a date think about the way it is formatted. Does the year precede or follow the month?</p>
+</blockquote>
+<p>Immediately useful to us is the <code>month()</code> function. This will extract the month component of a given date.</p>
+<div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb257-1"><a href="visualizing-through-time.html#cb257-1"></a><span class="kw">month</span>(<span class="st">&quot;2020-01-01&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] 1</code></pre>
+<p>The above returned the value of <code>1</code> because January is represented by 1. If we wished to return the full name of the month we set the argument <code>label = TRUE</code>.</p>
+<div class="sourceCode" id="cb259"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb259-1"><a href="visualizing-through-time.html#cb259-1"></a><span class="kw">month</span>(<span class="st">&quot;2020-01-01&quot;</span>, <span class="dt">label =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<pre><code>## [1] Jan
+## 12 Levels: Jan &lt; Feb &lt; Mar &lt; Apr &lt; May &lt; Jun &lt; Jul &lt; Aug &lt; Sep &lt; ... &lt; Dec</code></pre>
+<p>Furthermore, we can tell lubridate to not abbreviate the months by setting <code>abbr = FALSE</code>.</p>
+<div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb261-1"><a href="visualizing-through-time.html#cb261-1"></a><span class="kw">month</span>(<span class="st">&quot;2020-01-01&quot;</span>, <span class="dt">label =</span> <span class="ot">TRUE</span>, <span class="dt">abbr =</span> <span class="ot">FALSE</span>)</span></code></pre></div>
+<pre><code>## [1] January
+## 12 Levels: January &lt; February &lt; March &lt; April &lt; May &lt; June &lt; ... &lt; December</code></pre>
+<p>We can use the above function to extract the months from our Big Belly dataset. This will be extremely useful in aggregation. The one limitation, however, is that if there were another year present we would be grouping observations from both years into the the same month bucket. To avoid this, we can use the function <code>floor_date()</code>. <code>floor_date()</code> takes a date object and returns the closest date rounding down to a given unit. This may be best explained through an example. Given the date March 15th, 2020, let us round down to the near units <code>"week"</code>, <code>"month"</code>, and <code>"year"</code>.</p>
+<div class="sourceCode" id="cb263"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb263-1"><a href="visualizing-through-time.html#cb263-1"></a><span class="co"># create date object</span></span>
+<span id="cb263-2"><a href="visualizing-through-time.html#cb263-2"></a>mar_<span class="dv">15</span> &lt;-<span class="st"> </span><span class="kw">ymd</span>(<span class="st">&quot;2020-03-15&quot;</span>)</span>
+<span id="cb263-3"><a href="visualizing-through-time.html#cb263-3"></a></span>
+<span id="cb263-4"><a href="visualizing-through-time.html#cb263-4"></a><span class="co"># round to week</span></span>
+<span id="cb263-5"><a href="visualizing-through-time.html#cb263-5"></a><span class="kw">floor_date</span>(mar_<span class="dv">15</span>, <span class="dt">unit =</span> <span class="st">&quot;week&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;2020-03-15&quot;</code></pre>
+<div class="sourceCode" id="cb265"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb265-1"><a href="visualizing-through-time.html#cb265-1"></a><span class="co"># round to month</span></span>
+<span id="cb265-2"><a href="visualizing-through-time.html#cb265-2"></a><span class="kw">floor_date</span>(mar_<span class="dv">15</span>, <span class="dt">unit =</span> <span class="st">&quot;month&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;2020-03-01&quot;</code></pre>
+<div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb267-1"><a href="visualizing-through-time.html#cb267-1"></a><span class="co"># round to year</span></span>
+<span id="cb267-2"><a href="visualizing-through-time.html#cb267-2"></a><span class="kw">floor_date</span>(mar_<span class="dv">15</span>, <span class="dt">unit =</span> <span class="st">&quot;year&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;2020-01-01&quot;</code></pre>
+<p>With these new tools lets modify our <code>big_belly</code> tibble by creating two new columns <code>month</code> (with the labels) and <code>week</code> using <code>month()</code> and <code>floor_date()</code> respectively and assign the result to an object called <code>bb</code>.</p>
+<div class="sourceCode" id="cb269"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb269-1"><a href="visualizing-through-time.html#cb269-1"></a>bb &lt;-<span class="st"> </span>big_belly <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb269-2"><a href="visualizing-through-time.html#cb269-2"></a><span class="st">  </span><span class="kw">mutate</span>(</span>
+<span id="cb269-3"><a href="visualizing-through-time.html#cb269-3"></a>    <span class="dt">month =</span> <span class="kw">month</span>(timestamp, <span class="dt">label =</span> <span class="ot">TRUE</span>),</span>
+<span id="cb269-4"><a href="visualizing-through-time.html#cb269-4"></a>    <span class="dt">week =</span> <span class="kw">floor_date</span>(timestamp, <span class="dt">unit =</span> <span class="st">&quot;week&quot;</span>)</span>
+<span id="cb269-5"><a href="visualizing-through-time.html#cb269-5"></a>  )</span>
+<span id="cb269-6"><a href="visualizing-through-time.html#cb269-6"></a></span>
+<span id="cb269-7"><a href="visualizing-through-time.html#cb269-7"></a><span class="kw">slice</span>(bb, <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 5 x 8
+##   description timestamp           fullness collection   lat  long month
+##   &lt;chr&gt;       &lt;dttm&gt;              &lt;chr&gt;    &lt;lgl&gt;      &lt;dbl&gt; &lt;dbl&gt; &lt;ord&gt;
+## 1 Atlantic &amp;… 2014-01-01 00:41:00 YELLOW   FALSE       42.4 -71.1 Jan  
+## 2 1330 Boyls… 2014-01-01 01:19:00 YELLOW   FALSE       42.3 -71.1 Jan  
+## 3 SE Brookli… 2014-01-01 01:32:00 YELLOW   FALSE       42.3 -71.1 Jan  
+## 4 SE Brookli… 2014-01-01 01:34:00 RED      FALSE       42.3 -71.1 Jan  
+## 5 Huntington… 2014-01-01 02:10:00 GREEN    TRUE        42.3 -71.1 Jan  
+## # … with 1 more variable: week &lt;dttm&gt;</code></pre>
+</div>
+<div id="standard-visual-approach" class="section level2" number="23.2">
+<h2><span class="header-section-number">23.2</span> Standard visual approach</h2>
+<p>When we visualize time we need to consider how we humans cognitively and visually perceive time. Time is linear. It follow a path from start to end. Because of this we want to (almost) always plot our time dimension on the horizontal x axis as time proceeds forwards not up or down. Perhaps as a product of these restrictions there are not many variations on how we can visualize time. Two plots reign in time-series: the line and the bar plot.</p>
+<p>We can take our <code>bb</code> tibble and create a barchart of the total number of observations per month.</p>
+<div class="sourceCode" id="cb271"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb271-1"><a href="visualizing-through-time.html#cb271-1"></a><span class="kw">count</span>(bb, month) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb271-2"><a href="visualizing-through-time.html#cb271-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(month, n)) <span class="op">+</span></span>
+<span id="cb271-3"><a href="visualizing-through-time.html#cb271-3"></a><span class="st">  </span><span class="kw">geom_col</span>()</span></code></pre></div>
+<p><img src="04e-through-time_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<p>We can add a few more characters to the above code chunk so we can compare fullness over the months as well.</p>
+<div class="sourceCode" id="cb272"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb272-1"><a href="visualizing-through-time.html#cb272-1"></a><span class="kw">count</span>(bb, month, fullness) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb272-2"><a href="visualizing-through-time.html#cb272-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(month, n, <span class="dt">fill =</span> fullness)) <span class="op">+</span></span>
+<span id="cb272-3"><a href="visualizing-through-time.html#cb272-3"></a><span class="st">  </span><span class="kw">geom_col</span>()</span></code></pre></div>
+<p><img src="04e-through-time_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<p>Before we continue, we have to address the elephant in the room. We just made a plot with a legend that makes no sense. <code>GREEN</code> is mapped to red, <code>RED</code> is mapped to green, and <code>YELLOW</code> is mapped to blue. That’s not good. We can fix this by adding manually mapping the color using one of the scale functions <code>scale_fill_manual(values = c("green", "red", "yellow"))</code>. Now back to the task at hand—time series.</p>
+<p>The stacked barchart above runs into the same limitations mentioned previously. And given the number of different time groups creating a dodged bar chart will become to cluttered by putting 36 total bars on there. We could consider faceting.</p>
+<div class="sourceCode" id="cb273"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb273-1"><a href="visualizing-through-time.html#cb273-1"></a><span class="kw">count</span>(bb, month, fullness) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb273-2"><a href="visualizing-through-time.html#cb273-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(fullness, n, <span class="dt">group =</span> month)) <span class="op">+</span></span>
+<span id="cb273-3"><a href="visualizing-through-time.html#cb273-3"></a><span class="st">  </span><span class="kw">geom_col</span>() <span class="op">+</span><span class="st"> </span></span>
+<span id="cb273-4"><a href="visualizing-through-time.html#cb273-4"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="st">&quot;month&quot;</span>)</span></code></pre></div>
+<p><img src="04e-through-time_files/figure-html/unnamed-chunk-11-1.png" width="672" />
+This is okay, but again, still too cluttered. In this scenario we should consider the use of a line graph. The line graph is the de facto time series plot. The lines connect points in time. Achieving this with ggplot is rather straight forward. We will put our time dimension on the x axis and add the <code>geom_line()</code> layer. By default <code>geom_line()</code> doesn’t know what points to connect to each other when there is more than one per x value. So in our case we need to tell ggplot which points to connect by setting the <code>group</code> aesthetic. Since we want to group together the lines by <code>fullness</code> level set <code>group</code> as well as <code>color</code> to <code>fullness</code>. We can step up the plotting game by also</p>
+<div class="sourceCode" id="cb274"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb274-1"><a href="visualizing-through-time.html#cb274-1"></a><span class="kw">count</span>(bb, month, fullness) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb274-2"><a href="visualizing-through-time.html#cb274-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(month, n, <span class="dt">group =</span> fullness, <span class="dt">color =</span> fullness)) <span class="op">+</span></span>
+<span id="cb274-3"><a href="visualizing-through-time.html#cb274-3"></a><span class="st">  </span><span class="kw">geom_line</span>()</span></code></pre></div>
+<p><img src="04e-through-time_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<p>We can step up our plotting game by also adding a layer of points on top of the line to accentuate our lines.</p>
+<div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb275-1"><a href="visualizing-through-time.html#cb275-1"></a><span class="kw">count</span>(bb, month, fullness) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb275-2"><a href="visualizing-through-time.html#cb275-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(month, n, <span class="dt">group =</span> fullness, <span class="dt">color =</span> fullness)) <span class="op">+</span></span>
+<span id="cb275-3"><a href="visualizing-through-time.html#cb275-3"></a><span class="st">  </span><span class="kw">geom_line</span>() <span class="op">+</span><span class="st"> </span></span>
+<span id="cb275-4"><a href="visualizing-through-time.html#cb275-4"></a><span class="st">  </span><span class="kw">geom_point</span>()</span></code></pre></div>
+<p><img src="04e-through-time_files/figure-html/unnamed-chunk-13-1.png" width="672" />
+The three types are graphs are all that you may ever truly need when visualizing time. But sometimes it’s nice to go over the top and add all of the frills. Often a dynamic visualization may be more persuasive than a static one.For this, we can use animation and the <code>gganimate</code> package.</p>
+</div>
+<div id="animation-as-time" class="section level2" number="23.3">
+<h2><span class="header-section-number">23.3</span> Animation as time</h2>
+<p>In 2008 researchers at Microsoft and a scholar from Georgia Institute of Technology published a paper titled <em>Effectiveness of Animation in Trend Visualization</em><a href="#fn30" class="footnote-ref" id="fnref30"><sup>30</sup></a>. This paper explored the reaction to a talk from 2006 which captured the attention of many by using animation to visualize global trends in health. That TED talk by Hans Rosling was a moving utilization of data visualization<a href="#fn31" class="footnote-ref" id="fnref31"><sup>31</sup></a>. But why? This paper presented interactive and static visualizations to discover people’s perspective on animation and its alternatives. They found that</p>
+<blockquote>
+<p>“users really liked the animation view: Study participants described it as”fun“,”exciting“, and even”emotionally touching." At the same time, though, some participants found it confusing: “the dots flew everywhere.”<a href="#fn32" class="footnote-ref" id="fnref32"><sup>32</sup></a></p>
+</blockquote>
+<p>We now have scientific backing that animation is pretty good but also we’re unsure—which seems to be in line with the rest of science. We will take the above quote as a measure of caution. That we <em>can</em> creaate animations but also be careful with our use of them. For the remainder of this chapter we will learn about the the extension to ggplot2, gganimate. gganimate extends ggplot by extending the grammar to include elements pertaining solely to animation.</p>
+<p>When working with gganimate we need to think in the context of <em>frames</em>. Each frame will be a cross-section of our data. Or you can think of each frame a still in our film. In the context of time-series each frame will be our period of time. So if we continue with our Big Belly example above, each frame can be thought of as each month.</p>
+<p>To create animations we will need to install four packages: <code>gganimate</code>, <code>gifski</code> (what a brilliant name), <code>png</code>, and <code>transformr</code>. You can do so by running <code>install.packages(c("gganimate", "gifski", "png", "transformr"))</code>.</p>
+<p>For extending ggplot2, gganimate adds three main types of layers to ggplot. There are most importantly the <code>transition_*()</code>s and the <code>enter_*()</code> and <code>exit_*()</code> layers. In this chapter we will only address the <code>transition_*()</code> layers. The transitions will be used to move through our time dimension. For working with time data we will use <code>transition_states()</code> and <code>transition_reveal()</code>. These are best used with bar charts and line plot respectively.</p>
+<p>Since we will be changing our frames by our time dimension—<code>month</code> in this case—we start building our ggplot without it included. So, to create an animation of the counts by fullness by month we actually just start by visualizing the total counts.</p>
+<div class="sourceCode" id="cb276"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb276-1"><a href="visualizing-through-time.html#cb276-1"></a>(p &lt;-<span class="st"> </span><span class="kw">count</span>(bb, month, fullness) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb276-2"><a href="visualizing-through-time.html#cb276-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(fullness, n)) <span class="op">+</span></span>
+<span id="cb276-3"><a href="visualizing-through-time.html#cb276-3"></a><span class="st">  </span><span class="kw">geom_col</span>())</span></code></pre></div>
+<p><img src="04e-through-time_files/figure-html/unnamed-chunk-14-1.png" width="672" />
+All that is needed to add animation to this plot is a transition layer. For the use of a bar chart we can use <code>transition_states(states)</code> where states is the unquoted name of the column that wil be transitioned through.</p>
+<div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb277-1"><a href="visualizing-through-time.html#cb277-1"></a><span class="kw">library</span>(gganimate)</span>
+<span id="cb277-2"><a href="visualizing-through-time.html#cb277-2"></a></span>
+<span id="cb277-3"><a href="visualizing-through-time.html#cb277-3"></a>p <span class="op">+</span><span class="st"> </span><span class="kw">transition_states</span>(month)  </span></code></pre></div>
+<p><img src="04e-through-time_files/figure-html/unnamed-chunk-15-1.gif" /><!-- --></p>
+<p>This is awesome! We’ve created an animation 😮. The bars change heigh with each change of state. The only bummer is that we don’t know what states the animation is going through! When the animation is made there are four temporary variables made available for labeling. The documentation for <code>transition_states()</code> notes that the following variables are available<a href="#fn33" class="footnote-ref" id="fnref33"><sup>33</sup></a>.</p>
+<ul>
+<li><strong>transitioning</strong> is a boolean indicating whether the frame is part of the transitioning phase</li>
+<li><strong>previous_state</strong> The name of the last state the animation was at</li>
+<li><strong>closest_state</strong> The name of the state closest to this frame</li>
+<li><strong>next_state</strong> The name of the next state the animation will be part of</li>
+</ul>
+<p>We can add a label layer to make this much more informative. To reference these variables we can use glue like quote strings with the above variables.</p>
+<div class="sourceCode" id="cb278"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb278-1"><a href="visualizing-through-time.html#cb278-1"></a>p <span class="op">+</span><span class="st"> </span></span>
+<span id="cb278-2"><a href="visualizing-through-time.html#cb278-2"></a><span class="st">  </span><span class="kw">transition_states</span>(month)  <span class="op">+</span></span>
+<span id="cb278-3"><a href="visualizing-through-time.html#cb278-3"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;{closest_state}&quot;</span>)</span></code></pre></div>
+<p><img src="04e-through-time_files/figure-html/unnamed-chunk-16-1.gif" /><!-- --></p>
 <p>another fun way to do this is to make an animation. We can create an animation of our barchart where we transition through the different years.</p>
 <p>Making an animation is as simple as adding an extra layer.</p>
 <p>Before we do this we need to make sure we have the requisite packages</p>
 <p>please install the following make sure the below packages are available</p>
-<p>install.packages(c(“gganimate”, “gifski”, “png”))</p>
 <ul>
 <li><p>also need <code>transformr</code> to transition between points and lines</p></li>
 <li><p>transition_states(year,
@@ -337,6 +458,16 @@ group_by(ecometrics, measure, year) %&gt;%
   geom_point() +
   transition_reveal(year)</code></pre>
 
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="30">
+<li id="fn30"><p><a href="https://www.cc.gatech.edu/~stasko/papers/infovis08-anim.pdf">Effectiveness of Animation in Trend Visualization</a><a href="visualizing-through-time.html#fnref30" class="footnote-back">↩︎</a></p></li>
+<li id="fn31"><p><a href="https://www.ted.com/talks/hans_rosling_the_best_stats_you_ve_ever_seen/transcript">Hans Rosling</a><a href="visualizing-through-time.html#fnref31" class="footnote-back">↩︎</a></p></li>
+<li id="fn32"><p><a href="https://www.cc.gatech.edu/~stasko/papers/infovis08-anim.pdf">Effectiveness of Animation in Trend Visualization</a><a href="visualizing-through-time.html#fnref32" class="footnote-back">↩︎</a></p></li>
+<li id="fn33"><p><a href="https://gganimate.com/reference/transition_states.html"><code>transition_states()</code></a><a href="visualizing-through-time.html#fnref33" class="footnote-back">↩︎</a></p></li>
+</ol>
 </div>
             </section>
 
