@@ -14,13 +14,7 @@ Let us revisit the `commute`, and specifically the rate of commuters who travel 
 ```r
 library(tidyverse)
 
-commute <- read_csv("data/ACS_1317_TRACT.csv") %>% 
-  select(
-    county,
-    starts_with("commute"),
-    starts_with("by"),
-    med_house_income
-  ) 
+commute <- read_csv("data/gba_commute.csv")
 ```
 
 
@@ -30,7 +24,7 @@ It is of course of interest to identify the average rate of 30-60 minute commuti
 ```r
 ggplot(commute, aes(commute3060)) +
   geom_histogram(bins = 20)
-#> Warning: Removed 14 rows containing non-finite values (stat_bin).
+#> Warning: Removed 6 rows containing non-finite values (stat_bin).
 ```
 
 <img src="03e-summary-stats_files/figure-html/unnamed-chunk-3-1.png" width="672" />
@@ -68,13 +62,13 @@ Note that each of the functions used above have an argument called `na.rm`. `na.
 
 ```r
 mean(commute_rate, na.rm = TRUE)
-#> [1] 0.3165169
+#> [1] 0.3896481
 
 median(commute_rate, na.rm = TRUE)
-#> [1] 0.3179833
+#> [1] 0.3921988
 
 sd(commute_rate, na.rm = TRUE)
-#> [1] 0.110289
+#> [1] 0.08624757
 ```
 
 Let us look at one last example: identifying the range. The `range()` function returns the minimum and the maximum values.

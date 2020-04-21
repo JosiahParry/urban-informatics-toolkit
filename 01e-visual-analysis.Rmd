@@ -8,13 +8,13 @@ In the next part of this book we will introduce to you visual data exploration t
 
 The below image from R for Data Science is renowned for its representation of the data analysis workflow. The concept map encompasses the need to get data (import), clean it up (tidy), explore, and finally communicate insights. The box in blue is a representation of EDA. Within EDA we will find ourselves transforming our data—creating new variables, aggregating, etc.—visualizing it, and creating statistical models. 
 
-![](https://d33wubrfki0l68.cloudfront.net/795c039ba2520455d833b4034befc8cf360a70ba/558a5/diagrams/data-science-explore.png)
+![](static/data-science-explore.png)
 
 This chapter will focus on the visualization step of EDA. We have all heard the trope that "an image is worth a thousand words." I'd take a leap and say that a good visualization is worth ten thousand words. An older statistical manual from the National Institute of Standards and Technology (NIST) beautifully lays out the role that visualization plays in EDA.
 
-> The reason for the heavy reliance on graphics is that by its very nature the main role of EDA is to open-mindedly explore, and graphics gives the analysts unparalleled power to do so, enticing the data to reveal its structural secrets, and being always ready to gain some new, often unsuspected, insight into the data. In combination with the natural pattern-recognition capabilities that we all possess, graphics provides, of course, unparalleled power to carry this out.
+> The reason for the heavy reliance on graphics is that by its very nature the main role of EDA is to open-mindedly explore, and graphics gives the analysts unparalleled power to do so, enticing the data to reveal its structural secrets, and being always ready to gain some new, often unsuspected, insight into the data. In combination with the natural pattern-recognition capabilities that we all possess, graphics provides, of course, unparalleled power to carry this out.[^nist]
 
-[source](https://www.itl.nist.gov/div898/handbook/eda/section1/eda11.htm)
+[source]()
 
 In the following section, you will become acquainted with the graphical R package `ggplot2` for visual analysis and the American Community Survey. We will walk through the process building a chart from the ground up and drawing inferences from it along the way.
 
@@ -114,11 +114,11 @@ We will begin constructing our first visualization with the `ggplot()` **functio
 ggplot(acs_edu)
 ```
  
-Notice that this plot is entirely empty. This is because we have not defined what it is that we want to visualize. ggplot uses what is called a grammar of graphics (this is expanded upon in depth in the _Visualizing Trends and Relationships_ chapter) which requires us to sequentiallly build our graphs by first defining what data and variables will be visualized and then adding layers to the plot.
+Notice that this plot is entirely empty. This is because we have not defined what it is that we want to visualize. ggplot uses what is called a grammar of graphics (this is expanded upon in depth in the _Visualizing Trends and Relationships_ chapter) which requires us to sequentially build our graphs by first defining what data and variables will be visualized and then adding layers to the plot.
 
 The next step we need to take is to define which columns we want to visualize. These are called the _aesthetics_ and they are defined using the `aes()` function which is supplied to the `mapping` argument. The purpose of `aes()` is to tell ggplot which columns are mapped to what. The most important and fundamental of these are the `x` and `y` arguments. These refer to the x and y axes in the chart that we will begin to make.
 
-Before we begin to analyze the relationship between `med_house_income` and `bach` (bachelor's degree attainment rate), we ought to do our due dilligence of looking at the distribution of each of these first. Let us start with the `med_house_income` column. When exploring only a single variable, we want to supply that to the `x` argument of `aes()`.
+Before we begin to analyze the relationship between `med_house_income` and `bach` (bachelor's degree attainment rate), we ought to do our due diligence of looking at the distribution of each of these first. Let us start with the `med_house_income` column. When exploring only a single variable, we want to supply that to the `x` argument of `aes()`.
 
 ```{r}
 ggplot(acs_edu, aes(x = med_house_income))
@@ -228,7 +228,6 @@ You've now completed your first visual analysis. You've learned how to create pu
 
 This chapter provided you with data that was used in our visualization exercises. You're going to want to be able to visualize and analyze your own data. The next chapter introduces you reading data and some of the most common file formats you may encounter.
 
-
 [^12]: https://www.census.gov/history/www/through_the_decades/index_of_questions/1790_1.html
 [^13]: https://www2.census.gov/programs-surveys/acs/methodology/design_and_methodology/acs_design_methodology_report_2014.pdf
 [^14]: https://www.census.gov/programs-surveys/acs/methodology.html
@@ -239,12 +238,4 @@ This chapter provided you with data that was used in our visualization exercises
 [^censorwiki]: https://en.wikipedia.org/wiki/Censoring_(statistics)
 [^censorstack]: https://stats.stackexchange.com/questions/49443/how-to-model-this-odd-shaped-distribution-almost-a-reverse-j
 [^acsedu]: https://www.census.gov/data/tables/2018/demo/education-attainment/cps-detailed-tables.html
-
-
-
-* https://data.boston.gov/dataset/311-service-requests
-* https://data.boston.gov/dataset/blue-bikes-system-data
-* https://www.theguardian.com/us-news/datablog/2020/feb/27/2020-us-census-black-people-mistakes-count
-
-
-
+[^nist]: NIST Handbook. https://www.itl.nist.gov/div898/handbook/eda/section1/eda11.htm.

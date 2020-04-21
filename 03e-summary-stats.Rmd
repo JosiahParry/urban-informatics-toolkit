@@ -15,13 +15,7 @@ Let us revisit the `commute`, and specifically the rate of commuters who travel 
 ```{r message=FALSE}
 library(tidyverse)
 
-commute <- read_csv("data/ACS_1317_TRACT.csv") %>% 
-  select(
-    county,
-    starts_with("commute"),
-    starts_with("by"),
-    med_house_income
-  ) 
+commute <- read_csv("data/gba_commute.csv")
 ```
 
 

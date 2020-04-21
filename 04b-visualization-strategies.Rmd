@@ -2,14 +2,6 @@
 
 ```{r, include=FALSE, message=FALSE}
 source("common.R")
-library(tidyverse)
-
-acs_messy <- read_csv("data/ACS_1317_TRACT.csv")
-
-acs <- acs_messy %>% 
-  separate(name, sep = ", ", into = c("tract", "county", "state")) %>% 
-  mutate(tract = str_remove(tract, "Census Tract ")) %>% 
-  na.omit()
 ```
 
 
@@ -18,6 +10,15 @@ We now have a language for creating graphics. Next we must build the intuition o
 In most cases a data analysis will start with a visualization. And that visualization will be dictated by the characteristics of the data available to us. In intro to statistics you probably learned about the four types of data which are: nominal and ordinal, together referred to as _categorical_;  interval and ratio, together referred to as _numerical_ We're going to contextualize these in R terms where _categorical_ is `character` and _numerical_ is `numeric`.
 
 Categorical and numeric have different are treated differently and thus lead to different kinds of visualizations. When we refer to categorical or character, we are often thinking of groups or a label. In the case where we don't have a quantifiable numeric value, we often count those variables.
+
+Throughout this chapter we will use another ACS data with variables focused towards housing. This file lives at `data/acs-housing.csv`.
+
+```{r message=FALSE}
+library(tidyverse)
+
+acs <- read_csv("data/acs-housing.csv")
+```
+
 
   
 ## Univariate visualizations
@@ -419,7 +420,7 @@ The lollipop plot is the barchart's more fun cousin. Rather than a big thick bar
 
 We can copy our previous barplot code and only replace the geom to produce a lollipop plot! Since we are keeping `med_bach` in the x position we will need to specify `horizontal = TRUE` in `geom_lollipop()`. This is a quirk of the geom but an easy one to get past. I recommend setting `horizontal = FALSE` to get a firmer understanding of what is happening. There is nothing quite like purposefully breaking your code to figure out what is happening! 
 
-```{r}
+```{r message=FALSE, warning=FALSE}
 acs %>% 
   group_by(county) %>% 
   summarise(med_bach = median(bach)) %>% 
@@ -432,13 +433,11 @@ acs %>%
 
 You've now built up a repetoire of different types of visualizations that you can use in your own analyses. You've built an intuition of what types of visualization are suitable given the types of variables at your disposal. 
 
-In the next chapter we will explore ways of improving upon the plots that we already know how to build. We will explore further the _Layered Grammer of Graphics_ how how to improve upon our charts using scales, and facets, and breifly touch upon coordinates. 
+In the next chapter we will explore ways of improving upon the plots that we already know how to build. We will explore further the _Layered Grammar of Graphics_ how how to improve upon our charts using scales, and facets, and breifly touch upon coordinates. 
 
 
 
 
-[^wickham]: https://vita.had.co.nz/papers/layered-grammar.pdf
-[^bin2d]: https://ggplot2.tidyverse.org/reference/geom_bin2d.html
-https://cfss.uchicago.edu/notes/grammar-of-graphics/
+[^wickham]: A Layered Grammar of Graphics. Hadley Wickham. https://vita.had.co.nz/papers/layered-grammar.pdf
+[^bin2d]: `geom_bin2d()`. https://ggplot2.tidyverse.org/reference/geom_bin2d.html
 
-recommended reading: [A Layered Grammar of Graphics](https://vita.had.co.nz/papers/layered-grammar.pdf)

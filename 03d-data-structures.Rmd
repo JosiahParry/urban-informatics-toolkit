@@ -7,19 +7,19 @@ source("common.R")
 
 There is a topic I have been skirting around for some time now and I think it is time that we have to have a rather important conversation. It's one that is almost never fun but is quite necessary because without it, there may be many painful lessons learned in the future. We're going to spend this next chapter talking about data structures—but not all of them! We'll only cover the three most common and, by the end of this, it is my hope you will have a much stronger idea of _what_ you are working with and _why_ it behaves the way it does. 
 
-We will cover vectors, data frames rather briefly, and lists. We'll talk about some of their defining characteristics and how we can interact with them. Often the theory behind these object types are ommitted, but I am of the mind that learning this early on will pay off in dividends. Take a deep breath before we dive in and remind yourself that it ain't nothin' but a thing.
+We will cover vectors, data frames rather briefly, and lists. We'll talk about some of their defining characteristics and how we can interact with them. Often the theory behind these object types are omitted, but I am of the mind that learning this early on will pay off in dividends. Take a deep breath before we dive in and remind yourself that it ain't nothin' but a thing.
 
-This section is undoubtedly the most theoretically dense from a software perspective of this entire book. These concepts may be a little bit difficult to grasp at the frist go around pllllldc articularly if you do not have a programming background. But do not be discouraged! This is tough and there is no way to around it, so might as well go through it. If you can grasp this chapter programming in R will become so much easier. You will develop an intuition of why certain things happen to your data and how to interact with other data structures. 
+This section is undoubtedly the most theoretically dense from a software perspective of this entire book. These concepts may be a little bit difficult to grasp at the first go around  particularly if you do not have a programming background. But do not be discouraged! This is tough and there is no way to around it, so might as well go through it. If you can grasp this chapter programming in R will become so much easier. You will develop an intuition of why certain things happen to your data and how to interact with other data structures. 
 
 ## Atomic Vectors
 
 I like to think of the atomic vector much like the atom—that is as the building block of any R object. You've actually been working with atomic vectors this entire time. But we haven't been very explicit about this yet. Up until this point we have been working mainly with tibbles. And here is the secret: each column of a tibble is _actually_  an atomic vector.
 
-What makes a vector a atomic is that it can only be **a single data type** and that they are _one-dimensional_—opposed to tibbles which are two-dimensional (https://swcarpentry.github.io/r-novice-inflammation/13-supp-data-structures/). You may have noticed that every value of a column is of the same data type. This means that they are rather strict to work with and for good reason. Imagine you wanted to multiple a column by 10, what would happen if a few of the values in the column were actually written out as text? Let's try exploring this idea. 
+What makes a vector a atomic is that it can only be **a single data type** and that they are _one-dimensional_—opposed to tibbles which are two-dimensional[^sw]. You may have noticed that every value of a column is of the same data type. This means that they are rather strict to work with and for good reason. Imagine you wanted to multiple a column by 10, what would happen if a few of the values in the column were actually written out as text? Let's try exploring this idea. 
 
 The most common way to create a vector in R is to use the `c()` function. This stands for _combine_. We can `c`ombine as many elements as we want into a single vector using `c()`. Each element of the vector is it's own argument (separated by a comma).
 
-For example if we wanted to create a vector of [Boston's unemployment rate](https://data.bls.gov/timeseries/LAUMT257165000000003?amp%253bdata_tool=XGtable&output_view=data&include_graphs=true) rate for each month in 2019 that we have data for (until October as of this writing on 2019-12-18) we could write the below. We will save it in a a vector called `unemp`.
+For example if we wanted to create a vector of [Boston's unemployment rate](https://data.bls.gov/timeseries/LAUMT257165000000003?amp%253bdata_tool=XGtable&output_view=data&include_graphs=true) rate for each month in 2019 that we have data for (until October as of this writing on Dec. 18th, 2019) we could write the below. We will save it in a a vector called `unemp`[^unemp].
 
 ```{r}
 unemp <- c(3.2, 2.8, 2.8, 2.4, 2.8, 2.9, 2.7, 2.6, 2.7, 2.3)
@@ -163,7 +163,7 @@ index <- unemp > avg_unemp
 index
 ```
 
-Notice that the `NA`s stayed `NA`? They can be pesky. Hadley writes in Advanced R "missing values tend to be infectious: most computations involving a missing value will return another missing value." (https://adv-r.hadley.nz/vectors-chap.html)
+Notice that the `NA`s stayed `NA`? They can be pesky. Hadley writes in Advanced R "missing values tend to be infectious: most computations involving a missing value will return another missing value."[^advr]
 
 
 ```{r}
@@ -268,7 +268,7 @@ unemp_tbl %>%
   slice(10)
 ```
 
-to grab the 10th value of the first column. But again, you still have a tibble and you are not able to use that directly like a standalone number.
+To grab the 10th value of the first column. But again, you still have a tibble and you are not able to use that directly like a standalone number.
 
 We can again use brackets to subset the our R object. But data frames are two dimensional, so we need to specify the indexes in two dimensions. If you have made a hand drawn graph used a cartesian plane, which I assume you all have, this will is the same idea. With a cartesian plane we can identify any point with a combination of two values: x and y. x refers to the horizontal axis and y the vertical axis. When we put the cartesian plane in the same frame of reference as the rectangular data frame we envision our rows as the x and our columns as the y. 
 
@@ -405,3 +405,7 @@ tibble(
   mutate(above_avg = unemp_rate > pluck(unemp_l, 3))
 ```
 
+
+[^sw]: Data Types and Structures. Software Carpentries. https://swcarpentry.github.io/r-novice-inflammation/13-supp-data-structures/
+[^unemp]: Boston Unemployment https://data.bls.gov/timeseries/LAUMT257165000000003?amp%253bdata_tool=XGtable&output_view=data&include_graphs=true.
+[^advr]: Vectors. Advanced R. https://adv-r.hadley.nz/vectors-chap.html.

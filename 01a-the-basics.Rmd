@@ -25,11 +25,9 @@ R is unique from other commercial statistical software such as stata and SPSS. V
 
 > 4. The freedom to distribute copies of your modified versions to others (freedom 3). By doing this you can give the whole community a chance to benefit from your changes. Access to the source code is a precondition for this. [^gnu]
 
-
 These freedoms are a large part of the success of R as a language. Because of the free nature of R, academics and industry experts from around the globe are contributing to the language. This means that many new statistical techniques are first implemented in R. 
 
 The contributions that people make to R are changing the ways in which people perform data analysis. Because of this, we need to start contextualizing the tooling we use as **part of** the scientific process—not apart from it. When you engage in your analyses and work on contribute to the vast body of scientific literature, remember that without the tools you are using, much of it would not be possible. When you engage in science, think to yourself how you are adhering to the four essential freedoms. Are you enabling others to do with your findings as they wish? Will your research be accessible to the greater community? What will you do to "give the whole community a chance to benefit from your [work]?
-
 
 ## The RStudio IDE
 
@@ -45,33 +43,27 @@ Let's get familiar with RStudio. You need to know where you are when working wit
 
 The above graphic is borrowed from RStudio, PBC's Thomas Mock's Introduction to the Tidyvers[^jtm] 
 
-
 ### The Editor
 
 The editor. The top left pane. This is where you will actually write your code. You will see in the image above that there is tab with the name of the R file being edited, `mpg-plot.R`. The simplest way in which R code is written, is in documents with the `.R` extention. Think of the R script as your word document. This is where you put the writing that you want to keep. 
 
 There is also a second type of R file called an RMarkdown document, `.Rmd`s. These are a special type of file that lets us intersperse regular prose with code chunks. Rmd is extremely flexibile and enabled the user to render their content in many different formats such as a pdf, powerpoint, html, and others. For example, this book is written with RMarkdown. But, to keep things simple, we will use R scripts for the vast majority of this book, plus they're my favorite way to interact with R. 
 
-
 ### The console
 
 Let us now avert our attention to the bottom left pane. This is known as the console. The console is where your R code is actually execute. When you run a line or chunk of code from your editor, you will see it processed in the console. I often treat my console as my scratch paper. This is a place where I can explore R objects and code without affecting the primary R file. You should become comfortable typing your R code in the editor and see it executed in the console.  
-
 
 ### Output
 
 Now moving over to the right. This is the most versatile quadrant of RStudio. You will primarily use this quadrant to look at things. There is a pane for navigating your files, looking at help documentation, viewing the charts that you produce, and any interactive applications you may develop. 
 
-
 ## Installing R & RStudio 
-
 
 Now that you are somewhat familiar with R and RStudio, it is time to install them. I recommend installing R _and then_ RStudio. 
 
 R can be downloaded from the **C**entral **R** **A**rchival **N**etwork (CRAN). CRAN is the official location for all things R. CRAN provides access to the R software, license, copyright, and software extensions (called R packages). Go to [CRAN](https://cran.r-project.org/) to download R[^cran]. 
 
 RStudio is provided by RStudio, Public Benefit Corporation (RStudio, PBC). To install RStudio navigate to the [download page](https://rstudio.com/products/rstudio/download/#download)[^download]. 
-
 Once both have been installed you can open RStudio to get started. Look for the circular R logo. If you get lost navigating the RStudio IDE, be sure to refer to the [cheat sheet](https://github.com/rstudio/cheatsheets/raw/master/rstudio-ide.pdf). 
 
 
@@ -124,6 +116,10 @@ A few tips:
 
 This will open up a new RStudio session. You will notice in your `Files` pane that there is now a `uitk.Rproj` file there. That file is what tells RStudio about the project, so don't delete it! If you would like to open up an RStudio project you can either open the `.Rproj` file from your file navigator or open it by following `File > Open Project`. 
 
+### The data
+
+In order to complete the exercises throughout this book you will need to have the data accessible to you. You can download the data [here](https://github.com/JosiahParry/urban-informatics-toolkit/raw/master/data.zip)[^data]. This link will download a file called `data.zip`. Once downloaded open the file. It will create a folder called `data`. Move that entire folder into your new project. If you created a project called `uitk` in the `R` directory, move the folder to `~/R/uitk`. This will create a folder path of `~/R/uitk/data`. 
+
 ### Your Workspace
 
 In another effort to impose good habits and reproducibility standards I will suggest you change one setting in RStudio. Navigate to `Tools > Global Options` now change the below setting.
@@ -138,12 +134,12 @@ This setting makes it so that your analysis is dependent upon the code you write
 Lastly, I want to emphasize that R and RStudio can be used for so much more than statistical analysis. It can be used to make aRt. 
 
 <a href="https://www.data-imaginist.com/art">
-  <img src="https://www.data-imaginist.com/art/005_genesis/genesis1300.png" />
+  <img src="static/genesis1300.png" />
 </a>
 
 It can be used to make beautiful graphics for the BBC.
 
-![](https://raw.githubusercontent.com/bbc/rcookbook/master/bbplot_example_plots.png)
+![](static/bbplot_example_plots.png)
  
 R can be found in the infrastructure of our modern world. R is utilized in our global financial institutions, civil rights groups such as the ACLU, investigative journalism, national defense, and so much more. Do not feel that the _only_ thing you will get from learning R is how to do some simple statistics. 
 
@@ -156,7 +152,6 @@ Undoubtedly you will run into problems when programming and you're going to want
 The [RStudio Community](https://community.rstudio.com/) page is a community forum created by RStudio[^community]. This is a location for members of the R community—which you can now count yourself a part of—to ask questions, engage in thoughtful dialogue, and much more. While Stack Overflow is committed to all programming languages, of which R is just one of them, the RStudio Community is maintained entirely by R users.
 
 If you have never asked a technical question before I would recommend spending doing so on RStudio Community as Stack Overflow has a [history](https://meta.stackoverflow.com/questions/262791/the-rudeness-on-stack-overflow-is-too-damn-high) of somewhat rude community[^hist]. Before you do so, be sure to create a [**rep**roducible **ex**ample](https://www.tidyverse.org/help/#reprex) so that the community can best help you[^reprex]. 
-
 
 ## Reminders 
 
@@ -171,10 +166,7 @@ If you ever find yourself in a bout of programming induced frustration try one o
 * Get your blood flowing! Go for a walk. Do some squats or pushups. Making sure your blood is moving is important. 
 * And take care of yourself!
 
-
 Now, let's get going.
-
-
 
 [^s]: The S System. John Chambers. https://web.archive.org/web/20181014111802/http://ect.bell-labs.com/sl/S/.
 [^martin]: Statistical Sciences, Inc. Douglas Martin. 1996. https://github.com/JosiahParry/r-history/raw/master/lit/S/statsci-splus-death.pdf.
@@ -189,3 +181,4 @@ Now, let's get going.
 [^reprex]: Reproducible Examples. https://www.tidyverse.org/help/#reprex.
 [^community]: RStudio Community. https://community.rstudio.com/.
 [^jtm]: Intro to RMarkdown. Thomas Mock. https://github.com/jthomasmock/intro-tidyverse/blob/master/intro-to-tidyverse.rmd.
+[^data]: Urban Informatics Toolkit Data. https://github.com/JosiahParry/urban-informatics-toolkit/raw/master/data.zip

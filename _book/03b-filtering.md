@@ -406,4 +406,3 @@ write_csv(gba_commute, "data/gba_commute.csv")
 ```
 
 Now you have a csv file that can be shared! 
-

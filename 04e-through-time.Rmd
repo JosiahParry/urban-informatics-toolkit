@@ -25,7 +25,7 @@ Date time objects follow the format of `YYYY-MM-DD HH:MM:SS` where `Y` is year, 
 
 This begs the question "how can we aggregate based on time?" The easiest way to do this is to group our observations by some interval. To do this we will solicit the help of the package [`lubridate`](https://lubridate.tidyverse.org). lubridate is part of the tidyverse, but it doesn't loadwith the tidyverse. As such, we will have to load the package ourselves. 
 
-```{r}
+```{r message=FALSE}
 library(lubridate)
 ```
 
@@ -185,7 +185,7 @@ This is awesome! We've created an animation `r emo::ji("face with open mouth")`.
 
 We can add a label layer to make this much more informative. To reference these variables we can use glue like quote strings with the above variables.
 
-```{r}
+```{r eval=TRUE}
 p + 
   transition_states(month)  +
   labs(title = "{closest_state}")
@@ -207,7 +207,7 @@ Error: along data must either be integer, numeric, POSIXct, Date, difftime, orhm
 
 Note the above error. This is telling us that since our x, or time dimension is actually being treated as a factor, it cannot move along the axis. The error message is informative enough to let us know that we need to change month to a numeric value. As a way to address this but yet maintain the nice labeling on the x axis we can create another column called `month_integer` which is jsut the integer value of the month—so Jan is 1 etc. We can provide that value to `transition_reveal()`. Moreover `transition_reveal()` creates the `frame_along` temporary variable if you'd so like to use it.
 
-```{r}
+```{r eval=TRUE}
 count(bb, month, fullness) %>% 
   mutate(month_integer = as.integer(month)) %>% 
   ggplot(aes(month, n, group = fullness, color = fullness)) +
@@ -224,6 +224,6 @@ While it may seem a little underwhelming, these two functions can provide you wi
 
 And with that, we can conclude this section. Congratulations!
 
-[^anim08]: [Effectiveness of Animation in Trend Visualization](https://www.cc.gatech.edu/~stasko/papers/infovis08-anim.pdf)
-[^hans]: [Hans Rosling](https://www.ted.com/talks/hans_rosling_the_best_stats_you_ve_ever_seen/transcript)
-[^transition-states]: [`transition_states()`](https://gganimate.com/reference/transition_states.html)
+[^anim08]: Effectiveness of Animation in Trend Visualization. https://www.cc.gatech.edu/~stasko/papers/infovis08-anim.pdf.
+[^hans]: Hans Rosling. https://www.ted.com/talks/hans_rosling_the_best_stats_you_ve_ever_seen/transcript.
+[^transition-states]: `transition_states()`. https://gganimate.com/reference/transition_states.html.

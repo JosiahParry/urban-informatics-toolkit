@@ -145,10 +145,12 @@ Below is is an image of 10 colors. Starting at the left is the color yellow (hex
 
 
 <img src="04d-beyond-2d_files/figure-html/unnamed-chunk-12-1.png" width="672" />
+
 Below is an example of what changing the brightness can look like.
 
 <img src="04d-beyond-2d_files/figure-html/unnamed-chunk-13-1.png" width="672" />
-If we put all of these together we can get something that looks like the below.
+
+If we expand the usage of brightness on both ends of the spectrum we get the below.
 
 <img src="04d-beyond-2d_files/figure-html/unnamed-chunk-14-1.png" width="672" />
 
@@ -344,7 +346,7 @@ p +
 
 Information design is a seemingly endless field of which we only touched on a very small amount. The R community has put a lot of work into enabling the use of color for visualization purposes. The above images of color palettes were created with the help of the wonderful packages `prismatic` and `paletteer`
 
-To explore color more check out the packages [`prsimatic`](https://github.com/EmilHvitfeldt/prismatic) and [`paletteer`](https://github.com/EmilHvitfeldt/paletteer) by [Emil Hvitfeld](https://www.hvitfeldt.me/blog/). He
+To explore color more check out the packages [`prismatic`](https://github.com/EmilHvitfeldt/prismatic) and [`paletteer`](https://github.com/EmilHvitfeldt/paletteer) by [Emil Hvitfeld](https://www.hvitfeldt.me/blog/). 
 
 
 ## Shape and Size 
@@ -435,8 +437,8 @@ ggplot(big_belly, aes(long, lat, size = n)) +
 
 [^goodcharts]: (https://extremepresentation.typepad.com/files/choosing-a-good-chart-09.pdf): Choosing good charts
 
-[^flowingdata]: (https://flowingdata.com/2008/04/29/why-should-engineers-and-scientists-care-about-color-and-design/): Why should engineers and scientists care about color and design? _Flowing Data_.
+[^flowingdata]: Why should engineers and scientists care about color and design? _Flowing Data_. https://flowingdata.com/2008/04/29/why-should-engineers-and-scientists-care-about-color-and-design/.
 
-[^interaction-design]: (https://www.interaction-design.org/literature/article/visual-mapping-the-elements-of-information-visualization): Visual Mapping – The Elements of Information Visualization. _Interaction Design Foundation_.
-[^insideairbnb]:    (http://insideairbnb.com/): Inside Airbnb.
-^[bigbelly]: 
+[^interaction-design]: Visual Mapping – The Elements of Information Visualization. _Interaction Design Foundation_. https://www.interaction-design.org/literature/article/visual-mapping-the-elements-of-information-visualization).
+[^insideairbnb]: Inside Airbnb. http://insideairbnb.com/.
+^[bigbelly]: Big Belly. https://data.boston.gov/dataset/big-belly-alerts-2014/resource/8fb74119-97b9-4114-b773-ea0a82142d3b.

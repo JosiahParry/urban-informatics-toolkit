@@ -14,18 +14,29 @@ acs <- acs_raw %>%
 
 We've developed a strong foundation for building charts from the ground up by specifying our **defaults** (data, and aesthetic mappings), and adding geom **layers**. In order to take our charts to the next level we need to familiarize ourselves with the other components of the _Layered Grammar of Graphics_: scales, coordinates, and facets.
 
+For these examples we will again return to our commute dataset. We will also recreate the two columns `hh_inc_quin` and `edu_attain`.
+
+```{r, message=FALSE}
+library(tidyverse)
+
+commute <- read_csv("data/gba_commute.csv") %>% 
+  mutate(hh_inc_quin = ntile(med_house_income, 5),
+         edu_attain = bach + master)
+
+```
+
 ## Scales 
 
 Recall from _[Grammar of Layered Graphics I](#layered-i)_ that when we supply our aesthetic mappings our axes are filled out automatically.
 
 ```{r}
-(p <- ggplot(acs, aes(med_house_income, bach)))
+(p <- ggplot(commute, aes(med_house_income, bach)))
 ```
 
 By specifying our defaults in the `ggplot()` call, we implicitly are providing the x and y axes. From those mappings, ggplot2 is able to identify the type of variable mapped to each aesthetic and its values. That inference makes it possible for us to plot without having to explicitly state what our axes are.
 
 ```{r}
-p <- ggplot(acs, aes(med_house_income, bach)) +
+p <- ggplot(commute, aes(med_house_income, bach)) +
   geom_point(size = 1/3)
 ```
 
@@ -42,14 +53,9 @@ Nonetheless, we have a lot of functions at our disposal to alter the axes to our
 
 ### Transformations
 
-In our data exploration, we will come across non-normal distributions of data.
+In our data exploration, we will come across non-normal distributions of data. For example income is almost always right skewed and displays some sort of log-normal-ish behavior. We may not want to actually change to underlying values of that variable, but want to apply transformations for the purposes of visualization. In those cases, we can apply scale transformations.
 
-- income is almost always right skewed displaying some sort of log-normal-ish behavior. 
-- we may not want to actually change to underlying values of that variable, but want to apply transformations for the purposes of visualization
-- in that case, we can apply scale transformations
-- in our visualization of income and education, there is a slight right skew to `med_house_income`
-  - it doesn't justify a logarithmic transformation, but may benefit from a sqrt transformation
-  - we can apply this with `scale_x_sqrt()`
+As an example, in our visualization of income and education there is a slight right skew to `med_house_income`. The graphic doesn't justify a logarithmic transformation, but may benefit from a sqrt transformation. We can apply this with `scale_x_sqrt()`.
 
 ```{r}
 p +
@@ -102,8 +108,8 @@ We've already used it befofe but to be extra clear, to add titles and axis label
 
 Let's add some titles and labels to our plot.
 
-```{r}
-p <- ggplot(acs, aes(med_house_income, bach)) +
+```{r warning=FALSE}
+p <- ggplot(commute, aes(med_house_income, bach)) +
   geom_point(size = 1/3) +
     labs(
        y = "% of population with a Bachelor's Degree",
@@ -155,19 +161,6 @@ We will encounter coordinates much more when we talk about spatial data. For now
 
 
 ## Facets
-
-```{r}
-commute <- select(acs_raw,
-       county,
-       hs_grad, bach, master,
-       starts_with("commute"),
-       starts_with("by"),
-       med_house_income) %>% 
-  filter(county %in% c("SUFFOLK", "NORFOLK", "MIDDLESEX")) %>% 
-  mutate(hh_inc_quin = ntile(med_house_income, 5),
-         edu_attain = bach + master) %>% 
-  select(-bach, -master)
-```
 
 The last portion of the grammar to visit is facetting. When we facet a plot we are creating what are called  "small multiples", a term coined by the prominent Edward Tufte. A facetting, in other words, creates a graph for each unique level in a categorical variable. Think of this like a `group_by()` for plotting.
 

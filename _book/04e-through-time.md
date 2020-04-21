@@ -42,23 +42,6 @@ This begs the question "how can we aggregate based on time?" The easiest way to 
 library(lubridate)
 ```
 
-```
-## 
-## Attaching package: 'lubridate'
-```
-
-```
-## The following objects are masked from 'package:dplyr':
-## 
-##     intersect, setdiff, union
-```
-
-```
-## The following objects are masked from 'package:base':
-## 
-##     date, intersect, setdiff, union
-```
-
 The package contains dozens of useful functions for working with dates in R. By no means will we go over each of them.
 
 > To explore all of the functions in a package click on the `Packages` pane and search for the package you are interested in. Click the hyper link with the package name and then all of the exported functions and objects _should_ be documented there.
@@ -344,6 +327,6 @@ While it may seem a little underwhelming, these two functions can provide you wi
 
 And with that, we can conclude this section. Congratulations!
 
-[^anim08]: [Effectiveness of Animation in Trend Visualization](https://www.cc.gatech.edu/~stasko/papers/infovis08-anim.pdf)
-[^hans]: [Hans Rosling](https://www.ted.com/talks/hans_rosling_the_best_stats_you_ve_ever_seen/transcript)
-[^transition-states]: [`transition_states()`](https://gganimate.com/reference/transition_states.html)
+[^anim08]: Effectiveness of Animation in Trend Visualization. https://www.cc.gatech.edu/~stasko/papers/infovis08-anim.pdf.
+[^hans]: Hans Rosling. https://www.ted.com/talks/hans_rosling_the_best_stats_you_ve_ever_seen/transcript.
+[^transition-states]: `transition_states()`. https://gganimate.com/reference/transition_states.html.

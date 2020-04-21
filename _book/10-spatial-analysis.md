@@ -13,10 +13,10 @@ Within the field of Geographic Information Systems (**GIS**) there are two gener
 
 **Vector** data is what you will find yourself working with most frequently. Most simply put they are _"points, lines, and polygons."_ The basis of vector data is the coordinate point. Just like the scatter plots we have built, each coordinate point is a combination of an x and y value (longitude and latitude respectively). This combination of x and y will tell us where something is. By combining two or more points we can trace along a path—think of the connect the dots diagrams you would do at restaurants as a kid—and create line segments. If, however, at any point these lines close, you now have a polygon.
 
-The other umbrella of data is known as **raster** data. Raster data are to deal with more complex data that cannot easily be captured by a single point. Rasters are used to "represent spatially continuous phenomenon" [source](https://rspatial.org/raster/spatial/Spatialdata.pdf). Raster analysis is done to evaluate things like changing vegetation, elevation and slope modeling, analysing reflective surfaces, among much more. Raster analysis typically relies on satellite imagery or LiDAR laser point cloud data. Raster analysis is an extremely complex topic and requires devoted attention. As such, we will not cover it in this book. But, know that it exists and is out there! 
+The other umbrella of data is known as **raster** data. Raster data are to deal with more complex data that cannot easily be captured by a single point. Rasters are used to "represent spatially continuous phenomenon" [^rspatial]. Raster analysis is done to evaluate things like changing vegetation, elevation and slope modeling, analysing reflective surfaces, among much more. Raster analysis typically relies on satellite imagery or LiDAR laser point cloud data. Raster analysis is an extremely complex topic and requires devoted attention. As such, we will not cover it in this book. But, know that it exists and is out there! 
 
 
-![](http://michaelminn.net/tutorials/gis-data/2019-points-lines-polygons.png)
+![](static/2019-points-lines-polygons.png)
 
 ## Working with spatial data 
 
@@ -37,47 +37,10 @@ Begin by installing the `sf` (simple-features) package and loading the `location
 ```r
 # install.packages("sf")
 library(sf)
-```
-
-```
-## Linking to GEOS 3.7.2, GDAL 2.4.2, PROJ 5.2.0
-```
-
-```r
 library(tidyverse)
-```
 
-```
-## ── Attaching packages ───────────────────────────────────────────────────────────────── tidyverse 1.3.0 ──
-```
-
-```
-## ✓ ggplot2 3.3.0     ✓ purrr   0.3.3
-## ✓ tibble  3.0.0     ✓ dplyr   0.8.5
-## ✓ tidyr   1.0.2     ✓ stringr 1.4.0
-## ✓ readr   1.3.1     ✓ forcats 0.5.0
-```
-
-```
-## ── Conflicts ──────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
-## x dplyr::filter() masks stats::filter()
-## x dplyr::lag()    masks stats::lag()
-```
-
-```r
 locations <- read_csv("data/airbnb/locations.csv")
-```
 
-```
-## Parsed with column specification:
-## cols(
-##   id = col_double(),
-##   longitude = col_double(),
-##   latitude = col_double()
-## )
-```
-
-```r
 head(locations)
 ```
 
@@ -434,12 +397,11 @@ ggplot(tract_listings, aes(fill = n)) +
 <img src="10-spatial-analysis_files/figure-html/unnamed-chunk-16-1.png" width="672" />
 
 
+#### Resources 
 
-http://wiki.gis.com/wiki/index.php/Dissolve
+* http://wiki.gis.com/wiki/index.php/Dissolve
+* For a full list of spatial joins by data type I recommend visiting https://desktop.arcgis.com/en/arcmap/latest/manage-data/tables/spatial-joins-by-feature-type.htm.
+* https://geocompr.robinlovelace.net/
+* https://rud.is/books/30-day-map-challenge/points-01.html
 
-For a full list of spatial joins by data type I recommend visiting https://desktop.arcgis.com/en/arcmap/latest/manage-data/tables/spatial-joins-by-feature-type.htm.
-
-
-https://geocompr.robinlovelace.net/
-
-https://rud.is/books/30-day-map-challenge/points-01.html
+[^rspatial]: R Spatial. https://rspatial.org/raster/spatial/Spatialdata.pdf.

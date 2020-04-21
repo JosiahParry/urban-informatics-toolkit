@@ -8,7 +8,7 @@ Well then, "what do we do instead?" you may be asking. And my answer is "use the
 
 **What it does**: The pipe operator takes the object or the output an expression on it's left hand side `lhs` and provides that as the first argument in the function of the right hand side. Additionally, it exposes the `lhs` as a temporary variable `.`. It is documented as `lhs %>% rhs`.
 
-The creator of [#TidyTuesday](https://github.com/rfordatascience/tidytuesday) and RStudio employee, Thomas Mock has created a very illustrative example of how the pipe can simplify complex R function calls. 
+The creator of [#TidyTuesday](https://github.com/rfordatascience/tidytuesday) and RStudio employee, Thomas Mock has created a very illustrative example of how the pipe can simplify complex R function calls[^tidytuesday]. 
 
 The first example illustrates the creation of intermediate variables. 
 
@@ -47,7 +47,7 @@ final_thing <- data %>%
 
 By using the pipe we are able to align our thinking and code writing. Additionally, each function call is separated on its own line which makes debugging a less daunting task.
 
-## Applying the pipe.
+## Applying the pipe
 
 Remember how I pointed out that the first argument for almost every function is the data? This is where that comes in handy. This allows us to use the pipe to chain together functions and "makes it more intuitive to both read and write" (magrittr vignette).
 
@@ -129,4 +129,5 @@ commute <- select(acs_raw,
 
 
 
+[^tidytuesday]: Tidy Tuesday is a weekly online community event in which useRs across the world analyse the same dataset and share their visualizations online. Get involved on twitter with `#TidyTuesday`. 
 

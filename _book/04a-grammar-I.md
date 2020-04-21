@@ -1,18 +1,7 @@
-# Grammer of layered graphics I  {#layered-i}
+# Grammar of layered graphics I  {#layered-i}
 
 
 
-
-```r
-library(tidyverse)
-
-acs_messy <- read_csv("data/ACS_1317_TRACT.csv")
-
-acs <- acs_messy %>% 
-  separate(name, sep = ", ", into = c("tract", "county", "state")) %>% 
-  mutate(tract = str_remove(tract, "Census Tract ")) %>% 
-  na.omit()
-```
 
 You've made it quite far through this book. Now, I want to bring us back to the very beginning. In the first chapter we created a few visualizations with `ggplot2`. I want to unpack ggplot2 a bit more and also address some of the more philosophical underpinnings of visualization.
 
@@ -21,7 +10,7 @@ This chapter introduces you to the idea of the grammar of graphics, discusses wh
 
 ## The Grammar of Layered Graphics
 
-The `gg` in `ggplot2` refers to the grammar of graphics (and the `2` is because it's the second iteration). _The Grammar of Graphics_ (Wilkinson, 1999) is a seminal book in data visualization for the sciences in which, Wilkinson defines a complete system (grammar) for creating visualizations that go beyond the standard domain of "named graphics"—e.g. histogram, barchart, etc. [^wickham] 
+The `gg` in `ggplot2` refers to the grammar of graphics (and the `2` is because it's the second iteration). _The Grammar of Graphics_ (Wilkinson, 1999) is a seminal book in data visualization for the sciences in which, Wilkinson defines a complete system (grammar) for creating visualizations that go beyond the standard domain of "named graphics"—e.g. histogram, barchart, etc. [^wickham][^wilkinson]
 
 ggplot2 is "an open source implementation of the grammar of graphics for **R**."[^wickham] Once we can internalize the grammar of graphics, creating plots will be an intuitive and artistic process rather than a mechanical one.
 
@@ -42,6 +31,15 @@ There are five high level components of the layered grammar[^wickham]. We will o
 
 ## Layers and defaults
 
+Let's first get some data into our environment. We will use the `commute` dataset again.
+
+
+```r
+library(tidyverse)
+
+commute <- read_csv("data/gba_commute.csv")
+```
+
 In the first chapter of this section we explored these principles but did not put a name to them. Recall that we can use `ggplot()` by itself and it returns a chart of nothing.
 
 
@@ -51,11 +49,11 @@ ggplot()
 
 <img src="04a-grammar-I_files/figure-html/unnamed-chunk-3-1.png" width="672" />
 
-This is because we have not specified any of the defaults. In order for us to plot anything at all, we need to specify what (the data object) will be visualized, which features (the aesthetic mappings), and how (the geoms). When we begin to specify our x and y aesthetics the scales are interpreted.
+This is because we have not specified any of the defaults. In order for us to plot anything at all, we need to specify what (the data object) will be visualized, which features (the aesthetic mappings), and how (the geoms). When we begin to specify our x and y aesthetics the scales are interpreted. 
 
 
 ```r
-ggplot(acs, aes(med_house_income, by_auto))
+ggplot(commute, aes(med_house_income, by_auto))
 ```
 
 <img src="04a-grammar-I_files/figure-html/unnamed-chunk-4-1.png" width="672" />
@@ -64,7 +62,7 @@ The final step is to add the geom layer which will inherit the data, aesthetic m
 
 
 ```r
-ggplot(acs, aes(bach, med_house_income))+ 
+ggplot(commute, aes(bach, med_house_income))+ 
   geom_point()
 ```
 
@@ -78,7 +76,7 @@ What happens if we provide all of this information to `geom_point()` and entirel
 
 
 ```r
-geom_point(aes(med_house_income, by_auto), acs)
+geom_point(aes(med_house_income, by_auto), commute)
 #> mapping: x = ~med_house_income, y = ~by_auto 
 #> geom_point: na.rm = FALSE
 #> stat_identity: na.rm = FALSE
@@ -90,10 +88,13 @@ We see that we do not have the plot, but we do have all of the information requi
 
 ```r
 ggplot() + 
-  geom_point(aes(med_house_income, by_auto), acs)
+  geom_point(aes(med_house_income, by_auto), commute)
 ```
 
 <img src="04a-grammar-I_files/figure-html/unnamed-chunk-7-1.png" width="672" />
 
 Being able to specify different data objects within each layer will provie to be extraordinarily helpful when we begin to work with spatial data, or plotting two different data frames with the same axes, or any other creative problem you wish to solve. 
 
+
+[^wilkinson]: The Grammar of Graphics. https://www.springer.com/gp/book/9780387245447.
+[^wickham]: A Layered Grammar of Graphics. Hadley Wickham. https://vita.had.co.nz/papers/layered-grammar.pdf.

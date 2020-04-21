@@ -161,13 +161,15 @@ library(tidyverse)
 ## x dplyr::lag()    masks stats::lag()
 ```
 
-Notice the message above. When we load the tidyverse, we are actually loading eight packages at once! Thesee are the packages listed under "**Attaching packages**."
+Notice the message above. When we load the tidyverse, we are actually loading eight packages at once! These are the packages listed under "**Attaching packages**."
 
 You have now successfully installed and loaded the tidyverse. Next, we will begin to learn how to visually analyze data!  
 
+## What's next? 
 
-### Resources:
+Now with this very rudimentary foundation underneath you we will embark upon a very long journey—the journey to learn how to analyze data with R and RStudio. In the following chapters you will learn how to program in R from creating compelling graphics, manipulating data, and performing statistical tests. 
 
-- https://techterms.com/definition/string
+In the next chapter we will dive right into working with data. We will begin by learning how to read data into R. Then, we will work through a first visual analysis after which we will focus on skills used in general data manipulation. 
+
 
 [^sup]: Executing Code. https://support.rstudio.com/hc/en-us/articles/200484448-Editing-and-Executing-Code#executing.

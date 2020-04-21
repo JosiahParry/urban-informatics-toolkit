@@ -4,22 +4,33 @@
 
 We've developed a strong foundation for building charts from the ground up by specifying our **defaults** (data, and aesthetic mappings), and adding geom **layers**. In order to take our charts to the next level we need to familiarize ourselves with the other components of the _Layered Grammar of Graphics_: scales, coordinates, and facets.
 
+For these examples we will again return to our commute dataset. We will also recreate the two columns `hh_inc_quin` and `edu_attain`.
+
+
+```r
+library(tidyverse)
+
+commute <- read_csv("data/gba_commute.csv") %>% 
+  mutate(hh_inc_quin = ntile(med_house_income, 5),
+         edu_attain = bach + master)
+```
+
 ## Scales 
 
 Recall from _[Grammar of Layered Graphics I](#layered-i)_ that when we supply our aesthetic mappings our axes are filled out automatically.
 
 
 ```r
-(p <- ggplot(acs, aes(med_house_income, bach)))
+(p <- ggplot(commute, aes(med_house_income, bach)))
 ```
 
-<img src="04c-grammar-II_files/figure-html/unnamed-chunk-2-1.png" width="672" />
+<img src="04c-grammar-II_files/figure-html/unnamed-chunk-3-1.png" width="672" />
 
 By specifying our defaults in the `ggplot()` call, we implicitly are providing the x and y axes. From those mappings, ggplot2 is able to identify the type of variable mapped to each aesthetic and its values. That inference makes it possible for us to plot without having to explicitly state what our axes are.
 
 
 ```r
-p <- ggplot(acs, aes(med_house_income, bach)) +
+p <- ggplot(commute, aes(med_house_income, bach)) +
   geom_point(size = 1/3)
 ```
 
@@ -29,9 +40,10 @@ In the above chart, each column is being mapped as a continuous variable. We are
 ```r
 p +
   scale_x_discrete() 
+#> Warning: Removed 8 rows containing missing values (geom_point).
 ```
 
-<img src="04c-grammar-II_files/figure-html/unnamed-chunk-4-1.png" width="672" />
+<img src="04c-grammar-II_files/figure-html/unnamed-chunk-5-1.png" width="672" />
 
 In doing so we have lost the axis labels! That is because ggplot2 considers both integers and floating point (numbers with decimals) as continuous and categorical variables as being discrete. 
 
@@ -39,22 +51,18 @@ Nonetheless, we have a lot of functions at our disposal to alter the axes to our
 
 ### Transformations
 
-In our data exploration, we will come across non-normal distributions of data.
+In our data exploration, we will come across non-normal distributions of data. For example income is almost always right skewed and displays some sort of log-normal-ish behavior. We may not want to actually change to underlying values of that variable, but want to apply transformations for the purposes of visualization. In those cases, we can apply scale transformations.
 
-- income is almost always right skewed displaying some sort of log-normal-ish behavior. 
-- we may not want to actually change to underlying values of that variable, but want to apply transformations for the purposes of visualization
-- in that case, we can apply scale transformations
-- in our visualization of income and education, there is a slight right skew to `med_house_income`
-  - it doesn't justify a logarithmic transformation, but may benefit from a sqrt transformation
-  - we can apply this with `scale_x_sqrt()`
+As an example, in our visualization of income and education there is a slight right skew to `med_house_income`. The graphic doesn't justify a logarithmic transformation, but may benefit from a sqrt transformation. We can apply this with `scale_x_sqrt()`.
 
 
 ```r
 p +
   scale_x_sqrt() 
+#> Warning: Removed 8 rows containing missing values (geom_point).
 ```
 
-<img src="04c-grammar-II_files/figure-html/unnamed-chunk-5-1.png" width="672" />
+<img src="04c-grammar-II_files/figure-html/unnamed-chunk-6-1.png" width="672" />
 
 We can apply a log10 transformation as well with `scale_*_log10()`.
 
@@ -62,9 +70,10 @@ We can apply a log10 transformation as well with `scale_*_log10()`.
 ```r
 p +
   scale_x_log10() 
+#> Warning: Removed 8 rows containing missing values (geom_point).
 ```
 
-<img src="04c-grammar-II_files/figure-html/unnamed-chunk-6-1.png" width="672" />
+<img src="04c-grammar-II_files/figure-html/unnamed-chunk-7-1.png" width="672" />
 
 This is an overcorrection. The slight upward arch in the original plotting is now inverted. Nonetheless, I hope the point is made. 
 
@@ -78,9 +87,10 @@ We can modify our y axis to have the limits of [0,1] by adding a `lims()` layer 
 ```r
 p +
   lims(y = c(0, 1))
+#> Warning: Removed 8 rows containing missing values (geom_point).
 ```
 
-<img src="04c-grammar-II_files/figure-html/unnamed-chunk-7-1.png" width="672" />
+<img src="04c-grammar-II_files/figure-html/unnamed-chunk-8-1.png" width="672" />
 
 The graph we get we when expand our y axis limits definitely contains a bit too much white space. But by expanding ths grid, we can see this sort of flattening out of education at around $150,000 while income still continues to increase. Perhaps if we omit tose values, the relationship may seem even stronger. Let's experiment with that.
 
@@ -97,7 +107,7 @@ p +
     )
 ```
 
-<img src="04c-grammar-II_files/figure-html/unnamed-chunk-8-1.png" width="672" />
+<img src="04c-grammar-II_files/figure-html/unnamed-chunk-9-1.png" width="672" />
 
 By changing the extent of our axes this relationship seems much more robust! Such a visualization could spur further validation of this ACS data.
 
@@ -113,7 +123,7 @@ Let's add some titles and labels to our plot.
 
 
 ```r
-p <- ggplot(acs, aes(med_house_income, bach)) +
+p <- ggplot(commute, aes(med_house_income, bach)) +
   geom_point(size = 1/3) +
     labs(
        y = "% of population with a Bachelor's Degree",
@@ -126,7 +136,7 @@ p <- ggplot(acs, aes(med_house_income, bach)) +
 p
 ```
 
-<img src="04c-grammar-II_files/figure-html/unnamed-chunk-9-1.png" width="672" />
+<img src="04c-grammar-II_files/figure-html/unnamed-chunk-10-1.png" width="672" />
 
 Friends, it's looking pretty good. But there are just two more changes we need to make: our axes labels! The x and y axes labels are meant to illustrate dollar amounts and percentages but respectively. To change the _scale_ labels. we will use some helper functions from the package [`scales`](https://scales.r-lib.org/)
 
@@ -153,9 +163,10 @@ Now we have an understanding of _how_ the function behaves, but where do we actu
 p + 
   scale_x_continuous(labels = scales::dollar) + 
   scale_y_continuous(labels = scales::percent)
+#> Warning: Removed 8 rows containing missing values (geom_point).
 ```
 
-<img src="04c-grammar-II_files/figure-html/unnamed-chunk-11-1.png" width="672" />
+<img src="04c-grammar-II_files/figure-html/unnamed-chunk-12-1.png" width="672" />
 
 In addition to being able to control the **defaults**, the **layers**, and now the **scales** you are well equipped to create and manipulate your own plots. 
 
@@ -173,20 +184,6 @@ We will encounter coordinates much more when we talk about spatial data. For now
 
 
 ## Facets
-
-
-```r
-commute <- select(acs_raw,
-       county,
-       hs_grad, bach, master,
-       starts_with("commute"),
-       starts_with("by"),
-       med_house_income) %>% 
-  filter(county %in% c("SUFFOLK", "NORFOLK", "MIDDLESEX")) %>% 
-  mutate(hh_inc_quin = ntile(med_house_income, 5),
-         edu_attain = bach + master) %>% 
-  select(-bach, -master)
-```
 
 The last portion of the grammar to visit is facetting. When we facet a plot we are creating what are called  "small multiples", a term coined by the prominent Edward Tufte. A facetting, in other words, creates a graph for each unique level in a categorical variable. Think of this like a `group_by()` for plotting.
 

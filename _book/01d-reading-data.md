@@ -6,15 +6,13 @@ Requisite to any data analysis is the data. Making those data available for you 
 
 ## Background
 
-There are three general sources where we as social scientists will recieve or access data: 1) text files, 2) databases, and 3) application programming interfaces (APIs). Frankly, though this is the age of "big data," we are not always able to interface directly with these sources. But through partnership efforts between the public and private we able to share data. For example, BARIs work with the Boston Police Department provides them with annual access to crime data. But BARIs access is limited. They do not have credentials to log in to the database and perform their own queries. What they are usually presented with is a flat text file(s) that contains the data requisite for analysis. And this is what we will focus in this chapter. 
+There are three general sources where we as social scientists will receive or access data: 1) text files, 2) databases, and 3) application programming interfaces (APIs). Frankly, though this is the age of "big data," we are not always able to interface directly with these sources. But through partnership efforts between the public and private we able to share data. For example, BARI's work with the Boston Police Department provides them with annual access to crime data. But BARIs access is limited. They do not have credentials to log in to the database and perform their own queries. What they are usually presented with is a flat text file(s) that contains the data requisite for analysis. And this is what we will focus in this chapter. 
 
 Flat text files will be sufficient for 85% of all of your data needs Now, what do I mean by _flat text file_? A flat text file is a file that stores data in plain text—I know, this seems somewhat confusing. In otherwords, you can open up a text file and actually read the data with your own eyes or a screenreader. For a long while tech pundits believed—and some still do—that text data will be a thing of the past. Perhaps this may be true in the future, but plain text still persists and there are some good reasons for that. Since plain text is extremely simple it is lightweight and usually does not take up that much memory. Also, because there is no fancy embelishing of the data in a plain text file, they can be easily shared from machine to machine without concern of dependent tools and software. Not to mention that we humans can actually be rather hands on and inspect the source of the data ourselves.
 
 ## Actually Reading Data
 
-Within the `tidyverse` there is a package called [`readr`](https://readr.tidyverse.org) which we use for reading in rectangular data from text files.
-
-> Aside: I am still unsure if it is pronounced _read-arr_ or _read-er_. So just do your best. 
+Within the `tidyverse` there is a package called [`readr`](https://readr.tidyverse.org) (pronounced _read-r_) which we use for reading in rectangular data from text files.
 
 I just threw the phrase _rectangular data_ at you. It is only fair to actually describe what that means. If you were to look at rectangular data in something like excel it would resemble a rectangle. In fancy speak, rectangular data is a _two-dimensional_ data structure with rows and columns. We will learn more about the "proper" way to shape rectangular data in the "tidying data" chapter. For now, all you need to know is that there are rows and columns in rectangular data. 
 
