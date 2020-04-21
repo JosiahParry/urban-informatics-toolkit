@@ -247,13 +247,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="25.1" data-path="multiple-data-sets.html"><a href="multiple-data-sets.html#exercise-2"><i class="fa fa-check"></i><b>25.1</b> Exercise</a></li>
 </ul></li>
-<li class="chapter" data-level="26" data-path="spatial-analysis.html"><a href="spatial-analysis.html"><i class="fa fa-check"></i><b>26</b> Spatial Analysis</a>
+<li class="chapter" data-level="26" data-path="statistics.html"><a href="statistics.html"><i class="fa fa-check"></i><b>26</b> Statistics</a>
 <ul>
-<li class="chapter" data-level="26.1" data-path="spatial-analysis.html"><a href="spatial-analysis.html#types-of-spatial-data"><i class="fa fa-check"></i><b>26.1</b> Types of spatial data</a></li>
-<li class="chapter" data-level="26.2" data-path="spatial-analysis.html"><a href="spatial-analysis.html#working-with-spatial-data"><i class="fa fa-check"></i><b>26.2</b> Working with spatial data</a></li>
-<li class="chapter" data-level="26.3" data-path="spatial-analysis.html"><a href="spatial-analysis.html#creating-simple-features-from-a-tibble"><i class="fa fa-check"></i><b>26.3</b> Creating simple features from a tibble</a></li>
-<li class="chapter" data-level="26.4" data-path="spatial-analysis.html"><a href="spatial-analysis.html#plotting-sf-objects-with-ggplot"><i class="fa fa-check"></i><b>26.4</b> Plotting sf objects with ggplot</a></li>
-<li class="chapter" data-level="26.5" data-path="spatial-analysis.html"><a href="spatial-analysis.html#connecting-points-to-polygons"><i class="fa fa-check"></i><b>26.5</b> Connecting points to polygons</a></li>
+<li class="chapter" data-level="26.1" data-path="statistics.html"><a href="statistics.html#the-data"><i class="fa fa-check"></i><b>26.1</b> The data</a></li>
+<li class="chapter" data-level="26.2" data-path="statistics.html"><a href="statistics.html#the-formula-interface"><i class="fa fa-check"></i><b>26.2</b> The formula interface</a></li>
+<li class="chapter" data-level="26.3" data-path="statistics.html"><a href="statistics.html#t-tests"><i class="fa fa-check"></i><b>26.3</b> T-tests</a></li>
+<li class="chapter" data-level="26.4" data-path="statistics.html"><a href="statistics.html#anova"><i class="fa fa-check"></i><b>26.4</b> ANOVA</a></li>
+<li class="chapter" data-level="26.5" data-path="statistics.html"><a href="statistics.html#linear-regression"><i class="fa fa-check"></i><b>26.5</b> Linear regression</a></li>
+</ul></li>
+<li class="chapter" data-level="27" data-path="spatial-analysis.html"><a href="spatial-analysis.html"><i class="fa fa-check"></i><b>27</b> Spatial Analysis</a>
+<ul>
+<li class="chapter" data-level="27.1" data-path="spatial-analysis.html"><a href="spatial-analysis.html#types-of-spatial-data"><i class="fa fa-check"></i><b>27.1</b> Types of spatial data</a></li>
+<li class="chapter" data-level="27.2" data-path="spatial-analysis.html"><a href="spatial-analysis.html#working-with-spatial-data"><i class="fa fa-check"></i><b>27.2</b> Working with spatial data</a></li>
+<li class="chapter" data-level="27.3" data-path="spatial-analysis.html"><a href="spatial-analysis.html#creating-simple-features-from-a-tibble"><i class="fa fa-check"></i><b>27.3</b> Creating simple features from a tibble</a></li>
+<li class="chapter" data-level="27.4" data-path="spatial-analysis.html"><a href="spatial-analysis.html#plotting-sf-objects-with-ggplot"><i class="fa fa-check"></i><b>27.4</b> Plotting sf objects with ggplot</a></li>
+<li class="chapter" data-level="27.5" data-path="spatial-analysis.html"><a href="spatial-analysis.html#connecting-points-to-polygons"><i class="fa fa-check"></i><b>27.5</b> Connecting points to polygons</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/josiahparry/urban-informatics-toolkit" target="blank">GitHub</a></li>
@@ -403,9 +411,9 @@ The three types are graphs are all that you may ever truly need when visualizing
 </div>
 <div id="animation-as-time" class="section level2" number="23.3">
 <h2><span class="header-section-number">23.3</span> Animation as time</h2>
-<p>In 2008 researchers at Microsoft and a scholar from Georgia Institute of Technology published a paper titled <em>Effectiveness of Animation in Trend Visualization</em><a href="#fn30" class="footnote-ref" id="fnref30"><sup>30</sup></a>. This paper explored the reaction to a talk from 2006 which captured the attention of many by using animation to visualize global trends in health. That TED talk by Hans Rosling was a moving utilization of data visualization<a href="#fn31" class="footnote-ref" id="fnref31"><sup>31</sup></a>. But why? This paper presented interactive and static visualizations to discover people’s perspective on animation and its alternatives. They found that</p>
+<p>In 2008 researchers at Microsoft and a scholar from Georgia Institute of Technology published a paper titled <em>Effectiveness of Animation in Trend Visualization</em><a href="#fn59" class="footnote-ref" id="fnref59"><sup>59</sup></a>. This paper explored the reaction to a talk from 2006 which captured the attention of many by using animation to visualize global trends in health. That TED talk by Hans Rosling was a moving utilization of data visualization<a href="#fn60" class="footnote-ref" id="fnref60"><sup>60</sup></a>. But why? This paper presented interactive and static visualizations to discover people’s perspective on animation and its alternatives. They found that</p>
 <blockquote>
-<p>“users really liked the animation view: Study participants described it as”fun“,”exciting“, and even”emotionally touching." At the same time, though, some participants found it confusing: “the dots flew everywhere.”<a href="#fn32" class="footnote-ref" id="fnref32"><sup>32</sup></a></p>
+<p>“users really liked the animation view: Study participants described it as”fun“,”exciting“, and even”emotionally touching." At the same time, though, some participants found it confusing: “the dots flew everywhere.”<a href="#fn61" class="footnote-ref" id="fnref61"><sup>61</sup></a></p>
 </blockquote>
 <p>We now have scientific backing that animation is pretty good but also we’re unsure—which seems to be in line with the rest of science. We will take the above quote as a measure of caution. That we <em>can</em> creaate animations but also be careful with our use of them. For the remainder of this chapter we will learn about the the extension to ggplot2, gganimate. gganimate extends ggplot by extending the grammar to include elements pertaining solely to animation.</p>
 <p>When working with gganimate we need to think in the context of <em>frames</em>. Each frame will be a cross-section of our data. Or you can think of each frame a still in our film. In the context of time-series each frame will be our period of time. So if we continue with our Big Belly example above, each frame can be thought of as each month.</p>
@@ -421,7 +429,7 @@ All that is needed to add animation to this plot is a transition layer. For the 
 <span id="cb277-2"><a href="visualizing-through-time.html#cb277-2"></a></span>
 <span id="cb277-3"><a href="visualizing-through-time.html#cb277-3"></a>p <span class="op">+</span><span class="st"> </span><span class="kw">transition_states</span>(month)  </span></code></pre></div>
 <p><img src="04e-through-time_files/figure-html/unnamed-chunk-15-1.gif" /><!-- --></p>
-<p>This is awesome! We’ve created an animation 😮. The bars change heigh with each change of state. The only bummer is that we don’t know what states the animation is going through! When the animation is made there are four temporary variables made available for labeling. The documentation for <code>transition_states()</code> notes that the following variables are available<a href="#fn33" class="footnote-ref" id="fnref33"><sup>33</sup></a>.</p>
+<p>This is awesome! We’ve created an animation 😮. The bars change heigh with each change of state. The only bummer is that we don’t know what states the animation is going through! When the animation is made there are four temporary variables made available for labeling. The documentation for <code>transition_states()</code> notes that the following variables are available<a href="#fn62" class="footnote-ref" id="fnref62"><sup>62</sup></a>.</p>
 <ul>
 <li><strong>transitioning</strong> is a boolean indicating whether the frame is part of the transitioning phase</li>
 <li><strong>previous_state</strong> The name of the last state the animation was at</li>
@@ -461,11 +469,11 @@ All that is needed to add animation to this plot is a transition layer. For the 
 </div>
 <div class="footnotes">
 <hr />
-<ol start="30">
-<li id="fn30"><p><a href="https://www.cc.gatech.edu/~stasko/papers/infovis08-anim.pdf">Effectiveness of Animation in Trend Visualization</a><a href="visualizing-through-time.html#fnref30" class="footnote-back">↩︎</a></p></li>
-<li id="fn31"><p><a href="https://www.ted.com/talks/hans_rosling_the_best_stats_you_ve_ever_seen/transcript">Hans Rosling</a><a href="visualizing-through-time.html#fnref31" class="footnote-back">↩︎</a></p></li>
-<li id="fn32"><p><a href="https://www.cc.gatech.edu/~stasko/papers/infovis08-anim.pdf">Effectiveness of Animation in Trend Visualization</a><a href="visualizing-through-time.html#fnref32" class="footnote-back">↩︎</a></p></li>
-<li id="fn33"><p><a href="https://gganimate.com/reference/transition_states.html"><code>transition_states()</code></a><a href="visualizing-through-time.html#fnref33" class="footnote-back">↩︎</a></p></li>
+<ol start="59">
+<li id="fn59"><p><a href="https://www.cc.gatech.edu/~stasko/papers/infovis08-anim.pdf">Effectiveness of Animation in Trend Visualization</a><a href="visualizing-through-time.html#fnref59" class="footnote-back">↩︎</a></p></li>
+<li id="fn60"><p><a href="https://www.ted.com/talks/hans_rosling_the_best_stats_you_ve_ever_seen/transcript">Hans Rosling</a><a href="visualizing-through-time.html#fnref60" class="footnote-back">↩︎</a></p></li>
+<li id="fn61"><p><a href="https://www.cc.gatech.edu/~stasko/papers/infovis08-anim.pdf">Effectiveness of Animation in Trend Visualization</a><a href="visualizing-through-time.html#fnref61" class="footnote-back">↩︎</a></p></li>
+<li id="fn62"><p><a href="https://gganimate.com/reference/transition_states.html"><code>transition_states()</code></a><a href="visualizing-through-time.html#fnref62" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>

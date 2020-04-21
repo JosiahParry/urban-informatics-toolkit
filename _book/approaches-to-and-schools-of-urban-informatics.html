@@ -247,13 +247,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="25.1" data-path="multiple-data-sets.html"><a href="multiple-data-sets.html#exercise-2"><i class="fa fa-check"></i><b>25.1</b> Exercise</a></li>
 </ul></li>
-<li class="chapter" data-level="26" data-path="spatial-analysis.html"><a href="spatial-analysis.html"><i class="fa fa-check"></i><b>26</b> Spatial Analysis</a>
+<li class="chapter" data-level="26" data-path="statistics.html"><a href="statistics.html"><i class="fa fa-check"></i><b>26</b> Statistics</a>
 <ul>
-<li class="chapter" data-level="26.1" data-path="spatial-analysis.html"><a href="spatial-analysis.html#types-of-spatial-data"><i class="fa fa-check"></i><b>26.1</b> Types of spatial data</a></li>
-<li class="chapter" data-level="26.2" data-path="spatial-analysis.html"><a href="spatial-analysis.html#working-with-spatial-data"><i class="fa fa-check"></i><b>26.2</b> Working with spatial data</a></li>
-<li class="chapter" data-level="26.3" data-path="spatial-analysis.html"><a href="spatial-analysis.html#creating-simple-features-from-a-tibble"><i class="fa fa-check"></i><b>26.3</b> Creating simple features from a tibble</a></li>
-<li class="chapter" data-level="26.4" data-path="spatial-analysis.html"><a href="spatial-analysis.html#plotting-sf-objects-with-ggplot"><i class="fa fa-check"></i><b>26.4</b> Plotting sf objects with ggplot</a></li>
-<li class="chapter" data-level="26.5" data-path="spatial-analysis.html"><a href="spatial-analysis.html#connecting-points-to-polygons"><i class="fa fa-check"></i><b>26.5</b> Connecting points to polygons</a></li>
+<li class="chapter" data-level="26.1" data-path="statistics.html"><a href="statistics.html#the-data"><i class="fa fa-check"></i><b>26.1</b> The data</a></li>
+<li class="chapter" data-level="26.2" data-path="statistics.html"><a href="statistics.html#the-formula-interface"><i class="fa fa-check"></i><b>26.2</b> The formula interface</a></li>
+<li class="chapter" data-level="26.3" data-path="statistics.html"><a href="statistics.html#t-tests"><i class="fa fa-check"></i><b>26.3</b> T-tests</a></li>
+<li class="chapter" data-level="26.4" data-path="statistics.html"><a href="statistics.html#anova"><i class="fa fa-check"></i><b>26.4</b> ANOVA</a></li>
+<li class="chapter" data-level="26.5" data-path="statistics.html"><a href="statistics.html#linear-regression"><i class="fa fa-check"></i><b>26.5</b> Linear regression</a></li>
+</ul></li>
+<li class="chapter" data-level="27" data-path="spatial-analysis.html"><a href="spatial-analysis.html"><i class="fa fa-check"></i><b>27</b> Spatial Analysis</a>
+<ul>
+<li class="chapter" data-level="27.1" data-path="spatial-analysis.html"><a href="spatial-analysis.html#types-of-spatial-data"><i class="fa fa-check"></i><b>27.1</b> Types of spatial data</a></li>
+<li class="chapter" data-level="27.2" data-path="spatial-analysis.html"><a href="spatial-analysis.html#working-with-spatial-data"><i class="fa fa-check"></i><b>27.2</b> Working with spatial data</a></li>
+<li class="chapter" data-level="27.3" data-path="spatial-analysis.html"><a href="spatial-analysis.html#creating-simple-features-from-a-tibble"><i class="fa fa-check"></i><b>27.3</b> Creating simple features from a tibble</a></li>
+<li class="chapter" data-level="27.4" data-path="spatial-analysis.html"><a href="spatial-analysis.html#plotting-sf-objects-with-ggplot"><i class="fa fa-check"></i><b>27.4</b> Plotting sf objects with ggplot</a></li>
+<li class="chapter" data-level="27.5" data-path="spatial-analysis.html"><a href="spatial-analysis.html#connecting-points-to-polygons"><i class="fa fa-check"></i><b>27.5</b> Connecting points to polygons</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/josiahparry/urban-informatics-toolkit" target="blank">GitHub</a></li>
@@ -285,23 +293,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="the-chicago-school" class="section level2" number="4.2">
 <h2><span class="header-section-number">4.2</span> The Chicago School</h2>
-<p>Much of what is known as the urban sciences today can be traced back to the late 19th and early 20th centuries at the University of Chicago. The University of Chicago was at the time the epicenter of the new field of American Sociology which came to be known as the Chicago School. In that era, the social sciences were seeking to create grand theories of the world. Take, for example, the new field of Anthropology that crafted theories about the origins of the human race. The Chicago School “fostered a very different view of sociology: first-hand data collection was to be emphasized; research on the particular case or setting was to be stressed; induction over deduction was to be promoted” (Turner, 1988).</p>
+<p>Much of what is known as the urban sciences today can be traced back to the late 19th and early 20th centuries at the University of Chicago. The University of Chicago was at the time the epicenter of the new field of American Sociology which came to be known as the Chicago School. In that era, the social sciences were seeking to create grand theories of the world. Take, for example, the new field of Anthropology that crafted theories about the origins of the human race. The Chicago School “fostered a very different view of sociology: first-hand data collection was to be emphasized; research on the particular case or setting was to be stressed; induction over deduction was to be promoted”<a href="#fn13" class="footnote-ref" id="fnref13"><sup>13</sup></a>.</p>
 <p>Scholars such as Robert Park, Ernest Burgess, and Louis Wirth developed a number of micro-theories to understand the city. Most notably is the culminating work The City by Park and Burgess, a collection of essays that encapsulate decades of careful observation that led to a number of theories that still have influence today. Their body of work, important in so many ways, is an early paragon of an inductive approach to social research.</p>
 </div>
 <div id="complexity-and-santa-fe-institute" class="section level2" number="4.3">
 <h2><span class="header-section-number">4.3</span> Complexity and Santa Fe Institute</h2>
-<p>On the other end of the spectrum rest the Santa Fe Institute (SFI) and their complexity science. The SFI’s mission is to “endeavor to understand and unify the underlying, shared patterns in complex physical, biological, social, cultural, technological, and even possible astrobiological worlds.”[^complexity] Crudely, it is their goal to unify theory into one general master theory. Central to their theoretical focus is the the view that “valuable ideas are often confined to the echo chambers of academia.”[^complexity] In this view, they are not wrong.</p>
+<p>On the other end of the spectrum rest the Santa Fe Institute (SFI) and their complexity science. The SFI’s mission is to “endeavor to understand and unify the underlying, shared patterns in complex physical, biological, social, cultural, technological, and even possible astrobiological worlds.”<a href="#fn14" class="footnote-ref" id="fnref14"><sup>14</sup></a> Crudely, it is their goal to unify theory into one general master theory. Central to their theoretical focus is the the view that “valuable ideas are often confined to the echo chambers of academia.”<a href="#fn15" class="footnote-ref" id="fnref15"><sup>15</sup></a> In this view, they are not wrong.</p>
 <p>Their work is important for bridging many so called gaps between disciplines. They apply biological theories of scaling to those of human development. And their findings have been fruitful! Their focus on the interconnectivity of theory of both the natural and social worlds is in some ways the messy work that must be done. This too is in the spirit of the Chicago School as illustrated by it’s view of the City as an organism.</p>
 </div>
 <div id="a-hybrid-approach" class="section level2" number="4.4">
 <h2><span class="header-section-number">4.4</span> A Hybrid Approach</h2>
 <p>As part of this proliferation of big data we have more and better data within reach. As such we are able to, perhaps even encouraged to, take a much more hybrid approach. Within the these data are a multitude of opportunities to explore and glean patterns that we may have been so subtle that it hasn’t been observed before. Or, alternatively, the data had not been collected before. This allows us to take a much more inductive approach where we can craft theories from the patterns that we observe, then we can test those theories in creative ways. It is here where, I believe, that the Boston Area Research Initiative (BARI) rests on the spectrum. This hybrid methodology incorporates both inductive and deductive approaches.</p>
 <p><img src="static/hybrid-approach.png" /></p>
-<p>The above graphic is m best attempt to illustrate this hybrid model. We start with data. We use publicly available (open) administrative data to explore. We get our metaphorical hands dirty with the data. After we munge it, transform it, and reaarange it, we will walk away with some tidbit of information. From that we discover more. And at the end of the day we develop a theory—a framework for understanding what we have observed. Next, we then develop a hypothesis using that new theory and apply it to some other set of data or some new circumstance to test and refine the theories we have developed. In this we both create theory from observation, and test those theories on new and unexplored observations.</p>
+<p>The above graphic is m best attempt to illustrate this hybrid model. We start with data. We use publicly available (open) administrative data to explore. We get our metaphorical hands dirty with the data. After we munge it, transform it, and rearrange it, we will walk away with some tidbit of information. From that we discover more. And at the end of the day we develop a theory—a framework for understanding what we have observed. Next, we then develop a hypothesis using that new theory and apply it to some other set of data or some new circumstance to test and refine the theories we have developed. In this we both create theory from observation, and test those theories on new and unexplored observations.</p>
 <p>Dan O’Brien, Director of BARI, claims to track more with the Chicago School in their approach—and this is correct. But, BARI also actively seeks to evaluate existing theory. There are no better examples of the BARI approach than the development and use of <strong>ecometrics</strong> to understand the City and test existing theory.</p>
-<p>In the next chapter we will learn about ecometrics, their origins, and their use in evaluating the prominent crimonological <em>Broken Windows</em> theory.</p>
+<p>In the next chapter we will learn about ecometrics, their origins, and their use in evaluating the prominent crimoinological <em>Broken Windows</em> theory.</p>
 
 </div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="13">
+<li id="fn13"><p>Turner, Jonathan H. <a href="https://journals.sagepub.com/doi/10.2307/1389202">“The mixed legacy of the Chicago school of sociology.”</a> Sociological perspectives 31, no. 3 (1988): 325-338.<a href="approaches-to-and-schools-of-urban-informatics.html#fnref13" class="footnote-back">↩︎</a></p></li>
+<li id="fn14"><p><a href="https://www.santafe.edu/about">Santa Fe Institute</a><a href="approaches-to-and-schools-of-urban-informatics.html#fnref14" class="footnote-back">↩︎</a></p></li>
+<li id="fn15"><p><a href="https://www.santafe.edu/about">Santa Fe Institute</a><a href="approaches-to-and-schools-of-urban-informatics.html#fnref15" class="footnote-back">↩︎</a></p></li>
+</ol>
 </div>
             </section>
 

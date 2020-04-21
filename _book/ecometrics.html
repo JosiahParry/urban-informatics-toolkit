@@ -247,13 +247,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="25.1" data-path="multiple-data-sets.html"><a href="multiple-data-sets.html#exercise-2"><i class="fa fa-check"></i><b>25.1</b> Exercise</a></li>
 </ul></li>
-<li class="chapter" data-level="26" data-path="spatial-analysis.html"><a href="spatial-analysis.html"><i class="fa fa-check"></i><b>26</b> Spatial Analysis</a>
+<li class="chapter" data-level="26" data-path="statistics.html"><a href="statistics.html"><i class="fa fa-check"></i><b>26</b> Statistics</a>
 <ul>
-<li class="chapter" data-level="26.1" data-path="spatial-analysis.html"><a href="spatial-analysis.html#types-of-spatial-data"><i class="fa fa-check"></i><b>26.1</b> Types of spatial data</a></li>
-<li class="chapter" data-level="26.2" data-path="spatial-analysis.html"><a href="spatial-analysis.html#working-with-spatial-data"><i class="fa fa-check"></i><b>26.2</b> Working with spatial data</a></li>
-<li class="chapter" data-level="26.3" data-path="spatial-analysis.html"><a href="spatial-analysis.html#creating-simple-features-from-a-tibble"><i class="fa fa-check"></i><b>26.3</b> Creating simple features from a tibble</a></li>
-<li class="chapter" data-level="26.4" data-path="spatial-analysis.html"><a href="spatial-analysis.html#plotting-sf-objects-with-ggplot"><i class="fa fa-check"></i><b>26.4</b> Plotting sf objects with ggplot</a></li>
-<li class="chapter" data-level="26.5" data-path="spatial-analysis.html"><a href="spatial-analysis.html#connecting-points-to-polygons"><i class="fa fa-check"></i><b>26.5</b> Connecting points to polygons</a></li>
+<li class="chapter" data-level="26.1" data-path="statistics.html"><a href="statistics.html#the-data"><i class="fa fa-check"></i><b>26.1</b> The data</a></li>
+<li class="chapter" data-level="26.2" data-path="statistics.html"><a href="statistics.html#the-formula-interface"><i class="fa fa-check"></i><b>26.2</b> The formula interface</a></li>
+<li class="chapter" data-level="26.3" data-path="statistics.html"><a href="statistics.html#t-tests"><i class="fa fa-check"></i><b>26.3</b> T-tests</a></li>
+<li class="chapter" data-level="26.4" data-path="statistics.html"><a href="statistics.html#anova"><i class="fa fa-check"></i><b>26.4</b> ANOVA</a></li>
+<li class="chapter" data-level="26.5" data-path="statistics.html"><a href="statistics.html#linear-regression"><i class="fa fa-check"></i><b>26.5</b> Linear regression</a></li>
+</ul></li>
+<li class="chapter" data-level="27" data-path="spatial-analysis.html"><a href="spatial-analysis.html"><i class="fa fa-check"></i><b>27</b> Spatial Analysis</a>
+<ul>
+<li class="chapter" data-level="27.1" data-path="spatial-analysis.html"><a href="spatial-analysis.html#types-of-spatial-data"><i class="fa fa-check"></i><b>27.1</b> Types of spatial data</a></li>
+<li class="chapter" data-level="27.2" data-path="spatial-analysis.html"><a href="spatial-analysis.html#working-with-spatial-data"><i class="fa fa-check"></i><b>27.2</b> Working with spatial data</a></li>
+<li class="chapter" data-level="27.3" data-path="spatial-analysis.html"><a href="spatial-analysis.html#creating-simple-features-from-a-tibble"><i class="fa fa-check"></i><b>27.3</b> Creating simple features from a tibble</a></li>
+<li class="chapter" data-level="27.4" data-path="spatial-analysis.html"><a href="spatial-analysis.html#plotting-sf-objects-with-ggplot"><i class="fa fa-check"></i><b>27.4</b> Plotting sf objects with ggplot</a></li>
+<li class="chapter" data-level="27.5" data-path="spatial-analysis.html"><a href="spatial-analysis.html#connecting-points-to-polygons"><i class="fa fa-check"></i><b>27.5</b> Connecting points to polygons</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/josiahparry/urban-informatics-toolkit" target="blank">GitHub</a></li>
@@ -278,19 +286,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="ecometrics" class="section level1" number="5">
 <h1><span class="header-section-number">Chapter 5</span> Ecometrics</h1>
 <p>Central to the work that is done at BARI are the development and utilization of <strong>ecometrics</strong>. Ecometrics represent a quantitative representation of physical and social environment. In the Urban Informatics context, ecometrics are created to extract <strong>latent constructs</strong>—or variables that can only be inferred from a dataset—that illustrate some physical or social phenomenon.</p>
-<p>To understand this, we need to again contextualize these datasets. They <em>are not</em> created with the intention of beng analyzed or to measure the blight of a neighborhood or the social unrest of a city. The data may tell a story of an underserved neighborhood or of a gilded community with a beautiful brick façade with next to no collective efficacy efforts. These datasets contain gems—beautifully inelegant snapshots of the societal quotidien. But measuring that? That’s the tough part and that is why we create ecometrics. They provide us with a way to adapt existing data to address new problems.</p>
-<p>Of the work that BARI conducts, the production of city-wide ecometrics of social and physical disorder are most emblematic of this hybrid approach. To understand this work we need to venture back to 1982 and an article from the Atlantic called <em>Broken Windows</em>.</p>
+<p>To understand this, we need to again contextualize these datasets. They <em>are not</em> created with the intention of beng analyzed or to measure the blight of a neighborhood or the social unrest of a city. The data may tell a story of an underserved neighborhood or of a gilded community with a beautiful brick façade with next to no collective efficacy efforts. These datasets contain gems—beautifully inelegant snapshots of the societal quotidian. But measuring that? That’s the tough part and that is why we create ecometrics. They provide us with a way to adapt existing data to address new problems.</p>
+<p>Of the work that BARI conducts, the production of city-wide ecometrics of social and physical disorder are most emblematic of this hybrid approach. To understand this work we need to venture back to 1982 and an article from the Atlantic called <em>Broken Windows</em><a href="#fn16" class="footnote-ref" id="fnref16"><sup>16</sup></a>.</p>
 <div id="broken-windows-theory" class="section level2" number="5.1">
 <h2><span class="header-section-number">5.1</span> Broken Windows Theory</h2>
-<p>During the beginning of the crack-cocaine epidemic George Kelling and James Wilson wrote a now [in]famous article titled <em>Broken Windows</em> which outlined a new theory to explain the occurrence of crimes. The premise of this article is that the <em>presence</em> of disorder is more concerning for a neighborhoods residents than the actual crime that occurs. Further, the “visual cues of disorder . . . begets predatory crime and neighborhood decline” (O’Brien and Sampson, 2015).</p>
-<p>Broken Windows captured the eyes of pundits and policy makers. The simplicity of the theory makes it easy to Broken windows has historically captured the attention of policy makers. The vast public support has led to a large body of work largely disputing the merits of this theory. In the process of doing so, much work has gone into actually quantifying disorder in a city. In a seminal article by Sampson and Raudenbush (1999), the practice of systematic social observation was created. This is a process in which imagery of public spaces is taken and coded to identify disorder—i.e. the presence of empty beer cans—which can then be quantitatively analyzed. This is an early example of an ecometric.</p>
+<p>During the beginning of the crack-cocaine epidemic George Kelling and James Wilson wrote a now [in]famous article titled <em>Broken Windows</em> which outlined a new theory to explain the occurrence of crimes. The premise of this article is that the <em>presence</em> of disorder is more concerning for a neighborhoods residents than the actual crime that occurs. Further, the “visual cues of disorder … begets predatory crime and neighborhood decline”<a href="#fn17" class="footnote-ref" id="fnref17"><sup>17</sup></a>.</p>
+<p>Broken Windows captured the eyes of pundits and policy makers. The simplicity of the theory makes it easy to Broken windows has historically captured the attention of policy makers. The vast public support has led to a large body of work largely disputing the merits of this theory. In the process of doing so, much work has gone into actually quantifying disorder in a city. In a seminal article by Sampson and Raudenbush (1999), the practice of systematic social observation was created<a href="#fn18" class="footnote-ref" id="fnref18"><sup>18</sup></a>. This is a process in which imagery of public spaces is taken and coded to identify disorder—i.e. the presence of empty beer cans—which can then be quantitatively analyzed. This is an early example of an ecometric.</p>
 </div>
 <div id="quantifying-disorder" class="section level2" number="5.2">
 <h2><span class="header-section-number">5.2</span> Quantifying Disorder</h2>
-<p>In 2015, O’Brien and Sampson published the article <em>Public and Private Spheres of Neighborhood Disorder: Assessing Pathways to Violence Using Large-scale Digital Records</em>. This article epitomizes the hybrid aproach to urban studies. In it, O’Brien and Sampson utilize 911 dispatches and 311 call data to create measures of both social and physical disorder. These measures were then used to put Broken Windows theory to the test. The process of using existing administrative datasets as a method of estimating social and physical phenomena illustrates the inductive approach. Whereas testing testing the efficacy of Broken Windows is indicative of the more traditional deductive process.</p>
+<p>In 2015, O’Brien and Sampson published the article <em>Public and Private Spheres of Neighborhood Disorder: Assessing Pathways to Violence Using Large-scale Digital Records</em><a href="#fn19" class="footnote-ref" id="fnref19"><sup>19</sup></a>. This article epitomizes the hybrid approach to urban studies. In it, O’Brien and Sampson utilize 911 dispatches and 311 call data to create measures of both social and physical disorder. These measures were then used to put Broken Windows theory to the test. The process of using existing administrative datasets as a method of estimating social and physical phenomena illustrates the inductive approach. Whereas testing testing the efficacy of Broken Windows is indicative of the more traditional deductive process.</p>
 <p>Quantifying disorder is no small task. In their 2015 paper the authors write</p>
 <blockquote>
-<p>Taking up this challenge, O’Brien, Sampson, and Winship (2015) have proposed a methodology for ecometrics in the age of digital data, identifying three main issues with such data and articulating steps for addressing each. These are (1) identifying relevant content, (2) assessing validity, and (3) establishing criteria for reliability.</p>
+<p>Taking up this challenge, O’Brien, Sampson, and Winship (2015) have proposed a methodology for ecometrics in the age of digital data, identifying three main issues with such data and articulating steps for addressing each. These are (1) identifying relevant content, (2) assessing validity, and (3) establishing criteria for reliability.<a href="#fn20" class="footnote-ref" id="fnref20"><sup>20</sup></a><a href="#fn21" class="footnote-ref" id="fnref21"><sup>21</sup></a></p>
 </blockquote>
 <p>The above is an astute summation of the problems that arise with big data and how they can be overcome. The biggest of concerns, as mentioned in the opening of this section, is the validity of the data we are using.</p>
 <div id="defining-the-phenomenon" class="section level3" number="5.2.1">
@@ -305,28 +313,19 @@ violence);</li>
 <li>Prevalence of guns violence, as indicated by shootings or other inci-
 dents involving guns; and</li>
 <li>Alcohol, including public drunkenness or public consumption of
-alcohol.</li>
+alcohol.<a href="#fn22" class="footnote-ref" id="fnref22"><sup>22</sup></a></li>
 </ul>
 </blockquote>
-<p>These definitions provide clear pictures as to what is being measured. The next step is to surf through your data and do your best to match variables or observations to these measures. Then, through some process—usually factor analys—ensure that these measures are truly relevant.</p>
+<p>These definitions provide clear pictures as to what is being measured. The next step is to surf through your data and do your best to match variables or observations to these measures. Then, through some process—usually factor analysis—ensure that these measures are truly relevant.</p>
 </div>
 <div id="validating-the-measure" class="section level3" number="5.2.2">
 <h3><span class="header-section-number">5.2.2</span> Validating the measure</h3>
 <p>Once an ecometric has been defined and properly measured, the next step is to validate it. I think of this process similar to ground truthing in the geospatial sciences. Often when geographic coordinates are recorded an individual will go to that physical location and ensure that whatever that was recorded to be there actually is. This is what we are doing with our ecometrics. We have developed our measures, but we need to compare that to some objective truth so to say.</p>
-<p>In Sampson &amp; Raudenbush (1999), they develop measures of physical disorder through their systematic social observation. But in order to validate their measures, they compared their results to those of a neighborhood audit. This audit served as their ground truth and was used to make any adjustments if needed.</p>
+<p>In Sampson &amp; Raudenbush (1999), they develop measures of physical disorder through their systematic social observation<a href="#fn23" class="footnote-ref" id="fnref23"><sup>23</sup></a>. But in order to validate their measures, they compared their results to those of a neighborhood audit. This audit served as their ground truth and was used to make any adjustments if needed.</p>
 </div>
 <div id="addressing-reliability" class="section level3" number="5.2.3">
 <h3><span class="header-section-number">5.2.3</span> Addressing reliability</h3>
-<p>This ecometric, like most others, are naturually time bound snapshots of the social and physical world. These measures will naturally change over time. Because of this it is useful to know both how reliable the measure will be for different periods of time (O’Brien, Sampson, and Winship, 2015). The authors do with with a bit of statistical finesse that is best left to them to explain. But what we are to take away is that ecometrics are often time variant and it is important for us to know at what time scale the ecometrics are intended for.</p>
-<p>References &amp; Readings:</p>
-<ul>
-<li>O’Brien, Daniel Tumminelli, Robert J. Sampson, and Christopher Winship. 2015.
-‘‘Ecometrics in the Age of Big Data: Measuring and Assessing ‘Broken Windows’
-Using Large-scale Administrative Records.’’ Sociological Methodology 45.</li>
-<li><a href="https://www.annualreviews.org/doi/abs/10.1146/annurev-criminol-011518-024638?journalCode=criminol" class="uri">https://www.annualreviews.org/doi/abs/10.1146/annurev-criminol-011518-024638?journalCode=criminol</a></li>
-<li>Large-scale data use, ecometrics to assess disorder: <a href="https://journals.sagepub.com/doi/abs/10.1177/0022427815577835" class="uri">https://journals.sagepub.com/doi/abs/10.1177/0022427815577835</a></li>
-<li>sampson &amp; raudenbush systematic social observation: <a href="https://www.journals.uchicago.edu/doi/abs/10.1086/210356" class="uri">https://www.journals.uchicago.edu/doi/abs/10.1086/210356</a></li>
-</ul>
+<p>This ecometric, like most others, are naturually time bound snapshots of the social and physical world. These measures will naturally change over time. Because of this it is useful to know both how reliable the measure will be for different periods of time<a href="#fn24" class="footnote-ref" id="fnref24"><sup>24</sup></a>. The authors do with with a bit of statistical finesse that is best left to them to explain. But what we are to take away is that ecometrics are often time variant and it is important for us to know at what time scale the ecometrics are intended for.</p>
 
 </div>
 </div>
@@ -334,6 +333,20 @@ Using Large-scale Administrative Records.’’ Sociological Methodology 45.</li
 
 
 
+</div>
+<div class="footnotes">
+<hr />
+<ol start="16">
+<li id="fn16"><p>Wilson, James Q., and George L. Kelling. “Broken windows.” Atlantic monthly 249, no. 3 (1982): 29-38. <a href="https://www.theatlantic.com/magazine/archive/1982/03/broken-windows/304465/" class="uri">https://www.theatlantic.com/magazine/archive/1982/03/broken-windows/304465/</a>.<a href="ecometrics.html#fnref16" class="footnote-back">↩︎</a></p></li>
+<li id="fn17"><p>O’Brien, Daniel Tumminelli, and Robert J. Sampson. “Public and private spheres of neighborhood disorder: Assessing pathways to violence using large-scale digital records.” Journal of research in crime and delinquency 52, no. 4 (2015): 486-510. <a href="https://journals.sagepub.com/doi/abs/10.1177/0022427815577835" class="uri">https://journals.sagepub.com/doi/abs/10.1177/0022427815577835</a>.<a href="ecometrics.html#fnref17" class="footnote-back">↩︎</a></p></li>
+<li id="fn18"><p>Sampson, Robert J., and Stephen W. Raudenbush. “Systematic social observation of public spaces: A new look at disorder in urban neighborhoods.” American journal of sociology 105, no. 3 (1999): 603-651. <a href="https://www.journals.uchicago.edu/doi/abs/10.1086/210356" class="uri">https://www.journals.uchicago.edu/doi/abs/10.1086/210356</a>.<a href="ecometrics.html#fnref18" class="footnote-back">↩︎</a></p></li>
+<li id="fn19"><p>O’Brien, Daniel Tumminelli, and Robert J. Sampson. “Public and private spheres of neighborhood disorder: Assessing pathways to violence using large-scale digital records.” Journal of research in crime and delinquency 52, no. 4 (2015): 486-510. <a href="https://journals.sagepub.com/doi/abs/10.1177/0022427815577835" class="uri">https://journals.sagepub.com/doi/abs/10.1177/0022427815577835</a>.<a href="ecometrics.html#fnref19" class="footnote-back">↩︎</a></p></li>
+<li id="fn20"><p>O’Brien, Daniel T., Chelsea Farrell, and Brandon C. Welsh. “Looking through broken windows: the impact of neighborhood disorder on aggression and fear of crime is an artifact of research design.” Annual Review of Criminology 2 (2019): 53-71. <a href="https://www.annualreviews.org/doi/abs/10.1146/annurev-criminol-011518-024638?journalCode=criminol" class="uri">https://www.annualreviews.org/doi/abs/10.1146/annurev-criminol-011518-024638?journalCode=criminol</a>.<a href="ecometrics.html#fnref20" class="footnote-back">↩︎</a></p></li>
+<li id="fn21"><p>O’Brien, Daniel Tumminelli, and Robert J. Sampson. “Public and private spheres of neighborhood disorder: Assessing pathways to violence using large-scale digital records.” Journal of research in crime and delinquency 52, no. 4 (2015): 486-510. <a href="https://journals.sagepub.com/doi/abs/10.1177/0022427815577835" class="uri">https://journals.sagepub.com/doi/abs/10.1177/0022427815577835</a>.<a href="ecometrics.html#fnref21" class="footnote-back">↩︎</a></p></li>
+<li id="fn22"><p>O’Brien, Daniel Tumminelli, and Robert J. Sampson. “Public and private spheres of neighborhood disorder: Assessing pathways to violence using large-scale digital records.” Journal of research in crime and delinquency 52, no. 4 (2015): 486-510. <a href="https://journals.sagepub.com/doi/abs/10.1177/0022427815577835" class="uri">https://journals.sagepub.com/doi/abs/10.1177/0022427815577835</a>.<a href="ecometrics.html#fnref22" class="footnote-back">↩︎</a></p></li>
+<li id="fn23"><p>Sampson, Robert J., and Stephen W. Raudenbush. “Systematic social observation of public spaces: A new look at disorder in urban neighborhoods.” American journal of sociology 105, no. 3 (1999): 603-651. <a href="https://www.journals.uchicago.edu/doi/abs/10.1086/210356" class="uri">https://www.journals.uchicago.edu/doi/abs/10.1086/210356</a>.<a href="ecometrics.html#fnref23" class="footnote-back">↩︎</a></p></li>
+<li id="fn24"><p>O’Brien, Daniel T., Chelsea Farrell, and Brandon C. Welsh. “Looking through broken windows: the impact of neighborhood disorder on aggression and fear of crime is an artifact of research design.” Annual Review of Criminology 2 (2019): 53-71. <a href="https://www.annualreviews.org/doi/abs/10.1146/annurev-criminol-011518-024638?journalCode=criminol" class="uri">https://www.annualreviews.org/doi/abs/10.1146/annurev-criminol-011518-024638?journalCode=criminol</a>.<a href="ecometrics.html#fnref24" class="footnote-back">↩︎</a></p></li>
+</ol>
 </div>
             </section>
 

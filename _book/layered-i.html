@@ -247,13 +247,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="25.1" data-path="multiple-data-sets.html"><a href="multiple-data-sets.html#exercise-2"><i class="fa fa-check"></i><b>25.1</b> Exercise</a></li>
 </ul></li>
-<li class="chapter" data-level="26" data-path="spatial-analysis.html"><a href="spatial-analysis.html"><i class="fa fa-check"></i><b>26</b> Spatial Analysis</a>
+<li class="chapter" data-level="26" data-path="statistics.html"><a href="statistics.html"><i class="fa fa-check"></i><b>26</b> Statistics</a>
 <ul>
-<li class="chapter" data-level="26.1" data-path="spatial-analysis.html"><a href="spatial-analysis.html#types-of-spatial-data"><i class="fa fa-check"></i><b>26.1</b> Types of spatial data</a></li>
-<li class="chapter" data-level="26.2" data-path="spatial-analysis.html"><a href="spatial-analysis.html#working-with-spatial-data"><i class="fa fa-check"></i><b>26.2</b> Working with spatial data</a></li>
-<li class="chapter" data-level="26.3" data-path="spatial-analysis.html"><a href="spatial-analysis.html#creating-simple-features-from-a-tibble"><i class="fa fa-check"></i><b>26.3</b> Creating simple features from a tibble</a></li>
-<li class="chapter" data-level="26.4" data-path="spatial-analysis.html"><a href="spatial-analysis.html#plotting-sf-objects-with-ggplot"><i class="fa fa-check"></i><b>26.4</b> Plotting sf objects with ggplot</a></li>
-<li class="chapter" data-level="26.5" data-path="spatial-analysis.html"><a href="spatial-analysis.html#connecting-points-to-polygons"><i class="fa fa-check"></i><b>26.5</b> Connecting points to polygons</a></li>
+<li class="chapter" data-level="26.1" data-path="statistics.html"><a href="statistics.html#the-data"><i class="fa fa-check"></i><b>26.1</b> The data</a></li>
+<li class="chapter" data-level="26.2" data-path="statistics.html"><a href="statistics.html#the-formula-interface"><i class="fa fa-check"></i><b>26.2</b> The formula interface</a></li>
+<li class="chapter" data-level="26.3" data-path="statistics.html"><a href="statistics.html#t-tests"><i class="fa fa-check"></i><b>26.3</b> T-tests</a></li>
+<li class="chapter" data-level="26.4" data-path="statistics.html"><a href="statistics.html#anova"><i class="fa fa-check"></i><b>26.4</b> ANOVA</a></li>
+<li class="chapter" data-level="26.5" data-path="statistics.html"><a href="statistics.html#linear-regression"><i class="fa fa-check"></i><b>26.5</b> Linear regression</a></li>
+</ul></li>
+<li class="chapter" data-level="27" data-path="spatial-analysis.html"><a href="spatial-analysis.html"><i class="fa fa-check"></i><b>27</b> Spatial Analysis</a>
+<ul>
+<li class="chapter" data-level="27.1" data-path="spatial-analysis.html"><a href="spatial-analysis.html#types-of-spatial-data"><i class="fa fa-check"></i><b>27.1</b> Types of spatial data</a></li>
+<li class="chapter" data-level="27.2" data-path="spatial-analysis.html"><a href="spatial-analysis.html#working-with-spatial-data"><i class="fa fa-check"></i><b>27.2</b> Working with spatial data</a></li>
+<li class="chapter" data-level="27.3" data-path="spatial-analysis.html"><a href="spatial-analysis.html#creating-simple-features-from-a-tibble"><i class="fa fa-check"></i><b>27.3</b> Creating simple features from a tibble</a></li>
+<li class="chapter" data-level="27.4" data-path="spatial-analysis.html"><a href="spatial-analysis.html#plotting-sf-objects-with-ggplot"><i class="fa fa-check"></i><b>27.4</b> Plotting sf objects with ggplot</a></li>
+<li class="chapter" data-level="27.5" data-path="spatial-analysis.html"><a href="spatial-analysis.html#connecting-points-to-polygons"><i class="fa fa-check"></i><b>27.5</b> Connecting points to polygons</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/josiahparry/urban-informatics-toolkit" target="blank">GitHub</a></li>
@@ -289,9 +297,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>This chapter introduces you to the idea of the grammar of graphics, discusses when which visualizations are appropriate, and some fundamental design principles follow.</p>
 <div id="the-grammar-of-layered-graphics" class="section level2" number="19.1">
 <h2><span class="header-section-number">19.1</span> The Grammar of Layered Graphics</h2>
-<p>The <code>gg</code> in <code>ggplot2</code> refers to the grammar of graphics (and the <code>2</code> is because it’s the second iteration). <em>The Grammar of Graphics</em> (Wilkinson, 1999) is a seminal book in data visualization for the sciences in which, Wilkinson defines a complete system (grammar) for creating visualizations that go beyond the standard domain of “named graphics”—e.g. histogram, barchart, etc.<a href="#fn21" class="footnote-ref" id="fnref21"><sup>21</sup></a></p>
-<p>ggplot2 is “an open source implementation of the grammar of graphics for <strong>R</strong>.”<a href="#fn22" class="footnote-ref" id="fnref22"><sup>22</sup></a> Once we can internalize the grammar of graphics, creating plots will be an intuitive and artistic process rather than a mechanical one.</p>
-<p>There are five high level components of the layered grammar<a href="#fn23" class="footnote-ref" id="fnref23"><sup>23</sup></a>. We will only cover the first two in this chapter.</p>
+<p>The <code>gg</code> in <code>ggplot2</code> refers to the grammar of graphics (and the <code>2</code> is because it’s the second iteration). <em>The Grammar of Graphics</em> (Wilkinson, 1999) is a seminal book in data visualization for the sciences in which, Wilkinson defines a complete system (grammar) for creating visualizations that go beyond the standard domain of “named graphics”—e.g. histogram, barchart, etc.<a href="#fn50" class="footnote-ref" id="fnref50"><sup>50</sup></a></p>
+<p>ggplot2 is “an open source implementation of the grammar of graphics for <strong>R</strong>.”<a href="#fn51" class="footnote-ref" id="fnref51"><sup>51</sup></a> Once we can internalize the grammar of graphics, creating plots will be an intuitive and artistic process rather than a mechanical one.</p>
+<p>There are five high level components of the layered grammar<a href="#fn52" class="footnote-ref" id="fnref52"><sup>52</sup></a>. We will only cover the first two in this chapter.</p>
 <ol style="list-style-type: decimal">
 <li><strong>Defaults</strong>:
 <ul>
@@ -343,10 +351,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div class="footnotes">
 <hr />
-<ol start="21">
-<li id="fn21"><p><a href="https://vita.had.co.nz/papers/layered-grammar.pdf" class="uri">https://vita.had.co.nz/papers/layered-grammar.pdf</a><a href="layered-i.html#fnref21" class="footnote-back">↩︎</a></p></li>
-<li id="fn22"><p><a href="https://vita.had.co.nz/papers/layered-grammar.pdf" class="uri">https://vita.had.co.nz/papers/layered-grammar.pdf</a><a href="layered-i.html#fnref22" class="footnote-back">↩︎</a></p></li>
-<li id="fn23"><p><a href="https://vita.had.co.nz/papers/layered-grammar.pdf" class="uri">https://vita.had.co.nz/papers/layered-grammar.pdf</a><a href="layered-i.html#fnref23" class="footnote-back">↩︎</a></p></li>
+<ol start="50">
+<li id="fn50"><p><a href="https://vita.had.co.nz/papers/layered-grammar.pdf" class="uri">https://vita.had.co.nz/papers/layered-grammar.pdf</a><a href="layered-i.html#fnref50" class="footnote-back">↩︎</a></p></li>
+<li id="fn51"><p><a href="https://vita.had.co.nz/papers/layered-grammar.pdf" class="uri">https://vita.had.co.nz/papers/layered-grammar.pdf</a><a href="layered-i.html#fnref51" class="footnote-back">↩︎</a></p></li>
+<li id="fn52"><p><a href="https://vita.had.co.nz/papers/layered-grammar.pdf" class="uri">https://vita.had.co.nz/papers/layered-grammar.pdf</a><a href="layered-i.html#fnref52" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>

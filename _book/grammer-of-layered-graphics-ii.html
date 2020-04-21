@@ -247,13 +247,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="25.1" data-path="multiple-data-sets.html"><a href="multiple-data-sets.html#exercise-2"><i class="fa fa-check"></i><b>25.1</b> Exercise</a></li>
 </ul></li>
-<li class="chapter" data-level="26" data-path="spatial-analysis.html"><a href="spatial-analysis.html"><i class="fa fa-check"></i><b>26</b> Spatial Analysis</a>
+<li class="chapter" data-level="26" data-path="statistics.html"><a href="statistics.html"><i class="fa fa-check"></i><b>26</b> Statistics</a>
 <ul>
-<li class="chapter" data-level="26.1" data-path="spatial-analysis.html"><a href="spatial-analysis.html#types-of-spatial-data"><i class="fa fa-check"></i><b>26.1</b> Types of spatial data</a></li>
-<li class="chapter" data-level="26.2" data-path="spatial-analysis.html"><a href="spatial-analysis.html#working-with-spatial-data"><i class="fa fa-check"></i><b>26.2</b> Working with spatial data</a></li>
-<li class="chapter" data-level="26.3" data-path="spatial-analysis.html"><a href="spatial-analysis.html#creating-simple-features-from-a-tibble"><i class="fa fa-check"></i><b>26.3</b> Creating simple features from a tibble</a></li>
-<li class="chapter" data-level="26.4" data-path="spatial-analysis.html"><a href="spatial-analysis.html#plotting-sf-objects-with-ggplot"><i class="fa fa-check"></i><b>26.4</b> Plotting sf objects with ggplot</a></li>
-<li class="chapter" data-level="26.5" data-path="spatial-analysis.html"><a href="spatial-analysis.html#connecting-points-to-polygons"><i class="fa fa-check"></i><b>26.5</b> Connecting points to polygons</a></li>
+<li class="chapter" data-level="26.1" data-path="statistics.html"><a href="statistics.html#the-data"><i class="fa fa-check"></i><b>26.1</b> The data</a></li>
+<li class="chapter" data-level="26.2" data-path="statistics.html"><a href="statistics.html#the-formula-interface"><i class="fa fa-check"></i><b>26.2</b> The formula interface</a></li>
+<li class="chapter" data-level="26.3" data-path="statistics.html"><a href="statistics.html#t-tests"><i class="fa fa-check"></i><b>26.3</b> T-tests</a></li>
+<li class="chapter" data-level="26.4" data-path="statistics.html"><a href="statistics.html#anova"><i class="fa fa-check"></i><b>26.4</b> ANOVA</a></li>
+<li class="chapter" data-level="26.5" data-path="statistics.html"><a href="statistics.html#linear-regression"><i class="fa fa-check"></i><b>26.5</b> Linear regression</a></li>
+</ul></li>
+<li class="chapter" data-level="27" data-path="spatial-analysis.html"><a href="spatial-analysis.html"><i class="fa fa-check"></i><b>27</b> Spatial Analysis</a>
+<ul>
+<li class="chapter" data-level="27.1" data-path="spatial-analysis.html"><a href="spatial-analysis.html#types-of-spatial-data"><i class="fa fa-check"></i><b>27.1</b> Types of spatial data</a></li>
+<li class="chapter" data-level="27.2" data-path="spatial-analysis.html"><a href="spatial-analysis.html#working-with-spatial-data"><i class="fa fa-check"></i><b>27.2</b> Working with spatial data</a></li>
+<li class="chapter" data-level="27.3" data-path="spatial-analysis.html"><a href="spatial-analysis.html#creating-simple-features-from-a-tibble"><i class="fa fa-check"></i><b>27.3</b> Creating simple features from a tibble</a></li>
+<li class="chapter" data-level="27.4" data-path="spatial-analysis.html"><a href="spatial-analysis.html#plotting-sf-objects-with-ggplot"><i class="fa fa-check"></i><b>27.4</b> Plotting sf objects with ggplot</a></li>
+<li class="chapter" data-level="27.5" data-path="spatial-analysis.html"><a href="spatial-analysis.html#connecting-points-to-polygons"><i class="fa fa-check"></i><b>27.5</b> Connecting points to polygons</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/josiahparry/urban-informatics-toolkit" target="blank">GitHub</a></li>
@@ -313,7 +321,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb214-2"><a href="grammer-of-layered-graphics-ii.html#cb214-2"></a><span class="st">  </span><span class="kw">scale_x_log10</span>() </span></code></pre></div>
 <p><img src="04c-grammar-II_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
 <p>This is an overcorrection. The slight upward arch in the original plotting is now inverted. Nonetheless, I hope the point is made.</p>
-<p>In addition to applying transformations, we will want to have more control over the limits of our graph. For example, say we want to have our y axis include all <em>possible</em> values of [0,1]. We can tell ggplot what range of values we want our axes to contain with <code>lims()</code>. <code>lims()</code> takes a name-value pair where the name is an aesthetic and the value is a numeric vector with two elements—the first being the value at the origin and the second being at the extent of the axis<a href="#fn25" class="footnote-ref" id="fnref25"><sup>25</sup></a>.</p>
+<p>In addition to applying transformations, we will want to have more control over the limits of our graph. For example, say we want to have our y axis include all <em>possible</em> values of [0,1]. We can tell ggplot what range of values we want our axes to contain with <code>lims()</code>. <code>lims()</code> takes a name-value pair where the name is an aesthetic and the value is a numeric vector with two elements—the first being the value at the origin and the second being at the extent of the axis<a href="#fn54" class="footnote-ref" id="fnref54"><sup>54</sup></a>.</p>
 <blockquote>
 <p>Note: [0,1] means from 0 inclusive to 1 inclusive.</p>
 </blockquote>
@@ -400,7 +408,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>The last portion of the grammar to visit is facetting. When we facet a plot we are creating what are called “small multiples”, a term coined by the prominent Edward Tufte. A facetting, in other words, creates a graph for each unique level in a categorical variable. Think of this like a <code>group_by()</code> for plotting.</p>
 <p>There are two types of facetting we can do: wrapped and grid. These are done with <code>facet_wrap()</code> and <code>facet_grid()</code> respectively. The reference documentation sums up the differences best:</p>
 <blockquote>
-<p>“<code>facet_grid()</code> forms a matrix of panels defined by row and column faceting variables. It is most useful when you have two discrete variables, and all combinations of the variables exist in the data. If you have only one variable with many levels, try <code>facet_wrap()</code>.”<a href="#fn26" class="footnote-ref" id="fnref26"><sup>26</sup></a></p>
+<p>“<code>facet_grid()</code> forms a matrix of panels defined by row and column faceting variables. It is most useful when you have two discrete variables, and all combinations of the variables exist in the data. If you have only one variable with many levels, try <code>facet_wrap()</code>.”<a href="#fn55" class="footnote-ref" id="fnref55"><sup>55</sup></a></p>
 </blockquote>
 <p>Let’s look at <code>facet_wrap()</code> first. To create the facetting, we need to add <code>facet_wrap()</code> as a layer to our existing plot. There is only one argument that we are required to fulfill and that is the <code>facet</code> argument. <code>facet</code> expects a set of variables defined by the <code>vars()</code> function. <code>vars()</code> is a function used throughout the tidyverse to specify which columns are to be referenced used within the context of a the function it’s being used in.</p>
 <p>To recreate the above plot but facetting by county, we would add <code>facet_wrap(vars(county))</code> as a layer to our plot.</p>
@@ -437,9 +445,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div class="footnotes">
 <hr />
-<ol start="25">
-<li id="fn25"><p><a href="https://ggplot2.tidyverse.org/reference/lims" class="uri">https://ggplot2.tidyverse.org/reference/lims</a><a href="grammer-of-layered-graphics-ii.html#fnref25" class="footnote-back">↩︎</a></p></li>
-<li id="fn26"><p><a href="https://ggplot2.tidyverse.org/reference/facet_grid.html" class="uri">https://ggplot2.tidyverse.org/reference/facet_grid.html</a><a href="grammer-of-layered-graphics-ii.html#fnref26" class="footnote-back">↩︎</a></p></li>
+<ol start="54">
+<li id="fn54"><p><a href="https://ggplot2.tidyverse.org/reference/lims" class="uri">https://ggplot2.tidyverse.org/reference/lims</a><a href="grammer-of-layered-graphics-ii.html#fnref54" class="footnote-back">↩︎</a></p></li>
+<li id="fn55"><p><a href="https://ggplot2.tidyverse.org/reference/facet_grid.html" class="uri">https://ggplot2.tidyverse.org/reference/facet_grid.html</a><a href="grammer-of-layered-graphics-ii.html#fnref55" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>

@@ -8,9 +8,9 @@ If we focus our gaze towards the municipal government, the story is similar, pro
 
 Boston has built a few mobile applications for its residents. Notable among these apps are the BOS:311[^3], ParkBoston[^4], the city's least favorite Boston PayTix[^5], and the new Blue Bikes[^6]. Through BOS:311 residents can communicate directly to the Department of Public Works by recording an issue, it's location, and even an image of the issue. Blue Bikes trips, 311 requests, and much more are provided to the public via Analyze Boston, Boston's data portal[^7]. 
 
-This new availability of data has unintentionally altered the way in which scientists interact with data. For the purposes of scientific inquiry, scientists and analysts have historically been rather close to the data generation process. While we as residents and citizens interact with governmental agencies, it is not in the name of science. And the governmental agencies are engagin with residents in for the purpose of governance, not science. As such, much—if not all—of the open and public data that we interact within the urban informatics—and greater digital humanities—fields was not generated with the express purpose of being analyzed. This inherently changes the way in which analyses are approached. 
+This new availability of data has unintentionally altered the way in which scientists interact with data. For the purposes of scientific inquiry, scientists and analysts have historically been rather close to the data generation process. While we as residents and citizens interact with governmental agencies, it is not in the name of science. And the governmental agencies are engaing with residents in for the purpose of governance, not science. As such, much—if not all—of the open and public data that we interact within the urban informatics—and greater digital humanities—fields was not generated with the express purpose of being analyzed. This inherently changes the way in which analyses are approached. 
 
-In approaching data of this nature, researchers have began embracing a paradigm of _exploratory data analysis_ (EDA). EDA is extremely useful for developing insights from data in which there were no a priori[^8] hypotheses. In their influential book [_R for Data Science_](https://r4ds.had.co.nz), Garret Grolemund and Hadley Wickham describe this inductive approach of exploratory data analysis. 
+In approaching data of this nature, researchers have began embracing a paradigm of _exploratory data analysis_ (EDA). EDA is extremely useful for developing insights from data in which there were no a priori[^8] hypotheses. In their influential book [_R for Data Science_](https://r4ds.had.co.nz)[^r4ds], Garret Grolemund and Hadley Wickham describe this inductive approach of exploratory data analysis. 
 
 > "Data exploration is the art of looking at your data, rapidly generating hypotheses, quickly testing them, then repeating again and again and again." [^9]
 
@@ -25,7 +25,8 @@ This condition is often not the case when working with open data. We do not alwa
 [^3]: BOS:311: https://itunes.apple.com/us/app/boston-citizens-connect/id330894558?mt=8
 [^4]: ParkBoston: https://apps.apple.com/us/app/parkboston/id953579075
 [^5]: Boston PayTix: https://apps.apple.com/us/app/boston-paytix/id1068651854
-[^6]: BlueBikes:
+[^6]: BlueBikes
 [^7]: https://data.boston.gov/
 [^8]: "Relating to or denoting reasoning or knowledge which proceeds from theoretical deduction rather than from observation or experience." [Oxford Dictionary](https://www.lexico.com/definition/a_priori)
-[^9]: https://r4ds.had.co.nz/explore-intro.html
+[^9]: [Introduction - R for Data Science](https://r4ds.had.co.nz/explore-intro.html)
+[^r4ds]: [R for Data Science](https://www.hup.harvard.edu/catalog.php?isbn=9780674975293)

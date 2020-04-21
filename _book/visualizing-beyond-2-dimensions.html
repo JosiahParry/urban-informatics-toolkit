@@ -247,13 +247,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="25.1" data-path="multiple-data-sets.html"><a href="multiple-data-sets.html#exercise-2"><i class="fa fa-check"></i><b>25.1</b> Exercise</a></li>
 </ul></li>
-<li class="chapter" data-level="26" data-path="spatial-analysis.html"><a href="spatial-analysis.html"><i class="fa fa-check"></i><b>26</b> Spatial Analysis</a>
+<li class="chapter" data-level="26" data-path="statistics.html"><a href="statistics.html"><i class="fa fa-check"></i><b>26</b> Statistics</a>
 <ul>
-<li class="chapter" data-level="26.1" data-path="spatial-analysis.html"><a href="spatial-analysis.html#types-of-spatial-data"><i class="fa fa-check"></i><b>26.1</b> Types of spatial data</a></li>
-<li class="chapter" data-level="26.2" data-path="spatial-analysis.html"><a href="spatial-analysis.html#working-with-spatial-data"><i class="fa fa-check"></i><b>26.2</b> Working with spatial data</a></li>
-<li class="chapter" data-level="26.3" data-path="spatial-analysis.html"><a href="spatial-analysis.html#creating-simple-features-from-a-tibble"><i class="fa fa-check"></i><b>26.3</b> Creating simple features from a tibble</a></li>
-<li class="chapter" data-level="26.4" data-path="spatial-analysis.html"><a href="spatial-analysis.html#plotting-sf-objects-with-ggplot"><i class="fa fa-check"></i><b>26.4</b> Plotting sf objects with ggplot</a></li>
-<li class="chapter" data-level="26.5" data-path="spatial-analysis.html"><a href="spatial-analysis.html#connecting-points-to-polygons"><i class="fa fa-check"></i><b>26.5</b> Connecting points to polygons</a></li>
+<li class="chapter" data-level="26.1" data-path="statistics.html"><a href="statistics.html#the-data"><i class="fa fa-check"></i><b>26.1</b> The data</a></li>
+<li class="chapter" data-level="26.2" data-path="statistics.html"><a href="statistics.html#the-formula-interface"><i class="fa fa-check"></i><b>26.2</b> The formula interface</a></li>
+<li class="chapter" data-level="26.3" data-path="statistics.html"><a href="statistics.html#t-tests"><i class="fa fa-check"></i><b>26.3</b> T-tests</a></li>
+<li class="chapter" data-level="26.4" data-path="statistics.html"><a href="statistics.html#anova"><i class="fa fa-check"></i><b>26.4</b> ANOVA</a></li>
+<li class="chapter" data-level="26.5" data-path="statistics.html"><a href="statistics.html#linear-regression"><i class="fa fa-check"></i><b>26.5</b> Linear regression</a></li>
+</ul></li>
+<li class="chapter" data-level="27" data-path="spatial-analysis.html"><a href="spatial-analysis.html"><i class="fa fa-check"></i><b>27</b> Spatial Analysis</a>
+<ul>
+<li class="chapter" data-level="27.1" data-path="spatial-analysis.html"><a href="spatial-analysis.html#types-of-spatial-data"><i class="fa fa-check"></i><b>27.1</b> Types of spatial data</a></li>
+<li class="chapter" data-level="27.2" data-path="spatial-analysis.html"><a href="spatial-analysis.html#working-with-spatial-data"><i class="fa fa-check"></i><b>27.2</b> Working with spatial data</a></li>
+<li class="chapter" data-level="27.3" data-path="spatial-analysis.html"><a href="spatial-analysis.html#creating-simple-features-from-a-tibble"><i class="fa fa-check"></i><b>27.3</b> Creating simple features from a tibble</a></li>
+<li class="chapter" data-level="27.4" data-path="spatial-analysis.html"><a href="spatial-analysis.html#plotting-sf-objects-with-ggplot"><i class="fa fa-check"></i><b>27.4</b> Plotting sf objects with ggplot</a></li>
+<li class="chapter" data-level="27.5" data-path="spatial-analysis.html"><a href="spatial-analysis.html#connecting-points-to-polygons"><i class="fa fa-check"></i><b>27.5</b> Connecting points to polygons</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/josiahparry/urban-informatics-toolkit" target="blank">GitHub</a></li>
@@ -357,7 +365,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">22.1.1</span> Continuous color scales</h3>
 <p>In the cases where our variable of interest is a continuous numeric one, we ought to be using a continuous color scale. These are scales that change from one color to another to illustrate a range of values—for example we could use this to visualize probabilities from 0 - 1. The below is an example of one of these color palettes.</p>
 <p><img src="04d-beyond-2d_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
-<p>Often you’ll encounter visualizations that use a rainbow color palette or some other number of colors. To illustrate a range of values. This is <em>not</em> recommended. When we are looking at color, we are best able to detect changes in the luminescence (perceived brightness) and saturation.<a href="#fn27" class="footnote-ref" id="fnref27"><sup>27</sup></a> As such, we should work with color palettes that are easiest to interpret. First we’ll visualize what changing saturation and brightness looks like.</p>
+<p>Often you’ll encounter visualizations that use a rainbow color palette or some other number of colors. To illustrate a range of values. This is <em>not</em> recommended. When we are looking at color, we are best able to detect changes in the luminescence (perceived brightness) and saturation.<a href="#fn56" class="footnote-ref" id="fnref56"><sup>56</sup></a> As such, we should work with color palettes that are easiest to interpret. First we’ll visualize what changing saturation and brightness looks like.</p>
 <p>Below is is an image of 10 colors. Starting at the left is the color yellow (hex code <code>#FFFF00FF</code>). Each step it is desaturated by 10 percent ending with the color grey (hex code <code>#808080FF</code>). We can think of saturation as how much color there is.</p>
 <p><img src="04d-beyond-2d_files/figure-html/unnamed-chunk-12-1.png" width="672" />
 Below is an example of what changing the brightness can look like.</p>
@@ -507,7 +515,7 @@ The above graphic doesn’t take into account the middle value of <code>0</code>
 <div id="shape" class="section level3" number="22.2.1">
 <h3><span class="header-section-number">22.2.1</span> Shape</h3>
 <p>Shape is another useful way to visualize groups or categories in our data. In general we should use shape only if color is not an option for us. Variations in shapes can be more difficult to discern—particularly when the number of groups to be visualized reaches beyond ~4. Moreover, shapes, depending on choice and intricacy can become overly distracting and can detract from the visualization as a whole. As a heuristic, do not map both shape and color to the same variable.</p>
-<p>To illustrate the use of shape we will use data from Inside Airbnb.<a href="#fn28" class="footnote-ref" id="fnref28"><sup>28</sup></a> This dataset contains Airbnb listings for Boston as well. The dataset can be found at <code>data/airbnb/airbnb.csv</code>. We will go into the dataset in more depth in the chapter on spatial analysis.</p>
+<p>To illustrate the use of shape we will use data from Inside Airbnb.<a href="#fn57" class="footnote-ref" id="fnref57"><sup>57</sup></a> This dataset contains Airbnb listings for Boston as well. The dataset can be found at <code>data/airbnb/airbnb.csv</code>. We will go into the dataset in more depth in the chapter on spatial analysis.</p>
 <p>For this visualization we will read in the dataset, filter it down to just <code>"Back Bay"</code>, and then plot ponts based on their place in space—aka latitude and longitude. We will also map shape to the <code>room_type</code>. Doing this will show us the spatial distribution of Airbnbs as well as the different kinds.</p>
 <blockquote>
 <p>Note that while we normally say “latitude and longitude”, that actually is saying “y and x” respectively. So be sure to put the latitude in the y aesthetic position and <em>not</em> longitude.</p>
@@ -541,7 +549,7 @@ The above graphic doesn’t take into account the middle value of <code>0</code>
 <div id="size" class="section level3" number="22.2.2">
 <h3><span class="header-section-number">22.2.2</span> Size</h3>
 <p>Moving onto size. Size is an aesthetic that is one of the hardest for humans to properly distinguish between. Because of this, size should usually be used when comparing observations with large discrepancies between them. Doing this with ggplot is again rather straight forward as here the only difference is, is that we set the aesthetic <code>size</code> to some other column (this must be numeric).</p>
-<p>This visualization will use data from Analyze Boston’s legacy database. Analyze Boston has previously released all signals from their Big Belly trashcans for the year of 2014<a href="#fn29" class="footnote-ref" id="fnref29"><sup>29</sup></a>. In the words of the data dictionary:</p>
+<p>This visualization will use data from Analyze Boston’s legacy database. Analyze Boston has previously released all signals from their Big Belly trashcans for the year of 2014<a href="#fn58" class="footnote-ref" id="fnref58"><sup>58</sup></a>. In the words of the data dictionary:</p>
 <blockquote>
 <p>Bigbelly’s contain compactors which crush waste within their waste bins in order to reduce the volume required to store the waste deposited into the Bigbelly. The compactors are able provide an average compaction ratio of 5:1, meaning a Bigbelly can store the equivalent of 150G (gallons) of uncompactedwaste within a standard 30G waste bin. The compactor in a Bigbelly will run when it has detected that waste within the bin has reached a certain level. After a compaction cycle the waste will be crushed to occupy a smaller amount of space within the waste bin. These cycles are repeated as more waste is added to the Bigbelly. After approximately 150G of uncompacted waste has been added to the Bigbelly the compactor will not be able to compress the waste further, this condition is detected and thewaste bin is considered to be full.</p>
 </blockquote>
@@ -565,9 +573,9 @@ The above graphic doesn’t take into account the middle value of <code>0</code>
 </div>
 <div class="footnotes">
 <hr />
-<ol start="27">
-<li id="fn27"><p>(<a href="https://flowingdata.com/2008/04/29/why-should-engineers-and-scientists-care-about-color-and-design/" class="uri">https://flowingdata.com/2008/04/29/why-should-engineers-and-scientists-care-about-color-and-design/</a>): Why should engineers and scientists care about color and design? <em>Flowing Data</em>.<a href="visualizing-beyond-2-dimensions.html#fnref27" class="footnote-back">↩︎</a></p></li>
-<li id="fn29"><p><a href="https://data.boston.gov/dataset/big-belly-alerts-2014/resource/8fb74119-97b9-4114-b773-ea0a82142d3b">Analyze Boston: Big Belly Alerts 2014</a><a href="visualizing-beyond-2-dimensions.html#fnref29" class="footnote-back">↩︎</a></p></li>
+<ol start="56">
+<li id="fn56"><p>(<a href="https://flowingdata.com/2008/04/29/why-should-engineers-and-scientists-care-about-color-and-design/" class="uri">https://flowingdata.com/2008/04/29/why-should-engineers-and-scientists-care-about-color-and-design/</a>): Why should engineers and scientists care about color and design? <em>Flowing Data</em>.<a href="visualizing-beyond-2-dimensions.html#fnref56" class="footnote-back">↩︎</a></p></li>
+<li id="fn58"><p><a href="https://data.boston.gov/dataset/big-belly-alerts-2014/resource/8fb74119-97b9-4114-b773-ea0a82142d3b">Analyze Boston: Big Belly Alerts 2014</a><a href="visualizing-beyond-2-dimensions.html#fnref58" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>

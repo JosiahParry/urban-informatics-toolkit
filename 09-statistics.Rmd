@@ -1,0 +1,175 @@
+# Statistics
+
+In the course of your analyses you will both want to and need to conduct statistical tests. It is important that you are equipped to perform these tests in R as well. Teaching you statistical concepts is outside of the scope of this book. For an introduction to statistical concepts using R, I recommend reading David Dalpiaz's free and open [_R for Statistical Learning_](https://daviddalpiaz.github.io/r4sl/)[^r4sl]. In this section we will review _how_ to implement statistical tests and extract useful information from them as well. We will cover t-tests, ANOVA, and linear regression.
+
+To explore these statistics we will use data from Inside Airbnb. Of interest is the relationship between price and superhosts, price and room type, and finally how both superhosts and room type contribute to price. 
+
+## The data
+
+We will use data from both the `hosts` and `listings` datasets. The former contains superhost data while the later has both the price and room type information. First we will read in both of these datasets.  
+
+```{r message=FALSE}
+library(tidyverse)
+
+listings <- read_csv("data/airbnb/listings.csv")
+hosts <- read_csv("data/airbnb/hosts.csv")
+
+glimpse(listings)
+glimpse(hosts)
+```
+
+In order to join these two tibbles together we need to figure out what the common identifiers are. In `listings` we can infer that the **primary key** is `id` while the **foreign key** is `host_id`. While the `hosts` tibble only has one `id` column. Clearly the join needs to be between `host_id` and `id` from `listings` and `hosts` respectively. We will perform a left join then select the columns `price`, `room_type` and `superhost` and assign that to the object `airbnb`.
+
+```{r}
+airbnb <- left_join(listings, hosts, by = c("host_id" = "id")) %>% 
+  select(price, room_type, superhost) 
+
+glimpse(airbnb)
+```
+
+Before we can engage in any statistical testing we should do our due diligence and first visualize the relationship before we test it. Because we are comparing a group to a continuous variable a boxplot will suffice.
+
+```{r}
+ggplot(airbnb, aes(price, superhost, group = superhost)) +
+  geom_boxplot()
+```
+
+> Note that we are setting the group to `superhost` this is because it is dummy coded as a numeric value. ggplot is attempting to consider it numeric rather than categorical. 
+
+Clearly there are some noticeable outliers above the \$2,500 mark. Let's filter out these values before we get on to our testing and while we're at it, let's convert `superhost` to a factor with `factor()`. Save the the filtered results to `bnb_filt`. Recreate the above visualization with the new object.
+
+```{r}
+bnb_filt <- filter(airbnb, price < 2500) %>% 
+  mutate(superhost = factor(superhost))
+
+ggplot(bnb_filt, aes(price, superhost)) +
+  geom_boxplot()
+```
+
+The first thing you may notices is that we no longer had to specify the `group` aesthetic because we converted `superhost` to a non-numeric format. From the above visualization it looks like that being a superhost does not necessarily increase the price of a listing. We can now test these means by using `t.test()`. There are a number of ways in which we can use this function but the most generalizable way is to use what is called the **formula** interface. 
+
+## The formula interface 
+
+The formula interface is a way of defining _statistical_ formulae. Or maybe a bit more clearly it let's us tell R which columns to use when fitting a model[^r4dummies]. The general format it takes is `y ~ x` which reads _y as a function of x_. In the case of a t-test the `y` is the variable that we will be testing the means of and the `x` is what group to compare. If our data are already in a tidy format—like our Airbnb data—this will be rather easy to adhere to. 
+
+## T-tests
+
+To perform a t-test we will use the `t.test()` function with the arguments `formula` and `data`. An example call looks like `t.test(y ~ x, data = df)`. In our case our `y` is `price` because it is our variable of interest or our dependent variable. Since we are curious how `price` changes by `superhost` status, we will put `superhost` in the `x` spot. 
+
+Conduct a t-test and store the results in `price_t`. Print it out afterwards. 
+
+```{r}
+(price_t <- t.test(price ~ superhost, data = bnb_filt))
+```
+The above is a somewhat cluttered buch of numbers and words. But in there we can see our t-value (`t = 2.3261`), degrees of freedom (`df = 2029.4`), and our p-value (`p-value = 0.02011`). From this test we can tell that with an alpha level of 0.05 we can reject the null hypothesis. 
+
+### Tidying up after our models
+
+While this is useful, we're going to, at some point, want to extract these statistics in some usable format. Enter [`broom`](https://broom.tidyverse.org/). From the documentation:
+
+> "`broom` summarizes key information about models in tidy tibble()s. broom provides three verbs to make it convenient to interact with model objects.
+>
+> * tidy() summarizes information about model components
+* glance() reports information about the entire model
+* augment() adds informations about observations to a dataset[^broom]
+
+Make sure that broom is installed with `install.packages("broom")`. Once that is installed use the function `tidy()` on the `price_t` object,
+
+```{r}
+broom::tidy(price_t)
+```
+
+The result is a tibble that can be easily manipulated and worked with. But naturally we will want to explore beyond just two groups. And in that case we must perform an analysis of variance (ANOVA).
+
+
+## ANOVA
+
+The ANOVA test is used in the case when t-tests cannot. That is, they are used when we want to know if there is a difference in means between groups when there are two or more groups. To perform an ANOVA we use the `aov()` function—an initialism for **a**analysis **o**f **v**ariance—with the same arguments that we used in `t.test()`. The only difference here is that the `x` is a column that has more than two groups—`room_type`. We can fit the ANOVA model with `price` as our `y` and `room_type` as our `x`.
+
+```{r}
+(price_aov <- aov(price ~ room_type, data = bnb_filt))
+```
+
+When we print out the ANOVA model object we actually don't see the results we were anticipating. To get thos we have to pass the model object to the function `summary()`.
+
+```{r}
+summary(price_aov)
+```
+ 
+ Now here we find the results of our test: p < 0.001. You may notice already that there is some inconsistency in which that ways that models are interacted with. That is why we use broom, to have one common way of working with model objects. If we'd like to access the model results in a consistent way we can again use `broom::tidy()`.
+ 
+```{r}
+broom::tidy(price_aov)
+```
+ 
+ Remember though that ANOVA tests if there is _any_ variation between any two groups. The results of the test do not tell us _which_ groups are different. And this is when we turn to Tukey's Honestly Significant Difference (HSD). Tukey's HSD creates a set of confidence intervals to compare each unique combination of our variables. To perform the test in R we pass the ANOVA model object to the function `TukeyHSD()`
+ 
+```{r}
+(price_hsd <- TukeyHSD(price_aov))
+```
+The results of the above test show that there are rather significant difference between hotel rooms and entire homes or apartments, private rooms and entire homes, shared rooms and entire homes, as well as private room and hotel room. With the use of broom and ggplot we can begin to visualize these restuls.
+
+```{r}
+(price_hsd_tidy <- broom::tidy(price_hsd))
+```
+
+With the tidied HSD object we can create a graph of point estimates and error bars. 
+
+> I personally like to call these Tie Fighter plots because they resemble the space ships from Star Wars. 
+
+We can being by plotting the point estimates of each comparison. 
+
+```{r}
+(p <- ggplot(price_hsd_tidy, aes(estimate, comparison)) +
+  geom_point())
+
+```
+
+Next we can add a horizontal error bar (`geom_errorbarh()`) layer to the plot. This layer requires some additional aesthetics that we will set in the layer itself. These are `xmin` and `xmax`. Respectively they are used to mark the minimum and maximum extents of the error bars. In the case of the HSD object, the bounds of th confidence intervals have been already calculated for us and can be found in the columns `conf.low` and `conf.high`. We can pass these to the `xmin` and `xmax` aesthetic arguments.
+
+```{r}
+p +
+  geom_errorbarh(aes(xmin = conf.low, xmax = conf.high))
+```
+
+## Linear regression
+
+When we want to move on to inference with linear models, we turn to the `lm()` function. This, like the `t.test()` and `aov()` functions requires both a formula and data. The difference is that the formulas that we will use are a bit more complex because we will often be using many variables. To predict y as some function of multiple inputs we have to declare all of those inputs in our formula which takes form of `y ~ x1 + x2 + ...`. So if we were to create a linear model that predicts price as a function of room type and whether or the host is a superhost, our formula will look like `price ~ room_type + superhost`. 
+
+```{r}
+price_lm <- lm(price ~ room_type + superhost, data = bnb_filt)
+
+summary(price_lm)
+```
+The output of this is very similar to that of the ANOVA model. Perhaps we can visualize it the same way? 
+
+```{r}
+broom::tidy(price_lm)
+```
+
+Unfortunately when we tidy this up we don't have the same columns. However we can ask for them explicitly by setting the argument `conf.int = TRUE`. 
+
+> You can find all possible arguments for `tidy()` in the exported object `broom::argument_glossary`. 
+
+Using a similar structure as above, we can create a coefficient plot.
+
+```{r}
+broom::tidy(price_lm, conf.int = TRUE) %>% 
+  ggplot(aes(estimate, term)) +
+  geom_point() + 
+  geom_errorbarh(aes(xmin = conf.low, xmax = conf.high))
+```
+
+Unlike the t-test, a linear model provides much more information that will become useful such as goodness of fit measures, residuals, and predicted values. To extract these we can use the functions `glance()` and `augment()` from broom.
+
+```{r}
+broom::glance(price_lm)
+
+broom::augment(price_lm) %>% 
+  slice(1:5)
+```
+
+
+[^r4sl]: _R for Statistical Learning_. https://daviddalpiaz.github.io/r4sl/.
+[^r4dummies]: _R for Dummies_. https://www.dummies.com/programming/r/how-to-use-the-formula-interface-in-r/. 
+[^broom]: {broom} https://broom.tidyverse.org/. 

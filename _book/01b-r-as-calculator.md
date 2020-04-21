@@ -5,15 +5,6 @@ Before we get going, let's find our footing. R is a statistical programming lang
   - arithmetic operators
   - creating and assigning variables
   - using functions
-  
-  Executing code:
-  
-    - (either with command + enter on the highlighted code or the line where your cursor is)
-  - or the run button above
-  - i recommend learning the key strokes. it will be immensely helpful
-  - this brings us to the console
-
-support document for executing code https://support.rstudio.com/hc/en-us/articles/200484448-Editing-and-Executing-Code#executing
 
 ## Arithmetic Operators 
 
@@ -27,7 +18,9 @@ Do you remember PEMDAS? If not, a quick refresher that PEMDAS specifies the orde
 
 These can be used together in parentheses [P] `( )` to determine the order of operations (`PEMDAS`)
 
-Try out some mathematic expressions in the console.
+There are three different ways to [execute code](https://support.rstudio.com/hc/en-us/articles/200484448-Editing-and-Executing-Code#executing) inside of RStudio[^sup]. The easiest way is to have your cursor on the line of code that you would like to execute. To execute hold `command + enter` (Mac) or `control + enter` (PC). Alternatively you can press the `Run` button at the top of the source page.
+
+Now, try out some mathematic expressions in the console. 
 
 ## Variable assignment
 
@@ -152,7 +145,7 @@ library(tidyverse)
 ```
 
 ```
-## ── Attaching packages ──────────────────────────────────────── tidyverse 1.3.0 ──
+## ── Attaching packages ───────────────────────────────────────────────────────────────── tidyverse 1.3.0 ──
 ```
 
 ```
@@ -163,7 +156,7 @@ library(tidyverse)
 ```
 
 ```
-## ── Conflicts ─────────────────────────────────────────── tidyverse_conflicts() ──
+## ── Conflicts ──────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
 ## x dplyr::filter() masks stats::filter()
 ## x dplyr::lag()    masks stats::lag()
 ```
@@ -176,3 +169,5 @@ You have now successfully installed and loaded the tidyverse. Next, we will begi
 ### Resources:
 
 - https://techterms.com/definition/string
+
+[^sup]: Executing Code. https://support.rstudio.com/hc/en-us/articles/200484448-Editing-and-Executing-Code#executing.

@@ -4,18 +4,18 @@
 
 What is R? R is the 18th letter of the alphabet, the fourth letter in _QWERTY_—like the keyboard—and, most importantly, R is a software package for statistical computing. 
 
-R is a decendant of the S statistical programming language whose naissance can be traced back to 1976 in Bell Labratories (https://web.archive.org/web/20181014111802/http://ect.bell-labs.com/sl/S/). As S developed, people sought to commercialize the language. In 1993, the license as well as development and selling rights were given to a private company. From then on, and what is still the case today, S became available only as the commercialized S-PLUS (Martin, 1996). 
+First, a brief history lesson. R is a descendant of the S statistical programming language whose naissance can be traced back to 1976 in Bell Laboratories[^s]. As S developed, people sought to commercialize the language. In 1993, the license as well as development and selling rights were given to a private company. From then on, and what is still the case today, S became available only as the commercialized S-PLUS[^martin]. 
 
-Later, seeing a need for an improved statitistical software environment, two researchers from the University of Aukland created a new statistical programming language, this became known as R. R was developed in the image of S. However, one important early decision to make the R-project free and open source changed its fate dramatically. 
+Later, seeing a need for an improved statistical software environment, two researchers from the University of Auckland created a new statistical programming language, this became known as R. R was developed in the image of S. However, one important early decision to make the R-project free and open source changed its fate dramatically. 
 
-Today, the R-project is developed and maintained by a group known as the R Core who "represent multiple statistical disciplines and are based at academic, not-for-profit and industry-affiliated institutions on multiple continents" (R SLDC, pg8). They define R as below. 
+Today, the R-project is developed and maintained by a group known as the R Core who "represent multiple statistical disciplines and are based at academic, not-for-profit and industry-affiliated institutions on multiple continents"[^sdlc]. They define R as below. 
 
-> R is an integrated suite of software facilities for data manipulation, calculation and graphical display.
-https://www.r-project.org/about.html
+> R is an integrated suite of software facilities for data manipulation, calculation and graphical display.[^rproj]
 
-To simplify it, R can be thought of as a fancy calculator. R was designed to do math, specifically statistics. R was designed to be extended to incude further capabilities than just statistics. Indeed it has been. While R is for all intents and purposes a programming language, one should, in theory, feel like they are doing data analysis and not programming (chambers).
 
-R is unique from other commercial statistical software such as stata and SPSS. Very fundamentally, R is a free project. While it is monetarily free, free refers to "liberty, not price" (gnu.org). In order to truly understand the adventure you will be embarking on shortly, I think it is important you familiarize yourself with the four freedoms of free software. These are:
+To simplify it, R can be thought of as a fancy calculator. R was designed to do math, specifically statistics. R was designed to be extended to incude further capabilities than just statistics. Indeed it has been. While R is for all intents and purposes a programming language, one should, in theory, feel like they are doing data analysis and not programming[^s].
+
+R is unique from other commercial statistical software such as stata and SPSS. Very fundamentally, R is a free project. While it is monetarily free, free refers to "liberty, not price"[^gnu]. In order to truly understand the adventure you will be embarking on shortly, I think it is important you familiarize yourself with the four freedoms of free software. These are:
 
 > 1. The freedom to run the program as you wish, for any purpose (freedom 0).
 
@@ -23,32 +23,27 @@ R is unique from other commercial statistical software such as stata and SPSS. V
 
 > 3. The freedom to redistribute copies so you can help others (freedom 2).
 
-> 4. The freedom to distribute copies of your modified versions to others (freedom 3). By doing this you can give the whole community a chance to benefit from your changes. Access to the source code is a precondition for this.
+> 4. The freedom to distribute copies of your modified versions to others (freedom 3). By doing this you can give the whole community a chance to benefit from your changes. Access to the source code is a precondition for this. [^gnu]
 
 
 These freedoms are a large part of the success of R as a language. Because of the free nature of R, academics and industry experts from around the globe are contributing to the language. This means that many new statistical techniques are first implemented in R. 
 
-The contributions that people make to R are changing the ways in which people perform data analysis. Because of this, we need to start contextualizing the tooling we use as **part of** the scientific process—not apart from it. When you engage in your analyses and work on contribute to the vast body of scientific literature, remember that without the tools you are using, much of it would not be possible. When you engage in science, think to yourself how you are adhering to the four essential freedoms. Are you enabling others to do with your findings as they wish? Will your research be accessible to the greater community? What will you do to "give the whole community a chance to benefit from your [work]"?
-
-
-https://cran.r-project.org/
+The contributions that people make to R are changing the ways in which people perform data analysis. Because of this, we need to start contextualizing the tooling we use as **part of** the scientific process—not apart from it. When you engage in your analyses and work on contribute to the vast body of scientific literature, remember that without the tools you are using, much of it would not be possible. When you engage in science, think to yourself how you are adhering to the four essential freedoms. Are you enabling others to do with your findings as they wish? Will your research be accessible to the greater community? What will you do to "give the whole community a chance to benefit from your [work]?
 
 
 ## The RStudio IDE
 
 When R is downloaded, interacting with it is somewhat of a cumbersome process. While some people love it, it can feel like programming in the matrix.
 
-![](https://media.giphy.com/media/rWY9ySfjytitq/giphy.gif)
-
 For this reason, we will use RStudio to program in R. RStudio is an integrated development environment (IDE). This means that most of the features that you will need to develop in R will all be in one place. RStudio gives you a place to write your R code, execute it, view the awesome graphics you produce, and much more. 
 
-I like to think of R as typesetting a printing press and using RStudio like using Mircrosoft word. Chester Ismay and Albert Kim's Modern Dive, provide another excellent analogy of R and RStudio. They describe R as the engine of a car, and RStudio as the dashboard (https://moderndive.com/1-getting-started.html).
+I like to think of R as typesetting a printing press and using RStudio like using Mircrosoft word. Chester Ismay and Albert Kim's Modern Dive, provide another excellent analogy of R and RStudio. They describe R as the engine of a car, and RStudio as the dashboard[^md].
 
 Let's get familiar with RStudio. You need to know where you are when working within RStudio. There are 4 quadrants that we work with (called panes). 
 
 ![](static/rstudio-editor.png)
 
-This lovely graphic was created graphics by Thomas mock. [Source](https://github.com/jthomasmock/intro-tidyverse/blob/master/intro-to-tidyverse.rmd)
+The above graphic is borrowed from RStudio, PBC's Thomas Mock's Introduction to the Tidyvers[^jtm] 
 
 
 ### The Editor
@@ -65,7 +60,6 @@ Let us now avert our attention to the bottom left pane. This is known as the con
 
 ### Output
 
-
 Now moving over to the right. This is the most versatile quadrant of RStudio. You will primarily use this quadrant to look at things. There is a pane for navigating your files, looking at help documentation, viewing the charts that you produce, and any interactive applications you may develop. 
 
 
@@ -74,17 +68,11 @@ Now moving over to the right. This is the most versatile quadrant of RStudio. Yo
 
 Now that you are somewhat familiar with R and RStudio, it is time to install them. I recommend installing R _and then_ RStudio. 
 
-R can be downloaded from the **C**entral **R** **A**rchival **N**etwork (CRAN). CRAN is the official location for all things R. CRAN provides access to the R software, license, copyright, and software extensions (called R packages). Go to [CRAN](https://cran.r-project.org/) to download R. 
+R can be downloaded from the **C**entral **R** **A**rchival **N**etwork (CRAN). CRAN is the official location for all things R. CRAN provides access to the R software, license, copyright, and software extensions (called R packages). Go to [CRAN](https://cran.r-project.org/) to download R[^cran]. 
 
-RStudio is provided by RStudio, Public Benefit Corporation (RStuio, PBC). To install RStudio navigate to the [download page](https://rstudio.com/products/rstudio/download/#download). 
+RStudio is provided by RStudio, Public Benefit Corporation (RStudio, PBC). To install RStudio navigate to the [download page](https://rstudio.com/products/rstudio/download/#download)[^download]. 
 
-Once both have been installed you can open RStudio to get started. Look for the circular R logo
-
-```{r, out.height="100px", echo=FALSE}
-knitr::include_graphics("https://digitalhumanities.berkeley.edu/sites/default/files/styles/large/public/field/image/cropped-rstudio.png?itok=C_QdRROx")
-```
-
-If you get lost navigating the RStudio IDE, be sure to refer to the [cheat sheet](https://github.com/rstudio/cheatsheets/raw/master/rstudio-ide.pdf). 
+Once both have been installed you can open RStudio to get started. Look for the circular R logo. If you get lost navigating the RStudio IDE, be sure to refer to the [cheat sheet](https://github.com/rstudio/cheatsheets/raw/master/rstudio-ide.pdf). 
 
 
 ## Preventative Care
@@ -161,13 +149,13 @@ R can be found in the infrastructure of our modern world. R is utilized in our g
 
 ## Getting Help 
 
-Undoubtedly you will run into problems when programming and you're going to want or need help. If you don't know where to go, getting help may feel impossible. There are two main places that I recommend you go to for help when you encounter problems: StackOverflow and RStudio community. 
+Undoubtedly you will run into problems when programming and you're going to want or need help. If you don't know where to go, getting help may feel impossible. There are two main places that I recommend you go to for help when you encounter problems: Stack Overflow and RStudio community. 
 
-[Stack Overflow](https://stackoverflow.com) is one piece of the large Stack Exchange network that is dedicated strictly to programming issues. There is a good chance that you've encountered Stack Exchange at some point in your various google searches. Stack Exchange is a network that is strictly dedicated to a question and answer format. Each topic has their own subdomain. For those who are unfamiliar, think of Stack Exchange like Reddit where each subreddit is their own own Q&A page. And for those who are unfamiliar with Reddit, think of Stack Overflow like Yahoo! Answers or Quora. Stack Overflow has a huge database of questions and answers for all of the programming problems that folks have encountered. It is very unlikely to have a question that has not been answered on Stack Overflow before. 
+[Stack Overflow](https://stackoverflow.com) is one piece of the large Stack Exchange network that is dedicated strictly to programming issues[^so]. There is a good chance that you've encountered Stack Exchange at some point in your various google searches. Stack Exchange is a network that is strictly dedicated to a question and answer format. Each topic has their own subdomain. For those who are unfamiliar, think of Stack Exchange like Reddit where each subreddit is their own own Q&A page. And for those who are unfamiliar with Reddit, think of Stack Overflow like Yahoo! Answers or Quora. Stack Overflow has a huge database of questions and answers for all of the programming problems that folks have encountered. It is very unlikely to have a question that has not been answered on Stack Overflow before. 
 
-The [RStudio Community](https://community.rstudio.com/) page is a community forum created by RStudio. This is a location for members of the R community—which you can now count yourself a part of—to ask questions, engage in thoughtful dialogue, and much more. While Stack Overflow is committed to all programming languages, of which R is just one of them, the RStudio Community is maintained entirely by R users.
+The [RStudio Community](https://community.rstudio.com/) page is a community forum created by RStudio[^community]. This is a location for members of the R community—which you can now count yourself a part of—to ask questions, engage in thoughtful dialogue, and much more. While Stack Overflow is committed to all programming languages, of which R is just one of them, the RStudio Community is maintained entirely by R users.
 
-If you have never asked a technical question before I would recommend spending doing so on RStudio Community as Stack Overflow has a [history](https://meta.stackoverflow.com/questions/262791/the-rudeness-on-stack-overflow-is-too-damn-high) of somewhat rude community. Before you do so, be sure to create a [**rep**roducible **ex**ample](https://www.tidyverse.org/help/#reprex) so that the community can best help you. 
+If you have never asked a technical question before I would recommend spending doing so on RStudio Community as Stack Overflow has a [history](https://meta.stackoverflow.com/questions/262791/the-rudeness-on-stack-overflow-is-too-damn-high) of somewhat rude community[^hist]. Before you do so, be sure to create a [**rep**roducible **ex**ample](https://www.tidyverse.org/help/#reprex) so that the community can best help you[^reprex]. 
 
 
 ## Reminders 
@@ -185,3 +173,19 @@ If you ever find yourself in a bout of programming induced frustration try one o
 
 
 Now, let's get going.
+
+
+
+[^s]: The S System. John Chambers. https://web.archive.org/web/20181014111802/http://ect.bell-labs.com/sl/S/.
+[^martin]: Statistical Sciences, Inc. Douglas Martin. 1996. https://github.com/JosiahParry/r-history/raw/master/lit/S/statsci-splus-death.pdf.
+[^sdlc]: R: Software Development Life Cycle. A Description of R’s Development, Testing, Release and Maintenance Processes. March 25, 2018. The R Foundation for Statistical Computing c/o Institute for Statistics and Mathematics https://www.r-project.org/doc/R-SDLC.pdf.
+[^rproj]: The R Project. https://www.r-project.org/about.html.
+[^gnu]: GNU. https://gnu.org.
+[^md]: Modern Dive. https://moderndive.com/1-getting-started.html.
+[^download]: RStudio IDE Download. https://rstudio.com/products/rstudio/download/#download.
+[^cran]: CRAN. https://cran.r-project.org/.
+[^hist]: The Rudeness on Stack Overflow is Too Damn High. https://meta.stackoverflow.com/questions/262791/the-rudeness-on-stack-overflow-is-too-damn-high.
+[^so]: Stack Overflow. https://stackoverflow.com.
+[^reprex]: Reproducible Examples. https://www.tidyverse.org/help/#reprex.
+[^community]: RStudio Community. https://community.rstudio.com/.
+[^jtm]: Intro to RMarkdown. Thomas Mock. https://github.com/jthomasmock/intro-tidyverse/blob/master/intro-to-tidyverse.rmd.

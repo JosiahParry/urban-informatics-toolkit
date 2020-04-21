@@ -1,8 +1,5 @@
 # What's next? 
 
-- Now with this very rudimentary foundation underneath you, we are about to embark upon a very long journey—the journey to learn how to analyze data with R and RStudio. You will learn how to program.
-- we will dive into working with data. starting with reading it in then a worked example with census data from BARi. 
-- then we will focus on the general data manipulation skills: selecting, filtering data. 
-- we also touch on some foundational R theory
+Now with this very rudimentary foundation underneath you we will embark upon a very long journey—the journey to learn how to analyze data with R and RStudio. In the following chapters you will learn how to program in R from creating compelling graphics, manipulating data, and performing statistical tests. 
 
-
+In the next chapter we will dive right into working with data. We will begin by learning how to read data into R. Then, we will work through a first visual analysis after which we will focus on skills used in general data manipulation. 
