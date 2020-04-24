@@ -54,15 +54,15 @@ The bottom left pane is the console. The console is where your R code is actuall
 
 ### Output
 
-Now moving over to the right. This is the most versatile quadrant of RStudio. You will primarily use this quadrant to look at things. There is a pane for navigating your files, looking at help documentation, viewing the charts that you produce, and any interactive applications you may develop. 
+This is the most versatile quadrant of RStudio. You will primarily use this quadrant to look at graphs. There is a pane for navigating your files, looking at help documentation, viewing the charts that you produce, and any interactive applications you may develop. 
 
 ## Installing R & RStudio 
 
-Now that you are somewhat familiar with R and RStudio, it is time to install them. I recommend installing R _and then_ RStudio. 
+Now that you are somewhat familiar with R and RStudio, it is time to install them. I recommend installing R first.
 
-R can be downloaded from the **C**entral **R** **A**rchival **N**etwork (CRAN). CRAN is the official location for all things R. CRAN provides access to the R software, license, copyright, and software extensions (called R packages). Go to [CRAN](https://cran.r-project.org/) to download R[^cran]. 
+R can be downloaded from the Central R Archival Network (CRAN).[^cran] CRAN is the official location for all things R. CRAN provides access to the R software, license, copyright, and software extensions (called R packages). 
 
-RStudio is provided by RStudio, Public Benefit Corporation (RStudio, PBC). To install RStudio navigate to the [download page](https://rstudio.com/products/rstudio/download/#download)[^download]. 
+RStudio is provided by RStudio, Public Benefit Corporation (RStudio, PBC). To install RStudio navigate to the [download page](https://rstudio.com/products/rstudio/download/#download).[^download] 
 Once both have been installed you can open RStudio to get started. Look for the circular R logo. If you get lost navigating the RStudio IDE, be sure to refer to the [cheat sheet](https://github.com/rstudio/cheatsheets/raw/master/rstudio-ide.pdf). 
 
 
@@ -70,10 +70,9 @@ Once both have been installed you can open RStudio to get started. Look for the 
 
 ### R Projects
 
-Once you open up RStudio you will be able to get rocking and rolling. Though, I want to instill some best practices from the get go. This following section will save you and anyone who you collaborate with an undescribable amount of headaches. 
-Folks are tempted to open up RStudio and begin doing analysis. That is all well and good though this leads to many problems. We need to contextualize each and every analysis as it's own **project**. Currently I mean project in the conceptual manner. If there is a common overarching theme, intent, or purpose, that analysis should be delineated as its own project and should be identifiable from others. 
+Once you open up RStudio you will be able to get rolling. This following section will save you and anyone you collaborate with an indescribable amount of headaches. Many users are tempted to open up RStudio and begin doing analysis. We need to contextualize each and every analysis as it's own _project_. If there is a common overarching theme, intent, or purpose, that analysis should be delineated as its own project and should be identifiable from others. 
 
-You probably already have a notion of projects implemented in your life. Consider your school work. I suspect, and frankly hope, that you have a somewhat organized folder structure where each semester is its own folder, and each course is its own folder within that. An example of what some of my folder organization looks like is below. 
+You probably already have projects in your life. Consider your school work. Suppose you have organized a folder structure where each semester is its own folder, and each course is its own folder within that. An example of what some of my folder organization looks like is below. 
 
 ```
 fall/
@@ -88,11 +87,11 @@ spring/
   intro-data-mining/
 ```
 
-In the above case we would consider each course as its own project. The important thing to keep in mind here is that each project is self-contained. By working inside of self-contained folders we can ensure that there are no problems with accessing files. R uses the concept of a working directory. Think of the working directory as "where do I start when I am looking for things?"
+In the above case we each course is its own project. The important thing to keep in mind here is that each project is self-contained. By working inside of self-contained folders we can ensure that there are no problems accessing files. R uses the concept of a working directory. The working directory is the place where R starts from when looking for files.
 
-Imagine R is using the working directory `spring` but you are working on your `info-design` work. Conceptually, you feel as if you're working from the `info-design` folder, but R is actually under the impression you are working from `spring`. So when you try to load some data from the `data` folder inside of `info-design` (which looks like `info-design/data`), you have to tell R how to get there. And the way R would get there is probably different than you think at the time.
+Imagine R is using the working directory `spring` but you are working on your `info-design` work. You would be under the impression that you were working from the `info-design` folder, but R would believe you were working from `spring`. So when you try to load some data from the `data` folder inside of `info-design` (which looks like `info-design/data`), you have to tell R how to get there. The instinctual path would be `data` but R is actually expecting `info-design/data`.
 
-To prevent this, we can essentially level set with R by creating a project. An R project gently imposes the standalone structure that we will need to prevent most of the headaches described above. 
+To prevent this we can create an R project. An R project imposes the standalone structure that we will need to prevent the above issue.
 
 The way to create a new project is by navigating to `File > New Project`.
 
@@ -103,40 +102,39 @@ Click `New Directory`. This will create a new folder for you. Next, RStudio will
 
 ![Step 2: New Project](static/02-project.png)
 
-The final step is to specify what the project will be called and where to put it. In the below image I name the new directory `uitk`, short for _Urban Informatics Toolkit_, and place it in the directory `R`. Be sure to select which folder you want your project to live in. 
+The final step is to specify what the project will be called and where to put it. In the below image I name the new directory `uitk`, short for Urban Informatics Toolkit, and place it in the directory `R`. Be sure to select which folder you want your project to live in. 
 
 A few tips:
 
-- Think about where you will be able to find the project again
-- Where would it make the most sense for the project to live?
+- Think about where you will be able to find the project again.
 - **Do not** put spaces or periods in the directory name. Use `_` or `-` if you feel the need. 
 
 ![Step 3: Naming the project](static/03-project.png)
 
-This will open up a new RStudio session. You will notice in your `Files` pane that there is now a `uitk.Rproj` file there. That file is what tells RStudio about the project, so don't delete it! If you would like to open up an RStudio project you can either open the `.Rproj` file from your file navigator or open it by following `File > Open Project`. 
+This will open up a new RStudio session. You will notice in your `Files` pane that there is now a `uitk.Rproj` file there. That file is what tells RStudio about the project, so don't delete it! If you would like to open up an RStudio project you can either open the `.Rproj` file from your file navigator or by following `File > Open Project`. 
 
 ### The data
 
-In order to complete the exercises throughout this book you will need to have the data accessible to you. You can download the data [here](https://github.com/JosiahParry/urban-informatics-toolkit/raw/master/data.zip)[^data]. This link will download a file called `data.zip`. Once downloaded open the file. It will create a folder called `data`. Move that entire folder into your new project. If you created a project called `uitk` in the `R` directory, move the folder to `~/R/uitk`. This will create a folder path of `~/R/uitk/data`. 
+In order to complete the exercises throughout this book you will need to have the data accessible to you. You can download the it [here](https://github.com/JosiahParry/urban-informatics-toolkit/raw/master/data.zip).[^data] This link will download a file called `data.zip`. Once downloaded open the file. It will create a folder called `data`. Move that entire folder into your new project. If you created a project called `uitk` in the `R` directory, move the folder to `~/R/uitk`. This will create a folder path of `~/R/uitk/data`. 
 
 ### Your Workspace
 
-In another effort to impose good habits and reproducibility standards I will suggest you change one setting in RStudio. Navigate to `Tools > Global Options` now change the below setting.
+In another effort to impose good habits and reproducibility standards I will suggest you change one setting in RStudio. Navigate to `Tools > Global Options` and change the below setting.
 
 ![](static/save-workspace.png)
 
-This setting makes it so that your analysis is dependent upon the code you write, not the things you create while interactively programming. A general rule of thumb is that your R script should be able to run from top to buttom successfully.
+This setting makes it so that your analysis is dependent upon the code you write, not the data objects you create while interactively programming. A general rule of thumb is that your R script should be able to run from top to bottom successfully.
 
 
 ## Before we embark
 
-Lastly, I want to emphasize that R and RStudio can be used for so much more than statistical analysis. It can be used to make aRt. 
+Lastly, I want to emphasize that R and RStudio can be used for so much more than statistical analysis. They can be used to make art. 
 
 <a href="https://www.data-imaginist.com/art">
   <img src="static/genesis1300.png" />
 </a>
 
-It can be used to make beautiful graphics for the BBC.
+They can be used to make beautiful graphics for the BBC.
 
 ![](static/bbplot_example_plots.png)
  
@@ -144,28 +142,25 @@ R can be found in the infrastructure of our modern world. R is utilized in our g
 
 ## Getting Help 
 
-Undoubtedly you will run into problems when programming and you're going to want or need help. If you don't know where to go, getting help may feel impossible. There are two main places that I recommend you go to for help when you encounter problems: Stack Overflow and RStudio community. 
+You may run into problems and you may want some help. If you don't know where to go, getting help may feel impossible. There are two main places that I recommend: Stack Overflow and RStudio community. 
 
-[Stack Overflow](https://stackoverflow.com) is one piece of the large Stack Exchange network that is dedicated strictly to programming issues[^so]. There is a good chance that you've encountered Stack Exchange at some point in your various google searches. Stack Exchange is a network that is strictly dedicated to a question and answer format. Each topic has their own subdomain. For those who are unfamiliar, think of Stack Exchange like Reddit where each subreddit is their own own Q&A page. And for those who are unfamiliar with Reddit, think of Stack Overflow like Yahoo! Answers or Quora. Stack Overflow has a huge database of questions and answers for all of the programming problems that folks have encountered. It is very unlikely to have a question that has not been answered on Stack Overflow before. 
+[Stack Overflow](https://stackoverflow.com) is one piece of the large Stack Exchange network that is dedicated strictly to programming issues.[^so] Stack Exchange is a network strictly dedicated to a question and answer format. Each topic has its own subdomain. For those who are unfamiliar, think of Stack Exchange like Reddit, Quora, or Yahoo! Answers. 
 
-The [RStudio Community](https://community.rstudio.com/) page is a community forum created by RStudio[^community]. This is a location for members of the R community—which you can now count yourself a part of—to ask questions, engage in thoughtful dialogue, and much more. While Stack Overflow is committed to all programming languages, of which R is just one of them, the RStudio Community is maintained entirely by R users.
+The [RStudio Community](https://community.rstudio.com/) page is a community forum created by RStudio.[^community] This is a location for members of the R community—including you—to ask questions, engage in thoughtful dialogue, and much more. While Stack Overflow is committed to all programming languages the RStudio Community is maintained entirely by R users.
 
-If you have never asked a technical question before I would recommend spending doing so on RStudio Community as Stack Overflow has a [history](https://meta.stackoverflow.com/questions/262791/the-rudeness-on-stack-overflow-is-too-damn-high) of somewhat rude community[^hist]. Before you do so, be sure to create a [**rep**roducible **ex**ample](https://www.tidyverse.org/help/#reprex) so that the community can best help you[^reprex]. 
+If it's your first time asking a technical question online, I would recommend the RStudio Community, as this group is generally more accessible to beginners. Before you do, be sure to create a [**rep**roducible **ex**ample](https://www.tidyverse.org/help/#reprex), called reprex for short, so that the community can best help you.[^reprex] 
 
 ## Reminders 
 
-Learning to program can be exceptionally difficult and frustrating at times. It can be a roller coaster of emotions. It is expected that you will not understand everything the first go around. Do not get down on yourself. I encourage you to take breaks and not push yourself too hard or even be self-critical. I understand you have deadlines, but sometimes it is better if you take a break, eat a healthy snack, go exercise, sleep, be social, or do whatever makes you happy and then come back. You will be much happier and your work will be even better and that I promise you! 
+Learning to program can be difficult and frustrating. You will not understand everything immediately. Don't get down on yourself. Take breaks and don't push yourself too hard or be self-critical. Eat a healthy snack, go exercise, sleep, be social, or do whatever makes you happy and then come back. You will be much happier. 
 
-If you ever find yourself in a bout of programming induced frustration try one of the below:
+If you ever find yourself in a bout of programming-induced frustration, try one of the below:
 
-* Drink water! Just do this even if you don't feel like it. Water is always good. 
+* Drink water.
 * Get some sleep. Without sleep you wil be running at 60% or less. 
-* Eat your greens. You are what you eat! 
+* Eat your greens.
 * Shower. Feeling clean can change your perspective and approach. 
-* Get your blood flowing! Go for a walk. Do some squats or pushups. Making sure your blood is moving is important. 
-* And take care of yourself!
-
-Now, let's get going.
+* Get your blood flowing! Go for a walk. Do some squats or pushups.
 
 [^s]: The S System. John Chambers. https://web.archive.org/web/20181014111802/http://ect.bell-labs.com/sl/S/.
 [^martin]: Statistical Sciences, Inc. Douglas Martin. 1996. https://github.com/JosiahParry/r-history/raw/master/lit/S/statsci-splus-death.pdf.

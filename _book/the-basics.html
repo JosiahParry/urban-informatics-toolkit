@@ -53,69 +53,6 @@
 
 
 
-<style type="text/css">
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -288,14 +225,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="what-is-r-and-why-do-i-care" class="section level2" number="6.1">
 <h2><span class="header-section-number">6.1</span> What is R and why do I care?</h2>
 <p>What is R? R is the 18th letter of the alphabet, the fourth letter in <em>QWERTY</em>—like the keyboard—and, most importantly, R is a software package for statistical computing.</p>
-<p>First, a brief history lesson. R is a descendant of the S statistical programming language whose naissance can be traced back to 1976 in Bell Laboratories<a href="#fn25" class="footnote-ref" id="fnref25"><sup>25</sup></a>. As S developed, people sought to commercialize the language. In 1993, the license as well as development and selling rights were given to a private company. From then on, and what is still the case today, S became available only as the commercialized S-PLUS<a href="#fn26" class="footnote-ref" id="fnref26"><sup>26</sup></a>.</p>
-<p>Later, seeing a need for an improved statistical software environment, two researchers from the University of Auckland created a new statistical programming language, this became known as R. R was developed in the image of S. However, one important early decision to make the R-project free and open source changed its fate dramatically.</p>
-<p>Today, the R-project is developed and maintained by a group known as the R Core who “represent multiple statistical disciplines and are based at academic, not-for-profit and industry-affiliated institutions on multiple continents”<a href="#fn27" class="footnote-ref" id="fnref27"><sup>27</sup></a>. They define R as below.</p>
-<blockquote>
-<p>R is an integrated suite of software facilities for data manipulation, calculation and graphical display.<a href="#fn28" class="footnote-ref" id="fnref28"><sup>28</sup></a></p>
-</blockquote>
-<p>To simplify it, R can be thought of as a fancy calculator. R was designed to do math, specifically statistics. R was designed to be extended to incude further capabilities than just statistics. Indeed it has been. While R is for all intents and purposes a programming language, one should, in theory, feel like they are doing data analysis and not programming<a href="#fn29" class="footnote-ref" id="fnref29"><sup>29</sup></a>.</p>
-<p>R is unique from other commercial statistical software such as stata and SPSS. Very fundamentally, R is a free project. While it is monetarily free, free refers to “liberty, not price”<a href="#fn30" class="footnote-ref" id="fnref30"><sup>30</sup></a>. In order to truly understand the adventure you will be embarking on shortly, I think it is important you familiarize yourself with the four freedoms of free software. These are:</p>
+<p>First, a brief history lesson. R is a descendant of the S statistical programming language whose naissance can be traced back to 1976 in Bell Laboratories.<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a> As S developed, people sought to commercialize the language. In 1993, the license as well as development and selling rights were given to a private company. From then on S became available only as the commercialized S-PLUS.<a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a></p>
+<p>Later, seeing a need for an improved statistical software environment, two researchers from the University of Auckland created a new statistical programming language. This became known as R. R was developed in the image of S. Because of this S code should be able to run as R code. However, an early decision to make the R (also referred to as the R-project) free and open source changed its fate dramatically.</p>
+<p>Today, the R-project is developed and maintained by a group known as the R Core who “represent multiple statistical disciplines and are based at academic, not-for-profit and industry-affiliated institutions on multiple continents”<a href="#fn5" class="footnote-ref" id="fnref5"><sup>5</sup></a>. They define R as “an integrated suite of software facilities for data manipulation, calculation and graphical display.”<a href="#fn6" class="footnote-ref" id="fnref6"><sup>6</sup></a></p>
+<p>R is essentially a fancy calculator. It was designed to do math—specifically statistics—but its capabilities extend well beyond basic mathematics While R is for all intents and purposes a programming language, one should, in theory, feel like they are doing data analysis and not programming.<a href="#fn7" class="footnote-ref" id="fnref7"><sup>7</sup></a></p>
+<p>R is unique amonth other commercial statistical software such as Stata and SPSS. Very fundamentally, R is a free project. While it is monetarily free, free refers to “liberty, not price.”<a href="#fn8" class="footnote-ref" id="fnref8"><sup>8</sup></a>. I think it is important you familiarize yourself with the four freedoms of free software. These freedoms are listed below from one to four, though are referred to as freedoms 0 through 3.</p>
+<p>They are:</p>
 <blockquote>
 <ol style="list-style-type: decimal">
 <li>The freedom to run the program as you wish, for any purpose (freedom 0).</li>
@@ -313,48 +248,47 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </blockquote>
 <blockquote>
 <ol start="4" style="list-style-type: decimal">
-<li>The freedom to distribute copies of your modified versions to others (freedom 3). By doing this you can give the whole community a chance to benefit from your changes. Access to the source code is a precondition for this.<a href="#fn31" class="footnote-ref" id="fnref31"><sup>31</sup></a></li>
+<li>The freedom to distribute copies of your modified versions to others (freedom 3). By doing this you can give the whole community a chance to benefit from your changes. Access to the source code is a precondition for this.<a href="#fn9" class="footnote-ref" id="fnref9"><sup>9</sup></a></li>
 </ol>
 </blockquote>
 <p>These freedoms are a large part of the success of R as a language. Because of the free nature of R, academics and industry experts from around the globe are contributing to the language. This means that many new statistical techniques are first implemented in R.</p>
-<p>The contributions that people make to R are changing the ways in which people perform data analysis. Because of this, we need to start contextualizing the tooling we use as <strong>part of</strong> the scientific process—not apart from it. When you engage in your analyses and work on contribute to the vast body of scientific literature, remember that without the tools you are using, much of it would not be possible. When you engage in science, think to yourself how you are adhering to the four essential freedoms. Are you enabling others to do with your findings as they wish? Will your research be accessible to the greater community? What will you do to "give the whole community a chance to benefit from your [work]?</p>
+<p>The contributions that people make to R are changing the ways in which people perform data analysis. Because of this, we need to start to understand the tooling we use as part of the scientific process—not apart from it. When you engage in your analyses and contribute to the scientific literature, remember that without the tools you are using, much of it would not be possible. When you engage in science, think to yourself how you are adhering to the four essential freedoms. Are you enabling others to do with your findings as they wish? Will your research be accessible to the greater community? What will you do to “give the whole community a chance to benefit from your [work]?”<a href="#fn10" class="footnote-ref" id="fnref10"><sup>10</sup></a></p>
 </div>
 <div id="the-rstudio-ide" class="section level2" number="6.2">
 <h2><span class="header-section-number">6.2</span> The RStudio IDE</h2>
-<p>When R is downloaded, interacting with it is somewhat of a cumbersome process. While some people love it, it can feel like programming in the matrix.</p>
-<p>For this reason, we will use RStudio to program in R. RStudio is an integrated development environment (IDE). This means that most of the features that you will need to develop in R will all be in one place. RStudio gives you a place to write your R code, execute it, view the awesome graphics you produce, and much more.</p>
-<p>I like to think of R as typesetting a printing press and using RStudio like using Mircrosoft word. Chester Ismay and Albert Kim’s Modern Dive, provide another excellent analogy of R and RStudio. They describe R as the engine of a car, and RStudio as the dashboard<a href="#fn32" class="footnote-ref" id="fnref32"><sup>32</sup></a>.</p>
-<p>Let’s get familiar with RStudio. You need to know where you are when working within RStudio. There are 4 quadrants that we work with (called panes).</p>
+<p>When R is downloaded, interacting with it requires a fair amount of computer science know how. While some people love it, it can feel like programming in the matrix.</p>
+<p>For this reason, we will use RStudio to program in R. RStudio is an integrated development environment (IDE). This means that most of the features that you will need to develop in R will all be in one place. RStudio gives you a place to write your R code, execute it, view the graphics you produce, and much more.</p>
+<p>I like to think of R as the English language and using RStudio is like using Mircrosoft word. Chester Ismay and Albert Kim’s book <em>Modern Dive</em>, provide another excellent analogy of R and RStudio. They describe R as the engine of a car, and RStudio as the dashboard.<a href="#fn11" class="footnote-ref" id="fnref11"><sup>11</sup></a></p>
+<p>In RStudio there are four quadrants that we work with which are called panes.</p>
 <p><img src="static/rstudio-editor.png" /></p>
-<p>The above graphic is borrowed from RStudio, PBC’s Thomas Mock’s Introduction to the Tidyvers<a href="#fn33" class="footnote-ref" id="fnref33"><sup>33</sup></a></p>
+<p>The above graphic is borrowed from RStudio, PBC’s Thomas Mock’s Introduction to the Tidyverse.<a href="#fn12" class="footnote-ref" id="fnref12"><sup>12</sup></a></p>
 <div id="the-editor" class="section level3" number="6.2.1">
 <h3><span class="header-section-number">6.2.1</span> The Editor</h3>
-<p>The editor. The top left pane. This is where you will actually write your code. You will see in the image above that there is tab with the name of the R file being edited, <code>mpg-plot.R</code>. The simplest way in which R code is written, is in documents with the <code>.R</code> extention. Think of the R script as your word document. This is where you put the writing that you want to keep.</p>
-<p>There is also a second type of R file called an RMarkdown document, <code>.Rmd</code>s. These are a special type of file that lets us intersperse regular prose with code chunks. Rmd is extremely flexibile and enabled the user to render their content in many different formats such as a pdf, powerpoint, html, and others. For example, this book is written with RMarkdown. But, to keep things simple, we will use R scripts for the vast majority of this book, plus they’re my favorite way to interact with R.</p>
+<p>The top left pane, this is where you will actually write your code. You will see in the image above that there is tab with the name of the R file being edited, <code>mpg-plot.R</code>. The simplest way that R code is written, is in documents with the <code>.R</code> extension. Files with the <code>.R</code> extension are called “scripts.” They, like a movie script, list the order that lines—in this case, lines of code—occur. Think of the R script as your word document. This is where you put the writing that you want to keep.</p>
+<p>There is also a second type of R file called an R Markdown document, <code>.Rmd</code>s. These are a special type of file that lets us intersperse regular prose with code chunks. Rmd is extremely flexible and enables the user to render their content in many different formats such as a PDF, PowerPoint, HTML, and others. For example, this book is written with R Markdown. But, to keep things simple, we will use R scripts for the vast majority of this book.</p>
 </div>
 <div id="the-console" class="section level3" number="6.2.2">
 <h3><span class="header-section-number">6.2.2</span> The console</h3>
-<p>Let us now avert our attention to the bottom left pane. This is known as the console. The console is where your R code is actually execute. When you run a line or chunk of code from your editor, you will see it processed in the console. I often treat my console as my scratch paper. This is a place where I can explore R objects and code without affecting the primary R file. You should become comfortable typing your R code in the editor and see it executed in the console.</p>
+<p>The bottom left pane is the console. The console is where your R code is actually executed. When you run a line or chunk of code from your editor, you will see it processed in the console. I often treat my console as my scratch paper. This is a place where I can explore R objects and code without affecting the primary R file. You should become comfortable typing your R code in the editor and seeing it executed in the console.</p>
 </div>
 <div id="output" class="section level3" number="6.2.3">
 <h3><span class="header-section-number">6.2.3</span> Output</h3>
-<p>Now moving over to the right. This is the most versatile quadrant of RStudio. You will primarily use this quadrant to look at things. There is a pane for navigating your files, looking at help documentation, viewing the charts that you produce, and any interactive applications you may develop.</p>
+<p>This is the most versatile quadrant of RStudio. You will primarily use this quadrant to look at graphs. There is a pane for navigating your files, looking at help documentation, viewing the charts that you produce, and any interactive applications you may develop.</p>
 </div>
 </div>
 <div id="installing-r-rstudio" class="section level2" number="6.3">
 <h2><span class="header-section-number">6.3</span> Installing R &amp; RStudio</h2>
-<p>Now that you are somewhat familiar with R and RStudio, it is time to install them. I recommend installing R <em>and then</em> RStudio.</p>
-<p>R can be downloaded from the <strong>C</strong>entral <strong>R</strong> <strong>A</strong>rchival <strong>N</strong>etwork (CRAN). CRAN is the official location for all things R. CRAN provides access to the R software, license, copyright, and software extensions (called R packages). Go to <a href="https://cran.r-project.org/">CRAN</a> to download R<a href="#fn34" class="footnote-ref" id="fnref34"><sup>34</sup></a>.</p>
-<p>RStudio is provided by RStudio, Public Benefit Corporation (RStudio, PBC). To install RStudio navigate to the <a href="https://rstudio.com/products/rstudio/download/#download">download page</a><a href="#fn35" class="footnote-ref" id="fnref35"><sup>35</sup></a>.
+<p>Now that you are somewhat familiar with R and RStudio, it is time to install them. I recommend installing R first.</p>
+<p>R can be downloaded from the Central R Archival Network (CRAN).<a href="#fn13" class="footnote-ref" id="fnref13"><sup>13</sup></a> CRAN is the official location for all things R. CRAN provides access to the R software, license, copyright, and software extensions (called R packages).</p>
+<p>RStudio is provided by RStudio, Public Benefit Corporation (RStudio, PBC). To install RStudio navigate to the <a href="https://rstudio.com/products/rstudio/download/#download">download page</a>.<a href="#fn14" class="footnote-ref" id="fnref14"><sup>14</sup></a>
 Once both have been installed you can open RStudio to get started. Look for the circular R logo. If you get lost navigating the RStudio IDE, be sure to refer to the <a href="https://github.com/rstudio/cheatsheets/raw/master/rstudio-ide.pdf">cheat sheet</a>.</p>
 </div>
 <div id="preventative-care" class="section level2" number="6.4">
 <h2><span class="header-section-number">6.4</span> Preventative Care</h2>
 <div id="r-projects" class="section level3" number="6.4.1">
 <h3><span class="header-section-number">6.4.1</span> R Projects</h3>
-<p>Once you open up RStudio you will be able to get rocking and rolling. Though, I want to instill some best practices from the get go. This following section will save you and anyone who you collaborate with an undescribable amount of headaches.
-Folks are tempted to open up RStudio and begin doing analysis. That is all well and good though this leads to many problems. We need to contextualize each and every analysis as it’s own <strong>project</strong>. Currently I mean project in the conceptual manner. If there is a common overarching theme, intent, or purpose, that analysis should be delineated as its own project and should be identifiable from others.</p>
-<p>You probably already have a notion of projects implemented in your life. Consider your school work. I suspect, and frankly hope, that you have a somewhat organized folder structure where each semester is its own folder, and each course is its own folder within that. An example of what some of my folder organization looks like is below.</p>
+<p>Once you open up RStudio you will be able to get rolling. This following section will save you and anyone you collaborate with an indescribable amount of headaches. Many users are tempted to open up RStudio and begin doing analysis. We need to contextualize each and every analysis as it’s own <em>project</em>. If there is a common overarching theme, intent, or purpose, that analysis should be delineated as its own project and should be identifiable from others.</p>
+<p>You probably already have projects in your life. Consider your school work. Suppose you have organized a folder structure where each semester is its own folder, and each course is its own folder within that. An example of what some of my folder organization looks like is below.</p>
 <pre><code>fall/
   big-data-for-cities/
     projects/
@@ -365,9 +299,9 @@ spring/
   info-design/
     data/
   intro-data-mining/</code></pre>
-<p>In the above case we would consider each course as its own project. The important thing to keep in mind here is that each project is self-contained. By working inside of self-contained folders we can ensure that there are no problems with accessing files. R uses the concept of a working directory. Think of the working directory as “where do I start when I am looking for things?”</p>
-<p>Imagine R is using the working directory <code>spring</code> but you are working on your <code>info-design</code> work. Conceptually, you feel as if you’re working from the <code>info-design</code> folder, but R is actually under the impression you are working from <code>spring</code>. So when you try to load some data from the <code>data</code> folder inside of <code>info-design</code> (which looks like <code>info-design/data</code>), you have to tell R how to get there. And the way R would get there is probably different than you think at the time.</p>
-<p>To prevent this, we can essentially level set with R by creating a project. An R project gently imposes the standalone structure that we will need to prevent most of the headaches described above.</p>
+<p>In the above case we each course is its own project. The important thing to keep in mind here is that each project is self-contained. By working inside of self-contained folders we can ensure that there are no problems accessing files. R uses the concept of a working directory. The working directory is the place where R starts from when looking for files.</p>
+<p>Imagine R is using the working directory <code>spring</code> but you are working on your <code>info-design</code> work. You would be under the impression that you were working from the <code>info-design</code> folder, but R would believe you were working from <code>spring</code>. So when you try to load some data from the <code>data</code> folder inside of <code>info-design</code> (which looks like <code>info-design/data</code>), you have to tell R how to get there. The instinctual path would be <code>data</code> but R is actually expecting <code>info-design/data</code>.</p>
+<p>To prevent this we can create an R project. An R project imposes the standalone structure that we will need to prevent the above issue.</p>
 <p>The way to create a new project is by navigating to <code>File &gt; New Project</code>.</p>
 <div class="figure">
 <img src="static/01-project.png" alt="" />
@@ -378,82 +312,79 @@ spring/
 <img src="static/02-project.png" alt="" />
 <p class="caption">Step 2: New Project</p>
 </div>
-<p>The final step is to specify what the project will be called and where to put it. In the below image I name the new directory <code>uitk</code>, short for <em>Urban Informatics Toolkit</em>, and place it in the directory <code>R</code>. Be sure to select which folder you want your project to live in.</p>
+<p>The final step is to specify what the project will be called and where to put it. In the below image I name the new directory <code>uitk</code>, short for Urban Informatics Toolkit, and place it in the directory <code>R</code>. Be sure to select which folder you want your project to live in.</p>
 <p>A few tips:</p>
 <ul>
-<li>Think about where you will be able to find the project again</li>
-<li>Where would it make the most sense for the project to live?</li>
+<li>Think about where you will be able to find the project again.</li>
 <li><strong>Do not</strong> put spaces or periods in the directory name. Use <code>_</code> or <code>-</code> if you feel the need.</li>
 </ul>
 <div class="figure">
 <img src="static/03-project.png" alt="" />
 <p class="caption">Step 3: Naming the project</p>
 </div>
-<p>This will open up a new RStudio session. You will notice in your <code>Files</code> pane that there is now a <code>uitk.Rproj</code> file there. That file is what tells RStudio about the project, so don’t delete it! If you would like to open up an RStudio project you can either open the <code>.Rproj</code> file from your file navigator or open it by following <code>File &gt; Open Project</code>.</p>
+<p>This will open up a new RStudio session. You will notice in your <code>Files</code> pane that there is now a <code>uitk.Rproj</code> file there. That file is what tells RStudio about the project, so don’t delete it! If you would like to open up an RStudio project you can either open the <code>.Rproj</code> file from your file navigator or by following <code>File &gt; Open Project</code>.</p>
 </div>
 <div id="the-data" class="section level3" number="6.4.2">
 <h3><span class="header-section-number">6.4.2</span> The data</h3>
-<p>In order to complete the exercises throughout this book you will need to have the data accessible to you. You can download the data <a href="https://github.com/JosiahParry/urban-informatics-toolkit/raw/master/data.zip">here</a><a href="#fn36" class="footnote-ref" id="fnref36"><sup>36</sup></a>. This link will download a file called <code>data.zip</code>. Once downloaded open the file. It will create a folder called <code>data</code>. Move that entire folder into your new project. If you created a project called <code>uitk</code> in the <code>R</code> directory, move the folder to <code>~/R/uitk</code>. This will create a folder path of <code>~/R/uitk/data</code>.</p>
+<p>In order to complete the exercises throughout this book you will need to have the data accessible to you. You can download the it <a href="https://github.com/JosiahParry/urban-informatics-toolkit/raw/master/data.zip">here</a>.<a href="#fn15" class="footnote-ref" id="fnref15"><sup>15</sup></a> This link will download a file called <code>data.zip</code>. Once downloaded open the file. It will create a folder called <code>data</code>. Move that entire folder into your new project. If you created a project called <code>uitk</code> in the <code>R</code> directory, move the folder to <code>~/R/uitk</code>. This will create a folder path of <code>~/R/uitk/data</code>.</p>
 </div>
 <div id="your-workspace" class="section level3" number="6.4.3">
 <h3><span class="header-section-number">6.4.3</span> Your Workspace</h3>
-<p>In another effort to impose good habits and reproducibility standards I will suggest you change one setting in RStudio. Navigate to <code>Tools &gt; Global Options</code> now change the below setting.</p>
+<p>In another effort to impose good habits and reproducibility standards I will suggest you change one setting in RStudio. Navigate to <code>Tools &gt; Global Options</code> and change the below setting.</p>
 <p><img src="static/save-workspace.png" /></p>
-<p>This setting makes it so that your analysis is dependent upon the code you write, not the things you create while interactively programming. A general rule of thumb is that your R script should be able to run from top to buttom successfully.</p>
+<p>This setting makes it so that your analysis is dependent upon the code you write, not the data objects you create while interactively programming. A general rule of thumb is that your R script should be able to run from top to bottom successfully.</p>
 </div>
 </div>
 <div id="before-we-embark" class="section level2" number="6.5">
 <h2><span class="header-section-number">6.5</span> Before we embark</h2>
-<p>Lastly, I want to emphasize that R and RStudio can be used for so much more than statistical analysis. It can be used to make aRt.</p>
+<p>Lastly, I want to emphasize that R and RStudio can be used for so much more than statistical analysis. They can be used to make art.</p>
 <p><a href="https://www.data-imaginist.com/art">
 <img src="static/genesis1300.png" />
 </a></p>
-<p>It can be used to make beautiful graphics for the BBC.</p>
+<p>They can be used to make beautiful graphics for the BBC.</p>
 <p><img src="static/bbplot_example_plots.png" /></p>
 <p>R can be found in the infrastructure of our modern world. R is utilized in our global financial institutions, civil rights groups such as the ACLU, investigative journalism, national defense, and so much more. Do not feel that the <em>only</em> thing you will get from learning R is how to do some simple statistics.</p>
 </div>
 <div id="getting-help" class="section level2" number="6.6">
 <h2><span class="header-section-number">6.6</span> Getting Help</h2>
-<p>Undoubtedly you will run into problems when programming and you’re going to want or need help. If you don’t know where to go, getting help may feel impossible. There are two main places that I recommend you go to for help when you encounter problems: Stack Overflow and RStudio community.</p>
-<p><a href="https://stackoverflow.com">Stack Overflow</a> is one piece of the large Stack Exchange network that is dedicated strictly to programming issues<a href="#fn37" class="footnote-ref" id="fnref37"><sup>37</sup></a>. There is a good chance that you’ve encountered Stack Exchange at some point in your various google searches. Stack Exchange is a network that is strictly dedicated to a question and answer format. Each topic has their own subdomain. For those who are unfamiliar, think of Stack Exchange like Reddit where each subreddit is their own own Q&amp;A page. And for those who are unfamiliar with Reddit, think of Stack Overflow like Yahoo! Answers or Quora. Stack Overflow has a huge database of questions and answers for all of the programming problems that folks have encountered. It is very unlikely to have a question that has not been answered on Stack Overflow before.</p>
-<p>The <a href="https://community.rstudio.com/">RStudio Community</a> page is a community forum created by RStudio<a href="#fn38" class="footnote-ref" id="fnref38"><sup>38</sup></a>. This is a location for members of the R community—which you can now count yourself a part of—to ask questions, engage in thoughtful dialogue, and much more. While Stack Overflow is committed to all programming languages, of which R is just one of them, the RStudio Community is maintained entirely by R users.</p>
-<p>If you have never asked a technical question before I would recommend spending doing so on RStudio Community as Stack Overflow has a <a href="https://meta.stackoverflow.com/questions/262791/the-rudeness-on-stack-overflow-is-too-damn-high">history</a> of somewhat rude community<a href="#fn39" class="footnote-ref" id="fnref39"><sup>39</sup></a>. Before you do so, be sure to create a <a href="https://www.tidyverse.org/help/#reprex"><strong>rep</strong>roducible <strong>ex</strong>ample</a> so that the community can best help you<a href="#fn40" class="footnote-ref" id="fnref40"><sup>40</sup></a>.</p>
+<p>You may run into problems and you may want some help. If you don’t know where to go, getting help may feel impossible. There are two main places that I recommend: Stack Overflow and RStudio community.</p>
+<p><a href="https://stackoverflow.com">Stack Overflow</a> is one piece of the large Stack Exchange network that is dedicated strictly to programming issues.<a href="#fn16" class="footnote-ref" id="fnref16"><sup>16</sup></a> Stack Exchange is a network strictly dedicated to a question and answer format. Each topic has its own subdomain. For those who are unfamiliar, think of Stack Exchange like Reddit, Quora, or Yahoo! Answers.</p>
+<p>The <a href="https://community.rstudio.com/">RStudio Community</a> page is a community forum created by RStudio.<a href="#fn17" class="footnote-ref" id="fnref17"><sup>17</sup></a> This is a location for members of the R community—including you—to ask questions, engage in thoughtful dialogue, and much more. While Stack Overflow is committed to all programming languages the RStudio Community is maintained entirely by R users.</p>
+<p>If it’s your first time asking a technical question online, I would recommend the RStudio Community, as this group is generally more accessible to beginners. Before you do, be sure to create a <a href="https://www.tidyverse.org/help/#reprex"><strong>rep</strong>roducible <strong>ex</strong>ample</a>, called reprex for short, so that the community can best help you.<a href="#fn18" class="footnote-ref" id="fnref18"><sup>18</sup></a></p>
 </div>
 <div id="reminders" class="section level2" number="6.7">
 <h2><span class="header-section-number">6.7</span> Reminders</h2>
-<p>Learning to program can be exceptionally difficult and frustrating at times. It can be a roller coaster of emotions. It is expected that you will not understand everything the first go around. Do not get down on yourself. I encourage you to take breaks and not push yourself too hard or even be self-critical. I understand you have deadlines, but sometimes it is better if you take a break, eat a healthy snack, go exercise, sleep, be social, or do whatever makes you happy and then come back. You will be much happier and your work will be even better and that I promise you!</p>
-<p>If you ever find yourself in a bout of programming induced frustration try one of the below:</p>
+<p>Learning to program can be difficult and frustrating. You will not understand everything immediately. Don’t get down on yourself. Take breaks and don’t push yourself too hard or be self-critical. Eat a healthy snack, go exercise, sleep, be social, or do whatever makes you happy and then come back. You will be much happier.</p>
+<p>If you ever find yourself in a bout of programming-induced frustration, try one of the below:</p>
 <ul>
-<li>Drink water! Just do this even if you don’t feel like it. Water is always good.</li>
+<li>Drink water.</li>
 <li>Get some sleep. Without sleep you wil be running at 60% or less.</li>
-<li>Eat your greens. You are what you eat!</li>
+<li>Eat your greens.</li>
 <li>Shower. Feeling clean can change your perspective and approach.</li>
-<li>Get your blood flowing! Go for a walk. Do some squats or pushups. Making sure your blood is moving is important.</li>
-<li>And take care of yourself!</li>
+<li>Get your blood flowing! Go for a walk. Do some squats or pushups.</li>
 </ul>
-<p>Now, let’s get going.</p>
 
 </div>
 </div>
 <div class="footnotes">
 <hr />
-<ol start="25">
-<li id="fn25"><p>The S System. John Chambers. <a href="https://web.archive.org/web/20181014111802/http://ect.bell-labs.com/sl/S/" class="uri">https://web.archive.org/web/20181014111802/http://ect.bell-labs.com/sl/S/</a>.<a href="the-basics.html#fnref25" class="footnote-back">↩︎</a></p></li>
-<li id="fn26"><p>Statistical Sciences, Inc. Douglas Martin. 1996. <a href="https://github.com/JosiahParry/r-history/raw/master/lit/S/statsci-splus-death.pdf" class="uri">https://github.com/JosiahParry/r-history/raw/master/lit/S/statsci-splus-death.pdf</a>.<a href="the-basics.html#fnref26" class="footnote-back">↩︎</a></p></li>
-<li id="fn27"><p>R: Software Development Life Cycle. A Description of R’s Development, Testing, Release and Maintenance Processes. March 25, 2018. The R Foundation for Statistical Computing c/o Institute for Statistics and Mathematics <a href="https://www.r-project.org/doc/R-SDLC.pdf" class="uri">https://www.r-project.org/doc/R-SDLC.pdf</a>.<a href="the-basics.html#fnref27" class="footnote-back">↩︎</a></p></li>
-<li id="fn28"><p>The R Project. <a href="https://www.r-project.org/about.html" class="uri">https://www.r-project.org/about.html</a>.<a href="the-basics.html#fnref28" class="footnote-back">↩︎</a></p></li>
-<li id="fn29"><p>The S System. John Chambers. <a href="https://web.archive.org/web/20181014111802/http://ect.bell-labs.com/sl/S/" class="uri">https://web.archive.org/web/20181014111802/http://ect.bell-labs.com/sl/S/</a>.<a href="the-basics.html#fnref29" class="footnote-back">↩︎</a></p></li>
-<li id="fn30"><p>GNU. <a href="https://gnu.org" class="uri">https://gnu.org</a>.<a href="the-basics.html#fnref30" class="footnote-back">↩︎</a></p></li>
-<li id="fn31"><p>GNU. <a href="https://gnu.org" class="uri">https://gnu.org</a>.<a href="the-basics.html#fnref31" class="footnote-back">↩︎</a></p></li>
-<li id="fn32"><p>Modern Dive. <a href="https://moderndive.com/1-getting-started.html" class="uri">https://moderndive.com/1-getting-started.html</a>.<a href="the-basics.html#fnref32" class="footnote-back">↩︎</a></p></li>
-<li id="fn33"><p>Intro to RMarkdown. Thomas Mock. <a href="https://github.com/jthomasmock/intro-tidyverse/blob/master/intro-to-tidyverse.rmd" class="uri">https://github.com/jthomasmock/intro-tidyverse/blob/master/intro-to-tidyverse.rmd</a>.<a href="the-basics.html#fnref33" class="footnote-back">↩︎</a></p></li>
-<li id="fn34"><p>CRAN. <a href="https://cran.r-project.org/" class="uri">https://cran.r-project.org/</a>.<a href="the-basics.html#fnref34" class="footnote-back">↩︎</a></p></li>
-<li id="fn35"><p>RStudio IDE Download. <a href="https://rstudio.com/products/rstudio/download/#download" class="uri">https://rstudio.com/products/rstudio/download/#download</a>.<a href="the-basics.html#fnref35" class="footnote-back">↩︎</a></p></li>
-<li id="fn36"><p>Urban Informatics Toolkit Data. <a href="https://github.com/JosiahParry/urban-informatics-toolkit/raw/master/data.zip" class="uri">https://github.com/JosiahParry/urban-informatics-toolkit/raw/master/data.zip</a><a href="the-basics.html#fnref36" class="footnote-back">↩︎</a></p></li>
-<li id="fn37"><p>Stack Overflow. <a href="https://stackoverflow.com" class="uri">https://stackoverflow.com</a>.<a href="the-basics.html#fnref37" class="footnote-back">↩︎</a></p></li>
-<li id="fn38"><p>RStudio Community. <a href="https://community.rstudio.com/" class="uri">https://community.rstudio.com/</a>.<a href="the-basics.html#fnref38" class="footnote-back">↩︎</a></p></li>
-<li id="fn39"><p>The Rudeness on Stack Overflow is Too Damn High. <a href="https://meta.stackoverflow.com/questions/262791/the-rudeness-on-stack-overflow-is-too-damn-high" class="uri">https://meta.stackoverflow.com/questions/262791/the-rudeness-on-stack-overflow-is-too-damn-high</a>.<a href="the-basics.html#fnref39" class="footnote-back">↩︎</a></p></li>
-<li id="fn40"><p>Reproducible Examples. <a href="https://www.tidyverse.org/help/#reprex" class="uri">https://www.tidyverse.org/help/#reprex</a>.<a href="the-basics.html#fnref40" class="footnote-back">↩︎</a></p></li>
+<ol start="3">
+<li id="fn3"><p>The S System. John Chambers. <a href="https://web.archive.org/web/20181014111802/http://ect.bell-labs.com/sl/S/" class="uri">https://web.archive.org/web/20181014111802/http://ect.bell-labs.com/sl/S/</a>.<a href="the-basics.html#fnref3" class="footnote-back">↩︎</a></p></li>
+<li id="fn4"><p>Statistical Sciences, Inc. Douglas Martin. 1996. <a href="https://github.com/JosiahParry/r-history/raw/master/lit/S/statsci-splus-death.pdf" class="uri">https://github.com/JosiahParry/r-history/raw/master/lit/S/statsci-splus-death.pdf</a>.<a href="the-basics.html#fnref4" class="footnote-back">↩︎</a></p></li>
+<li id="fn5"><p>R: Software Development Life Cycle. A Description of R’s Development, Testing, Release and Maintenance Processes. March 25, 2018. The R Foundation for Statistical Computing c/o Institute for Statistics and Mathematics <a href="https://www.r-project.org/doc/R-SDLC.pdf" class="uri">https://www.r-project.org/doc/R-SDLC.pdf</a>.<a href="the-basics.html#fnref5" class="footnote-back">↩︎</a></p></li>
+<li id="fn6"><p>The R Project. <a href="https://www.r-project.org/about.html" class="uri">https://www.r-project.org/about.html</a>.<a href="the-basics.html#fnref6" class="footnote-back">↩︎</a></p></li>
+<li id="fn7"><p>The S System. John Chambers. <a href="https://web.archive.org/web/20181014111802/http://ect.bell-labs.com/sl/S/" class="uri">https://web.archive.org/web/20181014111802/http://ect.bell-labs.com/sl/S/</a>.<a href="the-basics.html#fnref7" class="footnote-back">↩︎</a></p></li>
+<li id="fn8"><p>GNU. <a href="https://gnu.org" class="uri">https://gnu.org</a>.<a href="the-basics.html#fnref8" class="footnote-back">↩︎</a></p></li>
+<li id="fn9"><p>GNU. <a href="https://gnu.org" class="uri">https://gnu.org</a>.<a href="the-basics.html#fnref9" class="footnote-back">↩︎</a></p></li>
+<li id="fn10"><p>GNU. <a href="https://gnu.org" class="uri">https://gnu.org</a>.<a href="the-basics.html#fnref10" class="footnote-back">↩︎</a></p></li>
+<li id="fn11"><p>Modern Dive. <a href="https://moderndive.com/1-getting-started.html" class="uri">https://moderndive.com/1-getting-started.html</a>.<a href="the-basics.html#fnref11" class="footnote-back">↩︎</a></p></li>
+<li id="fn12"><p>Intro to RMarkdown. Thomas Mock. <a href="https://github.com/jthomasmock/intro-tidyverse/blob/master/intro-to-tidyverse.rmd" class="uri">https://github.com/jthomasmock/intro-tidyverse/blob/master/intro-to-tidyverse.rmd</a>.<a href="the-basics.html#fnref12" class="footnote-back">↩︎</a></p></li>
+<li id="fn13"><p>CRAN. <a href="https://cran.r-project.org/" class="uri">https://cran.r-project.org/</a>.<a href="the-basics.html#fnref13" class="footnote-back">↩︎</a></p></li>
+<li id="fn14"><p>RStudio IDE Download. <a href="https://rstudio.com/products/rstudio/download/#download" class="uri">https://rstudio.com/products/rstudio/download/#download</a>.<a href="the-basics.html#fnref14" class="footnote-back">↩︎</a></p></li>
+<li id="fn15"><p>Urban Informatics Toolkit Data. <a href="https://github.com/JosiahParry/urban-informatics-toolkit/raw/master/data.zip" class="uri">https://github.com/JosiahParry/urban-informatics-toolkit/raw/master/data.zip</a><a href="the-basics.html#fnref15" class="footnote-back">↩︎</a></p></li>
+<li id="fn16"><p>Stack Overflow. <a href="https://stackoverflow.com" class="uri">https://stackoverflow.com</a>.<a href="the-basics.html#fnref16" class="footnote-back">↩︎</a></p></li>
+<li id="fn17"><p>RStudio Community. <a href="https://community.rstudio.com/" class="uri">https://community.rstudio.com/</a>.<a href="the-basics.html#fnref17" class="footnote-back">↩︎</a></p></li>
+<li id="fn18"><p>Reproducible Examples. <a href="https://www.tidyverse.org/help/#reprex" class="uri">https://www.tidyverse.org/help/#reprex</a>.<a href="the-basics.html#fnref18" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>
@@ -512,20 +443,6 @@ gitbook.start({
 });
 </script>
 
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
-  (function () {
-    var script = document.createElement("script");
-    script.type = "text/javascript";
-    var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:")
-      if (/^https?:/.test(src))
-        src = src.replace(/^https?:/, '');
-    script.src = src;
-    document.getElementsByTagName("head")[0].appendChild(script);
-  })();
-</script>
 </body>
 
 </html>
