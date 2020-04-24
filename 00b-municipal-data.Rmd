@@ -4,22 +4,23 @@
 source("common.R")
 ```
 
-The so called "proliferation of data" has created vast troves of data asking to be explored. We are, in essence, in the beginning of a new Gold Rush. But rather than discovering gold, today the gold is both being created an discovered. This explosion of data is the product of improved technology in both the collection and storage of data. 
+We are in a new Gold Rush. Rapidly improving technology in both the collection and storage of data has created vast troves of unexplored information.
 
-If we focus our gaze towards the municipal government, the story is similar, progress is slower, and the data are more familiar. Local governments have been collecting data for centuries but until recently it was not always accessible, or even considered "data". Take the city of Boston as an example. Since the 19th century boston has been issuing and recording building permits. Through a massive digitization effort these permits are now accessible in an online database [^1]. Not only are governments slowly turning to modern methods of data storage, but they are also creating applications to encourage citizens to engage with their local governments. Mobile and web applications will hopefully facilitate greater interaction between citizen and government [^2]. Each and every one of these citizen to government interactions are recorded and stored in database—though not all are open and accessible to the citizen scientist. 
+If we focus our gaze towards the municipal government, we can see the same proliferation of data, only slower. Local governments have been collecting data for centuries, but until recently it was not always accessible, or even considered "data." Since the 19th century, Boston has been issuing and recording building permits. Through a massive digitization effort these permits are now accessible in an online database.[^1] Not only are governments turning to modern methods of data storage, but they are also creating applications to encourage citizens to engage with their local governments. Mobile and web applications will hopefully facilitate greater interaction between citizen and government.[^2] Each and every one of these citizen-to-government interactions is recorded and stored in a database—though not all are open and accessible to the citizen scientist. 
 
-Boston has built a few mobile applications for its residents. Notable among these apps are the BOS:311[^3], ParkBoston[^4], the city's least favorite Boston PayTix[^5], and the new Blue Bikes[^6]. Through BOS:311 residents can communicate directly to the Department of Public Works by recording an issue, it's location, and even an image of the issue. Blue Bikes trips, 311 requests, and much more are provided to the public via Analyze Boston, Boston's data portal[^7]. 
+Boston has built a few mobile applications for its residents. Notable among these apps are the BOS:311[^3], ParkBoston[^4], the less popular Boston PayTix[^5], and the new Blue Bikes[^6]. Through BOS:311 residents can communicate directly to the Department of Public Works by recording an issue, its location, and even an image of the issue. Blue Bikes trips, 311 requests, and much more are provided to the public via Analyze Boston, Boston's data portal.[^7] 
 
-This new availability of data has unintentionally altered the way in which scientists interact with data. For the purposes of scientific inquiry, scientists and analysts have historically been rather close to the data generation process. While we as residents and citizens interact with governmental agencies, it is not in the name of science. And the governmental agencies are engaing with residents in for the purpose of governance, not science. As such, much—if not all—of the open and public data that we interact within the urban informatics—and greater digital humanities—fields was not generated with the express purpose of being analyzed. This inherently changes the way in which analyses are approached. 
+This new availability of data has unintentionally altered the way in which scientists interact with data. For the purposes of scientific inquiry, scientists and analysts have historically been close to the data generation process. 
 
-In approaching data of this nature, researchers have began embracing a paradigm of _exploratory data analysis_ (EDA). EDA is extremely useful for developing insights from data in which there were no a priori[^8] hypotheses. In their influential book [_R for Data Science_](https://r4ds.had.co.nz)[^r4ds], Garret Grolemund and Hadley Wickham describe this inductive approach of exploratory data analysis. 
+While we as residents and citizens might interact with governmental agencies, we don't do so as scientists. Likewise, governmental agencies engage with citizens as governments, not scientists. As such, much—if not all—of the open and public data that we use within urban informatics—and greater digital humanities—fields was not generated with the express purpose of being analyzed. This inherently changes the way in which one approaches analysis. 
+
+In approaching data of this nature, researchers have begun embracing _exploratory data analysis_ (EDA). EDA is extremely useful in developing insights from data in which there were no a priori hypotheses. In their influential book, [_R for Data Science_](https://r4ds.had.co.nz)[^r4ds] Garret Grolemund and Hadley Wickham describe this inductive approach of exploratory data analysis. 
 
 > "Data exploration is the art of looking at your data, rapidly generating hypotheses, quickly testing them, then repeating again and again and again." [^9]
 
-When researchers set out to test a hypothesis they often will become closely involved with the data generation process. In this scenario, researchers are more likely to have preconceived hypotheses and expectiation of what they may find hidden in their data. 
+When researchers set out to test a hypothesis they often become closely involved with the data generation process. In this scenario, researchers are more likely to have preconceived hypotheses and expectations of what they may find hidden in their data. 
 
-This condition is often not the case when working with open data. We do not always know at the outset of what we are looking for. With open data—and any data really—you never know what you may find if you begin to dig. Whip out your hand shovel and prepare to upturn the soil. You might find seedlings that may sprout into your next study. 
-
+This condition is often not the case when working with open data. We do not always know at the outset what we are looking for. With open data—and any data really—you never know what you may find if you begin to dig. 
 
 
 [^1]: Boston Building Permits: https://www.boston.gov/departments/inspectional-services/how-find-historical-permit-records
@@ -29,6 +30,5 @@ This condition is often not the case when working with open data. We do not alwa
 [^5]: Boston PayTix: https://apps.apple.com/us/app/boston-paytix/id1068651854
 [^6]: BlueBikes
 [^7]: https://data.boston.gov/
-[^8]: "Relating to or denoting reasoning or knowledge which proceeds from theoretical deduction rather than from observation or experience." [Oxford Dictionary](https://www.lexico.com/definition/a_priori)
 [^9]: [Introduction - R for Data Science](https://r4ds.had.co.nz/explore-intro.html)
 [^r4ds]: [R for Data Science](https://www.hup.harvard.edu/catalog.php?isbn=9780674975293)

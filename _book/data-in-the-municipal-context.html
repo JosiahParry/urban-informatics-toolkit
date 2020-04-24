@@ -24,7 +24,7 @@
 <meta name="author" content="Josiah Parry" />
 
 
-<meta name="date" content="2020-04-20" />
+<meta name="date" content="2020-04-24" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -133,7 +133,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">Urban Informatics Toolkit</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Welcome!</a>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Welcome</a>
 <ul>
 <li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#structure-of-the-book"><i class="fa fa-check"></i><b>1.1</b> Structure of the book</a></li>
 <li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#considerations"><i class="fa fa-check"></i><b>1.2</b> Considerations</a></li>
@@ -242,7 +242,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="22.3" data-path="visualizing-through-time.html"><a href="visualizing-through-time.html#animation-as-time"><i class="fa fa-check"></i><b>22.3</b> Animation as time</a></li>
 </ul></li>
 <li class="chapter" data-level="23" data-path="visualization-review.html"><a href="visualization-review.html"><i class="fa fa-check"></i><b>23</b> Visualization Review</a></li>
-<li class="part"><span><b>IV More than hammer and nails</b></span></li>
+<li class="part"><span><b>IV Expanding the Toolkit</b></span></li>
 <li class="chapter" data-level="24" data-path="multiple-data-sets.html"><a href="multiple-data-sets.html"><i class="fa fa-check"></i><b>24</b> Multiple data sets</a>
 <ul>
 <li class="chapter" data-level="24.1" data-path="multiple-data-sets.html"><a href="multiple-data-sets.html#exercise-2"><i class="fa fa-check"></i><b>24.1</b> Exercise</a></li>
@@ -285,16 +285,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="data-in-the-municipal-context" class="section level1" number="3">
 <h1><span class="header-section-number">Chapter 3</span> Data in the municipal context</h1>
-<p>The so called “proliferation of data” has created vast troves of data asking to be explored. We are, in essence, in the beginning of a new Gold Rush. But rather than discovering gold, today the gold is both being created an discovered. This explosion of data is the product of improved technology in both the collection and storage of data.</p>
-<p>If we focus our gaze towards the municipal government, the story is similar, progress is slower, and the data are more familiar. Local governments have been collecting data for centuries but until recently it was not always accessible, or even considered “data”. Take the city of Boston as an example. Since the 19th century boston has been issuing and recording building permits. Through a massive digitization effort these permits are now accessible in an online database.<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a> Not only are governments slowly turning to modern methods of data storage, but they are also creating applications to encourage citizens to engage with their local governments. Mobile and web applications will hopefully facilitate greater interaction between citizen and government.<a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a> Each and every one of these citizen to government interactions are recorded and stored in database—though not all are open and accessible to the citizen scientist.</p>
-<p>Boston has built a few mobile applications for its residents. Notable among these apps are the BOS:311<a href="#fn5" class="footnote-ref" id="fnref5"><sup>5</sup></a>, ParkBoston<a href="#fn6" class="footnote-ref" id="fnref6"><sup>6</sup></a>, the city’s least favorite Boston PayTix<a href="#fn7" class="footnote-ref" id="fnref7"><sup>7</sup></a>, and the new Blue Bikes<a href="#fn8" class="footnote-ref" id="fnref8"><sup>8</sup></a>. Through BOS:311 residents can communicate directly to the Department of Public Works by recording an issue, it’s location, and even an image of the issue. Blue Bikes trips, 311 requests, and much more are provided to the public via Analyze Boston, Boston’s data portal<a href="#fn9" class="footnote-ref" id="fnref9"><sup>9</sup></a>.</p>
-<p>This new availability of data has unintentionally altered the way in which scientists interact with data. For the purposes of scientific inquiry, scientists and analysts have historically been rather close to the data generation process. While we as residents and citizens interact with governmental agencies, it is not in the name of science. And the governmental agencies are engaing with residents in for the purpose of governance, not science. As such, much—if not all—of the open and public data that we interact within the urban informatics—and greater digital humanities—fields was not generated with the express purpose of being analyzed. This inherently changes the way in which analyses are approached.</p>
-<p>In approaching data of this nature, researchers have began embracing a paradigm of <em>exploratory data analysis</em> (EDA). EDA is extremely useful for developing insights from data in which there were no a priori<a href="#fn10" class="footnote-ref" id="fnref10"><sup>10</sup></a> hypotheses. In their influential book <a href="https://r4ds.had.co.nz"><em>R for Data Science</em></a><a href="#fn11" class="footnote-ref" id="fnref11"><sup>11</sup></a>, Garret Grolemund and Hadley Wickham describe this inductive approach of exploratory data analysis.</p>
+<p>We are in a new Gold Rush. Rapidly improving technology in both the collection and storage of data has created vast troves of unexplored information.</p>
+<p>If we focus our gaze towards the municipal government, we can see the same proliferation of data, only slower. Local governments have been collecting data for centuries, but until recently it was not always accessible, or even considered “data.” Since the 19th century, Boston has been issuing and recording building permits. Through a massive digitization effort these permits are now accessible in an online database.<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a> Not only are governments turning to modern methods of data storage, but they are also creating applications to encourage citizens to engage with their local governments. Mobile and web applications will hopefully facilitate greater interaction between citizen and government.<a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a> Each and every one of these citizen-to-government interactions is recorded and stored in a database—though not all are open and accessible to the citizen scientist.</p>
+<p>Boston has built a few mobile applications for its residents. Notable among these apps are the BOS:311<a href="#fn5" class="footnote-ref" id="fnref5"><sup>5</sup></a>, ParkBoston<a href="#fn6" class="footnote-ref" id="fnref6"><sup>6</sup></a>, the less popular Boston PayTix<a href="#fn7" class="footnote-ref" id="fnref7"><sup>7</sup></a>, and the new Blue Bikes<a href="#fn8" class="footnote-ref" id="fnref8"><sup>8</sup></a>. Through BOS:311 residents can communicate directly to the Department of Public Works by recording an issue, its location, and even an image of the issue. Blue Bikes trips, 311 requests, and much more are provided to the public via Analyze Boston, Boston’s data portal.<a href="#fn9" class="footnote-ref" id="fnref9"><sup>9</sup></a></p>
+<p>This new availability of data has unintentionally altered the way in which scientists interact with data. For the purposes of scientific inquiry, scientists and analysts have historically been close to the data generation process.</p>
+<p>While we as residents and citizens might interact with governmental agencies, we don’t do so as scientists. Likewise, governmental agencies engage with citizens as governments, not scientists. As such, much—if not all—of the open and public data that we use within urban informatics—and greater digital humanities—fields was not generated with the express purpose of being analyzed. This inherently changes the way in which one approaches analysis.</p>
+<p>In approaching data of this nature, researchers have begun embracing <em>exploratory data analysis</em> (EDA). EDA is extremely useful in developing insights from data in which there were no a priori hypotheses. In their influential book, <a href="https://r4ds.had.co.nz"><em>R for Data Science</em></a><a href="#fn10" class="footnote-ref" id="fnref10"><sup>10</sup></a> Garret Grolemund and Hadley Wickham describe this inductive approach of exploratory data analysis.</p>
 <blockquote>
-<p>“Data exploration is the art of looking at your data, rapidly generating hypotheses, quickly testing them, then repeating again and again and again.”<a href="#fn12" class="footnote-ref" id="fnref12"><sup>12</sup></a></p>
+<p>“Data exploration is the art of looking at your data, rapidly generating hypotheses, quickly testing them, then repeating again and again and again.”<a href="#fn11" class="footnote-ref" id="fnref11"><sup>11</sup></a></p>
 </blockquote>
-<p>When researchers set out to test a hypothesis they often will become closely involved with the data generation process. In this scenario, researchers are more likely to have preconceived hypotheses and expectiation of what they may find hidden in their data.</p>
-<p>This condition is often not the case when working with open data. We do not always know at the outset of what we are looking for. With open data—and any data really—you never know what you may find if you begin to dig. Whip out your hand shovel and prepare to upturn the soil. You might find seedlings that may sprout into your next study.</p>
+<p>When researchers set out to test a hypothesis they often become closely involved with the data generation process. In this scenario, researchers are more likely to have preconceived hypotheses and expectations of what they may find hidden in their data.</p>
+<p>This condition is often not the case when working with open data. We do not always know at the outset what we are looking for. With open data—and any data really—you never know what you may find if you begin to dig.</p>
 
 </div>
 <div class="footnotes">
@@ -307,9 +308,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li id="fn7"><p>Boston PayTix: <a href="https://apps.apple.com/us/app/boston-paytix/id1068651854" class="uri">https://apps.apple.com/us/app/boston-paytix/id1068651854</a><a href="data-in-the-municipal-context.html#fnref7" class="footnote-back">↩︎</a></p></li>
 <li id="fn8"><p>BlueBikes<a href="data-in-the-municipal-context.html#fnref8" class="footnote-back">↩︎</a></p></li>
 <li id="fn9"><p><a href="https://data.boston.gov/" class="uri">https://data.boston.gov/</a><a href="data-in-the-municipal-context.html#fnref9" class="footnote-back">↩︎</a></p></li>
-<li id="fn10"><p>“Relating to or denoting reasoning or knowledge which proceeds from theoretical deduction rather than from observation or experience.” <a href="https://www.lexico.com/definition/a_priori">Oxford Dictionary</a><a href="data-in-the-municipal-context.html#fnref10" class="footnote-back">↩︎</a></p></li>
-<li id="fn11"><p><a href="https://www.hup.harvard.edu/catalog.php?isbn=9780674975293">R for Data Science</a><a href="data-in-the-municipal-context.html#fnref11" class="footnote-back">↩︎</a></p></li>
-<li id="fn12"><p><a href="https://r4ds.had.co.nz/explore-intro.html">Introduction - R for Data Science</a><a href="data-in-the-municipal-context.html#fnref12" class="footnote-back">↩︎</a></p></li>
+<li id="fn10"><p><a href="https://www.hup.harvard.edu/catalog.php?isbn=9780674975293">R for Data Science</a><a href="data-in-the-municipal-context.html#fnref10" class="footnote-back">↩︎</a></p></li>
+<li id="fn11"><p><a href="https://r4ds.had.co.nz/explore-intro.html">Introduction - R for Data Science</a><a href="data-in-the-municipal-context.html#fnref11" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>

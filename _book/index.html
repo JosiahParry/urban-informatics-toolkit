@@ -24,7 +24,7 @@
 <meta name="author" content="Josiah Parry" />
 
 
-<meta name="date" content="2020-04-20" />
+<meta name="date" content="2020-04-24" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -133,7 +133,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">Urban Informatics Toolkit</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Welcome!</a>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Welcome</a>
 <ul>
 <li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#structure-of-the-book"><i class="fa fa-check"></i><b>1.1</b> Structure of the book</a></li>
 <li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#considerations"><i class="fa fa-check"></i><b>1.2</b> Considerations</a></li>
@@ -242,7 +242,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="22.3" data-path="visualizing-through-time.html"><a href="visualizing-through-time.html#animation-as-time"><i class="fa fa-check"></i><b>22.3</b> Animation as time</a></li>
 </ul></li>
 <li class="chapter" data-level="23" data-path="visualization-review.html"><a href="visualization-review.html"><i class="fa fa-check"></i><b>23</b> Visualization Review</a></li>
-<li class="part"><span><b>IV More than hammer and nails</b></span></li>
+<li class="part"><span><b>IV Expanding the Toolkit</b></span></li>
 <li class="chapter" data-level="24" data-path="multiple-data-sets.html"><a href="multiple-data-sets.html"><i class="fa fa-check"></i><b>24</b> Multiple data sets</a>
 <ul>
 <li class="chapter" data-level="24.1" data-path="multiple-data-sets.html"><a href="multiple-data-sets.html#exercise-2"><i class="fa fa-check"></i><b>24.1</b> Exercise</a></li>
@@ -286,26 +286,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="header">
 <h1 class="title">Urban Informatics Toolkit</h1>
 <p class="author"><em>Josiah Parry</em></p>
-<p class="date"><em>2020-04-20</em></p>
+<p class="date"><em>2020-04-24</em></p>
 </div>
 <div id="welcome" class="section level1" number="1">
-<h1><span class="header-section-number">Chapter 1</span> Welcome!</h1>
-<p>Welcome to the Urban Informatics Toolkit! This is an online book that is intended to jumpstart your work of analyzing and developing understanding of the urban commons. In it you will find material on the theoretical underpinnings of Urban Informatics and a (mostly) thorough introduction to the statistical programming language R to get you hands on and working with data that you will encounter in your research, coursework, and in the wild west of open data.</p>
-<p>This book represent to me many things. Of which are the two years of study in the Urban Informatics program at Northeastern, nearly five years of self-directed learning of the R programming language, two years of teach R, and many, many, many hours of frustration trying to understand and grasp concepts that could have been distilled into simple and easy to understand language.</p>
-<p>In the following chapters I will do my best to avoid overly technical and verbose descriptions of theory and technical concepts. I will attempt to explain everything in a manner that I would to my friends over a beer, coffee, or, as these strange times would have it, a zoom call.</p>
-<p>By the end of these pages I hope that you have become self-sufficient in your analyses. My intention is not to teach you everything that you will need to know because this is <em>impossible</em>. Data analytics are always changing and what is current will be dated—perhaps by tomorrow. In fact, whilst in the middle of writing this one of the most commonly used tools was changed in such a way that much of what I wrote became bad practice. This is all to say that the purpose of this book is to make you <strong>self-sufficient</strong>. The goal is to ensure that <em>you</em> are able to understand the fundamental concepts of scientific inquiry in the big data era, how to think about data analysis, and be equipped with the fundamental knowledge of R to understand what is happening—to some degree—under the hood and what and why.</p>
+<h1><span class="header-section-number">Chapter 1</span> Welcome</h1>
+<p>Welcome to the Urban Informatics Toolkit. This online book is intended to serve as an effective introduction to the understanding and analysis of the urban commons. In it you will find material on the theoretical underpinnings of Urban Informatics and an introduction to the statistical programming language R which will allow you to work confidently with the data you will encounter in your research, coursework, or elsewhere.</p>
+<p>This book is many things at once. Within it are two years of study in the Urban Informatics Program at Northeastern University, five years of self-directed education in R, two years of teaching R, and innumerable hours of frustration spent attempting to understand what could otherwise have been a very digestible language.</p>
+<p>I will do my best to avoid overly technical and verbose descriptions of theory and concepts. I will attempt to explain everything as I would to a friend.</p>
+<p>By the end of these pages I hope that you will have become self-sufficient in your analyses. My intention is not to teach you everything that you will need to know because this is impossible. Data analytics are always changing and what is current will be dated by tomorrow. As I wrote this, in fact, one of the most commonly used tools was altered to such a degree that much of what I had already written became dated. The purpose of this book, then, is not to brief you on the latest developments, but to equip you with the proper tools with which navigate a rapidly evolving field.</p>
+<p>This book has three goals. First, to ensure in the reader an understanding of the fundamentals of scientific inquiry in the Big Data era. Second, to familiarize the reader with effective approaches to data analysis. And third, to equip the reader with enough knowledge of R that they might understand what’s been happening under the hood, so to speak.</p>
 <div id="structure-of-the-book" class="section level2" number="1.1">
 <h2><span class="header-section-number">1.1</span> Structure of the book</h2>
-<p>This book is partitioned into four sections each with it’s own theme. In the first section <em>Foundations of Urban Informatics</em> we will first begin by exploring the nature of big data and its role in the field. Then, we review different approaches to scientific inquiry and seek to understand how big data has further enabled a newer approach. And finally, we review Broken Windows theory as well as the development of <strong>ecometrics</strong>.</p>
-<p>The second section is dediated to introducing you to R as a programming language for data analysis. This is where we begin our technical work. We will ensure that you have all of the software and data that you will need to follow along with the exercises in this book. This section will be the most difficult to overcome. This is because you must learn an entirely new mental framework—even if you know how to program in another language. In this section we will work from reading in data to manipulating it while along the way learning some fundamental theory.</p>
-<p>The third section is the largest and is dedicated entirely to information visualization. In this you will learn how to craft visualizations and understand when to make what kind of graphic. Furthermore we will dive into expanding upon traditional graphics by incorporating many different aesthetics. This section is expansive due to the importance of visualization. Visualization is our method of communication. While the written word is powerful, it requires more work to get someone to read than to look. If we can improve upon our visualization, we can make the work that we do more accessible to the public.</p>
-<p>Finally, we will close by learning how to work with multiple datasets and spatial data. These are two of the more advanced topics and as such will be reserved for when the fundamentals have been reinforced. With regards to spatial analysis, many of you who may come from a geography or GIS background may find this section lacking. You would be right. Given the immense depth of the geospatial sciences, that is a topic that is deserving of its own book.</p>
+<p>This book is in four sections, each with it’s own theme. The first section, <em>Foundations of Urban Informatics</em>, will explore the nature of big data and its role in the field. This section will review different approaches to scientific inquiry, seeking to understand some of the newer methods enabled by big data, before closing with a review of Broken Windows Theory and the development of ecometrics.</p>
+<p>The second section, <em>Toolkit Foundations</em>, will introduce you to R. This section is highly technical. We will first ensure that you download the software and data that is needed to follow along with the exercises in this book. This section will cover everything from reading data to manipulating it, while also discussing some fundamental R theory.</p>
+<p>The third section, <em>Visualization Strategies</em>, is the largest, and is dedicated entirely to information visualization. In this section you will learn how to craft visualizations and understand when to make what kind of graphic. It will also discuss various traditional graphic types, and how to update and expand them. This section is expansive due to the importance of visualization.</p>
+<p>The final section, <em>Expanding the Toolkit</em>, will deal with multiple datasets, statistics, and spatial data. Of course, the section on spatial analysis is, by necessity, lacking, as the subject is so expansive that even a cursory sketch of its contents would fill multiple books.</p>
 </div>
 <div id="considerations" class="section level2" number="1.2">
 <h2><span class="header-section-number">1.2</span> Considerations</h2>
-<p>Before we continue, I want to reitaterate that this book will not introduce you to everything that you will need to know. As the field continues to grow and as the number of tools available in R increase I will work to continually add to and improve this writing. If there are topics that you would like to see included or expanded upon, please submit an issue on GitHub <a href="https://github.com/JosiahParry/urban-informatics-toolkit/issues" class="uri">https://github.com/JosiahParry/urban-informatics-toolkit/issues</a> or reach out to me <a href="mailto:josiah.parry@gmail.com?subject=%5BUITK%5D%20Feedback">directly</a>.</p>
-<p>In this next chapter we will discuss big data.</p>
-<p>Without further ado, let’s get on with it!</p>
+<p>As the fields of the digital humanities continue to grow and as the number of tools available in R increase I will work to continually add to and improve this writing. If there are topics that you would like to see included or expanded upon, please submit an issue on GitHub <a href="https://github.com/JosiahParry/urban-informatics-toolkit/issues" class="uri">https://github.com/JosiahParry/urban-informatics-toolkit/issues</a> or reach out to me <a href="mailto:josiah.parry@gmail.com?subject=%5BUITK%5D%20Feedback">directly</a>.</p>
 
 </div>
 </div>
