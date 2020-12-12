@@ -6,7 +6,7 @@ source("common.R")
 
 In the next part of this book we will introduce to you visual data exploration through the use of the R package `ggplot2`. You will ask questions of your data, visualize relationships, and draw inferences from the graphics you develop. 
 
-The below image from R for Data Science is renowned for its representation of the data analysis workflow. The concept map encompasses the need to get data (import), clean it up (tidy), explore, and finally communicate insights. The box in blue is a representation of EDA. Within EDA we will find ourselves transforming our data—creating new variables, aggregating, etc.—visualizing it, and creating statistical models. 
+The below image from R for Data Science is renowned for its representation of the data analysis workflow. The concept map encompasses the need to get data (import), clean it up (tidy), explore, and finally communicate insights. The box in blue is a representation of exploratory data analysis (EDA). While performing EDA we will find ourselves transforming our data—creating new variables, aggregating, etc.—visualizing it, and creating statistical models. 
 
 ![](static/data-science-explore.png)
 
@@ -14,9 +14,8 @@ This chapter will focus on the visualization step of EDA. We have all heard the 
 
 > The reason for the heavy reliance on graphics is that by its very nature the main role of EDA is to open-mindedly explore, and graphics gives the analysts unparalleled power to do so, enticing the data to reveal its structural secrets, and being always ready to gain some new, often unsuspected, insight into the data. In combination with the natural pattern-recognition capabilities that we all possess, graphics provides, of course, unparalleled power to carry this out.[^nist]
 
-[source]()
 
-In the following section, you will become acquainted with the graphical R package `ggplot2` for visual analysis and the American Community Survey. We will walk through the process building a chart from the ground up and drawing inferences from it along the way.
+In the following section, you will become acquainted with the package `ggplot2` which we will use to perform a visual analysis of the American Community Survey. We will walk through the process building a chart from the ground up and drawing inferences from it along the way.
 
 
 ## The American Community Survey 
@@ -43,9 +42,9 @@ When choosing between 1-year and 5-year estimates we are making a tradeoff. 1-ye
 
 In the cases where 5-year estimates are used researchers are analyzing populations and rates derived from five years of data collection. This requires you, the researcher, to qualify this with a statement to the effect of _"the rate of unemployment in 2014-2018 was 4%"_[^16]. Because of this, you are unable to use consecutive 5-year estimates to analyze annual trends. In the case that you need to analyse annual trends 1-year estimates are recommended. 
 
-There is also another important tradeoff one must consider when using ACS data and that is of unit of analysis. The census and ACS are conducted at the household level. However, estimates are provided for geographic areas. These geographic areas have a hierarchy going from block groups at the smallest level geography, to census tracts, and to counties. Beyond counties are geographies at the state level and even larger. Urban informatics is inherently focuses on a more micro—arguably meso—unit of analysis.
+There is also another important tradeoff one must consider when using ACS data and that is of unit of analysis. The census and ACS are conducted at the household level. However, estimates are provided for geographic areas. These geographic areas have a hierarchy going from block groups at the smallest level geography, to census tracts, and to counties. Beyond counties are geographies at the state level and even larger. Urban informatics is inherently focuses on a more micro,arguably meso,unit of analysis.
 
-The following analysis is done using the Massachussetts census indicators published from BARI. The dataset is based on 5-year estimates from the ACS at the tract level.  
+The following analysis is done using the Massachusetts census indicators published from BARI. The dataset is based on 2017 5-year estimates from the ACS at the tract level.  
     
 ## A first visualization
 

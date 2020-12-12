@@ -51,7 +51,7 @@ Oops. We've got red text and that is never fun. Except, this is a very important
 
 Again it says:
 
-> *Error: 'acs\_edu.csv' **does not exist** in current **working directory***
+> *Error: 'acs_edu.csv' **does not exist** in current **working directory***
 
 I've bolded two portions of this error message. Take a moment to think through what this error is telling you.
 

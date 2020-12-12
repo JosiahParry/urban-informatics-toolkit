@@ -398,6 +398,7 @@ For example, if we were to plot the number of observations per county we can use
 county_counts <- acs %>% 
   group_by(county) %>% 
   summarise(n = n())
+#> `summarise()` ungrouping output (override with `.groups` argument)
 
 county_counts
 #> # A tibble: 14 x 2
@@ -461,6 +462,7 @@ acs %>%
   mutate(county = fct_reorder(county, med_bach)) %>% 
   ggplot(aes(med_bach, county)) + 
   geom_col()
+#> `summarise()` ungrouping output (override with `.groups` argument)
 ```
 
 <img src="04b-visualization-strategies_files/figure-html/unnamed-chunk-26-1.png" width="672" />

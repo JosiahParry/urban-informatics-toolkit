@@ -1,14 +1,19 @@
-bookdown::gitbook:
-  css: style.css
-  toc_depth: 2
-  config:
-    toc:
-      collapse: section
-      before: |
-        <li><a href="./">Urban Informatics Toolkit</a></li>
-      after: |
-        <li><a href="https://github.com/josiahparry/urban-informatics-toolkit" target="blank">GitHub</a></li>
-    download: ["pdf", "epub"]
+bookdown::bs4_book:
+  theme:
+    primary: "#6e2e24"
+    bg: "#ffffff"
+    fg: "#000000"
+# bookdown::gitbook:
+#   css: style.css
+#   #toc_depth: 2
+#   config:
+#     toc:
+#       collapse: section
+#       before: |
+#         <li><a href="./">Urban Informatics Toolkit</a></li>
+#       after: |
+#         <li><a href="https://github.com/josiahparry/urban-informatics-toolkit" target="blank">GitHub</a></li>
+#     download: ["pdf", "epub"]
 bookdown::pdf_book:
   includes:
     in_header: preamble.tex

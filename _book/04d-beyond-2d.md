@@ -264,6 +264,7 @@ We need to tidy this up and ensure that each row is only one observation—in th
 ecometrics %>% 
   group_by(measure, year) %>% 
   summarise(n = sum(n))
+#> `summarise()` regrouping output by 'measure' (override with `.groups` argument)
 #> # A tibble: 16 x 3
 #> # Groups:   measure [4]
 #>    measure           year     n
