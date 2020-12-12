@@ -4,41 +4,39 @@
 source("common.R")
 ```
 
-Requisite to any data analysis is the data. Making those data available for you to analyse is not always the easiest of tasks. In this chapter we will review how data are imported and some of the formats they may take. Once we complete this chapter we will get going on our very first analaysis! 
+Requisite to any data analysis is the data. Making those data available for you to analyse is not always the easiest of tasks. In this chapter we will review how data are imported and some of the formats they may take. Once we complete this chapter we will get going on our very first analaysis!
 
 ## Background
 
-There are three general sources where we as social scientists will receive or access data: 1) text files, 2) databases, and 3) application programming interfaces (APIs). Frankly, though this is the age of "big data," we are not always able to interface directly with these sources. But through partnership efforts between the public and private we able to share data. For example, BARI's work with the Boston Police Department provides them with annual access to crime data. But BARIs access is limited. They do not have credentials to log in to the database and perform their own queries. What they are usually presented with is a flat text file(s) that contains the data requisite for analysis. And this is what we will focus in this chapter. 
+There are three general sources where we as social scientists will receive or access data: 1) text files, 2) databases, and 3) application programming interfaces (APIs). Frankly, though this is the age of "big data," we are not always able to interface directly with these sources. But through partnerships between the public and private we often receive shared data. For example, BARI's work with the Boston Police Department provides them with annual access to crime data. But BARI's access is limited. They do not have credentials to log in to the database and perform their own queries. They are presented with what is called a flat text file that contains the data requisite for analysis stored in a text file---think of a word document with no frills. We will focus on data from text files in this chapter.
 
-Flat text files will be sufficient for 85% of all of your data needs Now, what do I mean by _flat text file_? A flat text file is a file that stores data in plain text—I know, this seems somewhat confusing. In otherwords, you can open up a text file and actually read the data with your own eyes or a screenreader. For a long while tech pundits believed—and some still do—that text data will be a thing of the past. Perhaps this may be true in the future, but plain text still persists and there are some good reasons for that. Since plain text is extremely simple it is lightweight and usually does not take up that much memory. Also, because there is no fancy embelishing of the data in a plain text file, they can be easily shared from machine to machine without concern of dependent tools and software. Not to mention that we humans can actually be rather hands on and inspect the source of the data ourselves.
+Flat text files will be sufficient for 85% of all of your data needs Now, what do I mean by *flat text file*? A flat text file is a file that stores data in plain text. In other words, you can open up a text file and actually read the data with your own eyes or a screen reader. For a long while tech pundits believed---and some still do---that text data will be a thing of the past. Perhaps this may be true in the future, but plain text still persists and there are some good reasons for that. Since plain text is extremely simple it is lightweight and usually does not take up that much memory. Also, because there is no fancy embellishing of the data in a plain text file, they can be easily shared from machine to machine without concern of becoming dependent on a specific tool or software.
 
 ## Actually Reading Data
 
-Within the `tidyverse` there is a package called [`readr`](https://readr.tidyverse.org) (pronounced _read-r_) which we use for reading in rectangular data from text files.
+Within the `tidyverse` there is a package called [`readr`](https://readr.tidyverse.org) (pronounced *read-r*) which we use for reading in rectangular data from text files.
 
-I just threw the phrase _rectangular data_ at you. It is only fair to actually describe what that means. If you were to look at rectangular data in something like excel it would resemble a rectangle. In fancy speak, rectangular data is a _two-dimensional_ data structure with rows and columns. We will learn more about the "proper" way to shape rectangular data in the "tidying data" chapter. For now, all you need to know is that there are rows and columns in rectangular data. 
+I just threw the phrase *rectangular data* at you. It is only fair to actually describe what that means. If you were to look at rectangular data in something like excel it would resemble a rectangle. These are data that have rows and columns. In fancy speak, rectangular data is a *two-dimensional* data structure with rows and columns. We will learn more about the "proper" way to shape rectangular data in the "tidying data" chapter. For now, all you need to know is that there are rows and columns in rectangular data.
 
-To get started, let us load the tidyverse. This will load readr for us. 
+To get started, let us load the tidyverse. This will load readr for us.
 
 ```{r message=FALSE}
 library(tidyverse) 
 ```
 
-You most likely have seen and encountered flat text files in the wild inthe form of a `csv`. It is important to know what _csv_ stands for because it will help you understand what it actually is. it stands for **c**omma **s**eparated **v**alues. _csv_s are a flat text data file where the data is rectangular! Each new line of the file indicates that there is a new row. Within each row, each comma indicates a new column. If you opened one up in a text editor like text edit or notepad a csv would look something like below.
+You most likely have seen and encountered flat text files in the wild in the form of a `csv`. It is important to know what *csv* stands for because it will help you understand what it actually is. it stands for **c**omma **s**eparated **v**alues. \_csv\_s are a flat text data file where the data is rectangular! Each new line of the file indicates that there is a new row. Within each row, each comma indicates a new column. If you opened one up in a text editor like text edit or notepad a csv would look something like below.
 
-```
-column_a, column_b, column_c,
-10, "these are words", .432,
-1, "and more words", 1.11
-```
+    column_a, column_b, column_c
+    10, "these are words", .432
+    1, "and more words", 1.11
 
 To read a csv we use the `readr::read_csv()` function. `read_csv()` will read in the csv file and create a `tibble`. A tibble is type of a data structure that we will be interacting with the most throughout this book. A tibble is a rectangular data structure with rows and columns. Since a csv contains rectangular data, it is natural for it to be stored in a tibble.
 
 > Note: the syntax above is used for referencing a function from a namespace (package name). The syntax is pkgname::function(). This means the `read_csv()` function from the package `readr`. This is something you will see frequently on websites like [StackOverflow](https://stackoverflow.com/questions/tagged/r).
 
-Have a look at the arguments of `read_csv()` by entering `?read_csv()` into the console. You will notice that there are many arguments that you can set. These are there to give you a lot of control over how R will read your data. For now, and most of the time, we do not need to be concerned about these extra arguments. All we need to do is tell R _where_ our data file lives. If you haven't deduced from the help page yet, we will supply only the first argument `file`. This argument is _either a path to a file, a connection, or literal data (either a single string or a raw vector)_.
+Have a look at the arguments of `read_csv()` by entering `?read_csv()` into the console. You will notice that there are many arguments that you can set. These are there to give you a lot of control over how R will read your data. For now, and most of the time, we do not need to be concerned about these extra arguments. All we need to do is tell R *where* our data file lives. If you haven't deduced from the help page yet, we will supply only the first argument `file`. This argument is *either a path to a file, a connection, or literal data (either a single string or a raw vector)*.
 
-> Note: When you see the word _string_, that means values inside of quotations—i.e. _"this is a string"_.
+> Note: When you see the word *string*, that means values inside of quotations---i.e. *"this is a string"*.
 
 We will read in the dataset we will use in the next chapter. These data are stored in the file named `acs_edu.csv`. We can try reading this as the file path.
 
@@ -49,17 +47,17 @@ read_csv("acs_edu.csv")
 ##   ('/Users/Josiah/GitHub/urban-commons-toolkit').
 ```
 
-Oops. We've got red text and that is never fun. Except, this is a very important error message that, frankly, you will get **a lot**. 
+Oops. We've got red text and that is never fun. Except, this is a very important error message that, frankly, you will get **a lot**.
 
 Again it says:
 
-> _Error: 'acs_edu.csv' **does not exist** in current **working directory**_
+> *Error: 'acs_edu.csv' **does not exist** in current **working directory***
 
-I've bolded two portions of this error message. Take a moment to think through what this error is telling you. 
+I've bolded two portions of this error message. Take a moment to think through what this error is telling you.
 
-For those of you who weren't able to figure it out or just too impatient (like myself): this error is telling us that R looked for the file we provided `acs_edu.csv` but it could not find it. This usually means to me that I've either misspelled the file name, or I have not told R to look in the appropriate folder (a.k.a. directory). 
+For those of you who weren't able to figure it out or just too impatient (like myself): this error is telling us that R looked for the file we provided `acs_edu.csv` but it could not find it. This usually means to me that I've either misspelled the file name, or I have not told R to look in the appropriate folder (a.k.a. directory).
 
-`acs_edu.csv` actually lives in a directory called `data`. To tell R—or any computer system, really—where that file is we write `data/acs_edu.csv`. This tells R to first enter the `data` directory and then look for the `acs_edu.csv` file. 
+`acs_edu.csv` actually lives in a directory called `data`. To tell R---or any computer system, really---where that file is we write `data/acs_edu.csv`. This tells R to first enter the `data` directory and then look for the `acs_edu.csv` file.
 
 Now, read the `acs_edu.csv` file!
 
@@ -67,19 +65,17 @@ Now, read the `acs_edu.csv` file!
 read_csv(file = "data/acs_edu.csv") 
 ```
 
-
 This is really good! Except, all that happened was that the function was ran. The data it imported was not saved anywhere which means we will not be able to interact with it. What we saw was the output of the data. In order to interact with the data we need to assign it to an object.
 
-> Reminder: we assign object with the assignment operator `<-`—i.e. `new_obj <- read_csv("file-path.csv")`. Objects are things that we interact with such as a tibble. Functions such as `read_csv()` _usually_, but not always, modify or create objects. 
+> Reminder: we assign object with the assignment operator `<-`---i.e. `new_obj <- read_csv("file-path.csv")`. Objects are things that we interact with such as a tibble. Functions such as `read_csv()` *usually*, but not always, modify or create objects.
 
-
-In order to interact with the data, let us store the output into a tibble object called `acs`. 
+In order to interact with the data, let us store the output into a tibble object called `acs`.
 
 ```{r, message=FALSE}
 acs <- read_csv(file = "data/acs_edu.csv") 
 ```
 
-Notice how now there was no data printed in the console. This is a good sign! It means that R read the data and stored it properly into the `acs` object. When we don't store the function results, the results are (usually) printed out. To print an object, we can just type it's name into the console. 
+Notice how now there was no data printed in the console. This is a good sign! It means that R read the data and stored it properly into the `acs` object. When we don't store the function results, the results are (usually) printed out. To print an object, we can just type it's name into the console.
 
 ```{r max.print=10}
 acs
@@ -93,7 +89,7 @@ glimpse(acs)
 
 ## Other common data formats
 
-While csv files are going to be the most ubiquitous, you will invariably run into other data formats. The workflow is almost always the same. If you want to read excel files, you can use the function `readxl::read_excel()` from the [`readxl`](https://readxl.tidyverse.org/) package. 
+While csv files are going to be the most ubiquitous, you will invariably run into other data formats. The workflow is almost always the same. If you want to read excel files, you can use the function `readxl::read_excel()` from the [`readxl`](https://readxl.tidyverse.org/) package.
 
 ```{r}
 acs_xl <- readxl::read_excel("data/acs_edu.xlsx")
@@ -101,15 +97,10 @@ acs_xl <- readxl::read_excel("data/acs_edu.xlsx")
 glimpse(acs_xl)
 ```
 
-Another common format is a **tsv** which stands for **t**ab **s**eparated **f**ormat. `readr::read_tsv()` will be able to assist you here. 
+Another common format is a **tsv** which stands for **t**ab **s**eparated **f**ormat. `readr::read_tsv()` will be able to assist you here.
 
 If for some reason there are special delimiters like `|`, the `readr::read_delim()` function will work best. For example `readr::read_delim("file-path", delim = "|")` would do the trick!
 
-Additionally, another extremely common data type is _json_ which is short for javascript object notation. json is a data type that you will usually not read directly from a text file but interact with from an API. If you do happen to encounter a json flat text file, use the `jsonlite` package. `jsonlite::read_json()`. 
+Additionally, another extremely common data type is *json* which is short for javascript object notation. json is a data type that you will usually not read directly from a text file but interact with from an API. If you do happen to encounter a json flat text file, use the `jsonlite` package. `jsonlite::read_json()`.
 
-With this new skill we are ready for our first analysis. In the next chapter we will perform our very first graphical analysis using the package [`ggplot2`](https://ggplot2.tidyverse.org) from the tidyverse. 
-
-
-
-
-
+With this new skill we are ready for our first analysis. In the next chapter we will perform our very first graphical analysis using the package [`ggplot2`](https://ggplot2.tidyverse.org) from the tidyverse.

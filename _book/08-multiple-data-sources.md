@@ -228,6 +228,7 @@ airbnb_full <- group_by(reviews, listing_id) %>%
   summarise(n_reviews = n()) %>% 
   left_join(listings, by = c("listing_id" = "id")) %>% 
   left_join(hosts, by = c("host_id" = "id"))
+#> `summarise()` ungrouping output (override with `.groups` argument)
 
 glimpse(airbnb_full)
 #> Rows: 2,668
@@ -257,6 +258,7 @@ host_summary <- left_join(listings, hosts, by = c("host_id" = "id")) %>%
   summarise(avg_avail = mean(availability_365),
             avg_price = mean(price),
             avg_min_nights = mean(minimum_nights))
+#> `summarise()` ungrouping output (override with `.groups` argument)
 ```
 
 

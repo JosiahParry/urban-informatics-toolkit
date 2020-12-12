@@ -1,290 +1,77 @@
 <!DOCTYPE html>
-<html lang="" xml:lang="">
+<html lang="en">
 <head>
-
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 10 General data manipulation | Urban Informatics Toolkit</title>
-  <meta name="description" content="A hands on introduction approach to analyzing the urban Commons." />
-  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
-
-  <meta property="og:title" content="Chapter 10 General data manipulation | Urban Informatics Toolkit" />
-  <meta property="og:type" content="book" />
-  
-  
-  <meta property="og:description" content="A hands on introduction approach to analyzing the urban Commons." />
-  
-
-  <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 10 General data manipulation | Urban Informatics Toolkit" />
-  
-  <meta name="twitter:description" content="A hands on introduction approach to analyzing the urban Commons." />
-  
-
-<meta name="author" content="Josiah Parry" />
-
-
-<meta name="date" content="2020-04-24" />
-
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-  
-  
-<link rel="prev" href="exploratory-visual-analysis.html"/>
-<link rel="next" href="thats-too-much-data.html"/>
-<script src="libs/header-attrs-2.1/header-attrs.js"></script>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
-<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
-
-
-
-
-
-
-
-
-
-
-
-<style type="text/css">
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-</style>
-
-<link rel="stylesheet" href="style.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Chapter 10 General data manipulation | Urban Informatics Toolkit</title>
+<meta name="author" content="Josiah Parry">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.2"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.5.3/header-attrs.js"></script><script src="libs/jquery-3.5.1/jquery-3.5.1.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.5.3/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.5.3/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.2.3.9000/tabs.js"></script><script src="libs/bs3compat-0.2.3.9000/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script><script src="https://cdn.jsdelivr.net/autocomplete.js/0/autocomplete.jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/mark.js@8.11.1/dist/mark.min.js"></script><!-- CSS -->
 </head>
+<body data-spy="scroll" data-target="#toc">
 
-<body>
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
 
-
-
-  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
-
-    <div class="book-summary">
-      <nav role="navigation">
-
-<ul class="summary">
-<li><a href="./">Urban Informatics Toolkit</a></li>
-
-<li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Welcome</a>
-<ul>
-<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#structure-of-the-book"><i class="fa fa-check"></i><b>1.1</b> Structure of the book</a></li>
-<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#considerations"><i class="fa fa-check"></i><b>1.2</b> Considerations</a></li>
-</ul></li>
-<li class="part"><span><b>I Foundations of Urban Informatics</b></span></li>
-<li class="chapter" data-level="2" data-path="the-utility-and-danger-of-big-data.html"><a href="the-utility-and-danger-of-big-data.html"><i class="fa fa-check"></i><b>2</b> The Utility and Danger of Big Data</a></li>
-<li class="chapter" data-level="3" data-path="data-in-the-municipal-context.html"><a href="data-in-the-municipal-context.html"><i class="fa fa-check"></i><b>3</b> Data in the municipal context</a></li>
-<li class="chapter" data-level="4" data-path="approaches-to-and-schools-of-urban-informatics.html"><a href="approaches-to-and-schools-of-urban-informatics.html"><i class="fa fa-check"></i><b>4</b> Approaches to and Schools of Urban Informatics</a>
-<ul>
-<li class="chapter" data-level="4.1" data-path="approaches-to-and-schools-of-urban-informatics.html"><a href="approaches-to-and-schools-of-urban-informatics.html#scientific-approaches"><i class="fa fa-check"></i><b>4.1</b> Scientific approaches</a></li>
-<li class="chapter" data-level="4.2" data-path="approaches-to-and-schools-of-urban-informatics.html"><a href="approaches-to-and-schools-of-urban-informatics.html#the-chicago-school"><i class="fa fa-check"></i><b>4.2</b> The Chicago School</a></li>
-<li class="chapter" data-level="4.3" data-path="approaches-to-and-schools-of-urban-informatics.html"><a href="approaches-to-and-schools-of-urban-informatics.html#complexity-and-santa-fe-institute"><i class="fa fa-check"></i><b>4.3</b> Complexity and Santa Fe Institute</a></li>
-<li class="chapter" data-level="4.4" data-path="approaches-to-and-schools-of-urban-informatics.html"><a href="approaches-to-and-schools-of-urban-informatics.html#a-hybrid-approach"><i class="fa fa-check"></i><b>4.4</b> A Hybrid Approach</a></li>
-</ul></li>
-<li class="chapter" data-level="5" data-path="ecometrics.html"><a href="ecometrics.html"><i class="fa fa-check"></i><b>5</b> Ecometrics</a>
-<ul>
-<li class="chapter" data-level="5.1" data-path="ecometrics.html"><a href="ecometrics.html#broken-windows-theory"><i class="fa fa-check"></i><b>5.1</b> Broken Windows Theory</a></li>
-<li class="chapter" data-level="5.2" data-path="ecometrics.html"><a href="ecometrics.html#quantifying-disorder"><i class="fa fa-check"></i><b>5.2</b> Quantifying Disorder</a></li>
-</ul></li>
-<li class="part"><span><b>II Toolkit Foundations</b></span></li>
-<li class="chapter" data-level="6" data-path="the-basics.html"><a href="the-basics.html"><i class="fa fa-check"></i><b>6</b> The basics</a>
-<ul>
-<li class="chapter" data-level="6.1" data-path="the-basics.html"><a href="the-basics.html#what-is-r-and-why-do-i-care"><i class="fa fa-check"></i><b>6.1</b> What is R and why do I care?</a></li>
-<li class="chapter" data-level="6.2" data-path="the-basics.html"><a href="the-basics.html#the-rstudio-ide"><i class="fa fa-check"></i><b>6.2</b> The RStudio IDE</a></li>
-<li class="chapter" data-level="6.3" data-path="the-basics.html"><a href="the-basics.html#installing-r-rstudio"><i class="fa fa-check"></i><b>6.3</b> Installing R &amp; RStudio</a></li>
-<li class="chapter" data-level="6.4" data-path="the-basics.html"><a href="the-basics.html#preventative-care"><i class="fa fa-check"></i><b>6.4</b> Preventative Care</a></li>
-<li class="chapter" data-level="6.5" data-path="the-basics.html"><a href="the-basics.html#before-we-embark"><i class="fa fa-check"></i><b>6.5</b> Before we embark</a></li>
-<li class="chapter" data-level="6.6" data-path="the-basics.html"><a href="the-basics.html#getting-help"><i class="fa fa-check"></i><b>6.6</b> Getting Help</a></li>
-<li class="chapter" data-level="6.7" data-path="the-basics.html"><a href="the-basics.html#reminders"><i class="fa fa-check"></i><b>6.7</b> Reminders</a></li>
-</ul></li>
-<li class="chapter" data-level="7" data-path="r-as-a-calculator.html"><a href="r-as-a-calculator.html"><i class="fa fa-check"></i><b>7</b> R as a calculator</a>
-<ul>
-<li class="chapter" data-level="7.1" data-path="r-as-a-calculator.html"><a href="r-as-a-calculator.html#arithmetic-operators"><i class="fa fa-check"></i><b>7.1</b> Arithmetic Operators</a></li>
-<li class="chapter" data-level="7.2" data-path="r-as-a-calculator.html"><a href="r-as-a-calculator.html#variable-assignment"><i class="fa fa-check"></i><b>7.2</b> Variable assignment</a></li>
-<li class="chapter" data-level="7.3" data-path="r-as-a-calculator.html"><a href="r-as-a-calculator.html#functions"><i class="fa fa-check"></i><b>7.3</b> Functions</a></li>
-<li class="chapter" data-level="7.4" data-path="r-as-a-calculator.html"><a href="r-as-a-calculator.html#extensions-to-r"><i class="fa fa-check"></i><b>7.4</b> Extensions to R</a></li>
-<li class="chapter" data-level="7.5" data-path="r-as-a-calculator.html"><a href="r-as-a-calculator.html#loading-packages"><i class="fa fa-check"></i><b>7.5</b> Loading Packages</a></li>
-<li class="chapter" data-level="7.6" data-path="r-as-a-calculator.html"><a href="r-as-a-calculator.html#whats-next"><i class="fa fa-check"></i><b>7.6</b> What’s next?</a></li>
-</ul></li>
-<li class="chapter" data-level="8" data-path="reading-data.html"><a href="reading-data.html"><i class="fa fa-check"></i><b>8</b> Reading data</a>
-<ul>
-<li class="chapter" data-level="8.1" data-path="reading-data.html"><a href="reading-data.html#background"><i class="fa fa-check"></i><b>8.1</b> Background</a></li>
-<li class="chapter" data-level="8.2" data-path="reading-data.html"><a href="reading-data.html#actually-reading-data"><i class="fa fa-check"></i><b>8.2</b> Actually Reading Data</a></li>
-<li class="chapter" data-level="8.3" data-path="reading-data.html"><a href="reading-data.html#other-common-data-formats"><i class="fa fa-check"></i><b>8.3</b> Other common data formats</a></li>
-</ul></li>
-<li class="chapter" data-level="9" data-path="exploratory-visual-analysis.html"><a href="exploratory-visual-analysis.html"><i class="fa fa-check"></i><b>9</b> Exploratory Visual Analysis</a>
-<ul>
-<li class="chapter" data-level="9.1" data-path="exploratory-visual-analysis.html"><a href="exploratory-visual-analysis.html#the-american-community-survey"><i class="fa fa-check"></i><b>9.1</b> The American Community Survey</a></li>
-<li class="chapter" data-level="9.2" data-path="exploratory-visual-analysis.html"><a href="exploratory-visual-analysis.html#a-first-visualization"><i class="fa fa-check"></i><b>9.2</b> A first visualization</a></li>
-</ul></li>
-<li class="chapter" data-level="10" data-path="general-data-manipulation.html"><a href="general-data-manipulation.html"><i class="fa fa-check"></i><b>10</b> General data manipulation</a>
-<ul>
-<li class="chapter" data-level="10.1" data-path="general-data-manipulation.html"><a href="general-data-manipulation.html#scenario"><i class="fa fa-check"></i><b>10.1</b> Scenario</a></li>
-<li class="chapter" data-level="10.2" data-path="general-data-manipulation.html"><a href="general-data-manipulation.html#getting-physical-with-the-data"><i class="fa fa-check"></i><b>10.2</b> Getting physical with the data</a></li>
-<li class="chapter" data-level="10.3" data-path="general-data-manipulation.html"><a href="general-data-manipulation.html#selecting-rows"><i class="fa fa-check"></i><b>10.3</b> Selecting Rows</a></li>
-<li class="chapter" data-level="10.4" data-path="general-data-manipulation.html"><a href="general-data-manipulation.html#revisiting-commmuting"><i class="fa fa-check"></i><b>10.4</b> Revisiting commmuting</a></li>
-</ul></li>
-<li class="chapter" data-level="11" data-path="thats-too-much-data.html"><a href="thats-too-much-data.html"><i class="fa fa-check"></i><b>11</b> That’s <em>too much</em> data</a>
-<ul>
-<li class="chapter" data-level="11.1" data-path="thats-too-much-data.html"><a href="thats-too-much-data.html#filtering"><i class="fa fa-check"></i><b>11.1</b> <code>filter()</code>ing</a></li>
-<li class="chapter" data-level="11.2" data-path="thats-too-much-data.html"><a href="thats-too-much-data.html#logical-operators"><i class="fa fa-check"></i><b>11.2</b> Logical operators</a></li>
-<li class="chapter" data-level="11.3" data-path="thats-too-much-data.html"><a href="thats-too-much-data.html#defining-the-greater-boston-area"><i class="fa fa-check"></i><b>11.3</b> Defining the Greater Boston Area</a></li>
-</ul></li>
-<li class="chapter" data-level="12" data-path="the-pipe.html"><a href="the-pipe.html"><i class="fa fa-check"></i><b>12</b> The pipe <code>%&gt;%</code></a>
-<ul>
-<li class="chapter" data-level="12.1" data-path="the-pipe.html"><a href="the-pipe.html#applying-the-pipe"><i class="fa fa-check"></i><b>12.1</b> Applying the pipe</a></li>
-<li class="chapter" data-level="12.2" data-path="the-pipe.html"><a href="the-pipe.html#revisiting-our-scenario"><i class="fa fa-check"></i><b>12.2</b> Revisiting our scenario</a></li>
-</ul></li>
-<li class="chapter" data-level="13" data-path="creating-new-measures.html"><a href="creating-new-measures.html"><i class="fa fa-check"></i><b>13</b> Creating new measures</a></li>
-<li class="chapter" data-level="14" data-path="data-structures.html"><a href="data-structures.html"><i class="fa fa-check"></i><b>14</b> Data Structures</a>
-<ul>
-<li class="chapter" data-level="14.1" data-path="data-structures.html"><a href="data-structures.html#atomic-vectors"><i class="fa fa-check"></i><b>14.1</b> Atomic Vectors</a></li>
-<li class="chapter" data-level="14.2" data-path="data-structures.html"><a href="data-structures.html#data-frames"><i class="fa fa-check"></i><b>14.2</b> Data Frames</a></li>
-<li class="chapter" data-level="14.3" data-path="data-structures.html"><a href="data-structures.html#lists"><i class="fa fa-check"></i><b>14.3</b> Lists</a></li>
-</ul></li>
-<li class="chapter" data-level="15" data-path="summary-statistics.html"><a href="summary-statistics.html"><i class="fa fa-check"></i><b>15</b> Summary statistics</a></li>
-<li class="chapter" data-level="16" data-path="summarizing-the-tidy-way.html"><a href="summarizing-the-tidy-way.html"><i class="fa fa-check"></i><b>16</b> Summarizing the tidy way</a></li>
-<li class="chapter" data-level="17" data-path="toolkit-review.html"><a href="toolkit-review.html"><i class="fa fa-check"></i><b>17</b> Toolkit review</a></li>
-<li class="part"><span><b>III Vizualization Strategies</b></span></li>
-<li class="chapter" data-level="18" data-path="layered-i.html"><a href="layered-i.html"><i class="fa fa-check"></i><b>18</b> Grammar of layered graphics I</a>
-<ul>
-<li class="chapter" data-level="18.1" data-path="layered-i.html"><a href="layered-i.html#the-grammar-of-layered-graphics"><i class="fa fa-check"></i><b>18.1</b> The Grammar of Layered Graphics</a></li>
-<li class="chapter" data-level="18.2" data-path="layered-i.html"><a href="layered-i.html#layers-and-defaults"><i class="fa fa-check"></i><b>18.2</b> Layers and defaults</a></li>
-</ul></li>
-<li class="chapter" data-level="19" data-path="visualizing-trends-and-relationships.html"><a href="visualizing-trends-and-relationships.html"><i class="fa fa-check"></i><b>19</b> Visualizing Trends and Relationships</a>
-<ul>
-<li class="chapter" data-level="19.1" data-path="visualizing-trends-and-relationships.html"><a href="visualizing-trends-and-relationships.html#univariate-visualizations"><i class="fa fa-check"></i><b>19.1</b> Univariate visualizations</a></li>
-<li class="chapter" data-level="19.2" data-path="visualizing-trends-and-relationships.html"><a href="visualizing-trends-and-relationships.html#bivariate-visualizations"><i class="fa fa-check"></i><b>19.2</b> Bivariate visualizations</a></li>
-<li class="chapter" data-level="19.3" data-path="visualizing-trends-and-relationships.html"><a href="visualizing-trends-and-relationships.html#review"><i class="fa fa-check"></i><b>19.3</b> Review:</a></li>
-</ul></li>
-<li class="chapter" data-level="20" data-path="grammer-of-layered-graphics-ii.html"><a href="grammer-of-layered-graphics-ii.html"><i class="fa fa-check"></i><b>20</b> Grammer of layered graphics II</a>
-<ul>
-<li class="chapter" data-level="20.1" data-path="grammer-of-layered-graphics-ii.html"><a href="grammer-of-layered-graphics-ii.html#scales"><i class="fa fa-check"></i><b>20.1</b> Scales</a></li>
-<li class="chapter" data-level="20.2" data-path="grammer-of-layered-graphics-ii.html"><a href="grammer-of-layered-graphics-ii.html#coordinates"><i class="fa fa-check"></i><b>20.2</b> Coordinates</a></li>
-<li class="chapter" data-level="20.3" data-path="grammer-of-layered-graphics-ii.html"><a href="grammer-of-layered-graphics-ii.html#facets"><i class="fa fa-check"></i><b>20.3</b> Facets</a></li>
-</ul></li>
-<li class="chapter" data-level="21" data-path="visualizing-beyond-2-dimensions.html"><a href="visualizing-beyond-2-dimensions.html"><i class="fa fa-check"></i><b>21</b> Visualizing beyond 2-dimensions</a>
-<ul>
-<li class="chapter" data-level="21.1" data-path="visualizing-beyond-2-dimensions.html"><a href="visualizing-beyond-2-dimensions.html#color"><i class="fa fa-check"></i><b>21.1</b> Color</a></li>
-<li class="chapter" data-level="21.2" data-path="visualizing-beyond-2-dimensions.html"><a href="visualizing-beyond-2-dimensions.html#shape-and-size"><i class="fa fa-check"></i><b>21.2</b> Shape and Size</a></li>
-</ul></li>
-<li class="chapter" data-level="22" data-path="visualizing-through-time.html"><a href="visualizing-through-time.html"><i class="fa fa-check"></i><b>22</b> Visualizing through time</a>
-<ul>
-<li class="chapter" data-level="22.1" data-path="visualizing-through-time.html"><a href="visualizing-through-time.html#working-with-dates"><i class="fa fa-check"></i><b>22.1</b> Working with dates</a></li>
-<li class="chapter" data-level="22.2" data-path="visualizing-through-time.html"><a href="visualizing-through-time.html#standard-visual-approach"><i class="fa fa-check"></i><b>22.2</b> Standard visual approach</a></li>
-<li class="chapter" data-level="22.3" data-path="visualizing-through-time.html"><a href="visualizing-through-time.html#animation-as-time"><i class="fa fa-check"></i><b>22.3</b> Animation as time</a></li>
-</ul></li>
-<li class="chapter" data-level="23" data-path="visualization-review.html"><a href="visualization-review.html"><i class="fa fa-check"></i><b>23</b> Visualization Review</a></li>
-<li class="part"><span><b>IV Expanding the Toolkit</b></span></li>
-<li class="chapter" data-level="24" data-path="multiple-data-sets.html"><a href="multiple-data-sets.html"><i class="fa fa-check"></i><b>24</b> Multiple data sets</a>
-<ul>
-<li class="chapter" data-level="24.1" data-path="multiple-data-sets.html"><a href="multiple-data-sets.html#exercise-2"><i class="fa fa-check"></i><b>24.1</b> Exercise</a></li>
-</ul></li>
-<li class="chapter" data-level="25" data-path="statistics.html"><a href="statistics.html"><i class="fa fa-check"></i><b>25</b> Statistics</a>
-<ul>
-<li class="chapter" data-level="25.1" data-path="statistics.html"><a href="statistics.html#the-data-1"><i class="fa fa-check"></i><b>25.1</b> The data</a></li>
-<li class="chapter" data-level="25.2" data-path="statistics.html"><a href="statistics.html#the-formula-interface"><i class="fa fa-check"></i><b>25.2</b> The formula interface</a></li>
-<li class="chapter" data-level="25.3" data-path="statistics.html"><a href="statistics.html#t-tests"><i class="fa fa-check"></i><b>25.3</b> T-tests</a></li>
-<li class="chapter" data-level="25.4" data-path="statistics.html"><a href="statistics.html#anova"><i class="fa fa-check"></i><b>25.4</b> ANOVA</a></li>
-<li class="chapter" data-level="25.5" data-path="statistics.html"><a href="statistics.html#linear-regression"><i class="fa fa-check"></i><b>25.5</b> Linear regression</a></li>
-</ul></li>
-<li class="chapter" data-level="26" data-path="spatial-analysis.html"><a href="spatial-analysis.html"><i class="fa fa-check"></i><b>26</b> Spatial Analysis</a>
-<ul>
-<li class="chapter" data-level="26.1" data-path="spatial-analysis.html"><a href="spatial-analysis.html#types-of-spatial-data"><i class="fa fa-check"></i><b>26.1</b> Types of spatial data</a></li>
-<li class="chapter" data-level="26.2" data-path="spatial-analysis.html"><a href="spatial-analysis.html#working-with-spatial-data"><i class="fa fa-check"></i><b>26.2</b> Working with spatial data</a></li>
-<li class="chapter" data-level="26.3" data-path="spatial-analysis.html"><a href="spatial-analysis.html#creating-simple-features-from-a-tibble"><i class="fa fa-check"></i><b>26.3</b> Creating simple features from a tibble</a></li>
-<li class="chapter" data-level="26.4" data-path="spatial-analysis.html"><a href="spatial-analysis.html#plotting-sf-objects-with-ggplot"><i class="fa fa-check"></i><b>26.4</b> Plotting sf objects with ggplot</a></li>
-<li class="chapter" data-level="26.5" data-path="spatial-analysis.html"><a href="spatial-analysis.html#connecting-points-to-polygons"><i class="fa fa-check"></i><b>26.5</b> Connecting points to polygons</a></li>
-</ul></li>
-<li class="divider"></li>
-<li><a href="https://github.com/josiahparry/urban-informatics-toolkit" target="blank">GitHub</a></li>
-
-</ul>
-
-      </nav>
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">Urban Informatics Toolkit</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
     </div>
 
-    <div class="book-body">
-      <div class="body-inner">
-        <div class="book-header" role="navigation">
-          <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Urban Informatics Toolkit</a>
-          </h1>
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html"><span class="header-section-number">1</span> Welcome</a></li>
+<li class="book-part">Foundations of Urban Informatics</li>
+<li><a class="" href="the-utility-and-danger-of-big-data.html"><span class="header-section-number">2</span> The Utility and Danger of Big Data</a></li>
+<li><a class="" href="data-in-the-municipal-context.html"><span class="header-section-number">3</span> Data in the municipal context</a></li>
+<li><a class="" href="approaches-to-and-schools-of-urban-informatics.html"><span class="header-section-number">4</span> Approaches to and Schools of Urban Informatics</a></li>
+<li><a class="" href="ecometrics.html"><span class="header-section-number">5</span> Ecometrics</a></li>
+<li class="book-part">Toolkit Foundations</li>
+<li><a class="" href="the-basics.html"><span class="header-section-number">6</span> The basics</a></li>
+<li><a class="" href="r-as-a-calculator.html"><span class="header-section-number">7</span> R as a calculator</a></li>
+<li><a class="" href="reading-data.html"><span class="header-section-number">8</span> Reading data</a></li>
+<li><a class="" href="exploratory-visual-analysis.html"><span class="header-section-number">9</span> Exploratory Visual Analysis</a></li>
+<li><a class="active" href="general-data-manipulation.html"><span class="header-section-number">10</span> General data manipulation</a></li>
+<li><a class="" href="thats-too-much-data.html"><span class="header-section-number">11</span> That’s too much data</a></li>
+<li><a class="" href="the-pipe.html"><span class="header-section-number">12</span> The pipe %&gt;%</a></li>
+<li><a class="" href="creating-new-measures.html"><span class="header-section-number">13</span> Creating new measures</a></li>
+<li><a class="" href="data-structures.html"><span class="header-section-number">14</span> Data Structures</a></li>
+<li><a class="" href="summary-statistics.html"><span class="header-section-number">15</span> Summary statistics</a></li>
+<li><a class="" href="summarizing-the-tidy-way.html"><span class="header-section-number">16</span> Summarizing the tidy way</a></li>
+<li><a class="" href="toolkit-review.html"><span class="header-section-number">17</span> Toolkit review</a></li>
+<li class="book-part">Vizualization Strategies</li>
+<li><a class="" href="layered-i.html"><span class="header-section-number">18</span> Grammar of layered graphics I</a></li>
+<li><a class="" href="visualizing-trends-and-relationships.html"><span class="header-section-number">19</span> Visualizing Trends and Relationships</a></li>
+<li><a class="" href="grammer-of-layered-graphics-ii.html"><span class="header-section-number">20</span> Grammer of layered graphics II</a></li>
+<li><a class="" href="visualizing-beyond-2-dimensions.html"><span class="header-section-number">21</span> Visualizing beyond 2-dimensions</a></li>
+<li><a class="" href="visualizing-through-time.html"><span class="header-section-number">22</span> Visualizing through time</a></li>
+<li><a class="" href="visualization-review.html"><span class="header-section-number">23</span> Visualization Review</a></li>
+<li class="book-part">Expanding the Toolkit</li>
+<li><a class="" href="multiple-data-sets.html"><span class="header-section-number">24</span> Multiple data sets</a></li>
+<li><a class="" href="statistics.html"><span class="header-section-number">25</span> Statistics</a></li>
+<li><a class="" href="spatial-analysis.html"><span class="header-section-number">26</span> Spatial Analysis</a></li>
+</ul>
+
+        <div class="book-extra">
+          
         </div>
-
-        <div class="page-wrapper" tabindex="-1" role="main">
-          <div class="page-inner">
-
-            <section class="normal" id="section-">
-<div id="general-data-manipulation" class="section level1" number="10">
-<h1><span class="header-section-number">Chapter 10</span> General data manipulation</h1>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="general-data-manipulation" class="section level1" number="10">
+<h1>
+<span class="header-section-number">10</span> General data manipulation<a class="anchor" aria-label="anchor" href="#general-data-manipulation"><i class="fas fa-link"></i></a>
+</h1>
 <p>We spent the last chapter performing our first exploratory visual analysis. From our visualizations we were able to inductively conlcude that as both median household income and the proportion of the population with a bachelors degree increases, so does the share of the population is white.</p>
 <p>While we were able to make wonderful visualizations, we did skip a number of steps in the exploratory analysis process! Arguably the most important is that we skipped the curating of our dataset. The ACS dataset was already cleaned and curated for you. This almost always will not be the case. As such, we’re going to spend this chapter learning about ways of selecting subsets of our data.</p>
 <p>Now that you have the ability to read in data, it is important that you get comfortable handling it. Some people call the process of rearranging, cleaning, and reshaping data massaging, plumbing, engineering, and myriad other names. Here, we will refer to this as data manipulation. This is a preferable catch-all term that does not illicit images of toilets or Phoebe Buffay (she was a masseuse!).</p>
@@ -296,7 +83,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>This is all to say that you will find yourself with messy, unsanitized, gross, not fun to look at data most of the time. Because of this, it is really important that we have the skills to clean our data. Right now we’re going to go over the foundational skills we will learn how to select columns and rows, filter data, and create new columns, and arrange our data. To do this, we will be using the <a href="https://dplyr.tidyverse.org"><code>dplyr</code></a> package from the tidyverse.</p>
 <p>The data we read in in the last chapter was only a select few variables from the annual census data release that the team at the Boston Area Research Initiative (BARI) provides. These census indicators are used to provide a picture into the changing landscape of Boston and Massachusetts more generally. In this chapter we will work through a rather real life scenario that you may very well encounter using the BARI data.</p>
 <div id="scenario" class="section level2" number="10.1">
-<h2><span class="header-section-number">10.1</span> Scenario</h2>
+<h2>
+<span class="header-section-number">10.1</span> Scenario<a class="anchor" aria-label="anchor" href="#scenario"><i class="fas fa-link"></i></a>
+</h2>
 <p>A local non-profit is interested in the commuting behavior of Greater Boston residents. Your adviser suggested that you assist the non-profit in their work. You’ve just had coffee with the project manager to learn more about what their specific research question is. It seems that the extension of the Green Line is of great interest to them. She spoke at length about the history of the Big Dig and its impact on commuters working in the city. This poured over into a conversation about the spatial and social stratification of a city. She looks at her watch and realizes she’s about to miss the commuter train home. You shake their hand, thank them for their time (and the free coffee because you’re a grad student), and affirm that you will email them in a week or so with some data for them to work with.</p>
 <p>You’re back at your apartment, french press next your laptop—though not too close—notes open, and ready to begin. You pore over your notes and realize while you now have a rather good understanding of <em>what</em> the Green Line Extensions is and the impact that the Big Dig had, you really have no idea what about commuting behavior in Greater Boston they are interested in. You realize you did not even confirm what constitutes the Greater Boston area. You push down the coffee grinds and pour your first cup of coffee. This will take at least two cups of coffee.</p>
 <p>The above scenario sounds like something out of a stress dream. This is scenario that I have found myself in many times and I am sure that you will find yourself in at one point as well. The more comfortable you get with data analysis and asking good questions, the more guided and directed you can make these seemingly vague objectives.</p>
@@ -305,25 +94,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </blockquote>
 </div>
 <div id="getting-physical-with-the-data" class="section level2" number="10.2">
-<h2><span class="header-section-number">10.2</span> Getting physical with the data</h2>
+<h2>
+<span class="header-section-number">10.2</span> Getting physical with the data<a class="anchor" aria-label="anchor" href="#getting-physical-with-the-data"><i class="fas fa-link"></i></a>
+</h2>
 <p>The data we used in both chapters one and two were curated from the <a href="https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/XZXAUP">annual census indicator release</a> from BARI[^indicators]. This is the dataset from which <code>acs_edu</code> was created. We will use these data to provide relevant data relating to commuting in the Greater Boston Area. The first thing you’ll notice is that these data are large and somewhat unforgiving to work with. What a better way to get started than with big data?</p>
-<p>We will be using the tidyverse to read in and manipulate our data (as we did last chapter). Recall that we will load the tidyverse using <code>library(tidyverse)</code>.</p>
+<p>We will be using the tidyverse to read in and manipulate our data (as we did last chapter). Recall that we will load the tidyverse using <code><a href="http://tidyverse.tidyverse.org">library(tidyverse)</a></code>.</p>
 <blockquote>
 <p>Refresher: the tidyverse is a collection of packages used for data analysis. When you load the tidyverse it loads <code>readr</code>, <code>ggplot2</code>, and <code>dplyr</code> for us, among other packages. For now, though, these are the only relevant packages.</p>
 </blockquote>
 <p><strong>Try it:</strong></p>
 <ul>
 <li>Load the tidyverse</li>
-<li>Read in the file <code>ACS_1317_TRACT.csv</code> located in the <code>data</code> directory, store it in an object called <code>acs_raw</code></li>
+<li>Read in the file <code>ACS_1317_TRACT.csv</code> located in the <code>data</code> directory, store it in an object called <code>acs_raw</code>
+</li>
 </ul>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="general-data-manipulation.html#cb37-1"></a><span class="kw">library</span>(tidyverse)</span>
-<span id="cb37-2"><a href="general-data-manipulation.html#cb37-2"></a></span>
-<span id="cb37-3"><a href="general-data-manipulation.html#cb37-3"></a>acs_raw &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data/ACS_1317_TRACT.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
+
+<span class="va">acs_raw</span> <span class="op">&lt;-</span> <span class="fu">read_csv</span><span class="op">(</span><span class="st">"data/ACS_1317_TRACT.csv"</span><span class="op">)</span></code></pre></div>
 <p>Wonderful! You’ve got the hang of reading data in which is truly no small feat. Once we have the data accessible from R, it is important to get familiar with what the data are. This means we need to know <em>which</em> variables are available to us and get a feel for what the values in those variables represent.</p>
 <p>Try printing out the <code>acs_raw</code> object in your console.</p>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="general-data-manipulation.html#cb38-1"></a>acs_raw</span></code></pre></div>
-<p>Oof, yikes. It’s a bit messy! Not to mention that R did not even print out all of the columns. That’s because it ran out of room. When we’re working with wide data (many columns), it’s generally best to view only a preview of the data. The function <code>dplyr::glimpse()</code> can help us do just that. Provide <code>acs_raw</code> as the only argument to <code>glimpse()</code>.</p>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="general-data-manipulation.html#cb39-1"></a><span class="kw">glimpse</span>(acs_raw)</span></code></pre></div>
+<div class="sourceCode" id="cb42"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">acs_raw</span></code></pre></div>
+<p>Oof, yikes. It’s a bit messy! Not to mention that R did not even print out all of the columns. That’s because it ran out of room. When we’re working with wide data (many columns), it’s generally best to view only a preview of the data. The function <code><a href="https://tibble.tidyverse.org/reference/glimpse.html">dplyr::glimpse()</a></code> can help us do just that. Provide <code>acs_raw</code> as the only argument to <code><a href="https://tibble.tidyverse.org/reference/glimpse.html">glimpse()</a></code>.</p>
+<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://tibble.tidyverse.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">acs_raw</span><span class="op">)</span></code></pre></div>
 <p>Much better, right? It is frankly still a lot of text, but the way it is presented is rather useful. Each variable is written followed by its data type, i.e. <code>&lt;dbl&gt;</code>, and then a preview of values in that column. If the <code>&lt;dbl&gt;</code> does not make sense yet, do not worry. We will go over data types in depth later. Data types are not the most fun and I think it is important we have fun!</p>
 <p><code>acs_raw</code> is the dataset from which <code>acs_edu</code> was created. As you can see, there are many, many, <em>many</em> different variables that the ACS data provide us with. These are only the tip of the iceberg.
 <strong>Pause</strong></p>
@@ -334,10 +129,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </blockquote>
 <p>If you spotted the columns commute_less10, commute1030, commute3060, commute6090, and commute_over90, your eyes and intuition have served you well! These variables tell us about what proportion of the sampled population in a given census tract have commute times that fall within the indicated duration range, i.e. 30-60.</p>
 <div id="selecting" class="section level3" number="10.2.1">
-<h3><span class="header-section-number">10.2.1</span> <code>select()</code>ing</h3>
-<p>So now we have an intuition of the most important variables, but the next problem soon arises: how do we isolate just these variables? Whenever you find yourself needing to select or deselect columns from a tibble <code>dplyr::select()</code> will be the main function that you will go to.</p>
-<p><strong>What does it do?</strong>: <code>select()</code> selects variables from a tibble and returns another tibble.</p>
-<p>Before we work through how to use <code>select()</code>, refer to the help documentation and see if you can get somewhat of an intuition by typing <code>?select()</code> into the console. Once you press enter the documentation page should pop up in RStudio.</p>
+<h3>
+<span class="header-section-number">10.2.1</span> <code>select()</code>ing<a class="anchor" aria-label="anchor" href="#selecting"><i class="fas fa-link"></i></a>
+</h3>
+<p>So now we have an intuition of the most important variables, but the next problem soon arises: how do we isolate just these variables? Whenever you find yourself needing to select or deselect columns from a tibble <code><a href="https://dplyr.tidyverse.org/reference/select.html">dplyr::select()</a></code> will be the main function that you will go to.</p>
+<p><strong>What does it do?</strong>: <code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code> selects variables from a tibble and returns another tibble.</p>
+<p>Before we work through how to use <code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code>, refer to the help documentation and see if you can get somewhat of an intuition by typing <code>?select()</code> into the console. Once you press enter the documentation page should pop up in RStudio.</p>
 <p>There are a few reasons why I am directing you towards the function documentation.</p>
 <ol style="list-style-type: decimal">
 <li>To get you comfortable with navigating the RStudio IDE</li>
@@ -348,21 +145,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <blockquote>
 <p><code>.data</code>: A tbl. All main verbs are S3 generics and provide methods for tbl_df(), dtplyr::tbl_dt() and dbplyr::tbl_dbi().</p>
 </blockquote>
-<p>What I want you to take away from this argument definition is <code>a tbl</code>. Whenever you read <code>tbl</code> think to your self “oh, that is just a <code>tibble</code>.” If you recall, when we read rectangular data with <code>readr::read_csv()</code> or any other <code>readr::read_*()</code> function we will end up with a tibble. To verify that this is the case, we can double check our objects using the function <code>is.tbl()</code>. This function takes an object and returns a logical value (<code>TRUE</code> or <code>FALSE</code>) if the statement is true. Let’s double check that <code>acs_raw</code> is in fact a tbl.</p>
-<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="general-data-manipulation.html#cb40-1"></a><span class="kw">is.tbl</span>(acs_raw)</span>
-<span id="cb40-2"><a href="general-data-manipulation.html#cb40-2"></a><span class="co">#&gt; [1] TRUE</span></span></code></pre></div>
+<p>What I want you to take away from this argument definition is <code>a tbl</code>. Whenever you read <code>tbl</code> think to your self “oh, that is just a <code>tibble</code>.” If you recall, when we read rectangular data with <code><a href="https://readr.tidyverse.org/reference/read_delim.html">readr::read_csv()</a></code> or any other <code>readr::read_*()</code> function we will end up with a tibble. To verify that this is the case, we can double check our objects using the function <code><a href="https://dplyr.tidyverse.org/reference/tbl.html">is.tbl()</a></code>. This function takes an object and returns a logical value (<code>TRUE</code> or <code>FALSE</code>) if the statement is true. Let’s double check that <code>acs_raw</code> is in fact a tbl.</p>
+<div class="sourceCode" id="cb44"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://dplyr.tidyverse.org/reference/tbl.html">is.tbl</a></span><span class="op">(</span><span class="va">acs_raw</span><span class="op">)</span>
+<span class="co">#&gt; [1] TRUE</span></code></pre></div>
 <blockquote>
 <p>Aside: Each object type usually has a function that let’s you test if objects are that type that follow the structure <code>is.obj_type()</code> or the occasional <code>is_obj_type()</code>. We will go over object types more later.</p>
 </blockquote>
-<p>We can read the above as if we are asking R the question “is this object a <code>tbl</code>?” The resultant output of <code>is.tbl(acs_raw)</code> is <code>TRUE</code>. Now we can be doubly confident that this object can be used with <code>select()</code>.</p>
-<p>The second argument to <code>select()</code> is a little bit more difficult to grasp, so don’t feel discouraged if this isn’t clicking right away. There is <em>a lot</em> written in this argument definition and I feel that not all of it is necessary to understand from the get go.</p>
+<p>We can read the above as if we are asking R the question “is this object a <code>tbl</code>?” The resultant output of <code><a href="https://dplyr.tidyverse.org/reference/tbl.html">is.tbl(acs_raw)</a></code> is <code>TRUE</code>. Now we can be doubly confident that this object can be used with <code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code>.</p>
+<p>The second argument to <code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code> is a little bit more difficult to grasp, so don’t feel discouraged if this isn’t clicking right away. There is <em>a lot</em> written in this argument definition and I feel that not all of it is necessary to understand from the get go.</p>
 <blockquote>
 <p><code>...</code>: One or more unquoted expressions separated by commas. You can treat variable names like they are positions, so you can use expressions like x:y to select ranges of variables.</p>
 </blockquote>
-<p><code>...</code>, referred to as “dots” means that we can pass any number of arguments to the function. Translating “one or more unquoted expressions separated by commas” into regular person speak reiterates that there can be multiple other arguments passed into <code>select()</code>. “Unquoted expressions” means that if we want to select a column we do not put that column name in quotes.</p>
+<p><code>...</code>, referred to as “dots” means that we can pass any number of arguments to the function. Translating “one or more unquoted expressions separated by commas” into regular person speak reiterates that there can be multiple other arguments passed into <code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code>. “Unquoted expressions” means that if we want to select a column we do not put that column name in quotes.</p>
 <p>“You can treat variable names like they are positions” translates to “if you want the first column you can write the number <code>1</code> etc.” and because of this, if you want the first through tenth variable you can pass <code>1:10</code> as an argument to <code>...</code>.</p>
 <p>The most important thing about <code>...</code> is that we <strong>do not</strong> assign <code>...</code> as an argument, for example . <code>... = column_a</code> is <strong>not</strong> the correct notation. We provide <code>column_a</code> alone.</p>
-<p>As always, this makes more sense once we see it in practice. We will now go over the many ways in which we can select columns using <code>select()</code>. Once we have gotten the hang of selecting columns we will return back to assisting our non-profit.</p>
+<p>As always, this makes more sense once we see it in practice. We will now go over the many ways in which we can select columns using <code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code>. Once we have gotten the hang of selecting columns we will return back to assisting our non-profit.</p>
 <p>We will go over:</p>
 <ul>
 <li>selecting by name</li>
@@ -371,403 +169,437 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 </div>
 <div id="selecting-exercises" class="section level3" number="10.2.2">
-<h3><span class="header-section-number">10.2.2</span> <code>select()</code>ing exercises</h3>
-<p><code>select()</code> enables us to choose columns from a tibble based on their names. But remember that these will be unquoted column names.</p>
+<h3>
+<span class="header-section-number">10.2.2</span> <code>select()</code>ing exercises<a class="anchor" aria-label="anchor" href="#selecting-exercises"><i class="fas fa-link"></i></a>
+</h3>
+<p><code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code> enables us to choose columns from a tibble based on their names. But remember that these will be unquoted column names.</p>
 <p>Try it:</p>
 <ul>
-<li>select the column <code>name</code> from <code>acs_raw</code></li>
+<li>select the column <code>name</code> from <code>acs_raw</code>
+</li>
 </ul>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="general-data-manipulation.html#cb41-1"></a><span class="kw">select</span>(acs_raw, name)</span>
-<span id="cb41-2"><a href="general-data-manipulation.html#cb41-2"></a><span class="co">#&gt; # A tibble: 1,478 x 1</span></span>
-<span id="cb41-3"><a href="general-data-manipulation.html#cb41-3"></a><span class="co">#&gt;    name                                                 </span></span>
-<span id="cb41-4"><a href="general-data-manipulation.html#cb41-4"></a><span class="co">#&gt;    &lt;chr&gt;                                                </span></span>
-<span id="cb41-5"><a href="general-data-manipulation.html#cb41-5"></a><span class="co">#&gt;  1 Census Tract 7281, Worcester County, Massachusetts   </span></span>
-<span id="cb41-6"><a href="general-data-manipulation.html#cb41-6"></a><span class="co">#&gt;  2 Census Tract 7292, Worcester County, Massachusetts   </span></span>
-<span id="cb41-7"><a href="general-data-manipulation.html#cb41-7"></a><span class="co">#&gt;  3 Census Tract 7307, Worcester County, Massachusetts   </span></span>
-<span id="cb41-8"><a href="general-data-manipulation.html#cb41-8"></a><span class="co">#&gt;  4 Census Tract 7442, Worcester County, Massachusetts   </span></span>
-<span id="cb41-9"><a href="general-data-manipulation.html#cb41-9"></a><span class="co">#&gt;  5 Census Tract 7097.01, Worcester County, Massachusetts</span></span>
-<span id="cb41-10"><a href="general-data-manipulation.html#cb41-10"></a><span class="co">#&gt;  6 Census Tract 7351, Worcester County, Massachusetts   </span></span>
-<span id="cb41-11"><a href="general-data-manipulation.html#cb41-11"></a><span class="co">#&gt;  7 Census Tract 7543, Worcester County, Massachusetts   </span></span>
-<span id="cb41-12"><a href="general-data-manipulation.html#cb41-12"></a><span class="co">#&gt;  8 Census Tract 7308.02, Worcester County, Massachusetts</span></span>
-<span id="cb41-13"><a href="general-data-manipulation.html#cb41-13"></a><span class="co">#&gt;  9 Census Tract 7171, Worcester County, Massachusetts   </span></span>
-<span id="cb41-14"><a href="general-data-manipulation.html#cb41-14"></a><span class="co">#&gt; 10 Census Tract 7326, Worcester County, Massachusetts   </span></span>
-<span id="cb41-15"><a href="general-data-manipulation.html#cb41-15"></a><span class="co">#&gt; # … with 1,468 more rows</span></span></code></pre></div>
+<div class="sourceCode" id="cb45"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">acs_raw</span>, <span class="va">name</span><span class="op">)</span>
+<span class="co">#&gt; # A tibble: 1,478 x 1</span>
+<span class="co">#&gt;    name                                                 </span>
+<span class="co">#&gt;    &lt;chr&gt;                                                </span>
+<span class="co">#&gt;  1 Census Tract 7281, Worcester County, Massachusetts   </span>
+<span class="co">#&gt;  2 Census Tract 7292, Worcester County, Massachusetts   </span>
+<span class="co">#&gt;  3 Census Tract 7307, Worcester County, Massachusetts   </span>
+<span class="co">#&gt;  4 Census Tract 7442, Worcester County, Massachusetts   </span>
+<span class="co">#&gt;  5 Census Tract 7097.01, Worcester County, Massachusetts</span>
+<span class="co">#&gt;  6 Census Tract 7351, Worcester County, Massachusetts   </span>
+<span class="co">#&gt;  7 Census Tract 7543, Worcester County, Massachusetts   </span>
+<span class="co">#&gt;  8 Census Tract 7308.02, Worcester County, Massachusetts</span>
+<span class="co">#&gt;  9 Census Tract 7171, Worcester County, Massachusetts   </span>
+<span class="co">#&gt; 10 Census Tract 7326, Worcester County, Massachusetts   </span>
+<span class="co">#&gt; # … with 1,468 more rows</span></code></pre></div>
 <p>The column <code>name</code> was passed to <code>...</code>. Recall that dots allows us to pass “one ore more unquoted expressions separated by commas.” To test this statement out, select <code>town</code> in addition to <code>name</code> from <code>acs_raw</code></p>
 <p>Try it:</p>
 <ul>
-<li>select <code>name</code> and <code>town</code> from <code>acs_raw</code></li>
+<li>select <code>name</code> and <code>town</code> from <code>acs_raw</code>
+</li>
 </ul>
-<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="general-data-manipulation.html#cb42-1"></a><span class="kw">select</span>(acs_raw, name, town)</span>
-<span id="cb42-2"><a href="general-data-manipulation.html#cb42-2"></a><span class="co">#&gt; # A tibble: 1,478 x 2</span></span>
-<span id="cb42-3"><a href="general-data-manipulation.html#cb42-3"></a><span class="co">#&gt;    name                                                  town         </span></span>
-<span id="cb42-4"><a href="general-data-manipulation.html#cb42-4"></a><span class="co">#&gt;    &lt;chr&gt;                                                 &lt;chr&gt;        </span></span>
-<span id="cb42-5"><a href="general-data-manipulation.html#cb42-5"></a><span class="co">#&gt;  1 Census Tract 7281, Worcester County, Massachusetts    HOLDEN       </span></span>
-<span id="cb42-6"><a href="general-data-manipulation.html#cb42-6"></a><span class="co">#&gt;  2 Census Tract 7292, Worcester County, Massachusetts    WEST BOYLSTON</span></span>
-<span id="cb42-7"><a href="general-data-manipulation.html#cb42-7"></a><span class="co">#&gt;  3 Census Tract 7307, Worcester County, Massachusetts    WORCESTER    </span></span>
-<span id="cb42-8"><a href="general-data-manipulation.html#cb42-8"></a><span class="co">#&gt;  4 Census Tract 7442, Worcester County, Massachusetts    MILFORD      </span></span>
-<span id="cb42-9"><a href="general-data-manipulation.html#cb42-9"></a><span class="co">#&gt;  5 Census Tract 7097.01, Worcester County, Massachusetts LEOMINSTER   </span></span>
-<span id="cb42-10"><a href="general-data-manipulation.html#cb42-10"></a><span class="co">#&gt;  6 Census Tract 7351, Worcester County, Massachusetts    LEICESTER    </span></span>
-<span id="cb42-11"><a href="general-data-manipulation.html#cb42-11"></a><span class="co">#&gt;  7 Census Tract 7543, Worcester County, Massachusetts    WEBSTER      </span></span>
-<span id="cb42-12"><a href="general-data-manipulation.html#cb42-12"></a><span class="co">#&gt;  8 Census Tract 7308.02, Worcester County, Massachusetts WORCESTER    </span></span>
-<span id="cb42-13"><a href="general-data-manipulation.html#cb42-13"></a><span class="co">#&gt;  9 Census Tract 7171, Worcester County, Massachusetts    BERLIN       </span></span>
-<span id="cb42-14"><a href="general-data-manipulation.html#cb42-14"></a><span class="co">#&gt; 10 Census Tract 7326, Worcester County, Massachusetts    WORCESTER    </span></span>
-<span id="cb42-15"><a href="general-data-manipulation.html#cb42-15"></a><span class="co">#&gt; # … with 1,468 more rows</span></span></code></pre></div>
+<div class="sourceCode" id="cb46"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">acs_raw</span>, <span class="va">name</span>, <span class="va">town</span><span class="op">)</span>
+<span class="co">#&gt; # A tibble: 1,478 x 2</span>
+<span class="co">#&gt;    name                                                  town         </span>
+<span class="co">#&gt;    &lt;chr&gt;                                                 &lt;chr&gt;        </span>
+<span class="co">#&gt;  1 Census Tract 7281, Worcester County, Massachusetts    HOLDEN       </span>
+<span class="co">#&gt;  2 Census Tract 7292, Worcester County, Massachusetts    WEST BOYLSTON</span>
+<span class="co">#&gt;  3 Census Tract 7307, Worcester County, Massachusetts    WORCESTER    </span>
+<span class="co">#&gt;  4 Census Tract 7442, Worcester County, Massachusetts    MILFORD      </span>
+<span class="co">#&gt;  5 Census Tract 7097.01, Worcester County, Massachusetts LEOMINSTER   </span>
+<span class="co">#&gt;  6 Census Tract 7351, Worcester County, Massachusetts    LEICESTER    </span>
+<span class="co">#&gt;  7 Census Tract 7543, Worcester County, Massachusetts    WEBSTER      </span>
+<span class="co">#&gt;  8 Census Tract 7308.02, Worcester County, Massachusetts WORCESTER    </span>
+<span class="co">#&gt;  9 Census Tract 7171, Worcester County, Massachusetts    BERLIN       </span>
+<span class="co">#&gt; 10 Census Tract 7326, Worcester County, Massachusetts    WORCESTER    </span>
+<span class="co">#&gt; # … with 1,468 more rows</span></code></pre></div>
 <p>Great, you’re getting the hang of it.</p>
-<p>Now, in addition to to selecting columns solely based on their names, we can also select a range of columns using the format <code>col_from:col_to</code>. In writing this <code>select()</code> will register that you want every column from and including <code>col_from</code> up until and including <code>col_to</code>.</p>
+<p>Now, in addition to to selecting columns solely based on their names, we can also select a range of columns using the format <code>col_from:col_to</code>. In writing this <code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code> will register that you want every column from and including <code>col_from</code> up until and including <code>col_to</code>.</p>
 <p>Let’s refresh ourselves with what our data look like:</p>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="general-data-manipulation.html#cb43-1"></a><span class="kw">glimpse</span>(acs_raw)</span></code></pre></div>
+<div class="sourceCode" id="cb47"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://tibble.tidyverse.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">acs_raw</span><span class="op">)</span></code></pre></div>
 <p>Try it:</p>
 <ul>
 <li>select the columns <code>age_u18</code> through <code>age_o65</code>.</li>
 </ul>
-<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="general-data-manipulation.html#cb44-1"></a><span class="kw">select</span>(acs_raw, age_u18<span class="op">:</span>age_o65)</span>
-<span id="cb44-2"><a href="general-data-manipulation.html#cb44-2"></a><span class="co">#&gt; # A tibble: 1,478 x 4</span></span>
-<span id="cb44-3"><a href="general-data-manipulation.html#cb44-3"></a><span class="co">#&gt;    age_u18 age1834 age3564 age_o65</span></span>
-<span id="cb44-4"><a href="general-data-manipulation.html#cb44-4"></a><span class="co">#&gt;      &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;</span></span>
-<span id="cb44-5"><a href="general-data-manipulation.html#cb44-5"></a><span class="co">#&gt;  1   0.234   0.202   0.398   0.166</span></span>
-<span id="cb44-6"><a href="general-data-manipulation.html#cb44-6"></a><span class="co">#&gt;  2   0.181   0.151   0.461   0.207</span></span>
-<span id="cb44-7"><a href="general-data-manipulation.html#cb44-7"></a><span class="co">#&gt;  3   0.171   0.214   0.437   0.178</span></span>
-<span id="cb44-8"><a href="general-data-manipulation.html#cb44-8"></a><span class="co">#&gt;  4   0.203   0.227   0.436   0.133</span></span>
-<span id="cb44-9"><a href="general-data-manipulation.html#cb44-9"></a><span class="co">#&gt;  5   0.177   0.203   0.430   0.190</span></span>
-<span id="cb44-10"><a href="general-data-manipulation.html#cb44-10"></a><span class="co">#&gt;  6   0.163   0.237   0.439   0.162</span></span>
-<span id="cb44-11"><a href="general-data-manipulation.html#cb44-11"></a><span class="co">#&gt;  7   0.191   0.326   0.380   0.102</span></span>
-<span id="cb44-12"><a href="general-data-manipulation.html#cb44-12"></a><span class="co">#&gt;  8   0.202   0.183   0.466   0.148</span></span>
-<span id="cb44-13"><a href="general-data-manipulation.html#cb44-13"></a><span class="co">#&gt;  9   0.188   0.150   0.462   0.200</span></span>
-<span id="cb44-14"><a href="general-data-manipulation.html#cb44-14"></a><span class="co">#&gt; 10   0.244   0.286   0.342   0.128</span></span>
-<span id="cb44-15"><a href="general-data-manipulation.html#cb44-15"></a><span class="co">#&gt; # … with 1,468 more rows</span></span></code></pre></div>
+<div class="sourceCode" id="cb48"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">acs_raw</span>, <span class="va">age_u18</span><span class="op">:</span><span class="va">age_o65</span><span class="op">)</span>
+<span class="co">#&gt; # A tibble: 1,478 x 4</span>
+<span class="co">#&gt;    age_u18 age1834 age3564 age_o65</span>
+<span class="co">#&gt;      &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;</span>
+<span class="co">#&gt;  1   0.234   0.202   0.398   0.166</span>
+<span class="co">#&gt;  2   0.181   0.151   0.461   0.207</span>
+<span class="co">#&gt;  3   0.171   0.214   0.437   0.178</span>
+<span class="co">#&gt;  4   0.203   0.227   0.436   0.133</span>
+<span class="co">#&gt;  5   0.177   0.203   0.430   0.190</span>
+<span class="co">#&gt;  6   0.163   0.237   0.439   0.162</span>
+<span class="co">#&gt;  7   0.191   0.326   0.380   0.102</span>
+<span class="co">#&gt;  8   0.202   0.183   0.466   0.148</span>
+<span class="co">#&gt;  9   0.188   0.150   0.462   0.200</span>
+<span class="co">#&gt; 10   0.244   0.286   0.342   0.128</span>
+<span class="co">#&gt; # … with 1,468 more rows</span></code></pre></div>
 <p>Now to really throw you off! You can even reverse the order of these ranges.</p>
 <p>Try it:</p>
 <ul>
 <li>select columns from <code>age_o65</code> to <code>age_u18</code>.</li>
 </ul>
-<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="general-data-manipulation.html#cb45-1"></a><span class="kw">select</span>(acs_raw, age_o65<span class="op">:</span>age_u18)</span>
-<span id="cb45-2"><a href="general-data-manipulation.html#cb45-2"></a><span class="co">#&gt; # A tibble: 1,478 x 4</span></span>
-<span id="cb45-3"><a href="general-data-manipulation.html#cb45-3"></a><span class="co">#&gt;    age_o65 age3564 age1834 age_u18</span></span>
-<span id="cb45-4"><a href="general-data-manipulation.html#cb45-4"></a><span class="co">#&gt;      &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;</span></span>
-<span id="cb45-5"><a href="general-data-manipulation.html#cb45-5"></a><span class="co">#&gt;  1   0.166   0.398   0.202   0.234</span></span>
-<span id="cb45-6"><a href="general-data-manipulation.html#cb45-6"></a><span class="co">#&gt;  2   0.207   0.461   0.151   0.181</span></span>
-<span id="cb45-7"><a href="general-data-manipulation.html#cb45-7"></a><span class="co">#&gt;  3   0.178   0.437   0.214   0.171</span></span>
-<span id="cb45-8"><a href="general-data-manipulation.html#cb45-8"></a><span class="co">#&gt;  4   0.133   0.436   0.227   0.203</span></span>
-<span id="cb45-9"><a href="general-data-manipulation.html#cb45-9"></a><span class="co">#&gt;  5   0.190   0.430   0.203   0.177</span></span>
-<span id="cb45-10"><a href="general-data-manipulation.html#cb45-10"></a><span class="co">#&gt;  6   0.162   0.439   0.237   0.163</span></span>
-<span id="cb45-11"><a href="general-data-manipulation.html#cb45-11"></a><span class="co">#&gt;  7   0.102   0.380   0.326   0.191</span></span>
-<span id="cb45-12"><a href="general-data-manipulation.html#cb45-12"></a><span class="co">#&gt;  8   0.148   0.466   0.183   0.202</span></span>
-<span id="cb45-13"><a href="general-data-manipulation.html#cb45-13"></a><span class="co">#&gt;  9   0.200   0.462   0.150   0.188</span></span>
-<span id="cb45-14"><a href="general-data-manipulation.html#cb45-14"></a><span class="co">#&gt; 10   0.128   0.342   0.286   0.244</span></span>
-<span id="cb45-15"><a href="general-data-manipulation.html#cb45-15"></a><span class="co">#&gt; # … with 1,468 more rows</span></span></code></pre></div>
+<div class="sourceCode" id="cb49"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">acs_raw</span>, <span class="va">age_o65</span><span class="op">:</span><span class="va">age_u18</span><span class="op">)</span>
+<span class="co">#&gt; # A tibble: 1,478 x 4</span>
+<span class="co">#&gt;    age_o65 age3564 age1834 age_u18</span>
+<span class="co">#&gt;      &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;</span>
+<span class="co">#&gt;  1   0.166   0.398   0.202   0.234</span>
+<span class="co">#&gt;  2   0.207   0.461   0.151   0.181</span>
+<span class="co">#&gt;  3   0.178   0.437   0.214   0.171</span>
+<span class="co">#&gt;  4   0.133   0.436   0.227   0.203</span>
+<span class="co">#&gt;  5   0.190   0.430   0.203   0.177</span>
+<span class="co">#&gt;  6   0.162   0.439   0.237   0.163</span>
+<span class="co">#&gt;  7   0.102   0.380   0.326   0.191</span>
+<span class="co">#&gt;  8   0.148   0.466   0.183   0.202</span>
+<span class="co">#&gt;  9   0.200   0.462   0.150   0.188</span>
+<span class="co">#&gt; 10   0.128   0.342   0.286   0.244</span>
+<span class="co">#&gt; # … with 1,468 more rows</span></code></pre></div>
 <p>Alright, so now we have gotten the hang of selecting columns based on their names. But equally important is the ability to select columns based on their position. Consider the situation in which you regularly receive georeferenced data from a research partner and the structure of the dataset is rather consistent <em>except</em> that they frequently change the name of the coordinate columns. Sometimes the columns are <code>x</code> and <code>y</code>. Sometimes they are capitalized <code>X</code> and <code>Y</code>, <code>lon</code> and <code>lat</code>, or even <code>long</code> and <code>lat</code>. It eats you up inside! But you know that while the names may change, their positiions never do—they’re always the last two columns. You decide to program a solution rather than having a conversation with your research partner—though, I recommend you both level set on reproducibility standards.</p>
 <blockquote>
 <p>“…You can treat variable names like they are positions…”</p>
 </blockquote>
 <p>The above was taken from the argument definition of dots <code>...</code>. Like providing the name of the column, we can also provide their positions (also referred to as an index). In our previous example, we selected the <code>name</code> column. We can select this column by it’s position too. <code>name</code> is the second column in our tibble. We select it by position like so:</p>
-<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="general-data-manipulation.html#cb46-1"></a><span class="kw">select</span>(acs_raw, <span class="dv">2</span>)</span>
-<span id="cb46-2"><a href="general-data-manipulation.html#cb46-2"></a><span class="co">#&gt; # A tibble: 1,478 x 1</span></span>
-<span id="cb46-3"><a href="general-data-manipulation.html#cb46-3"></a><span class="co">#&gt;    name                                                 </span></span>
-<span id="cb46-4"><a href="general-data-manipulation.html#cb46-4"></a><span class="co">#&gt;    &lt;chr&gt;                                                </span></span>
-<span id="cb46-5"><a href="general-data-manipulation.html#cb46-5"></a><span class="co">#&gt;  1 Census Tract 7281, Worcester County, Massachusetts   </span></span>
-<span id="cb46-6"><a href="general-data-manipulation.html#cb46-6"></a><span class="co">#&gt;  2 Census Tract 7292, Worcester County, Massachusetts   </span></span>
-<span id="cb46-7"><a href="general-data-manipulation.html#cb46-7"></a><span class="co">#&gt;  3 Census Tract 7307, Worcester County, Massachusetts   </span></span>
-<span id="cb46-8"><a href="general-data-manipulation.html#cb46-8"></a><span class="co">#&gt;  4 Census Tract 7442, Worcester County, Massachusetts   </span></span>
-<span id="cb46-9"><a href="general-data-manipulation.html#cb46-9"></a><span class="co">#&gt;  5 Census Tract 7097.01, Worcester County, Massachusetts</span></span>
-<span id="cb46-10"><a href="general-data-manipulation.html#cb46-10"></a><span class="co">#&gt;  6 Census Tract 7351, Worcester County, Massachusetts   </span></span>
-<span id="cb46-11"><a href="general-data-manipulation.html#cb46-11"></a><span class="co">#&gt;  7 Census Tract 7543, Worcester County, Massachusetts   </span></span>
-<span id="cb46-12"><a href="general-data-manipulation.html#cb46-12"></a><span class="co">#&gt;  8 Census Tract 7308.02, Worcester County, Massachusetts</span></span>
-<span id="cb46-13"><a href="general-data-manipulation.html#cb46-13"></a><span class="co">#&gt;  9 Census Tract 7171, Worcester County, Massachusetts   </span></span>
-<span id="cb46-14"><a href="general-data-manipulation.html#cb46-14"></a><span class="co">#&gt; 10 Census Tract 7326, Worcester County, Massachusetts   </span></span>
-<span id="cb46-15"><a href="general-data-manipulation.html#cb46-15"></a><span class="co">#&gt; # … with 1,468 more rows</span></span></code></pre></div>
+<div class="sourceCode" id="cb50"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">acs_raw</span>, <span class="fl">2</span><span class="op">)</span>
+<span class="co">#&gt; # A tibble: 1,478 x 1</span>
+<span class="co">#&gt;    name                                                 </span>
+<span class="co">#&gt;    &lt;chr&gt;                                                </span>
+<span class="co">#&gt;  1 Census Tract 7281, Worcester County, Massachusetts   </span>
+<span class="co">#&gt;  2 Census Tract 7292, Worcester County, Massachusetts   </span>
+<span class="co">#&gt;  3 Census Tract 7307, Worcester County, Massachusetts   </span>
+<span class="co">#&gt;  4 Census Tract 7442, Worcester County, Massachusetts   </span>
+<span class="co">#&gt;  5 Census Tract 7097.01, Worcester County, Massachusetts</span>
+<span class="co">#&gt;  6 Census Tract 7351, Worcester County, Massachusetts   </span>
+<span class="co">#&gt;  7 Census Tract 7543, Worcester County, Massachusetts   </span>
+<span class="co">#&gt;  8 Census Tract 7308.02, Worcester County, Massachusetts</span>
+<span class="co">#&gt;  9 Census Tract 7171, Worcester County, Massachusetts   </span>
+<span class="co">#&gt; 10 Census Tract 7326, Worcester County, Massachusetts   </span>
+<span class="co">#&gt; # … with 1,468 more rows</span></code></pre></div>
 <p>Try it:</p>
 <ul>
 <li>select <code>age_u18</code> and <code>age_o65</code> by their position</li>
 </ul>
-<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="general-data-manipulation.html#cb47-1"></a><span class="kw">select</span>(acs_raw, <span class="dv">6</span>, <span class="dv">9</span>)</span>
-<span id="cb47-2"><a href="general-data-manipulation.html#cb47-2"></a><span class="co">#&gt; # A tibble: 1,478 x 2</span></span>
-<span id="cb47-3"><a href="general-data-manipulation.html#cb47-3"></a><span class="co">#&gt;    age_u18 age_o65</span></span>
-<span id="cb47-4"><a href="general-data-manipulation.html#cb47-4"></a><span class="co">#&gt;      &lt;dbl&gt;   &lt;dbl&gt;</span></span>
-<span id="cb47-5"><a href="general-data-manipulation.html#cb47-5"></a><span class="co">#&gt;  1   0.234   0.166</span></span>
-<span id="cb47-6"><a href="general-data-manipulation.html#cb47-6"></a><span class="co">#&gt;  2   0.181   0.207</span></span>
-<span id="cb47-7"><a href="general-data-manipulation.html#cb47-7"></a><span class="co">#&gt;  3   0.171   0.178</span></span>
-<span id="cb47-8"><a href="general-data-manipulation.html#cb47-8"></a><span class="co">#&gt;  4   0.203   0.133</span></span>
-<span id="cb47-9"><a href="general-data-manipulation.html#cb47-9"></a><span class="co">#&gt;  5   0.177   0.190</span></span>
-<span id="cb47-10"><a href="general-data-manipulation.html#cb47-10"></a><span class="co">#&gt;  6   0.163   0.162</span></span>
-<span id="cb47-11"><a href="general-data-manipulation.html#cb47-11"></a><span class="co">#&gt;  7   0.191   0.102</span></span>
-<span id="cb47-12"><a href="general-data-manipulation.html#cb47-12"></a><span class="co">#&gt;  8   0.202   0.148</span></span>
-<span id="cb47-13"><a href="general-data-manipulation.html#cb47-13"></a><span class="co">#&gt;  9   0.188   0.200</span></span>
-<span id="cb47-14"><a href="general-data-manipulation.html#cb47-14"></a><span class="co">#&gt; 10   0.244   0.128</span></span>
-<span id="cb47-15"><a href="general-data-manipulation.html#cb47-15"></a><span class="co">#&gt; # … with 1,468 more rows</span></span></code></pre></div>
+<div class="sourceCode" id="cb51"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">acs_raw</span>, <span class="fl">6</span>, <span class="fl">9</span><span class="op">)</span>
+<span class="co">#&gt; # A tibble: 1,478 x 2</span>
+<span class="co">#&gt;    age_u18 age_o65</span>
+<span class="co">#&gt;      &lt;dbl&gt;   &lt;dbl&gt;</span>
+<span class="co">#&gt;  1   0.234   0.166</span>
+<span class="co">#&gt;  2   0.181   0.207</span>
+<span class="co">#&gt;  3   0.171   0.178</span>
+<span class="co">#&gt;  4   0.203   0.133</span>
+<span class="co">#&gt;  5   0.177   0.190</span>
+<span class="co">#&gt;  6   0.163   0.162</span>
+<span class="co">#&gt;  7   0.191   0.102</span>
+<span class="co">#&gt;  8   0.202   0.148</span>
+<span class="co">#&gt;  9   0.188   0.200</span>
+<span class="co">#&gt; 10   0.244   0.128</span>
+<span class="co">#&gt; # … with 1,468 more rows</span></code></pre></div>
 <p>You may see where I am going with this. Just like column names, we can select a range of columns using the same method <code>index_from:index_to</code>.</p>
 <p>Try it:</p>
 <ul>
-<li>select the columns from <code>age_u18</code> to <code>age_o65</code> using <code>:</code> and the column position</li>
+<li>select the columns from <code>age_u18</code> to <code>age_o65</code> using <code><a href="https://rdrr.io/r/base/Colon.html">:</a></code> and the column position</li>
 <li>select the columns in reverse order by their indexes</li>
 </ul>
-<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="general-data-manipulation.html#cb48-1"></a><span class="kw">select</span>(acs_raw, <span class="dv">6</span><span class="op">:</span><span class="dv">9</span>)</span>
-<span id="cb48-2"><a href="general-data-manipulation.html#cb48-2"></a><span class="co">#&gt; # A tibble: 1,478 x 4</span></span>
-<span id="cb48-3"><a href="general-data-manipulation.html#cb48-3"></a><span class="co">#&gt;    age_u18 age1834 age3564 age_o65</span></span>
-<span id="cb48-4"><a href="general-data-manipulation.html#cb48-4"></a><span class="co">#&gt;      &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;</span></span>
-<span id="cb48-5"><a href="general-data-manipulation.html#cb48-5"></a><span class="co">#&gt;  1   0.234   0.202   0.398   0.166</span></span>
-<span id="cb48-6"><a href="general-data-manipulation.html#cb48-6"></a><span class="co">#&gt;  2   0.181   0.151   0.461   0.207</span></span>
-<span id="cb48-7"><a href="general-data-manipulation.html#cb48-7"></a><span class="co">#&gt;  3   0.171   0.214   0.437   0.178</span></span>
-<span id="cb48-8"><a href="general-data-manipulation.html#cb48-8"></a><span class="co">#&gt;  4   0.203   0.227   0.436   0.133</span></span>
-<span id="cb48-9"><a href="general-data-manipulation.html#cb48-9"></a><span class="co">#&gt;  5   0.177   0.203   0.430   0.190</span></span>
-<span id="cb48-10"><a href="general-data-manipulation.html#cb48-10"></a><span class="co">#&gt;  6   0.163   0.237   0.439   0.162</span></span>
-<span id="cb48-11"><a href="general-data-manipulation.html#cb48-11"></a><span class="co">#&gt;  7   0.191   0.326   0.380   0.102</span></span>
-<span id="cb48-12"><a href="general-data-manipulation.html#cb48-12"></a><span class="co">#&gt;  8   0.202   0.183   0.466   0.148</span></span>
-<span id="cb48-13"><a href="general-data-manipulation.html#cb48-13"></a><span class="co">#&gt;  9   0.188   0.150   0.462   0.200</span></span>
-<span id="cb48-14"><a href="general-data-manipulation.html#cb48-14"></a><span class="co">#&gt; 10   0.244   0.286   0.342   0.128</span></span>
-<span id="cb48-15"><a href="general-data-manipulation.html#cb48-15"></a><span class="co">#&gt; # … with 1,468 more rows</span></span></code></pre></div>
-<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="general-data-manipulation.html#cb49-1"></a><span class="kw">select</span>(acs_raw, <span class="dv">9</span><span class="op">:</span><span class="dv">6</span>)</span>
-<span id="cb49-2"><a href="general-data-manipulation.html#cb49-2"></a><span class="co">#&gt; # A tibble: 1,478 x 4</span></span>
-<span id="cb49-3"><a href="general-data-manipulation.html#cb49-3"></a><span class="co">#&gt;    age_o65 age3564 age1834 age_u18</span></span>
-<span id="cb49-4"><a href="general-data-manipulation.html#cb49-4"></a><span class="co">#&gt;      &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;</span></span>
-<span id="cb49-5"><a href="general-data-manipulation.html#cb49-5"></a><span class="co">#&gt;  1   0.166   0.398   0.202   0.234</span></span>
-<span id="cb49-6"><a href="general-data-manipulation.html#cb49-6"></a><span class="co">#&gt;  2   0.207   0.461   0.151   0.181</span></span>
-<span id="cb49-7"><a href="general-data-manipulation.html#cb49-7"></a><span class="co">#&gt;  3   0.178   0.437   0.214   0.171</span></span>
-<span id="cb49-8"><a href="general-data-manipulation.html#cb49-8"></a><span class="co">#&gt;  4   0.133   0.436   0.227   0.203</span></span>
-<span id="cb49-9"><a href="general-data-manipulation.html#cb49-9"></a><span class="co">#&gt;  5   0.190   0.430   0.203   0.177</span></span>
-<span id="cb49-10"><a href="general-data-manipulation.html#cb49-10"></a><span class="co">#&gt;  6   0.162   0.439   0.237   0.163</span></span>
-<span id="cb49-11"><a href="general-data-manipulation.html#cb49-11"></a><span class="co">#&gt;  7   0.102   0.380   0.326   0.191</span></span>
-<span id="cb49-12"><a href="general-data-manipulation.html#cb49-12"></a><span class="co">#&gt;  8   0.148   0.466   0.183   0.202</span></span>
-<span id="cb49-13"><a href="general-data-manipulation.html#cb49-13"></a><span class="co">#&gt;  9   0.200   0.462   0.150   0.188</span></span>
-<span id="cb49-14"><a href="general-data-manipulation.html#cb49-14"></a><span class="co">#&gt; 10   0.128   0.342   0.286   0.244</span></span>
-<span id="cb49-15"><a href="general-data-manipulation.html#cb49-15"></a><span class="co">#&gt; # … with 1,468 more rows</span></span></code></pre></div>
+<div class="sourceCode" id="cb52"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">acs_raw</span>, <span class="fl">6</span><span class="op">:</span><span class="fl">9</span><span class="op">)</span>
+<span class="co">#&gt; # A tibble: 1,478 x 4</span>
+<span class="co">#&gt;    age_u18 age1834 age3564 age_o65</span>
+<span class="co">#&gt;      &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;</span>
+<span class="co">#&gt;  1   0.234   0.202   0.398   0.166</span>
+<span class="co">#&gt;  2   0.181   0.151   0.461   0.207</span>
+<span class="co">#&gt;  3   0.171   0.214   0.437   0.178</span>
+<span class="co">#&gt;  4   0.203   0.227   0.436   0.133</span>
+<span class="co">#&gt;  5   0.177   0.203   0.430   0.190</span>
+<span class="co">#&gt;  6   0.163   0.237   0.439   0.162</span>
+<span class="co">#&gt;  7   0.191   0.326   0.380   0.102</span>
+<span class="co">#&gt;  8   0.202   0.183   0.466   0.148</span>
+<span class="co">#&gt;  9   0.188   0.150   0.462   0.200</span>
+<span class="co">#&gt; 10   0.244   0.286   0.342   0.128</span>
+<span class="co">#&gt; # … with 1,468 more rows</span></code></pre></div>
+<div class="sourceCode" id="cb53"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">acs_raw</span>, <span class="fl">9</span><span class="op">:</span><span class="fl">6</span><span class="op">)</span>
+<span class="co">#&gt; # A tibble: 1,478 x 4</span>
+<span class="co">#&gt;    age_o65 age3564 age1834 age_u18</span>
+<span class="co">#&gt;      &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;</span>
+<span class="co">#&gt;  1   0.166   0.398   0.202   0.234</span>
+<span class="co">#&gt;  2   0.207   0.461   0.151   0.181</span>
+<span class="co">#&gt;  3   0.178   0.437   0.214   0.171</span>
+<span class="co">#&gt;  4   0.133   0.436   0.227   0.203</span>
+<span class="co">#&gt;  5   0.190   0.430   0.203   0.177</span>
+<span class="co">#&gt;  6   0.162   0.439   0.237   0.163</span>
+<span class="co">#&gt;  7   0.102   0.380   0.326   0.191</span>
+<span class="co">#&gt;  8   0.148   0.466   0.183   0.202</span>
+<span class="co">#&gt;  9   0.200   0.462   0.150   0.188</span>
+<span class="co">#&gt; 10   0.128   0.342   0.286   0.244</span>
+<span class="co">#&gt; # … with 1,468 more rows</span></code></pre></div>
 <blockquote>
-<p>Base R Side Bar: To help build your intuition, I want to point out some base R functionality. Using the colon <code>:</code> with integers (whole numbers) is actually not a <code>select()</code> specific functionality. This is something that is rather handy and built directly into R. Using the colon operator, we can create ranges of numbers in the same exact way as we did above. If we want create the range of numbers from 1 to 10, we write <code>1:10</code>. 1, 2, 3, 4, 5, 6, 7, 8, 9, 10.</p>
+<p>Base R Side Bar: To help build your intuition, I want to point out some base R functionality. Using the colon <code><a href="https://rdrr.io/r/base/Colon.html">:</a></code> with integers (whole numbers) is actually not a <code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code> specific functionality. This is something that is rather handy and built directly into R. Using the colon operator, we can create ranges of numbers in the same exact way as we did above. If we want create the range of numbers from 1 to 10, we write <code>1:10</code>. 1, 2, 3, 4, 5, 6, 7, 8, 9, 10.</p>
 </blockquote>
 <p>In our scenario, we want to select the last two columns. We may not know their names <em>or</em> their position. Luckily, there’s a function for that.</p>
 <!-- ![](https://i.imgflip.com/3p2zow.jpg) -->
-<p><code>last_col()</code> is a handy function that enables us to select the last column. There is also an option to get an offset from the last column. An offset would allow us to grab the second to last column by setting the offset to 1. By setting the offset, <code>last_col()</code> will from the <code>offset + 1</code> from the last column. So if the offset is set to 1, we would be grabbing the second to last column.</p>
+<p><code><a href="https://tidyselect.r-lib.org/reference/everything.html">last_col()</a></code> is a handy function that enables us to select the last column. There is also an option to get an offset from the last column. An offset would allow us to grab the second to last column by setting the offset to 1. By setting the offset, <code><a href="https://tidyselect.r-lib.org/reference/everything.html">last_col()</a></code> will from the <code>offset + 1</code> from the last column. So if the offset is set to 1, we would be grabbing the second to last column.</p>
 <p>Let’s give it a shot:</p>
-<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="general-data-manipulation.html#cb50-1"></a><span class="kw">select</span>(acs_raw, <span class="kw">last_col</span>())</span>
-<span id="cb50-2"><a href="general-data-manipulation.html#cb50-2"></a><span class="co">#&gt; # A tibble: 1,478 x 1</span></span>
-<span id="cb50-3"><a href="general-data-manipulation.html#cb50-3"></a><span class="co">#&gt;    m_atown      </span></span>
-<span id="cb50-4"><a href="general-data-manipulation.html#cb50-4"></a><span class="co">#&gt;    &lt;chr&gt;        </span></span>
-<span id="cb50-5"><a href="general-data-manipulation.html#cb50-5"></a><span class="co">#&gt;  1 HOLDEN       </span></span>
-<span id="cb50-6"><a href="general-data-manipulation.html#cb50-6"></a><span class="co">#&gt;  2 WEST BOYLSTON</span></span>
-<span id="cb50-7"><a href="general-data-manipulation.html#cb50-7"></a><span class="co">#&gt;  3 WORCESTER    </span></span>
-<span id="cb50-8"><a href="general-data-manipulation.html#cb50-8"></a><span class="co">#&gt;  4 MILFORD      </span></span>
-<span id="cb50-9"><a href="general-data-manipulation.html#cb50-9"></a><span class="co">#&gt;  5 LEOMINSTER   </span></span>
-<span id="cb50-10"><a href="general-data-manipulation.html#cb50-10"></a><span class="co">#&gt;  6 LEICESTER    </span></span>
-<span id="cb50-11"><a href="general-data-manipulation.html#cb50-11"></a><span class="co">#&gt;  7 WEBSTER      </span></span>
-<span id="cb50-12"><a href="general-data-manipulation.html#cb50-12"></a><span class="co">#&gt;  8 WORCESTER    </span></span>
-<span id="cb50-13"><a href="general-data-manipulation.html#cb50-13"></a><span class="co">#&gt;  9 BERLIN       </span></span>
-<span id="cb50-14"><a href="general-data-manipulation.html#cb50-14"></a><span class="co">#&gt; 10 WORCESTER    </span></span>
-<span id="cb50-15"><a href="general-data-manipulation.html#cb50-15"></a><span class="co">#&gt; # … with 1,468 more rows</span></span>
-<span id="cb50-16"><a href="general-data-manipulation.html#cb50-16"></a><span class="kw">select</span>(acs_raw, <span class="kw">last_col</span>(<span class="dt">offset =</span> <span class="dv">1</span>))</span>
-<span id="cb50-17"><a href="general-data-manipulation.html#cb50-17"></a><span class="co">#&gt; # A tibble: 1,478 x 1</span></span>
-<span id="cb50-18"><a href="general-data-manipulation.html#cb50-18"></a><span class="co">#&gt;    area_acr_1</span></span>
-<span id="cb50-19"><a href="general-data-manipulation.html#cb50-19"></a><span class="co">#&gt;         &lt;dbl&gt;</span></span>
-<span id="cb50-20"><a href="general-data-manipulation.html#cb50-20"></a><span class="co">#&gt;  1     23242.</span></span>
-<span id="cb50-21"><a href="general-data-manipulation.html#cb50-21"></a><span class="co">#&gt;  2      8868.</span></span>
-<span id="cb50-22"><a href="general-data-manipulation.html#cb50-22"></a><span class="co">#&gt;  3     24610.</span></span>
-<span id="cb50-23"><a href="general-data-manipulation.html#cb50-23"></a><span class="co">#&gt;  4      9616.</span></span>
-<span id="cb50-24"><a href="general-data-manipulation.html#cb50-24"></a><span class="co">#&gt;  5     18993.</span></span>
-<span id="cb50-25"><a href="general-data-manipulation.html#cb50-25"></a><span class="co">#&gt;  6     15763.</span></span>
-<span id="cb50-26"><a href="general-data-manipulation.html#cb50-26"></a><span class="co">#&gt;  7      9347.</span></span>
-<span id="cb50-27"><a href="general-data-manipulation.html#cb50-27"></a><span class="co">#&gt;  8     24610.</span></span>
-<span id="cb50-28"><a href="general-data-manipulation.html#cb50-28"></a><span class="co">#&gt;  9      8431.</span></span>
-<span id="cb50-29"><a href="general-data-manipulation.html#cb50-29"></a><span class="co">#&gt; 10     24610.</span></span>
-<span id="cb50-30"><a href="general-data-manipulation.html#cb50-30"></a><span class="co">#&gt; # … with 1,468 more rows</span></span>
-<span id="cb50-31"><a href="general-data-manipulation.html#cb50-31"></a><span class="kw">select</span>(acs_raw, <span class="kw">last_col</span>(<span class="dt">offset =</span> <span class="dv">1</span>)<span class="op">:</span><span class="kw">last_col</span>())</span>
-<span id="cb50-32"><a href="general-data-manipulation.html#cb50-32"></a><span class="co">#&gt; # A tibble: 1,478 x 2</span></span>
-<span id="cb50-33"><a href="general-data-manipulation.html#cb50-33"></a><span class="co">#&gt;    area_acr_1 m_atown      </span></span>
-<span id="cb50-34"><a href="general-data-manipulation.html#cb50-34"></a><span class="co">#&gt;         &lt;dbl&gt; &lt;chr&gt;        </span></span>
-<span id="cb50-35"><a href="general-data-manipulation.html#cb50-35"></a><span class="co">#&gt;  1     23242. HOLDEN       </span></span>
-<span id="cb50-36"><a href="general-data-manipulation.html#cb50-36"></a><span class="co">#&gt;  2      8868. WEST BOYLSTON</span></span>
-<span id="cb50-37"><a href="general-data-manipulation.html#cb50-37"></a><span class="co">#&gt;  3     24610. WORCESTER    </span></span>
-<span id="cb50-38"><a href="general-data-manipulation.html#cb50-38"></a><span class="co">#&gt;  4      9616. MILFORD      </span></span>
-<span id="cb50-39"><a href="general-data-manipulation.html#cb50-39"></a><span class="co">#&gt;  5     18993. LEOMINSTER   </span></span>
-<span id="cb50-40"><a href="general-data-manipulation.html#cb50-40"></a><span class="co">#&gt;  6     15763. LEICESTER    </span></span>
-<span id="cb50-41"><a href="general-data-manipulation.html#cb50-41"></a><span class="co">#&gt;  7      9347. WEBSTER      </span></span>
-<span id="cb50-42"><a href="general-data-manipulation.html#cb50-42"></a><span class="co">#&gt;  8     24610. WORCESTER    </span></span>
-<span id="cb50-43"><a href="general-data-manipulation.html#cb50-43"></a><span class="co">#&gt;  9      8431. BERLIN       </span></span>
-<span id="cb50-44"><a href="general-data-manipulation.html#cb50-44"></a><span class="co">#&gt; 10     24610. WORCESTER    </span></span>
-<span id="cb50-45"><a href="general-data-manipulation.html#cb50-45"></a><span class="co">#&gt; # … with 1,468 more rows</span></span></code></pre></div>
-<p><code>last_col()</code> comes from another packages called <code>tidyselect</code> which is imported with <code>dplyr</code>. This package contains a number of helper functions. There are 9 total helpers and you’ve already learned one of them. We will briefly review four more of these. I’m sure you are able to deduce how the functions work solely based on their names. The functions are:</p>
+<div class="sourceCode" id="cb54"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">acs_raw</span>, <span class="fu"><a href="https://tidyselect.r-lib.org/reference/everything.html">last_col</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
+<span class="co">#&gt; # A tibble: 1,478 x 1</span>
+<span class="co">#&gt;    m_atown      </span>
+<span class="co">#&gt;    &lt;chr&gt;        </span>
+<span class="co">#&gt;  1 HOLDEN       </span>
+<span class="co">#&gt;  2 WEST BOYLSTON</span>
+<span class="co">#&gt;  3 WORCESTER    </span>
+<span class="co">#&gt;  4 MILFORD      </span>
+<span class="co">#&gt;  5 LEOMINSTER   </span>
+<span class="co">#&gt;  6 LEICESTER    </span>
+<span class="co">#&gt;  7 WEBSTER      </span>
+<span class="co">#&gt;  8 WORCESTER    </span>
+<span class="co">#&gt;  9 BERLIN       </span>
+<span class="co">#&gt; 10 WORCESTER    </span>
+<span class="co">#&gt; # … with 1,468 more rows</span>
+<span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">acs_raw</span>, <span class="fu"><a href="https://tidyselect.r-lib.org/reference/everything.html">last_col</a></span><span class="op">(</span>offset <span class="op">=</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span>
+<span class="co">#&gt; # A tibble: 1,478 x 1</span>
+<span class="co">#&gt;    area_acr_1</span>
+<span class="co">#&gt;         &lt;dbl&gt;</span>
+<span class="co">#&gt;  1     23242.</span>
+<span class="co">#&gt;  2      8868.</span>
+<span class="co">#&gt;  3     24610.</span>
+<span class="co">#&gt;  4      9616.</span>
+<span class="co">#&gt;  5     18993.</span>
+<span class="co">#&gt;  6     15763.</span>
+<span class="co">#&gt;  7      9347.</span>
+<span class="co">#&gt;  8     24610.</span>
+<span class="co">#&gt;  9      8431.</span>
+<span class="co">#&gt; 10     24610.</span>
+<span class="co">#&gt; # … with 1,468 more rows</span>
+<span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">acs_raw</span>, <span class="fu"><a href="https://tidyselect.r-lib.org/reference/everything.html">last_col</a></span><span class="op">(</span>offset <span class="op">=</span> <span class="fl">1</span><span class="op">)</span><span class="op">:</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/everything.html">last_col</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
+<span class="co">#&gt; # A tibble: 1,478 x 2</span>
+<span class="co">#&gt;    area_acr_1 m_atown      </span>
+<span class="co">#&gt;         &lt;dbl&gt; &lt;chr&gt;        </span>
+<span class="co">#&gt;  1     23242. HOLDEN       </span>
+<span class="co">#&gt;  2      8868. WEST BOYLSTON</span>
+<span class="co">#&gt;  3     24610. WORCESTER    </span>
+<span class="co">#&gt;  4      9616. MILFORD      </span>
+<span class="co">#&gt;  5     18993. LEOMINSTER   </span>
+<span class="co">#&gt;  6     15763. LEICESTER    </span>
+<span class="co">#&gt;  7      9347. WEBSTER      </span>
+<span class="co">#&gt;  8     24610. WORCESTER    </span>
+<span class="co">#&gt;  9      8431. BERLIN       </span>
+<span class="co">#&gt; 10     24610. WORCESTER    </span>
+<span class="co">#&gt; # … with 1,468 more rows</span></code></pre></div>
+<p><code><a href="https://tidyselect.r-lib.org/reference/everything.html">last_col()</a></code> comes from another packages called <code>tidyselect</code> which is imported with <code>dplyr</code>. This package contains a number of helper functions. There are 9 total helpers and you’ve already learned one of them. We will briefly review four more of these. I’m sure you are able to deduce how the functions work solely based on their names. The functions are:</p>
 <ul>
-<li><code>starts_with()</code>: a string to search that columns start with</li>
-<li><code>ends_with()</code>: a string to search that columns end with</li>
-<li><code>contains()</code>: a string to search for in the column names at any position</li>
-<li><code>everything()</code>: selects the remaining columns</li>
+<li>
+<code><a href="https://tidyselect.r-lib.org/reference/starts_with.html">starts_with()</a></code>: a string to search that columns start with</li>
+<li>
+<code><a href="https://tidyselect.r-lib.org/reference/starts_with.html">ends_with()</a></code>: a string to search that columns end with</li>
+<li>
+<code><a href="https://tidyselect.r-lib.org/reference/starts_with.html">contains()</a></code>: a string to search for in the column names at any position</li>
+<li>
+<code><a href="https://tidyselect.r-lib.org/reference/everything.html">everything()</a></code>: selects the remaining columns</li>
 </ul>
 <p>Each of these function take a character string and searches the column headers for them.</p>
 <p>Try it out:</p>
 <ul>
-<li>find all columns that start with <code>"med"</code></li>
+<li>find all columns that start with <code>"med"</code>
+</li>
 </ul>
-<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="general-data-manipulation.html#cb51-1"></a><span class="kw">select</span>(acs_raw, <span class="kw">starts_with</span>(<span class="st">&quot;med&quot;</span>))</span>
-<span id="cb51-2"><a href="general-data-manipulation.html#cb51-2"></a><span class="co">#&gt; # A tibble: 1,478 x 7</span></span>
-<span id="cb51-3"><a href="general-data-manipulation.html#cb51-3"></a><span class="co">#&gt;    med_house_income med_gross_rent med_home_val med_yr_built_raw med_yr_built</span></span>
-<span id="cb51-4"><a href="general-data-manipulation.html#cb51-4"></a><span class="co">#&gt;               &lt;dbl&gt;          &lt;dbl&gt;        &lt;dbl&gt;            &lt;dbl&gt; &lt;chr&gt;       </span></span>
-<span id="cb51-5"><a href="general-data-manipulation.html#cb51-5"></a><span class="co">#&gt;  1           105735           1640       349000             1988 1980 to 1989</span></span>
-<span id="cb51-6"><a href="general-data-manipulation.html#cb51-6"></a><span class="co">#&gt;  2            69625            894       230200             1955 1950 to 1959</span></span>
-<span id="cb51-7"><a href="general-data-manipulation.html#cb51-7"></a><span class="co">#&gt;  3            70679           1454       207200             1959 1950 to 1959</span></span>
-<span id="cb51-8"><a href="general-data-manipulation.html#cb51-8"></a><span class="co">#&gt;  4            74528            954       268400             1973 1970 to 1979</span></span>
-<span id="cb51-9"><a href="general-data-manipulation.html#cb51-9"></a><span class="co">#&gt;  5            52885           1018       223200             1964 1960 to 1969</span></span>
-<span id="cb51-10"><a href="general-data-manipulation.html#cb51-10"></a><span class="co">#&gt;  6            64100            867       232700             1966 1960 to 1969</span></span>
-<span id="cb51-11"><a href="general-data-manipulation.html#cb51-11"></a><span class="co">#&gt;  7            37093            910       170900             1939 Prior to 19…</span></span>
-<span id="cb51-12"><a href="general-data-manipulation.html#cb51-12"></a><span class="co">#&gt;  8            87750           1088       270100             1939 Prior to 19…</span></span>
-<span id="cb51-13"><a href="general-data-manipulation.html#cb51-13"></a><span class="co">#&gt;  9            97417           1037       379600             1981 1980 to 1989</span></span>
-<span id="cb51-14"><a href="general-data-manipulation.html#cb51-14"></a><span class="co">#&gt; 10            43384           1017       156500             1939 Prior to 19…</span></span>
-<span id="cb51-15"><a href="general-data-manipulation.html#cb51-15"></a><span class="co">#&gt; # … with 1,468 more rows, and 2 more variables: med_yr_moved_inraw &lt;dbl&gt;,</span></span>
-<span id="cb51-16"><a href="general-data-manipulation.html#cb51-16"></a><span class="co">#&gt; #   med_yr_rent_moved_in &lt;dbl&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb55"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">acs_raw</span>, <span class="fu"><a href="https://tidyselect.r-lib.org/reference/starts_with.html">starts_with</a></span><span class="op">(</span><span class="st">"med"</span><span class="op">)</span><span class="op">)</span>
+<span class="co">#&gt; # A tibble: 1,478 x 7</span>
+<span class="co">#&gt;    med_house_income med_gross_rent med_home_val med_yr_built_raw med_yr_built</span>
+<span class="co">#&gt;               &lt;dbl&gt;          &lt;dbl&gt;        &lt;dbl&gt;            &lt;dbl&gt; &lt;chr&gt;       </span>
+<span class="co">#&gt;  1           105735           1640       349000             1988 1980 to 1989</span>
+<span class="co">#&gt;  2            69625            894       230200             1955 1950 to 1959</span>
+<span class="co">#&gt;  3            70679           1454       207200             1959 1950 to 1959</span>
+<span class="co">#&gt;  4            74528            954       268400             1973 1970 to 1979</span>
+<span class="co">#&gt;  5            52885           1018       223200             1964 1960 to 1969</span>
+<span class="co">#&gt;  6            64100            867       232700             1966 1960 to 1969</span>
+<span class="co">#&gt;  7            37093            910       170900             1939 Prior to 19…</span>
+<span class="co">#&gt;  8            87750           1088       270100             1939 Prior to 19…</span>
+<span class="co">#&gt;  9            97417           1037       379600             1981 1980 to 1989</span>
+<span class="co">#&gt; 10            43384           1017       156500             1939 Prior to 19…</span>
+<span class="co">#&gt; # … with 1,468 more rows, and 2 more variables: med_yr_moved_inraw &lt;dbl&gt;,</span>
+<span class="co">#&gt; #   med_yr_rent_moved_in &lt;dbl&gt;</span></code></pre></div>
 <ul>
-<li>select columns that end with <code>"per"</code></li>
+<li>select columns that end with <code>"per"</code>
+</li>
 </ul>
-<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="general-data-manipulation.html#cb52-1"></a><span class="kw">select</span>(acs_raw, <span class="kw">ends_with</span>(<span class="st">&quot;per&quot;</span>))</span>
-<span id="cb52-2"><a href="general-data-manipulation.html#cb52-2"></a><span class="co">#&gt; # A tibble: 1,478 x 8</span></span>
-<span id="cb52-3"><a href="general-data-manipulation.html#cb52-3"></a><span class="co">#&gt;    fam_pov_per fam_house_per fem_head_per same_sex_coup_p… grand_head_per</span></span>
-<span id="cb52-4"><a href="general-data-manipulation.html#cb52-4"></a><span class="co">#&gt;          &lt;dbl&gt;         &lt;dbl&gt;        &lt;dbl&gt;            &lt;dbl&gt;          &lt;dbl&gt;</span></span>
-<span id="cb52-5"><a href="general-data-manipulation.html#cb52-5"></a><span class="co">#&gt;  1      0.0475         0.797       0.0899            0            0      </span></span>
-<span id="cb52-6"><a href="general-data-manipulation.html#cb52-6"></a><span class="co">#&gt;  2      0.0652         0.698       0.120             0            0.00583</span></span>
-<span id="cb52-7"><a href="general-data-manipulation.html#cb52-7"></a><span class="co">#&gt;  3      0.0584         0.659       0.114             0            0      </span></span>
-<span id="cb52-8"><a href="general-data-manipulation.html#cb52-8"></a><span class="co">#&gt;  4      0.0249         0.657       0.121             0            0      </span></span>
-<span id="cb52-9"><a href="general-data-manipulation.html#cb52-9"></a><span class="co">#&gt;  5      0.198          0.531       0.158             0            0.00946</span></span>
-<span id="cb52-10"><a href="general-data-manipulation.html#cb52-10"></a><span class="co">#&gt;  6      0.0428         0.665       0.0603            0            0.0353 </span></span>
-<span id="cb52-11"><a href="general-data-manipulation.html#cb52-11"></a><span class="co">#&gt;  7      0.0762         0.632       0.227             0            0.00643</span></span>
-<span id="cb52-12"><a href="general-data-manipulation.html#cb52-12"></a><span class="co">#&gt;  8      0.101          0.636       0.0582            0.297        0.0260 </span></span>
-<span id="cb52-13"><a href="general-data-manipulation.html#cb52-13"></a><span class="co">#&gt;  9      0.0149         0.758       0.0721            0            0.00434</span></span>
-<span id="cb52-14"><a href="general-data-manipulation.html#cb52-14"></a><span class="co">#&gt; 10      0.0954         0.460       0.225             0            0.0279 </span></span>
-<span id="cb52-15"><a href="general-data-manipulation.html#cb52-15"></a><span class="co">#&gt; # … with 1,468 more rows, and 3 more variables: vacant_unit_per &lt;dbl&gt;,</span></span>
-<span id="cb52-16"><a href="general-data-manipulation.html#cb52-16"></a><span class="co">#&gt; #   renters_per &lt;dbl&gt;, home_own_per &lt;dbl&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb56"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">acs_raw</span>, <span class="fu"><a href="https://tidyselect.r-lib.org/reference/starts_with.html">ends_with</a></span><span class="op">(</span><span class="st">"per"</span><span class="op">)</span><span class="op">)</span>
+<span class="co">#&gt; # A tibble: 1,478 x 8</span>
+<span class="co">#&gt;    fam_pov_per fam_house_per fem_head_per same_sex_coup_p… grand_head_per</span>
+<span class="co">#&gt;          &lt;dbl&gt;         &lt;dbl&gt;        &lt;dbl&gt;            &lt;dbl&gt;          &lt;dbl&gt;</span>
+<span class="co">#&gt;  1      0.0475         0.797       0.0899            0            0      </span>
+<span class="co">#&gt;  2      0.0652         0.698       0.120             0            0.00583</span>
+<span class="co">#&gt;  3      0.0584         0.659       0.114             0            0      </span>
+<span class="co">#&gt;  4      0.0249         0.657       0.121             0            0      </span>
+<span class="co">#&gt;  5      0.198          0.531       0.158             0            0.00946</span>
+<span class="co">#&gt;  6      0.0428         0.665       0.0603            0            0.0353 </span>
+<span class="co">#&gt;  7      0.0762         0.632       0.227             0            0.00643</span>
+<span class="co">#&gt;  8      0.101          0.636       0.0582            0.297        0.0260 </span>
+<span class="co">#&gt;  9      0.0149         0.758       0.0721            0            0.00434</span>
+<span class="co">#&gt; 10      0.0954         0.460       0.225             0            0.0279 </span>
+<span class="co">#&gt; # … with 1,468 more rows, and 3 more variables: vacant_unit_per &lt;dbl&gt;,</span>
+<span class="co">#&gt; #   renters_per &lt;dbl&gt;, home_own_per &lt;dbl&gt;</span></code></pre></div>
 <ul>
-<li>find any column that contains the string <code>"yr"</code></li>
+<li>find any column that contains the string <code>"yr"</code>
+</li>
 </ul>
-<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="general-data-manipulation.html#cb53-1"></a><span class="kw">select</span>(acs_raw, <span class="kw">contains</span>(<span class="st">&quot;yr&quot;</span>))</span>
-<span id="cb53-2"><a href="general-data-manipulation.html#cb53-2"></a><span class="co">#&gt; # A tibble: 1,478 x 4</span></span>
-<span id="cb53-3"><a href="general-data-manipulation.html#cb53-3"></a><span class="co">#&gt;    med_yr_built_raw med_yr_built  med_yr_moved_inraw med_yr_rent_moved_in</span></span>
-<span id="cb53-4"><a href="general-data-manipulation.html#cb53-4"></a><span class="co">#&gt;               &lt;dbl&gt; &lt;chr&gt;                      &lt;dbl&gt;                &lt;dbl&gt;</span></span>
-<span id="cb53-5"><a href="general-data-manipulation.html#cb53-5"></a><span class="co">#&gt;  1             1988 1980 to 1989                2004                 2012</span></span>
-<span id="cb53-6"><a href="general-data-manipulation.html#cb53-6"></a><span class="co">#&gt;  2             1955 1950 to 1959                2003                 2010</span></span>
-<span id="cb53-7"><a href="general-data-manipulation.html#cb53-7"></a><span class="co">#&gt;  3             1959 1950 to 1959                2007                 2012</span></span>
-<span id="cb53-8"><a href="general-data-manipulation.html#cb53-8"></a><span class="co">#&gt;  4             1973 1970 to 1979                2006                 2011</span></span>
-<span id="cb53-9"><a href="general-data-manipulation.html#cb53-9"></a><span class="co">#&gt;  5             1964 1960 to 1969                2006                 2011</span></span>
-<span id="cb53-10"><a href="general-data-manipulation.html#cb53-10"></a><span class="co">#&gt;  6             1966 1960 to 1969                2000                 2009</span></span>
-<span id="cb53-11"><a href="general-data-manipulation.html#cb53-11"></a><span class="co">#&gt;  7             1939 Prior to 1940               2011                 2012</span></span>
-<span id="cb53-12"><a href="general-data-manipulation.html#cb53-12"></a><span class="co">#&gt;  8             1939 Prior to 1940               2006                 2012</span></span>
-<span id="cb53-13"><a href="general-data-manipulation.html#cb53-13"></a><span class="co">#&gt;  9             1981 1980 to 1989                2004                 2012</span></span>
-<span id="cb53-14"><a href="general-data-manipulation.html#cb53-14"></a><span class="co">#&gt; 10             1939 Prior to 1940               2011                   NA</span></span>
-<span id="cb53-15"><a href="general-data-manipulation.html#cb53-15"></a><span class="co">#&gt; # … with 1,468 more rows</span></span></code></pre></div>
+<div class="sourceCode" id="cb57"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">acs_raw</span>, <span class="fu"><a href="https://tidyselect.r-lib.org/reference/starts_with.html">contains</a></span><span class="op">(</span><span class="st">"yr"</span><span class="op">)</span><span class="op">)</span>
+<span class="co">#&gt; # A tibble: 1,478 x 4</span>
+<span class="co">#&gt;    med_yr_built_raw med_yr_built  med_yr_moved_inraw med_yr_rent_moved_in</span>
+<span class="co">#&gt;               &lt;dbl&gt; &lt;chr&gt;                      &lt;dbl&gt;                &lt;dbl&gt;</span>
+<span class="co">#&gt;  1             1988 1980 to 1989                2004                 2012</span>
+<span class="co">#&gt;  2             1955 1950 to 1959                2003                 2010</span>
+<span class="co">#&gt;  3             1959 1950 to 1959                2007                 2012</span>
+<span class="co">#&gt;  4             1973 1970 to 1979                2006                 2011</span>
+<span class="co">#&gt;  5             1964 1960 to 1969                2006                 2011</span>
+<span class="co">#&gt;  6             1966 1960 to 1969                2000                 2009</span>
+<span class="co">#&gt;  7             1939 Prior to 1940               2011                 2012</span>
+<span class="co">#&gt;  8             1939 Prior to 1940               2006                 2012</span>
+<span class="co">#&gt;  9             1981 1980 to 1989                2004                 2012</span>
+<span class="co">#&gt; 10             1939 Prior to 1940               2011                   NA</span>
+<span class="co">#&gt; # … with 1,468 more rows</span></code></pre></div>
 <ul>
 <li>select columns that start with <code>med</code> then select everything else</li>
 </ul>
-<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="general-data-manipulation.html#cb54-1"></a><span class="kw">select</span>(acs_raw, <span class="kw">contains</span>(<span class="st">&quot;yr&quot;</span>), <span class="kw">everything</span>())</span>
-<span id="cb54-2"><a href="general-data-manipulation.html#cb54-2"></a><span class="co">#&gt; # A tibble: 1,478 x 59</span></span>
-<span id="cb54-3"><a href="general-data-manipulation.html#cb54-3"></a><span class="co">#&gt;    med_yr_built_raw med_yr_built med_yr_moved_in… med_yr_rent_mov… ct_id_10</span></span>
-<span id="cb54-4"><a href="general-data-manipulation.html#cb54-4"></a><span class="co">#&gt;               &lt;dbl&gt; &lt;chr&gt;                   &lt;dbl&gt;            &lt;dbl&gt;    &lt;dbl&gt;</span></span>
-<span id="cb54-5"><a href="general-data-manipulation.html#cb54-5"></a><span class="co">#&gt;  1             1988 1980 to 1989             2004             2012  2.50e10</span></span>
-<span id="cb54-6"><a href="general-data-manipulation.html#cb54-6"></a><span class="co">#&gt;  2             1955 1950 to 1959             2003             2010  2.50e10</span></span>
-<span id="cb54-7"><a href="general-data-manipulation.html#cb54-7"></a><span class="co">#&gt;  3             1959 1950 to 1959             2007             2012  2.50e10</span></span>
-<span id="cb54-8"><a href="general-data-manipulation.html#cb54-8"></a><span class="co">#&gt;  4             1973 1970 to 1979             2006             2011  2.50e10</span></span>
-<span id="cb54-9"><a href="general-data-manipulation.html#cb54-9"></a><span class="co">#&gt;  5             1964 1960 to 1969             2006             2011  2.50e10</span></span>
-<span id="cb54-10"><a href="general-data-manipulation.html#cb54-10"></a><span class="co">#&gt;  6             1966 1960 to 1969             2000             2009  2.50e10</span></span>
-<span id="cb54-11"><a href="general-data-manipulation.html#cb54-11"></a><span class="co">#&gt;  7             1939 Prior to 19…             2011             2012  2.50e10</span></span>
-<span id="cb54-12"><a href="general-data-manipulation.html#cb54-12"></a><span class="co">#&gt;  8             1939 Prior to 19…             2006             2012  2.50e10</span></span>
-<span id="cb54-13"><a href="general-data-manipulation.html#cb54-13"></a><span class="co">#&gt;  9             1981 1980 to 1989             2004             2012  2.50e10</span></span>
-<span id="cb54-14"><a href="general-data-manipulation.html#cb54-14"></a><span class="co">#&gt; 10             1939 Prior to 19…             2011               NA  2.50e10</span></span>
-<span id="cb54-15"><a href="general-data-manipulation.html#cb54-15"></a><span class="co">#&gt; # … with 1,468 more rows, and 54 more variables: name &lt;chr&gt;, total_pop &lt;dbl&gt;,</span></span>
-<span id="cb54-16"><a href="general-data-manipulation.html#cb54-16"></a><span class="co">#&gt; #   pop_den &lt;dbl&gt;, sex_ratio &lt;dbl&gt;, age_u18 &lt;dbl&gt;, age1834 &lt;dbl&gt;,</span></span>
-<span id="cb54-17"><a href="general-data-manipulation.html#cb54-17"></a><span class="co">#&gt; #   age3564 &lt;dbl&gt;, age_o65 &lt;dbl&gt;, for_born &lt;dbl&gt;, white &lt;dbl&gt;, black &lt;dbl&gt;,</span></span>
-<span id="cb54-18"><a href="general-data-manipulation.html#cb54-18"></a><span class="co">#&gt; #   asian &lt;dbl&gt;, hispanic &lt;dbl&gt;, two_or_more &lt;dbl&gt;, eth_het &lt;dbl&gt;,</span></span>
-<span id="cb54-19"><a href="general-data-manipulation.html#cb54-19"></a><span class="co">#&gt; #   med_house_income &lt;dbl&gt;, pub_assist &lt;dbl&gt;, gini &lt;dbl&gt;, fam_pov_per &lt;dbl&gt;,</span></span>
-<span id="cb54-20"><a href="general-data-manipulation.html#cb54-20"></a><span class="co">#&gt; #   unemp_rate &lt;dbl&gt;, total_house_h &lt;dbl&gt;, fam_house_per &lt;dbl&gt;,</span></span>
-<span id="cb54-21"><a href="general-data-manipulation.html#cb54-21"></a><span class="co">#&gt; #   fem_head_per &lt;dbl&gt;, same_sex_coup_per &lt;dbl&gt;, grand_head_per &lt;dbl&gt;,</span></span>
-<span id="cb54-22"><a href="general-data-manipulation.html#cb54-22"></a><span class="co">#&gt; #   less_than_hs &lt;dbl&gt;, hs_grad &lt;dbl&gt;, some_coll &lt;dbl&gt;, bach &lt;dbl&gt;,</span></span>
-<span id="cb54-23"><a href="general-data-manipulation.html#cb54-23"></a><span class="co">#&gt; #   master &lt;dbl&gt;, prof &lt;dbl&gt;, doc &lt;dbl&gt;, commute_less10 &lt;dbl&gt;,</span></span>
-<span id="cb54-24"><a href="general-data-manipulation.html#cb54-24"></a><span class="co">#&gt; #   commute1030 &lt;dbl&gt;, commute3060 &lt;dbl&gt;, commute6090 &lt;dbl&gt;,</span></span>
-<span id="cb54-25"><a href="general-data-manipulation.html#cb54-25"></a><span class="co">#&gt; #   commute_over90 &lt;dbl&gt;, by_auto &lt;dbl&gt;, by_pub_trans &lt;dbl&gt;, by_bike &lt;dbl&gt;,</span></span>
-<span id="cb54-26"><a href="general-data-manipulation.html#cb54-26"></a><span class="co">#&gt; #   by_walk &lt;dbl&gt;, total_house_units &lt;dbl&gt;, vacant_unit_per &lt;dbl&gt;,</span></span>
-<span id="cb54-27"><a href="general-data-manipulation.html#cb54-27"></a><span class="co">#&gt; #   renters_per &lt;dbl&gt;, home_own_per &lt;dbl&gt;, med_gross_rent &lt;dbl&gt;,</span></span>
-<span id="cb54-28"><a href="general-data-manipulation.html#cb54-28"></a><span class="co">#&gt; #   med_home_val &lt;dbl&gt;, area_acres &lt;dbl&gt;, town_id &lt;dbl&gt;, town &lt;chr&gt;,</span></span>
-<span id="cb54-29"><a href="general-data-manipulation.html#cb54-29"></a><span class="co">#&gt; #   fips_stco &lt;dbl&gt;, county &lt;chr&gt;, area_acr_1 &lt;dbl&gt;, m_atown &lt;chr&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb58"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">acs_raw</span>, <span class="fu"><a href="https://tidyselect.r-lib.org/reference/starts_with.html">contains</a></span><span class="op">(</span><span class="st">"yr"</span><span class="op">)</span>, <span class="fu"><a href="https://tidyselect.r-lib.org/reference/everything.html">everything</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
+<span class="co">#&gt; # A tibble: 1,478 x 59</span>
+<span class="co">#&gt;    med_yr_built_raw med_yr_built med_yr_moved_in… med_yr_rent_mov… ct_id_10</span>
+<span class="co">#&gt;               &lt;dbl&gt; &lt;chr&gt;                   &lt;dbl&gt;            &lt;dbl&gt;    &lt;dbl&gt;</span>
+<span class="co">#&gt;  1             1988 1980 to 1989             2004             2012  2.50e10</span>
+<span class="co">#&gt;  2             1955 1950 to 1959             2003             2010  2.50e10</span>
+<span class="co">#&gt;  3             1959 1950 to 1959             2007             2012  2.50e10</span>
+<span class="co">#&gt;  4             1973 1970 to 1979             2006             2011  2.50e10</span>
+<span class="co">#&gt;  5             1964 1960 to 1969             2006             2011  2.50e10</span>
+<span class="co">#&gt;  6             1966 1960 to 1969             2000             2009  2.50e10</span>
+<span class="co">#&gt;  7             1939 Prior to 19…             2011             2012  2.50e10</span>
+<span class="co">#&gt;  8             1939 Prior to 19…             2006             2012  2.50e10</span>
+<span class="co">#&gt;  9             1981 1980 to 1989             2004             2012  2.50e10</span>
+<span class="co">#&gt; 10             1939 Prior to 19…             2011               NA  2.50e10</span>
+<span class="co">#&gt; # … with 1,468 more rows, and 54 more variables: name &lt;chr&gt;, total_pop &lt;dbl&gt;,</span>
+<span class="co">#&gt; #   pop_den &lt;dbl&gt;, sex_ratio &lt;dbl&gt;, age_u18 &lt;dbl&gt;, age1834 &lt;dbl&gt;,</span>
+<span class="co">#&gt; #   age3564 &lt;dbl&gt;, age_o65 &lt;dbl&gt;, for_born &lt;dbl&gt;, white &lt;dbl&gt;, black &lt;dbl&gt;,</span>
+<span class="co">#&gt; #   asian &lt;dbl&gt;, hispanic &lt;dbl&gt;, two_or_more &lt;dbl&gt;, eth_het &lt;dbl&gt;,</span>
+<span class="co">#&gt; #   med_house_income &lt;dbl&gt;, pub_assist &lt;dbl&gt;, gini &lt;dbl&gt;, fam_pov_per &lt;dbl&gt;,</span>
+<span class="co">#&gt; #   unemp_rate &lt;dbl&gt;, total_house_h &lt;dbl&gt;, fam_house_per &lt;dbl&gt;,</span>
+<span class="co">#&gt; #   fem_head_per &lt;dbl&gt;, same_sex_coup_per &lt;dbl&gt;, grand_head_per &lt;dbl&gt;,</span>
+<span class="co">#&gt; #   less_than_hs &lt;dbl&gt;, hs_grad &lt;dbl&gt;, some_coll &lt;dbl&gt;, bach &lt;dbl&gt;,</span>
+<span class="co">#&gt; #   master &lt;dbl&gt;, prof &lt;dbl&gt;, doc &lt;dbl&gt;, commute_less10 &lt;dbl&gt;,</span>
+<span class="co">#&gt; #   commute1030 &lt;dbl&gt;, commute3060 &lt;dbl&gt;, commute6090 &lt;dbl&gt;,</span>
+<span class="co">#&gt; #   commute_over90 &lt;dbl&gt;, by_auto &lt;dbl&gt;, by_pub_trans &lt;dbl&gt;, by_bike &lt;dbl&gt;,</span>
+<span class="co">#&gt; #   by_walk &lt;dbl&gt;, total_house_units &lt;dbl&gt;, vacant_unit_per &lt;dbl&gt;,</span>
+<span class="co">#&gt; #   renters_per &lt;dbl&gt;, home_own_per &lt;dbl&gt;, med_gross_rent &lt;dbl&gt;,</span>
+<span class="co">#&gt; #   med_home_val &lt;dbl&gt;, area_acres &lt;dbl&gt;, town_id &lt;dbl&gt;, town &lt;chr&gt;,</span>
+<span class="co">#&gt; #   fips_stco &lt;dbl&gt;, county &lt;chr&gt;, area_acr_1 &lt;dbl&gt;, m_atown &lt;chr&gt;</span></code></pre></div>
 </div>
 </div>
 <div id="selecting-rows" class="section level2" number="10.3">
-<h2><span class="header-section-number">10.3</span> Selecting Rows</h2>
-<p>Though a somewhat infrequent event, it will be handy to know how to select rows. There are two ways in which we can select our rows. The first is by specifying exactly which rows by their position. The other way is to filter down our data based on a condition—i.e. median household income within a range. The functions to do this are <code>slice()</code> and <code>filter()</code> respectively. The remainder of this chapter will introduce you to <code>slice()</code>. We will learn how to filter in the next chapter.</p>
-<p>Like <code>select()</code> we can also select rows. But rows do not have names, so we must select the rows based on their position. Given your familiarity with selecting by column position this should be a cake walk for you.</p>
-<p>Similar to <code>last_col()</code> we have the function <code>n()</code>. <code>n()</code> is a rather handy little function which tells us how many observations there are in a tibble. This allows to specify the last row of a tibble.</p>
-<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="general-data-manipulation.html#cb55-1"></a><span class="kw">slice</span>(acs_raw, <span class="kw">n</span>())</span>
-<span id="cb55-2"><a href="general-data-manipulation.html#cb55-2"></a><span class="co">#&gt; # A tibble: 1 x 59</span></span>
-<span id="cb55-3"><a href="general-data-manipulation.html#cb55-3"></a><span class="co">#&gt;   ct_id_10 name  total_pop pop_den sex_ratio age_u18 age1834 age3564 age_o65</span></span>
-<span id="cb55-4"><a href="general-data-manipulation.html#cb55-4"></a><span class="co">#&gt;      &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;</span></span>
-<span id="cb55-5"><a href="general-data-manipulation.html#cb55-5"></a><span class="co">#&gt; 1  2.50e10 Cens…      5821   2760.     0.885   0.181   0.204   0.435   0.180</span></span>
-<span id="cb55-6"><a href="general-data-manipulation.html#cb55-6"></a><span class="co">#&gt; # … with 50 more variables: for_born &lt;dbl&gt;, white &lt;dbl&gt;, black &lt;dbl&gt;,</span></span>
-<span id="cb55-7"><a href="general-data-manipulation.html#cb55-7"></a><span class="co">#&gt; #   asian &lt;dbl&gt;, hispanic &lt;dbl&gt;, two_or_more &lt;dbl&gt;, eth_het &lt;dbl&gt;,</span></span>
-<span id="cb55-8"><a href="general-data-manipulation.html#cb55-8"></a><span class="co">#&gt; #   med_house_income &lt;dbl&gt;, pub_assist &lt;dbl&gt;, gini &lt;dbl&gt;, fam_pov_per &lt;dbl&gt;,</span></span>
-<span id="cb55-9"><a href="general-data-manipulation.html#cb55-9"></a><span class="co">#&gt; #   unemp_rate &lt;dbl&gt;, total_house_h &lt;dbl&gt;, fam_house_per &lt;dbl&gt;,</span></span>
-<span id="cb55-10"><a href="general-data-manipulation.html#cb55-10"></a><span class="co">#&gt; #   fem_head_per &lt;dbl&gt;, same_sex_coup_per &lt;dbl&gt;, grand_head_per &lt;dbl&gt;,</span></span>
-<span id="cb55-11"><a href="general-data-manipulation.html#cb55-11"></a><span class="co">#&gt; #   less_than_hs &lt;dbl&gt;, hs_grad &lt;dbl&gt;, some_coll &lt;dbl&gt;, bach &lt;dbl&gt;,</span></span>
-<span id="cb55-12"><a href="general-data-manipulation.html#cb55-12"></a><span class="co">#&gt; #   master &lt;dbl&gt;, prof &lt;dbl&gt;, doc &lt;dbl&gt;, commute_less10 &lt;dbl&gt;,</span></span>
-<span id="cb55-13"><a href="general-data-manipulation.html#cb55-13"></a><span class="co">#&gt; #   commute1030 &lt;dbl&gt;, commute3060 &lt;dbl&gt;, commute6090 &lt;dbl&gt;,</span></span>
-<span id="cb55-14"><a href="general-data-manipulation.html#cb55-14"></a><span class="co">#&gt; #   commute_over90 &lt;dbl&gt;, by_auto &lt;dbl&gt;, by_pub_trans &lt;dbl&gt;, by_bike &lt;dbl&gt;,</span></span>
-<span id="cb55-15"><a href="general-data-manipulation.html#cb55-15"></a><span class="co">#&gt; #   by_walk &lt;dbl&gt;, total_house_units &lt;dbl&gt;, vacant_unit_per &lt;dbl&gt;,</span></span>
-<span id="cb55-16"><a href="general-data-manipulation.html#cb55-16"></a><span class="co">#&gt; #   renters_per &lt;dbl&gt;, home_own_per &lt;dbl&gt;, med_gross_rent &lt;dbl&gt;,</span></span>
-<span id="cb55-17"><a href="general-data-manipulation.html#cb55-17"></a><span class="co">#&gt; #   med_home_val &lt;dbl&gt;, med_yr_built_raw &lt;dbl&gt;, med_yr_built &lt;chr&gt;,</span></span>
-<span id="cb55-18"><a href="general-data-manipulation.html#cb55-18"></a><span class="co">#&gt; #   med_yr_moved_inraw &lt;dbl&gt;, med_yr_rent_moved_in &lt;dbl&gt;, area_acres &lt;dbl&gt;,</span></span>
-<span id="cb55-19"><a href="general-data-manipulation.html#cb55-19"></a><span class="co">#&gt; #   town_id &lt;dbl&gt;, town &lt;chr&gt;, fips_stco &lt;dbl&gt;, county &lt;chr&gt;, area_acr_1 &lt;dbl&gt;,</span></span>
-<span id="cb55-20"><a href="general-data-manipulation.html#cb55-20"></a><span class="co">#&gt; #   m_atown &lt;chr&gt;</span></span></code></pre></div>
-<p>Unlike <code>last_col()</code>, <code>n()</code> provides us with a number. Instead of specifying an offset we can instead subtract directly from the output of <code>n()</code>. To grab the last three rows we can write <code>(n() - 3):n()</code>. We put <code>n()-3</code> inside of parantheses so R knows to process <code>n() - 3</code> first.</p>
-<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="general-data-manipulation.html#cb56-1"></a><span class="kw">slice</span>(acs_raw, (<span class="kw">n</span>() <span class="op">-</span><span class="st"> </span><span class="dv">3</span>)<span class="op">:</span><span class="kw">n</span>())</span>
-<span id="cb56-2"><a href="general-data-manipulation.html#cb56-2"></a><span class="co">#&gt; # A tibble: 4 x 59</span></span>
-<span id="cb56-3"><a href="general-data-manipulation.html#cb56-3"></a><span class="co">#&gt;   ct_id_10 name  total_pop pop_den sex_ratio age_u18 age1834 age3564 age_o65</span></span>
-<span id="cb56-4"><a href="general-data-manipulation.html#cb56-4"></a><span class="co">#&gt;      &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;</span></span>
-<span id="cb56-5"><a href="general-data-manipulation.html#cb56-5"></a><span class="co">#&gt; 1  2.50e10 Cens…      2519   3083.     0.806   0.202   0.268   0.397   0.132</span></span>
-<span id="cb56-6"><a href="general-data-manipulation.html#cb56-6"></a><span class="co">#&gt; 2  2.50e10 Cens…      3500   5392.     1.05    0.205   0.277   0.395   0.122</span></span>
-<span id="cb56-7"><a href="general-data-manipulation.html#cb56-7"></a><span class="co">#&gt; 3  2.50e10 Cens…      5816   2677.     1.20    0.191   0.233   0.458   0.118</span></span>
-<span id="cb56-8"><a href="general-data-manipulation.html#cb56-8"></a><span class="co">#&gt; 4  2.50e10 Cens…      5821   2760.     0.885   0.181   0.204   0.435   0.180</span></span>
-<span id="cb56-9"><a href="general-data-manipulation.html#cb56-9"></a><span class="co">#&gt; # … with 50 more variables: for_born &lt;dbl&gt;, white &lt;dbl&gt;, black &lt;dbl&gt;,</span></span>
-<span id="cb56-10"><a href="general-data-manipulation.html#cb56-10"></a><span class="co">#&gt; #   asian &lt;dbl&gt;, hispanic &lt;dbl&gt;, two_or_more &lt;dbl&gt;, eth_het &lt;dbl&gt;,</span></span>
-<span id="cb56-11"><a href="general-data-manipulation.html#cb56-11"></a><span class="co">#&gt; #   med_house_income &lt;dbl&gt;, pub_assist &lt;dbl&gt;, gini &lt;dbl&gt;, fam_pov_per &lt;dbl&gt;,</span></span>
-<span id="cb56-12"><a href="general-data-manipulation.html#cb56-12"></a><span class="co">#&gt; #   unemp_rate &lt;dbl&gt;, total_house_h &lt;dbl&gt;, fam_house_per &lt;dbl&gt;,</span></span>
-<span id="cb56-13"><a href="general-data-manipulation.html#cb56-13"></a><span class="co">#&gt; #   fem_head_per &lt;dbl&gt;, same_sex_coup_per &lt;dbl&gt;, grand_head_per &lt;dbl&gt;,</span></span>
-<span id="cb56-14"><a href="general-data-manipulation.html#cb56-14"></a><span class="co">#&gt; #   less_than_hs &lt;dbl&gt;, hs_grad &lt;dbl&gt;, some_coll &lt;dbl&gt;, bach &lt;dbl&gt;,</span></span>
-<span id="cb56-15"><a href="general-data-manipulation.html#cb56-15"></a><span class="co">#&gt; #   master &lt;dbl&gt;, prof &lt;dbl&gt;, doc &lt;dbl&gt;, commute_less10 &lt;dbl&gt;,</span></span>
-<span id="cb56-16"><a href="general-data-manipulation.html#cb56-16"></a><span class="co">#&gt; #   commute1030 &lt;dbl&gt;, commute3060 &lt;dbl&gt;, commute6090 &lt;dbl&gt;,</span></span>
-<span id="cb56-17"><a href="general-data-manipulation.html#cb56-17"></a><span class="co">#&gt; #   commute_over90 &lt;dbl&gt;, by_auto &lt;dbl&gt;, by_pub_trans &lt;dbl&gt;, by_bike &lt;dbl&gt;,</span></span>
-<span id="cb56-18"><a href="general-data-manipulation.html#cb56-18"></a><span class="co">#&gt; #   by_walk &lt;dbl&gt;, total_house_units &lt;dbl&gt;, vacant_unit_per &lt;dbl&gt;,</span></span>
-<span id="cb56-19"><a href="general-data-manipulation.html#cb56-19"></a><span class="co">#&gt; #   renters_per &lt;dbl&gt;, home_own_per &lt;dbl&gt;, med_gross_rent &lt;dbl&gt;,</span></span>
-<span id="cb56-20"><a href="general-data-manipulation.html#cb56-20"></a><span class="co">#&gt; #   med_home_val &lt;dbl&gt;, med_yr_built_raw &lt;dbl&gt;, med_yr_built &lt;chr&gt;,</span></span>
-<span id="cb56-21"><a href="general-data-manipulation.html#cb56-21"></a><span class="co">#&gt; #   med_yr_moved_inraw &lt;dbl&gt;, med_yr_rent_moved_in &lt;dbl&gt;, area_acres &lt;dbl&gt;,</span></span>
-<span id="cb56-22"><a href="general-data-manipulation.html#cb56-22"></a><span class="co">#&gt; #   town_id &lt;dbl&gt;, town &lt;chr&gt;, fips_stco &lt;dbl&gt;, county &lt;chr&gt;, area_acr_1 &lt;dbl&gt;,</span></span>
-<span id="cb56-23"><a href="general-data-manipulation.html#cb56-23"></a><span class="co">#&gt; #   m_atown &lt;chr&gt;</span></span></code></pre></div>
+<h2>
+<span class="header-section-number">10.3</span> Selecting Rows<a class="anchor" aria-label="anchor" href="#selecting-rows"><i class="fas fa-link"></i></a>
+</h2>
+<p>Though a somewhat infrequent event, it will be handy to know how to select rows. There are two ways in which we can select our rows. The first is by specifying exactly which rows by their position. The other way is to filter down our data based on a condition—i.e. median household income within a range. The functions to do this are <code><a href="https://dplyr.tidyverse.org/reference/slice.html">slice()</a></code> and <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code> respectively. The remainder of this chapter will introduce you to <code><a href="https://dplyr.tidyverse.org/reference/slice.html">slice()</a></code>. We will learn how to filter in the next chapter.</p>
+<p>Like <code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code> we can also select rows. But rows do not have names, so we must select the rows based on their position. Given your familiarity with selecting by column position this should be a cake walk for you.</p>
+<p>Similar to <code><a href="https://tidyselect.r-lib.org/reference/everything.html">last_col()</a></code> we have the function <code><a href="https://dplyr.tidyverse.org/reference/context.html">n()</a></code>. <code><a href="https://dplyr.tidyverse.org/reference/context.html">n()</a></code> is a rather handy little function which tells us how many observations there are in a tibble. This allows to specify the last row of a tibble.</p>
+<div class="sourceCode" id="cb59"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice</a></span><span class="op">(</span><span class="va">acs_raw</span>, <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
+<span class="co">#&gt; # A tibble: 1 x 59</span>
+<span class="co">#&gt;   ct_id_10 name  total_pop pop_den sex_ratio age_u18 age1834 age3564 age_o65</span>
+<span class="co">#&gt;      &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;</span>
+<span class="co">#&gt; 1  2.50e10 Cens…      5821   2760.     0.885   0.181   0.204   0.435   0.180</span>
+<span class="co">#&gt; # … with 50 more variables: for_born &lt;dbl&gt;, white &lt;dbl&gt;, black &lt;dbl&gt;,</span>
+<span class="co">#&gt; #   asian &lt;dbl&gt;, hispanic &lt;dbl&gt;, two_or_more &lt;dbl&gt;, eth_het &lt;dbl&gt;,</span>
+<span class="co">#&gt; #   med_house_income &lt;dbl&gt;, pub_assist &lt;dbl&gt;, gini &lt;dbl&gt;, fam_pov_per &lt;dbl&gt;,</span>
+<span class="co">#&gt; #   unemp_rate &lt;dbl&gt;, total_house_h &lt;dbl&gt;, fam_house_per &lt;dbl&gt;,</span>
+<span class="co">#&gt; #   fem_head_per &lt;dbl&gt;, same_sex_coup_per &lt;dbl&gt;, grand_head_per &lt;dbl&gt;,</span>
+<span class="co">#&gt; #   less_than_hs &lt;dbl&gt;, hs_grad &lt;dbl&gt;, some_coll &lt;dbl&gt;, bach &lt;dbl&gt;,</span>
+<span class="co">#&gt; #   master &lt;dbl&gt;, prof &lt;dbl&gt;, doc &lt;dbl&gt;, commute_less10 &lt;dbl&gt;,</span>
+<span class="co">#&gt; #   commute1030 &lt;dbl&gt;, commute3060 &lt;dbl&gt;, commute6090 &lt;dbl&gt;,</span>
+<span class="co">#&gt; #   commute_over90 &lt;dbl&gt;, by_auto &lt;dbl&gt;, by_pub_trans &lt;dbl&gt;, by_bike &lt;dbl&gt;,</span>
+<span class="co">#&gt; #   by_walk &lt;dbl&gt;, total_house_units &lt;dbl&gt;, vacant_unit_per &lt;dbl&gt;,</span>
+<span class="co">#&gt; #   renters_per &lt;dbl&gt;, home_own_per &lt;dbl&gt;, med_gross_rent &lt;dbl&gt;,</span>
+<span class="co">#&gt; #   med_home_val &lt;dbl&gt;, med_yr_built_raw &lt;dbl&gt;, med_yr_built &lt;chr&gt;,</span>
+<span class="co">#&gt; #   med_yr_moved_inraw &lt;dbl&gt;, med_yr_rent_moved_in &lt;dbl&gt;, area_acres &lt;dbl&gt;,</span>
+<span class="co">#&gt; #   town_id &lt;dbl&gt;, town &lt;chr&gt;, fips_stco &lt;dbl&gt;, county &lt;chr&gt;, area_acr_1 &lt;dbl&gt;,</span>
+<span class="co">#&gt; #   m_atown &lt;chr&gt;</span></code></pre></div>
+<p>Unlike <code><a href="https://tidyselect.r-lib.org/reference/everything.html">last_col()</a></code>, <code><a href="https://dplyr.tidyverse.org/reference/context.html">n()</a></code> provides us with a number. Instead of specifying an offset we can instead subtract directly from the output of <code><a href="https://dplyr.tidyverse.org/reference/context.html">n()</a></code>. To grab the last three rows we can write <code>(n() - 3):n()</code>. We put <code>n()-3</code> inside of parantheses so R knows to process <code>n() - 3</code> first.</p>
+<div class="sourceCode" id="cb60"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice</a></span><span class="op">(</span><span class="va">acs_raw</span>, <span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span> <span class="op">-</span> <span class="fl">3</span><span class="op">)</span><span class="op">:</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
+<span class="co">#&gt; # A tibble: 4 x 59</span>
+<span class="co">#&gt;   ct_id_10 name  total_pop pop_den sex_ratio age_u18 age1834 age3564 age_o65</span>
+<span class="co">#&gt;      &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;</span>
+<span class="co">#&gt; 1  2.50e10 Cens…      2519   3083.     0.806   0.202   0.268   0.397   0.132</span>
+<span class="co">#&gt; 2  2.50e10 Cens…      3500   5392.     1.05    0.205   0.277   0.395   0.122</span>
+<span class="co">#&gt; 3  2.50e10 Cens…      5816   2677.     1.20    0.191   0.233   0.458   0.118</span>
+<span class="co">#&gt; 4  2.50e10 Cens…      5821   2760.     0.885   0.181   0.204   0.435   0.180</span>
+<span class="co">#&gt; # … with 50 more variables: for_born &lt;dbl&gt;, white &lt;dbl&gt;, black &lt;dbl&gt;,</span>
+<span class="co">#&gt; #   asian &lt;dbl&gt;, hispanic &lt;dbl&gt;, two_or_more &lt;dbl&gt;, eth_het &lt;dbl&gt;,</span>
+<span class="co">#&gt; #   med_house_income &lt;dbl&gt;, pub_assist &lt;dbl&gt;, gini &lt;dbl&gt;, fam_pov_per &lt;dbl&gt;,</span>
+<span class="co">#&gt; #   unemp_rate &lt;dbl&gt;, total_house_h &lt;dbl&gt;, fam_house_per &lt;dbl&gt;,</span>
+<span class="co">#&gt; #   fem_head_per &lt;dbl&gt;, same_sex_coup_per &lt;dbl&gt;, grand_head_per &lt;dbl&gt;,</span>
+<span class="co">#&gt; #   less_than_hs &lt;dbl&gt;, hs_grad &lt;dbl&gt;, some_coll &lt;dbl&gt;, bach &lt;dbl&gt;,</span>
+<span class="co">#&gt; #   master &lt;dbl&gt;, prof &lt;dbl&gt;, doc &lt;dbl&gt;, commute_less10 &lt;dbl&gt;,</span>
+<span class="co">#&gt; #   commute1030 &lt;dbl&gt;, commute3060 &lt;dbl&gt;, commute6090 &lt;dbl&gt;,</span>
+<span class="co">#&gt; #   commute_over90 &lt;dbl&gt;, by_auto &lt;dbl&gt;, by_pub_trans &lt;dbl&gt;, by_bike &lt;dbl&gt;,</span>
+<span class="co">#&gt; #   by_walk &lt;dbl&gt;, total_house_units &lt;dbl&gt;, vacant_unit_per &lt;dbl&gt;,</span>
+<span class="co">#&gt; #   renters_per &lt;dbl&gt;, home_own_per &lt;dbl&gt;, med_gross_rent &lt;dbl&gt;,</span>
+<span class="co">#&gt; #   med_home_val &lt;dbl&gt;, med_yr_built_raw &lt;dbl&gt;, med_yr_built &lt;chr&gt;,</span>
+<span class="co">#&gt; #   med_yr_moved_inraw &lt;dbl&gt;, med_yr_rent_moved_in &lt;dbl&gt;, area_acres &lt;dbl&gt;,</span>
+<span class="co">#&gt; #   town_id &lt;dbl&gt;, town &lt;chr&gt;, fips_stco &lt;dbl&gt;, county &lt;chr&gt;, area_acr_1 &lt;dbl&gt;,</span>
+<span class="co">#&gt; #   m_atown &lt;chr&gt;</span></code></pre></div>
 <p>Try it:</p>
 <ul>
 <li>select the first row, rows 100-105, and the last row</li>
 </ul>
-<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="general-data-manipulation.html#cb57-1"></a><span class="kw">slice</span>(acs_raw, <span class="dv">1</span>, <span class="dv">100</span><span class="op">:</span><span class="dv">105</span>, <span class="kw">n</span>())</span>
-<span id="cb57-2"><a href="general-data-manipulation.html#cb57-2"></a><span class="co">#&gt; # A tibble: 8 x 59</span></span>
-<span id="cb57-3"><a href="general-data-manipulation.html#cb57-3"></a><span class="co">#&gt;   ct_id_10 name  total_pop pop_den sex_ratio age_u18 age1834 age3564 age_o65</span></span>
-<span id="cb57-4"><a href="general-data-manipulation.html#cb57-4"></a><span class="co">#&gt;      &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;</span></span>
-<span id="cb57-5"><a href="general-data-manipulation.html#cb57-5"></a><span class="co">#&gt; 1  2.50e10 Cens…      4585    333.     1.13    0.234  0.202    0.398  0.166 </span></span>
-<span id="cb57-6"><a href="general-data-manipulation.html#cb57-6"></a><span class="co">#&gt; 2  2.50e10 Cens…      5223   2402.     1.21    0.183  0.171    0.450  0.197 </span></span>
-<span id="cb57-7"><a href="general-data-manipulation.html#cb57-7"></a><span class="co">#&gt; 3  2.50e10 Cens…      5586    592.     1.09    0.278  0.116    0.413  0.193 </span></span>
-<span id="cb57-8"><a href="general-data-manipulation.html#cb57-8"></a><span class="co">#&gt; 4  2.50e10 Cens…      4474   1119.     0.962   0.282  0.0847   0.427  0.206 </span></span>
-<span id="cb57-9"><a href="general-data-manipulation.html#cb57-9"></a><span class="co">#&gt; 5  2.50e10 Cens…      6713    674.     0.928   0.223  0.216    0.423  0.139 </span></span>
-<span id="cb57-10"><a href="general-data-manipulation.html#cb57-10"></a><span class="co">#&gt; 6  2.50e10 Cens…      6676   3541.     0.999   0.249  0.266    0.395  0.0902</span></span>
-<span id="cb57-11"><a href="general-data-manipulation.html#cb57-11"></a><span class="co">#&gt; 7  2.50e10 Cens…      8141    820.     1.25    0.258  0.169    0.410  0.164 </span></span>
-<span id="cb57-12"><a href="general-data-manipulation.html#cb57-12"></a><span class="co">#&gt; 8  2.50e10 Cens…      5821   2760.     0.885   0.181  0.204    0.435  0.180 </span></span>
-<span id="cb57-13"><a href="general-data-manipulation.html#cb57-13"></a><span class="co">#&gt; # … with 50 more variables: for_born &lt;dbl&gt;, white &lt;dbl&gt;, black &lt;dbl&gt;,</span></span>
-<span id="cb57-14"><a href="general-data-manipulation.html#cb57-14"></a><span class="co">#&gt; #   asian &lt;dbl&gt;, hispanic &lt;dbl&gt;, two_or_more &lt;dbl&gt;, eth_het &lt;dbl&gt;,</span></span>
-<span id="cb57-15"><a href="general-data-manipulation.html#cb57-15"></a><span class="co">#&gt; #   med_house_income &lt;dbl&gt;, pub_assist &lt;dbl&gt;, gini &lt;dbl&gt;, fam_pov_per &lt;dbl&gt;,</span></span>
-<span id="cb57-16"><a href="general-data-manipulation.html#cb57-16"></a><span class="co">#&gt; #   unemp_rate &lt;dbl&gt;, total_house_h &lt;dbl&gt;, fam_house_per &lt;dbl&gt;,</span></span>
-<span id="cb57-17"><a href="general-data-manipulation.html#cb57-17"></a><span class="co">#&gt; #   fem_head_per &lt;dbl&gt;, same_sex_coup_per &lt;dbl&gt;, grand_head_per &lt;dbl&gt;,</span></span>
-<span id="cb57-18"><a href="general-data-manipulation.html#cb57-18"></a><span class="co">#&gt; #   less_than_hs &lt;dbl&gt;, hs_grad &lt;dbl&gt;, some_coll &lt;dbl&gt;, bach &lt;dbl&gt;,</span></span>
-<span id="cb57-19"><a href="general-data-manipulation.html#cb57-19"></a><span class="co">#&gt; #   master &lt;dbl&gt;, prof &lt;dbl&gt;, doc &lt;dbl&gt;, commute_less10 &lt;dbl&gt;,</span></span>
-<span id="cb57-20"><a href="general-data-manipulation.html#cb57-20"></a><span class="co">#&gt; #   commute1030 &lt;dbl&gt;, commute3060 &lt;dbl&gt;, commute6090 &lt;dbl&gt;,</span></span>
-<span id="cb57-21"><a href="general-data-manipulation.html#cb57-21"></a><span class="co">#&gt; #   commute_over90 &lt;dbl&gt;, by_auto &lt;dbl&gt;, by_pub_trans &lt;dbl&gt;, by_bike &lt;dbl&gt;,</span></span>
-<span id="cb57-22"><a href="general-data-manipulation.html#cb57-22"></a><span class="co">#&gt; #   by_walk &lt;dbl&gt;, total_house_units &lt;dbl&gt;, vacant_unit_per &lt;dbl&gt;,</span></span>
-<span id="cb57-23"><a href="general-data-manipulation.html#cb57-23"></a><span class="co">#&gt; #   renters_per &lt;dbl&gt;, home_own_per &lt;dbl&gt;, med_gross_rent &lt;dbl&gt;,</span></span>
-<span id="cb57-24"><a href="general-data-manipulation.html#cb57-24"></a><span class="co">#&gt; #   med_home_val &lt;dbl&gt;, med_yr_built_raw &lt;dbl&gt;, med_yr_built &lt;chr&gt;,</span></span>
-<span id="cb57-25"><a href="general-data-manipulation.html#cb57-25"></a><span class="co">#&gt; #   med_yr_moved_inraw &lt;dbl&gt;, med_yr_rent_moved_in &lt;dbl&gt;, area_acres &lt;dbl&gt;,</span></span>
-<span id="cb57-26"><a href="general-data-manipulation.html#cb57-26"></a><span class="co">#&gt; #   town_id &lt;dbl&gt;, town &lt;chr&gt;, fips_stco &lt;dbl&gt;, county &lt;chr&gt;, area_acr_1 &lt;dbl&gt;,</span></span>
-<span id="cb57-27"><a href="general-data-manipulation.html#cb57-27"></a><span class="co">#&gt; #   m_atown &lt;chr&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb61"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice</a></span><span class="op">(</span><span class="va">acs_raw</span>, <span class="fl">1</span>, <span class="fl">100</span><span class="op">:</span><span class="fl">105</span>, <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
+<span class="co">#&gt; # A tibble: 8 x 59</span>
+<span class="co">#&gt;   ct_id_10 name  total_pop pop_den sex_ratio age_u18 age1834 age3564 age_o65</span>
+<span class="co">#&gt;      &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;</span>
+<span class="co">#&gt; 1  2.50e10 Cens…      4585    333.     1.13    0.234  0.202    0.398  0.166 </span>
+<span class="co">#&gt; 2  2.50e10 Cens…      5223   2402.     1.21    0.183  0.171    0.450  0.197 </span>
+<span class="co">#&gt; 3  2.50e10 Cens…      5586    592.     1.09    0.278  0.116    0.413  0.193 </span>
+<span class="co">#&gt; 4  2.50e10 Cens…      4474   1119.     0.962   0.282  0.0847   0.427  0.206 </span>
+<span class="co">#&gt; 5  2.50e10 Cens…      6713    674.     0.928   0.223  0.216    0.423  0.139 </span>
+<span class="co">#&gt; 6  2.50e10 Cens…      6676   3541.     0.999   0.249  0.266    0.395  0.0902</span>
+<span class="co">#&gt; 7  2.50e10 Cens…      8141    820.     1.25    0.258  0.169    0.410  0.164 </span>
+<span class="co">#&gt; 8  2.50e10 Cens…      5821   2760.     0.885   0.181  0.204    0.435  0.180 </span>
+<span class="co">#&gt; # … with 50 more variables: for_born &lt;dbl&gt;, white &lt;dbl&gt;, black &lt;dbl&gt;,</span>
+<span class="co">#&gt; #   asian &lt;dbl&gt;, hispanic &lt;dbl&gt;, two_or_more &lt;dbl&gt;, eth_het &lt;dbl&gt;,</span>
+<span class="co">#&gt; #   med_house_income &lt;dbl&gt;, pub_assist &lt;dbl&gt;, gini &lt;dbl&gt;, fam_pov_per &lt;dbl&gt;,</span>
+<span class="co">#&gt; #   unemp_rate &lt;dbl&gt;, total_house_h &lt;dbl&gt;, fam_house_per &lt;dbl&gt;,</span>
+<span class="co">#&gt; #   fem_head_per &lt;dbl&gt;, same_sex_coup_per &lt;dbl&gt;, grand_head_per &lt;dbl&gt;,</span>
+<span class="co">#&gt; #   less_than_hs &lt;dbl&gt;, hs_grad &lt;dbl&gt;, some_coll &lt;dbl&gt;, bach &lt;dbl&gt;,</span>
+<span class="co">#&gt; #   master &lt;dbl&gt;, prof &lt;dbl&gt;, doc &lt;dbl&gt;, commute_less10 &lt;dbl&gt;,</span>
+<span class="co">#&gt; #   commute1030 &lt;dbl&gt;, commute3060 &lt;dbl&gt;, commute6090 &lt;dbl&gt;,</span>
+<span class="co">#&gt; #   commute_over90 &lt;dbl&gt;, by_auto &lt;dbl&gt;, by_pub_trans &lt;dbl&gt;, by_bike &lt;dbl&gt;,</span>
+<span class="co">#&gt; #   by_walk &lt;dbl&gt;, total_house_units &lt;dbl&gt;, vacant_unit_per &lt;dbl&gt;,</span>
+<span class="co">#&gt; #   renters_per &lt;dbl&gt;, home_own_per &lt;dbl&gt;, med_gross_rent &lt;dbl&gt;,</span>
+<span class="co">#&gt; #   med_home_val &lt;dbl&gt;, med_yr_built_raw &lt;dbl&gt;, med_yr_built &lt;chr&gt;,</span>
+<span class="co">#&gt; #   med_yr_moved_inraw &lt;dbl&gt;, med_yr_rent_moved_in &lt;dbl&gt;, area_acres &lt;dbl&gt;,</span>
+<span class="co">#&gt; #   town_id &lt;dbl&gt;, town &lt;chr&gt;, fips_stco &lt;dbl&gt;, county &lt;chr&gt;, area_acr_1 &lt;dbl&gt;,</span>
+<span class="co">#&gt; #   m_atown &lt;chr&gt;</span></code></pre></div>
 </div>
 <div id="revisiting-commmuting" class="section level2" number="10.4">
-<h2><span class="header-section-number">10.4</span> Revisiting commmuting</h2>
+<h2>
+<span class="header-section-number">10.4</span> Revisiting commmuting<a class="anchor" aria-label="anchor" href="#revisiting-commmuting"><i class="fas fa-link"></i></a>
+</h2>
 <p>We’ve just spent a fair amount of time learning how to work with our data. It’s now time to return to the problem at hand. We still haven’t addressed what data will be of use to our partner at the non-profit. While urban informatics is largely technical, it is still mostly intellectual. We have to think through problems and be methodical with our data selection and curation. We have to think about what our data tells us and why it is important.</p>
 <p>During these exercises, I hope you were looking at the data and thinking about what may be helpful to the non-profit. Again, the goal is to provide them with what is useful, but not more than they need.</p>
 <div id="exercise-1" class="section level3" number="10.4.1">
-<h3><span class="header-section-number">10.4.1</span> Exercise</h3>
+<h3>
+<span class="header-section-number">10.4.1</span> Exercise<a class="anchor" aria-label="anchor" href="#exercise-1"><i class="fas fa-link"></i></a>
+</h3>
 <p>It is now incumbent upon you to curate the data BARI Census Indicator dataset for the non-profit. Refamiliarize yourself with the data. Select a subset of columns that you believe will provide the best insight into commuting behavior in the Greater Boston Area while also providing demographic insight into the the area.</p>
 <p>When making decisions like this, I like to think of a quote from The Master of Disguise:</p>
 <blockquote>
@@ -775,75 +607,61 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </blockquote>
 <p>Save the resultant tibble to an object named <code>commute</code> or something else informative.</p>
 <p>Below is one approach to this question. For this, I have selected all columns pertaining to commute time (columns that start with <code>commute</code>), the method by which people commute (begin with <code>by</code>), medisan household income, and the name of the census tract. The name of the census tract will be helpful for identifying “where”.</p>
-<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="general-data-manipulation.html#cb58-1"></a>commute &lt;-<span class="st"> </span><span class="kw">select</span>(acs_raw,</span>
-<span id="cb58-2"><a href="general-data-manipulation.html#cb58-2"></a>                  county,</span>
-<span id="cb58-3"><a href="general-data-manipulation.html#cb58-3"></a>                  hs_grad, bach, master,</span>
-<span id="cb58-4"><a href="general-data-manipulation.html#cb58-4"></a>                  <span class="kw">starts_with</span>(<span class="st">&quot;commute&quot;</span>),</span>
-<span id="cb58-5"><a href="general-data-manipulation.html#cb58-5"></a>                  <span class="kw">starts_with</span>(<span class="st">&quot;by&quot;</span>),</span>
-<span id="cb58-6"><a href="general-data-manipulation.html#cb58-6"></a>                  med_house_income)</span></code></pre></div>
+<div class="sourceCode" id="cb62"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">commute</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">acs_raw</span>,
+                  <span class="va">county</span>,
+                  <span class="va">hs_grad</span>, <span class="va">bach</span>, <span class="va">master</span>,
+                  <span class="fu"><a href="https://tidyselect.r-lib.org/reference/starts_with.html">starts_with</a></span><span class="op">(</span><span class="st">"commute"</span><span class="op">)</span>,
+                  <span class="fu"><a href="https://tidyselect.r-lib.org/reference/starts_with.html">starts_with</a></span><span class="op">(</span><span class="st">"by"</span><span class="op">)</span>,
+                  <span class="va">med_house_income</span><span class="op">)</span></code></pre></div>
 <p>[^indicators]</p>
 
 </div>
 </div>
 </div>
-            </section>
+  <div class="chapter-nav">
+<div class="prev"><a href="exploratory-visual-analysis.html"><span class="header-section-number">9</span> Exploratory Visual Analysis</a></div>
+<div class="next"><a href="thats-too-much-data.html"><span class="header-section-number">11</span> That’s too much data</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#general-data-manipulation"><span class="header-section-number">10</span> General data manipulation</a></li>
+<li><a class="nav-link" href="#scenario"><span class="header-section-number">10.1</span> Scenario</a></li>
+<li>
+<a class="nav-link" href="#getting-physical-with-the-data"><span class="header-section-number">10.2</span> Getting physical with the data</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#selecting"><span class="header-section-number">10.2.1</span> select()ing</a></li>
+<li><a class="nav-link" href="#selecting-exercises"><span class="header-section-number">10.2.2</span> select()ing exercises</a></li>
+</ul>
+</li>
+<li><a class="nav-link" href="#selecting-rows"><span class="header-section-number">10.3</span> Selecting Rows</a></li>
+<li>
+<a class="nav-link" href="#revisiting-commmuting"><span class="header-section-number">10.4</span> Revisiting commmuting</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#exercise-1"><span class="header-section-number">10.4.1</span> Exercise</a></li></ul>
+</li>
+</ul>
 
-          </div>
-        </div>
-      </div>
-<a href="exploratory-visual-analysis.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="thats-too-much-data.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
-    </div>
+      <div class="book-extra">
+        <ul class="list-unstyled">
+          
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Urban Informatics Toolkit</strong>" was written by Josiah Parry. It was last built on 2020-12-12.</p>
   </div>
-<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
-<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
-<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
-<script>
-gitbook.require(["gitbook"], function(gitbook) {
-gitbook.start({
-"sharing": {
-"github": false,
-"facebook": true,
-"twitter": true,
-"linkedin": false,
-"weibo": false,
-"instapaper": false,
-"vk": false,
-"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
-},
-"fontsettings": {
-"theme": "white",
-"family": "sans",
-"size": 2
-},
-"edit": {
-"link": null,
-"text": null
-},
-"history": {
-"link": null,
-"text": null
-},
-"view": {
-"link": null,
-"text": null
-},
-"download": ["urban-commons-toolkit.pdf", "urban-commons-toolkit.epub"],
-"toc": {
-"collapse": "section"
-}
-});
-});
-</script>
 
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
@@ -857,5 +675,4 @@ gitbook.start({
   })();
 </script>
 </body>
-
 </html>

@@ -1,322 +1,111 @@
 <!DOCTYPE html>
-<html lang="" xml:lang="">
+<html lang="en">
 <head>
-
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 24 Multiple data sets | Urban Informatics Toolkit</title>
-  <meta name="description" content="A hands on introduction approach to analyzing the urban Commons." />
-  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
-
-  <meta property="og:title" content="Chapter 24 Multiple data sets | Urban Informatics Toolkit" />
-  <meta property="og:type" content="book" />
-  
-  
-  <meta property="og:description" content="A hands on introduction approach to analyzing the urban Commons." />
-  
-
-  <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 24 Multiple data sets | Urban Informatics Toolkit" />
-  
-  <meta name="twitter:description" content="A hands on introduction approach to analyzing the urban Commons." />
-  
-
-<meta name="author" content="Josiah Parry" />
-
-
-<meta name="date" content="2020-04-24" />
-
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-  
-  
-<link rel="prev" href="visualization-review.html"/>
-<link rel="next" href="statistics.html"/>
-<script src="libs/header-attrs-2.1/header-attrs.js"></script>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
-<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
-
-
-
-
-
-
-
-
-
-
-
-<style type="text/css">
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-</style>
-
-<link rel="stylesheet" href="style.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Chapter 24 Multiple data sets | Urban Informatics Toolkit</title>
+<meta name="author" content="Josiah Parry">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.2"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.5.3/header-attrs.js"></script><script src="libs/jquery-3.5.1/jquery-3.5.1.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.5.3/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.5.3/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.2.3.9000/tabs.js"></script><script src="libs/bs3compat-0.2.3.9000/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script><script src="https://cdn.jsdelivr.net/autocomplete.js/0/autocomplete.jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/mark.js@8.11.1/dist/mark.min.js"></script><!-- CSS -->
 </head>
+<body data-spy="scroll" data-target="#toc">
 
-<body>
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
 
-
-
-  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
-
-    <div class="book-summary">
-      <nav role="navigation">
-
-<ul class="summary">
-<li><a href="./">Urban Informatics Toolkit</a></li>
-
-<li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Welcome</a>
-<ul>
-<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#structure-of-the-book"><i class="fa fa-check"></i><b>1.1</b> Structure of the book</a></li>
-<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#considerations"><i class="fa fa-check"></i><b>1.2</b> Considerations</a></li>
-</ul></li>
-<li class="part"><span><b>I Foundations of Urban Informatics</b></span></li>
-<li class="chapter" data-level="2" data-path="the-utility-and-danger-of-big-data.html"><a href="the-utility-and-danger-of-big-data.html"><i class="fa fa-check"></i><b>2</b> The Utility and Danger of Big Data</a></li>
-<li class="chapter" data-level="3" data-path="data-in-the-municipal-context.html"><a href="data-in-the-municipal-context.html"><i class="fa fa-check"></i><b>3</b> Data in the municipal context</a></li>
-<li class="chapter" data-level="4" data-path="approaches-to-and-schools-of-urban-informatics.html"><a href="approaches-to-and-schools-of-urban-informatics.html"><i class="fa fa-check"></i><b>4</b> Approaches to and Schools of Urban Informatics</a>
-<ul>
-<li class="chapter" data-level="4.1" data-path="approaches-to-and-schools-of-urban-informatics.html"><a href="approaches-to-and-schools-of-urban-informatics.html#scientific-approaches"><i class="fa fa-check"></i><b>4.1</b> Scientific approaches</a></li>
-<li class="chapter" data-level="4.2" data-path="approaches-to-and-schools-of-urban-informatics.html"><a href="approaches-to-and-schools-of-urban-informatics.html#the-chicago-school"><i class="fa fa-check"></i><b>4.2</b> The Chicago School</a></li>
-<li class="chapter" data-level="4.3" data-path="approaches-to-and-schools-of-urban-informatics.html"><a href="approaches-to-and-schools-of-urban-informatics.html#complexity-and-santa-fe-institute"><i class="fa fa-check"></i><b>4.3</b> Complexity and Santa Fe Institute</a></li>
-<li class="chapter" data-level="4.4" data-path="approaches-to-and-schools-of-urban-informatics.html"><a href="approaches-to-and-schools-of-urban-informatics.html#a-hybrid-approach"><i class="fa fa-check"></i><b>4.4</b> A Hybrid Approach</a></li>
-</ul></li>
-<li class="chapter" data-level="5" data-path="ecometrics.html"><a href="ecometrics.html"><i class="fa fa-check"></i><b>5</b> Ecometrics</a>
-<ul>
-<li class="chapter" data-level="5.1" data-path="ecometrics.html"><a href="ecometrics.html#broken-windows-theory"><i class="fa fa-check"></i><b>5.1</b> Broken Windows Theory</a></li>
-<li class="chapter" data-level="5.2" data-path="ecometrics.html"><a href="ecometrics.html#quantifying-disorder"><i class="fa fa-check"></i><b>5.2</b> Quantifying Disorder</a></li>
-</ul></li>
-<li class="part"><span><b>II Toolkit Foundations</b></span></li>
-<li class="chapter" data-level="6" data-path="the-basics.html"><a href="the-basics.html"><i class="fa fa-check"></i><b>6</b> The basics</a>
-<ul>
-<li class="chapter" data-level="6.1" data-path="the-basics.html"><a href="the-basics.html#what-is-r-and-why-do-i-care"><i class="fa fa-check"></i><b>6.1</b> What is R and why do I care?</a></li>
-<li class="chapter" data-level="6.2" data-path="the-basics.html"><a href="the-basics.html#the-rstudio-ide"><i class="fa fa-check"></i><b>6.2</b> The RStudio IDE</a></li>
-<li class="chapter" data-level="6.3" data-path="the-basics.html"><a href="the-basics.html#installing-r-rstudio"><i class="fa fa-check"></i><b>6.3</b> Installing R &amp; RStudio</a></li>
-<li class="chapter" data-level="6.4" data-path="the-basics.html"><a href="the-basics.html#preventative-care"><i class="fa fa-check"></i><b>6.4</b> Preventative Care</a></li>
-<li class="chapter" data-level="6.5" data-path="the-basics.html"><a href="the-basics.html#before-we-embark"><i class="fa fa-check"></i><b>6.5</b> Before we embark</a></li>
-<li class="chapter" data-level="6.6" data-path="the-basics.html"><a href="the-basics.html#getting-help"><i class="fa fa-check"></i><b>6.6</b> Getting Help</a></li>
-<li class="chapter" data-level="6.7" data-path="the-basics.html"><a href="the-basics.html#reminders"><i class="fa fa-check"></i><b>6.7</b> Reminders</a></li>
-</ul></li>
-<li class="chapter" data-level="7" data-path="r-as-a-calculator.html"><a href="r-as-a-calculator.html"><i class="fa fa-check"></i><b>7</b> R as a calculator</a>
-<ul>
-<li class="chapter" data-level="7.1" data-path="r-as-a-calculator.html"><a href="r-as-a-calculator.html#arithmetic-operators"><i class="fa fa-check"></i><b>7.1</b> Arithmetic Operators</a></li>
-<li class="chapter" data-level="7.2" data-path="r-as-a-calculator.html"><a href="r-as-a-calculator.html#variable-assignment"><i class="fa fa-check"></i><b>7.2</b> Variable assignment</a></li>
-<li class="chapter" data-level="7.3" data-path="r-as-a-calculator.html"><a href="r-as-a-calculator.html#functions"><i class="fa fa-check"></i><b>7.3</b> Functions</a></li>
-<li class="chapter" data-level="7.4" data-path="r-as-a-calculator.html"><a href="r-as-a-calculator.html#extensions-to-r"><i class="fa fa-check"></i><b>7.4</b> Extensions to R</a></li>
-<li class="chapter" data-level="7.5" data-path="r-as-a-calculator.html"><a href="r-as-a-calculator.html#loading-packages"><i class="fa fa-check"></i><b>7.5</b> Loading Packages</a></li>
-<li class="chapter" data-level="7.6" data-path="r-as-a-calculator.html"><a href="r-as-a-calculator.html#whats-next"><i class="fa fa-check"></i><b>7.6</b> What’s next?</a></li>
-</ul></li>
-<li class="chapter" data-level="8" data-path="reading-data.html"><a href="reading-data.html"><i class="fa fa-check"></i><b>8</b> Reading data</a>
-<ul>
-<li class="chapter" data-level="8.1" data-path="reading-data.html"><a href="reading-data.html#background"><i class="fa fa-check"></i><b>8.1</b> Background</a></li>
-<li class="chapter" data-level="8.2" data-path="reading-data.html"><a href="reading-data.html#actually-reading-data"><i class="fa fa-check"></i><b>8.2</b> Actually Reading Data</a></li>
-<li class="chapter" data-level="8.3" data-path="reading-data.html"><a href="reading-data.html#other-common-data-formats"><i class="fa fa-check"></i><b>8.3</b> Other common data formats</a></li>
-</ul></li>
-<li class="chapter" data-level="9" data-path="exploratory-visual-analysis.html"><a href="exploratory-visual-analysis.html"><i class="fa fa-check"></i><b>9</b> Exploratory Visual Analysis</a>
-<ul>
-<li class="chapter" data-level="9.1" data-path="exploratory-visual-analysis.html"><a href="exploratory-visual-analysis.html#the-american-community-survey"><i class="fa fa-check"></i><b>9.1</b> The American Community Survey</a></li>
-<li class="chapter" data-level="9.2" data-path="exploratory-visual-analysis.html"><a href="exploratory-visual-analysis.html#a-first-visualization"><i class="fa fa-check"></i><b>9.2</b> A first visualization</a></li>
-</ul></li>
-<li class="chapter" data-level="10" data-path="general-data-manipulation.html"><a href="general-data-manipulation.html"><i class="fa fa-check"></i><b>10</b> General data manipulation</a>
-<ul>
-<li class="chapter" data-level="10.1" data-path="general-data-manipulation.html"><a href="general-data-manipulation.html#scenario"><i class="fa fa-check"></i><b>10.1</b> Scenario</a></li>
-<li class="chapter" data-level="10.2" data-path="general-data-manipulation.html"><a href="general-data-manipulation.html#getting-physical-with-the-data"><i class="fa fa-check"></i><b>10.2</b> Getting physical with the data</a></li>
-<li class="chapter" data-level="10.3" data-path="general-data-manipulation.html"><a href="general-data-manipulation.html#selecting-rows"><i class="fa fa-check"></i><b>10.3</b> Selecting Rows</a></li>
-<li class="chapter" data-level="10.4" data-path="general-data-manipulation.html"><a href="general-data-manipulation.html#revisiting-commmuting"><i class="fa fa-check"></i><b>10.4</b> Revisiting commmuting</a></li>
-</ul></li>
-<li class="chapter" data-level="11" data-path="thats-too-much-data.html"><a href="thats-too-much-data.html"><i class="fa fa-check"></i><b>11</b> That’s <em>too much</em> data</a>
-<ul>
-<li class="chapter" data-level="11.1" data-path="thats-too-much-data.html"><a href="thats-too-much-data.html#filtering"><i class="fa fa-check"></i><b>11.1</b> <code>filter()</code>ing</a></li>
-<li class="chapter" data-level="11.2" data-path="thats-too-much-data.html"><a href="thats-too-much-data.html#logical-operators"><i class="fa fa-check"></i><b>11.2</b> Logical operators</a></li>
-<li class="chapter" data-level="11.3" data-path="thats-too-much-data.html"><a href="thats-too-much-data.html#defining-the-greater-boston-area"><i class="fa fa-check"></i><b>11.3</b> Defining the Greater Boston Area</a></li>
-</ul></li>
-<li class="chapter" data-level="12" data-path="the-pipe.html"><a href="the-pipe.html"><i class="fa fa-check"></i><b>12</b> The pipe <code>%&gt;%</code></a>
-<ul>
-<li class="chapter" data-level="12.1" data-path="the-pipe.html"><a href="the-pipe.html#applying-the-pipe"><i class="fa fa-check"></i><b>12.1</b> Applying the pipe</a></li>
-<li class="chapter" data-level="12.2" data-path="the-pipe.html"><a href="the-pipe.html#revisiting-our-scenario"><i class="fa fa-check"></i><b>12.2</b> Revisiting our scenario</a></li>
-</ul></li>
-<li class="chapter" data-level="13" data-path="creating-new-measures.html"><a href="creating-new-measures.html"><i class="fa fa-check"></i><b>13</b> Creating new measures</a></li>
-<li class="chapter" data-level="14" data-path="data-structures.html"><a href="data-structures.html"><i class="fa fa-check"></i><b>14</b> Data Structures</a>
-<ul>
-<li class="chapter" data-level="14.1" data-path="data-structures.html"><a href="data-structures.html#atomic-vectors"><i class="fa fa-check"></i><b>14.1</b> Atomic Vectors</a></li>
-<li class="chapter" data-level="14.2" data-path="data-structures.html"><a href="data-structures.html#data-frames"><i class="fa fa-check"></i><b>14.2</b> Data Frames</a></li>
-<li class="chapter" data-level="14.3" data-path="data-structures.html"><a href="data-structures.html#lists"><i class="fa fa-check"></i><b>14.3</b> Lists</a></li>
-</ul></li>
-<li class="chapter" data-level="15" data-path="summary-statistics.html"><a href="summary-statistics.html"><i class="fa fa-check"></i><b>15</b> Summary statistics</a></li>
-<li class="chapter" data-level="16" data-path="summarizing-the-tidy-way.html"><a href="summarizing-the-tidy-way.html"><i class="fa fa-check"></i><b>16</b> Summarizing the tidy way</a></li>
-<li class="chapter" data-level="17" data-path="toolkit-review.html"><a href="toolkit-review.html"><i class="fa fa-check"></i><b>17</b> Toolkit review</a></li>
-<li class="part"><span><b>III Vizualization Strategies</b></span></li>
-<li class="chapter" data-level="18" data-path="layered-i.html"><a href="layered-i.html"><i class="fa fa-check"></i><b>18</b> Grammar of layered graphics I</a>
-<ul>
-<li class="chapter" data-level="18.1" data-path="layered-i.html"><a href="layered-i.html#the-grammar-of-layered-graphics"><i class="fa fa-check"></i><b>18.1</b> The Grammar of Layered Graphics</a></li>
-<li class="chapter" data-level="18.2" data-path="layered-i.html"><a href="layered-i.html#layers-and-defaults"><i class="fa fa-check"></i><b>18.2</b> Layers and defaults</a></li>
-</ul></li>
-<li class="chapter" data-level="19" data-path="visualizing-trends-and-relationships.html"><a href="visualizing-trends-and-relationships.html"><i class="fa fa-check"></i><b>19</b> Visualizing Trends and Relationships</a>
-<ul>
-<li class="chapter" data-level="19.1" data-path="visualizing-trends-and-relationships.html"><a href="visualizing-trends-and-relationships.html#univariate-visualizations"><i class="fa fa-check"></i><b>19.1</b> Univariate visualizations</a></li>
-<li class="chapter" data-level="19.2" data-path="visualizing-trends-and-relationships.html"><a href="visualizing-trends-and-relationships.html#bivariate-visualizations"><i class="fa fa-check"></i><b>19.2</b> Bivariate visualizations</a></li>
-<li class="chapter" data-level="19.3" data-path="visualizing-trends-and-relationships.html"><a href="visualizing-trends-and-relationships.html#review"><i class="fa fa-check"></i><b>19.3</b> Review:</a></li>
-</ul></li>
-<li class="chapter" data-level="20" data-path="grammer-of-layered-graphics-ii.html"><a href="grammer-of-layered-graphics-ii.html"><i class="fa fa-check"></i><b>20</b> Grammer of layered graphics II</a>
-<ul>
-<li class="chapter" data-level="20.1" data-path="grammer-of-layered-graphics-ii.html"><a href="grammer-of-layered-graphics-ii.html#scales"><i class="fa fa-check"></i><b>20.1</b> Scales</a></li>
-<li class="chapter" data-level="20.2" data-path="grammer-of-layered-graphics-ii.html"><a href="grammer-of-layered-graphics-ii.html#coordinates"><i class="fa fa-check"></i><b>20.2</b> Coordinates</a></li>
-<li class="chapter" data-level="20.3" data-path="grammer-of-layered-graphics-ii.html"><a href="grammer-of-layered-graphics-ii.html#facets"><i class="fa fa-check"></i><b>20.3</b> Facets</a></li>
-</ul></li>
-<li class="chapter" data-level="21" data-path="visualizing-beyond-2-dimensions.html"><a href="visualizing-beyond-2-dimensions.html"><i class="fa fa-check"></i><b>21</b> Visualizing beyond 2-dimensions</a>
-<ul>
-<li class="chapter" data-level="21.1" data-path="visualizing-beyond-2-dimensions.html"><a href="visualizing-beyond-2-dimensions.html#color"><i class="fa fa-check"></i><b>21.1</b> Color</a></li>
-<li class="chapter" data-level="21.2" data-path="visualizing-beyond-2-dimensions.html"><a href="visualizing-beyond-2-dimensions.html#shape-and-size"><i class="fa fa-check"></i><b>21.2</b> Shape and Size</a></li>
-</ul></li>
-<li class="chapter" data-level="22" data-path="visualizing-through-time.html"><a href="visualizing-through-time.html"><i class="fa fa-check"></i><b>22</b> Visualizing through time</a>
-<ul>
-<li class="chapter" data-level="22.1" data-path="visualizing-through-time.html"><a href="visualizing-through-time.html#working-with-dates"><i class="fa fa-check"></i><b>22.1</b> Working with dates</a></li>
-<li class="chapter" data-level="22.2" data-path="visualizing-through-time.html"><a href="visualizing-through-time.html#standard-visual-approach"><i class="fa fa-check"></i><b>22.2</b> Standard visual approach</a></li>
-<li class="chapter" data-level="22.3" data-path="visualizing-through-time.html"><a href="visualizing-through-time.html#animation-as-time"><i class="fa fa-check"></i><b>22.3</b> Animation as time</a></li>
-</ul></li>
-<li class="chapter" data-level="23" data-path="visualization-review.html"><a href="visualization-review.html"><i class="fa fa-check"></i><b>23</b> Visualization Review</a></li>
-<li class="part"><span><b>IV Expanding the Toolkit</b></span></li>
-<li class="chapter" data-level="24" data-path="multiple-data-sets.html"><a href="multiple-data-sets.html"><i class="fa fa-check"></i><b>24</b> Multiple data sets</a>
-<ul>
-<li class="chapter" data-level="24.1" data-path="multiple-data-sets.html"><a href="multiple-data-sets.html#exercise-2"><i class="fa fa-check"></i><b>24.1</b> Exercise</a></li>
-</ul></li>
-<li class="chapter" data-level="25" data-path="statistics.html"><a href="statistics.html"><i class="fa fa-check"></i><b>25</b> Statistics</a>
-<ul>
-<li class="chapter" data-level="25.1" data-path="statistics.html"><a href="statistics.html#the-data-1"><i class="fa fa-check"></i><b>25.1</b> The data</a></li>
-<li class="chapter" data-level="25.2" data-path="statistics.html"><a href="statistics.html#the-formula-interface"><i class="fa fa-check"></i><b>25.2</b> The formula interface</a></li>
-<li class="chapter" data-level="25.3" data-path="statistics.html"><a href="statistics.html#t-tests"><i class="fa fa-check"></i><b>25.3</b> T-tests</a></li>
-<li class="chapter" data-level="25.4" data-path="statistics.html"><a href="statistics.html#anova"><i class="fa fa-check"></i><b>25.4</b> ANOVA</a></li>
-<li class="chapter" data-level="25.5" data-path="statistics.html"><a href="statistics.html#linear-regression"><i class="fa fa-check"></i><b>25.5</b> Linear regression</a></li>
-</ul></li>
-<li class="chapter" data-level="26" data-path="spatial-analysis.html"><a href="spatial-analysis.html"><i class="fa fa-check"></i><b>26</b> Spatial Analysis</a>
-<ul>
-<li class="chapter" data-level="26.1" data-path="spatial-analysis.html"><a href="spatial-analysis.html#types-of-spatial-data"><i class="fa fa-check"></i><b>26.1</b> Types of spatial data</a></li>
-<li class="chapter" data-level="26.2" data-path="spatial-analysis.html"><a href="spatial-analysis.html#working-with-spatial-data"><i class="fa fa-check"></i><b>26.2</b> Working with spatial data</a></li>
-<li class="chapter" data-level="26.3" data-path="spatial-analysis.html"><a href="spatial-analysis.html#creating-simple-features-from-a-tibble"><i class="fa fa-check"></i><b>26.3</b> Creating simple features from a tibble</a></li>
-<li class="chapter" data-level="26.4" data-path="spatial-analysis.html"><a href="spatial-analysis.html#plotting-sf-objects-with-ggplot"><i class="fa fa-check"></i><b>26.4</b> Plotting sf objects with ggplot</a></li>
-<li class="chapter" data-level="26.5" data-path="spatial-analysis.html"><a href="spatial-analysis.html#connecting-points-to-polygons"><i class="fa fa-check"></i><b>26.5</b> Connecting points to polygons</a></li>
-</ul></li>
-<li class="divider"></li>
-<li><a href="https://github.com/josiahparry/urban-informatics-toolkit" target="blank">GitHub</a></li>
-
-</ul>
-
-      </nav>
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">Urban Informatics Toolkit</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
     </div>
 
-    <div class="book-body">
-      <div class="body-inner">
-        <div class="book-header" role="navigation">
-          <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Urban Informatics Toolkit</a>
-          </h1>
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html"><span class="header-section-number">1</span> Welcome</a></li>
+<li class="book-part">Foundations of Urban Informatics</li>
+<li><a class="" href="the-utility-and-danger-of-big-data.html"><span class="header-section-number">2</span> The Utility and Danger of Big Data</a></li>
+<li><a class="" href="data-in-the-municipal-context.html"><span class="header-section-number">3</span> Data in the municipal context</a></li>
+<li><a class="" href="approaches-to-and-schools-of-urban-informatics.html"><span class="header-section-number">4</span> Approaches to and Schools of Urban Informatics</a></li>
+<li><a class="" href="ecometrics.html"><span class="header-section-number">5</span> Ecometrics</a></li>
+<li class="book-part">Toolkit Foundations</li>
+<li><a class="" href="the-basics.html"><span class="header-section-number">6</span> The basics</a></li>
+<li><a class="" href="r-as-a-calculator.html"><span class="header-section-number">7</span> R as a calculator</a></li>
+<li><a class="" href="reading-data.html"><span class="header-section-number">8</span> Reading data</a></li>
+<li><a class="" href="exploratory-visual-analysis.html"><span class="header-section-number">9</span> Exploratory Visual Analysis</a></li>
+<li><a class="" href="general-data-manipulation.html"><span class="header-section-number">10</span> General data manipulation</a></li>
+<li><a class="" href="thats-too-much-data.html"><span class="header-section-number">11</span> That’s too much data</a></li>
+<li><a class="" href="the-pipe.html"><span class="header-section-number">12</span> The pipe %&gt;%</a></li>
+<li><a class="" href="creating-new-measures.html"><span class="header-section-number">13</span> Creating new measures</a></li>
+<li><a class="" href="data-structures.html"><span class="header-section-number">14</span> Data Structures</a></li>
+<li><a class="" href="summary-statistics.html"><span class="header-section-number">15</span> Summary statistics</a></li>
+<li><a class="" href="summarizing-the-tidy-way.html"><span class="header-section-number">16</span> Summarizing the tidy way</a></li>
+<li><a class="" href="toolkit-review.html"><span class="header-section-number">17</span> Toolkit review</a></li>
+<li class="book-part">Vizualization Strategies</li>
+<li><a class="" href="layered-i.html"><span class="header-section-number">18</span> Grammar of layered graphics I</a></li>
+<li><a class="" href="visualizing-trends-and-relationships.html"><span class="header-section-number">19</span> Visualizing Trends and Relationships</a></li>
+<li><a class="" href="grammer-of-layered-graphics-ii.html"><span class="header-section-number">20</span> Grammer of layered graphics II</a></li>
+<li><a class="" href="visualizing-beyond-2-dimensions.html"><span class="header-section-number">21</span> Visualizing beyond 2-dimensions</a></li>
+<li><a class="" href="visualizing-through-time.html"><span class="header-section-number">22</span> Visualizing through time</a></li>
+<li><a class="" href="visualization-review.html"><span class="header-section-number">23</span> Visualization Review</a></li>
+<li class="book-part">Expanding the Toolkit</li>
+<li><a class="active" href="multiple-data-sets.html"><span class="header-section-number">24</span> Multiple data sets</a></li>
+<li><a class="" href="statistics.html"><span class="header-section-number">25</span> Statistics</a></li>
+<li><a class="" href="spatial-analysis.html"><span class="header-section-number">26</span> Spatial Analysis</a></li>
+</ul>
+
+        <div class="book-extra">
+          
         </div>
-
-        <div class="page-wrapper" tabindex="-1" role="main">
-          <div class="page-inner">
-
-            <section class="normal" id="section-">
-<div id="multiple-data-sets" class="section level1" number="24">
-<h1><span class="header-section-number">Chapter 24</span> Multiple data sets</h1>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="multiple-data-sets" class="section level1" number="24">
+<h1>
+<span class="header-section-number">24</span> Multiple data sets<a class="anchor" aria-label="anchor" href="#multiple-data-sets"><i class="fas fa-link"></i></a>
+</h1>
 <p>Many times working with just one data set will not suffice. More often than not the data that we will be working with be will need to be supplemented by other data sets. These datasets have a shared relation which are what enables us to <strong>join</strong> them together. A join is a way of combining the columns between two sets of data while ensuring the rows are properly aligned.</p>
 <p>The relationship that joins these tables together are expressed in the data through what is called a <strong>common identifier</strong>. This a variable exists in both datasets—perhaps, with a different name—and can be used as a reference to associate rows from each table together.</p>
 <p>Recall to our definition of tidy data. The definition that we used characterized the data inside of a single table. There is actually another rule: “each observational unit forms a table.” So, in our previous definition a row was a single observation. When we extend the definition as such this is still the case but we have to create distinctions between “observational units[s].”</p>
-<p>To explore this concept we will use data about Airbnb listings in Boston. These data come from <a href="http://insideairbnb.com">Inside Airbnb</a>. Inside Airbnb collects Airbnb’s public listing and makes them available through a “non-commercial set of tools and data that allows you to explore how Airbnb is really being used in cities around the world”<a href="#fn72" class="footnote-ref" id="fnref72"><sup>72</sup></a>.</p>
+<p>To explore this concept we will use data about Airbnb listings in Boston. These data come from <a href="http://insideairbnb.com">Inside Airbnb</a>. Inside Airbnb collects Airbnb’s public listing and makes them available through a “non-commercial set of tools and data that allows you to explore how Airbnb is really being used in cities around the world”<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Inside Airbnb. &lt;a href="http://insideairbnb.com/about.html" class="uri"&gt;http://insideairbnb.com/about.html&lt;/a&gt;.&lt;/p&gt;'><sup>72</sup></a>.</p>
 <p>Inside Airbnb data are another example of harnessing naturally occurring data. The listings are not generated with the intent of <em>being</em> data, but by the virtue of their existence, they become data. We are able to harness them to learn about the shifting neighborhood dynamic of cities. They can tell us something about short term rentals in a locale and about where people may be visiting and when.</p>
 <p>We will first look at two data sets: <code>listings</code>, and <code>hosts</code>.</p>
-<div class="sourceCode" id="cb278"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb278-1"><a href="multiple-data-sets.html#cb278-1"></a>listings &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data/airbnb/listings.csv&quot;</span>)</span>
-<span id="cb278-2"><a href="multiple-data-sets.html#cb278-2"></a></span>
-<span id="cb278-3"><a href="multiple-data-sets.html#cb278-3"></a><span class="kw">glimpse</span>(listings)</span>
-<span id="cb278-4"><a href="multiple-data-sets.html#cb278-4"></a><span class="co">#&gt; Rows: 3,799</span></span>
-<span id="cb278-5"><a href="multiple-data-sets.html#cb278-5"></a><span class="co">#&gt; Columns: 7</span></span>
-<span id="cb278-6"><a href="multiple-data-sets.html#cb278-6"></a><span class="co">#&gt; $ id               &lt;dbl&gt; 3781, 5506, 6695, 8789, 10730, 10813, 10986, 16384, …</span></span>
-<span id="cb278-7"><a href="multiple-data-sets.html#cb278-7"></a><span class="co">#&gt; $ neighborhood     &lt;chr&gt; &quot;East Boston&quot;, &quot;Roxbury&quot;, &quot;Roxbury&quot;, &quot;Downtown&quot;, &quot;Do…</span></span>
-<span id="cb278-8"><a href="multiple-data-sets.html#cb278-8"></a><span class="co">#&gt; $ room_type        &lt;chr&gt; &quot;Entire home/apt&quot;, &quot;Entire home/apt&quot;, &quot;Entire home/a…</span></span>
-<span id="cb278-9"><a href="multiple-data-sets.html#cb278-9"></a><span class="co">#&gt; $ price            &lt;dbl&gt; 125, 145, 169, 99, 150, 179, 125, 50, 154, 115, 148,…</span></span>
-<span id="cb278-10"><a href="multiple-data-sets.html#cb278-10"></a><span class="co">#&gt; $ minimum_nights   &lt;dbl&gt; 28, 3, 3, 91, 91, 91, 91, 91, 29, 1, 2, 2, 2, 6, 3, …</span></span>
-<span id="cb278-11"><a href="multiple-data-sets.html#cb278-11"></a><span class="co">#&gt; $ availability_365 &lt;dbl&gt; 68, 322, 274, 247, 29, 0, 364, 365, 304, 285, 62, 24…</span></span>
-<span id="cb278-12"><a href="multiple-data-sets.html#cb278-12"></a><span class="co">#&gt; $ host_id          &lt;dbl&gt; 4804, 8229, 8229, 26988, 26988, 38997, 38997, 23078,…</span></span></code></pre></div>
-<div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb279-1"><a href="multiple-data-sets.html#cb279-1"></a>hosts &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data/airbnb/hosts.csv&quot;</span>)</span>
-<span id="cb279-2"><a href="multiple-data-sets.html#cb279-2"></a></span>
-<span id="cb279-3"><a href="multiple-data-sets.html#cb279-3"></a><span class="kw">glimpse</span>(hosts)</span>
-<span id="cb279-4"><a href="multiple-data-sets.html#cb279-4"></a><span class="co">#&gt; Rows: 1,335</span></span>
-<span id="cb279-5"><a href="multiple-data-sets.html#cb279-5"></a><span class="co">#&gt; Columns: 9</span></span>
-<span id="cb279-6"><a href="multiple-data-sets.html#cb279-6"></a><span class="co">#&gt; $ id              &lt;dbl&gt; 4804, 8229, 26988, 38997, 23078, 71783, 85130, 85770,…</span></span>
-<span id="cb279-7"><a href="multiple-data-sets.html#cb279-7"></a><span class="co">#&gt; $ name            &lt;chr&gt; &quot;Frank&quot;, &quot;Terry&quot;, &quot;Anne&quot;, &quot;Michelle&quot;, &quot;Eric&quot;, &quot;Lance&quot;…</span></span>
-<span id="cb279-8"><a href="multiple-data-sets.html#cb279-8"></a><span class="co">#&gt; $ since_year      &lt;dbl&gt; 2008, 2009, 2009, 2009, 2009, 2010, 2010, 2010, 2010,…</span></span>
-<span id="cb279-9"><a href="multiple-data-sets.html#cb279-9"></a><span class="co">#&gt; $ since_month     &lt;chr&gt; &quot;12&quot;, &quot;02&quot;, &quot;07&quot;, &quot;09&quot;, &quot;06&quot;, &quot;01&quot;, &quot;02&quot;, &quot;02&quot;, &quot;03&quot;,…</span></span>
-<span id="cb279-10"><a href="multiple-data-sets.html#cb279-10"></a><span class="co">#&gt; $ since_day       &lt;chr&gt; &quot;03&quot;, &quot;19&quot;, &quot;22&quot;, &quot;16&quot;, &quot;24&quot;, &quot;19&quot;, &quot;24&quot;, &quot;26&quot;, &quot;23&quot;,…</span></span>
-<span id="cb279-11"><a href="multiple-data-sets.html#cb279-11"></a><span class="co">#&gt; $ response_rate   &lt;chr&gt; &quot;100%&quot;, &quot;100%&quot;, &quot;100%&quot;, &quot;92%&quot;, &quot;50%&quot;, &quot;98%&quot;, &quot;66%&quot;, &quot;…</span></span>
-<span id="cb279-12"><a href="multiple-data-sets.html#cb279-12"></a><span class="co">#&gt; $ acceptance_rate &lt;chr&gt; &quot;50%&quot;, &quot;100%&quot;, &quot;84%&quot;, &quot;17%&quot;, &quot;N/A&quot;, &quot;98%&quot;, &quot;97%&quot;, &quot;10…</span></span>
-<span id="cb279-13"><a href="multiple-data-sets.html#cb279-13"></a><span class="co">#&gt; $ superhost       &lt;dbl&gt; 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1,…</span></span>
-<span id="cb279-14"><a href="multiple-data-sets.html#cb279-14"></a><span class="co">#&gt; $ n_listings      &lt;dbl&gt; 5, 2, 9, 13, 3, 40, 7, 4, 1, 2, 1, 1, 5, 1, 1, 1, 1, …</span></span></code></pre></div>
+<div class="sourceCode" id="cb282"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">listings</span> <span class="op">&lt;-</span> <span class="fu">read_csv</span><span class="op">(</span><span class="st">"data/airbnb/listings.csv"</span><span class="op">)</span>
+
+<span class="fu"><a href="https://tibble.tidyverse.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">listings</span><span class="op">)</span>
+<span class="co">#&gt; Rows: 3,799</span>
+<span class="co">#&gt; Columns: 7</span>
+<span class="co">#&gt; $ id               &lt;dbl&gt; 3781, 5506, 6695, 8789, 10730, 10813, 10986, 16384, …</span>
+<span class="co">#&gt; $ neighborhood     &lt;chr&gt; "East Boston", "Roxbury", "Roxbury", "Downtown", "Do…</span>
+<span class="co">#&gt; $ room_type        &lt;chr&gt; "Entire home/apt", "Entire home/apt", "Entire home/a…</span>
+<span class="co">#&gt; $ price            &lt;dbl&gt; 125, 145, 169, 99, 150, 179, 125, 50, 154, 115, 148,…</span>
+<span class="co">#&gt; $ minimum_nights   &lt;dbl&gt; 28, 3, 3, 91, 91, 91, 91, 91, 29, 1, 2, 2, 2, 6, 3, …</span>
+<span class="co">#&gt; $ availability_365 &lt;dbl&gt; 68, 322, 274, 247, 29, 0, 364, 365, 304, 285, 62, 24…</span>
+<span class="co">#&gt; $ host_id          &lt;dbl&gt; 4804, 8229, 8229, 26988, 26988, 38997, 38997, 23078,…</span></code></pre></div>
+<div class="sourceCode" id="cb283"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">hosts</span> <span class="op">&lt;-</span> <span class="fu">read_csv</span><span class="op">(</span><span class="st">"data/airbnb/hosts.csv"</span><span class="op">)</span>
+
+<span class="fu"><a href="https://tibble.tidyverse.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">hosts</span><span class="op">)</span>
+<span class="co">#&gt; Rows: 1,335</span>
+<span class="co">#&gt; Columns: 9</span>
+<span class="co">#&gt; $ id              &lt;dbl&gt; 4804, 8229, 26988, 38997, 23078, 71783, 85130, 85770,…</span>
+<span class="co">#&gt; $ name            &lt;chr&gt; "Frank", "Terry", "Anne", "Michelle", "Eric", "Lance"…</span>
+<span class="co">#&gt; $ since_year      &lt;dbl&gt; 2008, 2009, 2009, 2009, 2009, 2010, 2010, 2010, 2010,…</span>
+<span class="co">#&gt; $ since_month     &lt;chr&gt; "12", "02", "07", "09", "06", "01", "02", "02", "03",…</span>
+<span class="co">#&gt; $ since_day       &lt;chr&gt; "03", "19", "22", "16", "24", "19", "24", "26", "23",…</span>
+<span class="co">#&gt; $ response_rate   &lt;chr&gt; "100%", "100%", "100%", "92%", "50%", "98%", "66%", "…</span>
+<span class="co">#&gt; $ acceptance_rate &lt;chr&gt; "50%", "100%", "84%", "17%", "N/A", "98%", "97%", "10…</span>
+<span class="co">#&gt; $ superhost       &lt;dbl&gt; 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1,…</span>
+<span class="co">#&gt; $ n_listings      &lt;dbl&gt; 5, 2, 9, 13, 3, 40, 7, 4, 1, 2, 1, 1, 5, 1, 1, 1, 1, …</span></code></pre></div>
 <p>Notice that the each row of the table is an observation of a different phenomenon. Each observation in <code>listings</code> is rentable dwelling and each row in <code>hosts</code> is a different individual. One host may have multiple listings. This sort of relationship is called <em>one to many</em> meaning that for each host there is one or more listings. This is rather evident in the number of observations in each table—3,799 and 1,335 respectively.</p>
 <p>To associate the host information with the listings information we need to join the two datasets together. Most often the common identifier will be a type of id (often referred to as keys). Identifiers are meant to be unique at the observational unit. If we look at the variables of our tibbles we notice that <code>listings</code> contains <code>host_id</code> and <code>hosts</code> an <code>id</code> column. Fortunately the first two rows of each dataset share identifiers.</p>
 <p>Before we get to joining our datasets, we need to understand the different types of joins that are available to us. When doing joins we consider two tables: one on the left hand side and the other on the right hand side referred to in documentation as <em>x</em> and <em>y</em> respectively. There are a plethora of joins that are possible but I want to keep the focus to four types. These are the left, right, inner, and anti joins.</p>
@@ -326,207 +115,193 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </blockquote>
 <p>Simply, in a left join we will never lose rows from x. If there happens to be no match from y there will be missing values. The reverse is true for the right join. A right join ensures that all rows from y will remain at the end. If there are duplicate matches between x and y each of those will be returned.</p>
 <p>For the sake of example, let’s reduce our data down to the first five rows and only a few columns for each. Hosts data will be stored in the tibble <code>h</code> and listings in <code>l</code>.</p>
-<div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb280-1"><a href="multiple-data-sets.html#cb280-1"></a>h &lt;-<span class="st"> </span><span class="kw">slice</span>(hosts, <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb280-2"><a href="multiple-data-sets.html#cb280-2"></a><span class="st">  </span><span class="kw">select</span>(id, name, n_listings)</span>
-<span id="cb280-3"><a href="multiple-data-sets.html#cb280-3"></a></span>
-<span id="cb280-4"><a href="multiple-data-sets.html#cb280-4"></a>l &lt;-<span class="st"> </span><span class="kw">slice</span>(listings, <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb280-5"><a href="multiple-data-sets.html#cb280-5"></a><span class="st">  </span><span class="kw">select</span>(host_id, price, neighborhood)</span>
-<span id="cb280-6"><a href="multiple-data-sets.html#cb280-6"></a></span>
-<span id="cb280-7"><a href="multiple-data-sets.html#cb280-7"></a>h</span>
-<span id="cb280-8"><a href="multiple-data-sets.html#cb280-8"></a><span class="co">#&gt; # A tibble: 5 x 3</span></span>
-<span id="cb280-9"><a href="multiple-data-sets.html#cb280-9"></a><span class="co">#&gt;      id name     n_listings</span></span>
-<span id="cb280-10"><a href="multiple-data-sets.html#cb280-10"></a><span class="co">#&gt;   &lt;dbl&gt; &lt;chr&gt;         &lt;dbl&gt;</span></span>
-<span id="cb280-11"><a href="multiple-data-sets.html#cb280-11"></a><span class="co">#&gt; 1  4804 Frank             5</span></span>
-<span id="cb280-12"><a href="multiple-data-sets.html#cb280-12"></a><span class="co">#&gt; 2  8229 Terry             2</span></span>
-<span id="cb280-13"><a href="multiple-data-sets.html#cb280-13"></a><span class="co">#&gt; 3 26988 Anne              9</span></span>
-<span id="cb280-14"><a href="multiple-data-sets.html#cb280-14"></a><span class="co">#&gt; 4 38997 Michelle         13</span></span>
-<span id="cb280-15"><a href="multiple-data-sets.html#cb280-15"></a><span class="co">#&gt; 5 23078 Eric              3</span></span>
-<span id="cb280-16"><a href="multiple-data-sets.html#cb280-16"></a>l</span>
-<span id="cb280-17"><a href="multiple-data-sets.html#cb280-17"></a><span class="co">#&gt; # A tibble: 5 x 3</span></span>
-<span id="cb280-18"><a href="multiple-data-sets.html#cb280-18"></a><span class="co">#&gt;   host_id price neighborhood</span></span>
-<span id="cb280-19"><a href="multiple-data-sets.html#cb280-19"></a><span class="co">#&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;       </span></span>
-<span id="cb280-20"><a href="multiple-data-sets.html#cb280-20"></a><span class="co">#&gt; 1    4804   125 East Boston </span></span>
-<span id="cb280-21"><a href="multiple-data-sets.html#cb280-21"></a><span class="co">#&gt; 2    8229   145 Roxbury     </span></span>
-<span id="cb280-22"><a href="multiple-data-sets.html#cb280-22"></a><span class="co">#&gt; 3    8229   169 Roxbury     </span></span>
-<span id="cb280-23"><a href="multiple-data-sets.html#cb280-23"></a><span class="co">#&gt; 4   26988    99 Downtown    </span></span>
-<span id="cb280-24"><a href="multiple-data-sets.html#cb280-24"></a><span class="co">#&gt; 5   26988   150 Downtown</span></span></code></pre></div>
+<div class="sourceCode" id="cb284"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">h</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice</a></span><span class="op">(</span><span class="va">hosts</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">id</span>, <span class="va">name</span>, <span class="va">n_listings</span><span class="op">)</span>
+
+<span class="va">l</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice</a></span><span class="op">(</span><span class="va">listings</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">host_id</span>, <span class="va">price</span>, <span class="va">neighborhood</span><span class="op">)</span>
+
+<span class="va">h</span>
+<span class="co">#&gt; # A tibble: 5 x 3</span>
+<span class="co">#&gt;      id name     n_listings</span>
+<span class="co">#&gt;   &lt;dbl&gt; &lt;chr&gt;         &lt;dbl&gt;</span>
+<span class="co">#&gt; 1  4804 Frank             5</span>
+<span class="co">#&gt; 2  8229 Terry             2</span>
+<span class="co">#&gt; 3 26988 Anne              9</span>
+<span class="co">#&gt; 4 38997 Michelle         13</span>
+<span class="co">#&gt; 5 23078 Eric              3</span>
+<span class="va">l</span>
+<span class="co">#&gt; # A tibble: 5 x 3</span>
+<span class="co">#&gt;   host_id price neighborhood</span>
+<span class="co">#&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;       </span>
+<span class="co">#&gt; 1    4804   125 East Boston </span>
+<span class="co">#&gt; 2    8229   145 Roxbury     </span>
+<span class="co">#&gt; 3    8229   169 Roxbury     </span>
+<span class="co">#&gt; 4   26988    99 Downtown    </span>
+<span class="co">#&gt; 5   26988   150 Downtown</span></code></pre></div>
 <p>In <code>h</code> we have one observation per host meaning that there are 5 distinct hosts in our dataset. In general when there is only one id per observation for a table, that is generally referred to as the <strong>primary key</strong> as it is used to identify observations in that table. In this case, <code>id</code> is the primary key for <code>h</code>. Whereas when we look to <code>l</code>, there are multiple observations for the <code>host_id</code>.</p>
-<div class="sourceCode" id="cb281"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb281-1"><a href="multiple-data-sets.html#cb281-1"></a><span class="kw">count</span>(l, host_id)</span>
-<span id="cb281-2"><a href="multiple-data-sets.html#cb281-2"></a><span class="co">#&gt; # A tibble: 3 x 2</span></span>
-<span id="cb281-3"><a href="multiple-data-sets.html#cb281-3"></a><span class="co">#&gt;   host_id     n</span></span>
-<span id="cb281-4"><a href="multiple-data-sets.html#cb281-4"></a><span class="co">#&gt;     &lt;dbl&gt; &lt;int&gt;</span></span>
-<span id="cb281-5"><a href="multiple-data-sets.html#cb281-5"></a><span class="co">#&gt; 1    4804     1</span></span>
-<span id="cb281-6"><a href="multiple-data-sets.html#cb281-6"></a><span class="co">#&gt; 2    8229     2</span></span>
-<span id="cb281-7"><a href="multiple-data-sets.html#cb281-7"></a><span class="co">#&gt; 3   26988     2</span></span></code></pre></div>
+<div class="sourceCode" id="cb285"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">l</span>, <span class="va">host_id</span><span class="op">)</span>
+<span class="co">#&gt; # A tibble: 3 x 2</span>
+<span class="co">#&gt;   host_id     n</span>
+<span class="co">#&gt;     &lt;dbl&gt; &lt;int&gt;</span>
+<span class="co">#&gt; 1    4804     1</span>
+<span class="co">#&gt; 2    8229     2</span>
+<span class="co">#&gt; 3   26988     2</span></code></pre></div>
 <p>When the ID is used to identify observations in another table, that is referred to as the <strong>foreign key</strong>. Here, <code>host_id</code> is used to connect <code>l</code> to the <code>h</code> table and as such is a foreign key.</p>
 <p>Say we want to know all of the host information associated with each listing we will need to join <code>h</code> to <code>l</code>. In this situations we want to keep all records of listings and only keep the host information when it is relevant. A left join with <code>l</code> as the left hand table and <code>h</code> as the right hand table will provide us with exactly what we need.</p>
-<p>To actually perform the join, we will use the function <code>left_join()</code> from dplyr. There are three arguments that we need to fulfill: <code>x</code>, <code>y</code>, and <code>by</code>. That is, what table will be on our left and which will be on the right? And, which column(s) will act as the common identifier.</p>
+<p>To actually perform the join, we will use the function <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join()</a></code> from dplyr. There are three arguments that we need to fulfill: <code>x</code>, <code>y</code>, and <code>by</code>. That is, what table will be on our left and which will be on the right? And, which column(s) will act as the common identifier.</p>
 <p>Fulfilling the <code>x</code> and <code>y</code> arguments is straightforward, we simply supply the relevant tibbles. Marking the common identifier is a little bit tricky. <code>by</code> expects a character vector with the name of the common identifier. However, in most cases, the column names will differ by table. To connect them we need to create what is called a named vector.</p>
-<p>In general we create a vector with <code>c()</code> and each element is separated by a comma. If we were to create a vector with the names of our identifier (from left to right) it would look like</p>
-<div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb282-1"><a href="multiple-data-sets.html#cb282-1"></a><span class="kw">c</span>(<span class="st">&quot;host_id&quot;</span>, <span class="st">&quot;id&quot;</span>)</span>
-<span id="cb282-2"><a href="multiple-data-sets.html#cb282-2"></a><span class="co">#&gt; [1] &quot;host_id&quot; &quot;id&quot;</span></span></code></pre></div>
-<p>This is a vector of length 2. We need to create a vector of length 1 where the only element is named. We can name vector elements like <code>c("element_name" = "element")</code>. For <code>left_join()</code> the name of the element is the identifier in the left hand table and the element is the name of identifier in the right hand table. Putting this all together it looks like</p>
-<div class="sourceCode" id="cb283"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb283-1"><a href="multiple-data-sets.html#cb283-1"></a><span class="kw">c</span>(<span class="st">&quot;host_id&quot;</span> =<span class="st"> &quot;id&quot;</span>)</span>
-<span id="cb283-2"><a href="multiple-data-sets.html#cb283-2"></a><span class="co">#&gt; host_id </span></span>
-<span id="cb283-3"><a href="multiple-data-sets.html#cb283-3"></a><span class="co">#&gt;    &quot;id&quot;</span></span></code></pre></div>
+<p>In general we create a vector with <code><a href="https://rdrr.io/r/base/c.html">c()</a></code> and each element is separated by a comma. If we were to create a vector with the names of our identifier (from left to right) it would look like</p>
+<div class="sourceCode" id="cb286"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"host_id"</span>, <span class="st">"id"</span><span class="op">)</span>
+<span class="co">#&gt; [1] "host_id" "id"</span></code></pre></div>
+<p>This is a vector of length 2. We need to create a vector of length 1 where the only element is named. We can name vector elements like <code><a href="https://rdrr.io/r/base/c.html">c("element_name" = "element")</a></code>. For <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join()</a></code> the name of the element is the identifier in the left hand table and the element is the name of identifier in the right hand table. Putting this all together it looks like</p>
+<div class="sourceCode" id="cb287"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"host_id"</span> <span class="op">=</span> <span class="st">"id"</span><span class="op">)</span>
+<span class="co">#&gt; host_id </span>
+<span class="co">#&gt;    "id"</span></code></pre></div>
 <p>Now we have all of the pieces that we need and can perform the join.</p>
-<div class="sourceCode" id="cb284"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb284-1"><a href="multiple-data-sets.html#cb284-1"></a><span class="kw">left_join</span>(l, h, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;host_id&quot;</span> =<span class="st"> &quot;id&quot;</span>))</span>
-<span id="cb284-2"><a href="multiple-data-sets.html#cb284-2"></a><span class="co">#&gt; # A tibble: 5 x 5</span></span>
-<span id="cb284-3"><a href="multiple-data-sets.html#cb284-3"></a><span class="co">#&gt;   host_id price neighborhood name  n_listings</span></span>
-<span id="cb284-4"><a href="multiple-data-sets.html#cb284-4"></a><span class="co">#&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;        &lt;chr&gt;      &lt;dbl&gt;</span></span>
-<span id="cb284-5"><a href="multiple-data-sets.html#cb284-5"></a><span class="co">#&gt; 1    4804   125 East Boston  Frank          5</span></span>
-<span id="cb284-6"><a href="multiple-data-sets.html#cb284-6"></a><span class="co">#&gt; 2    8229   145 Roxbury      Terry          2</span></span>
-<span id="cb284-7"><a href="multiple-data-sets.html#cb284-7"></a><span class="co">#&gt; 3    8229   169 Roxbury      Terry          2</span></span>
-<span id="cb284-8"><a href="multiple-data-sets.html#cb284-8"></a><span class="co">#&gt; 4   26988    99 Downtown     Anne           9</span></span>
-<span id="cb284-9"><a href="multiple-data-sets.html#cb284-9"></a><span class="co">#&gt; 5   26988   150 Downtown     Anne           9</span></span></code></pre></div>
+<div class="sourceCode" id="cb288"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">l</span>, <span class="va">h</span>, by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"host_id"</span> <span class="op">=</span> <span class="st">"id"</span><span class="op">)</span><span class="op">)</span>
+<span class="co">#&gt; # A tibble: 5 x 5</span>
+<span class="co">#&gt;   host_id price neighborhood name  n_listings</span>
+<span class="co">#&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;        &lt;chr&gt;      &lt;dbl&gt;</span>
+<span class="co">#&gt; 1    4804   125 East Boston  Frank          5</span>
+<span class="co">#&gt; 2    8229   145 Roxbury      Terry          2</span>
+<span class="co">#&gt; 3    8229   169 Roxbury      Terry          2</span>
+<span class="co">#&gt; 4   26988    99 Downtown     Anne           9</span>
+<span class="co">#&gt; 5   26988   150 Downtown     Anne           9</span></code></pre></div>
 <p>There are no missing values in this join because each <code>host_id</code> had a counter-part in the host table. Now, say we perform right join but keep our tables exactly where they are. What do you expect this to look like?</p>
-<div class="sourceCode" id="cb285"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb285-1"><a href="multiple-data-sets.html#cb285-1"></a><span class="kw">right_join</span>(l, h, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;host_id&quot;</span> =<span class="st"> &quot;id&quot;</span>))</span>
-<span id="cb285-2"><a href="multiple-data-sets.html#cb285-2"></a><span class="co">#&gt; # A tibble: 7 x 5</span></span>
-<span id="cb285-3"><a href="multiple-data-sets.html#cb285-3"></a><span class="co">#&gt;   host_id price neighborhood name     n_listings</span></span>
-<span id="cb285-4"><a href="multiple-data-sets.html#cb285-4"></a><span class="co">#&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;        &lt;chr&gt;         &lt;dbl&gt;</span></span>
-<span id="cb285-5"><a href="multiple-data-sets.html#cb285-5"></a><span class="co">#&gt; 1    4804   125 East Boston  Frank             5</span></span>
-<span id="cb285-6"><a href="multiple-data-sets.html#cb285-6"></a><span class="co">#&gt; 2    8229   145 Roxbury      Terry             2</span></span>
-<span id="cb285-7"><a href="multiple-data-sets.html#cb285-7"></a><span class="co">#&gt; 3    8229   169 Roxbury      Terry             2</span></span>
-<span id="cb285-8"><a href="multiple-data-sets.html#cb285-8"></a><span class="co">#&gt; 4   26988    99 Downtown     Anne              9</span></span>
-<span id="cb285-9"><a href="multiple-data-sets.html#cb285-9"></a><span class="co">#&gt; 5   26988   150 Downtown     Anne              9</span></span>
-<span id="cb285-10"><a href="multiple-data-sets.html#cb285-10"></a><span class="co">#&gt; 6   38997    NA &lt;NA&gt;         Michelle         13</span></span>
-<span id="cb285-11"><a href="multiple-data-sets.html#cb285-11"></a><span class="co">#&gt; 7   23078    NA &lt;NA&gt;         Eric              3</span></span></code></pre></div>
+<div class="sourceCode" id="cb289"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">right_join</a></span><span class="op">(</span><span class="va">l</span>, <span class="va">h</span>, by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"host_id"</span> <span class="op">=</span> <span class="st">"id"</span><span class="op">)</span><span class="op">)</span>
+<span class="co">#&gt; # A tibble: 7 x 5</span>
+<span class="co">#&gt;   host_id price neighborhood name     n_listings</span>
+<span class="co">#&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;        &lt;chr&gt;         &lt;dbl&gt;</span>
+<span class="co">#&gt; 1    4804   125 East Boston  Frank             5</span>
+<span class="co">#&gt; 2    8229   145 Roxbury      Terry             2</span>
+<span class="co">#&gt; 3    8229   169 Roxbury      Terry             2</span>
+<span class="co">#&gt; 4   26988    99 Downtown     Anne              9</span>
+<span class="co">#&gt; 5   26988   150 Downtown     Anne              9</span>
+<span class="co">#&gt; 6   38997    NA &lt;NA&gt;         Michelle         13</span>
+<span class="co">#&gt; 7   23078    NA &lt;NA&gt;         Eric              3</span></code></pre></div>
 <p>There are two key differences here. The first is that, since the right hand table has unmatched <code>id</code>s, we should anticipate missing values in the columns from <code>l</code>—<code>price</code> and <code>neighborhood</code>. Moreover, since there are multiple matches in the left hand table, we are returned more than observation per match.</p>
 <p>This naturally brings us to the inner join. The inner join will <em>only</em> return row where there are matching observations in <em>both</em> tables.</p>
-<div class="sourceCode" id="cb286"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb286-1"><a href="multiple-data-sets.html#cb286-1"></a><span class="kw">inner_join</span>(l, h, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;host_id&quot;</span> =<span class="st"> &quot;id&quot;</span>))</span>
-<span id="cb286-2"><a href="multiple-data-sets.html#cb286-2"></a><span class="co">#&gt; # A tibble: 5 x 5</span></span>
-<span id="cb286-3"><a href="multiple-data-sets.html#cb286-3"></a><span class="co">#&gt;   host_id price neighborhood name  n_listings</span></span>
-<span id="cb286-4"><a href="multiple-data-sets.html#cb286-4"></a><span class="co">#&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;        &lt;chr&gt;      &lt;dbl&gt;</span></span>
-<span id="cb286-5"><a href="multiple-data-sets.html#cb286-5"></a><span class="co">#&gt; 1    4804   125 East Boston  Frank          5</span></span>
-<span id="cb286-6"><a href="multiple-data-sets.html#cb286-6"></a><span class="co">#&gt; 2    8229   145 Roxbury      Terry          2</span></span>
-<span id="cb286-7"><a href="multiple-data-sets.html#cb286-7"></a><span class="co">#&gt; 3    8229   169 Roxbury      Terry          2</span></span>
-<span id="cb286-8"><a href="multiple-data-sets.html#cb286-8"></a><span class="co">#&gt; 4   26988    99 Downtown     Anne           9</span></span>
-<span id="cb286-9"><a href="multiple-data-sets.html#cb286-9"></a><span class="co">#&gt; 5   26988   150 Downtown     Anne           9</span></span></code></pre></div>
+<div class="sourceCode" id="cb290"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">inner_join</a></span><span class="op">(</span><span class="va">l</span>, <span class="va">h</span>, by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"host_id"</span> <span class="op">=</span> <span class="st">"id"</span><span class="op">)</span><span class="op">)</span>
+<span class="co">#&gt; # A tibble: 5 x 5</span>
+<span class="co">#&gt;   host_id price neighborhood name  n_listings</span>
+<span class="co">#&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;        &lt;chr&gt;      &lt;dbl&gt;</span>
+<span class="co">#&gt; 1    4804   125 East Boston  Frank          5</span>
+<span class="co">#&gt; 2    8229   145 Roxbury      Terry          2</span>
+<span class="co">#&gt; 3    8229   169 Roxbury      Terry          2</span>
+<span class="co">#&gt; 4   26988    99 Downtown     Anne           9</span>
+<span class="co">#&gt; 5   26988   150 Downtown     Anne           9</span></code></pre></div>
 <p>Oftentimes, as with this time, the inner join behaves much like a left or right join where one of the tables has each observation matched. In general I recommend performing left or right joins so we can better keep track of missingness.</p>
 <p>The last join to cover is the anti join. The anti join is rather unique and is used to find where there are <em>not</em> matches between two tables. When using an anti join we are returned all observations from x where there are <em>not</em> matches in y. From our previous right join, we know that there are not matches for two of the host ids in <code>h</code>. To find these using a join we can put <code>h</code> in the x position and <code>l</code> in the y position. Note that since we are switching the order of our tibbles we need to rearrange the vector we supplied to <code>by</code>.</p>
-<div class="sourceCode" id="cb287"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb287-1"><a href="multiple-data-sets.html#cb287-1"></a><span class="kw">anti_join</span>(h, l, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;id&quot;</span> =<span class="st"> &quot;host_id&quot;</span>))</span>
-<span id="cb287-2"><a href="multiple-data-sets.html#cb287-2"></a><span class="co">#&gt; # A tibble: 2 x 3</span></span>
-<span id="cb287-3"><a href="multiple-data-sets.html#cb287-3"></a><span class="co">#&gt;      id name     n_listings</span></span>
-<span id="cb287-4"><a href="multiple-data-sets.html#cb287-4"></a><span class="co">#&gt;   &lt;dbl&gt; &lt;chr&gt;         &lt;dbl&gt;</span></span>
-<span id="cb287-5"><a href="multiple-data-sets.html#cb287-5"></a><span class="co">#&gt; 1 38997 Michelle         13</span></span>
-<span id="cb287-6"><a href="multiple-data-sets.html#cb287-6"></a><span class="co">#&gt; 2 23078 Eric              3</span></span></code></pre></div>
+<div class="sourceCode" id="cb291"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter-joins.html">anti_join</a></span><span class="op">(</span><span class="va">h</span>, <span class="va">l</span>, by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"id"</span> <span class="op">=</span> <span class="st">"host_id"</span><span class="op">)</span><span class="op">)</span>
+<span class="co">#&gt; # A tibble: 2 x 3</span>
+<span class="co">#&gt;      id name     n_listings</span>
+<span class="co">#&gt;   &lt;dbl&gt; &lt;chr&gt;         &lt;dbl&gt;</span>
+<span class="co">#&gt; 1 38997 Michelle         13</span>
+<span class="co">#&gt; 2 23078 Eric              3</span></code></pre></div>
 <p>If we reverse this, we should receive an empty tibble.</p>
-<div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb288-1"><a href="multiple-data-sets.html#cb288-1"></a><span class="kw">anti_join</span>(l, h, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;host_id&quot;</span> =<span class="st"> &quot;id&quot;</span>))</span>
-<span id="cb288-2"><a href="multiple-data-sets.html#cb288-2"></a><span class="co">#&gt; # A tibble: 0 x 3</span></span>
-<span id="cb288-3"><a href="multiple-data-sets.html#cb288-3"></a><span class="co">#&gt; # … with 3 variables: host_id &lt;dbl&gt;, price &lt;dbl&gt;, neighborhood &lt;chr&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb292"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter-joins.html">anti_join</a></span><span class="op">(</span><span class="va">l</span>, <span class="va">h</span>, by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"host_id"</span> <span class="op">=</span> <span class="st">"id"</span><span class="op">)</span><span class="op">)</span>
+<span class="co">#&gt; # A tibble: 0 x 3</span>
+<span class="co">#&gt; # … with 3 variables: host_id &lt;dbl&gt;, price &lt;dbl&gt;, neighborhood &lt;chr&gt;</span></code></pre></div>
 <p>Anti joins are often a good way to sanity check your data when looking for completeness or missingness. Be sure to keep this one in your back pocket!</p>
 <div id="exercise-2" class="section level2" number="24.1">
-<h2><span class="header-section-number">24.1</span> Exercise</h2>
+<h2>
+<span class="header-section-number">24.1</span> Exercise<a class="anchor" aria-label="anchor" href="#exercise-2"><i class="fas fa-link"></i></a>
+</h2>
 <p>For this exercise your goal is to identify the average price and availability of Airbnb rentals by host. Then plot</p>
 <ul>
 <li>Read in the reviews dataset</li>
-<li>Count the total number of reviews by listing, create column <code>n_reviews</code></li>
+<li>Count the total number of reviews by listing, create column <code>n_reviews</code>
+</li>
 <li>join to listings</li>
 <li>join that to host, name it <code>airbnb_full</code>.</li>
 </ul>
-<div class="sourceCode" id="cb289"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb289-1"><a href="multiple-data-sets.html#cb289-1"></a>reviews &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data/airbnb/reviews.csv&quot;</span>)</span>
-<span id="cb289-2"><a href="multiple-data-sets.html#cb289-2"></a><span class="co">#&gt; Parsed with column specification:</span></span>
-<span id="cb289-3"><a href="multiple-data-sets.html#cb289-3"></a><span class="co">#&gt; cols(</span></span>
-<span id="cb289-4"><a href="multiple-data-sets.html#cb289-4"></a><span class="co">#&gt;   listing_id = col_double(),</span></span>
-<span id="cb289-5"><a href="multiple-data-sets.html#cb289-5"></a><span class="co">#&gt;   date = col_date(format = &quot;&quot;)</span></span>
-<span id="cb289-6"><a href="multiple-data-sets.html#cb289-6"></a><span class="co">#&gt; )</span></span>
-<span id="cb289-7"><a href="multiple-data-sets.html#cb289-7"></a></span>
-<span id="cb289-8"><a href="multiple-data-sets.html#cb289-8"></a>airbnb_full &lt;-<span class="st"> </span><span class="kw">group_by</span>(reviews, listing_id) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb289-9"><a href="multiple-data-sets.html#cb289-9"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">n_reviews =</span> <span class="kw">n</span>()) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb289-10"><a href="multiple-data-sets.html#cb289-10"></a><span class="st">  </span><span class="kw">left_join</span>(listings, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;listing_id&quot;</span> =<span class="st"> &quot;id&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb289-11"><a href="multiple-data-sets.html#cb289-11"></a><span class="st">  </span><span class="kw">left_join</span>(hosts, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;host_id&quot;</span> =<span class="st"> &quot;id&quot;</span>))</span>
-<span id="cb289-12"><a href="multiple-data-sets.html#cb289-12"></a></span>
-<span id="cb289-13"><a href="multiple-data-sets.html#cb289-13"></a><span class="kw">glimpse</span>(airbnb_full)</span>
-<span id="cb289-14"><a href="multiple-data-sets.html#cb289-14"></a><span class="co">#&gt; Rows: 2,668</span></span>
-<span id="cb289-15"><a href="multiple-data-sets.html#cb289-15"></a><span class="co">#&gt; Columns: 16</span></span>
-<span id="cb289-16"><a href="multiple-data-sets.html#cb289-16"></a><span class="co">#&gt; $ listing_id       &lt;dbl&gt; 3781, 5506, 6695, 8789, 10730, 10813, 18711, 22195, …</span></span>
-<span id="cb289-17"><a href="multiple-data-sets.html#cb289-17"></a><span class="co">#&gt; $ n_reviews        &lt;int&gt; 2, 26, 30, 2, 4, 35, 9, 11, 23, 21, 3, 20, 10, 15, 1…</span></span>
-<span id="cb289-18"><a href="multiple-data-sets.html#cb289-18"></a><span class="co">#&gt; $ neighborhood     &lt;chr&gt; &quot;East Boston&quot;, &quot;Roxbury&quot;, &quot;Roxbury&quot;, &quot;Downtown&quot;, &quot;Do…</span></span>
-<span id="cb289-19"><a href="multiple-data-sets.html#cb289-19"></a><span class="co">#&gt; $ room_type        &lt;chr&gt; &quot;Entire home/apt&quot;, &quot;Entire home/apt&quot;, &quot;Entire home/a…</span></span>
-<span id="cb289-20"><a href="multiple-data-sets.html#cb289-20"></a><span class="co">#&gt; $ price            &lt;dbl&gt; 125, 145, 169, 99, 150, 179, 154, 115, 148, 275, 95,…</span></span>
-<span id="cb289-21"><a href="multiple-data-sets.html#cb289-21"></a><span class="co">#&gt; $ minimum_nights   &lt;dbl&gt; 28, 3, 3, 91, 91, 91, 29, 1, 2, 2, 6, 3, 2, 2, 2, 5,…</span></span>
-<span id="cb289-22"><a href="multiple-data-sets.html#cb289-22"></a><span class="co">#&gt; $ availability_365 &lt;dbl&gt; 68, 322, 274, 247, 29, 0, 304, 285, 62, 247, 197, 80…</span></span>
-<span id="cb289-23"><a href="multiple-data-sets.html#cb289-23"></a><span class="co">#&gt; $ host_id          &lt;dbl&gt; 4804, 8229, 8229, 26988, 26988, 38997, 71783, 85130,…</span></span>
-<span id="cb289-24"><a href="multiple-data-sets.html#cb289-24"></a><span class="co">#&gt; $ name             &lt;chr&gt; &quot;Frank&quot;, &quot;Terry&quot;, &quot;Terry&quot;, &quot;Anne&quot;, &quot;Anne&quot;, &quot;Michelle…</span></span>
-<span id="cb289-25"><a href="multiple-data-sets.html#cb289-25"></a><span class="co">#&gt; $ since_year       &lt;dbl&gt; 2008, 2009, 2009, 2009, 2009, 2009, 2010, 2010, 2010…</span></span>
-<span id="cb289-26"><a href="multiple-data-sets.html#cb289-26"></a><span class="co">#&gt; $ since_month      &lt;chr&gt; &quot;12&quot;, &quot;02&quot;, &quot;02&quot;, &quot;07&quot;, &quot;07&quot;, &quot;09&quot;, &quot;01&quot;, &quot;02&quot;, &quot;02&quot;…</span></span>
-<span id="cb289-27"><a href="multiple-data-sets.html#cb289-27"></a><span class="co">#&gt; $ since_day        &lt;chr&gt; &quot;03&quot;, &quot;19&quot;, &quot;19&quot;, &quot;22&quot;, &quot;22&quot;, &quot;16&quot;, &quot;19&quot;, &quot;24&quot;, &quot;26&quot;…</span></span>
-<span id="cb289-28"><a href="multiple-data-sets.html#cb289-28"></a><span class="co">#&gt; $ response_rate    &lt;chr&gt; &quot;100%&quot;, &quot;100%&quot;, &quot;100%&quot;, &quot;100%&quot;, &quot;100%&quot;, &quot;92%&quot;, &quot;98%&quot;…</span></span>
-<span id="cb289-29"><a href="multiple-data-sets.html#cb289-29"></a><span class="co">#&gt; $ acceptance_rate  &lt;chr&gt; &quot;50%&quot;, &quot;100%&quot;, &quot;100%&quot;, &quot;84%&quot;, &quot;84%&quot;, &quot;17%&quot;, &quot;98%&quot;, &quot;…</span></span>
-<span id="cb289-30"><a href="multiple-data-sets.html#cb289-30"></a><span class="co">#&gt; $ superhost        &lt;dbl&gt; 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0…</span></span>
-<span id="cb289-31"><a href="multiple-data-sets.html#cb289-31"></a><span class="co">#&gt; $ n_listings       &lt;dbl&gt; 5, 2, 2, 9, 9, 13, 40, 7, 4, 1, 1, 1, 5, 5, 1, 1, 2,…</span></span></code></pre></div>
-<div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb290-1"><a href="multiple-data-sets.html#cb290-1"></a>host_summary &lt;-<span class="st"> </span><span class="kw">left_join</span>(listings, hosts, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;host_id&quot;</span> =<span class="st"> &quot;id&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb290-2"><a href="multiple-data-sets.html#cb290-2"></a><span class="st">  </span><span class="kw">group_by</span>(superhost) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb290-3"><a href="multiple-data-sets.html#cb290-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">avg_avail =</span> <span class="kw">mean</span>(availability_<span class="dv">365</span>),</span>
-<span id="cb290-4"><a href="multiple-data-sets.html#cb290-4"></a>            <span class="dt">avg_price =</span> <span class="kw">mean</span>(price),</span>
-<span id="cb290-5"><a href="multiple-data-sets.html#cb290-5"></a>            <span class="dt">avg_min_nights =</span> <span class="kw">mean</span>(minimum_nights))</span></code></pre></div>
+<div class="sourceCode" id="cb293"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">reviews</span> <span class="op">&lt;-</span> <span class="fu">read_csv</span><span class="op">(</span><span class="st">"data/airbnb/reviews.csv"</span><span class="op">)</span>
+<span class="co">#&gt; Parsed with column specification:</span>
+<span class="co">#&gt; cols(</span>
+<span class="co">#&gt;   listing_id = col_double(),</span>
+<span class="co">#&gt;   date = col_date(format = "")</span>
+<span class="co">#&gt; )</span>
+
+<span class="va">airbnb_full</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">reviews</span>, <span class="va">listing_id</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>n_reviews <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">listings</span>, by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"listing_id"</span> <span class="op">=</span> <span class="st">"id"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">hosts</span>, by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"host_id"</span> <span class="op">=</span> <span class="st">"id"</span><span class="op">)</span><span class="op">)</span>
+<span class="co">#&gt; `summarise()` ungrouping output (override with `.groups` argument)</span>
+
+<span class="fu"><a href="https://tibble.tidyverse.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">airbnb_full</span><span class="op">)</span>
+<span class="co">#&gt; Rows: 2,668</span>
+<span class="co">#&gt; Columns: 16</span>
+<span class="co">#&gt; $ listing_id       &lt;dbl&gt; 3781, 5506, 6695, 8789, 10730, 10813, 18711, 22195, …</span>
+<span class="co">#&gt; $ n_reviews        &lt;int&gt; 2, 26, 30, 2, 4, 35, 9, 11, 23, 21, 3, 20, 10, 15, 1…</span>
+<span class="co">#&gt; $ neighborhood     &lt;chr&gt; "East Boston", "Roxbury", "Roxbury", "Downtown", "Do…</span>
+<span class="co">#&gt; $ room_type        &lt;chr&gt; "Entire home/apt", "Entire home/apt", "Entire home/a…</span>
+<span class="co">#&gt; $ price            &lt;dbl&gt; 125, 145, 169, 99, 150, 179, 154, 115, 148, 275, 95,…</span>
+<span class="co">#&gt; $ minimum_nights   &lt;dbl&gt; 28, 3, 3, 91, 91, 91, 29, 1, 2, 2, 6, 3, 2, 2, 2, 5,…</span>
+<span class="co">#&gt; $ availability_365 &lt;dbl&gt; 68, 322, 274, 247, 29, 0, 304, 285, 62, 247, 197, 80…</span>
+<span class="co">#&gt; $ host_id          &lt;dbl&gt; 4804, 8229, 8229, 26988, 26988, 38997, 71783, 85130,…</span>
+<span class="co">#&gt; $ name             &lt;chr&gt; "Frank", "Terry", "Terry", "Anne", "Anne", "Michelle…</span>
+<span class="co">#&gt; $ since_year       &lt;dbl&gt; 2008, 2009, 2009, 2009, 2009, 2009, 2010, 2010, 2010…</span>
+<span class="co">#&gt; $ since_month      &lt;chr&gt; "12", "02", "02", "07", "07", "09", "01", "02", "02"…</span>
+<span class="co">#&gt; $ since_day        &lt;chr&gt; "03", "19", "19", "22", "22", "16", "19", "24", "26"…</span>
+<span class="co">#&gt; $ response_rate    &lt;chr&gt; "100%", "100%", "100%", "100%", "100%", "92%", "98%"…</span>
+<span class="co">#&gt; $ acceptance_rate  &lt;chr&gt; "50%", "100%", "100%", "84%", "84%", "17%", "98%", "…</span>
+<span class="co">#&gt; $ superhost        &lt;dbl&gt; 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0…</span>
+<span class="co">#&gt; $ n_listings       &lt;dbl&gt; 5, 2, 2, 9, 9, 13, 40, 7, 4, 1, 1, 1, 5, 5, 1, 1, 2,…</span></code></pre></div>
+<div class="sourceCode" id="cb294"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">host_summary</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">listings</span>, <span class="va">hosts</span>, by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"host_id"</span> <span class="op">=</span> <span class="st">"id"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">superhost</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>avg_avail <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">availability_365</span><span class="op">)</span>,
+            avg_price <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">price</span><span class="op">)</span>,
+            avg_min_nights <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">minimum_nights</span><span class="op">)</span><span class="op">)</span>
+<span class="co">#&gt; `summarise()` ungrouping output (override with `.groups` argument)</span></code></pre></div>
 
 </div>
 </div>
-<div class="footnotes">
-<hr />
-<ol start="72">
-<li id="fn72"><p>Inside Airbnb. <a href="http://insideairbnb.com/about.html" class="uri">http://insideairbnb.com/about.html</a>.<a href="multiple-data-sets.html#fnref72" class="footnote-back">↩︎</a></p></li>
-</ol>
-</div>
-            </section>
 
-          </div>
-        </div>
-      </div>
-<a href="visualization-review.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="statistics.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
-    </div>
+  <div class="chapter-nav">
+<div class="prev"><a href="visualization-review.html"><span class="header-section-number">23</span> Visualization Review</a></div>
+<div class="next"><a href="statistics.html"><span class="header-section-number">25</span> Statistics</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#multiple-data-sets"><span class="header-section-number">24</span> Multiple data sets</a></li>
+<li><a class="nav-link" href="#exercise-2"><span class="header-section-number">24.1</span> Exercise</a></li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+          
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Urban Informatics Toolkit</strong>" was written by Josiah Parry. It was last built on 2020-12-12.</p>
   </div>
-<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
-<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
-<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
-<script>
-gitbook.require(["gitbook"], function(gitbook) {
-gitbook.start({
-"sharing": {
-"github": false,
-"facebook": true,
-"twitter": true,
-"linkedin": false,
-"weibo": false,
-"instapaper": false,
-"vk": false,
-"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
-},
-"fontsettings": {
-"theme": "white",
-"family": "sans",
-"size": 2
-},
-"edit": {
-"link": null,
-"text": null
-},
-"history": {
-"link": null,
-"text": null
-},
-"view": {
-"link": null,
-"text": null
-},
-"download": ["urban-commons-toolkit.pdf", "urban-commons-toolkit.epub"],
-"toc": {
-"collapse": "section"
-}
-});
-});
-</script>
 
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
@@ -540,5 +315,4 @@ gitbook.start({
   })();
 </script>
 </body>
-
 </html>

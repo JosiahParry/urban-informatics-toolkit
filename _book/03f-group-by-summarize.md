@@ -144,6 +144,7 @@ Let's recreate the grouped count from before.
 commute %>% 
   group_by(county) %>% 
   summarise(n = n())
+#> `summarise()` ungrouping output (override with `.groups` argument)
 #> # A tibble: 3 x 2
 #>   county        n
 #>   <chr>     <int>
@@ -165,6 +166,7 @@ commute %>%
     avg_commute = mean(commute3060, na.rm = TRUE),
     sd_commute  = sd(commute3060, na.rm = TRUE)
     )
+#> `summarise()` ungrouping output (override with `.groups` argument)
 #> # A tibble: 3 x 6
 #>   county        n min_commute max_commute avg_commute sd_commute
 #>   <chr>     <int>       <dbl>       <dbl>       <dbl>      <dbl>
