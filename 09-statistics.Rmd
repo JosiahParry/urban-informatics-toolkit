@@ -1,5 +1,12 @@
 # Statistics
 
+```{r include=FALSE}
+options("knitr.graphics.auto_pdf" = TRUE)
+
+knitr::opts_chunk$set(out.width = "100%")
+
+```
+
 In the course of your analyses you will both want to and need to conduct statistical tests. It is important that you are equipped to perform these tests in R as well. Teaching you statistical concepts is outside of the scope of this book. For an introduction to statistical concepts using R, I recommend reading David Dalpiaz's free and open [_R for Statistical Learning_](https://daviddalpiaz.github.io/r4sl/)[^r4sl]. In this section we will review _how_ to implement statistical tests and extract useful information from them as well. We will cover t-tests, ANOVA, and linear regression.
 
 To explore these statistics we will use data from Inside Airbnb. Of interest is the relationship between price and superhosts, price and room type, and finally how both superhosts and room type contribute to price. 

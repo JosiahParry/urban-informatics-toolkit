@@ -2,6 +2,8 @@
 
 
 
+
+
 The last chapter we focused on the underlying data structures that we interact with in R. Most importantly we covered the atomic vector data structure and learned that the columns of a tibble are vectors. When we have been using `mutate()` to create new columns, we have actually been creating other vectors. When we have filtered data, we have checked the values of the underlying vectors to see if they have matched our specified conditions. Moving forward, we will begin to think about ways of summarizing our data. To do so we will be working with vectors more often. Being able to understand the role a vector plays in data frame operations will make this learning process even easier. 
 
 Let us start by asking the question _"what is a statistic?"_ Very simply a statistic is a single number that is used to characterize a sample of data. Most often we see statistics used to describe central tendancy and spread—measures like the mean and standard deviation. However, the ways in which we can characterize a sample of data are not restricted to traditional frequentists statistics. We want to be more creative in the ways that we look at our data. In addition to evaluating central tendancy and spread we may find ourselves looking at the average word counts of tweets, or distances from the Boston Common, and so much more.  
@@ -27,7 +29,7 @@ ggplot(commute, aes(commute3060)) +
 #> Warning: Removed 6 rows containing non-finite values (stat_bin).
 ```
 
-<img src="03e-summary-stats_files/figure-html/unnamed-chunk-3-1.png" width="672" />
+<img src="03e-summary-stats_files/figure-html/unnamed-chunk-4-1.png" width="100%" />
 
 In the above histogram we can intuit a number of things. The distribution looks fairly normally distributed meaning that both the mean and median are likely to be close to eachother and are equally sound measures of center, most likely somewhere around 0.3. Secondly, due to the distribution's rather round shape (or "fat tails"), it can be expected to have a rather large standard deviation. Once the intuition has been developed, one should calculate the relevant statistics to quantify these characteristics. 
 

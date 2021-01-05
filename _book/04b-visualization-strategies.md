@@ -3,6 +3,9 @@
 
 
 
+
+
+
 We now have a language for creating graphics. Next we must build the intuition of which plots to build and when. We will cover the most basic of visualizations starting with univariate followed by bivariate plots. We will then discuss ways to extend visualizations beyond two variables and some simple principles of design.
 
 In most cases a data analysis will start with a visualization. And that visualization will be dictated by the characteristics of the data available to us. In intro to statistics you probably learned about the four types of data which are: nominal and ordinal, together referred to as _categorical_;  interval and ratio, together referred to as _numerical_ We're going to contextualize these in R terms where _categorical_ is `character` and _numerical_ is `numeric`.
@@ -63,7 +66,7 @@ ggplot(acs, aes(med_yr_moved_inraw)) +
   geom_histogram(bins = 10)
 ```
 
-<img src="04b-visualization-strategies_files/figure-html/unnamed-chunk-3-1.png" width="672" />
+<img src="04b-visualization-strategies_files/figure-html/unnamed-chunk-4-1.png" width="100%" />
 
 This histogram is rather informative! We can see that shortly after 2000, there was a steep increase in people moving in. Right after 2005 we can see that number tapering off—presumably due to the housing crises that begat the Great Recession.
 
@@ -75,7 +78,7 @@ ggplot(acs, aes(med_yr_moved_inraw)) +
   geom_histogram()
 ```
 
-<img src="04b-visualization-strategies_files/figure-html/unnamed-chunk-4-1.png" width="672" />
+<img src="04b-visualization-strategies_files/figure-html/unnamed-chunk-5-1.png" width="100%" />
 
 The above histogram shows gaps in between buckets of the histogram. On a first glance, we would assume that there may be missing data or some phenemonon in the data recording process that led to some sort of missingness. But that isn't the case! If we count the number of observations per year manually, the story becomes apparent.
 
@@ -116,7 +119,7 @@ ggplot(acs, aes(med_yr_moved_inraw)) +
   geom_density()
 ```
 
-<img src="04b-visualization-strategies_files/figure-html/unnamed-chunk-6-1.png" width="672" />
+<img src="04b-visualization-strategies_files/figure-html/unnamed-chunk-7-1.png" width="100%" />
 
 
 Now compare the histogram to the density plot. 
@@ -124,7 +127,7 @@ Now compare the histogram to the density plot.
 * Which do you feel does a better job illustrating the shape of the distribution?
 * Which do you think is more interpretable?
 
-<img src="04b-visualization-strategies_files/figure-html/unnamed-chunk-7-1.png" width="672" />
+<img src="04b-visualization-strategies_files/figure-html/unnamed-chunk-8-1.png" width="100%" />
 
 
 
@@ -166,7 +169,7 @@ ggplot(acs, aes(med_house_income)) +
   geom_boxplot() 
 ```
 
-<img src="04b-visualization-strategies_files/figure-html/unnamed-chunk-8-1.png" width="672" />
+<img src="04b-visualization-strategies_files/figure-html/unnamed-chunk-9-1.png" width="100%" />
 
 From this boxplot, what can we tell about median household income in Massachusetts? 
 
@@ -179,7 +182,7 @@ ggplot(acs, aes(med_house_income)) +
   geom_step(stat = "ecdf")
 ```
 
-<img src="04b-visualization-strategies_files/figure-html/unnamed-chunk-9-1.png" width="672" />
+<img src="04b-visualization-strategies_files/figure-html/unnamed-chunk-10-1.png" width="100%" />
 
 
 
@@ -196,7 +199,7 @@ ggplot(acs, aes(county)) +
   geom_bar()
 ```
 
-<img src="04b-visualization-strategies_files/figure-html/unnamed-chunk-10-1.png" width="672" />
+<img src="04b-visualization-strategies_files/figure-html/unnamed-chunk-11-1.png" width="100%" />
 
 I'm sure you're looking at this chart and thinking something along the lines of "I can't read a single label, this is awful." And yeah, you're totally right. In general when creating a bar chart it is better to to flip the axes. The main justification for fliping the axes is so that we can read the labels better. In addition to making the labels more legible, by flipping the axes, the comparisons between bars is perceivedly easier.  
 
@@ -208,7 +211,7 @@ ggplot(acs, aes(y = county)) +
   geom_bar()
 ```
 
-<img src="04b-visualization-strategies_files/figure-html/unnamed-chunk-11-1.png" width="672" />
+<img src="04b-visualization-strategies_files/figure-html/unnamed-chunk-12-1.png" width="100%" />
 
 If you find yourself in the situation where you have variables mapped to both the x and y columns we can add a `coor_flip()` layer to the plot which will handle the flipping for us.
 
@@ -219,7 +222,7 @@ ggplot(acs, aes(county)) +
   coord_flip()
 ```
 
-<img src="04b-visualization-strategies_files/figure-html/unnamed-chunk-12-1.png" width="672" />
+<img src="04b-visualization-strategies_files/figure-html/unnamed-chunk-13-1.png" width="100%" />
 
 Be sure to keep `coord_flip()` in your back pocket! It is a rather handy function. 
 
@@ -253,7 +256,7 @@ ggplot(acs, aes(fam_house_per, age_u18)) +
   geom_point()
 ```
 
-<img src="04b-visualization-strategies_files/figure-html/unnamed-chunk-13-1.png" width="672" />
+<img src="04b-visualization-strategies_files/figure-html/unnamed-chunk-14-1.png" width="100%" />
 
 The above scatter plot is useful, but there is one downside we should be aware of and that is the number of points that we are plotting. Since there are over 1,400 points—as is often the case with big data—they will likely stack on top of each other hiding other points and leading to a dark uninterpretable mass! We want to be able to decipher the concentration of points as well as the shape.
 
@@ -269,7 +272,7 @@ ggplot(acs, aes(fam_house_per, age_u18)) +
   geom_point(alpha = 1/4)
 ```
 
-<img src="04b-visualization-strategies_files/figure-html/unnamed-chunk-14-1.png" width="672" />
+<img src="04b-visualization-strategies_files/figure-html/unnamed-chunk-15-1.png" width="100%" />
 
 Alternatively, we can change the size (or even a combination of both) of our points. To do this, change the `size` argument inside of `geom_point()`. There is not a finite range of values that you can specify so experimentation is encouraged! 
 
@@ -279,7 +282,7 @@ ggplot(acs, aes(fam_house_per, age_u18)) +
   geom_point(size = 1/3)
 ```
 
-<img src="04b-visualization-strategies_files/figure-html/unnamed-chunk-15-1.png" width="672" />
+<img src="04b-visualization-strategies_files/figure-html/unnamed-chunk-16-1.png" width="100%" />
 
 > Remember when deciding the `alpha` and `size` parameters your are implementing stylistic changes and as such there are no _correct_ solution. Only marginally better solutions. 
 
@@ -304,7 +307,7 @@ ggplot(acs, aes(fam_house_per, age_u18)) +
   geom_bin2d()
 ```
 
-<img src="04b-visualization-strategies_files/figure-html/unnamed-chunk-16-1.png" width="672" />
+<img src="04b-visualization-strategies_files/figure-html/unnamed-chunk-17-1.png" width="100%" />
 
 
 
@@ -313,7 +316,7 @@ ggplot(acs, aes(fam_house_per, age_u18)) +
   geom_hex()
 ```
 
-<img src="04b-visualization-strategies_files/figure-html/unnamed-chunk-17-1.png" width="672" />
+<img src="04b-visualization-strategies_files/figure-html/unnamed-chunk-18-1.png" width="100%" />
 
 
 Just like a histogram we can determine the number of bins that are used for aggragating the data. By adjusting the `bins` argument to `geom_hex()` or `geom_bin2d()` we can alter the size of each hexagon or rectangle. Again, the decision of how many bins to include is a trade-off between interpretability and accurate representation of the underlying data. 
@@ -326,7 +329,7 @@ ggplot(acs, aes(fam_house_per, age_u18)) +
   geom_hex(bins = 20)
 ```
 
-<img src="04b-visualization-strategies_files/figure-html/unnamed-chunk-18-1.png" width="672" />
+<img src="04b-visualization-strategies_files/figure-html/unnamed-chunk-19-1.png" width="100%" />
 
 
 ### One numeric and one categorical
@@ -359,14 +362,14 @@ ggplot(gba_acs, aes(bach, county)) +
   ggridges::geom_density_ridges() 
 ```
 
-<img src="04b-visualization-strategies_files/figure-html/unnamed-chunk-20-1.png" width="672" />
+<img src="04b-visualization-strategies_files/figure-html/unnamed-chunk-21-1.png" width="100%" />
 
 The ridgeline plot very clearly illustrates the differences in distributions within the `county` variable. From this plot, we can tell that Suffolk County has rather extreme variation in the Bachelor's degree attainment rate. And when compared to Norfolk and Middlesex counties, it becomes apparent that the median Suffolk County attainment rate falls almost 20% lower.
 
 A plot such as the above may lead one to investigate further. Suffolk County is large and contains every single neighborhood of Boston from Back Bay, to Mission Hill, and Roxbury. We can drill down further into Suffolk County by identifying income percentiles and plotting those as well.
 
 
-<img src="04b-visualization-strategies_files/figure-html/unnamed-chunk-21-1.png" width="672" />
+<img src="04b-visualization-strategies_files/figure-html/unnamed-chunk-22-1.png" width="100%" />
 
 Ridgelines are the perfect tool for exploring changes in variation among different groups. Before you run an ANOVA visualize the variation of your variables with a ridgeline plot first!
 
@@ -384,7 +387,7 @@ ggplot(gba_acs, aes(bach, county)) +
   geom_boxplot()
 ```
 
-<img src="04b-visualization-strategies_files/figure-html/unnamed-chunk-22-1.png" width="672" />
+<img src="04b-visualization-strategies_files/figure-html/unnamed-chunk-23-1.png" width="100%" />
 
 
 #### Barchart
@@ -428,7 +431,7 @@ ggplot(county_counts, aes(n, county)) +
   geom_col()
 ```
 
-<img src="04b-visualization-strategies_files/figure-html/unnamed-chunk-24-1.png" width="672" />
+<img src="04b-visualization-strategies_files/figure-html/unnamed-chunk-25-1.png" width="100%" />
 
 Here's the thing, barcharts, and horizontal barcharts in particular are phenomenal for ranking. But ggplot2 doesn't order the bars for us. We need to do that on our own. To do so, we will use our knowledge of `mutate()` and a new function `forcats::fct_reorder()`. 
 
@@ -446,7 +449,7 @@ county_counts %>%
   geom_col()
 ```
 
-<img src="04b-visualization-strategies_files/figure-html/unnamed-chunk-25-1.png" width="672" />
+<img src="04b-visualization-strategies_files/figure-html/unnamed-chunk-26-1.png" width="100%" />
 
 This is a pattern that you will follow rather frequently—particularly when you need to rank variables. Now knowing the number of observations is useful, but we really want to use the barchart for visualizing some value of importance. Let's continue the example of educational attainment but for the entirety of Massachusetts this time.
 
@@ -465,7 +468,7 @@ acs %>%
 #> `summarise()` ungrouping output (override with `.groups` argument)
 ```
 
-<img src="04b-visualization-strategies_files/figure-html/unnamed-chunk-26-1.png" width="672" />
+<img src="04b-visualization-strategies_files/figure-html/unnamed-chunk-27-1.png" width="100%" />
 
 This brings us very naturally to our next type of plot: the lollipop plot. 
 
@@ -487,7 +490,7 @@ acs %>%
   ggalt::geom_lollipop(horizontal = TRUE)
 ```
 
-<img src="04b-visualization-strategies_files/figure-html/unnamed-chunk-27-1.png" width="672" />
+<img src="04b-visualization-strategies_files/figure-html/unnamed-chunk-28-1.png" width="100%" />
 
 ## Review:
 

@@ -79,7 +79,7 @@
 
 <span class="va">acs_raw</span> <span class="op">&lt;-</span> <span class="fu">read_csv</span><span class="op">(</span><span class="st">"data/ACS_1317_TRACT.csv"</span><span class="op">)</span>
 
-<span class="va">commute</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">acs_raw</span>,
+<span class="va">commute</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/select.html">select</a></span><span class="op">(</span><span class="va">acs_raw</span>,
                   <span class="va">county</span>,
                   <span class="va">hs_grad</span>, <span class="va">bach</span>, <span class="va">master</span>,
                   <span class="fu"><a href="https://tidyselect.r-lib.org/reference/starts_with.html">starts_with</a></span><span class="op">(</span><span class="st">"commute"</span><span class="op">)</span>,
@@ -89,18 +89,18 @@
 <h2>
 <span class="header-section-number">11.1</span> <code>filter()</code>ing<a class="anchor" aria-label="anchor" href="#filtering"><i class="fas fa-link"></i></a>
 </h2>
-<p>Previously we looked at ways of selecting columns. Here, we will focus on creating subsets of our data. We will rely on the function <code><a href="https://dplyr.tidyverse.org/reference/filter.html">dplyr::filter()</a></code> for this. <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code> differs from <code><a href="https://dplyr.tidyverse.org/reference/slice.html">slice()</a></code> in that filter will check to see if data fit a specified criteria whereas slice is only concerned with the position of a row.</p>
+<p>Previously we looked at ways of selecting columns. Here, we will focus on creating subsets of our data. We will rely on the function <code><a href="https://rdrr.io/pkg/dplyr/man/filter.html">dplyr::filter()</a></code> for this. <code><a href="https://rdrr.io/pkg/dplyr/man/filter.html">filter()</a></code> differs from <code><a href="https://rdrr.io/pkg/dplyr/man/slice.html">slice()</a></code> in that filter will check to see if data fit a specified criteria whereas slice is only concerned with the position of a row.</p>
 <blockquote>
-<p>Explore the help documentation of <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code> by running the command <code>?filter()</code> in your console.</p>
+<p>Explore the help documentation of <code><a href="https://rdrr.io/pkg/dplyr/man/filter.html">filter()</a></code> by running the command <code>?filter()</code> in your console.</p>
 </blockquote>
-<p>The first argument of <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code> is of course the tibble which you would like to subset. Secondly, we again see <code>...</code>. In the case of <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code>, we provide what are called logical expressions to <code>...</code>. <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code> then only returns the observations when that logical expression, or condition, is true.</p>
+<p>The first argument of <code><a href="https://rdrr.io/pkg/dplyr/man/filter.html">filter()</a></code> is of course the tibble which you would like to subset. Secondly, we again see <code>...</code>. In the case of <code><a href="https://rdrr.io/pkg/dplyr/man/filter.html">filter()</a></code>, we provide what are called logical expressions to <code>...</code>. <code><a href="https://rdrr.io/pkg/dplyr/man/filter.html">filter()</a></code> then only returns the observations when that logical expression, or condition, is true.</p>
 <p>Almost every time you purchase something online whether that is from Amazon or Etsy you are filtering your data using some logic. Whether that is checking the Prime tick box, specifying a price range on Etsy, or a restaurant rating on Yelp. These are all <em>conditions</em> that you are providing to your search.</p>
 <p>We can create these types of filters on our own data and to do so, we will need to understand how logical expressions work. A logical expression is any expression that can be boiled down to true or false.</p>
 <p>For example, using our <code>commute</code> dataset, we can check to see which Census Tracts have more than 75% of commuters traveling by auto.</p>
 <div class="sourceCode" id="cb64"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">auto_commuters</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">commute</span>, <span class="va">by_auto</span> <span class="op">&gt;</span> <span class="fl">0.75</span><span class="op">)</span>
+<code class="sourceCode R"><span class="va">auto_commuters</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/filter.html">filter</a></span><span class="op">(</span><span class="va">commute</span>, <span class="va">by_auto</span> <span class="op">&gt;</span> <span class="fl">0.75</span><span class="op">)</span>
 
-<span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">auto_commuters</span>, <span class="va">by_auto</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/select.html">select</a></span><span class="op">(</span><span class="va">auto_commuters</span>, <span class="va">by_auto</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 1,012 x 1
 ##    by_auto
 ##      &lt;dbl&gt;
@@ -171,15 +171,15 @@
 <code class="sourceCode R"><span class="co"># not equal</span>
 <span class="va">x</span> <span class="op">!=</span> <span class="va">y</span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
-<p>The power of logical operators isn’t necessarily in the ability to compare one value against another, but the ability to compare many values to one value or even many values to multiple other values. This is what <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code> helps us do.</p>
-<p>Using <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code> we can compare one column to another. When we do this, the values of those columns at each row are compared. For example, we can identify all of the Census Tracts where people walk more than they drive.</p>
+<p>The power of logical operators isn’t necessarily in the ability to compare one value against another, but the ability to compare many values to one value or even many values to multiple other values. This is what <code><a href="https://rdrr.io/pkg/dplyr/man/filter.html">filter()</a></code> helps us do.</p>
+<p>Using <code><a href="https://rdrr.io/pkg/dplyr/man/filter.html">filter()</a></code> we can compare one column to another. When we do this, the values of those columns at each row are compared. For example, we can identify all of the Census Tracts where people walk more than they drive.</p>
 <blockquote>
 <p>Note: I am saving the results to an object called <code>walk</code> to then select only a few columns.</p>
 </blockquote>
 <div class="sourceCode" id="cb78"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">walking</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">commute</span>, <span class="va">by_walk</span> <span class="op">&gt;</span> <span class="va">by_auto</span><span class="op">)</span>
+<code class="sourceCode R"><span class="va">walking</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/filter.html">filter</a></span><span class="op">(</span><span class="va">commute</span>, <span class="va">by_walk</span> <span class="op">&gt;</span> <span class="va">by_auto</span><span class="op">)</span>
 
-<span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">walking</span>, <span class="va">county</span>, <span class="va">by_walk</span>, <span class="va">by_auto</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/select.html">select</a></span><span class="op">(</span><span class="va">walking</span>, <span class="va">county</span>, <span class="va">by_walk</span>, <span class="va">by_auto</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 54 x 3
 ##    county    by_walk by_auto
 ##    &lt;chr&gt;       &lt;dbl&gt;   &lt;dbl&gt;
@@ -199,9 +199,9 @@
 <p><strong>An important distinction</strong>: <code><a href="https://rdrr.io/r/base/assignOps.html">&lt;-</a></code> is different from <code><a href="https://rdrr.io/r/base/assignOps.html">=</a></code> and <code><a href="https://rdrr.io/r/base/assignOps.html">=</a></code> is different from <code><a href="https://rdrr.io/r/base/Comparison.html">==</a></code>. If you are ever confused about which operator to use ask yourself what your goal is. If your goal is to assign an object use <code><a href="https://rdrr.io/r/base/assignOps.html">&lt;-</a></code>. If your goal is to assign an argument value use <code><a href="https://rdrr.io/r/base/assignOps.html">=</a></code>. And if you are trying to compare two things use <code><a href="https://rdrr.io/r/base/Comparison.html">==</a></code>.</p>
 </blockquote>
 <div class="sourceCode" id="cb80"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">walk_auto</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">commute</span>, <span class="va">by_walk</span> <span class="op">==</span> <span class="va">by_auto</span><span class="op">)</span>
+<code class="sourceCode R"><span class="va">walk_auto</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/filter.html">filter</a></span><span class="op">(</span><span class="va">commute</span>, <span class="va">by_walk</span> <span class="op">==</span> <span class="va">by_auto</span><span class="op">)</span>
 
-<span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">walk_auto</span>, <span class="va">county</span>, <span class="va">by_walk</span>, <span class="va">by_auto</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/select.html">select</a></span><span class="op">(</span><span class="va">walk_auto</span>, <span class="va">county</span>, <span class="va">by_walk</span>, <span class="va">by_auto</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 2 x 3
 ##   county  by_walk by_auto
 ##   &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;
@@ -210,11 +210,11 @@
 <p>So far we have only been checking one condition and in most cases this actually will not suffice. You may want to check multiple conditions at one time. When we use filter we can add a logical expression as another argument. In doing so, filter will check to see if both conditions are met and, when they are, that row is returned. This is called an “and” statement. Meaning condition one <strong>and</strong> condition two need to be <code>TRUE</code>.</p>
 <p>Building upon the <code>walking</code> example, we can further narrow down the observations by adding a second condition which returns only the observations that have median household incomes below $40,000.</p>
 <div class="sourceCode" id="cb82"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">low_inc_walk</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">commute</span>, 
+<code class="sourceCode R"><span class="va">low_inc_walk</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/filter.html">filter</a></span><span class="op">(</span><span class="va">commute</span>, 
                        <span class="va">by_walk</span> <span class="op">&gt;</span> <span class="va">by_auto</span>,
                        <span class="va">med_house_income</span> <span class="op">&lt;</span> <span class="fl">40000</span><span class="op">)</span>
 
-<span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">low_inc_walk</span>, <span class="va">by_walk</span>, <span class="va">by_auto</span>, <span class="va">med_house_income</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/select.html">select</a></span><span class="op">(</span><span class="va">low_inc_walk</span>, <span class="va">by_walk</span>, <span class="va">by_auto</span>, <span class="va">med_house_income</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 11 x 3
 ##    by_walk by_auto med_house_income
 ##      &lt;dbl&gt;   &lt;dbl&gt;            &lt;dbl&gt;
@@ -269,12 +269,12 @@
 <code class="sourceCode R"><span class="co"># </span>
 <span class="cn">FALSE</span> <span class="op">|</span> <span class="cn">FALSE</span></code></pre></div>
 <pre><code>## [1] FALSE</code></pre>
-<p>We can alter the previous <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code> statement to show us places that walk more than they drive <strong>or</strong> have a low median household income.</p>
+<p>We can alter the previous <code><a href="https://rdrr.io/pkg/dplyr/man/filter.html">filter()</a></code> statement to show us places that walk more than they drive <strong>or</strong> have a low median household income.</p>
 <div class="sourceCode" id="cb98"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">low_inc_or_walk</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">commute</span>,
+<code class="sourceCode R"><span class="va">low_inc_or_walk</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/filter.html">filter</a></span><span class="op">(</span><span class="va">commute</span>,
                           <span class="va">by_walk</span> <span class="op">&gt;</span> <span class="va">by_auto</span> <span class="op">|</span> <span class="va">med_house_income</span> <span class="op">&lt;</span> <span class="fl">40000</span><span class="op">)</span>
 
-<span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">low_inc_or_walk</span>, <span class="va">by_walk</span>, <span class="va">by_auto</span>, <span class="va">med_house_income</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/select.html">select</a></span><span class="op">(</span><span class="va">low_inc_or_walk</span>, <span class="va">by_walk</span>, <span class="va">by_auto</span>, <span class="va">med_house_income</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 224 x 3
 ##    by_walk by_auto med_house_income
 ##      &lt;dbl&gt;   &lt;dbl&gt;            &lt;dbl&gt;
@@ -317,7 +317,7 @@
 </h2>
 <p>You now have developed the requisite skills to subset the commuting data to just the Greater Boston Area. But we still haven’t completely decided what constitutes it. We will take the naïve approach and say that Suffolk, Norfolk, and Middlesex counties are the Greater Boston Area. We can now filter our data to just these counties!</p>
 <div class="sourceCode" id="cb106"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">gba_commute</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">commute</span>, <span class="va">county</span> <span class="op">==</span> <span class="st">"SUFFOLK"</span> <span class="op">|</span> <span class="va">county</span> <span class="op">==</span> <span class="st">"NORFOLK"</span> <span class="op">|</span> <span class="va">county</span> <span class="op">==</span> <span class="st">"MIDDLESEX"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="va">gba_commute</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/filter.html">filter</a></span><span class="op">(</span><span class="va">commute</span>, <span class="va">county</span> <span class="op">==</span> <span class="st">"SUFFOLK"</span> <span class="op">|</span> <span class="va">county</span> <span class="op">==</span> <span class="st">"NORFOLK"</span> <span class="op">|</span> <span class="va">county</span> <span class="op">==</span> <span class="st">"MIDDLESEX"</span><span class="op">)</span></code></pre></div>
 <p>The above code is actually rather redundant as we have written <code>county ==</code> three different times. When we using the same equality comparison we can actually use the sepcial <code><a href="https://rdrr.io/r/base/match.html">%in%</a></code> operator. This lets us look for a value <strong>in</strong> a vector of values (we’ll learn more about vectors very shortly).</p>
 <p>For example:</p>
 <div class="sourceCode" id="cb107"><pre class="downlit sourceCode r">
@@ -325,7 +325,7 @@
 <pre><code>## [1] TRUE</code></pre>
 <p>This looks to see if the value on the left hand side is any of the three values in the vector—the thing that looks like <code><a href="https://rdrr.io/r/base/c.html">c(val1, val2, ...)</a></code>. Using this we can rewrite <code>gba_commute</code> as:</p>
 <div class="sourceCode" id="cb109"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">gba_commute</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">commute</span>, <span class="va">county</span> <span class="op">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"SUFFOLK"</span>, <span class="st">"NORFOLK"</span>, <span class="st">"MIDDLESEX"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="va">gba_commute</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/filter.html">filter</a></span><span class="op">(</span><span class="va">commute</span>, <span class="va">county</span> <span class="op">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"SUFFOLK"</span>, <span class="st">"NORFOLK"</span>, <span class="st">"MIDDLESEX"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <div id="writing-data" class="section level3" number="11.3.1">
 <h3>
 <span class="header-section-number">11.3.1</span> Writing Data<a class="anchor" aria-label="anchor" href="#writing-data"><i class="fas fa-link"></i></a>
@@ -374,7 +374,7 @@
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Urban Informatics Toolkit</strong>" was written by Josiah Parry. It was last built on 2020-12-12.</p>
+    <p>"<strong>Urban Informatics Toolkit</strong>" was written by Josiah Parry. It was last built on 2021-01-05.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

@@ -2,6 +2,8 @@
 
 
 
+
+
 Until now we have been using one function at a time. This can feel like it is rather limiting at times. The approach that we have been taking has been to perform some action, save the resultant object, and then perform another action. This leads to either overwriting the same existing object multiple times with an assignment ` <- ` or creating multiple other objects. The former solution does not have a great story for reproducibility. At any point within a script may refr to many different objects with the same name. The second solution can clutter your working environment and lead to an excess usage of memory.
 
 Well then, "what do we do instead?" you may be asking. And my answer is "use the forward pipe operator, of course." The forward pipe operator looks like ` %>% `. This is a special function which allows the user to "pipe an object forward into a function or . . . expression" (Milton and Wickham, 2019). This is where the true power of the tidyverse comes from from. 

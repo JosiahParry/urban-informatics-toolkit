@@ -3,6 +3,7 @@
 
 
 
+
 It's been a week now and the non-profit has finally emailed you back. They were ecstatic with what you provided but it begat even more questions for them. They indicated that while the median household income data was very intruiging, that would be difficult for them to report on. As such, they would like you to report on the income quintiles as well. Moreover, they also would like to see the rate of Bachelor's and Master's degrees combined into one general educational attainment variable. 
 
 This poses some challenges for you. You know _what_ is being asked, just not necessarily _how_ to achieve that from R. To accomplish this we're going to have to learn how to use the `dplyr::mutate()` function. For the sake of example, let's select only the columns that we're going to need and make a tibble called `df` just to work with. 

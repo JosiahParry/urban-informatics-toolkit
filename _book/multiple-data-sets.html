@@ -75,13 +75,13 @@
 <p>Many times working with just one data set will not suffice. More often than not the data that we will be working with be will need to be supplemented by other data sets. These datasets have a shared relation which are what enables us to <strong>join</strong> them together. A join is a way of combining the columns between two sets of data while ensuring the rows are properly aligned.</p>
 <p>The relationship that joins these tables together are expressed in the data through what is called a <strong>common identifier</strong>. This a variable exists in both datasets—perhaps, with a different name—and can be used as a reference to associate rows from each table together.</p>
 <p>Recall to our definition of tidy data. The definition that we used characterized the data inside of a single table. There is actually another rule: “each observational unit forms a table.” So, in our previous definition a row was a single observation. When we extend the definition as such this is still the case but we have to create distinctions between “observational units[s].”</p>
-<p>To explore this concept we will use data about Airbnb listings in Boston. These data come from <a href="http://insideairbnb.com">Inside Airbnb</a>. Inside Airbnb collects Airbnb’s public listing and makes them available through a “non-commercial set of tools and data that allows you to explore how Airbnb is really being used in cities around the world”<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Inside Airbnb. &lt;a href="http://insideairbnb.com/about.html" class="uri"&gt;http://insideairbnb.com/about.html&lt;/a&gt;.&lt;/p&gt;'><sup>72</sup></a>.</p>
+<p>To explore this concept we will use data about Airbnb listings in Boston. These data come from <a href="http://insideairbnb.com">Inside Airbnb</a>. Inside Airbnb collects Airbnb’s public listing and makes them available through a “non-commercial set of tools and data that allows you to explore how Airbnb is really being used in cities around the world”<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Inside Airbnb. &lt;a href="http://insideairbnb.com/about.html" class="uri"&gt;http://insideairbnb.com/about.html&lt;/a&gt;.&lt;/p&gt;'><sup>73</sup></a>.</p>
 <p>Inside Airbnb data are another example of harnessing naturally occurring data. The listings are not generated with the intent of <em>being</em> data, but by the virtue of their existence, they become data. We are able to harness them to learn about the shifting neighborhood dynamic of cities. They can tell us something about short term rentals in a locale and about where people may be visiting and when.</p>
 <p>We will first look at two data sets: <code>listings</code>, and <code>hosts</code>.</p>
 <div class="sourceCode" id="cb282"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">listings</span> <span class="op">&lt;-</span> <span class="fu">read_csv</span><span class="op">(</span><span class="st">"data/airbnb/listings.csv"</span><span class="op">)</span>
 
-<span class="fu"><a href="https://tibble.tidyverse.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">listings</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/pkg/tibble/man/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">listings</span><span class="op">)</span>
 <span class="co">#&gt; Rows: 3,799</span>
 <span class="co">#&gt; Columns: 7</span>
 <span class="co">#&gt; $ id               &lt;dbl&gt; 3781, 5506, 6695, 8789, 10730, 10813, 10986, 16384, …</span>
@@ -94,7 +94,7 @@
 <div class="sourceCode" id="cb283"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">hosts</span> <span class="op">&lt;-</span> <span class="fu">read_csv</span><span class="op">(</span><span class="st">"data/airbnb/hosts.csv"</span><span class="op">)</span>
 
-<span class="fu"><a href="https://tibble.tidyverse.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">hosts</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/pkg/tibble/man/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">hosts</span><span class="op">)</span>
 <span class="co">#&gt; Rows: 1,335</span>
 <span class="co">#&gt; Columns: 9</span>
 <span class="co">#&gt; $ id              &lt;dbl&gt; 4804, 8229, 26988, 38997, 23078, 71783, 85130, 85770,…</span>
@@ -116,11 +116,11 @@
 <p>Simply, in a left join we will never lose rows from x. If there happens to be no match from y there will be missing values. The reverse is true for the right join. A right join ensures that all rows from y will remain at the end. If there are duplicate matches between x and y each of those will be returned.</p>
 <p>For the sake of example, let’s reduce our data down to the first five rows and only a few columns for each. Hosts data will be stored in the tibble <code>h</code> and listings in <code>l</code>.</p>
 <div class="sourceCode" id="cb284"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">h</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice</a></span><span class="op">(</span><span class="va">hosts</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">id</span>, <span class="va">name</span>, <span class="va">n_listings</span><span class="op">)</span>
+<code class="sourceCode R"><span class="va">h</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/slice.html">slice</a></span><span class="op">(</span><span class="va">hosts</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/select.html">select</a></span><span class="op">(</span><span class="va">id</span>, <span class="va">name</span>, <span class="va">n_listings</span><span class="op">)</span>
 
-<span class="va">l</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice</a></span><span class="op">(</span><span class="va">listings</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">host_id</span>, <span class="va">price</span>, <span class="va">neighborhood</span><span class="op">)</span>
+<span class="va">l</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/slice.html">slice</a></span><span class="op">(</span><span class="va">listings</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/select.html">select</a></span><span class="op">(</span><span class="va">host_id</span>, <span class="va">price</span>, <span class="va">neighborhood</span><span class="op">)</span>
 
 <span class="va">h</span>
 <span class="co">#&gt; # A tibble: 5 x 3</span>
@@ -142,7 +142,7 @@
 <span class="co">#&gt; 5   26988   150 Downtown</span></code></pre></div>
 <p>In <code>h</code> we have one observation per host meaning that there are 5 distinct hosts in our dataset. In general when there is only one id per observation for a table, that is generally referred to as the <strong>primary key</strong> as it is used to identify observations in that table. In this case, <code>id</code> is the primary key for <code>h</code>. Whereas when we look to <code>l</code>, there are multiple observations for the <code>host_id</code>.</p>
 <div class="sourceCode" id="cb285"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">l</span>, <span class="va">host_id</span><span class="op">)</span>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/count.html">count</a></span><span class="op">(</span><span class="va">l</span>, <span class="va">host_id</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 3 x 2</span>
 <span class="co">#&gt;   host_id     n</span>
 <span class="co">#&gt;     &lt;dbl&gt; &lt;int&gt;</span>
@@ -151,20 +151,20 @@
 <span class="co">#&gt; 3   26988     2</span></code></pre></div>
 <p>When the ID is used to identify observations in another table, that is referred to as the <strong>foreign key</strong>. Here, <code>host_id</code> is used to connect <code>l</code> to the <code>h</code> table and as such is a foreign key.</p>
 <p>Say we want to know all of the host information associated with each listing we will need to join <code>h</code> to <code>l</code>. In this situations we want to keep all records of listings and only keep the host information when it is relevant. A left join with <code>l</code> as the left hand table and <code>h</code> as the right hand table will provide us with exactly what we need.</p>
-<p>To actually perform the join, we will use the function <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join()</a></code> from dplyr. There are three arguments that we need to fulfill: <code>x</code>, <code>y</code>, and <code>by</code>. That is, what table will be on our left and which will be on the right? And, which column(s) will act as the common identifier.</p>
+<p>To actually perform the join, we will use the function <code><a href="https://rdrr.io/pkg/dplyr/man/mutate-joins.html">left_join()</a></code> from dplyr. There are three arguments that we need to fulfill: <code>x</code>, <code>y</code>, and <code>by</code>. That is, what table will be on our left and which will be on the right? And, which column(s) will act as the common identifier.</p>
 <p>Fulfilling the <code>x</code> and <code>y</code> arguments is straightforward, we simply supply the relevant tibbles. Marking the common identifier is a little bit tricky. <code>by</code> expects a character vector with the name of the common identifier. However, in most cases, the column names will differ by table. To connect them we need to create what is called a named vector.</p>
 <p>In general we create a vector with <code><a href="https://rdrr.io/r/base/c.html">c()</a></code> and each element is separated by a comma. If we were to create a vector with the names of our identifier (from left to right) it would look like</p>
 <div class="sourceCode" id="cb286"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"host_id"</span>, <span class="st">"id"</span><span class="op">)</span>
 <span class="co">#&gt; [1] "host_id" "id"</span></code></pre></div>
-<p>This is a vector of length 2. We need to create a vector of length 1 where the only element is named. We can name vector elements like <code><a href="https://rdrr.io/r/base/c.html">c("element_name" = "element")</a></code>. For <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join()</a></code> the name of the element is the identifier in the left hand table and the element is the name of identifier in the right hand table. Putting this all together it looks like</p>
+<p>This is a vector of length 2. We need to create a vector of length 1 where the only element is named. We can name vector elements like <code><a href="https://rdrr.io/r/base/c.html">c("element_name" = "element")</a></code>. For <code><a href="https://rdrr.io/pkg/dplyr/man/mutate-joins.html">left_join()</a></code> the name of the element is the identifier in the left hand table and the element is the name of identifier in the right hand table. Putting this all together it looks like</p>
 <div class="sourceCode" id="cb287"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"host_id"</span> <span class="op">=</span> <span class="st">"id"</span><span class="op">)</span>
 <span class="co">#&gt; host_id </span>
 <span class="co">#&gt;    "id"</span></code></pre></div>
 <p>Now we have all of the pieces that we need and can perform the join.</p>
 <div class="sourceCode" id="cb288"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">l</span>, <span class="va">h</span>, by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"host_id"</span> <span class="op">=</span> <span class="st">"id"</span><span class="op">)</span><span class="op">)</span>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">l</span>, <span class="va">h</span>, by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"host_id"</span> <span class="op">=</span> <span class="st">"id"</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 5 x 5</span>
 <span class="co">#&gt;   host_id price neighborhood name  n_listings</span>
 <span class="co">#&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;        &lt;chr&gt;      &lt;dbl&gt;</span>
@@ -175,7 +175,7 @@
 <span class="co">#&gt; 5   26988   150 Downtown     Anne           9</span></code></pre></div>
 <p>There are no missing values in this join because each <code>host_id</code> had a counter-part in the host table. Now, say we perform right join but keep our tables exactly where they are. What do you expect this to look like?</p>
 <div class="sourceCode" id="cb289"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">right_join</a></span><span class="op">(</span><span class="va">l</span>, <span class="va">h</span>, by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"host_id"</span> <span class="op">=</span> <span class="st">"id"</span><span class="op">)</span><span class="op">)</span>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/mutate-joins.html">right_join</a></span><span class="op">(</span><span class="va">l</span>, <span class="va">h</span>, by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"host_id"</span> <span class="op">=</span> <span class="st">"id"</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 7 x 5</span>
 <span class="co">#&gt;   host_id price neighborhood name     n_listings</span>
 <span class="co">#&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;        &lt;chr&gt;         &lt;dbl&gt;</span>
@@ -189,7 +189,7 @@
 <p>There are two key differences here. The first is that, since the right hand table has unmatched <code>id</code>s, we should anticipate missing values in the columns from <code>l</code>—<code>price</code> and <code>neighborhood</code>. Moreover, since there are multiple matches in the left hand table, we are returned more than observation per match.</p>
 <p>This naturally brings us to the inner join. The inner join will <em>only</em> return row where there are matching observations in <em>both</em> tables.</p>
 <div class="sourceCode" id="cb290"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">inner_join</a></span><span class="op">(</span><span class="va">l</span>, <span class="va">h</span>, by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"host_id"</span> <span class="op">=</span> <span class="st">"id"</span><span class="op">)</span><span class="op">)</span>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/mutate-joins.html">inner_join</a></span><span class="op">(</span><span class="va">l</span>, <span class="va">h</span>, by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"host_id"</span> <span class="op">=</span> <span class="st">"id"</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 5 x 5</span>
 <span class="co">#&gt;   host_id price neighborhood name  n_listings</span>
 <span class="co">#&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;        &lt;chr&gt;      &lt;dbl&gt;</span>
@@ -201,7 +201,7 @@
 <p>Oftentimes, as with this time, the inner join behaves much like a left or right join where one of the tables has each observation matched. In general I recommend performing left or right joins so we can better keep track of missingness.</p>
 <p>The last join to cover is the anti join. The anti join is rather unique and is used to find where there are <em>not</em> matches between two tables. When using an anti join we are returned all observations from x where there are <em>not</em> matches in y. From our previous right join, we know that there are not matches for two of the host ids in <code>h</code>. To find these using a join we can put <code>h</code> in the x position and <code>l</code> in the y position. Note that since we are switching the order of our tibbles we need to rearrange the vector we supplied to <code>by</code>.</p>
 <div class="sourceCode" id="cb291"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter-joins.html">anti_join</a></span><span class="op">(</span><span class="va">h</span>, <span class="va">l</span>, by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"id"</span> <span class="op">=</span> <span class="st">"host_id"</span><span class="op">)</span><span class="op">)</span>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/filter-joins.html">anti_join</a></span><span class="op">(</span><span class="va">h</span>, <span class="va">l</span>, by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"id"</span> <span class="op">=</span> <span class="st">"host_id"</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 2 x 3</span>
 <span class="co">#&gt;      id name     n_listings</span>
 <span class="co">#&gt;   &lt;dbl&gt; &lt;chr&gt;         &lt;dbl&gt;</span>
@@ -209,7 +209,7 @@
 <span class="co">#&gt; 2 23078 Eric              3</span></code></pre></div>
 <p>If we reverse this, we should receive an empty tibble.</p>
 <div class="sourceCode" id="cb292"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter-joins.html">anti_join</a></span><span class="op">(</span><span class="va">l</span>, <span class="va">h</span>, by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"host_id"</span> <span class="op">=</span> <span class="st">"id"</span><span class="op">)</span><span class="op">)</span>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/filter-joins.html">anti_join</a></span><span class="op">(</span><span class="va">l</span>, <span class="va">h</span>, by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"host_id"</span> <span class="op">=</span> <span class="st">"id"</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 0 x 3</span>
 <span class="co">#&gt; # … with 3 variables: host_id &lt;dbl&gt;, price &lt;dbl&gt;, neighborhood &lt;chr&gt;</span></code></pre></div>
 <p>Anti joins are often a good way to sanity check your data when looking for completeness or missingness. Be sure to keep this one in your back pocket!</p>
@@ -233,13 +233,13 @@
 <span class="co">#&gt;   date = col_date(format = "")</span>
 <span class="co">#&gt; )</span>
 
-<span class="va">airbnb_full</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">reviews</span>, <span class="va">listing_id</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>n_reviews <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">listings</span>, by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"listing_id"</span> <span class="op">=</span> <span class="st">"id"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">hosts</span>, by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"host_id"</span> <span class="op">=</span> <span class="st">"id"</span><span class="op">)</span><span class="op">)</span>
+<span class="va">airbnb_full</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/group_by.html">group_by</a></span><span class="op">(</span><span class="va">reviews</span>, <span class="va">listing_id</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/summarise.html">summarise</a></span><span class="op">(</span>n_reviews <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">listings</span>, by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"listing_id"</span> <span class="op">=</span> <span class="st">"id"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">hosts</span>, by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"host_id"</span> <span class="op">=</span> <span class="st">"id"</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt; `summarise()` ungrouping output (override with `.groups` argument)</span>
 
-<span class="fu"><a href="https://tibble.tidyverse.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">airbnb_full</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/pkg/tibble/man/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">airbnb_full</span><span class="op">)</span>
 <span class="co">#&gt; Rows: 2,668</span>
 <span class="co">#&gt; Columns: 16</span>
 <span class="co">#&gt; $ listing_id       &lt;dbl&gt; 3781, 5506, 6695, 8789, 10730, 10813, 18711, 22195, …</span>
@@ -259,9 +259,9 @@
 <span class="co">#&gt; $ superhost        &lt;dbl&gt; 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0…</span>
 <span class="co">#&gt; $ n_listings       &lt;dbl&gt; 5, 2, 2, 9, 9, 13, 40, 7, 4, 1, 1, 1, 5, 5, 1, 1, 2,…</span></code></pre></div>
 <div class="sourceCode" id="cb294"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">host_summary</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">listings</span>, <span class="va">hosts</span>, by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"host_id"</span> <span class="op">=</span> <span class="st">"id"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">superhost</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>avg_avail <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">availability_365</span><span class="op">)</span>,
+<code class="sourceCode R"><span class="va">host_summary</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">listings</span>, <span class="va">hosts</span>, by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"host_id"</span> <span class="op">=</span> <span class="st">"id"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/group_by.html">group_by</a></span><span class="op">(</span><span class="va">superhost</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/summarise.html">summarise</a></span><span class="op">(</span>avg_avail <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">availability_365</span><span class="op">)</span>,
             avg_price <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">price</span><span class="op">)</span>,
             avg_min_nights <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">minimum_nights</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt; `summarise()` ungrouping output (override with `.groups` argument)</span></code></pre></div>
@@ -293,7 +293,7 @@
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Urban Informatics Toolkit</strong>" was written by Josiah Parry. It was last built on 2020-12-12.</p>
+    <p>"<strong>Urban Informatics Toolkit</strong>" was written by Josiah Parry. It was last built on 2021-01-05.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

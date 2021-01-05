@@ -1,5 +1,11 @@
 # Ecometrics
 
+```{r include=FALSE}
+options("knitr.graphics.auto_pdf" = TRUE)
+
+knitr::opts_chunk$set(out.width = "100%")
+
+```
 Central to the work done at BARI is the development and utilization of  **ecometrics**. Ecometrics are a quantitative representation of the physical and social environment. In the Urban Informatics context, ecometrics are created to extract **latent constructs**—variables that can only be inferred from a dataset—that illustrate some physical or social phenomenon. 
 
 To understand this, we need to again contextualize these datasets. They are _not_ created with the intention of beng analyzed or to measure the blight of a neighborhood or the social unrest of a city. The lack of 311 reports may tell a story of an underserved neighborhood. Census measures of income combined with 911 reports of neighborly complaints and domestic disturbance may tell the story a gilded community with beautiful brick façades with next to no collective efficacy. These datasets contain gems—beautifully inelegant snapshots of the societal quotidian. But measuring that? That's the tough part and that is why we create ecometrics. They provide us with a way to adapt existing data to address new problems.

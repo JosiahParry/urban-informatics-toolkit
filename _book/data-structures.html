@@ -80,9 +80,9 @@
 <span class="header-section-number">14.1</span> Atomic Vectors<a class="anchor" aria-label="anchor" href="#atomic-vectors"><i class="fas fa-link"></i></a>
 </h2>
 <p>I like to think of the atomic vector much like the atom—that is as the building block of any R object. You’ve actually been working with atomic vectors this entire time. But we haven’t been very explicit about this yet. Up until this point we have been working mainly with tibbles. And here is the secret: each column of a tibble is <em>actually</em> an atomic vector.</p>
-<p>What makes a vector a atomic is that it can only be <strong>a single data type</strong> and that they are <em>one-dimensional</em>—opposed to tibbles which are two-dimensional<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Data Types and Structures. Software Carpentries. &lt;a href="https://swcarpentry.github.io/r-novice-inflammation/13-supp-data-structures/" class="uri"&gt;https://swcarpentry.github.io/r-novice-inflammation/13-supp-data-structures/&lt;/a&gt;&lt;/p&gt;'><sup>55</sup></a>. You may have noticed that every value of a column is of the same data type. This means that they are rather strict to work with and for good reason. Imagine you wanted to multiple a column by 10, what would happen if a few of the values in the column were actually written out as text? Let’s try exploring this idea.</p>
+<p>What makes a vector a atomic is that it can only be <strong>a single data type</strong> and that they are <em>one-dimensional</em>—opposed to tibbles which are two-dimensional<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Data Types and Structures. Software Carpentries. &lt;a href="https://swcarpentry.github.io/r-novice-inflammation/13-supp-data-structures/" class="uri"&gt;https://swcarpentry.github.io/r-novice-inflammation/13-supp-data-structures/&lt;/a&gt;&lt;/p&gt;'><sup>56</sup></a>. You may have noticed that every value of a column is of the same data type. This means that they are rather strict to work with and for good reason. Imagine you wanted to multiple a column by 10, what would happen if a few of the values in the column were actually written out as text? Let’s try exploring this idea.</p>
 <p>The most common way to create a vector in R is to use the <code><a href="https://rdrr.io/r/base/c.html">c()</a></code> function. This stands for <em>combine</em>. We can <code>c</code>ombine as many elements as we want into a single vector using <code><a href="https://rdrr.io/r/base/c.html">c()</a></code>. Each element of the vector is it’s own argument (separated by a comma).</p>
-<p>For example if we wanted to create a vector of <a href="https://data.bls.gov/timeseries/LAUMT257165000000003?amp%253bdata_tool=XGtable&amp;output_view=data&amp;include_graphs=true">Boston’s unemployment rate</a> rate for each month in 2019 that we have data for (until October as of this writing on Dec. 18th, 2019) we could write the below. We will save it in a a vector called <code>unemp</code><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Boston Unemployment &lt;a href="https://data.bls.gov/timeseries/LAUMT257165000000003?amp%253bdata_tool=XGtable&amp;amp;output_view=data&amp;amp;include_graphs=true" class="uri"&gt;https://data.bls.gov/timeseries/LAUMT257165000000003?amp%253bdata_tool=XGtable&amp;amp;output_view=data&amp;amp;include_graphs=true&lt;/a&gt;.&lt;/p&gt;'><sup>56</sup></a>.</p>
+<p>For example if we wanted to create a vector of <a href="https://data.bls.gov/timeseries/LAUMT257165000000003?amp%253bdata_tool=XGtable&amp;output_view=data&amp;include_graphs=true">Boston’s unemployment rate</a> rate for each month in 2019 that we have data for (until October as of this writing on Dec. 18th, 2019) we could write the below. We will save it in a a vector called <code>unemp</code><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Boston Unemployment &lt;a href="https://data.bls.gov/timeseries/LAUMT257165000000003?amp%253bdata_tool=XGtable&amp;amp;output_view=data&amp;amp;include_graphs=true" class="uri"&gt;https://data.bls.gov/timeseries/LAUMT257165000000003?amp%253bdata_tool=XGtable&amp;amp;output_view=data&amp;amp;include_graphs=true&lt;/a&gt;.&lt;/p&gt;'><sup>57</sup></a>.</p>
 <div class="sourceCode" id="cb123"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">unemp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3.2</span>, <span class="fl">2.8</span>, <span class="fl">2.8</span>, <span class="fl">2.4</span>, <span class="fl">2.8</span>, <span class="fl">2.9</span>, <span class="fl">2.7</span>, <span class="fl">2.6</span>, <span class="fl">2.7</span>, <span class="fl">2.3</span><span class="op">)</span>
 <span class="va">unemp</span>
@@ -187,7 +187,7 @@
 
 <span class="va">index</span>
 <span class="co">#&gt;  [1]  TRUE  TRUE  TRUE FALSE  TRUE  TRUE FALSE FALSE FALSE FALSE    NA    NA</span></code></pre></div>
-<p>Notice that the <code>NA</code>s stayed <code>NA</code>? They can be pesky. Hadley writes in Advanced R “missing values tend to be infectious: most computations involving a missing value will return another missing value.”<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Vectors. Advanced R. &lt;a href="https://adv-r.hadley.nz/vectors-chap.html" class="uri"&gt;https://adv-r.hadley.nz/vectors-chap.html&lt;/a&gt;.&lt;/p&gt;'><sup>57</sup></a></p>
+<p>Notice that the <code>NA</code>s stayed <code>NA</code>? They can be pesky. Hadley writes in Advanced R “missing values tend to be infectious: most computations involving a missing value will return another missing value.”<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Vectors. Advanced R. &lt;a href="https://adv-r.hadley.nz/vectors-chap.html" class="uri"&gt;https://adv-r.hadley.nz/vectors-chap.html&lt;/a&gt;.&lt;/p&gt;'><sup>58</sup></a></p>
 <div class="sourceCode" id="cb140"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">unemp</span><span class="op">[</span><span class="va">index</span><span class="op">]</span>
 <span class="co">#&gt; [1] 3.2 2.8 2.8 2.8 2.9  NA  NA</span></code></pre></div>
@@ -230,12 +230,12 @@
 </h2>
 <p>The entirety of the work in this book so far has been with <code>tibbles</code>. Tibbles are actually a special type of data frame. Data frames are R’s native way for storing rectangular data. Rectangles are two-dimensional, so are data frames.</p>
 <p>Data frames are secretly just a bunch of vectors squished together. The important thing is that all vectors are of the same length. This ensures that each observation (row) has one value from each vector. Because of the nature of a data frame, each column must adhere to the rules of vectors.</p>
-<p>Let’s create a tibble using the <code>unemp</code> vector and the <code><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble()</a></code> function. <code><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble()</a></code> works in a somewhat similar manner as <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code> where the arguments we provide are name value pairs. In the case of tibble, the argument take the form of <code>col_name = vector</code>.</p>
+<p>Let’s create a tibble using the <code>unemp</code> vector and the <code><a href="https://rdrr.io/pkg/tibble/man/tibble.html">tibble()</a></code> function. <code><a href="https://rdrr.io/pkg/tibble/man/tibble.html">tibble()</a></code> works in a somewhat similar manner as <code><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate()</a></code> where the arguments we provide are name value pairs. In the case of tibble, the argument take the form of <code>col_name = vector</code>.</p>
 <p>We create a tibble with the unemployment rate below.</p>
 <div class="sourceCode" id="cb147"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span>
 
-<span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>
+<span class="fu"><a href="https://rdrr.io/pkg/tibble/man/tibble.html">tibble</a></span><span class="op">(</span>
   unemp_rate <span class="op">=</span> <span class="va">unemp</span>
 <span class="op">)</span>
 <span class="co">#&gt; # A tibble: 12 x 1</span>
@@ -255,11 +255,11 @@
 <span class="co">#&gt; 12       NA</span></code></pre></div>
 <p>We can add the month name and create a new column to indicate if that month has a higher than average unemployment rate.</p>
 <div class="sourceCode" id="cb148"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">unemp_tbl</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>
+<code class="sourceCode R"><span class="va">unemp_tbl</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/tibble/man/tibble.html">tibble</a></span><span class="op">(</span>
   unemp_rate <span class="op">=</span> <span class="va">unemp</span>, 
   month <span class="op">=</span> <span class="va">month.name</span>
 <span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>above_avg <span class="op">=</span> <span class="va">unemp_rate</span> <span class="op">&gt;</span> <span class="va">avg_unemp</span><span class="op">)</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate</a></span><span class="op">(</span>above_avg <span class="op">=</span> <span class="va">unemp_rate</span> <span class="op">&gt;</span> <span class="va">avg_unemp</span><span class="op">)</span>
 
 <span class="va">unemp_tbl</span>
 <span class="co">#&gt; # A tibble: 12 x 3</span>
@@ -282,9 +282,9 @@
 <div class="sourceCode" id="cb149"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">unemp_tbl</span><span class="op">$</span><span class="va">unemp_rate</span>
 <span class="co">#&gt;  [1] 3.2 2.8 2.8 2.4 2.8 2.9 2.7 2.6 2.7 2.3  NA  NA</span></code></pre></div>
-<p>Note the difference between <code><a href="https://dplyr.tidyverse.org/reference/select.html">select(tbl, col)</a></code> and <code>tbl$col</code>.</p>
+<p>Note the difference between <code><a href="https://rdrr.io/pkg/dplyr/man/select.html">select(tbl, col)</a></code> and <code>tbl$col</code>.</p>
 <div class="sourceCode" id="cb150"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">unemp_tbl</span>, <span class="va">unemp_rate</span><span class="op">)</span>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/select.html">select</a></span><span class="op">(</span><span class="va">unemp_tbl</span>, <span class="va">unemp_rate</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 12 x 1</span>
 <span class="co">#&gt;    unemp_rate</span>
 <span class="co">#&gt;         &lt;dbl&gt;</span>
@@ -300,12 +300,12 @@
 <span class="co">#&gt; 10        2.3</span>
 <span class="co">#&gt; 11       NA  </span>
 <span class="co">#&gt; 12       NA</span></code></pre></div>
-<p>The difference is that <code><a href="https://rdrr.io/r/base/Extract.html">$</a></code> returns the underlying vector whereas <code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code> will always return another data frame. You now have the ability to both filter data and grab a subset of a vector. But we have yet to visit how to grab a single value from a data frame.</p>
+<p>The difference is that <code><a href="https://rdrr.io/r/base/Extract.html">$</a></code> returns the underlying vector whereas <code><a href="https://rdrr.io/pkg/dplyr/man/select.html">select()</a></code> will always return another data frame. You now have the ability to both filter data and grab a subset of a vector. But we have yet to visit how to grab a single value from a data frame.</p>
 <p>You could try something like</p>
 <div class="sourceCode" id="cb151"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">unemp_tbl</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/select.html">select</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/slice.html">slice</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 1 x 1</span>
 <span class="co">#&gt;   unemp_rate</span>
 <span class="co">#&gt;        &lt;dbl&gt;</span>
@@ -346,12 +346,12 @@
 <div class="sourceCode" id="cb154"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">unemp_tbl</span><span class="op">[[</span><span class="fl">10</span>,<span class="fl">1</span><span class="op">]</span><span class="op">]</span>
 <span class="co">#&gt; [1] 2.3</span></code></pre></div>
-<p>What that code is doing is narrowing the tibble down to a single column with a single row index and then extracting the underlying vector (the second bracket). To extract the underlying vector using the tidyverse, we can use the function <code><a href="https://dplyr.tidyverse.org/reference/pull.html">dplyr::pull()</a></code>.</p>
+<p>What that code is doing is narrowing the tibble down to a single column with a single row index and then extracting the underlying vector (the second bracket). To extract the underlying vector using the tidyverse, we can use the function <code><a href="https://rdrr.io/pkg/dplyr/man/pull.html">dplyr::pull()</a></code>.</p>
 <div class="sourceCode" id="cb155"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">unemp_tbl</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span><span class="op">(</span><span class="op">)</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/select.html">select</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/slice.html">slice</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/pull.html">pull</a></span><span class="op">(</span><span class="op">)</span>
 <span class="co">#&gt; [1] 2.3</span></code></pre></div>
 <p>Now this brings us to the second-most fundamental structure in R: the list. Yes, second-most fundamental. I’ve been keeping a secret from you. Data frames are actually just lists in disguise. To prove it, I will remove the class from <code>unemp_tbl</code> and return the class of that unclassed object.</p>
 <div class="sourceCode" id="cb156"><pre class="downlit sourceCode r">
@@ -425,10 +425,10 @@
 <span class="co"># grabbing the vector by name then position</span>
 <span class="va">l</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">unemp_rate</span><span class="op">[</span><span class="fl">10</span><span class="op">]</span>
 <span class="co">#&gt; [1] 2.3</span></code></pre></div>
-<p>Frankly all of these brackets can get a little messy. The tidyverse package <code>purrr</code> has a super handy function called <code><a href="https://purrr.tidyverse.org/reference/pluck.html">pluck()</a></code> which handles all of these brackets for us. <code><a href="https://purrr.tidyverse.org/reference/pluck.html">purrr::pluck()</a></code> is meant for flexible indexing into data structures (documentation).</p>
-<p><code><a href="https://purrr.tidyverse.org/reference/pluck.html">pluck()</a></code> works by first providing the object that you’d like to index—again, notice the data first emphasis—and then providing the position of the element you would like to pluck out of the object. Generally, I will use <code><a href="https://purrr.tidyverse.org/reference/pluck.html">pluck()</a></code> when possible. By doing so the code becomes more readable and adheres to a single style more thoroughly.</p>
+<p>Frankly all of these brackets can get a little messy. The tidyverse package <code>purrr</code> has a super handy function called <code><a href="https://rdrr.io/pkg/purrr/man/pluck.html">pluck()</a></code> which handles all of these brackets for us. <code><a href="https://rdrr.io/pkg/purrr/man/pluck.html">purrr::pluck()</a></code> is meant for flexible indexing into data structures (documentation).</p>
+<p><code><a href="https://rdrr.io/pkg/purrr/man/pluck.html">pluck()</a></code> works by first providing the object that you’d like to index—again, notice the data first emphasis—and then providing the position of the element you would like to pluck out of the object. Generally, I will use <code><a href="https://rdrr.io/pkg/purrr/man/pluck.html">pluck()</a></code> when possible. By doing so the code becomes more readable and adheres to a single style more thoroughly.</p>
 <div class="sourceCode" id="cb165"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/pluck.html">pluck</a></span><span class="op">(</span><span class="va">l</span>, <span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">10</span><span class="op">)</span>
+<code class="sourceCode R"><span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/purrr/man/pluck.html">pluck</a></span><span class="op">(</span><span class="va">l</span>, <span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">10</span><span class="op">)</span>
 <span class="co">#&gt; [1] 2.3</span></code></pre></div>
 <p>Congratulations! You made it to the end of this exceptionally dense chapter. You may feel a little overwhlemed and that is to be expected. Nonetheless you should be proud! I have a few more asks of you before you move on.</p>
 <div id="exercises" class="section level3" number="14.3.1">
@@ -446,11 +446,11 @@
 
 <span class="va">unemp_l</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="va">unemp</span>, <span class="va">month.name</span>, <span class="va">avg_unemp</span><span class="op">)</span>
 
-<span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>
-  unemp_rate <span class="op">=</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/pluck.html">pluck</a></span><span class="op">(</span><span class="va">unemp_l</span>, <span class="fl">1</span><span class="op">)</span>,
-  month <span class="op">=</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/pluck.html">pluck</a></span><span class="op">(</span><span class="va">unemp_l</span>, <span class="fl">2</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/pkg/tibble/man/tibble.html">tibble</a></span><span class="op">(</span>
+  unemp_rate <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/purrr/man/pluck.html">pluck</a></span><span class="op">(</span><span class="va">unemp_l</span>, <span class="fl">1</span><span class="op">)</span>,
+  month <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/purrr/man/pluck.html">pluck</a></span><span class="op">(</span><span class="va">unemp_l</span>, <span class="fl">2</span><span class="op">)</span>
 <span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>above_avg <span class="op">=</span> <span class="va">unemp_rate</span> <span class="op">&gt;</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/pluck.html">pluck</a></span><span class="op">(</span><span class="va">unemp_l</span>, <span class="fl">3</span><span class="op">)</span><span class="op">)</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate</a></span><span class="op">(</span>above_avg <span class="op">=</span> <span class="va">unemp_rate</span> <span class="op">&gt;</span> <span class="fu"><a href="https://rdrr.io/pkg/purrr/man/pluck.html">pluck</a></span><span class="op">(</span><span class="va">unemp_l</span>, <span class="fl">3</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 12 x 3</span>
 <span class="co">#&gt;    unemp_rate month     above_avg</span>
 <span class="co">#&gt;         &lt;dbl&gt; &lt;chr&gt;     &lt;lgl&gt;    </span>
@@ -499,7 +499,7 @@
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Urban Informatics Toolkit</strong>" was written by Josiah Parry. It was last built on 2020-12-12.</p>
+    <p>"<strong>Urban Informatics Toolkit</strong>" was written by Josiah Parry. It was last built on 2021-01-05.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

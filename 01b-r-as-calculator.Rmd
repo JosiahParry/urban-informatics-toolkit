@@ -1,5 +1,11 @@
 # R as a calculator
 
+```{r include=FALSE}
+options("knitr.graphics.auto_pdf" = TRUE)
+
+knitr::opts_chunk$set(out.width = "100%")
+
+```
 Before we get going, let's find our footing. R is a statistical programming language. That means that R does math and pretty well too. In this chapter you'll learn the basics of using R including:
 
   - arithmetic operators

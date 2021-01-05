@@ -4,11 +4,18 @@
 source("common.R")
 ```
 
+```{r include=FALSE}
+options("knitr.graphics.auto_pdf" = TRUE)
+
+knitr::opts_chunk$set(out.width = "100%")
+
+```
+
 In the next part of this book we will introduce to you visual data exploration through the use of the R package `ggplot2`. You will ask questions of your data, visualize relationships, and draw inferences from the graphics you develop. 
 
 The below image from R for Data Science is renowned for its representation of the data analysis workflow. The concept map encompasses the need to get data (import), clean it up (tidy), explore, and finally communicate insights. The box in blue is a representation of exploratory data analysis (EDA). While performing EDA we will find ourselves transforming our data—creating new variables, aggregating, etc.—visualizing it, and creating statistical models. 
 
-![](static/data-science-explore.png)
+`r knitr::include_graphics("static/data-science-explore.png")`
 
 This chapter will focus on the visualization step of EDA. We have all heard the trope that "an image is worth a thousand words." I'd take a leap and say that a good visualization is worth ten thousand words. An older statistical manual from the National Institute of Standards and Technology (NIST) beautifully lays out the role that visualization plays in EDA.
 

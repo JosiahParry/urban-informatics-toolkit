@@ -1,5 +1,12 @@
 # Grammer of layered graphics II
 
+```{r include=FALSE}
+options("knitr.graphics.auto_pdf" = TRUE)
+
+knitr::opts_chunk$set(out.width = "100%")
+
+```
+
 ```{r, include=FALSE, message=FALSE}
 source("common.R")
 library(tidyverse)

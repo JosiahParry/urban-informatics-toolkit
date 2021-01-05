@@ -1,5 +1,7 @@
 # Statistics
 
+
+
 In the course of your analyses you will both want to and need to conduct statistical tests. It is important that you are equipped to perform these tests in R as well. Teaching you statistical concepts is outside of the scope of this book. For an introduction to statistical concepts using R, I recommend reading David Dalpiaz's free and open [_R for Statistical Learning_](https://daviddalpiaz.github.io/r4sl/)[^r4sl]. In this section we will review _how_ to implement statistical tests and extract useful information from them as well. We will cover t-tests, ANOVA, and linear regression.
 
 To explore these statistics we will use data from Inside Airbnb. Of interest is the relationship between price and superhosts, price and room type, and finally how both superhosts and room type contribute to price. 
@@ -74,7 +76,7 @@ ggplot(airbnb, aes(price, superhost, group = superhost)) +
   geom_boxplot()
 ```
 
-<img src="09-statistics_files/figure-html/unnamed-chunk-3-1.png" width="672" />
+<img src="09-statistics_files/figure-html/unnamed-chunk-4-1.png" width="100%" />
 
 > Note that we are setting the group to `superhost` this is because it is dummy coded as a numeric value. ggplot is attempting to consider it numeric rather than categorical. 
 
@@ -89,7 +91,7 @@ ggplot(bnb_filt, aes(price, superhost)) +
   geom_boxplot()
 ```
 
-<img src="09-statistics_files/figure-html/unnamed-chunk-4-1.png" width="672" />
+<img src="09-statistics_files/figure-html/unnamed-chunk-5-1.png" width="100%" />
 
 The first thing you may notices is that we no longer had to specify the `group` aesthetic because we converted `superhost` to a non-numeric format. From the above visualization it looks like that being a superhost does not necessarily increase the price of a listing. We can now test these means by using `t.test()`. There are a number of ways in which we can use this function but the most generalizable way is to use what is called the **formula** interface. 
 
@@ -256,7 +258,7 @@ We can being by plotting the point estimates of each comparison.
   geom_point())
 ```
 
-<img src="09-statistics_files/figure-html/unnamed-chunk-12-1.png" width="672" />
+<img src="09-statistics_files/figure-html/unnamed-chunk-13-1.png" width="100%" />
 
 Next we can add a horizontal error bar (`geom_errorbarh()`) layer to the plot. This layer requires some additional aesthetics that we will set in the layer itself. These are `xmin` and `xmax`. Respectively they are used to mark the minimum and maximum extents of the error bars. In the case of the HSD object, the bounds of th confidence intervals have been already calculated for us and can be found in the columns `conf.low` and `conf.high`. We can pass these to the `xmin` and `xmax` aesthetic arguments.
 
@@ -266,7 +268,7 @@ p +
   geom_errorbarh(aes(xmin = conf.low, xmax = conf.high))
 ```
 
-<img src="09-statistics_files/figure-html/unnamed-chunk-13-1.png" width="672" />
+<img src="09-statistics_files/figure-html/unnamed-chunk-14-1.png" width="100%" />
 
 ## Linear regression
 
@@ -334,7 +336,7 @@ broom::tidy(price_lm, conf.int = TRUE) %>%
   geom_errorbarh(aes(xmin = conf.low, xmax = conf.high))
 ```
 
-<img src="09-statistics_files/figure-html/unnamed-chunk-16-1.png" width="672" />
+<img src="09-statistics_files/figure-html/unnamed-chunk-17-1.png" width="100%" />
 
 Unlike the t-test, a linear model provides much more information that will become useful such as goodness of fit measures, residuals, and predicted values. To extract these we can use the functions `glance()` and `augment()` from broom.
 

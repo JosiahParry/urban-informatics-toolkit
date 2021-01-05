@@ -3,6 +3,8 @@
 
 
 
+
+
 Over the duration of the last three chapters we have cultivated a fundamental understanding of the grammar of graphics and have discussed how to craft univariate visualizations and explore bivariate relationships. In those graphics we have not gone beyond two-dimensions. We only utilized two aesthetics to map. Howver, there is many more that we can incorporate into our visualizations which will in turn enable us to explore three or for variables at once.
 
 > Note that these will not be 3D, but rather visualize three variables. 
@@ -71,7 +73,7 @@ ggplot(ecometrics, aes(year, n)) +
   geom_col()
 ```
 
-<img src="04d-beyond-2d_files/figure-html/unnamed-chunk-5-1.png" width="672" />
+<img src="04d-beyond-2d_files/figure-html/unnamed-chunk-6-1.png" width="100%" />
 
 But, we are aware that there are different measurements. These were described previously and can be seen below.
 
@@ -95,7 +97,7 @@ ggplot(ecometrics, aes(year, n, fill = measure)) +
   geom_col()
 ```
 
-<img src="04d-beyond-2d_files/figure-html/unnamed-chunk-7-1.png" width="672" />
+<img src="04d-beyond-2d_files/figure-html/unnamed-chunk-8-1.png" width="100%" />
 
 By mapping the fill to the `measure` variable we were able to create a stacked bar chart! It is apparent that `violence` is the most frequent of these ecometrics, followed by `private conflict`, `social disorder`, and then `guns`. 
 
@@ -107,7 +109,7 @@ ggplot(ecometrics, aes(year, n, fill = measure)) +
   geom_col(position = "dodge")
 ```
 
-<img src="04d-beyond-2d_files/figure-html/unnamed-chunk-8-1.png" width="672" />
+<img src="04d-beyond-2d_files/figure-html/unnamed-chunk-9-1.png" width="100%" />
 
 The dodged bar chart makes it much easier to compare the heights of each bar. But now we are creating a somewhat cluttered graphic. In the situation where there are multiple groups and subgroups, it is often preferred to utilize facetting because the most important thing in any graphic is how easy it is to consume. We would rather make four plots than one messy plot. 
 
@@ -120,7 +122,7 @@ ggplot(ecometrics, aes(year, n, fill = measure)) +
   facet_wrap("measure", nrow = 1)
 ```
 
-<img src="04d-beyond-2d_files/figure-html/unnamed-chunk-9-1.png" width="672" />
+<img src="04d-beyond-2d_files/figure-html/unnamed-chunk-10-1.png" width="100%" />
 
 This is awesome! We have four different plots one for each measurement and it is extremely easy to see how each ecoemtrics has trended over the four year period. It seems like there has been a steady decrease! With this plot, however, we are labeling the ecometrics twice: once with the panel label and once with the legend. Since each facet is labeled individually and are not situated next to any other ecometrics, the color becomes redundant. Unless there is an important reason to visualize the color when faceting, it is most likely not needed. As such, a final visualization would look like below.
 
@@ -131,28 +133,28 @@ ggplot(ecometrics, aes(year, n)) +
   facet_wrap("measure", nrow = 1)
 ```
 
-<img src="04d-beyond-2d_files/figure-html/unnamed-chunk-10-1.png" width="672" />
+<img src="04d-beyond-2d_files/figure-html/unnamed-chunk-11-1.png" width="100%" />
 
 ### Continuous color scales
 
 In the cases where our variable of interest is a continuous numeric one, we ought to be using a continuous color scale. These are scales that change from one color to another to illustrate a range of values—for example we could use this to visualize probabilities from 0 - 1. The below is an example of one of these color palettes. 
 
-<img src="04d-beyond-2d_files/figure-html/unnamed-chunk-11-1.png" width="672" />
+<img src="04d-beyond-2d_files/figure-html/unnamed-chunk-12-1.png" width="100%" />
 
 Often you'll encounter visualizations that use a rainbow color palette or some other number of colors. To illustrate a range of values. This is _not_ recommended. When we are looking at color, we are best able to detect changes in the luminescence (perceived brightness) and saturation [^flowingdata]. As such, we should work with color palettes that are easiest to interpret. First we'll visualize what changing saturation and brightness looks like. 
 
 Below is is an image of 10 colors. Starting at the left is the color yellow (hex code `#FFFF00FF`). Each step it is desaturated by 10 percent ending with the color grey (hex code `#808080FF`). We can think of saturation as how much color there is.
 
 
-<img src="04d-beyond-2d_files/figure-html/unnamed-chunk-12-1.png" width="672" />
+<img src="04d-beyond-2d_files/figure-html/unnamed-chunk-13-1.png" width="100%" />
 
 Below is an example of what changing the brightness can look like.
 
-<img src="04d-beyond-2d_files/figure-html/unnamed-chunk-13-1.png" width="672" />
+<img src="04d-beyond-2d_files/figure-html/unnamed-chunk-14-1.png" width="100%" />
 
 If we expand the usage of brightness on both ends of the spectrum we get the below.
 
-<img src="04d-beyond-2d_files/figure-html/unnamed-chunk-14-1.png" width="672" />
+<img src="04d-beyond-2d_files/figure-html/unnamed-chunk-15-1.png" width="100%" />
 
 You may find that in the course of your work that individuals will use a color palette like the below.
 
@@ -161,15 +163,15 @@ You may find that in the course of your work that individuals will use a color p
 prismatic:::plot.colors(rainbow(20))
 ```
 
-<img src="04d-beyond-2d_files/figure-html/unnamed-chunk-15-1.png" width="672" />
+<img src="04d-beyond-2d_files/figure-html/unnamed-chunk-16-1.png" width="100%" />
 
 I strongly **advise against** this. These colors make it extremely difficult to tell changing values. Consider for a moment how you would try and tell the difference in numeric value between a magenta and a maroon. It would be rather difficult. Moreover, this color palette is not very accessible to those who are color deficient. The below is an approximation of what those with varying types of color blindness might see. 
 
-<img src="04d-beyond-2d_files/figure-html/unnamed-chunk-16-1.png" width="672" />
+<img src="04d-beyond-2d_files/figure-html/unnamed-chunk-17-1.png" width="100%" />
 
 Compare this with the earlier example of dark to light yellows.
 
-<img src="04d-beyond-2d_files/figure-html/unnamed-chunk-17-1.png" width="672" />
+<img src="04d-beyond-2d_files/figure-html/unnamed-chunk-18-1.png" width="100%" />
 
 
 This is much more accessible to those who are color deficient as well as providing a clearer understanding of a _range_ of values.
@@ -193,7 +195,7 @@ commute <- read_csv("data/gba_commute.csv")
   geom_point())
 ```
 
-<img src="04d-beyond-2d_files/figure-html/unnamed-chunk-18-1.png" width="672" />
+<img src="04d-beyond-2d_files/figure-html/unnamed-chunk-19-1.png" width="100%" />
 
 Wonderful! As anticipated, the color of the points are darkest at the bottom where median household income is the lowest. And as income increases, so does the brightness and saturation of our color scale. If we return to the grammar of graphics, we can take further control of the scales. In this case, the color of the scales. One of the ways we can change the color scale is to add the layer `scale_color_gradient()` to manually choose what colors to use in our scale. This provides a lot of flexibility to you as a information designer. Think of how you can use the color to represent what it is thatyou are visualizing. Or, how you can use colors to adhere to a color palette of your own or an organization you are working with. 
 
@@ -209,7 +211,7 @@ p +
   scale_color_gradient(low = "#360002", high = "white")
 ```
 
-<img src="04d-beyond-2d_files/figure-html/unnamed-chunk-19-1.png" width="672" />
+<img src="04d-beyond-2d_files/figure-html/unnamed-chunk-20-1.png" width="100%" />
 
 Try modifying the above plot by picking two colors that you think do a good job of visualizing a range of values.
 
@@ -217,7 +219,7 @@ Try modifying the above plot by picking two colors that you think do a good job 
 
 There are many a time when our variable of interest has a middle value and illustrating the center as well as the deviation from that center is important. To visually represent this we use what is called a diverging color scale. Diverging color scales are characterized by a middle color from which both ends of the spectrum originate. The center is to represent some middle value. If we contextualize this as z-scores and the color palette below, the center would be `0` and any negative scores would trend towards red. Whereas if they trended positive they would become more blue.
 
-<img src="04d-beyond-2d_files/figure-html/unnamed-chunk-20-1.png" width="672" />
+<img src="04d-beyond-2d_files/figure-html/unnamed-chunk-21-1.png" width="100%" />
 
 One thing to be wary of is using a divergent color scale when it is not necessary. This is an easy trap to fall into since they're pretty cool. Remember, _only_ use diverging color palettes if there is an existing middle value.
 
@@ -332,7 +334,7 @@ Within the chart we map `devation` to the color aesthetic.
 #>   grobY.absoluteGrob      ggplot2
 ```
 
-<img src="04d-beyond-2d_files/figure-html/unnamed-chunk-24-1.png" width="672" />
+<img src="04d-beyond-2d_files/figure-html/unnamed-chunk-25-1.png" width="100%" />
 The above graphic doesn't take into account the middle value of `0`. Because of this, we need to tell ggplot2 that this is a diverging color scale. When we were working with a normal continuous color scale we used `scale_color_gradient()`. Instead, since we have a middle value, to  create the diverging color gradient we use `scale_color_gradient2()`. This adds two more arguments `mid` and `midpoint`. The former is the color of that middle value. The second is what that middle value maps to—defaults to 0, which is fine for our example. 
 
 Now if we add the below colors—a red, yellow-ish beige, and a blue—we will have a diverging color scale on the plot! 
@@ -343,7 +345,7 @@ p +
   scale_color_gradient2(low = "#A12106", mid = "#B2CEB7", high = "#004C76")
 ```
 
-<img src="04d-beyond-2d_files/figure-html/unnamed-chunk-25-1.png" width="672" />
+<img src="04d-beyond-2d_files/figure-html/unnamed-chunk-26-1.png" width="100%" />
 
 Information design is a seemingly endless field of which we only touched on a very small amount. The R community has put a lot of work into enabling the use of color for visualization purposes. The above images of color palettes were created with the help of the wonderful packages `prismatic` and `paletteer`
 
@@ -387,7 +389,7 @@ ggplot(bb,  aes(longitude, latitude, shape = room_type)) +
   geom_point(alpha = .5, size = 3) 
 ```
 
-<img src="04d-beyond-2d_files/figure-html/unnamed-chunk-26-1.png" width="672" />
+<img src="04d-beyond-2d_files/figure-html/unnamed-chunk-27-1.png" width="100%" />
 
 By changing each point's shape by their associated room type we can get a somewhat better idea of the spatial distribution by type. 
 
@@ -395,7 +397,7 @@ What can we tell from this visualization? It looks like most Airbnbs are overwhe
 
 The above visualization is good, but lets compare that with the use of color.
 
-<img src="04d-beyond-2d_files/figure-html/unnamed-chunk-27-1.png" width="672" />
+<img src="04d-beyond-2d_files/figure-html/unnamed-chunk-28-1.png" width="100%" />
 
 Which do you prefer? Which do you feel does a better job getting this message across? Again, we are delving into the world of design and there is never a _correct_ answer. But sometimes there may be a consensus. So just do your best and ask others for their thoughts on your visualizations. 
 
@@ -432,7 +434,7 @@ ggplot(big_belly, aes(long, lat, size = n)) +
   geom_point(alpha = 1/2)
 ```
 
-<img src="04d-beyond-2d_files/figure-html/unnamed-chunk-29-1.png" width="672" />
+<img src="04d-beyond-2d_files/figure-html/unnamed-chunk-30-1.png" width="100%" />
 
 
 

@@ -80,7 +80,7 @@
 <p>First, a brief history lesson. R is a descendant of the S statistical programming language whose naissance can be traced back to 1976 in Bell Laboratories.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;The S System. John Chambers. &lt;a href="https://web.archive.org/web/20181014111802/http://ect.bell-labs.com/sl/S/" class="uri"&gt;https://web.archive.org/web/20181014111802/http://ect.bell-labs.com/sl/S/&lt;/a&gt;.&lt;/p&gt;'><sup>25</sup></a> As S developed, people sought to commercialize the language. In 1993, the license as well as development and selling rights were given to a private company. From then on S became available only as the commercialized S-PLUS.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Statistical Sciences, Inc. Douglas Martin. 1996. &lt;a href="https://github.com/JosiahParry/r-history/raw/master/lit/S/statsci-splus-death.pdf" class="uri"&gt;https://github.com/JosiahParry/r-history/raw/master/lit/S/statsci-splus-death.pdf&lt;/a&gt;.&lt;/p&gt;'><sup>26</sup></a></p>
 <p>Later, seeing a need for an improved statistical software environment, two researchers from the University of Auckland created a new statistical programming language. This became known as R. R was developed in the image of S. Because of this S code should be able to run as R code. However, an early decision to make the R (also referred to as the R-project) free and open source changed its fate dramatically.</p>
 <p>Today, the R-project is developed and maintained by a group known as the R Core who “represent multiple statistical disciplines and are based at academic, not-for-profit and industry-affiliated institutions on multiple continents”<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;R: Software Development Life Cycle. A Description of R’s Development, Testing, Release and Maintenance Processes. March 25, 2018. The R Foundation for Statistical Computing c/o Institute for Statistics and Mathematics &lt;a href="https://www.r-project.org/doc/R-SDLC.pdf" class="uri"&gt;https://www.r-project.org/doc/R-SDLC.pdf&lt;/a&gt;.&lt;/p&gt;'><sup>27</sup></a>. They define R as “an integrated suite of software facilities for data manipulation, calculation and graphical display.”<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;The R Project. &lt;a href="https://www.r-project.org/about.html" class="uri"&gt;https://www.r-project.org/about.html&lt;/a&gt;.&lt;/p&gt;'><sup>28</sup></a></p>
-<p>R is essentially a fancy calculator. It was designed to do math—specifically statistics—but its capabilities extend well beyond basic mathematics While R is for all intents and purposes a programming language, one should, in theory, feel like they are doing data analysis and not programming.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;The S System. John Chambers. &lt;a href="https://web.archive.org/web/20181014111802/http://ect.bell-labs.com/sl/S/" class="uri"&gt;https://web.archive.org/web/20181014111802/http://ect.bell-labs.com/sl/S/&lt;/a&gt;.&lt;/p&gt;'><sup>29</sup></a></p>
+<p>R is in essence a <em>very</em> fancy calculator. It was designed to do math—specifically statistics—but its capabilities extend well beyond basic mathematics. While R is for all intents and purposes a programming language, one should, in theory, feel like they are doing data analysis and not programming.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;The S System. John Chambers. &lt;a href="https://web.archive.org/web/20181014111802/http://ect.bell-labs.com/sl/S/" class="uri"&gt;https://web.archive.org/web/20181014111802/http://ect.bell-labs.com/sl/S/&lt;/a&gt;.&lt;/p&gt;'><sup>29</sup></a></p>
 <p>R is unique amonth other commercial statistical software such as Stata and SPSS. Very fundamentally, R is a free project. While it is monetarily free, free refers to “liberty, not price.”<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;GNU. &lt;a href="https://gnu.org" class="uri"&gt;https://gnu.org&lt;/a&gt;.&lt;/p&gt;'><sup>30</sup></a>. I think it is important you familiarize yourself with the four freedoms of free software. These freedoms are listed below from one to four, though are referred to as freedoms 0 through 3.</p>
 <p>They are:</p>
 <blockquote>
@@ -115,7 +115,7 @@
 <p>For this reason, we will use RStudio to program in R. RStudio is an integrated development environment (IDE). This means that most of the features that you will need to develop in R will all be in one place. RStudio gives you a place to write your R code, execute it, view the graphics you produce, and much more.</p>
 <p>I like to think of R as the English language and using RStudio is like using Mircrosoft word. Chester Ismay and Albert Kim’s book <em>Modern Dive</em>, provide another excellent analogy of R and RStudio. They describe R as the engine of a car, and RStudio as the dashboard.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Modern Dive. &lt;a href="https://moderndive.com/1-getting-started.html" class="uri"&gt;https://moderndive.com/1-getting-started.html&lt;/a&gt;.&lt;/p&gt;'><sup>33</sup></a></p>
 <p>In RStudio there are four quadrants that we work with which are called panes.</p>
-<div class="inline-figure"><img src="static/rstudio-editor.png"></div>
+<div class="inline-figure"><img src="static/rstudio-editor.png" width="100%"></div>
 <p>The above graphic is borrowed from RStudio, PBC’s Thomas Mock’s Introduction to the Tidyverse.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Intro to RMarkdown. Thomas Mock. &lt;a href="https://github.com/jthomasmock/intro-tidyverse/blob/master/intro-to-tidyverse.rmd" class="uri"&gt;https://github.com/jthomasmock/intro-tidyverse/blob/master/intro-to-tidyverse.rmd&lt;/a&gt;.&lt;/p&gt;'><sup>34</sup></a></p>
 <div id="the-editor" class="section level3" number="6.2.1">
 <h3>
@@ -170,13 +170,9 @@ spring/
 <p>Imagine R is using the working directory <code>spring</code> but you are working on your <code>info-design</code> work. You would be under the impression that you were working from the <code>info-design</code> folder, but R would believe you were working from <code>spring</code>. So when you try to load some data from the <code>data</code> folder inside of <code>info-design</code> (which looks like <code>info-design/data</code>), you have to tell R how to get there. The instinctual path would be <code>data</code> but R is actually expecting <code>info-design/data</code>.</p>
 <p>To prevent this we can create an R project. An R project imposes the standalone structure that we will need to prevent the above issue.</p>
 <p>The way to create a new project is by navigating to <code>File &gt; New Project</code>.</p>
-<div class="figure">
-<img src="static/01-project.png" alt=""><p class="caption">Step 1: new Project</p>
-</div>
+<div class="inline-figure"><img src="static/01-project.png" width="100%"></div>
 <p>Click <code>New Directory</code>. This will create a new folder for you. Next, RStudio will prompt you to specify what kind of project to create. Today, that will be a generic <code>New Project</code>. In the future, I suspect you will end up creating Shiny applications and much more.</p>
-<div class="figure">
-<img src="static/02-project.png" alt=""><p class="caption">Step 2: New Project</p>
-</div>
+<div class="inline-figure"><img src="static/02-project.png" width="100%"></div>
 <p>The final step is to specify what the project will be called and where to put it. In the below image I name the new directory <code>uitk</code>, short for Urban Informatics Toolkit, and place it in the directory <code>R</code>. Be sure to select which folder you want your project to live in.</p>
 <p>A few tips:</p>
 <ul>
@@ -184,9 +180,7 @@ spring/
 <li>
 <strong>Do not</strong> put spaces or periods in the directory name. Use <code>_</code> or <code><a href="https://rdrr.io/r/base/Arithmetic.html">-</a></code> if you feel the need.</li>
 </ul>
-<div class="figure">
-<img src="static/03-project.png" alt=""><p class="caption">Step 3: Naming the project</p>
-</div>
+<div class="inline-figure"><img src="static/03-project.png" width="100%"></div>
 <p>This will open up a new RStudio session. You will notice in your <code>Files</code> pane that there is now a <code>uitk.Rproj</code> file there. That file is what tells RStudio about the project, so don’t delete it! If you would like to open up an RStudio project you can either open the <code>.Rproj</code> file from your file navigator or by following <code>File &gt; Open Project</code>.</p>
 </div>
 <div id="the-data" class="section level3" number="6.4.2">
@@ -200,7 +194,7 @@ spring/
 <span class="header-section-number">6.4.3</span> Your Workspace<a class="anchor" aria-label="anchor" href="#your-workspace"><i class="fas fa-link"></i></a>
 </h3>
 <p>In another effort to impose good habits and reproducibility standards I will suggest you change one setting in RStudio. Navigate to <code>Tools &gt; Global Options</code> and change the below setting.</p>
-<div class="inline-figure"><img src="static/save-workspace.png"></div>
+<div class="inline-figure"><img src="static/save-workspace.png" width="100%"></div>
 <p>This setting makes it so that your analysis is dependent upon the code you write, not the data objects you create while interactively programming. A general rule of thumb is that your R script should be able to run from top to bottom successfully.</p>
 </div>
 </div>
@@ -212,7 +206,7 @@ spring/
 <p><a href="https://www.data-imaginist.com/art">
 <img src="static/genesis1300.png"></a></p>
 <p>They can be used to make beautiful graphics for the BBC.</p>
-<div class="inline-figure"><img src="static/bbplot_example_plots.png"></div>
+<div class="inline-figure"><img src="static/bbplot_example_plots.png" width="100%"></div>
 <p>R can be found in the infrastructure of our modern world. R is utilized in our global financial institutions, civil rights groups such as the ACLU, investigative journalism, national defense, and so much more. Do not feel that the <em>only</em> thing you will get from learning R is how to do some simple statistics.</p>
 </div>
 <div id="getting-help" class="section level2" number="6.6">
@@ -282,7 +276,7 @@ spring/
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Urban Informatics Toolkit</strong>" was written by Josiah Parry. It was last built on 2020-12-12.</p>
+    <p>"<strong>Urban Informatics Toolkit</strong>" was written by Josiah Parry. It was last built on 2021-01-05.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

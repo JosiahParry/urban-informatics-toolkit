@@ -77,23 +77,25 @@
 <h2>
 <span class="header-section-number">8.1</span> Background<a class="anchor" aria-label="anchor" href="#background"><i class="fas fa-link"></i></a>
 </h2>
-<p>There are three general sources where we as social scientists will receive or access data: 1) text files, 2) databases, and 3) application programming interfaces (APIs). Frankly, though this is the age of “big data,” we are not always able to interface directly with these sources. But through partnerships between the public and private we often receive shared data. For example, BARI’s work with the Boston Police Department provides them with annual access to crime data. But BARI’s access is limited. They do not have credentials to log in to the database and perform their own queries. They are presented with what is called a flat text file that contains the data requisite for analysis stored in a text file—think of a word document with no frills. We will focus on data from text files in this chapter.</p>
-<p>Flat text files will be sufficient for 85% of all of your data needs Now, what do I mean by <em>flat text file</em>? A flat text file is a file that stores data in plain text. In other words, you can open up a text file and actually read the data with your own eyes or a screen reader. For a long while tech pundits believed—and some still do—that text data will be a thing of the past. Perhaps this may be true in the future, but plain text still persists and there are some good reasons for that. Since plain text is extremely simple it is lightweight and usually does not take up that much memory. Also, because there is no fancy embellishing of the data in a plain text file, they can be easily shared from machine to machine without concern of becoming dependent on a specific tool or software.</p>
+<p>There are three general sources where we as social scientists will receive or access data: 1) text files, 2) databases, and 3) application programming interfaces (APIs). Frankly, though this is the age of “big data,” we are not always able to interface directly with these sources. But through partnerships between the public and private we often receive shared data. For example, BARI’s work with the Boston Police Department provides them with annual access to crime data. But BARI’s access is limited. They do not have credentials to log in to the database and perform their own queries. They are presented with what is called a flat text file—hink of a Word document with no frills whatsoever. We will focus on flat text files in this chapter.</p>
+<p>Flat text files will be sufficient for 85% of all of your data needs. Now, what do I mean by <em>flat text file</em>? A flat text file is a file that stores data in plain text. In other words, you can open up a text file and actually read the data with your own eyes or a screen reader. For a long while tech pundits believed—and some still do—that text data will be a thing of the past. Perhaps this may be true in the future, but plain text still persists and there are some good reasons for that. Since plain text is extremely simple it is lightweight and usually does not take up that much memory. Also, because there is no fancy embellishing of the data in a plain text file, they can be easily shared from machine to machine without concern of becoming dependent on a specific tool or software.</p>
 </div>
 <div id="actually-reading-data" class="section level2" number="8.2">
 <h2>
 <span class="header-section-number">8.2</span> Actually Reading Data<a class="anchor" aria-label="anchor" href="#actually-reading-data"><i class="fas fa-link"></i></a>
 </h2>
-<p>Within the <code>tidyverse</code> there is a package called <a href="https://readr.tidyverse.org"><code>readr</code></a> (pronounced <em>read-r</em>) which we use for reading in rectangular data from text files.</p>
-<p>I just threw the phrase <em>rectangular data</em> at you. It is only fair to actually describe what that means. If you were to look at rectangular data in something like excel it would resemble a rectangle. These are data that have rows and columns. In fancy speak, rectangular data is a <em>two-dimensional</em> data structure with rows and columns. We will learn more about the “proper” way to shape rectangular data in the “tidying data” chapter. For now, all you need to know is that there are rows and columns in rectangular data.</p>
-<p>To get started, let us load the tidyverse. This will load readr for us.</p>
+<p>Within the <code>tidyverse</code> there is a package called <a href="https://readr.tidyverse.org"><code>readr</code></a> (pronounced <em>read-r</em>) which we use for reading in rectangular data from text files. I just threw the phrase <em>rectangular data</em> at you. It is only fair to actually describe what that means. Rectangular resembles a table and should consist of rows and columns. In more technical terms rectangular data is a <em>two-dimensional</em> data structure with rows and columns.</p>
+<blockquote>
+<p>Note that rows should consist of observations and columns consist of variables.<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://vita.had.co.nz/papers/tidy-data.pdf" class="uri"&gt;https://vita.had.co.nz/papers/tidy-data.pdf&lt;/a&gt;&lt;/p&gt;'><sup>42</sup></a></p>
+</blockquote>
+<p>To get started, let us load the tidyverse which will load readr for us.</p>
 <div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span> </code></pre></div>
 <p>You most likely have seen and encountered flat text files in the wild in the form of a <code>csv</code>. It is important to know what <em>csv</em> stands for because it will help you understand what it actually is. it stands for <strong>c</strong>omma <strong>s</strong>eparated <strong>v</strong>alues. _csv_s are a flat text data file where the data is rectangular! Each new line of the file indicates that there is a new row. Within each row, each comma indicates a new column. If you opened one up in a text editor like text edit or notepad a csv would look something like below.</p>
 <pre><code>column_a, column_b, column_c
 10, "these are words", .432
 1, "and more words", 1.11</code></pre>
-<p>To read a csv we use the <code><a href="https://readr.tidyverse.org/reference/read_delim.html">readr::read_csv()</a></code> function. <code>read_csv()</code> will read in the csv file and create a <code>tibble</code>. A tibble is type of a data structure that we will be interacting with the most throughout this book. A tibble is a rectangular data structure with rows and columns. Since a csv contains rectangular data, it is natural for it to be stored in a tibble.</p>
+<p>To read a csv we use the <code><a href="https://rdrr.io/pkg/readr/man/read_delim.html">readr::read_csv()</a></code> function. <code>read_csv()</code> will read in the csv file and create a <code>tibble</code>. A tibble is type of a data structure that we will be interacting with the most throughout this book. A tibble is a rectangular data structure with rows and columns. Since a csv contains rectangular data, it is natural for it to be stored in a tibble.</p>
 <blockquote>
 <p>Note: the syntax above is used for referencing a function from a namespace (package name). The syntax is pkgname::function(). This means the <code>read_csv()</code> function from the package <code>readr</code>. This is something you will see frequently on websites like <a href="https://stackoverflow.com/questions/tagged/r">StackOverflow</a>.</p>
 </blockquote>
@@ -166,9 +168,9 @@
 <span class="co">#&gt;  9            97417       0.0625   0.254     0.227 0.284 0.969 0.00710</span>
 <span class="co">#&gt; 10            43384       0.207    0.362     0.262 0.124 0.460 0.105  </span>
 <span class="co">#&gt; # … with 1,446 more rows</span></code></pre></div>
-<p>This is sometimes a little overwhelming of a view. For previewing data, the function <code><a href="https://tibble.tidyverse.org/reference/glimpse.html">dplyr::glimpse()</a></code> (there is the namespace notation again) is a great option. Try using the function <code><a href="https://tibble.tidyverse.org/reference/glimpse.html">glimpse()</a></code> with the first argument being the <code>acs</code> object.</p>
+<p>This is sometimes a little overwhelming of a view. For previewing data, the function <code><a href="https://rdrr.io/pkg/tibble/man/glimpse.html">dplyr::glimpse()</a></code> (there is the namespace notation again) is a great option. Try using the function <code><a href="https://rdrr.io/pkg/tibble/man/glimpse.html">glimpse()</a></code> with the first argument being the <code>acs</code> object.</p>
 <div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://tibble.tidyverse.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">acs</span><span class="op">)</span>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/tibble/man/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">acs</span><span class="op">)</span>
 <span class="co">#&gt; Rows: 1,456</span>
 <span class="co">#&gt; Columns: 7</span>
 <span class="co">#&gt; $ med_house_income &lt;dbl&gt; 105735, 69625, 70679, 74528, 52885, 64100, 37093, 87…</span>
@@ -183,11 +185,11 @@
 <h2>
 <span class="header-section-number">8.3</span> Other common data formats<a class="anchor" aria-label="anchor" href="#other-common-data-formats"><i class="fas fa-link"></i></a>
 </h2>
-<p>While csv files are going to be the most ubiquitous, you will invariably run into other data formats. The workflow is almost always the same. If you want to read excel files, you can use the function <code><a href="https://readxl.tidyverse.org/reference/read_excel.html">readxl::read_excel()</a></code> from the <a href="https://readxl.tidyverse.org/"><code>readxl</code></a> package.</p>
+<p>While csv files are going to be the most ubiquitous, you will invariably run into other data formats. The workflow is almost always the same. If you want to read excel files, you can use the function <code><a href="https://rdrr.io/pkg/readxl/man/read_excel.html">readxl::read_excel()</a></code> from the <a href="https://readxl.tidyverse.org/"><code>readxl</code></a> package.</p>
 <div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">acs_xl</span> <span class="op">&lt;-</span> <span class="fu">readxl</span><span class="fu">::</span><span class="fu"><a href="https://readxl.tidyverse.org/reference/read_excel.html">read_excel</a></span><span class="op">(</span><span class="st">"data/acs_edu.xlsx"</span><span class="op">)</span>
+<code class="sourceCode R"><span class="va">acs_xl</span> <span class="op">&lt;-</span> <span class="fu">readxl</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/readxl/man/read_excel.html">read_excel</a></span><span class="op">(</span><span class="st">"data/acs_edu.xlsx"</span><span class="op">)</span>
 
-<span class="fu"><a href="https://tibble.tidyverse.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">acs_xl</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/pkg/tibble/man/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">acs_xl</span><span class="op">)</span>
 <span class="co">#&gt; Rows: 1,456</span>
 <span class="co">#&gt; Columns: 7</span>
 <span class="co">#&gt; $ med_house_income &lt;dbl&gt; 105735, 69625, 70679, 74528, 52885, 64100, 37093, 87…</span>
@@ -197,13 +199,14 @@
 <span class="co">#&gt; $ bach             &lt;dbl&gt; 0.32473048, 0.26167076, 0.26677159, 0.23124279, 0.16…</span>
 <span class="co">#&gt; $ white            &lt;dbl&gt; 0.8972737, 0.8849885, 0.7328322, 0.8235779, 0.737102…</span>
 <span class="co">#&gt; $ black            &lt;dbl&gt; 0.012213740, 0.017090069, 0.079514240, 0.030640286, …</span></code></pre></div>
-<p>Another common format is a <strong>tsv</strong> which stands for <strong>t</strong>ab <strong>s</strong>eparated <strong>f</strong>ormat. <code><a href="https://readr.tidyverse.org/reference/read_delim.html">readr::read_tsv()</a></code> will be able to assist you here.</p>
-<p>If for some reason there are special delimiters like <code><a href="https://rdrr.io/r/base/Logic.html">|</a></code>, the <code><a href="https://readr.tidyverse.org/reference/read_delim.html">readr::read_delim()</a></code> function will work best. For example <code><a href="https://readr.tidyverse.org/reference/read_delim.html">readr::read_delim("file-path", delim = "|")</a></code> would do the trick!</p>
+<p>Another common format is a <strong>tsv</strong> which stands for <strong>t</strong>ab <strong>s</strong>eparated <strong>f</strong>ormat. <code><a href="https://rdrr.io/pkg/readr/man/read_delim.html">readr::read_tsv()</a></code> will be able to assist you here.</p>
+<p>If for some reason there are special delimiters like <code><a href="https://rdrr.io/r/base/Logic.html">|</a></code>, the <code><a href="https://rdrr.io/pkg/readr/man/read_delim.html">readr::read_delim()</a></code> function will work best. For example <code><a href="https://rdrr.io/pkg/readr/man/read_delim.html">readr::read_delim("file-path", delim = "|")</a></code> would do the trick!</p>
 <p>Additionally, another extremely common data type is <em>json</em> which is short for javascript object notation. json is a data type that you will usually not read directly from a text file but interact with from an API. If you do happen to encounter a json flat text file, use the <code>jsonlite</code> package. <code><a href="https://rdrr.io/pkg/jsonlite/man/read_json.html">jsonlite::read_json()</a></code>.</p>
 <p>With this new skill we are ready for our first analysis. In the next chapter we will perform our very first graphical analysis using the package <a href="https://ggplot2.tidyverse.org"><code>ggplot2</code></a> from the tidyverse.</p>
 
 </div>
 </div>
+
   <div class="chapter-nav">
 <div class="prev"><a href="r-as-a-calculator.html"><span class="header-section-number">7</span> R as a calculator</a></div>
 <div class="next"><a href="exploratory-visual-analysis.html"><span class="header-section-number">9</span> Exploratory Visual Analysis</a></div>
@@ -230,7 +233,7 @@
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Urban Informatics Toolkit</strong>" was written by Josiah Parry. It was last built on 2020-12-12.</p>
+    <p>"<strong>Urban Informatics Toolkit</strong>" was written by Josiah Parry. It was last built on 2021-01-05.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

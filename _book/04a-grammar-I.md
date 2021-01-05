@@ -3,6 +3,8 @@
 
 
 
+
+
 You've made it quite far through this book. Now, I want to bring us back to the very beginning. In the first chapter we created a few visualizations with `ggplot2`. I want to unpack ggplot2 a bit more and also address some of the more philosophical underpinnings of visualization.
 
 This chapter introduces you to the idea of the grammar of graphics, discusses when which visualizations are appropriate, and some fundamental design principles follow. 
@@ -47,7 +49,7 @@ In the first chapter of this section we explored these principles but did not pu
 ggplot()
 ```
 
-<img src="04a-grammar-I_files/figure-html/unnamed-chunk-3-1.png" width="672" />
+<img src="04a-grammar-I_files/figure-html/unnamed-chunk-4-1.png" width="100%" />
 
 This is because we have not specified any of the defaults. In order for us to plot anything at all, we need to specify what (the data object) will be visualized, which features (the aesthetic mappings), and how (the geoms). When we begin to specify our x and y aesthetics the scales are interpreted. 
 
@@ -56,7 +58,7 @@ This is because we have not specified any of the defaults. In order for us to pl
 ggplot(commute, aes(med_house_income, by_auto))
 ```
 
-<img src="04a-grammar-I_files/figure-html/unnamed-chunk-4-1.png" width="672" />
+<img src="04a-grammar-I_files/figure-html/unnamed-chunk-5-1.png" width="100%" />
 
 The final step is to add the geom layer which will inherit the data, aesthetic mappings, scale, and position while the `geom_*()` layer dictates the geometry.
 
@@ -66,7 +68,7 @@ ggplot(commute, aes(bach, med_house_income))+
   geom_point()
 ```
 
-<img src="04a-grammar-I_files/figure-html/unnamed-chunk-5-1.png" width="672" />
+<img src="04a-grammar-I_files/figure-html/unnamed-chunk-6-1.png" width="100%" />
 
 While this is the most common way you might define a ggplot, you should also be aware of the fact that each layer can stand on its own without you defining any of the defaults in the `ggplot()` call. Each geom inherits the defaults from `ggplot()`, but each `geom_*()` also has arguments for `data`, and `mapping`, providing you with increased flexibility.
 
@@ -91,7 +93,7 @@ ggplot() +
   geom_point(aes(med_house_income, by_auto), commute)
 ```
 
-<img src="04a-grammar-I_files/figure-html/unnamed-chunk-7-1.png" width="672" />
+<img src="04a-grammar-I_files/figure-html/unnamed-chunk-8-1.png" width="100%" />
 
 Being able to specify different data objects within each layer will provie to be extraordinarily helpful when we begin to work with spatial data, or plotting two different data frames with the same axes, or any other creative problem you wish to solve. 
 

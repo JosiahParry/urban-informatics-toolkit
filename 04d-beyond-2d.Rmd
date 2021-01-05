@@ -1,5 +1,12 @@
 # Visualizing beyond 2-dimensions
 
+```{r include=FALSE}
+options("knitr.graphics.auto_pdf" = TRUE)
+
+knitr::opts_chunk$set(out.width = "100%")
+
+```
+
 ```{r, include=FALSE, message=FALSE}
 source("common.R")
 library(tidyverse)
@@ -7,16 +14,7 @@ library(patchwork)
 
 acs_raw <- read_csv("data/ACS_1317_TRACT.csv")
 
-commute <- select(acs_raw,
-       county,
-       hs_grad, bach, master,
-       starts_with("commute"),
-       starts_with("by"),
-       med_house_income) %>% 
-  filter(county %in% c("SUFFOLK", "NORFOLK", "MIDDLESEX")) %>% 
-  mutate(hh_inc_quin = ntile(med_house_income, 5),
-         edu_attain = bach + master) %>% 
-  select(-bach, -master)
+commute <- uitk::commute
 ```
 
 

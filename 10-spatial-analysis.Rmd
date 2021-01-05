@@ -1,5 +1,13 @@
 # Spatial Analysis
 
+```{r include=FALSE}
+options("knitr.graphics.auto_pdf" = TRUE)
+
+knitr::opts_chunk$set(out.width = "100%")
+
+```
+
+
 In the very beginning of the book we discussed some of the benefits of administrative data. One of the benefits mentioned is that administrative data are inherently **spatial**. Most data tend to be spatial in nature. This is because most events happen at a physical place. In the context of administrative data, we know that all data recorded at that level must fall within the municipal boundaries. Often we know the location within the municipality to a much finer scale---i.e. the block group, the voting ward, or even the exact point location.
 
 Identifying whether or not your data is spatial is easiest when there are geographic components present such as latitude and longitude. However, your data can also be spatial even if it isn't explicitly stated. Some things you can keep an eye out for are things like neighborhood, towns, county, etc. as these are location specific. It is likely that you will be performing analyses rooted in space and accounting for things such as counties but perhaps without using any geospatial techniques.
@@ -14,7 +22,7 @@ Within the field of Geographic Information Systems (**GIS**) there are two gener
 
 The other umbrella of data is known as **raster** data. Raster data are to deal with more complex data that cannot easily be captured by a single point. Rasters are used to "represent spatially continuous phenomenon" [^spatial-analysis-1]. Raster analysis is done to evaluate things like changing vegetation, elevation and slope modeling, analysing reflective surfaces, among much more. Raster analysis typically relies on satellite imagery or LiDAR laser point cloud data. Raster analysis is an extremely complex topic and requires devoted attention. As such, we will not cover it in this book. But, know that it exists and is out there!
 
-![](static/2019-points-lines-polygons.png)
+`r knitr::include_graphics("static/2019-points-lines-polygons.png")`
 
 ## Working with spatial data
 

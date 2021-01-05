@@ -4,6 +4,7 @@
 
 
 
+
 We spent the last chapter performing our first exploratory visual analysis. From our visualizations we were able to inductively conlcude that as both median household income and the proportion of the population with a bachelors degree increases, so does the share of the population is white. 
 
 While we were able to make wonderful visualizations, we did skip a number of steps in the exploratory analysis process! Arguably the most important is that we skipped the curating of our dataset. The ACS dataset was already cleaned and curated for you. This almost always will not be the case. As such, we're going to spend this chapter learning about ways of selecting subsets of our data.

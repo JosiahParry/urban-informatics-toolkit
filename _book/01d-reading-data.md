@@ -2,21 +2,23 @@
 
 
 
+
+
 Requisite to any data analysis is the data. Making those data available for you to analyse is not always the easiest of tasks. In this chapter we will review how data are imported and some of the formats they may take. Once we complete this chapter we will get going on our very first analaysis!
 
 ## Background
 
-There are three general sources where we as social scientists will receive or access data: 1) text files, 2) databases, and 3) application programming interfaces (APIs). Frankly, though this is the age of "big data," we are not always able to interface directly with these sources. But through partnerships between the public and private we often receive shared data. For example, BARI's work with the Boston Police Department provides them with annual access to crime data. But BARI's access is limited. They do not have credentials to log in to the database and perform their own queries. They are presented with what is called a flat text file that contains the data requisite for analysis stored in a text file---think of a word document with no frills. We will focus on data from text files in this chapter.
+There are three general sources where we as social scientists will receive or access data: 1) text files, 2) databases, and 3) application programming interfaces (APIs). Frankly, though this is the age of "big data," we are not always able to interface directly with these sources. But through partnerships between the public and private we often receive shared data. For example, BARI's work with the Boston Police Department provides them with annual access to crime data. But BARI's access is limited. They do not have credentials to log in to the database and perform their own queries. They are presented with what is called a flat text file---hink of a Word document with no frills whatsoever.  We will focus on flat text files in this chapter.
 
-Flat text files will be sufficient for 85% of all of your data needs Now, what do I mean by *flat text file*? A flat text file is a file that stores data in plain text. In other words, you can open up a text file and actually read the data with your own eyes or a screen reader. For a long while tech pundits believed---and some still do---that text data will be a thing of the past. Perhaps this may be true in the future, but plain text still persists and there are some good reasons for that. Since plain text is extremely simple it is lightweight and usually does not take up that much memory. Also, because there is no fancy embellishing of the data in a plain text file, they can be easily shared from machine to machine without concern of becoming dependent on a specific tool or software.
+Flat text files will be sufficient for 85% of all of your data needs. Now, what do I mean by *flat text file*? A flat text file is a file that stores data in plain text. In other words, you can open up a text file and actually read the data with your own eyes or a screen reader. For a long while tech pundits believed---and some still do---that text data will be a thing of the past. Perhaps this may be true in the future, but plain text still persists and there are some good reasons for that. Since plain text is extremely simple it is lightweight and usually does not take up that much memory. Also, because there is no fancy embellishing of the data in a plain text file, they can be easily shared from machine to machine without concern of becoming dependent on a specific tool or software.
 
 ## Actually Reading Data
 
-Within the `tidyverse` there is a package called [`readr`](https://readr.tidyverse.org) (pronounced *read-r*) which we use for reading in rectangular data from text files.
+Within the `tidyverse` there is a package called [`readr`](https://readr.tidyverse.org) (pronounced *read-r*) which we use for reading in rectangular data from text files. I just threw the phrase *rectangular data* at you. It is only fair to actually describe what that means. Rectangular resembles a table and should consist of rows and columns. In more technical terms rectangular data is a *two-dimensional* data structure with rows and columns. 
 
-I just threw the phrase *rectangular data* at you. It is only fair to actually describe what that means. If you were to look at rectangular data in something like excel it would resemble a rectangle. These are data that have rows and columns. In fancy speak, rectangular data is a *two-dimensional* data structure with rows and columns. We will learn more about the "proper" way to shape rectangular data in the "tidying data" chapter. For now, all you need to know is that there are rows and columns in rectangular data.
+> Note that rows should consist of observations and columns consist of variables. [^tidydata]
 
-To get started, let us load the tidyverse. This will load readr for us.
+To get started, let us load the tidyverse which will load readr for us.
 
 
 ```r
@@ -165,3 +167,6 @@ If for some reason there are special delimiters like `|`, the `readr::read_delim
 Additionally, another extremely common data type is *json* which is short for javascript object notation. json is a data type that you will usually not read directly from a text file but interact with from an API. If you do happen to encounter a json flat text file, use the `jsonlite` package. `jsonlite::read_json()`.
 
 With this new skill we are ready for our first analysis. In the next chapter we will perform our very first graphical analysis using the package [`ggplot2`](https://ggplot2.tidyverse.org) from the tidyverse.
+
+
+[^tidydata]: [Tidy Data, Wickham](https://vita.had.co.nz/papers/tidy-data.pdf)

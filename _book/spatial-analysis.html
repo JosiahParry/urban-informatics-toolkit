@@ -81,8 +81,8 @@
 </h2>
 <p>Within the field of Geographic Information Systems (<strong>GIS</strong>) there are two general umbrellas in which data fall under. These are vector and raster data.</p>
 <p><strong>Vector</strong> data is what you will find yourself working with most frequently. Most simply put they are <em>“points, lines, and polygons.”</em> The basis of vector data is the coordinate point. Just like the scatter plots we have built, each coordinate point is a combination of an x and y value (longitude and latitude respectively). This combination of x and y will tell us where something is. By combining two or more points we can trace along a path—think of the connect the dots diagrams you would do at restaurants as a kid—and create line segments. If, however, at any point these lines close, you now have a polygon.</p>
-<p>The other umbrella of data is known as <strong>raster</strong> data. Raster data are to deal with more complex data that cannot easily be captured by a single point. Rasters are used to “represent spatially continuous phenomenon.”<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;R Spatial. &lt;a href="https://rspatial.org/raster/spatial/Spatialdata.pdf" class="uri"&gt;https://rspatial.org/raster/spatial/Spatialdata.pdf&lt;/a&gt;.&lt;/p&gt;'><sup>76</sup></a> Raster analysis is done to evaluate things like changing vegetation, elevation and slope modeling, analysing reflective surfaces, among much more. Raster analysis typically relies on satellite imagery or LiDAR laser point cloud data. Raster analysis is an extremely complex topic and requires devoted attention. As such, we will not cover it in this book. But, know that it exists and is out there!</p>
-<div class="inline-figure"><img src="static/2019-points-lines-polygons.png"></div>
+<p>The other umbrella of data is known as <strong>raster</strong> data. Raster data are to deal with more complex data that cannot easily be captured by a single point. Rasters are used to “represent spatially continuous phenomenon.”<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;R Spatial. &lt;a href="https://rspatial.org/raster/spatial/Spatialdata.pdf" class="uri"&gt;https://rspatial.org/raster/spatial/Spatialdata.pdf&lt;/a&gt;.&lt;/p&gt;'><sup>77</sup></a> Raster analysis is done to evaluate things like changing vegetation, elevation and slope modeling, analysing reflective surfaces, among much more. Raster analysis typically relies on satellite imagery or LiDAR laser point cloud data. Raster analysis is an extremely complex topic and requires devoted attention. As such, we will not cover it in this book. But, know that it exists and is out there!</p>
+<div class="inline-figure"><img src="static/2019-points-lines-polygons.png" width="100%"></div>
 </div>
 <div id="working-with-spatial-data" class="section level2" number="26.2">
 <h2>
@@ -115,14 +115,14 @@
 ## 4  8789     -71.1     42.4
 ## 5 10730     -71.1     42.4
 ## 6 10813     -71.1     42.3</code></pre>
-<p>So far everything is the same. We have read in our dataset and created a tibble. The next step is to make this tibble a simple feature. Fortunately, sf keeps this process rather simple for us by representing spatial data in native R data formats—namely, the data frame. To make simple features from an existing tibble, we need to cast the object as an <code>sf</code> object. And we do this with <code><a href="https://r-spatial.github.io/sf/reference/st_as_sf.html">st_as_sf()</a></code>.</p>
-<p>Generally when we cast objects we use functions like <code><a href="https://rdrr.io/r/base/integer.html">as.integer()</a></code> or <code><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble()</a></code>. Here, there is a prefixed <code>st_</code>. This stands for <em>spatial transformation</em>. All transformations are prefixed as such—this is in an effort to keep continuity between GIS tools. Most functions cast objects to other classes with no function arguments. <code><a href="https://r-spatial.github.io/sf/reference/st_as_sf.html">st_as_sf()</a></code> unfortunately cannot read your mind and is not aware of what the geometry is in the tibble. As such, we need to use the <code>coords</code> argument in <code><a href="https://r-spatial.github.io/sf/reference/st_as_sf.html">st_as_sf()</a></code>. <code>coords</code> gives us the ability to tell sf what the columns are that contain our coordinate points. For point data we need to provide a character vector of length two with the x and y dimensions aka longitude and latitude.</p>
+<p>So far everything is the same. We have read in our dataset and created a tibble. The next step is to make this tibble a simple feature. Fortunately, sf keeps this process rather simple for us by representing spatial data in native R data formats—namely, the data frame. To make simple features from an existing tibble, we need to cast the object as an <code>sf</code> object. And we do this with <code><a href="https://rdrr.io/pkg/sf/man/st_as_sf.html">st_as_sf()</a></code>.</p>
+<p>Generally when we cast objects we use functions like <code><a href="https://rdrr.io/r/base/integer.html">as.integer()</a></code> or <code><a href="https://rdrr.io/pkg/tibble/man/as_tibble.html">as_tibble()</a></code>. Here, there is a prefixed <code>st_</code>. This stands for <em>spatial transformation</em>. All transformations are prefixed as such—this is in an effort to keep continuity between GIS tools. Most functions cast objects to other classes with no function arguments. <code><a href="https://rdrr.io/pkg/sf/man/st_as_sf.html">st_as_sf()</a></code> unfortunately cannot read your mind and is not aware of what the geometry is in the tibble. As such, we need to use the <code>coords</code> argument in <code><a href="https://rdrr.io/pkg/sf/man/st_as_sf.html">st_as_sf()</a></code>. <code>coords</code> gives us the ability to tell sf what the columns are that contain our coordinate points. For point data we need to provide a character vector of length two with the x and y dimensions aka longitude and latitude.</p>
 <blockquote>
 <p>Note that we are likely used to saying <em>lat, long</em>, but that actually maps to <em>y, x</em>. This is something that trips everyone up! Just make sure you put longitude in the x spot and latitude in the y spot.</p>
 </blockquote>
-<p>To convert the <code>locations</code> data frame to a simple feature we will use <code><a href="https://r-spatial.github.io/sf/reference/st_as_sf.html">st_as_sf()</a></code> and set the <code>coords</code> argument to <code><a href="https://rdrr.io/r/base/c.html">c("longitude", "latitude")</a></code>.</p>
+<p>To convert the <code>locations</code> data frame to a simple feature we will use <code><a href="https://rdrr.io/pkg/sf/man/st_as_sf.html">st_as_sf()</a></code> and set the <code>coords</code> argument to <code><a href="https://rdrr.io/r/base/c.html">c("longitude", "latitude")</a></code>.</p>
 <div class="sourceCode" id="cb330"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_as_sf.html">st_as_sf</a></span><span class="op">(</span><span class="va">locations</span>,
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/sf/man/st_as_sf.html">st_as_sf</a></span><span class="op">(</span><span class="va">locations</span>,
          coords <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"longitude"</span>, <span class="st">"latitude"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>## Simple feature collection with 3799 features and 1 field
 ## geometry type:  POINT
@@ -152,9 +152,9 @@
 <p>Most other online data sources use this reference system as well. For example Google and Twitter provide their data using this CRS. The times when you are most likely to encounter a CRS isn’t WGS84 is when working with data from local agencies that need highly accurate and tailored spatial data. This would be agencies like water departments, and forestry groups, etc.</p>
 <p>To ensure that our data are properly represented in space, we need to provide the CRS in the creation of our simple features. We do this by specifying the <code>crs</code> argument. <code>crs</code> will accept a number that indicates what projection you are using. There are too many CRS identifiers to commit to memory. This information is usually recorded in the original data source. Be sure to confirm the spatial dimensions! For WGS84, the CRS identifier is <code>4326</code>. This is probably worth committing to memory.</p>
 <p><a href="https://confluence.qps.nl/qinsy/latest/en/world-geodetic-system-1984-wgs84-182618391.html#id-.WorldGeodeticSystem1984(WGS84)v9.1-WGS84definitions" class="uri">https://confluence.qps.nl/qinsy/latest/en/world-geodetic-system-1984-wgs84-182618391.html#id-.WorldGeodeticSystem1984(WGS84)v9.1-WGS84definitions</a></p>
-<p>We will now create an object called <code>loc_sf</code> using <code><a href="https://r-spatial.github.io/sf/reference/st_as_sf.html">st_as_sf()</a></code> and providing both the <code>coords</code> and the <code>crs</code>.</p>
+<p>We will now create an object called <code>loc_sf</code> using <code><a href="https://rdrr.io/pkg/sf/man/st_as_sf.html">st_as_sf()</a></code> and providing both the <code>coords</code> and the <code>crs</code>.</p>
 <div class="sourceCode" id="cb332"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">loc_sf</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_as_sf.html">st_as_sf</a></span><span class="op">(</span><span class="va">locations</span>,
+<code class="sourceCode R"><span class="va">loc_sf</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/sf/man/st_as_sf.html">st_as_sf</a></span><span class="op">(</span><span class="va">locations</span>,
          coords <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"longitude"</span>, <span class="st">"latitude"</span><span class="op">)</span>,
          crs <span class="op">=</span> <span class="fl">4326</span><span class="op">)</span>
 
@@ -180,7 +180,7 @@
 ## # … with 3,789 more rows</code></pre>
 <p>Since an sf object is also a data frame we are able to perform all of the operations that we may with a normal tibble such as selecting columns, joining, mutating etc.</p>
 <div class="sourceCode" id="cb334"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">loc_sf</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/count.html">count</a></span><span class="op">(</span><span class="va">loc_sf</span><span class="op">)</span></code></pre></div>
 <pre><code>## Simple feature collection with 1 feature and 1 field
 ## geometry type:  MULTIPOINT
 ## dimension:      XY
@@ -190,10 +190,10 @@
 ##       n                                                                 geometry
 ## * &lt;int&gt;                                                         &lt;MULTIPOINT [°]&gt;
 ## 1  3799 ((-71.1728 42.34835), (-71.17174 42.34854), (-71.17173 42.34923), (-71.…</code></pre>
-<p>Notice that it keeps the geometry even when counting. When our data is spatial, we have to incorporate the geometry into our computations. This often times leads to slower processing times. So if you do not immediately need the geometry, my recommendation is that you join it back on as late as possible. You can cast an sf object to a tibble with <code><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble()</a></code></p>
+<p>Notice that it keeps the geometry even when counting. When our data is spatial, we have to incorporate the geometry into our computations. This often times leads to slower processing times. So if you do not immediately need the geometry, my recommendation is that you join it back on as late as possible. You can cast an sf object to a tibble with <code><a href="https://rdrr.io/pkg/tibble/man/as_tibble.html">as_tibble()</a></code></p>
 <div class="sourceCode" id="cb336"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span><span class="op">(</span><span class="va">loc_sf</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/tibble/man/as_tibble.html">as_tibble</a></span><span class="op">(</span><span class="va">loc_sf</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/count.html">count</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 1 x 1
 ##       n
 ##   &lt;int&gt;
@@ -204,11 +204,11 @@
 <h2>
 <span class="header-section-number">26.4</span> Plotting sf objects with ggplot<a class="anchor" aria-label="anchor" href="#plotting-sf-objects-with-ggplot"><i class="fas fa-link"></i></a>
 </h2>
-<p>Plotting sf objects is made rather straightforward with ggplot2. Since sf objects contain a ton of spatial information this is inferred from ggplot. As such, we are not required to map the aesthetics for x and y. We simple provide just the data argument to ggpplot and then add a <code><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">geom_sf()</a></code> layer. Inside of <code><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">geom_sf()</a></code> we can provide any and all arguments that we may like such as color, size, shape, etc. as this will be passed to the underlying <code>geom_*</code>—in the case of points, it will be <code><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point()</a></code>.</p>
+<p>Plotting sf objects is made rather straightforward with ggplot2. Since sf objects contain a ton of spatial information this is inferred from ggplot. As such, we are not required to map the aesthetics for x and y. We simple provide just the data argument to ggpplot and then add a <code><a href="https://rdrr.io/pkg/ggplot2/man/ggsf.html">geom_sf()</a></code> layer. Inside of <code><a href="https://rdrr.io/pkg/ggplot2/man/ggsf.html">geom_sf()</a></code> we can provide any and all arguments that we may like such as color, size, shape, etc. as this will be passed to the underlying <code>geom_*</code>—in the case of points, it will be <code><a href="https://rdrr.io/pkg/ggplot2/man/geom_point.html">geom_point()</a></code>.</p>
 <div class="sourceCode" id="cb338"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">loc_sf</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">geom_sf</a></span><span class="op">(</span>shape <span class="op">=</span> <span class="st">"."</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="10-spatial-analysis_files/figure-html/unnamed-chunk-6-1.png" width="672"></div>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">loc_sf</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/ggsf.html">geom_sf</a></span><span class="op">(</span>shape <span class="op">=</span> <span class="st">"."</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="10-spatial-analysis_files/figure-html/unnamed-chunk-7-1.png" width="100%"></div>
 <p>This is great as we can already somewhat see the shape of Boston and Suffolk County. Since we have these Airbnb points located in space, we know we are able to associate them with their respective Census tracts.To do so we need another spatial data set which contains the shapes of each tract. In the next section we will read a dataset containing the shapes of each tract in Suffolk county. Following we will perform a spatial join to associate the points with the tracts.</p>
 </div>
 <div id="connecting-points-to-polygons" class="section level2" number="26.5">
@@ -216,9 +216,9 @@
 <span class="header-section-number">26.5</span> Connecting points to polygons<a class="anchor" aria-label="anchor" href="#connecting-points-to-polygons"><i class="fas fa-link"></i></a>
 </h2>
 <p>Now that we have the point locations of each Airbnb listing we need to identify which tracts they belong to. In the <code>data</code> folder there is a file called <code>suffolk_acs.geojson</code>. This is a common spatial data format which is based on <code>json</code>. The difference is that <code>geojson</code> contains a lot of fields specific to spatial data.</p>
-<p>Reading in data of this format is just as easy as in reading in a csv file. Using <code><a href="https://r-spatial.github.io/sf/reference/st_read.html">sf::read_sf()</a></code> we can pass the path of the geojson file and be returned an sf object.</p>
+<p>Reading in data of this format is just as easy as in reading in a csv file. Using <code><a href="https://rdrr.io/pkg/sf/man/st_read.html">sf::read_sf()</a></code> we can pass the path of the geojson file and be returned an sf object.</p>
 <div class="sourceCode" id="cb339"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">acs_tracts</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_read.html">read_sf</a></span><span class="op">(</span><span class="st">"data/suffolk_acs.geojson"</span><span class="op">)</span>
+<code class="sourceCode R"><span class="va">acs_tracts</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/sf/man/st_read.html">read_sf</a></span><span class="op">(</span><span class="st">"data/suffolk_acs.geojson"</span><span class="op">)</span>
 
 <span class="va">acs_tracts</span></code></pre></div>
 <pre><code>## Simple feature collection with 203 features and 1 field
@@ -247,30 +247,30 @@
 ## "crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },</code></pre>
 <p>Let’s see what this file looks like!</p>
 <div class="sourceCode" id="cb342"><pre class="downlit sourceCode r">
-<code class="sourceCode R">  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">acs_tracts</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">geom_sf</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="10-spatial-analysis_files/figure-html/unnamed-chunk-9-1.png" width="672"></div>
+<code class="sourceCode R">  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">acs_tracts</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/ggsf.html">geom_sf</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="10-spatial-analysis_files/figure-html/unnamed-chunk-10-1.png" width="100%"></div>
 <p>Wonderful! There are two stylist adjustments I’d make here so that visualizing is a little easier. The first is to change the line width to something thinner, and adjust the transparency of tracts so that they are a little lighter. This makes the map a bit easier to read all in all.</p>
 <div class="sourceCode" id="cb343"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">acs_tracts</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">geom_sf</a></span><span class="op">(</span>lwd <span class="op">=</span> <span class="fl">0.25</span>, alpha <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="10-spatial-analysis_files/figure-html/unnamed-chunk-10-1.png" width="672"></div>
-<p>Now, here is where understanding the grammar of graphics comes in handy. We now have two different data sets that would be good to visualize together. Recall that when we specify the data in the top level <code><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot()</a></code> call that sets the default for every single layer. If we do that with multiple objects that may cause some conflicts. We do know, however, that we can set the data per layer. So, taking these two points together, we can plot both <code>loc_sf</code> <em>and</em> <code>acs_tracts</code> on the same graph if we set the data argument in each respective <code><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">geom_sf()</a></code> layer.</p>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">acs_tracts</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/ggsf.html">geom_sf</a></span><span class="op">(</span>lwd <span class="op">=</span> <span class="fl">0.25</span>, alpha <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="10-spatial-analysis_files/figure-html/unnamed-chunk-11-1.png" width="100%"></div>
+<p>Now, here is where understanding the grammar of graphics comes in handy. We now have two different data sets that would be good to visualize together. Recall that when we specify the data in the top level <code><a href="https://rdrr.io/pkg/ggplot2/man/ggplot.html">ggplot()</a></code> call that sets the default for every single layer. If we do that with multiple objects that may cause some conflicts. We do know, however, that we can set the data per layer. So, taking these two points together, we can plot both <code>loc_sf</code> <em>and</em> <code>acs_tracts</code> on the same graph if we set the data argument in each respective <code><a href="https://rdrr.io/pkg/ggplot2/man/ggsf.html">geom_sf()</a></code> layer.</p>
 <div class="sourceCode" id="cb344"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">geom_sf</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">acs_tracts</span>, lwd <span class="op">=</span> <span class="fl">0.25</span>, alpha <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">geom_sf</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">loc_sf</span>, shape <span class="op">=</span> <span class="st">"."</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="10-spatial-analysis_files/figure-html/unnamed-chunk-11-1.png" width="672"></div>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/ggplot.html">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/ggsf.html">geom_sf</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">acs_tracts</span>, lwd <span class="op">=</span> <span class="fl">0.25</span>, alpha <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/ggsf.html">geom_sf</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">loc_sf</span>, shape <span class="op">=</span> <span class="st">"."</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="10-spatial-analysis_files/figure-html/unnamed-chunk-12-1.png" width="100%"></div>
 <p>With the above plot we can get a sense of the density of Airbnb listings in Boston. There seems to be greater density near Back Bay and Beacon Hill. It would be great to be able to know how many listings there are for each tract and the average listing price. To do this, we need to perform two joins. The first one is spatial—joining point to polygon based on which tract each point intersects. The second is to join the listings information on to the spatially joined data set. In doing this we will have utilized data from three different sources!</p>
 <div id="spatial-joins" class="section level3" number="26.5.1">
 <h3>
 <span class="header-section-number">26.5.1</span> Spatial Joins<a class="anchor" aria-label="anchor" href="#spatial-joins"><i class="fas fa-link"></i></a>
 </h3>
 <p>Like a regular join, the intent behind a spatial join is to add the attributes of one data source to another. The utility of a spatial join comes when there is no shared attribute <em>other than</em> space. More often than not when we want to perform a spatial join we are looking for what is called the <strong>intersection</strong>. That is essentially where two spatial features touch in some manner. The other type of spatial join that we will find useful is the nearest neighbor where we take the attributes to the next closest object.</p>
-<p>To perform a spatial join we use the function <code><a href="https://r-spatial.github.io/sf/reference/st_join.html">sf::st_join()</a></code> which has three main arguments: <code>x</code>, <code>y</code>, and <code>join</code>. The default join type is <code>st_intersects</code> which will join attributes (columns) from <code>y</code> where <code>x</code> <strong>intersects</strong> (meaning touches or is within). The ordering of our <code>x</code> and <code>y</code> is very important as this will be the difference between a left or a right join. This ordering also determines what type of geometry we will be returned. Whatever type of geometry is in the <code>x</code> position is what will be returned.</p>
-<p>Let’s try using <code><a href="https://r-spatial.github.io/sf/reference/st_join.html">st_join()</a></code> to join the tract level information to our point data.</p>
+<p>To perform a spatial join we use the function <code><a href="https://rdrr.io/pkg/sf/man/st_join.html">sf::st_join()</a></code> which has three main arguments: <code>x</code>, <code>y</code>, and <code>join</code>. The default join type is <code>st_intersects</code> which will join attributes (columns) from <code>y</code> where <code>x</code> <strong>intersects</strong> (meaning touches or is within). The ordering of our <code>x</code> and <code>y</code> is very important as this will be the difference between a left or a right join. This ordering also determines what type of geometry we will be returned. Whatever type of geometry is in the <code>x</code> position is what will be returned.</p>
+<p>Let’s try using <code><a href="https://rdrr.io/pkg/sf/man/st_join.html">st_join()</a></code> to join the tract level information to our point data.</p>
 <div class="sourceCode" id="cb345"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">points_join</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_join.html">st_join</a></span><span class="op">(</span><span class="va">loc_sf</span>, <span class="va">acs_tracts</span><span class="op">)</span> </code></pre></div>
+<code class="sourceCode R"><span class="va">points_join</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/sf/man/st_join.html">st_join</a></span><span class="op">(</span><span class="va">loc_sf</span>, <span class="va">acs_tracts</span><span class="op">)</span> </code></pre></div>
 <pre><code>## although coordinates are longitude/latitude, st_intersects assumes that they are planar
 ## although coordinates are longitude/latitude, st_intersects assumes that they are planar</code></pre>
 <div class="sourceCode" id="cb347"><pre class="downlit sourceCode r">
@@ -296,12 +296,12 @@
 ## # … with 3,789 more rows</code></pre>
 <p>This is great! We now have the <code>fips</code> (census tract code) associated with each listing <code>id</code>. But what happens when we plot the data?</p>
 <div class="sourceCode" id="cb349"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">points_join</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">geom_sf</a></span><span class="op">(</span>shape <span class="op">=</span> <span class="st">"."</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="10-spatial-analysis_files/figure-html/unnamed-chunk-13-1.png" width="672"></div>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">points_join</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/ggsf.html">geom_sf</a></span><span class="op">(</span>shape <span class="op">=</span> <span class="st">"."</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="10-spatial-analysis_files/figure-html/unnamed-chunk-14-1.png" width="100%"></div>
 <p>It is the same as before. What we would like to do at this moment is to plot the tracts and color by the number of listings contained in them. This means that we need to change up the order of our join.</p>
 <div class="sourceCode" id="cb350"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">polygon_join</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_join.html">st_join</a></span><span class="op">(</span><span class="va">acs_tracts</span>, <span class="va">loc_sf</span><span class="op">)</span>
+<code class="sourceCode R"><span class="va">polygon_join</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/sf/man/st_join.html">st_join</a></span><span class="op">(</span><span class="va">acs_tracts</span>, <span class="va">loc_sf</span><span class="op">)</span>
 <span class="va">polygon_join</span></code></pre></div>
 <pre><code>## Simple feature collection with 3814 features and 2 fields
 ## geometry type:  MULTIPOLYGON
@@ -324,7 +324,7 @@
 ## # … with 3,804 more rows</code></pre>
 <p>Notice that there are 3,814 rows! That is well over the original 193 tracts. If we tried plotting this right away we may overwork R. What we need to do is <em>count</em> the number of observations per fips code first.</p>
 <div class="sourceCode" id="cb352"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">tract_listings</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">polygon_join</span>, <span class="va">fips</span><span class="op">)</span>
+<code class="sourceCode R"><span class="va">tract_listings</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/count.html">count</a></span><span class="op">(</span><span class="va">polygon_join</span>, <span class="va">fips</span><span class="op">)</span>
 
 <span class="va">tract_listings</span></code></pre></div>
 <pre><code>## Simple feature collection with 203 features and 2 fields
@@ -349,9 +349,9 @@
 <p>After counting we now have our original 203 rows. This is the spatial equivalent of summarizing our data where all of the geometries of the aggregated rows (<code>fips</code>) are <strong>dissolved</strong>. Dissolving combines all of the geometries of by a shared attribute—it is <code>fips</code> in our case—into a single geometry. Since each <code>fips</code> has the same geometry,the resultant geometries are unaffected. But be aware of the behavior when grouping and summarizing sf objects!</p>
 <p>Let’s try plotting these counts now.</p>
 <div class="sourceCode" id="cb354"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">tract_listings</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="va">n</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">geom_sf</a></span><span class="op">(</span>lwd <span class="op">=</span> <span class="fl">0.25</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="10-spatial-analysis_files/figure-html/unnamed-chunk-16-1.png" width="672"></div>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">tract_listings</span>, <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/aes.html">aes</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="va">n</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/ggsf.html">geom_sf</a></span><span class="op">(</span>lwd <span class="op">=</span> <span class="fl">0.25</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="10-spatial-analysis_files/figure-html/unnamed-chunk-17-1.png" width="100%"></div>
 <div id="resources" class="section level4" number="26.5.1.1">
 <h4>
 <span class="header-section-number">26.5.1.1</span> Resources<a class="anchor" aria-label="anchor" href="#resources"><i class="fas fa-link"></i></a>
@@ -366,6 +366,7 @@
 </div>
 </div>
 </div>
+
 
 
 
@@ -479,7 +480,7 @@
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Urban Informatics Toolkit</strong>" was written by Josiah Parry. It was last built on 2020-12-12.</p>
+    <p>"<strong>Urban Informatics Toolkit</strong>" was written by Josiah Parry. It was last built on 2021-01-05.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

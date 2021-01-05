@@ -1,5 +1,7 @@
 # Visualizing through time
 
+
+
 Throughout this section, one type of visualization has been missing from our repetoire—the timeseries plot. This is because time series data is rather cumbersome to work with. Time series are unique because each observation represents some point in time. There is order inherent to the data. Because of this natural ordering of the data it makes the problem a bit trickier. But now that we have the visual tools and principles sorted out, we can apply them to time series data and visualize them as well. 
 
 For this section we will work with the 2014 Big Belly data again. Our goal will be to visualize the reports by fullness over the course of the year. In this chapter we will first learn how to work with dates. Then we will use our new skills to aggregate our observations and view them over time. Next, we will discuss traditional methods of time series visualization. And finally we will quickly touch on the use of animation for viewing time-series. 
@@ -185,7 +187,7 @@ count(bb, month) %>%
   geom_col()
 ```
 
-<img src="04e-through-time_files/figure-html/unnamed-chunk-9-1.png" width="672" />
+<img src="04e-through-time_files/figure-html/unnamed-chunk-10-1.png" width="100%" />
 
 We can add a few more characters to the above code chunk so we can compare fullness over the months as well.
 
@@ -196,7 +198,7 @@ count(bb, month, fullness) %>%
   geom_col()
 ```
 
-<img src="04e-through-time_files/figure-html/unnamed-chunk-10-1.png" width="672" />
+<img src="04e-through-time_files/figure-html/unnamed-chunk-11-1.png" width="100%" />
 
 Before we continue, we have to address the elephant in the room. We just made a plot with a legend that makes no sense. `GREEN` is mapped to red, `RED` is mapped to green, and `YELLOW` is mapped to blue. That's not good. We can fix this by adding manually mapping the color using one of the scale functions `scale_fill_manual(values = c("green", "red", "yellow"))`. Now back to the task at hand—time series. 
 
@@ -210,7 +212,7 @@ count(bb, month, fullness) %>%
   facet_wrap("month")
 ```
 
-<img src="04e-through-time_files/figure-html/unnamed-chunk-11-1.png" width="672" />
+<img src="04e-through-time_files/figure-html/unnamed-chunk-12-1.png" width="100%" />
 This is okay, but again, still too cluttered. In this scenario we should consider the use of a line graph. The line graph is the de facto time series plot. The lines connect points in time. Achieving this with ggplot is rather straight forward. We will put our time dimension on the x axis and add the `geom_line()` layer. By default `geom_line()` doesn't know what points to connect to each other when there is more than one per x value. So in our case we need to tell ggplot which points to connect by setting the `group` aesthetic. Since we want to group together the lines by `fullness` level set `group` as well as `color` to `fullness`. We can step up the plotting game by also 
 
 
@@ -221,7 +223,7 @@ count(bb, month, fullness) %>%
   geom_line()
 ```
 
-<img src="04e-through-time_files/figure-html/unnamed-chunk-12-1.png" width="672" />
+<img src="04e-through-time_files/figure-html/unnamed-chunk-13-1.png" width="100%" />
 
 We can step up our plotting game by also adding a layer of points on top of the line to accentuate our lines.
 
@@ -233,7 +235,7 @@ count(bb, month, fullness) %>%
   geom_point()
 ```
 
-<img src="04e-through-time_files/figure-html/unnamed-chunk-13-1.png" width="672" />
+<img src="04e-through-time_files/figure-html/unnamed-chunk-14-1.png" width="100%" />
 The three types are graphs are all that you may ever truly need when visualizing time. But sometimes it's nice to go over the top and add all of the frills. Often a dynamic visualization may be more persuasive than a static one.For this, we can use animation and the `gganimate` package. 
 
 ## Animation as time
@@ -260,7 +262,7 @@ Since we will be changing our frames by our time dimension—`month` in this cas
   geom_col())
 ```
 
-<img src="04e-through-time_files/figure-html/unnamed-chunk-14-1.png" width="672" />
+<img src="04e-through-time_files/figure-html/unnamed-chunk-15-1.png" width="100%" />
 All that is needed to add animation to this plot is a transition layer. For the use of a bar chart we can use `transition_states(states)` where states is the unquoted name of the column that wil be transitioned through. 
 
 
@@ -270,7 +272,7 @@ library(gganimate)
 p + transition_states(month)  
 ```
 
-![](04e-through-time_files/figure-html/unnamed-chunk-15-1.gif)<!-- -->
+<img src="04e-through-time_files/figure-html/unnamed-chunk-16-1.gif" width="100%" />
 
 This is awesome! We've created an animation 😮. The bars change heigh with each change of state. The only bummer is that we don't know what states the animation is going through! When the animation is made there are four temporary variables made available for labeling. The documentation for `transition_states()` notes that the following variables are available[^transition-states]. 
 
@@ -288,7 +290,7 @@ p +
   labs(title = "{closest_state}")
 ```
 
-![](04e-through-time_files/figure-html/unnamed-chunk-16-1.gif)<!-- -->
+<img src="04e-through-time_files/figure-html/unnamed-chunk-17-1.gif" width="100%" />
 
 This ts the scaffolding for a great visualization. We can take this existing plot and add or adjust the layers to adjust the styling to be more engaging. 
 
@@ -317,7 +319,7 @@ count(bb, month, fullness) %>%
   transition_reveal(month_integer)
 ```
 
-![](04e-through-time_files/figure-html/unnamed-chunk-18-1.gif)<!-- -->
+<img src="04e-through-time_files/figure-html/unnamed-chunk-19-1.gif" width="100%" />
 
 This animation does a great job of illustrating the changing slopes of the fullness measures. 
 

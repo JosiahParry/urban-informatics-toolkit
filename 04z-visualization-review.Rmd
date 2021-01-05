@@ -20,10 +20,10 @@ We started by going over the grammar of graphics. The grammar is used to define 
 
 We build plots by providing data either to `ggplot()` which sets the defaults, or the data can be provided directly to the geom layers. Remember that the `geom_*()` layers are what creates the geometry on the plots. Without them we do not populate the graphic. The layers figure out the positions, scales, and coordinates from the data. We can also adjust these to fit our preference by using `scale_*()` and `coord_()` layerss if we would so desire. 
 
-Following this, we explored the ways in which univariate and bivariate relationships can be explored visually. In this we explored the use of a number of different plots which can be added to your repertoire. Then we looked at how we can use facetting, color, shape, and size to explore beyond two dimensions. And finally, we briefly looked at the use of animation to explore data through time. 
+Following this, we explored the ways in which univariate and bivariate relationships can be explored visually. In this we explored the use of a number of different plots which can be added to your repertoire. Then we looked at how we can use faceting, color, shape, and size to explore beyond two dimensions. And finally, we briefly looked at the use of animation to explore data through time. 
 
-All of the visualization strategies can be used either independently or in combination to create compelling graphics thats tell a story from data.
+All of the visualization strategies can be used either independently or in combination to create compelling graphics that tells a story from data.
 
-In the next sectino we will cover a few more advanced and disparate topics which are important to have in your tool kit. It may be good to take a break right now before we continue. 
+In the next section we will cover a few more advanced and disparate topics which are important to have in your tool kit. It may be good to take a break right now before we continue. 
 
 Are you hydrated?

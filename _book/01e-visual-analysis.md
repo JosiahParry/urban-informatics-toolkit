@@ -2,11 +2,13 @@
 
 
 
+
+
 In the next part of this book we will introduce to you visual data exploration through the use of the R package `ggplot2`. You will ask questions of your data, visualize relationships, and draw inferences from the graphics you develop. 
 
 The below image from R for Data Science is renowned for its representation of the data analysis workflow. The concept map encompasses the need to get data (import), clean it up (tidy), explore, and finally communicate insights. The box in blue is a representation of exploratory data analysis (EDA). While performing EDA we will find ourselves transforming our data—creating new variables, aggregating, etc.—visualizing it, and creating statistical models. 
 
-![](static/data-science-explore.png)
+<img src="static/data-science-explore.png" width="100%" />
 
 This chapter will focus on the visualization step of EDA. We have all heard the trope that "an image is worth a thousand words." I'd take a leap and say that a good visualization is worth ten thousand words. An older statistical manual from the National Institute of Standards and Technology (NIST) beautifully lays out the role that visualization plays in EDA.
 
@@ -129,7 +131,7 @@ We will begin constructing our first visualization with the `ggplot()` **functio
 ggplot(acs_edu)
 ```
 
-<img src="01e-visual-analysis_files/figure-html/unnamed-chunk-5-1.png" width="672" />
+<img src="01e-visual-analysis_files/figure-html/unnamed-chunk-6-1.png" width="100%" />
  
 Notice that this plot is entirely empty. This is because we have not defined what it is that we want to visualize. ggplot uses what is called a grammar of graphics (this is expanded upon in depth in the _Visualizing Trends and Relationships_ chapter) which requires us to sequentially build our graphs by first defining what data and variables will be visualized and then adding layers to the plot.
 
@@ -142,7 +144,7 @@ Before we begin to analyze the relationship between `med_house_income` and `bach
 ggplot(acs_edu, aes(x = med_house_income))
 ```
 
-<img src="01e-visual-analysis_files/figure-html/unnamed-chunk-6-1.png" width="672" />
+<img src="01e-visual-analysis_files/figure-html/unnamed-chunk-7-1.png" width="100%" />
 
 Alright, we are making progress. We can see that the x axis is now filled out a bit more. The axis breaks have been labeled as has the axis itself. In order to see the data in a graphical representation, we need to determine how we want to see the data and what sort of geometry will be used to visualize it. 
 
@@ -154,7 +156,7 @@ ggplot(acs_edu, aes(x = med_house_income)) +
   geom_histogram()
 ```
 
-<img src="01e-visual-analysis_files/figure-html/unnamed-chunk-7-1.png" width="672" />
+<img src="01e-visual-analysis_files/figure-html/unnamed-chunk-8-1.png" width="100%" />
 
 > Note: To ensure that our code is legible we add each new layer on a line. R will manage the indentation for you. Code readibility is very important and you will thank yourself later for instilling good practices from the start. 
 
@@ -174,7 +176,7 @@ ggplot(acs_edu, aes(x = bach)) +
   geom_histogram()
 ```
 
-<img src="01e-visual-analysis_files/figure-html/unnamed-chunk-8-1.png" width="672" />
+<img src="01e-visual-analysis_files/figure-html/unnamed-chunk-9-1.png" width="100%" />
 
 This histogram illustrates the distribution of the bachelor degree attainment rate (the proportion of people with a bachelor's degree) across census tracts in Massachusetts. Because we did our homework ahead of time, we know that the national attainment rate in 2018 for people over 25 was ~35%[^acsedu]. Our histogram shows that within MA there is a lot of variation in the attainment rate from a low of about 0% to a high of over 60%. There is not a steep peak in the distribution which tells us that there is a fair amount of variation in the distribution.
 
@@ -192,7 +194,7 @@ ggplot(acs_edu, aes(x = bach, y = med_house_income)) +
   geom_point()
 ```
 
-<img src="01e-visual-analysis_files/figure-html/unnamed-chunk-9-1.png" width="672" />
+<img src="01e-visual-analysis_files/figure-html/unnamed-chunk-10-1.png" width="100%" />
 
 The above scatter plot provides a lot of information. We see that there is a positive linear trend—that is that when the `bach` value increases so does the `med_house_income` variable. When looking at a scatter plot we are looking to see if there is a consistent pattern that can be sussed out. 
 
@@ -208,7 +210,7 @@ ggplot(acs_edu, aes(x = bach, y = med_house_income)) +
 #> `geom_smooth()` using formula 'y ~ x'
 ```
 
-<img src="01e-visual-analysis_files/figure-html/unnamed-chunk-10-1.png" width="672" />
+<img src="01e-visual-analysis_files/figure-html/unnamed-chunk-11-1.png" width="100%" />
 
 Wonderful! To finish up this graphic, we should add informative labels. Labels live in their own layer which is created with `labs()`. Each argument maps to an aesthetic—e.g. `x` and `y`. By default ggplot uses the column names for axis labels, but these labels are usually uninformative.
 
@@ -229,7 +231,7 @@ ggplot(acs_edu, aes(x = bach, y = med_house_income)) +
 #> `geom_smooth()` using formula 'y ~ x'
 ```
 
-<img src="01e-visual-analysis_files/figure-html/unnamed-chunk-11-1.png" width="672" />
+<img src="01e-visual-analysis_files/figure-html/unnamed-chunk-12-1.png" width="100%" />
 
 > Note that each argument is placed on a new line. Again, this is to improve readability.
 
@@ -261,7 +263,7 @@ ggplot(acs_edu, aes(x = bach, y = med_house_income, color = white)) +
 #> `geom_smooth()` using formula 'y ~ x'
 ```
 
-<img src="01e-visual-analysis_files/figure-html/unnamed-chunk-12-1.png" width="672" />
+<img src="01e-visual-analysis_files/figure-html/unnamed-chunk-13-1.png" width="100%" />
 
 What can we conclude now? Does the addition of the third variable increase or decrease the utility of our scatter plot? Does the trend seem to mediated by race? I'll leave those questions to you to answer.
 

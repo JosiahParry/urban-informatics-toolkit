@@ -3,6 +3,10 @@
 
 ```{r, include=FALSE}
 source("common.R")
+options("knitr.graphics.auto_pdf" = TRUE)
+
+knitr::opts_chunk$set(out.width = "100%")
+
 library(tidyverse)
 ```
 

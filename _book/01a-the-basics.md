@@ -1,5 +1,7 @@
 # The basics 
 
+
+
 ## What is R and why do I care?
 
 What is R? R is the 18th letter of the alphabet, the fourth letter in _QWERTY_—like the keyboard—and, most importantly, R is a software package for statistical computing. 
@@ -10,7 +12,7 @@ Later, seeing a need for an improved statistical software environment, two resea
 
 Today, the R-project is developed and maintained by a group known as the R Core who "represent multiple statistical disciplines and are based at academic, not-for-profit and industry-affiliated institutions on multiple continents"[^sdlc]. They define R as "an integrated suite of software facilities for data manipulation, calculation and graphical display."[^rproj]
 
-R is essentially a fancy calculator. It was designed to do math—specifically statistics—but its capabilities extend well beyond basic mathematics While R is for all intents and purposes a programming language, one should, in theory, feel like they are doing data analysis and not programming.[^s]
+R is in essence a _very_ fancy calculator. It was designed to do math—specifically statistics—but its capabilities extend well beyond basic mathematics. While R is for all intents and purposes a programming language, one should, in theory, feel like they are doing data analysis and not programming.[^s]
 
 R is unique amonth other commercial statistical software such as Stata and SPSS. Very fundamentally, R is a free project. While it is monetarily free, free refers to "liberty, not price."[^gnu]. I think it is important you familiarize yourself with the four freedoms of free software. These freedoms are listed below from one to four, though are referred to as freedoms 0 through 3.
 
@@ -38,7 +40,7 @@ I like to think of R as the English language and using RStudio is like using Mir
 
 In RStudio there are four quadrants that we work with which are called panes. 
 
-![](static/rstudio-editor.png)
+<img src="static/rstudio-editor.png" width="100%" />
 
 The above graphic is borrowed from RStudio, PBC's Thomas Mock's Introduction to the Tidyverse.[^jtm] 
 
@@ -95,12 +97,12 @@ To prevent this we can create an R project. An R project imposes the standalone 
 
 The way to create a new project is by navigating to `File > New Project`.
 
-![Step 1: new Project](static/01-project.png)
+<img src="static/01-project.png" width="100%" />
 
 
 Click `New Directory`. This will create a new folder for you. Next, RStudio will prompt you to specify what kind of project to create. Today, that will be a generic `New Project`. In the future, I suspect you will end up creating Shiny applications and much more. 
 
-![Step 2: New Project](static/02-project.png)
+<img src="static/02-project.png" width="100%" />
 
 The final step is to specify what the project will be called and where to put it. In the below image I name the new directory `uitk`, short for Urban Informatics Toolkit, and place it in the directory `R`. Be sure to select which folder you want your project to live in. 
 
@@ -109,7 +111,7 @@ A few tips:
 - Think about where you will be able to find the project again.
 - **Do not** put spaces or periods in the directory name. Use `_` or `-` if you feel the need. 
 
-![Step 3: Naming the project](static/03-project.png)
+<img src="static/03-project.png" width="100%" />
 
 This will open up a new RStudio session. You will notice in your `Files` pane that there is now a `uitk.Rproj` file there. That file is what tells RStudio about the project, so don't delete it! If you would like to open up an RStudio project you can either open the `.Rproj` file from your file navigator or by following `File > Open Project`. 
 
@@ -121,7 +123,7 @@ In order to complete the exercises throughout this book you will need to have th
 
 In another effort to impose good habits and reproducibility standards I will suggest you change one setting in RStudio. Navigate to `Tools > Global Options` and change the below setting.
 
-![](static/save-workspace.png)
+<img src="static/save-workspace.png" width="100%" />
 
 This setting makes it so that your analysis is dependent upon the code you write, not the data objects you create while interactively programming. A general rule of thumb is that your R script should be able to run from top to bottom successfully.
 
@@ -131,12 +133,12 @@ This setting makes it so that your analysis is dependent upon the code you write
 Lastly, I want to emphasize that R and RStudio can be used for so much more than statistical analysis. They can be used to make art. 
 
 <a href="https://www.data-imaginist.com/art">
-  <img src="static/genesis1300.png" />
+  <img src="static/genesis1300.png"/>
 </a>
 
 They can be used to make beautiful graphics for the BBC.
 
-![](static/bbplot_example_plots.png)
+<img src="static/bbplot_example_plots.png" width="100%" />
  
 R can be found in the infrastructure of our modern world. R is utilized in our global financial institutions, civil rights groups such as the ACLU, investigative journalism, national defense, and so much more. Do not feel that the _only_ thing you will get from learning R is how to do some simple statistics. 
 

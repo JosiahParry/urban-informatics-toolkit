@@ -1,5 +1,8 @@
 # That's _too much_ data
 
+
+
+
 Let us continue with the scenario developed in the last chapter. There is a non-profit who is seeking graduate student assistance to provide a curated dataset that provides insight into the commuting behavior of the Greater Boston Area. Using BARI's Massachussett's Census Indicators dataset, we were able to reduce the 52 initial columns down to 11. However these data are for the entire state not just the Greater Boston Area. This leaves us with two tasks: 1) definine the Greater Boston Area and 2) create a subset of our data that fit our criteria defined in 1. 
 
 Execute the below code to recreate to `commute` tibble. This will be the *second to last* time we write this chunk of code. 

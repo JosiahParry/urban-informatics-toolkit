@@ -2,6 +2,8 @@
 
 
 
+
+
 We've developed a strong foundation for building charts from the ground up by specifying our **defaults** (data, and aesthetic mappings), and adding geom **layers**. In order to take our charts to the next level we need to familiarize ourselves with the other components of the _Layered Grammar of Graphics_: scales, coordinates, and facets.
 
 For these examples we will again return to our commute dataset. We will also recreate the two columns `hh_inc_quin` and `edu_attain`.
@@ -24,7 +26,7 @@ Recall from _[Grammar of Layered Graphics I](#layered-i)_ that when we supply ou
 (p <- ggplot(commute, aes(med_house_income, bach)))
 ```
 
-<img src="04c-grammar-II_files/figure-html/unnamed-chunk-3-1.png" width="672" />
+<img src="04c-grammar-II_files/figure-html/unnamed-chunk-4-1.png" width="100%" />
 
 By specifying our defaults in the `ggplot()` call, we implicitly are providing the x and y axes. From those mappings, ggplot2 is able to identify the type of variable mapped to each aesthetic and its values. That inference makes it possible for us to plot without having to explicitly state what our axes are.
 
@@ -43,7 +45,7 @@ p +
 #> Warning: Removed 8 rows containing missing values (geom_point).
 ```
 
-<img src="04c-grammar-II_files/figure-html/unnamed-chunk-5-1.png" width="672" />
+<img src="04c-grammar-II_files/figure-html/unnamed-chunk-6-1.png" width="100%" />
 
 In doing so we have lost the axis labels! That is because ggplot2 considers both integers and floating point (numbers with decimals) as continuous and categorical variables as being discrete. 
 
@@ -62,7 +64,7 @@ p +
 #> Warning: Removed 8 rows containing missing values (geom_point).
 ```
 
-<img src="04c-grammar-II_files/figure-html/unnamed-chunk-6-1.png" width="672" />
+<img src="04c-grammar-II_files/figure-html/unnamed-chunk-7-1.png" width="100%" />
 
 We can apply a log10 transformation as well with `scale_*_log10()`.
 
@@ -73,7 +75,7 @@ p +
 #> Warning: Removed 8 rows containing missing values (geom_point).
 ```
 
-<img src="04c-grammar-II_files/figure-html/unnamed-chunk-7-1.png" width="672" />
+<img src="04c-grammar-II_files/figure-html/unnamed-chunk-8-1.png" width="100%" />
 
 This is an overcorrection. The slight upward arch in the original plotting is now inverted. Nonetheless, I hope the point is made. 
 
@@ -90,7 +92,7 @@ p +
 #> Warning: Removed 8 rows containing missing values (geom_point).
 ```
 
-<img src="04c-grammar-II_files/figure-html/unnamed-chunk-8-1.png" width="672" />
+<img src="04c-grammar-II_files/figure-html/unnamed-chunk-9-1.png" width="100%" />
 
 The graph we get we when expand our y axis limits definitely contains a bit too much white space. But by expanding ths grid, we can see this sort of flattening out of education at around $150,000 while income still continues to increase. Perhaps if we omit tose values, the relationship may seem even stronger. Let's experiment with that.
 
@@ -107,7 +109,7 @@ p +
     )
 ```
 
-<img src="04c-grammar-II_files/figure-html/unnamed-chunk-9-1.png" width="672" />
+<img src="04c-grammar-II_files/figure-html/unnamed-chunk-10-1.png" width="100%" />
 
 By changing the extent of our axes this relationship seems much more robust! Such a visualization could spur further validation of this ACS data.
 
@@ -136,7 +138,7 @@ p <- ggplot(commute, aes(med_house_income, bach)) +
 p
 ```
 
-<img src="04c-grammar-II_files/figure-html/unnamed-chunk-10-1.png" width="672" />
+<img src="04c-grammar-II_files/figure-html/unnamed-chunk-11-1.png" width="100%" />
 
 Friends, it's looking pretty good. But there are just two more changes we need to make: our axes labels! The x and y axes labels are meant to illustrate dollar amounts and percentages but respectively. To change the _scale_ labels. we will use some helper functions from the package [`scales`](https://scales.r-lib.org/)
 
@@ -166,7 +168,7 @@ p +
 #> Warning: Removed 8 rows containing missing values (geom_point).
 ```
 
-<img src="04c-grammar-II_files/figure-html/unnamed-chunk-12-1.png" width="672" />
+<img src="04c-grammar-II_files/figure-html/unnamed-chunk-13-1.png" width="100%" />
 
 In addition to being able to control the **defaults**, the **layers**, and now the **scales** you are well equipped to create and manipulate your own plots. 
 
@@ -206,7 +208,7 @@ p +
   facet_wrap(vars(county))
 ```
 
-<img src="04c-grammar-II_files/figure-html/unnamed-chunk-13-1.png" width="672" />
+<img src="04c-grammar-II_files/figure-html/unnamed-chunk-14-1.png" width="100%" />
 
 With `facet_wrap()` we are able to explicitly state how many rows or columns of plots there should be. The defaults may be nice, but it's always good to be explicit about our expecvtations! We set the `nrow` or `ncol` argument to do this. Since our above example defaulted to `ncol = 3`, let's try this with three rows.
 
@@ -216,7 +218,7 @@ p +
   facet_wrap(vars(county), nrow = 3)
 ```
 
-<img src="04c-grammar-II_files/figure-html/unnamed-chunk-14-1.png" width="672" />
+<img src="04c-grammar-II_files/figure-html/unnamed-chunk-15-1.png" width="100%" />
 
 The grid works a little bit differenly. Rather than specifying which columns to facet on and the number of rows or columns, we can create a grid (or matrix) of small multiples. With `facet_grid()` we use the `rows` and `cols`. 
 
@@ -229,7 +231,7 @@ p +
              rows = vars(hh_inc_quin))
 ```
 
-<img src="04c-grammar-II_files/figure-html/unnamed-chunk-15-1.png" width="672" />
+<img src="04c-grammar-II_files/figure-html/unnamed-chunk-16-1.png" width="100%" />
 
 When we create facets, each panel has shares the same scales. We can change this by setting the `scales` argument to one of `"free"`, `"free_x"`, or `"free_y"`. These in essence, "free up" the scales for each panel. We can choose to share the scales on the x axis by setting `scales = "free_y"` or vice versa.
 
@@ -242,7 +244,7 @@ p +
              scales = "free")
 ```
 
-<img src="04c-grammar-II_files/figure-html/unnamed-chunk-16-1.png" width="672" />
+<img src="04c-grammar-II_files/figure-html/unnamed-chunk-17-1.png" width="100%" />
 
 
 > Note: the behavior of `scales = "free"` changes behavior when set in the context of `facet_wrap()` vs `facet_grid()`. The former frees the scales for each panel. The latter frees the scales for either a column or row of panels. 

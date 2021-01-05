@@ -2,6 +2,10 @@
 
 ```{r, include=FALSE}
 source("common.R")
+options("knitr.graphics.auto_pdf" = TRUE)
+
+knitr::opts_chunk$set(out.width = "100%")
+
 ```
 
 ## Scientific approaches
@@ -30,7 +34,7 @@ Their work is important in bridging gaps between disciplines. They apply biologi
 
 Today, we as social scientists enjoy access to more and better data than ever. As such we are able to take a much more hybrid approach. These data provide such fine detail that scientists can discern never before seen patterns. This allows us to take a much more inductive approach, in which we can craft theories from the patterns that we observe, then test those theories in creative ways. This hybrid methodology incorporates both inductive and deductive approaches. The Boston Area Research Initiative (BARI) is one such group that utilizes this hybrid approach. 
 
-![](static/hybrid-approach.png)
+`r knitr::include_graphics("static/hybrid-approach.png")`
 
 To utilize the above methology, we as scientists start with the data. We use publicly available (open) administrative data to explore. We get our metaphorical hands dirty with the data. After we munge it, transform it, and rearrange it, we will walk away with some tidbit of information. From that we discover more taken together we develop a theory—a framework for understanding what we have observed. Next, we then develop a hypothesis using that new theory and apply it to some other set of data or some new circumstance to test and refine the theories we have developed. In this we both create theory from observation, and test those theories on new and unexplored observations. 
 

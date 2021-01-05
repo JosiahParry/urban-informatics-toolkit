@@ -1,5 +1,8 @@
 # Spatial Analysis
 
+
+
+
 In the very beginning of the book we discussed some of the benefits of administrative data. One of the benefits mentioned is that administrative data are inherently **spatial**. Most data tend to be spatial in nature. This is because most events happen at a physical place. In the context of administrative data, we know that all data recorded at that level must fall within the municipal boundaries. Often we know the location within the municipality to a much finer scale---i.e. the block group, the voting ward, or even the exact point location.
 
 Identifying whether or not your data is spatial is easiest when there are geographic components present such as latitude and longitude. However, your data can also be spatial even if it isn't explicitly stated. Some things you can keep an eye out for are things like neighborhood, towns, county, etc. as these are location specific. It is likely that you will be performing analyses rooted in space and accounting for things such as counties but perhaps without using any geospatial techniques.
@@ -14,7 +17,7 @@ Within the field of Geographic Information Systems (**GIS**) there are two gener
 
 The other umbrella of data is known as **raster** data. Raster data are to deal with more complex data that cannot easily be captured by a single point. Rasters are used to "represent spatially continuous phenomenon" [^spatial-analysis-1]. Raster analysis is done to evaluate things like changing vegetation, elevation and slope modeling, analysing reflective surfaces, among much more. Raster analysis typically relies on satellite imagery or LiDAR laser point cloud data. Raster analysis is an extremely complex topic and requires devoted attention. As such, we will not cover it in this book. But, know that it exists and is out there!
 
-![](static/2019-points-lines-polygons.png)
+<img src="static/2019-points-lines-polygons.png" width="100%" />
 
 ## Working with spatial data
 
@@ -182,7 +185,7 @@ ggplot(loc_sf) +
   geom_sf(shape = ".")
 ```
 
-<img src="10-spatial-analysis_files/figure-html/unnamed-chunk-6-1.png" width="672" />
+<img src="10-spatial-analysis_files/figure-html/unnamed-chunk-7-1.png" width="100%" />
 
 This is great as we can already somewhat see the shape of Boston and Suffolk County. Since we have these Airbnb points located in space, we know we are able to associate them with their respective Census tracts.To do so we need another spatial data set which contains the shapes of each tract. In the next section we will read a dataset containing the shapes of each tract in Suffolk county. Following we will perform a spatial join to associate the points with the tracts.
 
@@ -239,7 +242,7 @@ Let's see what this file looks like!
   geom_sf()
 ```
 
-<img src="10-spatial-analysis_files/figure-html/unnamed-chunk-9-1.png" width="672" />
+<img src="10-spatial-analysis_files/figure-html/unnamed-chunk-10-1.png" width="100%" />
 
 Wonderful! There are two stylist adjustments I'd make here so that visualizing is a little easier. The first is to change the line width to something thinner, and adjust the transparency of tracts so that they are a little lighter. This makes the map a bit easier to read all in all.
 
@@ -249,7 +252,7 @@ ggplot(acs_tracts) +
   geom_sf(lwd = 0.25, alpha = 0.5)
 ```
 
-<img src="10-spatial-analysis_files/figure-html/unnamed-chunk-10-1.png" width="672" />
+<img src="10-spatial-analysis_files/figure-html/unnamed-chunk-11-1.png" width="100%" />
 
 Now, here is where understanding the grammar of graphics comes in handy. We now have two different data sets that would be good to visualize together. Recall that when we specify the data in the top level `ggplot()` call that sets the default for every single layer. If we do that with multiple objects that may cause some conflicts. We do know, however, that we can set the data per layer. So, taking these two points together, we can plot both `loc_sf` *and* `acs_tracts` on the same graph if we set the data argument in each respective `geom_sf()` layer.
 
@@ -260,7 +263,7 @@ ggplot() +
   geom_sf(data = loc_sf, shape = ".")
 ```
 
-<img src="10-spatial-analysis_files/figure-html/unnamed-chunk-11-1.png" width="672" />
+<img src="10-spatial-analysis_files/figure-html/unnamed-chunk-12-1.png" width="100%" />
 
 With the above plot we can get a sense of the density of Airbnb listings in Boston. There seems to be greater density near Back Bay and Beacon Hill. It would be great to be able to know how many listings there are for each tract and the average listing price. To do this, we need to perform two joins. The first one is spatial---joining point to polygon based on which tract each point intersects. The second is to join the listings information on to the spatially joined data set. In doing this we will have utilized data from three different sources!
 
@@ -316,7 +319,7 @@ ggplot(points_join) +
   geom_sf(shape = ".")
 ```
 
-<img src="10-spatial-analysis_files/figure-html/unnamed-chunk-13-1.png" width="672" />
+<img src="10-spatial-analysis_files/figure-html/unnamed-chunk-14-1.png" width="100%" />
 
 It is the same as before. What we would like to do at this moment is to plot the tracts and color by the number of listings contained in them. This means that we need to change up the order of our join.
 
@@ -389,7 +392,7 @@ ggplot(tract_listings, aes(fill = n)) +
   geom_sf(lwd = 0.25)
 ```
 
-<img src="10-spatial-analysis_files/figure-html/unnamed-chunk-16-1.png" width="672" />
+<img src="10-spatial-analysis_files/figure-html/unnamed-chunk-17-1.png" width="100%" />
 
 #### Resources
 

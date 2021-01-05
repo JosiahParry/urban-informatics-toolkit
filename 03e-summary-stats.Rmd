@@ -1,5 +1,12 @@
 # Summary statistics 
 
+```{r include=FALSE}
+options("knitr.graphics.auto_pdf" = TRUE)
+
+knitr::opts_chunk$set(out.width = "100%")
+
+```
+
 ```{r, include=FALSE}
 source("common.R")
 ```
