@@ -132,9 +132,7 @@ This setting makes it so that your analysis is dependent upon the code you write
 
 Lastly, I want to emphasize that R and RStudio can be used for so much more than statistical analysis. They can be used to make art. 
 
-<a href="https://www.data-imaginist.com/art">
-  <img src="static/genesis1300.png"/>
-</a>
+<img src="static/genesis1300.png" width="100%" />
 
 They can be used to make beautiful graphics for the BBC.
 

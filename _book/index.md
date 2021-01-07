@@ -2,7 +2,7 @@
 title: "Urban Informatics Toolkit"
 description: "A hands on introduction approach to analyzing the urban Commons."
 author: "Josiah Parry"
-date: "2021-01-05"
+date: "2021-01-07"
 site: bookdown::gitbook
 documentclass: book
 bibliography: [book.bib, packages.bib]

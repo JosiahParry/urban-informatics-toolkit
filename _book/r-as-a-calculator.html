@@ -210,7 +210,7 @@
 ## x dplyr::filter() masks stats::filter()
 ## x dplyr::lag()    masks stats::lag()</code></pre>
 <p>Notice the message above. When we load the tidyverse, we are actually loading eight packages at once! These are the packages listed under “<strong>Attaching packages</strong>” as well as their associated versions.</p>
-<p>You’ll also see messages that says <code>Conflicts</code>. These conflicts indicate that the package we loaded has a function with the same name as one that was already loaded. The format looks like <code>packagename::function()</code>. So in this case, we can see that the functions <code><a href="https://rdrr.io/pkg/dplyr/man/filter.html">filter()</a></code> and <code><a href="https://rdrr.io/pkg/dplyr/man/lead-lag.html">lag()</a></code> from <code>dplyr</code> conflict with the functions of the same name from the base <code>stats</code> installation. When you use <code><a href="https://rdrr.io/pkg/dplyr/man/filter.html">filter()</a></code> or <code><a href="https://rdrr.io/pkg/dplyr/man/lead-lag.html">lag()</a></code> you will be using the version from dplyr.</p>
+<p>You’ll also see messages that says <code>Conflicts</code>. These conflicts indicate that the package we loaded has a function with the same name as one that was already loaded. The format looks like <code>packagename::function()</code>. So in this case, we can see that the functions <code><a href="https://rdrr.io/r/stats/filter.html">filter()</a></code> and <code><a href="https://rdrr.io/r/stats/lag.html">lag()</a></code> from <code>dplyr</code> conflict with the functions of the same name from the base <code>stats</code> installation. When you use <code><a href="https://rdrr.io/r/stats/filter.html">filter()</a></code> or <code><a href="https://rdrr.io/r/stats/lag.html">lag()</a></code> you will be using the version from dplyr.</p>
 <p>You have now successfully installed and loaded the tidyverse. Next, we will begin to learn how to visually analyze data!</p>
 </div>
 <div id="whats-next" class="section level2" number="7.7">
@@ -255,7 +255,7 @@
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Urban Informatics Toolkit</strong>" was written by Josiah Parry. It was last built on 2021-01-05.</p>
+    <p>"<strong>Urban Informatics Toolkit</strong>" was written by Josiah Parry. It was last built on 2021-01-07.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

@@ -73,7 +73,7 @@
 <span class="header-section-number">9</span> Exploratory Visual Analysis<a class="anchor" aria-label="anchor" href="#exploratory-visual-analysis"><i class="fas fa-link"></i></a>
 </h1>
 <p>In the next part of this book we will introduce to you visual data exploration through the use of the R package <code>ggplot2</code>. You will ask questions of your data, visualize relationships, and draw inferences from the graphics you develop.</p>
-<p>The below image from R for Data Science is renowned for its representation of the data analysis workflow. The concept map encompasses the need to get data (import), clean it up (tidy), explore, and finally communicate insights. The box in blue is a representation of exploratory data analysis (EDA). While performing EDA we will find ourselves transforming our data—creating new variables, aggregating, etc.—visualizing it, and creating statistical models.</p>
+<p>The below image from R for Data Science is renowned for its representation of the data analysis workflow. The concept map encompasses the need to get data (import), clean it up (tidy), explore it, and finally communicate insights. The box in blue is a representation of exploratory data analysis (EDA). While performing EDA we will find ourselves transforming our data—creating new variables, aggregating, etc.—visualizing it, and creating statistical models.</p>
 <div class="inline-figure"><img src="static/data-science-explore.png" width="100%"></div>
 <p>This chapter will focus on the visualization step of EDA. We have all heard the trope that “an image is worth a thousand words.” I’d take a leap and say that a good visualization is worth ten thousand words. An older statistical manual from the National Institute of Standards and Technology (NIST) beautifully lays out the role that visualization plays in EDA.</p>
 <blockquote>
@@ -111,7 +111,6 @@
 <span class="header-section-number">9.2</span> A first visualization<a class="anchor" aria-label="anchor" href="#a-first-visualization"><i class="fas fa-link"></i></a>
 </h2>
 <p>For your first introduction to R, we will explore the relationship between education and income in Massachusetts.</p>
-<p><strong>NOTE</strong>: this needs to be updated once I make <code>uitk</code> a package with R objects</p>
 <div id="familiarize-yourself" class="section level3" number="9.2.1">
 <h3>
 <span class="header-section-number">9.2.1</span> Familiarize yourself<a class="anchor" aria-label="anchor" href="#familiarize-yourself"><i class="fas fa-link"></i></a>
@@ -119,8 +118,11 @@
 <p>There is no one best way to begin an exploratory analysis to guarantee interesting outcomes. But before one begins their EDA, they must know what their data actually contain. We will use the <code>read_csv()</code> function from the last chapter to read in the <code>acs_edu</code> dataset. Save it to a variable called <code>acs_edu</code>.</p>
 <div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
-<span class="va">acs_edu</span> <span class="op">&lt;-</span> <span class="fu">read_csv</span><span class="op">(</span><span class="st">"data/acs_edu.csv"</span><span class="op">)</span></code></pre></div>
-<p><code>acs_edu</code> contains data demographic information about every census tract in Massachusetts. Print <code>acs_edu</code> to the console. What do you see?</p>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">uitk</span><span class="op">)</span></code></pre></div>
+<p>The <code>uitk</code> package exports (makes available) an object called <code>acs_edu</code>. It contains data demographic information about every census tract in Massachusetts. Print <code>acs_edu</code> to the console. What do you see?</p>
+<blockquote>
+<p>By executing the object name itself you are <em>printing</em> the object.</p>
+</blockquote>
 <div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">acs_edu</span>
 <span class="co">#&gt; # A tibble: 1,456 x 7</span>
@@ -310,7 +312,7 @@
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Urban Informatics Toolkit</strong>" was written by Josiah Parry. It was last built on 2021-01-05.</p>
+    <p>"<strong>Urban Informatics Toolkit</strong>" was written by Josiah Parry. It was last built on 2021-01-07.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

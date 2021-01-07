@@ -13,7 +13,7 @@ knitr::opts_chunk$set(out.width = "100%")
 
 In the next part of this book we will introduce to you visual data exploration through the use of the R package `ggplot2`. You will ask questions of your data, visualize relationships, and draw inferences from the graphics you develop. 
 
-The below image from R for Data Science is renowned for its representation of the data analysis workflow. The concept map encompasses the need to get data (import), clean it up (tidy), explore, and finally communicate insights. The box in blue is a representation of exploratory data analysis (EDA). While performing EDA we will find ourselves transforming our data—creating new variables, aggregating, etc.—visualizing it, and creating statistical models. 
+The below image from R for Data Science is renowned for its representation of the data analysis workflow. The concept map encompasses the need to get data (import), clean it up (tidy), explore it, and finally communicate insights. The box in blue is a representation of exploratory data analysis (EDA). While performing EDA we will find ourselves transforming our data—creating new variables, aggregating, etc.—visualizing it, and creating statistical models. 
 
 `r knitr::include_graphics("static/data-science-explore.png")`
 
@@ -57,7 +57,7 @@ The following analysis is done using the Massachusetts census indicators publish
 
 For your first introduction to R, we will explore the relationship between education and income in Massachusetts.
 
-**NOTE**: this needs to be updated once I make `uitk` a package with R objects
+
 
 ### Familiarize yourself
 
@@ -65,10 +65,12 @@ There is no one best way to begin an exploratory analysis to guarantee interesti
 
 ```{r, message=FALSE}
 library(tidyverse)
-acs_edu <- read_csv("data/acs_edu.csv")
+library(uitk)
 ```
 
-`acs_edu` contains data demographic information about every census tract in Massachusetts. Print `acs_edu` to the console. What do you see?
+The `uitk` package exports (makes available) an object called `acs_edu`. It contains data demographic information about every census tract in Massachusetts. Print `acs_edu` to the console. What do you see? 
+
+> By executing the object name itself you are _printing_ the object.
 
 ```{r max.print=5}
 acs_edu
