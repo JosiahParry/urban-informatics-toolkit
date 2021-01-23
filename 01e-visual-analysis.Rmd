@@ -49,7 +49,7 @@ When choosing between 1-year and 5-year estimates we are making a tradeoff. 1-ye
 
 In the cases where 5-year estimates are used researchers are analyzing populations and rates derived from five years of data collection. This requires you, the researcher, to qualify this with a statement to the effect of _"the rate of unemployment in 2014-2018 was 4%"_[^16]. Because of this, you are unable to use consecutive 5-year estimates to analyze annual trends. In the case that you need to analyse annual trends 1-year estimates are recommended. 
 
-There is also another important tradeoff one must consider when using ACS data and that is of unit of analysis. The census and ACS are conducted at the household level. However, estimates are provided for geographic areas. These geographic areas have a hierarchy going from block groups at the smallest level geography, to census tracts, and to counties. Beyond counties are geographies at the state level and even larger. Urban informatics is inherently focuses on a more micro,arguably meso,unit of analysis.
+There is also another important tradeoff one must consider when using ACS data and that is of unit of analysis. The census and ACS are conducted at the household level. However, estimates are provided for geographic areas. These geographic areas have a hierarchy going from block groups at the smallest level geography, to census tracts, and to counties. Beyond counties are geographies at the state level and even larger. Urban informatics is inherently focuses on a more micro, arguably meso, unit of analysis.
 
 The following analysis is done using the Massachusetts census indicators published from BARI. The dataset is based on 2017 5-year estimates from the ACS at the tract level.  
     
@@ -61,7 +61,16 @@ For your first introduction to R, we will explore the relationship between educa
 
 ### Familiarize yourself
 
-There is no one best way to begin an exploratory analysis to guarantee interesting outcomes. But before one begins their EDA, they must know what their data actually contain. We will use the `read_csv()` function from the last chapter to read in the `acs_edu` dataset. Save it to a variable called `acs_edu`. 
+There is no one best way to begin an exploratory analysis to guarantee interesting outcomes. But before one begins their EDA, they must know what their data actually contain. 
+
+To make life a little bit easier, we're going to use an accompanying R package called `uitk` which will provide our data. First we're going to need to install it from GitHub where it lives. We'll first need to install another package called `remotes` to help us do that. Run the below lines.
+
+```{r, eval=FALSE}
+install.packages("remotes")
+remotes::install_github("josiahparry/uitk")
+```
+
+Now that the package is installed, load the tidyverse and uitk.
 
 ```{r, message=FALSE}
 library(tidyverse)
@@ -76,11 +85,11 @@ The `uitk` package exports (makes available) an object called `acs_edu`. It cont
 acs_edu
 ```
 
-`## # A tibble: 1,456 x 7` is printed out at the top followed by column names, their types—e.g. `<dbl>`—their respective values and, to the far left we see the numbers 1 through 10 before each row of values. 
+`## # A tibble: 1,456 x 7` is printed out at the top followed by column names, their types—e.g. `<dbl>`—their respective values and, to the far left we see the numbers 1 through 10 before each row of values indicating its row number. 
 
 Let us dissect `# A tibble: 1,456 x 7` a little bit more. This alone is quite informative. It tells us that the type of object we are working with is a `tibble` with 1,456 rows and 7 columns.
 
-A tibble is a method of representing rectangular data and is very similar to a table one may create within Excel with rows an columns. When working with tibbles we try to adhere to what are called the principles of tidy data[^tidydata]. There are three key principles that we ought to keep in mind when working with rectangular data.
+A tibble is a method of representing rectangular data and is very similar to a table one may create within Excel with rows and columns. When working with tibbles we try to adhere to what are called the principles of tidy data[^tidydata]. There are three key principles that we ought to keep in mind when working with rectangular data.
 
 1. Each variable forms a column.
 2. Each observation forms a row.
@@ -104,52 +113,50 @@ My background is in sociology. Within sociology, and specifically social stratif
 
 ### Building a graph
 
-To create our visualizations we will use the package [`ggplot2`](https://ggplot2.tidyverse.org/) from the tidyverse. Before we can begin, we need to make sure that the collection of functions from ggplot2 are available to us with the `library()` function.
+To create our visualizations we will use the package [`ggplot2`](https://ggplot2.tidyverse.org/) from the tidyverse. ggplot2 was previously loaded for us when we loaded the tidyverse.
 
 > Reminder: `library(pkg_name)` loads a package into your workspace and makes the functions and objects it exports available to you. 
 
-```{r}
-library(ggplot2)
-```
-
-To begin building a ggplot, we use the function `ggplot()`. There are two function arguments these being `data` and the aesthetics `mapping`. The `data` is the tibble that we wish to visualize. In this case we want to visualize the data from `acs_edu`. 
+To begin building a ggplot, we use the function `ggplot()`. There are two function arguments that we need to be aware of. These being `data` and the aesthetics `mapping` which are the first and second arguments respectively (e.g. `function(first_arg, second_arg)`). The `data` is the tibble that we wish to visualize. In this case we want to visualize the data from `acs_edu`. 
 
 We will begin constructing our first visualization with the `ggplot()` **function** using the `acs_edu` **object**.
 
-> Reminder: Functions are characterised by the parentheses at the end of them. Functions do things whereas objects hold information. 
+> Reminder: Functions are characterised by the parentheses at the end of their name. Functions typically do things whereas objects store information. 
 
 ```{r}
 ggplot(acs_edu)
 ```
  
-Notice that this plot is entirely empty. This is because we have not defined what it is that we want to visualize. ggplot uses what is called a grammar of graphics (this is expanded upon in depth in the _Visualizing Trends and Relationships_ chapter) which requires us to sequentially build our graphs by first defining what data and variables will be visualized and then adding layers to the plot.
+Notice that this plot is entirely empty. This is because we have not defined what it is that we want to visualize. ggplot uses what is called a grammar of graphics (this is expanded upon in depth in the [_Visualizing Trends and Relationships_](./visualizing-trends-and-relationships.html) chapter) which requires us to sequentially build our graphs by first defining what data and variables will be visualized and then adding layers to the plot.
 
 The next step we need to take is to define which columns we want to visualize. These are called the _aesthetics_ and they are defined using the `aes()` function which is supplied to the `mapping` argument. The purpose of `aes()` is to tell ggplot which columns are mapped to what. The most important and fundamental of these are the `x` and `y` arguments. These refer to the x and y axes in the chart that we will begin to make.
 
-Before we begin to analyze the relationship between `med_house_income` and `bach` (bachelor's degree attainment rate), we ought to do our due diligence of looking at the distribution of each of these first. Let us start with the `med_house_income` column. When exploring only a single variable, we want to supply that to the `x` argument of `aes()`.
+Before we begin to analyze the relationship between `med_house_income` and `bach` (bachelor's degree attainment rate), we ought to do our due diligence of looking at the distribution of each of these first. Let us start with the `med_house_income` column. When exploring only a single variable, we want to supply that to the `x` argument of `aes()`. 
+
+Note that the `data` and `mapping` arguments are set **positionally**. Since `data` is the first argument and we put our tibble in the first position we do not need to specify the argument name directly. If we wanted to be explicit about our function arguments we would write `ggplot(data = acs_edu, mapping = aes(x = med_house_income))`.
 
 ```{r}
 ggplot(acs_edu, aes(x = med_house_income))
 ```
 
-Alright, we are making progress. We can see that the x axis is now filled out a bit more. The axis breaks have been labeled as has the axis itself. In order to see the data in a graphical representation, we need to determine how we want to see the data and what sort of geometry will be used to visualize it. 
+Alright, we are making progress. We can see that the x axis is now filled out a bit more. The axis breaks have been labeled as has the axis itself. In order to see the data in a graphical representation, we need to determine how we want to see the data. Or, what sort of geometry will be used to visualize our variable. 
 
-To **add** geometry to our ggplot, we use the plus sign `+` which signifies that we are adding a layer on top of the basic graph. There are many ways we can visualize univariate data but the histogram has stood the test of time. To create a histogram we **add** the `geom_histogram()` layer to our existing ggplot code. 
+To **add** geometry to our ggplot, we use the plus sign `+` which signifies that we are adding a layer on top of the basic graph. There are many ways we can visualize univariate data but the histogram has stood the test of time. To create a histogram we add the `geom_histogram()` layer to our existing ggplot code.
 
 ```{r, warning=FALSE, message=FALSE}
 ggplot(acs_edu, aes(x = med_house_income)) + 
   geom_histogram()
 ```
 
-> Note: To ensure that our code is legible we add each new layer on a line. R will manage the indentation for you. Code readibility is very important and you will thank yourself later for instilling good practices from the start. 
+> Note: To ensure that our code is legible we add each new layer on a line. RStudio will manage the indentation for you. Code readibility is very important and you will thank yourself later for instilling good practices from the start. 
 
 This histogram illustrates the distribution of median household income in the state of Massachusetts. The median value seems to sit somewhere around \$75k with a few outliers near \$250k as well demonstrating a right skew.
 
 > Reminder: The skew is where there are few [observations]. 
 
-Usually when we look at distributions of wealth they are extremely right skewed meaning there are a few people who make an outrageous amount of money. What is interesting is that this histogram is rather normally distributed almost challenging intuition. This is because the ACS does something called top-coding. Top-coding is the practice of creating a ceiling value. For example, if there is a tract has a median household income of \$1m, that will be reduced to the top-coded value—what appears to be \$250k. This creates what are called censored data. 
+Usually when we look at distributions of wealth they are extremely right skewed meaning there are a few people who make an outrageous amount of money. What is interesting is that this histogram is rather normally distributed almost challenging intuition. This is because the ACS does something called top-coding. Top-coding is the practice of creating a ceiling value. For example, if there is a tract has a median household income of \$1m, that will be reduced to the top-coded value—what appears to be \$250k. This creates what are called **censored data**. 
 
-> **Censored data**: data "in which the value of a measurement or observation is only partially known." [^censorwiki][^censorstack] 
+> Censored data: data "in which the value of a measurement or observation is only partially known." [^censorwiki][^censorstack] 
 
 Let us now create a histogram of our second variable of interest, `bach`.
 
@@ -160,9 +167,9 @@ ggplot(acs_edu, aes(x = bach)) +
 
 This histogram illustrates the distribution of the bachelor degree attainment rate (the proportion of people with a bachelor's degree) across census tracts in Massachusetts. Because we did our homework ahead of time, we know that the national attainment rate in 2018 for people over 25 was ~35%[^acsedu]. Our histogram shows that within MA there is a lot of variation in the attainment rate from a low of about 0% to a high of over 60%. There is not a steep peak in the distribution which tells us that there is a fair amount of variation in the distribution.
 
-Now that there is an intuition of the distribution and characteristics of both `med_house_income` and `bach`, we can begin to try and answer the question _what is the effect of education on median household income?_ The phrasing of our question will determine how we visualize our data. 
+Now that we have an intuition of the distribution and characteristics of both `med_house_income` and `bach`, we can begin to try and answer the question _what is the effect of education on median household income?_ The phrasing of our question will determine how we visualize our data. 
 
-When stating research questions we often phrase it as _what is the effect of x **on** y_? In this formulation we are determining that `bach`, our independent variable, will be plotted on the x axis and `med_house_income` will be plotted on the y axis. To visualize this bivariate relationship we will create a scatter plot. 
+When stating research questions we often phrase it as _what is the effect of x on y_? In this formulation we are determining that `bach`, our independent variable, will be plotted on the x axis and `med_house_income` will be plotted on the y axis. To visualize this bivariate relationship we will create a scatter plot. 
 
 > This structure and phrasing is useful for continuity in verbal communication, graphical representation, and hypothesis testing. 
 
@@ -185,7 +192,7 @@ ggplot(acs_edu, aes(x = bach, y = med_house_income)) +
   geom_smooth(method = "lm")
 ```
 
-Wonderful! To finish up this graphic, we should add informative labels. Labels live in their own layer which is created with `labs()`. Each argument maps to an aesthetic—e.g. `x` and `y`. By default ggplot uses the column names for axis labels, but these labels are usually uninformative.
+Wonderful! To finish up this graphic, we should add informative labels. Labels live in their own layer which is created with `labs()`. Each argument maps to an aesthetic—e.g. `x` and `y`. By default ggplot uses the column names for axis labels, but these labels are usually not the most legible.
 
 Let's give the plot a title and better labels for its axes. We will set the following arguments to `labs()`
 

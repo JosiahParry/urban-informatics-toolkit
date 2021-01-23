@@ -9,7 +9,7 @@
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.2"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.5.3/header-attrs.js"></script><script src="libs/jquery-3.5.1/jquery-3.5.1.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.5.3/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.5.3/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.2.3.9000/tabs.js"></script><script src="libs/bs3compat-0.2.3.9000/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
-<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script><script src="https://cdn.jsdelivr.net/autocomplete.js/0/autocomplete.jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/mark.js@8.11.1/dist/mark.min.js"></script><!-- CSS -->
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdn.jsdelivr.net/autocomplete.js/0/autocomplete.jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/mark.js@8.11.1/dist/mark.min.js"></script><!-- CSS -->
 </head>
 <body data-spy="scroll" data-target="#toc">
 
@@ -103,7 +103,7 @@
 <p>Try printing out the <code>acs_raw</code> object in your console.</p>
 <div class="sourceCode" id="cb42"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">acs_raw</span></code></pre></div>
-<p>Oof, yikes. It’s a bit messy! Not to mention that R did not even print out all of the columns. That’s because it ran out of room. When we’re working with wide data (many columns), it’s generally best to view only a preview of the data. The function <code><a href="https://rdrr.io/pkg/tibble/man/glimpse.html">dplyr::glimpse()</a></code> can help us do just that. <code>glimpse()</code> provide a summary overview of a data frame. The output will first tell us how many rows and columns there are. Then, in order as appears in the object, prints the column name followed by its type—e.g. <code>&lt;dbl&gt;</code> , or <code>&lt;chr&gt;</code> for double and character—and the first few values of that column.</p>
+<p>Oof, yikes. It’s a bit messy! Not to mention that R did not even print out all of the columns. That’s because it ran out of room. When we’re working with wide data (many columns), it’s generally best to view only a preview of the data. The function <code><a href="https://tibble.tidyverse.org/reference/glimpse.html">dplyr::glimpse()</a></code> can help us do just that. <code>glimpse()</code> provide a summary overview of a data frame. The output will first tell us how many rows and columns there are. Then, in order as appears in the object, prints the column name followed by its type—e.g. <code>&lt;dbl&gt;</code> , or <code>&lt;chr&gt;</code> for double and character—and the first few values of that column.</p>
 <p>Provide <code>acs_raw</code> as the only argument to <code>glimpse()</code>.</p>
 <div class="sourceCode" id="cb43"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">glimpse</span><span class="op">(</span><span class="va">acs_raw</span><span class="op">)</span></code></pre></div>
@@ -116,7 +116,7 @@
 <h3>
 <span class="header-section-number">10.2.1</span> <code>select()</code>ing<a class="anchor" aria-label="anchor" href="#selecting"><i class="fas fa-link"></i></a>
 </h3>
-<p>So now we have an intuition of the most important variables, but the next problem soon arises: how do we isolate just these variables? Whenever you find yourself needing to select or deselect columns from a tibble <code><a href="https://rdrr.io/pkg/dplyr/man/select.html">dplyr::select()</a></code> will be the main function that you will go to. <code>select()</code> selects variables from a tibble and returns another tibble.</p>
+<p>So now we have an intuition of the most important variables, but the next problem soon arises: how do we isolate just these variables? Whenever you find yourself needing to select or deselect columns from a tibble <code><a href="https://dplyr.tidyverse.org/reference/select.html">dplyr::select()</a></code> will be the main function that you will go to. <code>select()</code> selects variables from a tibble and returns another tibble.</p>
 <p>Before we work through how to use <code>select()</code>, refer to the help documentation and see if you can get somewhat of an intuition by running <code>?select()</code> into the console. Once you press enter, the documentation page should pop up in RStudio.</p>
 <p>There are a few reasons why I am directing you towards the function documentation.</p>
 <ol style="list-style-type: decimal">
@@ -128,7 +128,7 @@
 <blockquote>
 <p><code>.data</code>: A tbl. All main verbs are S3 generics and provide methods for tbl_df(), dtplyr::tbl_dt() and dbplyr::tbl_dbi().</p>
 </blockquote>
-<p>What I want you to take away from this argument definition is “A tbl”. Whenever you read <code>tbl</code> think to your self “oh, that is just a <code>tibble</code>.” If you recall, when we read rectangular data with <code><a href="https://rdrr.io/pkg/readr/man/read_delim.html">readr::read_csv()</a></code> or any other <code>readr::read_*()</code> function we will end up with a tibble. To verify that this is the case, we can double check our objects using the function <code>is.tbl()</code>. This function takes an object and returns a logical value (<code>TRUE</code> or <code>FALSE</code>) if the statement is true. Let’s double check that <code>acs_raw</code> is in fact a <code>tbl</code>.</p>
+<p>What I want you to take away from this argument definition is “A tbl.” Whenever you read <code>tbl</code> think to your self “oh, that is just a <code>tibble</code>.” If you recall, when we read rectangular data with <code><a href="https://readr.tidyverse.org/reference/read_delim.html">readr::read_csv()</a></code> or any other <code>readr::read_*()</code> function we will end up with a tibble. To verify that this is the case, we can double check our objects using the function <code>is.tbl()</code>. This function takes an object and returns a logical value (<code>TRUE</code> or <code>FALSE</code>) if the statement is true. Let’s double check that <code>acs_raw</code> is in fact a <code>tbl</code>.</p>
 <div class="sourceCode" id="cb44"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">is.tbl</span><span class="op">(</span><span class="va">acs_raw</span><span class="op">)</span>
 <span class="co">#&gt; [1] TRUE</span></code></pre></div>
@@ -245,6 +245,11 @@
 <span class="co">#&gt;  9   0.200   0.462   0.150   0.188</span>
 <span class="co">#&gt; 10   0.128   0.342   0.286   0.244</span>
 <span class="co">#&gt; # … with 1,468 more rows</span></code></pre></div>
+</div>
+<div id="selecting-by-position" class="section level3" number="10.2.3">
+<h3>
+<span class="header-section-number">10.2.3</span> Selecting by position<a class="anchor" aria-label="anchor" href="#selecting-by-position"><i class="fas fa-link"></i></a>
+</h3>
 <!-- Alright, so now we have gotten the hang of selecting columns based on their names. But equally important is the ability to select columns based on their position. Consider the situation in which you regularly receive georeferenced data from a research partner and the structure of the dataset is rather consistent _except_ that they frequently change the name of the coordinate columns. Sometimes the columns are `x` and `y`. Sometimes they are capitalized `X` and `Y`, `lon` and `lat`, or even `long` and `lat`. It eats you up inside! But you know that while the names may change, their positions never do—they're always the last two columns. You decide to program a solution rather than having a conversation with your research partner—though, I recommend you both level set on reproducibility standards. -->
 <blockquote>
 <p>“…You can treat variable names like they are positions…”</p>
@@ -589,7 +594,7 @@
 <p>“Answer these questions for yourself: who? Why? Where? How?”</p>
 </blockquote>
 <p>Save the resultant tibble to an object named <code>commute</code> or something else informative.</p>
-<p>Below is one approach to this question. For this, I have selected all columns pertaining to commute time (columns that start with <code>commute</code>), the method by which people commute (begin with <code>by</code>), medisan household income, and the name of the census tract. The name of the census tract will be helpful for identifying “where”.</p>
+<p>Below is one approach to this question. For this, I have selected all columns pertaining to commute time (columns that start with <code>commute</code>), the method by which people commute (begin with <code>by</code>), medisan household income, and the name of the census tract. The name of the census tract will be helpful for identifying “where.”</p>
 <div class="sourceCode" id="cb62"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">commute</span> <span class="op">&lt;-</span> <span class="fu">select</span><span class="op">(</span><span class="va">acs_raw</span>,
                   <span class="va">county</span>,
@@ -614,6 +619,7 @@
 <a class="nav-link" href="#getting-physical-with-the-data"><span class="header-section-number">10.2</span> Getting physical with the data</a><ul class="nav navbar-nav">
 <li><a class="nav-link" href="#selecting"><span class="header-section-number">10.2.1</span> select()ing</a></li>
 <li><a class="nav-link" href="#selecting-exercises"><span class="header-section-number">10.2.2</span> select()ing exercises</a></li>
+<li><a class="nav-link" href="#selecting-by-position"><span class="header-section-number">10.2.3</span> Selecting by position</a></li>
 </ul>
 </li>
 <li><a class="nav-link" href="#selecting-rows"><span class="header-section-number">10.3</span> Selecting Rows</a></li>
@@ -636,7 +642,7 @@
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Urban Informatics Toolkit</strong>" was written by Josiah Parry. It was last built on 2021-01-07.</p>
+    <p>"<strong>Urban Informatics Toolkit</strong>" was written by Josiah Parry. It was last built on 2021-01-23.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

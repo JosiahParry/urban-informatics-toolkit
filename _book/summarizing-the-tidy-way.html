@@ -9,7 +9,7 @@
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.2"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.5.3/header-attrs.js"></script><script src="libs/jquery-3.5.1/jquery-3.5.1.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.5.3/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.5.3/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.2.3.9000/tabs.js"></script><script src="libs/bs3compat-0.2.3.9000/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
-<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script><script src="https://cdn.jsdelivr.net/autocomplete.js/0/autocomplete.jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/mark.js@8.11.1/dist/mark.min.js"></script><!-- CSS -->
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdn.jsdelivr.net/autocomplete.js/0/autocomplete.jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/mark.js@8.11.1/dist/mark.min.js"></script><!-- CSS -->
 </head>
 <body data-spy="scroll" data-target="#toc">
 
@@ -73,44 +73,44 @@
 <span class="header-section-number">16</span> Summarizing the tidy way<a class="anchor" aria-label="anchor" href="#summarizing-the-tidy-way"><i class="fas fa-link"></i></a>
 </h1>
 <p>Now that we have a basic understanding of how to manipulate our dataset, summarising the dataset into a few useful metrics is important. When we have massive datasets with many subgroups, summary statistics will be very important for distilling all of that information into something consumable. Aggregation will also be very important for visualization purposes.</p>
-<p>We have already reviewed what constitutes a summary statistic and how to create them working with vectors. But we have not done so within the context of the tidyverse. We have figured out how to select, filter, mutate and all within a chain of functions. But we have not followed this to its natural next step, the <code><a href="https://rdrr.io/pkg/dplyr/man/group_by.html">group_by()</a></code> and <code><a href="https://rdrr.io/pkg/dplyr/man/summarise.html">summarise()</a></code> functions.</p>
-<p>dplyr incluides a wonderful helper function called <code><a href="https://rdrr.io/pkg/dplyr/man/count.html">count()</a></code>. It does just what it says it does. It counts the number of observations in a tibble. Let’s recreate the <code>commute</code> tibble and see it for ourselves.</p>
-<div class="sourceCode" id="cb175"><pre class="downlit sourceCode r">
+<p>We have already reviewed what constitutes a summary statistic and how to create them working with vectors. But we have not done so within the context of the tidyverse. We have figured out how to select, filter, mutate and all within a chain of functions. But we have not followed this to its natural next step, the <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by()</a></code> and <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise()</a></code> functions.</p>
+<p>dplyr incluides a wonderful helper function called <code><a href="https://dplyr.tidyverse.org/reference/count.html">count()</a></code>. It does just what it says it does. It counts the number of observations in a tibble. Let’s recreate the <code>commute</code> tibble and see it for ourselves.</p>
+<div class="sourceCode" id="cb176"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
 
 <span class="va">commute</span> <span class="op">&lt;-</span> <span class="fu">read_csv</span><span class="op">(</span><span class="st">"data/gba_commute.csv"</span><span class="op">)</span> 
 
-<span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/count.html">count</a></span><span class="op">(</span><span class="va">commute</span><span class="op">)</span>
+<span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">commute</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 1 x 1</span>
 <span class="co">#&gt;       n</span>
 <span class="co">#&gt;   &lt;int&gt;</span>
 <span class="co">#&gt; 1   648</span></code></pre></div>
 <p>We can also count by groups in a data set. For example, we can count how many observations there are per county.</p>
-<div class="sourceCode" id="cb176"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/count.html">count</a></span><span class="op">(</span><span class="va">commute</span>, <span class="va">county</span><span class="op">)</span>
+<div class="sourceCode" id="cb177"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">commute</span>, <span class="va">county</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 3 x 2</span>
 <span class="co">#&gt;   county        n</span>
 <span class="co">#&gt;   &lt;chr&gt;     &lt;int&gt;</span>
 <span class="co">#&gt; 1 MIDDLESEX   318</span>
 <span class="co">#&gt; 2 NORFOLK     130</span>
 <span class="co">#&gt; 3 SUFFOLK     200</span></code></pre></div>
-<p><code><a href="https://rdrr.io/pkg/dplyr/man/count.html">count()</a></code> is actually a wrapper around the function <code><a href="https://rdrr.io/pkg/dplyr/man/summarise.html">summarise()</a></code> which is a much more flexible function. <code><a href="https://rdrr.io/pkg/dplyr/man/summarise.html">summarise()</a></code> is the aggregate analog to <code><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate()</a></code>. The difference between <code><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate()</a></code> and <code><a href="https://rdrr.io/pkg/dplyr/man/summarise.html">summarise()</a></code> is that the result of an expression in <code><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate()</a></code> must have the same number of values as there are rows—unless of course you are specifying a scalar value like <code>TRUE</code>—whereas <code><a href="https://rdrr.io/pkg/dplyr/man/summarise.html">summarise()</a></code> requires the result to be one an element of length one.</p>
+<p><code><a href="https://dplyr.tidyverse.org/reference/count.html">count()</a></code> is actually a wrapper around the function <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise()</a></code> which is a much more flexible function. <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise()</a></code> is the aggregate analog to <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code>. The difference between <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code> and <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise()</a></code> is that the result of an expression in <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code> must have the same number of values as there are rows—unless of course you are specifying a scalar value like <code>TRUE</code>—whereas <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise()</a></code> requires the result to be one an element of length one.</p>
 <blockquote>
 <p>Notes:
 - A wrapper is function that executes another function.
 - A scalar is a vector of length one.</p>
 </blockquote>
-<p>We can recreate the first above <code><a href="https://rdrr.io/pkg/dplyr/man/count.html">count()</a></code> call with <code><a href="https://rdrr.io/pkg/dplyr/man/summarise.html">summarise()</a></code> and the handy <code><a href="https://rdrr.io/pkg/dplyr/man/context.html">n()</a></code> function we learned a while ago. Here we follow the same pattern of assigning column names to expressions as we do with.</p>
-<div class="sourceCode" id="cb177"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/summarise.html">summarise</a></span><span class="op">(</span><span class="va">commute</span>, n <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
+<p>We can recreate the first above <code><a href="https://dplyr.tidyverse.org/reference/count.html">count()</a></code> call with <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise()</a></code> and the handy <code><a href="https://dplyr.tidyverse.org/reference/context.html">n()</a></code> function we learned a while ago. Here we follow the same pattern of assigning column names to expressions as we do with.</p>
+<div class="sourceCode" id="cb178"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span><span class="va">commute</span>, n <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 1 x 1</span>
 <span class="co">#&gt;       n</span>
 <span class="co">#&gt;   &lt;int&gt;</span>
 <span class="co">#&gt; 1   648</span></code></pre></div>
-<p>Like <code><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate()</a></code> there is no restriction on the number of new columns we can create. Previously we calculated the min, max, mean, and standard deviation of the <code>commute3060</code> variable. This is done rather neatly with <code><a href="https://rdrr.io/pkg/dplyr/man/summarise.html">summarise()</a></code>.</p>
-<div class="sourceCode" id="cb178"><pre class="downlit sourceCode r">
+<p>Like <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code> there is no restriction on the number of new columns we can create. Previously we calculated the min, max, mean, and standard deviation of the <code>commute3060</code> variable. This is done rather neatly with <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise()</a></code>.</p>
+<div class="sourceCode" id="cb179"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">commute</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/summarise.html">summarise</a></span><span class="op">(</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>
     min_commute <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="va">commute3060</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,
     max_commute <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">commute3060</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,
     avg_commute <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">commute3060</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,
@@ -120,10 +120,10 @@
 <span class="co">#&gt;   min_commute max_commute avg_commute sd_commute</span>
 <span class="co">#&gt;         &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt;      &lt;dbl&gt;</span>
 <span class="co">#&gt; 1           0       0.633       0.390     0.0862</span></code></pre></div>
-<p>Frankly this alone is somewhat unimpressive. The power of <code><a href="https://rdrr.io/pkg/dplyr/man/summarise.html">summarise()</a></code> comes from incorporating <code><a href="https://rdrr.io/pkg/dplyr/man/group_by.html">group_by()</a></code> into the function chain. <code><a href="https://rdrr.io/pkg/dplyr/man/group_by.html">group_by()</a></code> allows us to explicitly identify groups within a tibble as defined by a given variable. The resulting tibble from a <code><a href="https://rdrr.io/pkg/dplyr/man/group_by.html">group_by()</a></code> call is seemingly unchanged.</p>
-<div class="sourceCode" id="cb179"><pre class="downlit sourceCode r">
+<p>Frankly this alone is somewhat unimpressive. The power of <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise()</a></code> comes from incorporating <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by()</a></code> into the function chain. <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by()</a></code> allows us to explicitly identify groups within a tibble as defined by a given variable. The resulting tibble from a <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by()</a></code> call is seemingly unchanged.</p>
+<div class="sourceCode" id="cb180"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">commute</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/group_by.html">group_by</a></span><span class="op">(</span><span class="va">county</span><span class="op">)</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">county</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 648 x 14</span>
 <span class="co">#&gt; # Groups:   county [3]</span>
 <span class="co">#&gt;    county hs_grad  bach master commute_less10 commute1030 commute3060</span>
@@ -141,25 +141,25 @@
 <span class="co">#&gt; # … with 638 more rows, and 7 more variables: commute6090 &lt;dbl&gt;,</span>
 <span class="co">#&gt; #   commute_over90 &lt;dbl&gt;, by_auto &lt;dbl&gt;, by_pub_trans &lt;dbl&gt;, by_bike &lt;dbl&gt;,</span>
 <span class="co">#&gt; #   by_walk &lt;dbl&gt;, med_house_income &lt;dbl&gt;</span></code></pre></div>
-<p>However, if we look at comments above the tibble, we see something new: <code># Groups: county [3]</code>. This tells us a couple of things. First that the groups were created using the <code>county</code> column, that there are fifteen groups, and that the data frame is now grouped implying that any future <code><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate()</a></code> or <code><a href="https://rdrr.io/pkg/dplyr/man/summarise.html">summarise()</a></code> calls will be performed on the specified groups. If we then look at the class of that grouped tibble we see that there is a new class introduced which is <code>grouped_df</code>.</p>
-<div class="sourceCode" id="cb180"><pre class="downlit sourceCode r">
+<p>However, if we look at comments above the tibble, we see something new: <code># Groups: county [3]</code>. This tells us a couple of things. First that the groups were created using the <code>county</code> column, that there are fifteen groups, and that the data frame is now grouped implying that any future <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code> or <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise()</a></code> calls will be performed on the specified groups. If we then look at the class of that grouped tibble we see that there is a new class introduced which is <code>grouped_df</code>.</p>
+<div class="sourceCode" id="cb181"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">commute</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/group_by.html">group_by</a></span><span class="op">(</span><span class="va">county</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">county</span><span class="op">)</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="op">)</span>
 <span class="co">#&gt; [1] "grouped_df" "tbl_df"     "tbl"        "data.frame"</span></code></pre></div>
 <blockquote>
 <p>Note: a tibble has the classes <code>tbl</code> and <code>tbl_df</code> on top of the Base R class <code>data.frame</code>.</p>
 </blockquote>
 <p>When a tibble has this object class, dplyr knows that operations should be grouped. For example if you were to calculate the mean, this would be the mean for the specified groups rather than the mean for the entire dataset.
-One function that is extremely useful is the <code><a href="https://rdrr.io/pkg/dplyr/man/context.html">n()</a></code> function to identify how many observations there are per group inside of a mutate call.</p>
+One function that is extremely useful is the <code><a href="https://dplyr.tidyverse.org/reference/context.html">n()</a></code> function to identify how many observations there are per group inside of a mutate call.</p>
 <blockquote>
 <p>I am including the <code>commute3060</code> column to illustrate that the new <code>n</code> column will be the same for each group value.</p>
 </blockquote>
-<div class="sourceCode" id="cb181"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb182"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">commute</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/group_by.html">group_by</a></span><span class="op">(</span><span class="va">county</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/select.html">select</a></span><span class="op">(</span><span class="va">county</span>, <span class="va">commute3060</span>, <span class="va">n</span><span class="op">)</span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">county</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">county</span>, <span class="va">commute3060</span>, <span class="va">n</span><span class="op">)</span> 
 <span class="co">#&gt; # A tibble: 648 x 3</span>
 <span class="co">#&gt; # Groups:   county [3]</span>
 <span class="co">#&gt;    county    commute3060     n</span>
@@ -175,12 +175,12 @@ One function that is extremely useful is the <code><a href="https://rdrr.io/pkg/
 <span class="co">#&gt;  9 MIDDLESEX       0.329   318</span>
 <span class="co">#&gt; 10 MIDDLESEX       0.322   318</span>
 <span class="co">#&gt; # … with 638 more rows</span></code></pre></div>
-<p>Here each group only has one unique value for <code>n</code>. As discussed previously, when we want to calculate aggregate measures, there ought to only value per-group. This ability to perform grouped calculation within <code><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate()</a></code>can be extremely powerful, but does not create a proper aggregated dataset. For this, we can again use <code><a href="https://rdrr.io/pkg/dplyr/man/summarise.html">summarise()</a></code></p>
+<p>Here each group only has one unique value for <code>n</code>. As discussed previously, when we want to calculate aggregate measures, there ought to only value per-group. This ability to perform grouped calculation within <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code>can be extremely powerful, but does not create a proper aggregated dataset. For this, we can again use <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise()</a></code></p>
 <p>Let’s recreate the grouped count from before.</p>
-<div class="sourceCode" id="cb182"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb183"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">commute</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/group_by.html">group_by</a></span><span class="op">(</span><span class="va">county</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/summarise.html">summarise</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">county</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt; `summarise()` ungrouping output (override with `.groups` argument)</span>
 <span class="co">#&gt; # A tibble: 3 x 2</span>
 <span class="co">#&gt;   county        n</span>
@@ -189,11 +189,11 @@ One function that is extremely useful is the <code><a href="https://rdrr.io/pkg/
 <span class="co">#&gt; 2 NORFOLK     130</span>
 <span class="co">#&gt; 3 SUFFOLK     200</span></code></pre></div>
 <p>We can also include the summary statistic calculations from before.</p>
-<div class="sourceCode" id="cb183"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb184"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">commute</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/group_by.html">group_by</a></span><span class="op">(</span><span class="va">county</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/summarise.html">summarise</a></span><span class="op">(</span>
-    n <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/context.html">n</a></span><span class="op">(</span><span class="op">)</span>,
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">county</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>
+    n <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span>,
     min_commute <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="va">commute3060</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,
     max_commute <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">commute3060</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,
     avg_commute <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">commute3060</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,
@@ -229,7 +229,7 @@ One function that is extremely useful is the <code><a href="https://rdrr.io/pkg/
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Urban Informatics Toolkit</strong>" was written by Josiah Parry. It was last built on 2021-01-07.</p>
+    <p>"<strong>Urban Informatics Toolkit</strong>" was written by Josiah Parry. It was last built on 2021-01-23.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

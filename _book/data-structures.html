@@ -9,7 +9,7 @@
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.2"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.5.3/header-attrs.js"></script><script src="libs/jquery-3.5.1/jquery-3.5.1.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.5.3/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.5.3/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.2.3.9000/tabs.js"></script><script src="libs/bs3compat-0.2.3.9000/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
-<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script><script src="https://cdn.jsdelivr.net/autocomplete.js/0/autocomplete.jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/mark.js@8.11.1/dist/mark.min.js"></script><!-- CSS -->
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdn.jsdelivr.net/autocomplete.js/0/autocomplete.jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/mark.js@8.11.1/dist/mark.min.js"></script><!-- CSS -->
 </head>
 <body data-spy="scroll" data-target="#toc">
 
@@ -83,31 +83,31 @@
 <p>What makes a vector a atomic is that it can only be <strong>a single data type</strong> and that they are <em>one-dimensional</em>—opposed to tibbles which are two-dimensional<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Data Types and Structures. Software Carpentries. &lt;a href="https://swcarpentry.github.io/r-novice-inflammation/13-supp-data-structures/" class="uri"&gt;https://swcarpentry.github.io/r-novice-inflammation/13-supp-data-structures/&lt;/a&gt;&lt;/p&gt;'><sup>56</sup></a>. You may have noticed that every value of a column is of the same data type. This means that they are rather strict to work with and for good reason. Imagine you wanted to multiple a column by 10, what would happen if a few of the values in the column were actually written out as text? Let’s try exploring this idea.</p>
 <p>The most common way to create a vector in R is to use the <code><a href="https://rdrr.io/r/base/c.html">c()</a></code> function. This stands for <em>combine</em>. We can <code>c</code>ombine as many elements as we want into a single vector using <code><a href="https://rdrr.io/r/base/c.html">c()</a></code>. Each element of the vector is it’s own argument (separated by a comma).</p>
 <p>For example if we wanted to create a vector of <a href="https://data.bls.gov/timeseries/LAUMT257165000000003?amp%253bdata_tool=XGtable&amp;output_view=data&amp;include_graphs=true">Boston’s unemployment rate</a> rate for each month in 2019 that we have data for (until October as of this writing on Dec. 18th, 2019) we could write the below. We will save it in a a vector called <code>unemp</code><a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Boston Unemployment &lt;a href="https://data.bls.gov/timeseries/LAUMT257165000000003?amp%253bdata_tool=XGtable&amp;amp;output_view=data&amp;amp;include_graphs=true" class="uri"&gt;https://data.bls.gov/timeseries/LAUMT257165000000003?amp%253bdata_tool=XGtable&amp;amp;output_view=data&amp;amp;include_graphs=true&lt;/a&gt;.&lt;/p&gt;'><sup>57</sup></a>.</p>
-<div class="sourceCode" id="cb123"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb124"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">unemp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3.2</span>, <span class="fl">2.8</span>, <span class="fl">2.8</span>, <span class="fl">2.4</span>, <span class="fl">2.8</span>, <span class="fl">2.9</span>, <span class="fl">2.7</span>, <span class="fl">2.6</span>, <span class="fl">2.7</span>, <span class="fl">2.3</span><span class="op">)</span>
 <span class="va">unemp</span>
 <span class="co">#&gt;  [1] 3.2 2.8 2.8 2.4 2.8 2.9 2.7 2.6 2.7 2.3</span></code></pre></div>
 <p>What is really great about vectors is that we can perform any number of operations on them—i.e. find the sum of all the values, the average, add a value to each element, etc.</p>
 <p>If we wanted to find the average unemployment rate for Boston for Jan - Oct. 2019, we can supply the vector to the function <code><a href="https://rdrr.io/r/base/mean.html">mean()</a></code>.</p>
-<div class="sourceCode" id="cb124"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb125"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">unemp</span><span class="op">)</span>
 <span class="co">#&gt; [1] 2.72</span></code></pre></div>
 <p>However, you may be thinking “there are 12 months in a year not 10 and that should be represented” and if you are, I totally agree with you. Since the data for November and December are missing, we should denote that and update <code>unemp</code> accordingly. R uses <code>NA</code> to represent missing data. To represent this we can append two <code>NA</code>s to the vector we have. There are two ways we can do this. We can either combine <code>unemp</code> with two <code>NA</code>s, or rewrite the above vector.</p>
-<div class="sourceCode" id="cb125"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb126"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># combining existing with 2 NAs</span>
 <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">unemp</span>, <span class="cn">NA</span>, <span class="cn">NA</span><span class="op">)</span>
 <span class="co">#&gt;  [1] 3.2 2.8 2.8 2.4 2.8 2.9 2.7 2.6 2.7 2.3  NA  NA</span></code></pre></div>
 <p>This works, but since we will be saving this to <code>unemp</code> again it is not best practices to use the variable you are changing in that objects assignment.</p>
-<div class="sourceCode" id="cb126"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb127"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># for example</span>
 <span class="va">unemp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">unemp</span>, <span class="cn">NA</span>, <span class="cn">NA</span><span class="op">)</span></code></pre></div>
 <p>The above is rather unclear and might confuse someone that will have to read your code at a later time—that person may even be you. For this reason we will redefine it.</p>
-<div class="sourceCode" id="cb127"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb128"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">unemp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3.2</span>, <span class="fl">2.8</span>, <span class="fl">2.8</span>, <span class="fl">2.4</span>, <span class="fl">2.8</span>, <span class="fl">2.9</span>, <span class="fl">2.7</span>, <span class="fl">2.6</span>, <span class="fl">2.7</span>, <span class="fl">2.3</span>, <span class="cn">NA</span>, <span class="cn">NA</span><span class="op">)</span>
 <span class="va">unemp</span>
 <span class="co">#&gt;  [1] 3.2 2.8 2.8 2.4 2.8 2.9 2.7 2.6 2.7 2.3  NA  NA</span></code></pre></div>
 <p>We know that there are 12 elements in this vector, but sometimes it is quite nice to sanity check oneself. We can always find out how long (or how many elements are in) a vector is by supplying the vector to the <code><a href="https://rdrr.io/r/base/length.html">length()</a></code> function.</p>
-<div class="sourceCode" id="cb128"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb129"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># how many observations are in `unemp`?</span>
 <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">unemp</span><span class="op">)</span>
 <span class="co">#&gt; [1] 12</span></code></pre></div>
@@ -118,23 +118,23 @@
 <blockquote>
 <p>Note: <code><a href="https://rdrr.io/r/base/typeof.html">typeof()</a></code> is used only for internal R object such as lists and vectors. In most cases you will want to use <code><a href="https://rdrr.io/r/base/class.html">class()</a></code> to return the class of an object.</p>
 </blockquote>
-<div class="sourceCode" id="cb129"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb130"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/typeof.html">typeof</a></span><span class="op">(</span><span class="va">unemp</span><span class="op">)</span>
 <span class="co">#&gt; [1] "double"</span></code></pre></div>
 <p>Say we create another vector called <code>month</code> with the numbers 1 through 12.</p>
-<div class="sourceCode" id="cb130"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb131"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">month</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span>, <span class="fl">4</span>, <span class="fl">5</span>, <span class="fl">6</span>, <span class="fl">7</span>, <span class="fl">8</span>, <span class="fl">9</span>, <span class="fl">10</span>, <span class="fl">11</span>, <span class="fl">12</span><span class="op">)</span>
 
 <span class="fu"><a href="https://rdrr.io/r/base/typeof.html">typeof</a></span><span class="op">(</span><span class="va">month</span><span class="op">)</span>
 <span class="co">#&gt; [1] "double"</span></code></pre></div>
 <p>Notice that since we didn’t specify the <code>L</code> after the numbers R defaulted to treating <code>month</code> as a double. When possible it is good to make the distinction between integer and numeric.</p>
-<div class="sourceCode" id="cb131"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb132"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">month</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1L</span>, <span class="fl">2L</span>, <span class="fl">3L</span>, <span class="fl">4L</span>, <span class="fl">5L</span>, <span class="fl">6L</span>, <span class="fl">7L</span>, <span class="fl">8L</span>, <span class="fl">9L</span>, <span class="fl">10L</span>, <span class="fl">11L</span>, <span class="fl">12L</span><span class="op">)</span>
 
 <span class="fu"><a href="https://rdrr.io/r/base/typeof.html">typeof</a></span><span class="op">(</span><span class="va">month</span><span class="op">)</span>
 <span class="co">#&gt; [1] "integer"</span></code></pre></div>
 <p>R has a number of vectors that are built in these being the letters of the alphabet (<code>letters</code> and <code>LETTERS</code> respectively), as well as <code>month.abb</code>, <code>month.name</code>, and <code>pi</code>. <code>month.name</code> is already available to us so let’s not recreate it.</p>
-<div class="sourceCode" id="cb132"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb133"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">month.name</span>
 <span class="co">#&gt;  [1] "January"   "February"  "March"     "April"     "May"       "June"     </span>
 <span class="co">#&gt;  [7] "July"      "August"    "September" "October"   "November"  "December"</span>
@@ -144,21 +144,21 @@
 <p>Notice the quotes around each vector element. This is how we identify character vectors.</p>
 <p>Logical vectors are the last kind of vector we need to go over. Logical vectors are represented as the values <code>TRUE</code> and <code>FALSE</code>. Simple enough. Onward!</p>
 <p>Recall that vectors are atomic meaning that there can only be one type per vector and we cannot mix and match. When a character is in the presence of another element of a different type, that value is <em><strong>coerced</strong></em> into a character. Coersion is the process of implicitly or contextually changing an object from one type to another. For example:</p>
-<div class="sourceCode" id="cb133"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb134"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"a"</span>, <span class="fl">1</span><span class="op">)</span>
 
 <span class="fu"><a href="https://rdrr.io/r/base/typeof.html">typeof</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>
 <span class="co">#&gt; [1] "character"</span></code></pre></div>
 <p>Something similar happens when a logical value is in the presence of a numeric value</p>
-<div class="sourceCode" id="cb134"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb135"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="cn">TRUE</span>, <span class="fl">1</span>, <span class="cn">FALSE</span><span class="op">)</span>
 <span class="co">#&gt; [1] 1 1 0</span></code></pre></div>
 <p>In the presence of a numeric value <code>TRUE</code> becomes equal to <code>1L</code> and <code>FALSE</code> equal to <code>0L</code>.This behavior exists whenever a logical value is presented where a numeric is expected such as the function call below.</p>
-<div class="sourceCode" id="cb135"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb136"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span><span class="op">)</span>
 <span class="co">#&gt; [1] 1</span></code></pre></div>
 <p>While coersion occurs from other processes like combining values in a vector, <em><strong>casting</strong></em> is the process of intentionally changing an object’s class. There are a number of casting functions whice generaly take the shape of <code>as.class()</code> or <code>as_class()</code>. Each of the vector types covered have their own casting functions.</p>
-<div class="sourceCode" id="cb136"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb137"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/integer.html">as.integer</a></span><span class="op">(</span><span class="cn">TRUE</span><span class="op">)</span>
 <span class="co">#&gt; [1] 1</span>
 <span class="fu"><a href="https://rdrr.io/r/base/character.html">as.character</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
@@ -170,15 +170,15 @@
 <p>As you progress in your R journey you will find scenarios in which you need to cast objects from one class to another and these functions are the trick.</p>
 <p>You now have a strong understanding of the underbellies of R vectors. One thing that is missing is an understanding of how we can select subsets from vectors. To extract a value from vectors we append square brackets at the end of the vector <code>vec[]</code>. We supply an index value to the square brackets to receive the value at that position</p>
 <p>To select the month of January from the <code>unemp</code> vector, the first element, we provide the value of <code>1</code> to the brackets.</p>
-<div class="sourceCode" id="cb137"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb138"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">unemp</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>
 <span class="co">#&gt; [1] 3.2</span></code></pre></div>
 <p>To extract more than one value, we provide a vector of the row indexes we desire.</p>
-<div class="sourceCode" id="cb138"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb139"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">unemp</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">3</span><span class="op">)</span><span class="op">]</span>
 <span class="co">#&gt; [1] 3.2 2.8</span></code></pre></div>
 <p>There is yet another way to extract values from these vectors. We can provide a logical vector to our square brackets. For example, we can identify every value of <code>unemp</code> that is above the average rate.</p>
-<div class="sourceCode" id="cb139"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb140"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># find average removing missing values</span>
 <span class="va">avg_unemp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">unemp</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 
@@ -188,38 +188,38 @@
 <span class="va">index</span>
 <span class="co">#&gt;  [1]  TRUE  TRUE  TRUE FALSE  TRUE  TRUE FALSE FALSE FALSE FALSE    NA    NA</span></code></pre></div>
 <p>Notice that the <code>NA</code>s stayed <code>NA</code>? They can be pesky. Hadley writes in Advanced R “missing values tend to be infectious: most computations involving a missing value will return another missing value.”<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;Vectors. Advanced R. &lt;a href="https://adv-r.hadley.nz/vectors-chap.html" class="uri"&gt;https://adv-r.hadley.nz/vectors-chap.html&lt;/a&gt;.&lt;/p&gt;'><sup>58</sup></a></p>
-<div class="sourceCode" id="cb140"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb141"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">unemp</span><span class="op">[</span><span class="va">index</span><span class="op">]</span>
 <span class="co">#&gt; [1] 3.2 2.8 2.8 2.8 2.9  NA  NA</span></code></pre></div>
 <p>How annoying those NAs can be! To prevent these NAs from showing upwe can add another condition to our <code>index</code> line to remove NAs. Like there are <code>as.*()</code> functions for casting, there are also <code>is.*()</code> functions for testing. <code>is.*()</code> returns a logical vector of the same length as the provided vector.</p>
 <blockquote>
 <p>Note: the <code><a href="https://rdrr.io/r/base/Arithmetic.html">*</a></code> is called a wildcard. The wildcard character comes from SQL and when present means that any string can follow. <code>is.*()</code> is intended to indicate any possible testing function such as <code><a href="https://rdrr.io/r/base/numeric.html">is.numeric()</a></code>, <code>is_tibble()</code>, etc.</p>
 </blockquote>
-<div class="sourceCode" id="cb141"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb142"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">unemp</span><span class="op">)</span>
 <span class="co">#&gt;  [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE</span></code></pre></div>
 <p>As we learned, we can negate logical vectors with an <code><a href="https://rdrr.io/r/base/Logic.html">!</a></code>. We can negate the test results and include an an <code><a href="https://rdrr.io/r/base/Logic.html">&amp;</a></code> condition to only identify unemployment values above average <em>and</em> aren’t missing.</p>
-<div class="sourceCode" id="cb142"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb143"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">index</span> <span class="op">&lt;-</span> <span class="va">unemp</span> <span class="op">&gt;</span> <span class="va">avg_unemp</span> <span class="op">&amp;</span> <span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">unemp</span><span class="op">)</span>
 
 <span class="va">unemp</span><span class="op">[</span><span class="va">index</span><span class="op">]</span>
 <span class="co">#&gt; [1] 3.2 2.8 2.8 2.8 2.9</span></code></pre></div>
 <p>There is one last thing to keep in mind and with subsetting vectors using a logical vector that is of a different length. When you use a logical vector to subset and they are of differing length, the logical vector will be recycled for the remaining values of the vector being subset. As always, an example will be the best.</p>
 <p>Say we have an object called <code>x</code> which are the values from 0 to 10 and an <code>index</code> to subset with. If we subset it with <code>index</code> and <code>index</code> is a logical vector of length two with the values of <code>TRUE</code> and <code>FALSE</code>, every other observation will be returned. This is because come the third value in <code>x</code>, R has ran out of values in <code>index</code> to use so it goes back to the beginning</p>
-<div class="sourceCode" id="cb143"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb144"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">x</span> <span class="op">&lt;-</span> <span class="fl">0</span><span class="op">:</span><span class="fl">10</span>
 <span class="va">x</span>
 <span class="co">#&gt;  [1]  0  1  2  3  4  5  6  7  8  9 10</span></code></pre></div>
-<div class="sourceCode" id="cb144"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb145"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">index</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="cn">TRUE</span>, <span class="cn">FALSE</span><span class="op">)</span>
 
 <span class="va">x</span><span class="op">[</span><span class="va">index</span><span class="op">]</span>
 <span class="co">#&gt; [1]  0  2  4  6  8 10</span></code></pre></div>
 <p>And what happens when the only value is a single logical value?</p>
-<div class="sourceCode" id="cb145"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb146"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">x</span><span class="op">[</span><span class="cn">TRUE</span><span class="op">]</span>
 <span class="co">#&gt;  [1]  0  1  2  3  4  5  6  7  8  9 10</span></code></pre></div>
-<div class="sourceCode" id="cb146"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb147"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">x</span><span class="op">[</span><span class="cn">FALSE</span><span class="op">]</span>
 <span class="co">#&gt; integer(0)</span></code></pre></div>
 <p>In this latter case see how the output says <code><a href="https://rdrr.io/r/base/integer.html">integer(0)</a></code>. This is informing you that the vector contains 0 elements.</p>
@@ -230,12 +230,12 @@
 </h2>
 <p>The entirety of the work in this book so far has been with <code>tibbles</code>. Tibbles are actually a special type of data frame. Data frames are R’s native way for storing rectangular data. Rectangles are two-dimensional, so are data frames.</p>
 <p>Data frames are secretly just a bunch of vectors squished together. The important thing is that all vectors are of the same length. This ensures that each observation (row) has one value from each vector. Because of the nature of a data frame, each column must adhere to the rules of vectors.</p>
-<p>Let’s create a tibble using the <code>unemp</code> vector and the <code><a href="https://rdrr.io/pkg/tibble/man/tibble.html">tibble()</a></code> function. <code><a href="https://rdrr.io/pkg/tibble/man/tibble.html">tibble()</a></code> works in a somewhat similar manner as <code><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate()</a></code> where the arguments we provide are name value pairs. In the case of tibble, the argument take the form of <code>col_name = vector</code>.</p>
+<p>Let’s create a tibble using the <code>unemp</code> vector and the <code><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble()</a></code> function. <code><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble()</a></code> works in a somewhat similar manner as <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code> where the arguments we provide are name value pairs. In the case of tibble, the argument take the form of <code>col_name = vector</code>.</p>
 <p>We create a tibble with the unemployment rate below.</p>
-<div class="sourceCode" id="cb147"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb148"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span>
 
-<span class="fu"><a href="https://rdrr.io/pkg/tibble/man/tibble.html">tibble</a></span><span class="op">(</span>
+<span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>
   unemp_rate <span class="op">=</span> <span class="va">unemp</span>
 <span class="op">)</span>
 <span class="co">#&gt; # A tibble: 12 x 1</span>
@@ -254,12 +254,12 @@
 <span class="co">#&gt; 11       NA  </span>
 <span class="co">#&gt; 12       NA</span></code></pre></div>
 <p>We can add the month name and create a new column to indicate if that month has a higher than average unemployment rate.</p>
-<div class="sourceCode" id="cb148"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">unemp_tbl</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/tibble/man/tibble.html">tibble</a></span><span class="op">(</span>
+<div class="sourceCode" id="cb149"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">unemp_tbl</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>
   unemp_rate <span class="op">=</span> <span class="va">unemp</span>, 
   month <span class="op">=</span> <span class="va">month.name</span>
 <span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate</a></span><span class="op">(</span>above_avg <span class="op">=</span> <span class="va">unemp_rate</span> <span class="op">&gt;</span> <span class="va">avg_unemp</span><span class="op">)</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>above_avg <span class="op">=</span> <span class="va">unemp_rate</span> <span class="op">&gt;</span> <span class="va">avg_unemp</span><span class="op">)</span>
 
 <span class="va">unemp_tbl</span>
 <span class="co">#&gt; # A tibble: 12 x 3</span>
@@ -279,12 +279,12 @@
 <span class="co">#&gt; 12       NA   December  NA</span></code></pre></div>
 <p>To interact with the underlying vector of a data frame we can use the dollar sign <code><a href="https://rdrr.io/r/base/Extract.html">$</a></code> operator. This takes the form of <code>tbl$col_name</code>.</p>
 <p>For example, extracting the <code>unemp_rate</code> column looks like:</p>
-<div class="sourceCode" id="cb149"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb150"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">unemp_tbl</span><span class="op">$</span><span class="va">unemp_rate</span>
 <span class="co">#&gt;  [1] 3.2 2.8 2.8 2.4 2.8 2.9 2.7 2.6 2.7 2.3  NA  NA</span></code></pre></div>
-<p>Note the difference between <code><a href="https://rdrr.io/pkg/dplyr/man/select.html">select(tbl, col)</a></code> and <code>tbl$col</code>.</p>
-<div class="sourceCode" id="cb150"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/select.html">select</a></span><span class="op">(</span><span class="va">unemp_tbl</span>, <span class="va">unemp_rate</span><span class="op">)</span>
+<p>Note the difference between <code><a href="https://dplyr.tidyverse.org/reference/select.html">select(tbl, col)</a></code> and <code>tbl$col</code>.</p>
+<div class="sourceCode" id="cb151"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">unemp_tbl</span>, <span class="va">unemp_rate</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 12 x 1</span>
 <span class="co">#&gt;    unemp_rate</span>
 <span class="co">#&gt;         &lt;dbl&gt;</span>
@@ -300,12 +300,12 @@
 <span class="co">#&gt; 10        2.3</span>
 <span class="co">#&gt; 11       NA  </span>
 <span class="co">#&gt; 12       NA</span></code></pre></div>
-<p>The difference is that <code><a href="https://rdrr.io/r/base/Extract.html">$</a></code> returns the underlying vector whereas <code><a href="https://rdrr.io/pkg/dplyr/man/select.html">select()</a></code> will always return another data frame. You now have the ability to both filter data and grab a subset of a vector. But we have yet to visit how to grab a single value from a data frame.</p>
+<p>The difference is that <code><a href="https://rdrr.io/r/base/Extract.html">$</a></code> returns the underlying vector whereas <code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code> will always return another data frame. You now have the ability to both filter data and grab a subset of a vector. But we have yet to visit how to grab a single value from a data frame.</p>
 <p>You could try something like</p>
-<div class="sourceCode" id="cb151"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb152"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">unemp_tbl</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/select.html">select</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/slice.html">slice</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 1 x 1</span>
 <span class="co">#&gt;   unemp_rate</span>
 <span class="co">#&gt;        &lt;dbl&gt;</span>
@@ -313,7 +313,7 @@
 <p>To grab the 10th value of the first column. But again, you still have a tibble and you are not able to use that directly like a standalone number.</p>
 <p>We can again use brackets to subset the our R object. But data frames are two dimensional, so we need to specify the indexes in two dimensions. If you have made a hand drawn graph used a cartesian plane, which I assume you all have, this will is the same idea. With a cartesian plane we can identify any point with a combination of two values: x and y. x refers to the horizontal axis and y the vertical axis. When we put the cartesian plane in the same frame of reference as the rectangular data frame we envision our rows as the x and our columns as the y.</p>
 <p>In specifying our index, we are able to select all rows or all columns by leaving the x or y spot empty respectively.</p>
-<div class="sourceCode" id="cb152"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb153"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">unemp_tbl</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span>
 <span class="co">#&gt; # A tibble: 12 x 1</span>
 <span class="co">#&gt;    unemp_rate</span>
@@ -336,25 +336,25 @@
 <span class="co">#&gt;        &lt;dbl&gt; &lt;chr&gt;   &lt;lgl&gt;    </span>
 <span class="co">#&gt; 1        2.3 October FALSE</span></code></pre></div>
 <p>To replicate the above tidyverse example we would provide the indexes 10 and 1 respectively.</p>
-<div class="sourceCode" id="cb153"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb154"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">unemp_tbl</span><span class="op">[</span><span class="fl">10</span>,<span class="fl">1</span><span class="op">]</span>
 <span class="co">#&gt; # A tibble: 1 x 1</span>
 <span class="co">#&gt;   unemp_rate</span>
 <span class="co">#&gt;        &lt;dbl&gt;</span>
 <span class="co">#&gt; 1        2.3</span></code></pre></div>
 <p>This is great, we’ve rewritten our tidyverse code in base R. But, just like the tidyverse code, we maintain the tibble data structure. This is because when we use a single bracket, it maintains the data structure of the object we are selecting from. If we wrap our brackets in another set of bracket, we are returned the an object of the same class as the underlying object.</p>
-<div class="sourceCode" id="cb154"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb155"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">unemp_tbl</span><span class="op">[[</span><span class="fl">10</span>,<span class="fl">1</span><span class="op">]</span><span class="op">]</span>
 <span class="co">#&gt; [1] 2.3</span></code></pre></div>
-<p>What that code is doing is narrowing the tibble down to a single column with a single row index and then extracting the underlying vector (the second bracket). To extract the underlying vector using the tidyverse, we can use the function <code><a href="https://rdrr.io/pkg/dplyr/man/pull.html">dplyr::pull()</a></code>.</p>
-<div class="sourceCode" id="cb155"><pre class="downlit sourceCode r">
+<p>What that code is doing is narrowing the tibble down to a single column with a single row index and then extracting the underlying vector (the second bracket). To extract the underlying vector using the tidyverse, we can use the function <code><a href="https://dplyr.tidyverse.org/reference/pull.html">dplyr::pull()</a></code>.</p>
+<div class="sourceCode" id="cb156"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">unemp_tbl</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/select.html">select</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/slice.html">slice</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/pull.html">pull</a></span><span class="op">(</span><span class="op">)</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span><span class="op">(</span><span class="op">)</span>
 <span class="co">#&gt; [1] 2.3</span></code></pre></div>
 <p>Now this brings us to the second-most fundamental structure in R: the list. Yes, second-most fundamental. I’ve been keeping a secret from you. Data frames are actually just lists in disguise. To prove it, I will remove the class from <code>unemp_tbl</code> and return the class of that unclassed object.</p>
-<div class="sourceCode" id="cb156"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb157"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/class.html">unclass</a></span><span class="op">(</span><span class="va">unemp_tbl</span><span class="op">)</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="op">)</span>
 <span class="co">#&gt; [1] "list"</span></code></pre></div>
@@ -367,7 +367,7 @@
 <p>There is a good chance that you will not have to interact with them too often That doesn’t mean you shouldn’t know how to when that time comes.</p>
 <p>Lists are generally the most flexible object type in R. Unlike vectors and data frames lists do not impose any structure on the storage of our data.</p>
 <p>The most simple lists may resemble something like a vector.</p>
-<div class="sourceCode" id="cb157"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb158"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="st">"Jan"</span>, <span class="st">"Feb"</span>, <span class="st">"Mar"</span><span class="op">)</span>
 <span class="co">#&gt; [[1]]</span>
 <span class="co">#&gt; [1] "Jan"</span>
@@ -378,14 +378,14 @@
 <span class="co">#&gt; [[3]]</span>
 <span class="co">#&gt; [1] "Mar"</span></code></pre></div>
 <p>Notice how this prints differently than</p>
-<div class="sourceCode" id="cb158"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb159"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Jan"</span>, <span class="st">"Feb"</span>, <span class="st">"Mar"</span><span class="op">)</span>
 <span class="co">#&gt; [1] "Jan" "Feb" "Mar"</span></code></pre></div>
 <p>Each element of a list is self-contained. I think of lists somewhat like shipping containers where each element is its own container and all components of each element are together. We can include any type of R object in a list. For example, we can include the <code>unemp_tbl</code> and associated vectors.</p>
-<div class="sourceCode" id="cb159"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb160"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">l</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="va">unemp_tbl</span>, <span class="va">unemp</span>, <span class="va">month.name</span><span class="op">)</span></code></pre></div>
 <p>We can view the structure of the list to get an idea of what is actually contained by that list.</p>
-<div class="sourceCode" id="cb160"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb161"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">l</span><span class="op">)</span>
 <span class="co">#&gt; List of 3</span>
 <span class="co">#&gt;  $ : tibble [12 × 3] (S3: tbl_df/tbl/data.frame)</span>
@@ -396,24 +396,24 @@
 <span class="co">#&gt;  $ : chr [1:12] "January" "February" "March" "April" ...</span></code></pre></div>
 <p>The structure of <code>l</code> shows us that the first element is a tibble (has class <code>tbl_df</code>), and the other elements are numeric and character vectors respectively.</p>
 <p>Because of this flexibility there are not predetermined dimensions that we can specify to our brackets. Like extracting the underlying vector value from a data frame we have to use <code><a href="https://rdrr.io/r/base/Extract.html">[[</a></code> for indexing. I like to think of <code><a href="https://rdrr.io/r/base/Extract.html">[</a></code> as walking up to the storage container and <code><a href="https://rdrr.io/r/base/Extract.html">[[</a></code> as actually opening it up and going inside. To get a sense of the difference lets look at the <code>unemp</code> vector.</p>
-<div class="sourceCode" id="cb161"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb162"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">l</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span>
 <span class="co">#&gt; [[1]]</span>
 <span class="co">#&gt;  [1] 3.2 2.8 2.8 2.4 2.8 2.9 2.7 2.6 2.7 2.3  NA  NA</span>
 <span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">l</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span><span class="op">)</span>
 <span class="co">#&gt; [1] "list"</span></code></pre></div>
 <p>When using the single bracket we are just selecting the first element of the list which is why we are returned another list.</p>
-<div class="sourceCode" id="cb162"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb163"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">l</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span>
 <span class="co">#&gt;  [1] 3.2 2.8 2.8 2.4 2.8 2.9 2.7 2.6 2.7 2.3  NA  NA</span>
 <span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">l</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span><span class="op">)</span>
 <span class="co">#&gt; [1] "numeric"</span></code></pre></div>
 <p>When we use the double bracket we are going inside of the container and actually plucking that element out of the list. Once you have plucked out that element, we can again use another set of brackets to subset that item. To grab the tenth row and first column of the <code>unemp_tbl</code> inside of <code>l</code> we can write.</p>
-<div class="sourceCode" id="cb163"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb164"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">l</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">[[</span><span class="fl">10</span>,<span class="fl">1</span><span class="op">]</span><span class="op">]</span>
 <span class="co">#&gt; [1] 2.3</span></code></pre></div>
 <p>Now that we know that data frames are lists we can actually extract the underlying vectors using <code><a href="https://rdrr.io/r/base/Extract.html">[[</a></code> as well as <code><a href="https://rdrr.io/r/base/Extract.html">$</a></code>. We can get the tenth row and first column a number of ways.</p>
-<div class="sourceCode" id="cb164"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb165"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># subsetting the data frame</span>
 <span class="va">l</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">[[</span><span class="fl">10</span>,<span class="fl">1</span><span class="op">]</span><span class="op">]</span>
 <span class="co">#&gt; [1] 2.3</span>
@@ -425,10 +425,10 @@
 <span class="co"># grabbing the vector by name then position</span>
 <span class="va">l</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">unemp_rate</span><span class="op">[</span><span class="fl">10</span><span class="op">]</span>
 <span class="co">#&gt; [1] 2.3</span></code></pre></div>
-<p>Frankly all of these brackets can get a little messy. The tidyverse package <code>purrr</code> has a super handy function called <code><a href="https://rdrr.io/pkg/purrr/man/pluck.html">pluck()</a></code> which handles all of these brackets for us. <code><a href="https://rdrr.io/pkg/purrr/man/pluck.html">purrr::pluck()</a></code> is meant for flexible indexing into data structures (documentation).</p>
-<p><code><a href="https://rdrr.io/pkg/purrr/man/pluck.html">pluck()</a></code> works by first providing the object that you’d like to index—again, notice the data first emphasis—and then providing the position of the element you would like to pluck out of the object. Generally, I will use <code><a href="https://rdrr.io/pkg/purrr/man/pluck.html">pluck()</a></code> when possible. By doing so the code becomes more readable and adheres to a single style more thoroughly.</p>
-<div class="sourceCode" id="cb165"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/purrr/man/pluck.html">pluck</a></span><span class="op">(</span><span class="va">l</span>, <span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">10</span><span class="op">)</span>
+<p>Frankly all of these brackets can get a little messy. The tidyverse package <code>purrr</code> has a super handy function called <code><a href="https://purrr.tidyverse.org/reference/pluck.html">pluck()</a></code> which handles all of these brackets for us. <code><a href="https://purrr.tidyverse.org/reference/pluck.html">purrr::pluck()</a></code> is meant for flexible indexing into data structures (documentation).</p>
+<p><code><a href="https://purrr.tidyverse.org/reference/pluck.html">pluck()</a></code> works by first providing the object that you’d like to index—again, notice the data first emphasis—and then providing the position of the element you would like to pluck out of the object. Generally, I will use <code><a href="https://purrr.tidyverse.org/reference/pluck.html">pluck()</a></code> when possible. By doing so the code becomes more readable and adheres to a single style more thoroughly.</p>
+<div class="sourceCode" id="cb166"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/pluck.html">pluck</a></span><span class="op">(</span><span class="va">l</span>, <span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">10</span><span class="op">)</span>
 <span class="co">#&gt; [1] 2.3</span></code></pre></div>
 <p>Congratulations! You made it to the end of this exceptionally dense chapter. You may feel a little overwhlemed and that is to be expected. Nonetheless you should be proud! I have a few more asks of you before you move on.</p>
 <div id="exercises" class="section level3" number="14.3.1">
@@ -441,16 +441,16 @@
 <li>Create a list with the vectors <code>unemp</code>, <code>month.name</code>, and <code>avg_unemp</code>.</li>
 <li>Recreate the <code>unemp_tbl</code> but referencing the list elements</li>
 </ol>
-<div class="sourceCode" id="cb166"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb167"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://purrr.tidyverse.org">purrr</a></span><span class="op">)</span>
 
 <span class="va">unemp_l</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="va">unemp</span>, <span class="va">month.name</span>, <span class="va">avg_unemp</span><span class="op">)</span>
 
-<span class="fu"><a href="https://rdrr.io/pkg/tibble/man/tibble.html">tibble</a></span><span class="op">(</span>
-  unemp_rate <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/purrr/man/pluck.html">pluck</a></span><span class="op">(</span><span class="va">unemp_l</span>, <span class="fl">1</span><span class="op">)</span>,
-  month <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/purrr/man/pluck.html">pluck</a></span><span class="op">(</span><span class="va">unemp_l</span>, <span class="fl">2</span><span class="op">)</span>
+<span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>
+  unemp_rate <span class="op">=</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/pluck.html">pluck</a></span><span class="op">(</span><span class="va">unemp_l</span>, <span class="fl">1</span><span class="op">)</span>,
+  month <span class="op">=</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/pluck.html">pluck</a></span><span class="op">(</span><span class="va">unemp_l</span>, <span class="fl">2</span><span class="op">)</span>
 <span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate</a></span><span class="op">(</span>above_avg <span class="op">=</span> <span class="va">unemp_rate</span> <span class="op">&gt;</span> <span class="fu"><a href="https://rdrr.io/pkg/purrr/man/pluck.html">pluck</a></span><span class="op">(</span><span class="va">unemp_l</span>, <span class="fl">3</span><span class="op">)</span><span class="op">)</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>above_avg <span class="op">=</span> <span class="va">unemp_rate</span> <span class="op">&gt;</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/pluck.html">pluck</a></span><span class="op">(</span><span class="va">unemp_l</span>, <span class="fl">3</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 12 x 3</span>
 <span class="co">#&gt;    unemp_rate month     above_avg</span>
 <span class="co">#&gt;         &lt;dbl&gt; &lt;chr&gt;     &lt;lgl&gt;    </span>
@@ -499,7 +499,7 @@
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Urban Informatics Toolkit</strong>" was written by Josiah Parry. It was last built on 2021-01-07.</p>
+    <p>"<strong>Urban Informatics Toolkit</strong>" was written by Josiah Parry. It was last built on 2021-01-23.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

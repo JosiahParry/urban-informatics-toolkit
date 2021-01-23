@@ -53,6 +53,7 @@ scenario
 getting-physical-with-the-data
 selecting
 selecting-exercises
+selecting-by-position
 selecting-rows
 revisiting-commmuting
 exercise-1

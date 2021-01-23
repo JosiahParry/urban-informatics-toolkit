@@ -9,7 +9,7 @@
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.2"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.5.3/header-attrs.js"></script><script src="libs/jquery-3.5.1/jquery-3.5.1.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.5.3/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.5.3/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.2.3.9000/tabs.js"></script><script src="libs/bs3compat-0.2.3.9000/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
-<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script><script src="https://cdn.jsdelivr.net/autocomplete.js/0/autocomplete.jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/mark.js@8.11.1/dist/mark.min.js"></script><!-- CSS -->
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdn.jsdelivr.net/autocomplete.js/0/autocomplete.jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/mark.js@8.11.1/dist/mark.min.js"></script><!-- CSS -->
 </head>
 <body data-spy="scroll" data-target="#toc">
 
@@ -79,13 +79,13 @@
 <span class="header-section-number">25.1</span> The data<a class="anchor" aria-label="anchor" href="#the-data-1"><i class="fas fa-link"></i></a>
 </h2>
 <p>We will use data from both the <code>hosts</code> and <code>listings</code> datasets. The former contains superhost data while the later has both the price and room type information. First we will read in both of these datasets.</p>
-<div class="sourceCode" id="cb295"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb296"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
 
 <span class="va">listings</span> <span class="op">&lt;-</span> <span class="fu">read_csv</span><span class="op">(</span><span class="st">"data/airbnb/listings.csv"</span><span class="op">)</span>
 <span class="va">hosts</span> <span class="op">&lt;-</span> <span class="fu">read_csv</span><span class="op">(</span><span class="st">"data/airbnb/hosts.csv"</span><span class="op">)</span>
 
-<span class="fu"><a href="https://rdrr.io/pkg/tibble/man/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">listings</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="https://tibble.tidyverse.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">listings</span><span class="op">)</span></code></pre></div>
 <pre><code>## Rows: 3,799
 ## Columns: 7
 ## $ id               &lt;dbl&gt; 3781, 5506, 6695, 8789, 10730, 10813, 10986, 16384, …
@@ -95,8 +95,8 @@
 ## $ minimum_nights   &lt;dbl&gt; 28, 3, 3, 91, 91, 91, 91, 91, 29, 1, 2, 2, 2, 6, 3, …
 ## $ availability_365 &lt;dbl&gt; 68, 322, 274, 247, 29, 0, 364, 365, 304, 285, 62, 24…
 ## $ host_id          &lt;dbl&gt; 4804, 8229, 8229, 26988, 26988, 38997, 38997, 23078,…</code></pre>
-<div class="sourceCode" id="cb297"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/tibble/man/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">hosts</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb298"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://tibble.tidyverse.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">hosts</span><span class="op">)</span></code></pre></div>
 <pre><code>## Rows: 1,335
 ## Columns: 9
 ## $ id              &lt;dbl&gt; 4804, 8229, 26988, 38997, 23078, 71783, 85130, 85770,…
@@ -109,31 +109,31 @@
 ## $ superhost       &lt;dbl&gt; 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1,…
 ## $ n_listings      &lt;dbl&gt; 5, 2, 9, 13, 3, 40, 7, 4, 1, 2, 1, 1, 5, 1, 1, 1, 1, …</code></pre>
 <p>In order to join these two tibbles together we need to figure out what the common identifiers are. In <code>listings</code> we can infer that the <strong>primary key</strong> is <code>id</code> while the <strong>foreign key</strong> is <code>host_id</code>. While the <code>hosts</code> tibble only has one <code>id</code> column. Clearly the join needs to be between <code>host_id</code> and <code>id</code> from <code>listings</code> and <code>hosts</code> respectively. We will perform a left join then select the columns <code>price</code>, <code>room_type</code> and <code>superhost</code> and assign that to the object <code>airbnb</code>.</p>
-<div class="sourceCode" id="cb299"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">airbnb</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">listings</span>, <span class="va">hosts</span>, by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"host_id"</span> <span class="op">=</span> <span class="st">"id"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/select.html">select</a></span><span class="op">(</span><span class="va">price</span>, <span class="va">room_type</span>, <span class="va">superhost</span><span class="op">)</span> 
+<div class="sourceCode" id="cb300"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">airbnb</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">listings</span>, <span class="va">hosts</span>, by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"host_id"</span> <span class="op">=</span> <span class="st">"id"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">price</span>, <span class="va">room_type</span>, <span class="va">superhost</span><span class="op">)</span> 
 
-<span class="fu"><a href="https://rdrr.io/pkg/tibble/man/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">airbnb</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="https://tibble.tidyverse.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">airbnb</span><span class="op">)</span></code></pre></div>
 <pre><code>## Rows: 3,799
 ## Columns: 3
 ## $ price     &lt;dbl&gt; 125, 145, 169, 99, 150, 179, 125, 50, 154, 115, 148, 275, 2…
 ## $ room_type &lt;chr&gt; "Entire home/apt", "Entire home/apt", "Entire home/apt", "E…
 ## $ superhost &lt;dbl&gt; 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0,…</code></pre>
 <p>Before we can engage in any statistical testing we should do our due diligence and first visualize the relationship before we test it. Because we are comparing a group to a continuous variable a boxplot will suffice.</p>
-<div class="sourceCode" id="cb301"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">airbnb</span>, <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/aes.html">aes</a></span><span class="op">(</span><span class="va">price</span>, <span class="va">superhost</span>, group <span class="op">=</span> <span class="va">superhost</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/geom_boxplot.html">geom_boxplot</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb302"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span><span class="va">airbnb</span>, <span class="fu">aes</span><span class="op">(</span><span class="va">price</span>, <span class="va">superhost</span>, group <span class="op">=</span> <span class="va">superhost</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">geom_boxplot</span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure"><img src="09-statistics_files/figure-html/unnamed-chunk-4-1.png" width="100%"></div>
 <blockquote>
 <p>Note that we are setting the group to <code>superhost</code> this is because it is dummy coded as a numeric value. ggplot is attempting to consider it numeric rather than categorical.</p>
 </blockquote>
 <p>Clearly there are some noticeable outliers above the $2,500 mark. Let’s filter out these values before we get on to our testing and while we’re at it, let’s convert <code>superhost</code> to a factor with <code><a href="https://rdrr.io/r/base/factor.html">factor()</a></code>. Save the the filtered results to <code>bnb_filt</code>. Recreate the above visualization with the new object.</p>
-<div class="sourceCode" id="cb302"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">bnb_filt</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/filter.html">filter</a></span><span class="op">(</span><span class="va">airbnb</span>, <span class="va">price</span> <span class="op">&lt;</span> <span class="fl">2500</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate</a></span><span class="op">(</span>superhost <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">superhost</span><span class="op">)</span><span class="op">)</span>
+<div class="sourceCode" id="cb303"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">bnb_filt</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">airbnb</span>, <span class="va">price</span> <span class="op">&lt;</span> <span class="fl">2500</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>superhost <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">superhost</span><span class="op">)</span><span class="op">)</span>
 
-<span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">bnb_filt</span>, <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/aes.html">aes</a></span><span class="op">(</span><span class="va">price</span>, <span class="va">superhost</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/geom_boxplot.html">geom_boxplot</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<span class="fu">ggplot</span><span class="op">(</span><span class="va">bnb_filt</span>, <span class="fu">aes</span><span class="op">(</span><span class="va">price</span>, <span class="va">superhost</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">geom_boxplot</span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure"><img src="09-statistics_files/figure-html/unnamed-chunk-5-1.png" width="100%"></div>
 <p>The first thing you may notices is that we no longer had to specify the <code>group</code> aesthetic because we converted <code>superhost</code> to a non-numeric format. From the above visualization it looks like that being a superhost does not necessarily increase the price of a listing. We can now test these means by using <code><a href="https://rdrr.io/r/stats/t.test.html">t.test()</a></code>. There are a number of ways in which we can use this function but the most generalizable way is to use what is called the <strong>formula</strong> interface.</p>
 </div>
@@ -149,7 +149,7 @@
 </h2>
 <p>To perform a t-test we will use the <code><a href="https://rdrr.io/r/stats/t.test.html">t.test()</a></code> function with the arguments <code>formula</code> and <code>data</code>. An example call looks like <code><a href="https://rdrr.io/r/stats/t.test.html">t.test(y ~ x, data = df)</a></code>. In our case our <code>y</code> is <code>price</code> because it is our variable of interest or our dependent variable. Since we are curious how <code>price</code> changes by <code>superhost</code> status, we will put <code>superhost</code> in the <code>x</code> spot.</p>
 <p>Conduct a t-test and store the results in <code>price_t</code>. Print it out afterwards.</p>
-<div class="sourceCode" id="cb303"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb304"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="op">(</span><span class="va">price_t</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/t.test.html">t.test</a></span><span class="op">(</span><span class="va">price</span> <span class="op">~</span> <span class="va">superhost</span>, data <span class="op">=</span> <span class="va">bnb_filt</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>## 
 ##  Welch Two Sample t-test
@@ -178,7 +178,7 @@
 </ul>
 </blockquote>
 <p>Make sure that broom is installed with <code><a href="https://rdrr.io/r/utils/install.packages.html">install.packages("broom")</a></code>. Once that is installed use the function <code>tidy()</code> on the <code>price_t</code> object,</p>
-<div class="sourceCode" id="cb305"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb306"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">broom</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/generics/man/tidy.html">tidy</a></span><span class="op">(</span><span class="va">price_t</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 1 x 10
 ##   estimate estimate1 estimate2 statistic p.value parameter conf.low conf.high
@@ -193,7 +193,7 @@
 <span class="header-section-number">25.4</span> ANOVA<a class="anchor" aria-label="anchor" href="#anova"><i class="fas fa-link"></i></a>
 </h2>
 <p>The ANOVA test is used in the case when t-tests cannot. That is, they are used when we want to know if there is a difference in means between groups when there are two or more groups. To perform an ANOVA we use the <code><a href="https://rdrr.io/r/stats/aov.html">aov()</a></code> function—an initialism for <strong>a</strong>analysis <strong>o</strong>f <strong>v</strong>ariance—with the same arguments that we used in <code><a href="https://rdrr.io/r/stats/t.test.html">t.test()</a></code>. The only difference here is that the <code>x</code> is a column that has more than two groups—<code>room_type</code>. We can fit the ANOVA model with <code>price</code> as our <code>y</code> and <code>room_type</code> as our <code>x</code>.</p>
-<div class="sourceCode" id="cb307"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb308"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="op">(</span><span class="va">price_aov</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/aov.html">aov</a></span><span class="op">(</span><span class="va">price</span> <span class="op">~</span> <span class="va">room_type</span>, data <span class="op">=</span> <span class="va">bnb_filt</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>## Call:
 ##    aov(formula = price ~ room_type, data = bnb_filt)
@@ -206,7 +206,7 @@
 ## Residual standard error: 136.7473
 ## Estimated effects may be unbalanced</code></pre>
 <p>When we print out the ANOVA model object we actually don’t see the results we were anticipating. To get thos we have to pass the model object to the function <code><a href="https://rdrr.io/r/base/summary.html">summary()</a></code>.</p>
-<div class="sourceCode" id="cb309"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb310"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">price_aov</span><span class="op">)</span></code></pre></div>
 <pre><code>##               Df   Sum Sq Mean Sq F value Pr(&gt;F)    
 ## room_type      3 15152015 5050672   270.1 &lt;2e-16 ***
@@ -214,7 +214,7 @@
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <p>Now here we find the results of our test: p &lt; 0.001. You may notice already that there is some inconsistency in which that ways that models are interacted with. That is why we use broom, to have one common way of working with model objects. If we’d like to access the model results in a consistent way we can again use <code><a href="https://rdrr.io/pkg/generics/man/tidy.html">broom::tidy()</a></code>.</p>
-<div class="sourceCode" id="cb311"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb312"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">broom</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/generics/man/tidy.html">tidy</a></span><span class="op">(</span><span class="va">price_aov</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 2 x 6
 ##   term         df     sumsq   meansq statistic    p.value
@@ -222,7 +222,7 @@
 ## 1 room_type     3 15152015. 5050672.      270.  7.32e-159
 ## 2 Residuals  3789 70853604.   18700.       NA  NA</code></pre>
 <p>Remember though that ANOVA tests if there is <em>any</em> variation between any two groups. The results of the test do not tell us <em>which</em> groups are different. And this is when we turn to Tukey’s Honestly Significant Difference (HSD). Tukey’s HSD creates a set of confidence intervals to compare each unique combination of our variables. To perform the test in R we pass the ANOVA model object to the function <code><a href="https://rdrr.io/r/stats/TukeyHSD.html">TukeyHSD()</a></code></p>
-<div class="sourceCode" id="cb313"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb314"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="op">(</span><span class="va">price_hsd</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/TukeyHSD.html">TukeyHSD</a></span><span class="op">(</span><span class="va">price_aov</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>##   Tukey multiple comparisons of means
 ##     95% family-wise confidence level
@@ -238,7 +238,7 @@
 ## Shared room-Hotel room        -49.625000 -153.58946   54.339462 0.6097851
 ## Shared room-Private room        8.970855  -79.42567   97.367379 0.9937854</code></pre>
 <p>The results of the above test show that there are rather significant difference between hotel rooms and entire homes or apartments, private rooms and entire homes, shared rooms and entire homes, as well as private room and hotel room. With the use of broom and ggplot we can begin to visualize these restuls.</p>
-<div class="sourceCode" id="cb315"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb316"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="op">(</span><span class="va">price_hsd_tidy</span> <span class="op">&lt;-</span> <span class="fu">broom</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/generics/man/tidy.html">tidy</a></span><span class="op">(</span><span class="va">price_hsd</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 6 x 6
 ##   term      comparison                   estimate conf.low conf.high adj.p.value
@@ -254,14 +254,14 @@
 <p>I personally like to call these Tie Fighter plots because they resemble the space ships from Star Wars.</p>
 </blockquote>
 <p>We can being by plotting the point estimates of each comparison.</p>
-<div class="sourceCode" id="cb317"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="op">(</span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">price_hsd_tidy</span>, <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/aes.html">aes</a></span><span class="op">(</span><span class="va">estimate</span>, <span class="va">comparison</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="09-statistics_files/figure-html/unnamed-chunk-13-1.png" width="100%"></div>
-<p>Next we can add a horizontal error bar (<code><a href="https://rdrr.io/pkg/ggplot2/man/geom_errorbarh.html">geom_errorbarh()</a></code>) layer to the plot. This layer requires some additional aesthetics that we will set in the layer itself. These are <code>xmin</code> and <code>xmax</code>. Respectively they are used to mark the minimum and maximum extents of the error bars. In the case of the HSD object, the bounds of th confidence intervals have been already calculated for us and can be found in the columns <code>conf.low</code> and <code>conf.high</code>. We can pass these to the <code>xmin</code> and <code>xmax</code> aesthetic arguments.</p>
 <div class="sourceCode" id="cb318"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="op">(</span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu">ggplot</span><span class="op">(</span><span class="va">price_hsd_tidy</span>, <span class="fu">aes</span><span class="op">(</span><span class="va">estimate</span>, <span class="va">comparison</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="09-statistics_files/figure-html/unnamed-chunk-13-1.png" width="100%"></div>
+<p>Next we can add a horizontal error bar (<code>geom_errorbarh()</code>) layer to the plot. This layer requires some additional aesthetics that we will set in the layer itself. These are <code>xmin</code> and <code>xmax</code>. Respectively they are used to mark the minimum and maximum extents of the error bars. In the case of the HSD object, the bounds of th confidence intervals have been already calculated for us and can be found in the columns <code>conf.low</code> and <code>conf.high</code>. We can pass these to the <code>xmin</code> and <code>xmax</code> aesthetic arguments.</p>
+<div class="sourceCode" id="cb319"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">p</span> <span class="op">+</span>
-  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/geom_errorbarh.html">geom_errorbarh</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/aes.html">aes</a></span><span class="op">(</span>xmin <span class="op">=</span> <span class="va">conf.low</span>, xmax <span class="op">=</span> <span class="va">conf.high</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+  <span class="fu">geom_errorbarh</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>xmin <span class="op">=</span> <span class="va">conf.low</span>, xmax <span class="op">=</span> <span class="va">conf.high</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure"><img src="09-statistics_files/figure-html/unnamed-chunk-14-1.png" width="100%"></div>
 </div>
 <div id="linear-regression" class="section level2" number="25.5">
@@ -269,7 +269,7 @@
 <span class="header-section-number">25.5</span> Linear regression<a class="anchor" aria-label="anchor" href="#linear-regression"><i class="fas fa-link"></i></a>
 </h2>
 <p>When we want to move on to inference with linear models, we turn to the <code><a href="https://rdrr.io/r/stats/lm.html">lm()</a></code> function. This, like the <code><a href="https://rdrr.io/r/stats/t.test.html">t.test()</a></code> and <code><a href="https://rdrr.io/r/stats/aov.html">aov()</a></code> functions requires both a formula and data. The difference is that the formulas that we will use are a bit more complex because we will often be using many variables. To predict y as some function of multiple inputs we have to declare all of those inputs in our formula which takes form of <code>y ~ x1 + x2 + ...</code>. So if we were to create a linear model that predicts price as a function of room type and whether or the host is a superhost, our formula will look like <code>price ~ room_type + superhost</code>.</p>
-<div class="sourceCode" id="cb319"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb320"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">price_lm</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">price</span> <span class="op">~</span> <span class="va">room_type</span> <span class="op">+</span> <span class="va">superhost</span>, data <span class="op">=</span> <span class="va">bnb_filt</span><span class="op">)</span>
 
 <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">price_lm</span><span class="op">)</span></code></pre></div>
@@ -295,7 +295,7 @@
 ## Multiple R-squared:  0.1762, Adjusted R-squared:  0.1753 
 ## F-statistic: 202.5 on 4 and 3788 DF,  p-value: &lt; 2.2e-16</code></pre>
 <p>The output of this is very similar to that of the ANOVA model. Perhaps we can visualize it the same way?</p>
-<div class="sourceCode" id="cb321"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb322"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">broom</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/generics/man/tidy.html">tidy</a></span><span class="op">(</span><span class="va">price_lm</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 5 x 5
 ##   term                  estimate std.error statistic   p.value
@@ -310,23 +310,23 @@
 <p>You can find all possible arguments for <code>tidy()</code> in the exported object <code><a href="https://rdrr.io/pkg/broom/man/argument_glossary.html">broom::argument_glossary</a></code>.</p>
 </blockquote>
 <p>Using a similar structure as above, we can create a coefficient plot.</p>
-<div class="sourceCode" id="cb323"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb324"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">broom</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/generics/man/tidy.html">tidy</a></span><span class="op">(</span><span class="va">price_lm</span>, conf.int <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/aes.html">aes</a></span><span class="op">(</span><span class="va">estimate</span>, <span class="va">term</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> 
-  <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/geom_errorbarh.html">geom_errorbarh</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/aes.html">aes</a></span><span class="op">(</span>xmin <span class="op">=</span> <span class="va">conf.low</span>, xmax <span class="op">=</span> <span class="va">conf.high</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+  <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span><span class="va">estimate</span>, <span class="va">term</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu">geom_errorbarh</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>xmin <span class="op">=</span> <span class="va">conf.low</span>, xmax <span class="op">=</span> <span class="va">conf.high</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure"><img src="09-statistics_files/figure-html/unnamed-chunk-17-1.png" width="100%"></div>
 <p>Unlike the t-test, a linear model provides much more information that will become useful such as goodness of fit measures, residuals, and predicted values. To extract these we can use the functions <code>glance()</code> and <code>augment()</code> from broom.</p>
-<div class="sourceCode" id="cb324"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb325"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">broom</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/generics/man/glance.html">glance</a></span><span class="op">(</span><span class="va">price_lm</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 1 x 11
 ##   r.squared adj.r.squared sigma statistic   p.value    df  logLik    AIC    BIC
 ##       &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt; &lt;int&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
 ## 1     0.176         0.175  137.      203. 1.29e-157     5 -24035. 48081. 48118.
 ## # … with 2 more variables: deviance &lt;dbl&gt;, df.residual &lt;int&gt;</code></pre>
-<div class="sourceCode" id="cb326"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb327"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">broom</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/generics/man/augment.html">augment</a></span><span class="op">(</span><span class="va">price_lm</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/slice.html">slice</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">)</span></code></pre></div>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 5 x 10
 ##   price room_type superhost .fitted .se.fit .resid    .hat .sigma .cooksd
 ##   &lt;dbl&gt; &lt;chr&gt;     &lt;fct&gt;       &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;
@@ -370,7 +370,7 @@
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Urban Informatics Toolkit</strong>" was written by Josiah Parry. It was last built on 2021-01-07.</p>
+    <p>"<strong>Urban Informatics Toolkit</strong>" was written by Josiah Parry. It was last built on 2021-01-23.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

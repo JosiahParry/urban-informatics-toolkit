@@ -9,7 +9,7 @@
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.2"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.5.3/header-attrs.js"></script><script src="libs/jquery-3.5.1/jquery-3.5.1.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.5.3/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.5.3/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.2.3.9000/tabs.js"></script><script src="libs/bs3compat-0.2.3.9000/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
-<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script><script src="https://cdn.jsdelivr.net/autocomplete.js/0/autocomplete.jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/mark.js@8.11.1/dist/mark.min.js"></script><!-- CSS -->
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdn.jsdelivr.net/autocomplete.js/0/autocomplete.jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/mark.js@8.11.1/dist/mark.min.js"></script><!-- CSS -->
 </head>
 <body data-spy="scroll" data-target="#toc">
 
@@ -72,57 +72,72 @@
 <h1>
 <span class="header-section-number">11</span> That’s <em>too much</em> data<a class="anchor" aria-label="anchor" href="#thats-too-much-data"><i class="fas fa-link"></i></a>
 </h1>
-<p>Let us continue with the scenario developed in the last chapter. There is a non-profit who is seeking graduate student assistance to provide a curated dataset that provides insight into the commuting behavior of the Greater Boston Area. Using BARI’s Massachussett’s Census Indicators dataset, we were able to reduce the 52 initial columns down to 11. However these data are for the entire state not just the Greater Boston Area. This leaves us with two tasks: 1) definine the Greater Boston Area and 2) create a subset of our data that fit our criteria defined in 1.</p>
-<p>Execute the below code to recreate to <code>commute</code> tibble. This will be the <em>second to last</em> time we write this chunk of code.</p>
+<p>Let us continue with the scenario developed in the last chapter. There is a non-profit who is seeking graduate student assistance to provide a curated dataset that provides insight into the commuting behavior of the Greater Boston Area. Using BARI’s Massachusetts’ Census Indicators dataset, we were able to reduce the 52 initial columns down to 11. However these data are for the entire state not just the Greater Boston Area. This leaves us with two tasks: 1) define the Greater Boston Area and 2) create a subset of our data that fit our criteria defined in 1.</p>
 <div class="sourceCode" id="cb63"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">uitk</span><span class="op">)</span>
 
-<span class="va">acs_raw</span> <span class="op">&lt;-</span> <span class="fu">read_csv</span><span class="op">(</span><span class="st">"data/ACS_1317_TRACT.csv"</span><span class="op">)</span>
-
-<span class="va">commute</span> <span class="op">&lt;-</span> <span class="fu">select</span><span class="op">(</span><span class="va">acs_raw</span>,
-                  <span class="va">county</span>,
-                  <span class="va">hs_grad</span>, <span class="va">bach</span>, <span class="va">master</span>,
-                  <span class="fu">starts_with</span><span class="op">(</span><span class="st">"commute"</span><span class="op">)</span>,
-                  <span class="fu">starts_with</span><span class="op">(</span><span class="st">"by"</span><span class="op">)</span>,
-                  <span class="va">med_house_income</span><span class="op">)</span></code></pre></div>
+<span class="va">commute</span></code></pre></div>
+<pre><code>## # A tibble: 648 x 14
+##    county hs_grad  bach master commute_less10 commute1030 commute3060
+##    &lt;chr&gt;    &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;          &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt;
+##  1 MIDDL…   0.389 0.188 0.100          0.0916       0.357       0.375
+##  2 MIDDL…   0.167 0.400 0.130          0.0948       0.445       0.344
+##  3 MIDDL…   0.184 0.317 0.139          0.0720       0.404       0.382
+##  4 MIDDL…   0.258 0.322 0.144          0.0983       0.390       0.379
+##  5 MIDDL…   0.301 0.177 0.0742         0.0670       0.379       0.365
+##  6 MIDDL…   0.159 0.310 0.207          0.0573       0.453       0.352
+##  7 MIDDL…   0.268 0.247 0.149          0.0791       0.475       0.368
+##  8 MIDDL…   0.261 0.300 0.126          0.137        0.450       0.337
+##  9 MIDDL…   0.315 0.198 0.140          0.0752       0.478       0.329
+## 10 MIDDL…   0.151 0.348 0.151          0.0830       0.474       0.322
+## # … with 638 more rows, and 7 more variables: commute6090 &lt;dbl&gt;,
+## #   commute_over90 &lt;dbl&gt;, by_auto &lt;dbl&gt;, by_pub_trans &lt;dbl&gt;, by_bike &lt;dbl&gt;,
+## #   by_walk &lt;dbl&gt;, med_house_income &lt;dbl&gt;</code></pre>
 <div id="filtering" class="section level2" number="11.1">
 <h2>
 <span class="header-section-number">11.1</span> <code>filter()</code>ing<a class="anchor" aria-label="anchor" href="#filtering"><i class="fas fa-link"></i></a>
 </h2>
-<p>Previously we looked at ways of selecting columns. Here, we will focus on creating subsets of our data. We will rely on the function <code><a href="https://rdrr.io/pkg/dplyr/man/filter.html">dplyr::filter()</a></code> for this. <code><a href="https://rdrr.io/r/stats/filter.html">filter()</a></code> differs from <code>slice()</code> in that filter will check to see if data fit a specified criteria whereas slice is only concerned with the position of a row.</p>
-<blockquote>
+<p>Previously we looked at ways of selecting columns. Here, we will focus on creating subsets of our data. We will rely on the function <code><a href="https://dplyr.tidyverse.org/reference/filter.html">dplyr::filter()</a></code> for this. <code><a href="https://rdrr.io/r/stats/filter.html">filter()</a></code> differs from <code>slice()</code> in that filter will check to see if data fit a specified criteria whereas slice is only concerned with the position of a row.</p>
 <p>Explore the help documentation of <code><a href="https://rdrr.io/r/stats/filter.html">filter()</a></code> by running the command <code>?filter()</code> in your console.</p>
-</blockquote>
-<p>The first argument of <code><a href="https://rdrr.io/r/stats/filter.html">filter()</a></code> is of course the tibble which you would like to subset. Secondly, we again see <code>...</code>. In the case of <code><a href="https://rdrr.io/r/stats/filter.html">filter()</a></code>, we provide what are called logical expressions to <code>...</code>. <code><a href="https://rdrr.io/r/stats/filter.html">filter()</a></code> then only returns the observations when that logical expression, or condition, is true.</p>
-<p>Almost every time you purchase something online whether that is from Amazon or Etsy you are filtering your data using some logic. Whether that is checking the Prime tick box, specifying a price range on Etsy, or a restaurant rating on Yelp. These are all <em>conditions</em> that you are providing to your search.</p>
-<p>We can create these types of filters on our own data and to do so, we will need to understand how logical expressions work. A logical expression is any expression that can be boiled down to true or false.</p>
-<p>For example, using our <code>commute</code> dataset, we can check to see which Census Tracts have more than 75% of commuters traveling by auto.</p>
-<div class="sourceCode" id="cb64"><pre class="downlit sourceCode r">
+<p>The first argument of <code><a href="https://rdrr.io/r/stats/filter.html">filter()</a></code> is, of course, the tibble which you would like to subset. Secondly, we again see <code>...</code>. In the case of <code><a href="https://rdrr.io/r/stats/filter.html">filter()</a></code>, we provide what are called <strong>logical expressions</strong> to <code>...</code>. A logical expression is one that returns <code>TRUE</code> or <code>FALSE</code> values typically through a comparison of some sort. <code><a href="https://rdrr.io/r/stats/filter.html">filter()</a></code> then only returns the observations when that logical expression, or condition, is true.</p>
+<p>Almost every time you are shopping or browsing online, whether that is from Amazon or Etsy, you are filtering your search results using some logic. Whether that is checking the Prime tick box, specifying a price range on Etsy, or a restaurant rating on Yelp. These are all <strong>conditions</strong> that you are providing to your search.</p>
+<p>We can create these types of filters on our own data and to do so, we will need to understand how to craft logical expressions ourselves.</p>
+<p>For example, using our <code>commute</code> dataset, we can check to see which Census Tracts have more than 75% of commuters traveling by automobile.</p>
+<ul>
+<li>Filter <code>commute</code> for values of <code>by_auto</code> that are greater than <code>0.75</code>.
+<ul>
+<li>Assign the result to the object <code>auto_commuters</code>.</li>
+</ul>
+</li>
+<li>Select and print the <code>by_auto</code> column from <code>auto_commuters</code>.</li>
+</ul>
+<div class="sourceCode" id="cb65"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">auto_commuters</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">commute</span>, <span class="va">by_auto</span> <span class="op">&gt;</span> <span class="fl">0.75</span><span class="op">)</span>
 
 <span class="fu">select</span><span class="op">(</span><span class="va">auto_commuters</span>, <span class="va">by_auto</span><span class="op">)</span></code></pre></div>
-<pre><code>## # A tibble: 1,012 x 1
+<pre><code>## # A tibble: 291 x 1
 ##    by_auto
 ##      &lt;dbl&gt;
-##  1   0.927
-##  2   0.970
-##  3   0.925
-##  4   0.904
-##  5   0.899
-##  6   0.911
-##  7   0.810
-##  8   0.851
-##  9   0.900
-## 10   0.787
-## # … with 1,002 more rows</code></pre>
+##  1   0.857
+##  2   0.862
+##  3   0.888
+##  4   0.884
+##  5   0.967
+##  6   0.905
+##  7   0.935
+##  8   0.915
+##  9   0.913
+## 10   0.906
+## # … with 281 more rows</code></pre>
 <p>This above line checks every single value of <code>by_auto</code> and asks “is this value above 0.75?” and when it is filter will include that row in the output. Another way to say this is that when <code>by_auto</code> is above 0.75 <em>the condition is met</em>.</p>
-<p>In R, as with most other programming languages, there are a number of <em>logical operators</em> that are used to check for conditions. We will learn these in the following section.</p>
+<p>In R, as with other programming languages, there are a number of <strong>logical operators</strong> that are used to check for conditions.</p>
 </div>
 <div id="logical-operators" class="section level2" number="11.2">
 <h2>
 <span class="header-section-number">11.2</span> Logical operators<a class="anchor" aria-label="anchor" href="#logical-operators"><i class="fas fa-link"></i></a>
 </h2>
-<p>R has myriad ways to create logical expressions. Here we will focus on the six main <em>relational</em> logical operators. These are called relational because we are checking to see how one value relates to another. In general we tend to ask questions like “are these the same?”, “are they not the same?”, and “is one value larger or smaller than another?”. While you are getting the hang of it, I encourage you to try and verbalize logical expressions.</p>
+<p>R has myriad ways to create logical expressions. Here we will focus on the six main <em>relational</em> logical operators. These are called relational because we are checking to see how one value relates to another. In general we tend to ask questions like “are these the same?” “are they not the same?” and “is one value larger or smaller than another?” While you are getting the hang of it, I encourage you to try and verbalize logical expressions.</p>
 <ul>
 <li>
 <code><a href="https://rdrr.io/r/base/Comparison.html">&lt;</a></code> : less than</li>
@@ -141,7 +156,7 @@
 </ul>
 <p>Let’s bring it back to early algebra and work with the variable x and y. Let’s say <code>x = 3</code> and <code>y = 5</code>.</p>
 <p>Is <code>x</code> less than <code>y</code>?</p>
-<div class="sourceCode" id="cb66"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb67"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># set variables.</span>
 <span class="va">x</span> <span class="op">&lt;-</span> <span class="fl">3</span>
 <span class="va">y</span> <span class="op">&lt;-</span> <span class="fl">5</span>
@@ -150,24 +165,24 @@
 <pre><code>## [1] TRUE</code></pre>
 <p>Yes it is. Here R returns a logical value which are represented as <code>TRUE</code> and <code>FALSE</code>.</p>
 <p>Is <code>x</code> greater than <code>y</code>?</p>
-<div class="sourceCode" id="cb68"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb69"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># greater than?</span>
 <span class="va">x</span> <span class="op">&gt;</span> <span class="va">y</span></code></pre></div>
 <pre><code>## [1] FALSE</code></pre>
 <p>And for the sake of illustration:</p>
-<div class="sourceCode" id="cb70"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb71"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># less than or equal</span>
 <span class="va">x</span> <span class="op">&lt;=</span> <span class="va">y</span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
-<div class="sourceCode" id="cb72"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb73"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># greater or equal</span>
 <span class="va">x</span> <span class="op">&gt;=</span> <span class="va">y</span></code></pre></div>
 <pre><code>## [1] FALSE</code></pre>
-<div class="sourceCode" id="cb74"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb75"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># exactly equal?</span>
 <span class="va">x</span> <span class="op">==</span> <span class="va">y</span></code></pre></div>
 <pre><code>## [1] FALSE</code></pre>
-<div class="sourceCode" id="cb76"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb77"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># not equal</span>
 <span class="va">x</span> <span class="op">!=</span> <span class="va">y</span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
@@ -176,78 +191,76 @@
 <blockquote>
 <p>Note: I am saving the results to an object called <code>walk</code> to then select only a few columns.</p>
 </blockquote>
-<div class="sourceCode" id="cb78"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb79"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">walking</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">commute</span>, <span class="va">by_walk</span> <span class="op">&gt;</span> <span class="va">by_auto</span><span class="op">)</span>
 
 <span class="fu">select</span><span class="op">(</span><span class="va">walking</span>, <span class="va">county</span>, <span class="va">by_walk</span>, <span class="va">by_auto</span><span class="op">)</span></code></pre></div>
-<pre><code>## # A tibble: 54 x 3
+<pre><code>## # A tibble: 48 x 3
 ##    county    by_walk by_auto
 ##    &lt;chr&gt;       &lt;dbl&gt;   &lt;dbl&gt;
-##  1 HAMPSHIRE   0.652  0.0993
-##  2 HAMPSHIRE   0.632  0.0985
-##  3 HAMPSHIRE   0.580  0.189 
-##  4 HAMPSHIRE   0.613  0.143 
-##  5 HAMPSHIRE   0.625  0.0916
-##  6 MIDDLESEX   0.427  0.213 
-##  7 MIDDLESEX   0.545  0.142 
-##  8 MIDDLESEX   0.372  0.287 
-##  9 MIDDLESEX   0.299  0.240 
-## 10 SUFFOLK     0.548  0.105 
-## # … with 44 more rows</code></pre>
+##  1 MIDDLESEX   0.427   0.213
+##  2 MIDDLESEX   0.545   0.142
+##  3 MIDDLESEX   0.372   0.287
+##  4 MIDDLESEX   0.299   0.240
+##  5 SUFFOLK     0.548   0.105
+##  6 SUFFOLK     0.526   0.146
+##  7 SUFFOLK     0.569   0.148
+##  8 SUFFOLK     0.514   0.251
+##  9 SUFFOLK     0.393   0.290
+## 10 SUFFOLK     0.293   0.184
+## # … with 38 more rows</code></pre>
 <p>We can also use filter to see where the walking rates and the driving rates are the same. As shown above we use <code><a href="https://rdrr.io/r/base/Comparison.html">==</a></code> to test if things are the same.</p>
 <blockquote>
 <p><strong>An important distinction</strong>: <code><a href="https://rdrr.io/r/base/assignOps.html">&lt;-</a></code> is different from <code><a href="https://rdrr.io/r/base/assignOps.html">=</a></code> and <code><a href="https://rdrr.io/r/base/assignOps.html">=</a></code> is different from <code><a href="https://rdrr.io/r/base/Comparison.html">==</a></code>. If you are ever confused about which operator to use ask yourself what your goal is. If your goal is to assign an object use <code><a href="https://rdrr.io/r/base/assignOps.html">&lt;-</a></code>. If your goal is to assign an argument value use <code><a href="https://rdrr.io/r/base/assignOps.html">=</a></code>. And if you are trying to compare two things use <code><a href="https://rdrr.io/r/base/Comparison.html">==</a></code>.</p>
 </blockquote>
-<div class="sourceCode" id="cb80"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb81"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">walk_auto</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">commute</span>, <span class="va">by_walk</span> <span class="op">==</span> <span class="va">by_auto</span><span class="op">)</span>
 
 <span class="fu">select</span><span class="op">(</span><span class="va">walk_auto</span>, <span class="va">county</span>, <span class="va">by_walk</span>, <span class="va">by_auto</span><span class="op">)</span></code></pre></div>
-<pre><code>## # A tibble: 2 x 3
+<pre><code>## # A tibble: 1 x 3
 ##   county  by_walk by_auto
 ##   &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;
-## 1 &lt;NA&gt;          0       0
-## 2 SUFFOLK       0       0</code></pre>
+## 1 SUFFOLK       0       0</code></pre>
 <p>So far we have only been checking one condition and in most cases this actually will not suffice. You may want to check multiple conditions at one time. When we use filter we can add a logical expression as another argument. In doing so, filter will check to see if both conditions are met and, when they are, that row is returned. This is called an “and” statement. Meaning condition one <strong>and</strong> condition two need to be <code>TRUE</code>.</p>
 <p>Building upon the <code>walking</code> example, we can further narrow down the observations by adding a second condition which returns only the observations that have median household incomes below $40,000.</p>
-<div class="sourceCode" id="cb82"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb83"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">low_inc_walk</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">commute</span>, 
                        <span class="va">by_walk</span> <span class="op">&gt;</span> <span class="va">by_auto</span>,
                        <span class="va">med_house_income</span> <span class="op">&lt;</span> <span class="fl">40000</span><span class="op">)</span>
 
 <span class="fu">select</span><span class="op">(</span><span class="va">low_inc_walk</span>, <span class="va">by_walk</span>, <span class="va">by_auto</span>, <span class="va">med_house_income</span><span class="op">)</span></code></pre></div>
-<pre><code>## # A tibble: 11 x 3
+<pre><code>## # A tibble: 10 x 3
 ##    by_walk by_auto med_house_income
 ##      &lt;dbl&gt;   &lt;dbl&gt;            &lt;dbl&gt;
-##  1   0.580   0.189             2499
-##  2   0.581   0.214            21773
-##  3   0.647   0.108            36250
-##  4   0.407   0.170            34677
-##  5   0.381   0.159            30500
-##  6   0.465   0.192            28618
-##  7   0.340   0.243            16094
-##  8   0.536   0.112            19267
-##  9   0.436   0.161            22930
-## 10   0.451   0.170            36500
-## 11   0.677   0.107            31218</code></pre>
+##  1   0.581   0.214            21773
+##  2   0.647   0.108            36250
+##  3   0.407   0.170            34677
+##  4   0.381   0.159            30500
+##  5   0.465   0.192            28618
+##  6   0.340   0.243            16094
+##  7   0.536   0.112            19267
+##  8   0.436   0.161            22930
+##  9   0.451   0.170            36500
+## 10   0.677   0.107            31218</code></pre>
 <div id="statements" class="section level3" number="11.2.1">
 <h3>
 <span class="header-section-number">11.2.1</span> <code>&amp;</code> statements:<a class="anchor" aria-label="anchor" href="#statements"><i class="fas fa-link"></i></a>
 </h3>
 <p>Now I want to introduce two more logical operators, <strong>and</strong> (<code><a href="https://rdrr.io/r/base/Logic.html">&amp;</a></code>), which was implicitly used in the above filter statement, and <strong>or</strong> (<code><a href="https://rdrr.io/r/base/Logic.html">|</a></code>). <code><a href="https://rdrr.io/r/base/Logic.html">&amp;</a></code> compares two conditions and will return <code>TRUE</code> only if they are both <code>TRUE</code>. <code><a href="https://rdrr.io/r/base/Logic.html">|</a></code> will return <code>TRUE</code> when one of the conditions is <code>TRUE</code>.</p>
 <p>Now for an illustrative example of <code><a href="https://rdrr.io/r/base/Logic.html">&amp;</a></code> statements :</p>
-<div class="sourceCode" id="cb84"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb85"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># We have TRUE and TRUE, this should be false because they aren't both TRUE</span>
 <span class="cn">TRUE</span> <span class="op">&amp;</span> <span class="cn">FALSE</span> </code></pre></div>
 <pre><code>## [1] FALSE</code></pre>
-<div class="sourceCode" id="cb86"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb87"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># both a TRUE, we expect TRUE</span>
 <span class="cn">TRUE</span> <span class="op">&amp;</span> <span class="cn">TRUE</span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
-<div class="sourceCode" id="cb88"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb89"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># The first statement is TRUE, but the second is not TRUE, expect FALSE</span>
 <span class="op">(</span><span class="fl">1</span> <span class="op">==</span> <span class="fl">1</span><span class="op">)</span> <span class="op">&amp;</span> <span class="op">(</span><span class="fl">1</span> <span class="op">&lt;</span> <span class="fl">1</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] FALSE</code></pre>
-<div class="sourceCode" id="cb90"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb91"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># The first statement is TRUE and the second is TRUE, expect TRUE</span>
 <span class="op">(</span><span class="fl">1</span> <span class="op">==</span> <span class="fl">1</span><span class="op">)</span> <span class="op">&amp;</span> <span class="op">(</span><span class="fl">1</span> <span class="op">&lt;=</span> <span class="fl">1</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
@@ -257,38 +270,38 @@
 <span class="header-section-number">11.2.2</span> <code>|</code> statements:<a class="anchor" aria-label="anchor" href="#statements-1"><i class="fas fa-link"></i></a>
 </h3>
 <p>Or statements are used to evaluate whether or not something meets <strong>at least</strong> one of the two conditions. This means that the only time that an <em>or</em> statement evaluates to <code>FALSE</code> is when both expressions result in <code>FALSE</code>.</p>
-<div class="sourceCode" id="cb92"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb93"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># True is present, so we expect TRUE</span>
 <span class="cn">TRUE</span> <span class="op">|</span> <span class="cn">TRUE</span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
-<div class="sourceCode" id="cb94"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb95"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># True is present, so we expect TRUE</span>
 <span class="cn">TRUE</span> <span class="op">|</span> <span class="cn">FALSE</span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
-<div class="sourceCode" id="cb96"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb97"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># </span>
 <span class="cn">FALSE</span> <span class="op">|</span> <span class="cn">FALSE</span></code></pre></div>
 <pre><code>## [1] FALSE</code></pre>
 <p>We can alter the previous <code><a href="https://rdrr.io/r/stats/filter.html">filter()</a></code> statement to show us places that walk more than they drive <strong>or</strong> have a low median household income.</p>
-<div class="sourceCode" id="cb98"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb99"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">low_inc_or_walk</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">commute</span>,
                           <span class="va">by_walk</span> <span class="op">&gt;</span> <span class="va">by_auto</span> <span class="op">|</span> <span class="va">med_house_income</span> <span class="op">&lt;</span> <span class="fl">40000</span><span class="op">)</span>
 
 <span class="fu">select</span><span class="op">(</span><span class="va">low_inc_or_walk</span>, <span class="va">by_walk</span>, <span class="va">by_auto</span>, <span class="va">med_house_income</span><span class="op">)</span></code></pre></div>
-<pre><code>## # A tibble: 224 x 3
+<pre><code>## # A tibble: 98 x 3
 ##    by_walk by_auto med_house_income
 ##      &lt;dbl&gt;   &lt;dbl&gt;            &lt;dbl&gt;
-##  1 0.0959    0.810            37093
-##  2 0.102     0.800            31465
-##  3 0.0478    0.813            14604
-##  4 0.144     0.647            34940
-##  5 0.0541    0.831            26615
-##  6 0.0345    0.931            37935
-##  7 0.0430    0.750            16400
-##  8 0.0543    0.785            19548
-##  9 0.00469   0.944            34821
-## 10 0         0.955            34697
-## # … with 214 more rows</code></pre>
+##  1 0.0729    0.824            38514
+##  2 0.427     0.213            65000
+##  3 0.545     0.142            44202
+##  4 0.372     0.287            70972
+##  5 0.299     0.240           116140
+##  6 0.00933   0.688            39183
+##  7 0.548     0.105            78616
+##  8 0.526     0.146           116538
+##  9 0.115     0.423            26125
+## 10 0.0347    0.516            30283
+## # … with 88 more rows</code></pre>
 </div>
 <div id="negation" class="section level3" number="11.2.3">
 <h3>
@@ -296,15 +309,15 @@
 </h3>
 <p>Many times it will be easier to create a logical statement and say you want the <em>opposite</em> of those results. In this case we will use the bang operator or the exclamation mark, <code><a href="https://rdrr.io/r/base/Logic.html">!</a></code>. To negate a logical value or logical statement put the bang <strong>in front</strong> of the statement or value.</p>
 <p>For example we can make <code>FALSE</code> true by negating it.</p>
-<div class="sourceCode" id="cb100"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb101"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="op">!</span><span class="cn">FALSE</span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
 <p>We can take a previous example</p>
-<div class="sourceCode" id="cb102"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb103"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># The first statement is TRUE and the second is TRUE, expect TRUE</span>
 <span class="op">(</span><span class="fl">1</span> <span class="op">==</span> <span class="fl">1</span><span class="op">)</span> <span class="op">&amp;</span> <span class="op">(</span><span class="fl">1</span> <span class="op">&lt;=</span> <span class="fl">1</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
-<div class="sourceCode" id="cb104"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb105"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># negate it</span>
 <span class="op">!</span><span class="op">(</span><span class="fl">1</span> <span class="op">==</span> <span class="fl">1</span><span class="op">)</span> <span class="op">&amp;</span> <span class="op">(</span><span class="fl">1</span> <span class="op">&lt;=</span> <span class="fl">1</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] FALSE</code></pre>
@@ -316,15 +329,15 @@
 <span class="header-section-number">11.3</span> Defining the Greater Boston Area<a class="anchor" aria-label="anchor" href="#defining-the-greater-boston-area"><i class="fas fa-link"></i></a>
 </h2>
 <p>You now have developed the requisite skills to subset the commuting data to just the Greater Boston Area. But we still haven’t completely decided what constitutes it. We will take the naïve approach and say that Suffolk, Norfolk, and Middlesex counties are the Greater Boston Area. We can now filter our data to just these counties!</p>
-<div class="sourceCode" id="cb106"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb107"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">gba_commute</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">commute</span>, <span class="va">county</span> <span class="op">==</span> <span class="st">"SUFFOLK"</span> <span class="op">|</span> <span class="va">county</span> <span class="op">==</span> <span class="st">"NORFOLK"</span> <span class="op">|</span> <span class="va">county</span> <span class="op">==</span> <span class="st">"MIDDLESEX"</span><span class="op">)</span></code></pre></div>
 <p>The above code is actually rather redundant as we have written <code>county ==</code> three different times. When we using the same equality comparison we can actually use the sepcial <code><a href="https://rdrr.io/r/base/match.html">%in%</a></code> operator. This lets us look for a value <strong>in</strong> a vector of values (we’ll learn more about vectors very shortly).</p>
 <p>For example:</p>
-<div class="sourceCode" id="cb107"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb108"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fl">1</span> <span class="op">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
 <p>This looks to see if the value on the left hand side is any of the three values in the vector—the thing that looks like <code><a href="https://rdrr.io/r/base/c.html">c(val1, val2, ...)</a></code>. Using this we can rewrite <code>gba_commute</code> as:</p>
-<div class="sourceCode" id="cb109"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb110"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">gba_commute</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">commute</span>, <span class="va">county</span> <span class="op">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"SUFFOLK"</span>, <span class="st">"NORFOLK"</span>, <span class="st">"MIDDLESEX"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <div id="writing-data" class="section level3" number="11.3.1">
 <h3>
@@ -333,7 +346,7 @@
 <p>You have created the proper subset of data that is needed. However, there is one more hurdle of jump—sending the data. To do this we need to get the tibble out of R and into a data format that can be used—probably a csv. <code>readr</code> provides funcitonality to do this as well.</p>
 <p>While we used <code>read_csv()</code> earlier, to write a csv we will use <code>write_csv()</code>. The functionality is beautifully simple. The first argument here will be the tibble that you’re going to write, <code>gba_commute</code> in this case. And the second is the path to where you will write the data.</p>
 <p>In general I recommend that your project has two folders. One titled <code>data-raw</code> where you will keep the scripts and raw data that you used to process the data. Then I suggest having a <code>data</code> folder as well. This is where you will keep your tidy, or finalized, data files.</p>
-<div class="sourceCode" id="cb110"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb111"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">write_csv</span><span class="op">(</span><span class="va">gba_commute</span>, <span class="st">"data/gba_commute.csv"</span><span class="op">)</span></code></pre></div>
 <p>Now you have a csv file that can be shared!</p>
 
@@ -374,7 +387,7 @@
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Urban Informatics Toolkit</strong>" was written by Josiah Parry. It was last built on 2021-01-07.</p>
+    <p>"<strong>Urban Informatics Toolkit</strong>" was written by Josiah Parry. It was last built on 2021-01-23.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

@@ -1,6 +1,5 @@
 # That's _too much_ data
 
-
 ```{r include=FALSE}
 options("knitr.graphics.auto_pdf" = TRUE)
 
@@ -8,37 +7,32 @@ knitr::opts_chunk$set(out.width = "100%")
 
 ```
 
-Let us continue with the scenario developed in the last chapter. There is a non-profit who is seeking graduate student assistance to provide a curated dataset that provides insight into the commuting behavior of the Greater Boston Area. Using BARI's Massachussett's Census Indicators dataset, we were able to reduce the 52 initial columns down to 11. However these data are for the entire state not just the Greater Boston Area. This leaves us with two tasks: 1) definine the Greater Boston Area and 2) create a subset of our data that fit our criteria defined in 1. 
-
-Execute the below code to recreate to `commute` tibble. This will be the *second to last* time we write this chunk of code. 
+Let us continue with the scenario developed in the last chapter. There is a non-profit who is seeking graduate student assistance to provide a curated dataset that provides insight into the commuting behavior of the Greater Boston Area. Using BARI's Massachusetts' Census Indicators dataset, we were able to reduce the 52 initial columns down to 11. However these data are for the entire state not just the Greater Boston Area. This leaves us with two tasks: 1) define the Greater Boston Area and 2) create a subset of our data that fit our criteria defined in 1. 
 
 ```{r message=FALSE}
 library(tidyverse)
+library(uitk)
 
-acs_raw <- read_csv("data/ACS_1317_TRACT.csv")
-
-commute <- select(acs_raw,
-                  county,
-                  hs_grad, bach, master,
-                  starts_with("commute"),
-                  starts_with("by"),
-                  med_house_income)
+commute
 ```
 
 ## `filter()`ing
 
 Previously we looked at ways of selecting columns. Here, we will focus on creating subsets of our data. We will rely on the function `dplyr::filter()` for this. `filter()` differs from `slice()` in that filter will check to see if data fit a specified criteria whereas slice is only concerned with the position of a row. 
 
-> Explore the help documentation of `filter()` by running the command `?filter()` in your console.
+Explore the help documentation of `filter()` by running the command `?filter()` in your console.
 
-The first argument of `filter()` is of course the tibble which you would like to subset. Secondly, we again see `...`. In the case of `filter()`, we provide what are called logical expressions to `...`. `filter()` then only returns the observations when that logical expression, or condition, is true. 
+The first argument of `filter()` is, of course, the tibble which you would like to subset. Secondly, we again see `...`. In the case of `filter()`, we provide what are called **logical expressions** to `...`. A logical expression is one that returns `TRUE` or `FALSE` values typically through a comparison of some sort. `filter()` then only returns the observations when that logical expression, or condition, is true. 
 
-Almost every time you purchase something online whether that is from Amazon or Etsy you are filtering your data using some logic. Whether that is checking the Prime tick box, specifying a price range on Etsy, or a restaurant rating on Yelp. These are all _conditions_ that you are providing to your search. 
+Almost every time you are shopping or browsing online, whether that is from Amazon or Etsy, you are filtering your search results using some logic. Whether that is checking the Prime tick box, specifying a price range on Etsy, or a restaurant rating on Yelp. These are all **conditions** that you are providing to your search. 
 
-We can create these types of filters on our own data and to do so, we will need to understand how logical expressions work. A logical expression is any expression that can be boiled down to true or false. 
+We can create these types of filters on our own data and to do so, we will need to understand how to craft logical expressions ourselves.
 
-For example, using our `commute` dataset, we can check to see which Census Tracts have more than 75% of commuters traveling by auto.
+For example, using our `commute` dataset, we can check to see which Census Tracts have more than 75% of commuters traveling by automobile.
 
+* Filter `commute` for values of `by_auto` that are greater than `0.75`. 
+  - Assign the result to the object `auto_commuters`. 
+* Select and print the `by_auto` column from `auto_commuters`.
 
 ```{r max.print=5}
 auto_commuters <- filter(commute, by_auto > 0.75)
@@ -48,7 +42,7 @@ select(auto_commuters, by_auto)
 
 This above line checks every single value of `by_auto` and asks "is this value above 0.75?" and when it is filter will include that row in the output. Another way to say this is that when `by_auto` is above 0.75 _the condition is met_.
 
-In R, as with most other programming languages, there are a number of _logical operators_ that are used to check for conditions. We will learn these in the following section.
+In R, as with other programming languages, there are a number of **logical operators** that are used to check for conditions. 
 
 ## Logical operators 
 

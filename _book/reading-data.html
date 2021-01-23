@@ -9,7 +9,7 @@
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.2"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.5.3/header-attrs.js"></script><script src="libs/jquery-3.5.1/jquery-3.5.1.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.5.3/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.5.3/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.2.3.9000/tabs.js"></script><script src="libs/bs3compat-0.2.3.9000/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
-<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script><script src="https://cdn.jsdelivr.net/autocomplete.js/0/autocomplete.jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/mark.js@8.11.1/dist/mark.min.js"></script><!-- CSS -->
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdn.jsdelivr.net/autocomplete.js/0/autocomplete.jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/mark.js@8.11.1/dist/mark.min.js"></script><!-- CSS -->
 </head>
 <body data-spy="scroll" data-target="#toc">
 
@@ -95,7 +95,7 @@
 <pre><code>column_a, column_b, column_c
 10, "these are words", .432
 1, "and more words", 1.11</code></pre>
-<p>To read a csv we use the <code><a href="https://rdrr.io/pkg/readr/man/read_delim.html">readr::read_csv()</a></code> function. <code>read_csv()</code> will read in the csv file and create a <code>tibble</code>. A tibble is type of a data structure that we will be interacting with the most throughout this book. A tibble is a rectangular data structure with rows and columns. Since a csv contains rectangular data, it is natural for it to be stored in a tibble.</p>
+<p>To read a csv we use the <code><a href="https://readr.tidyverse.org/reference/read_delim.html">readr::read_csv()</a></code> function. <code>read_csv()</code> will read in the csv file and create a <code>tibble</code>. A tibble is type of a data structure that we will be interacting with the most throughout this book. A tibble is a rectangular data structure with rows and columns. Since a csv contains rectangular data, it is natural for it to be stored in a tibble.</p>
 <blockquote>
 <p>Note: the syntax above is used for referencing a function from a namespace (package name). The syntax is pkgname::function(). This means the <code>read_csv()</code> function from the package <code>readr</code>. This is something you will see frequently on websites like <a href="https://stackoverflow.com/questions/tagged/r">StackOverflow</a>.</p>
 </blockquote>
@@ -168,7 +168,7 @@
 <span class="co">#&gt;  9            97417       0.0625   0.254     0.227 0.284 0.969 0.00710</span>
 <span class="co">#&gt; 10            43384       0.207    0.362     0.262 0.124 0.460 0.105  </span>
 <span class="co">#&gt; # … with 1,446 more rows</span></code></pre></div>
-<p>This is sometimes a little overwhelming of a view. For previewing data, the function <code><a href="https://rdrr.io/pkg/tibble/man/glimpse.html">dplyr::glimpse()</a></code> (there is the namespace notation again) is a great option. Try using the function <code>glimpse()</code> with the first argument being the <code>acs</code> object.</p>
+<p>This is sometimes a little overwhelming of a view. For previewing data, the function <code><a href="https://tibble.tidyverse.org/reference/glimpse.html">dplyr::glimpse()</a></code> (there is the namespace notation again) is a great option. Try using the function <code>glimpse()</code> with the first argument being the <code>acs</code> object.</p>
 <div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">glimpse</span><span class="op">(</span><span class="va">acs</span><span class="op">)</span>
 <span class="co">#&gt; Rows: 1,456</span>
@@ -185,9 +185,9 @@
 <h2>
 <span class="header-section-number">8.3</span> Other common data formats<a class="anchor" aria-label="anchor" href="#other-common-data-formats"><i class="fas fa-link"></i></a>
 </h2>
-<p>While csv files are going to be the most ubiquitous, you will invariably run into other data formats. The workflow is almost always the same. If you want to read excel files, you can use the function <code><a href="https://rdrr.io/pkg/readxl/man/read_excel.html">readxl::read_excel()</a></code> from the <a href="https://readxl.tidyverse.org/"><code>readxl</code></a> package.</p>
+<p>While csv files are going to be the most ubiquitous, you will invariably run into other data formats. The workflow is almost always the same. If you want to read excel files, you can use the function <code><a href="https://readxl.tidyverse.org/reference/read_excel.html">readxl::read_excel()</a></code> from the <a href="https://readxl.tidyverse.org/"><code>readxl</code></a> package.</p>
 <div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">acs_xl</span> <span class="op">&lt;-</span> <span class="fu">readxl</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/readxl/man/read_excel.html">read_excel</a></span><span class="op">(</span><span class="st">"data/acs_edu.xlsx"</span><span class="op">)</span>
+<code class="sourceCode R"><span class="va">acs_xl</span> <span class="op">&lt;-</span> <span class="fu">readxl</span><span class="fu">::</span><span class="fu"><a href="https://readxl.tidyverse.org/reference/read_excel.html">read_excel</a></span><span class="op">(</span><span class="st">"data/acs_edu.xlsx"</span><span class="op">)</span>
 
 <span class="fu">glimpse</span><span class="op">(</span><span class="va">acs_xl</span><span class="op">)</span>
 <span class="co">#&gt; Rows: 1,456</span>
@@ -199,8 +199,8 @@
 <span class="co">#&gt; $ bach             &lt;dbl&gt; 0.32473048, 0.26167076, 0.26677159, 0.23124279, 0.16…</span>
 <span class="co">#&gt; $ white            &lt;dbl&gt; 0.8972737, 0.8849885, 0.7328322, 0.8235779, 0.737102…</span>
 <span class="co">#&gt; $ black            &lt;dbl&gt; 0.012213740, 0.017090069, 0.079514240, 0.030640286, …</span></code></pre></div>
-<p>Another common format is a <strong>tsv</strong> which stands for <strong>t</strong>ab <strong>s</strong>eparated <strong>f</strong>ormat. <code><a href="https://rdrr.io/pkg/readr/man/read_delim.html">readr::read_tsv()</a></code> will be able to assist you here.</p>
-<p>If for some reason there are special delimiters like <code><a href="https://rdrr.io/r/base/Logic.html">|</a></code>, the <code><a href="https://rdrr.io/pkg/readr/man/read_delim.html">readr::read_delim()</a></code> function will work best. For example <code><a href="https://rdrr.io/pkg/readr/man/read_delim.html">readr::read_delim("file-path", delim = "|")</a></code> would do the trick!</p>
+<p>Another common format is a <strong>tsv</strong> which stands for <strong>t</strong>ab <strong>s</strong>eparated <strong>f</strong>ormat. <code><a href="https://readr.tidyverse.org/reference/read_delim.html">readr::read_tsv()</a></code> will be able to assist you here.</p>
+<p>If for some reason there are special delimiters like <code><a href="https://rdrr.io/r/base/Logic.html">|</a></code>, the <code><a href="https://readr.tidyverse.org/reference/read_delim.html">readr::read_delim()</a></code> function will work best. For example <code><a href="https://readr.tidyverse.org/reference/read_delim.html">readr::read_delim("file-path", delim = "|")</a></code> would do the trick!</p>
 <p>Additionally, another extremely common data type is <em>json</em> which is short for javascript object notation. json is a data type that you will usually not read directly from a text file but interact with from an API. If you do happen to encounter a json flat text file, use the <code>jsonlite</code> package. <code><a href="https://rdrr.io/pkg/jsonlite/man/read_json.html">jsonlite::read_json()</a></code>.</p>
 <p>With this new skill we are ready for our first analysis. In the next chapter we will perform our very first graphical analysis using the package <a href="https://ggplot2.tidyverse.org"><code>ggplot2</code></a> from the tidyverse.</p>
 
@@ -233,7 +233,7 @@
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Urban Informatics Toolkit</strong>" was written by Josiah Parry. It was last built on 2021-01-07.</p>
+    <p>"<strong>Urban Informatics Toolkit</strong>" was written by Josiah Parry. It was last built on 2021-01-23.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

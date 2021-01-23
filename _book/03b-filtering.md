@@ -2,39 +2,52 @@
 
 
 
-
-Let us continue with the scenario developed in the last chapter. There is a non-profit who is seeking graduate student assistance to provide a curated dataset that provides insight into the commuting behavior of the Greater Boston Area. Using BARI's Massachussett's Census Indicators dataset, we were able to reduce the 52 initial columns down to 11. However these data are for the entire state not just the Greater Boston Area. This leaves us with two tasks: 1) definine the Greater Boston Area and 2) create a subset of our data that fit our criteria defined in 1. 
-
-Execute the below code to recreate to `commute` tibble. This will be the *second to last* time we write this chunk of code. 
+Let us continue with the scenario developed in the last chapter. There is a non-profit who is seeking graduate student assistance to provide a curated dataset that provides insight into the commuting behavior of the Greater Boston Area. Using BARI's Massachusetts' Census Indicators dataset, we were able to reduce the 52 initial columns down to 11. However these data are for the entire state not just the Greater Boston Area. This leaves us with two tasks: 1) define the Greater Boston Area and 2) create a subset of our data that fit our criteria defined in 1. 
 
 
 ```r
 library(tidyverse)
+library(uitk)
 
-acs_raw <- read_csv("data/ACS_1317_TRACT.csv")
+commute
+```
 
-commute <- select(acs_raw,
-                  county,
-                  hs_grad, bach, master,
-                  starts_with("commute"),
-                  starts_with("by"),
-                  med_house_income)
+```
+## # A tibble: 648 x 14
+##    county hs_grad  bach master commute_less10 commute1030 commute3060
+##    <chr>    <dbl> <dbl>  <dbl>          <dbl>       <dbl>       <dbl>
+##  1 MIDDL…   0.389 0.188 0.100          0.0916       0.357       0.375
+##  2 MIDDL…   0.167 0.400 0.130          0.0948       0.445       0.344
+##  3 MIDDL…   0.184 0.317 0.139          0.0720       0.404       0.382
+##  4 MIDDL…   0.258 0.322 0.144          0.0983       0.390       0.379
+##  5 MIDDL…   0.301 0.177 0.0742         0.0670       0.379       0.365
+##  6 MIDDL…   0.159 0.310 0.207          0.0573       0.453       0.352
+##  7 MIDDL…   0.268 0.247 0.149          0.0791       0.475       0.368
+##  8 MIDDL…   0.261 0.300 0.126          0.137        0.450       0.337
+##  9 MIDDL…   0.315 0.198 0.140          0.0752       0.478       0.329
+## 10 MIDDL…   0.151 0.348 0.151          0.0830       0.474       0.322
+## # … with 638 more rows, and 7 more variables: commute6090 <dbl>,
+## #   commute_over90 <dbl>, by_auto <dbl>, by_pub_trans <dbl>, by_bike <dbl>,
+## #   by_walk <dbl>, med_house_income <dbl>
 ```
 
 ## `filter()`ing
 
 Previously we looked at ways of selecting columns. Here, we will focus on creating subsets of our data. We will rely on the function `dplyr::filter()` for this. `filter()` differs from `slice()` in that filter will check to see if data fit a specified criteria whereas slice is only concerned with the position of a row. 
 
-> Explore the help documentation of `filter()` by running the command `?filter()` in your console.
+Explore the help documentation of `filter()` by running the command `?filter()` in your console.
 
-The first argument of `filter()` is of course the tibble which you would like to subset. Secondly, we again see `...`. In the case of `filter()`, we provide what are called logical expressions to `...`. `filter()` then only returns the observations when that logical expression, or condition, is true. 
+The first argument of `filter()` is, of course, the tibble which you would like to subset. Secondly, we again see `...`. In the case of `filter()`, we provide what are called **logical expressions** to `...`. A logical expression is one that returns `TRUE` or `FALSE` values typically through a comparison of some sort. `filter()` then only returns the observations when that logical expression, or condition, is true. 
 
-Almost every time you purchase something online whether that is from Amazon or Etsy you are filtering your data using some logic. Whether that is checking the Prime tick box, specifying a price range on Etsy, or a restaurant rating on Yelp. These are all _conditions_ that you are providing to your search. 
+Almost every time you are shopping or browsing online, whether that is from Amazon or Etsy, you are filtering your search results using some logic. Whether that is checking the Prime tick box, specifying a price range on Etsy, or a restaurant rating on Yelp. These are all **conditions** that you are providing to your search. 
 
-We can create these types of filters on our own data and to do so, we will need to understand how logical expressions work. A logical expression is any expression that can be boiled down to true or false. 
+We can create these types of filters on our own data and to do so, we will need to understand how to craft logical expressions ourselves.
 
-For example, using our `commute` dataset, we can check to see which Census Tracts have more than 75% of commuters traveling by auto.
+For example, using our `commute` dataset, we can check to see which Census Tracts have more than 75% of commuters traveling by automobile.
 
+* Filter `commute` for values of `by_auto` that are greater than `0.75`. 
+  - Assign the result to the object `auto_commuters`. 
+* Select and print the `by_auto` column from `auto_commuters`.
 
 
 ```r
@@ -44,25 +57,25 @@ select(auto_commuters, by_auto)
 ```
 
 ```
-## # A tibble: 1,012 x 1
+## # A tibble: 291 x 1
 ##    by_auto
 ##      <dbl>
-##  1   0.927
-##  2   0.970
-##  3   0.925
-##  4   0.904
-##  5   0.899
-##  6   0.911
-##  7   0.810
-##  8   0.851
-##  9   0.900
-## 10   0.787
-## # … with 1,002 more rows
+##  1   0.857
+##  2   0.862
+##  3   0.888
+##  4   0.884
+##  5   0.967
+##  6   0.905
+##  7   0.935
+##  8   0.915
+##  9   0.913
+## 10   0.906
+## # … with 281 more rows
 ```
 
 This above line checks every single value of `by_auto` and asks "is this value above 0.75?" and when it is filter will include that row in the output. Another way to say this is that when `by_auto` is above 0.75 _the condition is met_.
 
-In R, as with most other programming languages, there are a number of _logical operators_ that are used to check for conditions. We will learn these in the following section.
+In R, as with other programming languages, there are a number of **logical operators** that are used to check for conditions. 
 
 ## Logical operators 
 
@@ -160,20 +173,20 @@ select(walking, county, by_walk, by_auto)
 ```
 
 ```
-## # A tibble: 54 x 3
+## # A tibble: 48 x 3
 ##    county    by_walk by_auto
 ##    <chr>       <dbl>   <dbl>
-##  1 HAMPSHIRE   0.652  0.0993
-##  2 HAMPSHIRE   0.632  0.0985
-##  3 HAMPSHIRE   0.580  0.189 
-##  4 HAMPSHIRE   0.613  0.143 
-##  5 HAMPSHIRE   0.625  0.0916
-##  6 MIDDLESEX   0.427  0.213 
-##  7 MIDDLESEX   0.545  0.142 
-##  8 MIDDLESEX   0.372  0.287 
-##  9 MIDDLESEX   0.299  0.240 
-## 10 SUFFOLK     0.548  0.105 
-## # … with 44 more rows
+##  1 MIDDLESEX   0.427   0.213
+##  2 MIDDLESEX   0.545   0.142
+##  3 MIDDLESEX   0.372   0.287
+##  4 MIDDLESEX   0.299   0.240
+##  5 SUFFOLK     0.548   0.105
+##  6 SUFFOLK     0.526   0.146
+##  7 SUFFOLK     0.569   0.148
+##  8 SUFFOLK     0.514   0.251
+##  9 SUFFOLK     0.393   0.290
+## 10 SUFFOLK     0.293   0.184
+## # … with 38 more rows
 ```
 
 We can also use filter to see where the walking rates and the driving rates are the same. As shown above we use `==` to test if things are the same. 
@@ -188,11 +201,10 @@ select(walk_auto, county, by_walk, by_auto)
 ```
 
 ```
-## # A tibble: 2 x 3
+## # A tibble: 1 x 3
 ##   county  by_walk by_auto
 ##   <chr>     <dbl>   <dbl>
-## 1 <NA>          0       0
-## 2 SUFFOLK       0       0
+## 1 SUFFOLK       0       0
 ```
 
 So far we have only been checking one condition and in most cases this actually will not suffice. You may want to check multiple conditions at one time. When we use filter we can add a logical expression as another argument. In doing so, filter will check to see if both conditions are met and, when they are, that row is returned. This is called an "and" statement. Meaning condition one **and** condition two need to be `TRUE`.
@@ -209,20 +221,19 @@ select(low_inc_walk, by_walk, by_auto, med_house_income)
 ```
 
 ```
-## # A tibble: 11 x 3
+## # A tibble: 10 x 3
 ##    by_walk by_auto med_house_income
 ##      <dbl>   <dbl>            <dbl>
-##  1   0.580   0.189             2499
-##  2   0.581   0.214            21773
-##  3   0.647   0.108            36250
-##  4   0.407   0.170            34677
-##  5   0.381   0.159            30500
-##  6   0.465   0.192            28618
-##  7   0.340   0.243            16094
-##  8   0.536   0.112            19267
-##  9   0.436   0.161            22930
-## 10   0.451   0.170            36500
-## 11   0.677   0.107            31218
+##  1   0.581   0.214            21773
+##  2   0.647   0.108            36250
+##  3   0.407   0.170            34677
+##  4   0.381   0.159            30500
+##  5   0.465   0.192            28618
+##  6   0.340   0.243            16094
+##  7   0.536   0.112            19267
+##  8   0.436   0.161            22930
+##  9   0.451   0.170            36500
+## 10   0.677   0.107            31218
 ```
 
 ### `&` statements: 
@@ -311,20 +322,20 @@ select(low_inc_or_walk, by_walk, by_auto, med_house_income)
 ```
 
 ```
-## # A tibble: 224 x 3
+## # A tibble: 98 x 3
 ##    by_walk by_auto med_house_income
 ##      <dbl>   <dbl>            <dbl>
-##  1 0.0959    0.810            37093
-##  2 0.102     0.800            31465
-##  3 0.0478    0.813            14604
-##  4 0.144     0.647            34940
-##  5 0.0541    0.831            26615
-##  6 0.0345    0.931            37935
-##  7 0.0430    0.750            16400
-##  8 0.0543    0.785            19548
-##  9 0.00469   0.944            34821
-## 10 0         0.955            34697
-## # … with 214 more rows
+##  1 0.0729    0.824            38514
+##  2 0.427     0.213            65000
+##  3 0.545     0.142            44202
+##  4 0.372     0.287            70972
+##  5 0.299     0.240           116140
+##  6 0.00933   0.688            39183
+##  7 0.548     0.105            78616
+##  8 0.526     0.146           116538
+##  9 0.115     0.423            26125
+## 10 0.0347    0.516            30283
+## # … with 88 more rows
 ```
 
 ### Negation
