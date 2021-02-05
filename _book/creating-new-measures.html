@@ -74,10 +74,10 @@
 </h1>
 <p>It’s been a week now and the non-profit has finally emailed you back. They were ecstatic with what you provided but it begat even more questions for them. They indicated that while the median household income data was very intruiging, that would be difficult for them to report on. As such, they would like you to report on the income quintiles as well. Moreover, they also would like to see the rate of Bachelor’s and Master’s degrees combined into one general educational attainment variable.</p>
 <p>This poses some challenges for you. You know <em>what</em> is being asked, just not necessarily <em>how</em> to achieve that from R. To accomplish this we’re going to have to learn how to use the <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">dplyr::mutate()</a></code> function. For the sake of example, let’s select only the columns that we’re going to need and make a tibble called <code>df</code> just to work with.</p>
-<div class="sourceCode" id="cb119"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb118"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">uitk</span><span class="op">)</span>
 
-<span class="va">commute</span> <span class="op">&lt;-</span> <span class="fu">read_csv</span><span class="op">(</span><span class="st">"data/gba_commute.csv"</span><span class="op">)</span>
 <span class="va">df</span> <span class="op">&lt;-</span> <span class="fu">select</span><span class="op">(</span><span class="va">commute</span>, <span class="va">med_house_income</span>, <span class="va">bach</span>, <span class="va">master</span><span class="op">)</span>
 
 <span class="va">df</span>
@@ -95,9 +95,9 @@
 <span class="co">#&gt;  9           121488 0.198 0.140 </span>
 <span class="co">#&gt; 10            99358 0.348 0.151 </span>
 <span class="co">#&gt; # … with 638 more rows</span></code></pre></div>
-<p><code>mutate()</code> is a function that let’s us create or modify variables. The arguments for <code>mutate()</code> are the same as those for <code>select()</code>—<code>.data</code> and <code>...</code>. In the case of <code>mutate()</code> dots works a littble bit differently. After indicating our data, we create columns by specifying a name-value pair. More simply the names of our arguments will be the name of the columns that we are creating. The value is any expression. For example we could use <code>mutate(df, one = 1)</code> to create a column called <code>one</code> with the value of 1. When using mutate, however, the result from the expression needs to be either only <em>one</em> value, or as many values as there are rows.</p>
+<p><code>mutate()</code> is a function that let’s us create or modify variables. The arguments for <code>mutate()</code> are the same as those for <code>select()</code>—<code>.data</code> and <code>...</code>. In the case of <code>mutate()</code> dots works a little bit differently. After indicating our data, we create columns by specifying a name-value pair. More simply the names of our arguments will be the name of the columns that we are creating. The value is any expression. For example we could use <code>mutate(df, one = 1)</code> to create a column called <code>one</code> with the value of 1. When using mutate, however, the result from the expression needs to be either only <em>one</em> value, or as many values as there are rows.</p>
 <p>If we take our <code>df</code>, we can add the columns <code>bach</code> and <code>master</code> together to create a new column called <code>edu_attain</code>.</p>
-<div class="sourceCode" id="cb120"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb119"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">mutate</span><span class="op">(</span><span class="va">df</span>, edu_attain <span class="op">=</span> <span class="va">bach</span> <span class="op">+</span> <span class="va">master</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 648 x 4</span>
 <span class="co">#&gt;    med_house_income  bach master edu_attain</span>
@@ -114,7 +114,7 @@
 <span class="co">#&gt; 10            99358 0.348 0.151       0.499</span>
 <span class="co">#&gt; # … with 638 more rows</span></code></pre></div>
 <p>We could even think about ways that we can check if some observations are above some specified income threshold.</p>
-<div class="sourceCode" id="cb121"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb120"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">mutate</span><span class="op">(</span><span class="va">df</span>, above_70k_inc <span class="op">=</span> <span class="va">med_house_income</span> <span class="op">&gt;</span> <span class="fl">80000</span><span class="op">)</span> 
 <span class="co">#&gt; # A tibble: 648 x 4</span>
 <span class="co">#&gt;    med_house_income  bach master above_70k_inc</span>
@@ -132,7 +132,7 @@
 <span class="co">#&gt; # … with 638 more rows</span></code></pre></div>
 <p>This function is immensly useful and can be combined with almost any expression to create new data for us. Furthermore there are a number of handy functions built into dplyr that help us create new columns. Some of these are <code>case_when()</code>, <code>min_rank()</code>, and <code>ntile()</code> among others. You can always explore these with <code>?function_name()</code>. For our purposes, we will look at the use of <code>ntile()</code>.</p>
 <p><code>ntile()</code> is a function that will calculate percentiles for us. Given a column of data, <code>x</code>, and a number of buckets, <code>n</code>, we can create a new column of ranks. In our case, we are interested in calculating the quintile of <code>med_house_income</code>. This means we can provide <code>med_house_income</code> and <code>n = 5</code> as arguments to <code>ntile()</code> to group our observations by quintile.</p>
-<div class="sourceCode" id="cb122"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb121"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">mutate</span><span class="op">(</span><span class="va">df</span>, inc_quintile <span class="op">=</span> <span class="fu">ntile</span><span class="op">(</span><span class="va">med_house_income</span>, <span class="fl">5</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 648 x 4</span>
 <span class="co">#&gt;    med_house_income  bach master inc_quintile</span>
@@ -149,7 +149,7 @@
 <span class="co">#&gt; 10            99358 0.348 0.151             4</span>
 <span class="co">#&gt; # … with 638 more rows</span></code></pre></div>
 <p>Now we can put everything together into one mutate call to create the new variables that were requested!</p>
-<div class="sourceCode" id="cb123"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb122"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">updated_commute</span> <span class="op">&lt;-</span> <span class="va">commute</span> <span class="op">%&gt;%</span> 
   <span class="fu">mutate</span><span class="op">(</span>edu_attain <span class="op">=</span> <span class="va">bach</span> <span class="op">+</span> <span class="va">master</span>, 
          inc_quintile <span class="op">=</span> <span class="fu">ntile</span><span class="op">(</span><span class="va">med_house_income</span>, <span class="fl">5</span><span class="op">)</span><span class="op">)</span></code></pre></div>
@@ -177,7 +177,7 @@
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Urban Informatics Toolkit</strong>" was written by Josiah Parry. It was last built on 2021-01-23.</p>
+    <p>"<strong>Urban Informatics Toolkit</strong>" was written by Josiah Parry. It was last built on 2021-02-04.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

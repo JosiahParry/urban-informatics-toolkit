@@ -42,8 +42,10 @@ Begin by installing the `sf` (simple-features) package and loading the `location
 # install.packages("sf")
 library(sf)
 library(tidyverse)
+library(uitk)
 
-locations <- read_csv("data/airbnb/locations.csv")
+# rename for simplicity :) 
+locations <- airbnb_locations
 
 head(locations)
 ```

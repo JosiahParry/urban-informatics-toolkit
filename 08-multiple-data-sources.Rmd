@@ -7,7 +7,8 @@ options("knitr.graphics.auto_pdf" = TRUE)
 
 knitr::opts_chunk$set(out.width = "100%")
 
-library(tidyverse)
+
+
 ```
 
 Many times working with just one data set will not suffice. More often than not the data that we will be working with be will need to be supplemented by other data sets. These datasets have a shared relation which are what enables us to **join** them together. A join is a way of combining the columns between two sets of data while ensuring the rows are properly aligned. 
@@ -23,14 +24,17 @@ Inside Airbnb data are another example of harnessing naturally occurring data. T
 We will first look at two data sets: `listings`, and `hosts`.
 
 ```{r message=FALSE}
-listings <- read_csv("data/airbnb/listings.csv")
+library(tidyverse)
+library(uitk)
+
+listings <- uitk::airbnb_listings
 
 glimpse(listings)
 ```
 
 
 ```{r message=FALSE}
-hosts <- read_csv("data/airbnb/hosts.csv")
+hosts <- uitk::airbnb_hosts
 
 glimpse(hosts)
 ```
@@ -127,14 +131,14 @@ Anti joins are often a good way to sanity check your data when looking for compl
 For this exercise your goal is to identify the average price and availability of Airbnb rentals by host. Then plot
 
 
-- Read in the reviews dataset 
+- Load the reviews dataset from \{uitk\}
 - Count the total number of reviews by listing, create column `n_reviews`
 - join to listings
 - join that to host, name it `airbnb_full`. 
 
 
 ```{r}
-reviews <- read_csv("data/airbnb/reviews.csv")
+reviews <- uitk::airbnb_reviews
 
 airbnb_full <- group_by(reviews, listing_id) %>% 
   summarise(n_reviews = n()) %>% 

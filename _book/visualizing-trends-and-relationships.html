@@ -75,16 +75,31 @@
 <p>We now have a language for creating graphics. Next we must build the intuition of which plots to build and when. We will cover the most basic of visualizations starting with univariate followed by bivariate plots. We will then discuss ways to extend visualizations beyond two variables and some simple principles of design.</p>
 <p>In most cases a data analysis will start with a visualization. And that visualization will be dictated by the characteristics of the data available to us. In intro to statistics you probably learned about the four types of data which are: nominal and ordinal, together referred to as <em>categorical</em>; interval and ratio, together referred to as <em>numerical</em> We’re going to contextualize these in R terms where <em>categorical</em> is <code>character</code> and <em>numerical</em> is <code>numeric</code>.</p>
 <p>Categorical and numeric have different are treated differently and thus lead to different kinds of visualizations. When we refer to categorical or character, we are often thinking of groups or a label. In the case where we don’t have a quantifiable numeric value, we often count those variables.</p>
-<p>Throughout this chapter we will use another ACS data with variables focused towards housing. This file lives at <code>data/acs-housing.csv</code>.</p>
-<div class="sourceCode" id="cb191"><pre class="downlit sourceCode r">
+<p>Throughout this chapter we will use another ACS dataset with variables focused towards housing. This file lives in the {uitk} package as the object <code>acs_housing</code>.</p>
+<div class="sourceCode" id="cb190"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">uitk</span><span class="op">)</span>
 
-<span class="va">acs</span> <span class="op">&lt;-</span> <span class="fu">read_csv</span><span class="op">(</span><span class="st">"data/acs-housing.csv"</span><span class="op">)</span></code></pre></div>
+<span class="va">acs_housing</span>
+<span class="co">#&gt; # A tibble: 1,311 x 6</span>
+<span class="co">#&gt;    county         med_yr_moved_inr… med_house_income fam_house_per age_u18  bach</span>
+<span class="co">#&gt;    &lt;chr&gt;                      &lt;dbl&gt;            &lt;dbl&gt;         &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;</span>
+<span class="co">#&gt;  1 Worcester Cou…              2004           105735         0.797   0.234 0.325</span>
+<span class="co">#&gt;  2 Worcester Cou…              2003            69625         0.698   0.181 0.262</span>
+<span class="co">#&gt;  3 Worcester Cou…              2007            70679         0.659   0.171 0.267</span>
+<span class="co">#&gt;  4 Worcester Cou…              2006            74528         0.657   0.203 0.231</span>
+<span class="co">#&gt;  5 Worcester Cou…              2006            52885         0.531   0.177 0.168</span>
+<span class="co">#&gt;  6 Worcester Cou…              2000            64100         0.665   0.163 0.192</span>
+<span class="co">#&gt;  7 Worcester Cou…              2011            37093         0.632   0.191 0.101</span>
+<span class="co">#&gt;  8 Worcester Cou…              2006            87750         0.636   0.202 0.272</span>
+<span class="co">#&gt;  9 Worcester Cou…              2004            97417         0.758   0.188 0.284</span>
+<span class="co">#&gt; 10 Worcester Cou…              2004            67121         0.652   0.179 0.237</span>
+<span class="co">#&gt; # … with 1,301 more rows</span></code></pre></div>
 <div id="univariate-visualizations" class="section level2" number="19.1">
 <h2>
 <span class="header-section-number">19.1</span> Univariate visualizations<a class="anchor" aria-label="anchor" href="#univariate-visualizations"><i class="fas fa-link"></i></a>
 </h2>
-<p>There is always a strong urge to begin creating epic graphs with facets, shapes, colors, and hell, maybe even three dimensions. But we must resist that urge! We <em>must</em> understand the distributions of our data before we start visualizing them and drawing conlcusions. Who knows, we may find anomalies or errors in the data cleaning process or even collection process. We should always begin by studying the indivual variable characteristics with univariate visualizations.</p>
+<p>There is always a strong urge to begin creating epic graphs with facets, shapes, colors, and hell, maybe even three dimensions. But we must resist that urge! We <em>must</em> understand the distributions of our data before we start visualizing them and drawing conclusions. Who knows, we may find anomalies or errors in the data cleaning process or even collection process. We should always begin by studying the individual variable characteristics with univariate visualizations.</p>
 <blockquote>
 <p>Note that univariate visualizations are for numeric variables</p>
 </blockquote>
@@ -114,22 +129,22 @@
 <ul>
 <li>Create a histogram of <code>med_yr_moved_inraw</code> with 10 bins.</li>
 </ul>
-<div class="sourceCode" id="cb192"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span><span class="va">acs</span>, <span class="fu">aes</span><span class="op">(</span><span class="va">med_yr_moved_inraw</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+<div class="sourceCode" id="cb191"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span><span class="va">acs_housing</span>, <span class="fu">aes</span><span class="op">(</span><span class="va">med_yr_moved_inraw</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">geom_histogram</span><span class="op">(</span>bins <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure"><img src="04b-visualization-strategies_files/figure-html/unnamed-chunk-4-1.png" width="100%"></div>
 <p>This histogram is rather informative! We can see that shortly after 2000, there was a steep increase in people moving in. Right after 2005 we can see that number tapering off—presumably due to the housing crises that begat the Great Recession.</p>
 <p>Now, if we do not specify the number of bins, we get a very different histogram.</p>
-<div class="sourceCode" id="cb193"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span><span class="va">acs</span>, <span class="fu">aes</span><span class="op">(</span><span class="va">med_yr_moved_inraw</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+<div class="sourceCode" id="cb192"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span><span class="va">acs_housing</span>, <span class="fu">aes</span><span class="op">(</span><span class="va">med_yr_moved_inraw</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">geom_histogram</span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure"><img src="04b-visualization-strategies_files/figure-html/unnamed-chunk-5-1.png" width="100%"></div>
 <p>The above histogram shows gaps in between buckets of the histogram. On a first glance, we would assume that there may be missing data or some phenemonon in the data recording process that led to some sort of missingness. But that isn’t the case! If we count the number of observations per year manually, the story becomes apparent.</p>
 <blockquote>
 <p>Note: I am using the base R function <code><a href="https://rdrr.io/r/base/table.html">table()</a></code> to produce counts. This produces a class <code>table</code> object which is less friendly to work with. Using <code><a href="https://rdrr.io/r/base/table.html">table()</a></code> rather than count serves two purposes: 1) you get to learn another function and 2) the printing method is more friendly for a bookdown document.</p>
 </blockquote>
-<div class="sourceCode" id="cb194"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="op">(</span><span class="va">moved_counts</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">acs</span><span class="op">$</span><span class="va">med_yr_moved_inraw</span><span class="op">)</span><span class="op">)</span>
+<div class="sourceCode" id="cb193"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="op">(</span><span class="va">moved_counts</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">acs_housing</span><span class="op">$</span><span class="va">med_yr_moved_inraw</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; 1991 1995 1996 1997 1998 1999 2000 2001 2002 2003 2004 2005 2006 2007 2008 2009 </span>
 <span class="co">#&gt;    1    2    5    7   14   31   56   77  108  121  141  109  113   84   73   67 </span>
@@ -154,8 +169,8 @@
 <li>Create a density plot of <code>med_yr_moved_inraw</code>
 </li>
 </ul>
-<div class="sourceCode" id="cb195"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span><span class="va">acs</span>, <span class="fu">aes</span><span class="op">(</span><span class="va">med_yr_moved_inraw</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+<div class="sourceCode" id="cb194"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span><span class="va">acs_housing</span>, <span class="fu">aes</span><span class="op">(</span><span class="va">med_yr_moved_inraw</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">geom_density</span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure"><img src="04b-visualization-strategies_files/figure-html/unnamed-chunk-7-1.png" width="100%"></div>
 <p>Now compare the histogram to the density plot.</p>
@@ -191,8 +206,8 @@
 <li>Create a boxplot of <code>med_house_income</code>
 </li>
 </ul>
-<div class="sourceCode" id="cb196"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span><span class="va">acs</span>, <span class="fu">aes</span><span class="op">(</span><span class="va">med_house_income</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+<div class="sourceCode" id="cb195"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span><span class="va">acs_housing</span>, <span class="fu">aes</span><span class="op">(</span><span class="va">med_house_income</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">geom_boxplot</span><span class="op">(</span><span class="op">)</span> </code></pre></div>
 <div class="inline-figure"><img src="04b-visualization-strategies_files/figure-html/unnamed-chunk-9-1.png" width="100%"></div>
 <p>From this boxplot, what can we tell about median household income in Massachusetts?</p>
@@ -201,8 +216,8 @@
 <h3>
 <span class="header-section-number">19.1.4</span> Empirical Cumulative Distribution Function (ECDF)<a class="anchor" aria-label="anchor" href="#empirical-cumulative-distribution-function-ecdf"><i class="fas fa-link"></i></a>
 </h3>
-<div class="sourceCode" id="cb197"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span><span class="va">acs</span>, <span class="fu">aes</span><span class="op">(</span><span class="va">med_house_income</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+<div class="sourceCode" id="cb196"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span><span class="va">acs_housing</span>, <span class="fu">aes</span><span class="op">(</span><span class="va">med_house_income</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">geom_step</span><span class="op">(</span>stat <span class="op">=</span> <span class="st">"ecdf"</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure"><img src="04b-visualization-strategies_files/figure-html/unnamed-chunk-10-1.png" width="100%"></div>
 </div>
@@ -212,19 +227,19 @@
 </h3>
 <p>The last univariate chart we will touch on is the bar chart. When we are faced with a single categorical variable there is not much that we can do to summarize it. The approach is to identify the frequency or relative frequency with which each level (unqiue value) occurs. This is essentially a histogram but for values which cannot have ranges and where order does not matter—though we may be interested in ordering our values.</p>
 <p>To create a bar chart of categorical features we simply provide that feature to our aesthetic mapping and add <code>geom_bar()</code> layer</p>
-<div class="sourceCode" id="cb198"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span><span class="va">acs</span>, <span class="fu">aes</span><span class="op">(</span><span class="va">county</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+<div class="sourceCode" id="cb197"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span><span class="va">acs_housing</span>, <span class="fu">aes</span><span class="op">(</span><span class="va">county</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">geom_bar</span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure"><img src="04b-visualization-strategies_files/figure-html/unnamed-chunk-11-1.png" width="100%"></div>
-<p>I’m sure you’re looking at this chart and thinking something along the lines of “I can’t read a single label, this is awful.” And yeah, you’re totally right. In general when creating a bar chart it is better to to flip the axes. The main justification for fliping the axes is so that we can read the labels better. In addition to making the labels more legible, by flipping the axes, the comparisons between bars is perceivedly easier.</p>
+<p>I’m sure you’re looking at this chart and thinking something along the lines of “I can’t read a single label, this is awful.” And yeah, you’re totally right. In general when creating a bar chart it is better to to flip the axes. The main justification for flipping the axes is so that we can read the labels better. In addition to making the labels more legible, by flipping the axes, the comparisons between bars is perceivably easier.</p>
 <p>To flip the axes, we can map the <code>county</code> column to the <code>y</code> axis rather than <code>x</code> (which is done positionally).</p>
-<div class="sourceCode" id="cb199"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span><span class="va">acs</span>, <span class="fu">aes</span><span class="op">(</span>y <span class="op">=</span> <span class="va">county</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+<div class="sourceCode" id="cb198"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span><span class="va">acs_housing</span>, <span class="fu">aes</span><span class="op">(</span>y <span class="op">=</span> <span class="va">county</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">geom_bar</span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure"><img src="04b-visualization-strategies_files/figure-html/unnamed-chunk-12-1.png" width="100%"></div>
 <p>If you find yourself in the situation where you have variables mapped to both the x and y columns we can add a <code>coor_flip()</code> layer to the plot which will handle the flipping for us.</p>
-<div class="sourceCode" id="cb200"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span><span class="va">acs</span>, <span class="fu">aes</span><span class="op">(</span><span class="va">county</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+<div class="sourceCode" id="cb199"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span><span class="va">acs_housing</span>, <span class="fu">aes</span><span class="op">(</span><span class="va">county</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">geom_bar</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">coord_flip</span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure"><img src="04b-visualization-strategies_files/figure-html/unnamed-chunk-13-1.png" width="100%"></div>
@@ -257,8 +272,8 @@
 <p>Note: when plotting <em>against</em> something. We are plotting x <em>against</em> y.</p>
 </blockquote>
 <p>Recall that to plot a scatter plot we use the <code>geom_point()</code> layer with an x and y aesthetic mapped.</p>
-<div class="sourceCode" id="cb201"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span><span class="va">acs</span>, <span class="fu">aes</span><span class="op">(</span><span class="va">fam_house_per</span>, <span class="va">age_u18</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+<div class="sourceCode" id="cb200"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span><span class="va">acs_housing</span>, <span class="fu">aes</span><span class="op">(</span><span class="va">fam_house_per</span>, <span class="va">age_u18</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure"><img src="04b-visualization-strategies_files/figure-html/unnamed-chunk-14-1.png" width="100%"></div>
 <p>The above scatter plot is useful, but there is one downside we should be aware of and that is the number of points that we are plotting. Since there are over 1,400 points—as is often the case with big data—they will likely stack on top of each other hiding other points and leading to a dark uninterpretable mass! We want to be able to decipher the concentration of points as well as the shape.</p>
@@ -267,13 +282,13 @@
 </blockquote>
 <p>To improve the visualization we have a few options. We can make each point more transparent so as they stack on top of eachother they become darker. Or, we can make the points very small so that as they cluster they become a bigger and darker mass.</p>
 <p>To implement these stylistic enhancements we need to set some aesthetic arguments inside of the geom layer. In order to change the transparency of the layer we will change the <code>alpha</code> argument. <code>alpha</code> takes a value from 0 to 1 where 0 is entirely transparent and 1 is completely opaque. Try a few values and see what floats your boat!</p>
-<div class="sourceCode" id="cb202"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span><span class="va">acs</span>, <span class="fu">aes</span><span class="op">(</span><span class="va">fam_house_per</span>, <span class="va">age_u18</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+<div class="sourceCode" id="cb201"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span><span class="va">acs_housing</span>, <span class="fu">aes</span><span class="op">(</span><span class="va">fam_house_per</span>, <span class="va">age_u18</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">geom_point</span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">1</span><span class="op">/</span><span class="fl">4</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure"><img src="04b-visualization-strategies_files/figure-html/unnamed-chunk-15-1.png" width="100%"></div>
 <p>Alternatively, we can change the size (or even a combination of both) of our points. To do this, change the <code>size</code> argument inside of <code>geom_point()</code>. There is not a finite range of values that you can specify so experimentation is encouraged!</p>
-<div class="sourceCode" id="cb203"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span><span class="va">acs</span>, <span class="fu">aes</span><span class="op">(</span><span class="va">fam_house_per</span>, <span class="va">age_u18</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+<div class="sourceCode" id="cb202"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span><span class="va">acs_housing</span>, <span class="fu">aes</span><span class="op">(</span><span class="va">fam_house_per</span>, <span class="va">age_u18</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">geom_point</span><span class="op">(</span>size <span class="op">=</span> <span class="fl">1</span><span class="op">/</span><span class="fl">3</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure"><img src="04b-visualization-strategies_files/figure-html/unnamed-chunk-16-1.png" width="100%"></div>
 <blockquote>
@@ -292,20 +307,20 @@
 <li><p><code>geom_hex()</code> for a hexagonal heatmap.</p></li>
 <li><p>Convert the above scatter plot into a heat map using both above geoms.</p></li>
 </ul>
-<div class="sourceCode" id="cb204"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span><span class="va">acs</span>, <span class="fu">aes</span><span class="op">(</span><span class="va">fam_house_per</span>, <span class="va">age_u18</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+<div class="sourceCode" id="cb203"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span><span class="va">acs_housing</span>, <span class="fu">aes</span><span class="op">(</span><span class="va">fam_house_per</span>, <span class="va">age_u18</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">geom_bin2d</span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure"><img src="04b-visualization-strategies_files/figure-html/unnamed-chunk-17-1.png" width="100%"></div>
-<div class="sourceCode" id="cb205"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span><span class="va">acs</span>, <span class="fu">aes</span><span class="op">(</span><span class="va">fam_house_per</span>, <span class="va">age_u18</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+<div class="sourceCode" id="cb204"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span><span class="va">acs_housing</span>, <span class="fu">aes</span><span class="op">(</span><span class="va">fam_house_per</span>, <span class="va">age_u18</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">geom_hex</span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure"><img src="04b-visualization-strategies_files/figure-html/unnamed-chunk-18-1.png" width="100%"></div>
 <p>Just like a histogram we can determine the number of bins that are used for aggragating the data. By adjusting the <code>bins</code> argument to <code>geom_hex()</code> or <code>geom_bin2d()</code> we can alter the size of each hexagon or rectangle. Again, the decision of how many bins to include is a trade-off between interpretability and accurate representation of the underlying data.</p>
 <ul>
 <li>Set the number of <code>bins</code> to 20</li>
 </ul>
-<div class="sourceCode" id="cb206"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span><span class="va">acs</span>, <span class="fu">aes</span><span class="op">(</span><span class="va">fam_house_per</span>, <span class="va">age_u18</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+<div class="sourceCode" id="cb205"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span><span class="va">acs_housing</span>, <span class="fu">aes</span><span class="op">(</span><span class="va">fam_house_per</span>, <span class="va">age_u18</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">geom_hex</span><span class="op">(</span>bins <span class="op">=</span> <span class="fl">20</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure"><img src="04b-visualization-strategies_files/figure-html/unnamed-chunk-19-1.png" width="100%"></div>
 </div>
@@ -316,8 +331,8 @@
 </h3>
 <p>The next type of bivariate relationship we will encounter is that between a numeric variable and a categorical variable. In general there are two lines of inquiry we might take. The first is similar to our approach of a single numeric variable where we are interested in measures of centrality and spread but are further interested in how those characteristics change by category (or group membership). The second seeks to compare groups based on some aggregate measure of a numeric variable.</p>
 <p>As an example, imagine we are interested in evaluating the educational attainment rate by county in the Greater Boston Area. We can take the approach of ranking the educational attainment rate by the median or average. Or, we could also try and evaluate if the counties differ in the amount of variation.</p>
-<div class="sourceCode" id="cb207"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">gba_acs</span> <span class="op">&lt;-</span> <span class="va">acs</span> <span class="op">%&gt;%</span> 
+<div class="sourceCode" id="cb206"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">gba_acs</span> <span class="op">&lt;-</span> <span class="va">acs_housing</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/chartr.html">toupper</a></span><span class="op">(</span><span class="va">county</span><span class="op">)</span> <span class="op">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"SUFFOLK COUNTY"</span>, <span class="st">"NORFOLK COUNTY"</span>, <span class="st">"MIDDLESEX COUNTY"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p>We will explore different techniques for addressing both lines of inqury.</p>
 <div id="ridgelines" class="section level4" number="19.2.2.1">
@@ -329,7 +344,7 @@
 <blockquote>
 <p>Reminders: install packages with <code><a href="https://rdrr.io/r/utils/install.packages.html">install.packages("pkg-name")</a></code>. The expression <code><a href="https://wilkelab.org/ggridges/reference/geom_density_ridges.html">ggridges::geom_density_ridges()</a></code> is used for referencing an exported function from a namespace (package name). The syntax is <em><code>pkgname::function()</code></em>.</p>
 </blockquote>
-<div class="sourceCode" id="cb208"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb207"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span><span class="va">gba_acs</span>, <span class="fu">aes</span><span class="op">(</span><span class="va">bach</span>, <span class="va">county</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">ggridges</span><span class="fu">::</span><span class="fu"><a href="https://wilkelab.org/ggridges/reference/geom_density_ridges.html">geom_density_ridges</a></span><span class="op">(</span><span class="op">)</span> </code></pre></div>
 <div class="inline-figure"><img src="04b-visualization-strategies_files/figure-html/unnamed-chunk-21-1.png" width="100%"></div>
@@ -345,7 +360,7 @@
 <p>It’s time to come back to the boxplot. The boxplot is indeed wonderful for a single variable. But much in the same way that multiple density plots is what makes the ridgeline fantastic, so does multiple box plots!</p>
 <p>Again, when using the boxplot we are not as concerned about the <em>shape</em> of the distribution but rather <em>where</em> the data are. The boxplot is extremely useful for identifying skewness and potential outliers.</p>
 <p>We can look at the distribution of educational attainment using a boxplot just like above. The only difference is the use of the <code>geom_boxplot()</code>.</p>
-<div class="sourceCode" id="cb209"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb208"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span><span class="va">gba_acs</span>, <span class="fu">aes</span><span class="op">(</span><span class="va">bach</span>, <span class="va">county</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">geom_boxplot</span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure"><img src="04b-visualization-strategies_files/figure-html/unnamed-chunk-23-1.png" width="100%"></div>
@@ -356,8 +371,8 @@
 </h4>
 <p>We’ve already used the barchart to plot counts of categorical variables. But they are also useful for visualizing summary values of each categorical variable.</p>
 <p>For example, if we were to plot the number of observations per county we can use our knowledge of <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise()</a></code> to recreate the values.</p>
-<div class="sourceCode" id="cb210"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">county_counts</span> <span class="op">&lt;-</span> <span class="va">acs</span> <span class="op">%&gt;%</span> 
+<div class="sourceCode" id="cb209"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">county_counts</span> <span class="op">&lt;-</span> <span class="va">acs_housing</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">county</span><span class="op">)</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt; `summarise()` ungrouping output (override with `.groups` argument)</span>
@@ -381,7 +396,7 @@
 <span class="co">#&gt; 13 Suffolk County      168</span>
 <span class="co">#&gt; 14 Worcester County    160</span></code></pre></div>
 <p>Now that we’ve counted the number of points per value, we can plot that using either <code>geom_bar()</code> and setting <code>stat = "identity"</code> <em>or</em> we can use <code>geom_col()</code>. I prefer the latter.</p>
-<div class="sourceCode" id="cb211"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb210"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span><span class="va">county_counts</span>, <span class="fu">aes</span><span class="op">(</span><span class="va">n</span>, <span class="va">county</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">geom_col</span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure"><img src="04b-visualization-strategies_files/figure-html/unnamed-chunk-25-1.png" width="100%"></div>
@@ -391,7 +406,7 @@
 <p>If you are confused by <code>fct_reorder()</code>, remember to check out the help documentation with <code>?fct_reorder()</code>.</p>
 </blockquote>
 <p>The modified <code>county_counts</code> tibble can then be piped into our <code>ggplot()</code>.</p>
-<div class="sourceCode" id="cb212"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb211"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">county_counts</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>county <span class="op">=</span> <span class="fu">fct_reorder</span><span class="op">(</span><span class="va">county</span>, <span class="va">n</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> 
   <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span><span class="va">n</span>, <span class="va">county</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
@@ -404,8 +419,8 @@
 </li>
 <li>Create an ordered horizontal barchart of <code>avg_bach</code> by <code>county</code>.</li>
 </ul>
-<div class="sourceCode" id="cb213"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">acs</span> <span class="op">%&gt;%</span> 
+<div class="sourceCode" id="cb212"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">acs_housing</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">county</span><span class="op">)</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>med_bach <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/median.html">median</a></span><span class="op">(</span><span class="va">bach</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>county <span class="op">=</span> <span class="fu">fct_reorder</span><span class="op">(</span><span class="va">county</span>, <span class="va">med_bach</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> 
@@ -424,8 +439,8 @@
 <p>Remember: <em><code>pkgname::function()</code></em>. If you do not have <code>pkgname</code> installed, install it with <code><a href="https://rdrr.io/r/utils/install.packages.html">install.packages("pkgname")</a></code>.</p>
 </blockquote>
 <p>We can copy our previous barplot code and only replace the geom to produce a lollipop plot! Since we are keeping <code>med_bach</code> in the x position we will need to specify <code>horizontal = TRUE</code> in <code>geom_lollipop()</code>. This is a quirk of the geom but an easy one to get past. I recommend setting <code>horizontal = FALSE</code> to get a firmer understanding of what is happening. There is nothing quite like purposefully breaking your code to figure out what is happening!</p>
-<div class="sourceCode" id="cb214"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">acs</span> <span class="op">%&gt;%</span> 
+<div class="sourceCode" id="cb213"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">acs_housing</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">county</span><span class="op">)</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>med_bach <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/median.html">median</a></span><span class="op">(</span><span class="va">bach</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>county <span class="op">=</span> <span class="fu">fct_reorder</span><span class="op">(</span><span class="va">county</span>, <span class="va">med_bach</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> 
@@ -484,7 +499,7 @@
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Urban Informatics Toolkit</strong>" was written by Josiah Parry. It was last built on 2021-01-23.</p>
+    <p>"<strong>Urban Informatics Toolkit</strong>" was written by Josiah Parry. It was last built on 2021-02-04.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

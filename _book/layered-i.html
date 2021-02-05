@@ -108,21 +108,20 @@
 <h2>
 <span class="header-section-number">18.2</span> Layers and defaults<a class="anchor" aria-label="anchor" href="#layers-and-defaults"><i class="fas fa-link"></i></a>
 </h2>
-<p>Let’s first get some data into our environment. We will use the <code>commute</code> dataset again.</p>
-<div class="sourceCode" id="cb185"><pre class="downlit sourceCode r">
+<p>Let’s first set up our package environment. We will use the <code>commute</code> dataset again.</p>
+<div class="sourceCode" id="cb184"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
-
-<span class="va">commute</span> <span class="op">&lt;-</span> <span class="fu">read_csv</span><span class="op">(</span><span class="st">"data/gba_commute.csv"</span><span class="op">)</span></code></pre></div>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">uitk</span><span class="op">)</span></code></pre></div>
 <p>In the first chapter of this section we explored these principles but did not put a name to them. Recall that we can use <code>ggplot()</code> by itself and it returns a chart of nothing.</p>
-<div class="sourceCode" id="cb186"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb185"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure"><img src="04a-grammar-I_files/figure-html/unnamed-chunk-4-1.png" width="100%"></div>
 <p>This is because we have not specified any of the defaults. In order for us to plot anything at all, we need to specify what (the data object) will be visualized, which features (the aesthetic mappings), and how (the geoms). When we begin to specify our x and y aesthetics the scales are interpreted.</p>
-<div class="sourceCode" id="cb187"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb186"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span><span class="va">commute</span>, <span class="fu">aes</span><span class="op">(</span><span class="va">med_house_income</span>, <span class="va">by_auto</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure"><img src="04a-grammar-I_files/figure-html/unnamed-chunk-5-1.png" width="100%"></div>
 <p>The final step is to add the geom layer which will inherit the data, aesthetic mappings, scale, and position while the <code>geom_*()</code> layer dictates the geometry.</p>
-<div class="sourceCode" id="cb188"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb187"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span><span class="va">commute</span>, <span class="fu">aes</span><span class="op">(</span><span class="va">bach</span>, <span class="va">med_house_income</span><span class="op">)</span><span class="op">)</span><span class="op">+</span> 
   <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure"><img src="04a-grammar-I_files/figure-html/unnamed-chunk-6-1.png" width="100%"></div>
@@ -131,14 +130,14 @@
 <p>Note: the <code>geom_*()</code>s have the data as the second argument so either put the data there or name the argument explicitly. The choice is yours. Choose wisely!</p>
 </blockquote>
 <p>What happens if we provide all of this information to <code>geom_point()</code> and entirely omit <code>ggplot()</code>?</p>
-<div class="sourceCode" id="cb189"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb188"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">geom_point</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span><span class="va">med_house_income</span>, <span class="va">by_auto</span><span class="op">)</span>, <span class="va">commute</span><span class="op">)</span>
 <span class="co">#&gt; mapping: x = ~med_house_income, y = ~by_auto </span>
 <span class="co">#&gt; geom_point: na.rm = FALSE</span>
 <span class="co">#&gt; stat_identity: na.rm = FALSE</span>
 <span class="co">#&gt; position_identity</span></code></pre></div>
 <p>We see that we do not have the plot, but we do have all of the information required of a layer is printed out to the console. If we add an empty ggplot call ahead of the layer, we will be able to create the plot.</p>
-<div class="sourceCode" id="cb190"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb189"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> 
   <span class="fu">geom_point</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span><span class="va">med_house_income</span>, <span class="va">by_auto</span><span class="op">)</span>, <span class="va">commute</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure"><img src="04a-grammar-I_files/figure-html/unnamed-chunk-8-1.png" width="100%"></div>
@@ -172,7 +171,7 @@
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Urban Informatics Toolkit</strong>" was written by Josiah Parry. It was last built on 2021-01-23.</p>
+    <p>"<strong>Urban Informatics Toolkit</strong>" was written by Josiah Parry. It was last built on 2021-02-04.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

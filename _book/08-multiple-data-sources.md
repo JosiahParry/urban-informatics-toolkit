@@ -17,7 +17,10 @@ We will first look at two data sets: `listings`, and `hosts`.
 
 
 ```r
-listings <- read_csv("data/airbnb/listings.csv")
+library(tidyverse)
+library(uitk)
+
+listings <- uitk::airbnb_listings
 
 glimpse(listings)
 #> Rows: 3,799
@@ -34,7 +37,7 @@ glimpse(listings)
 
 
 ```r
-hosts <- read_csv("data/airbnb/hosts.csv")
+hosts <- uitk::airbnb_hosts
 
 glimpse(hosts)
 #> Rows: 1,335
@@ -45,7 +48,7 @@ glimpse(hosts)
 #> $ since_month     <chr> "12", "02", "07", "09", "06", "01", "02", "02", "03",…
 #> $ since_day       <chr> "03", "19", "22", "16", "24", "19", "24", "26", "23",…
 #> $ response_rate   <chr> "100%", "100%", "100%", "92%", "50%", "98%", "66%", "…
-#> $ acceptance_rate <chr> "50%", "100%", "84%", "17%", "N/A", "98%", "97%", "10…
+#> $ acceptance_rate <chr> "50%", "100%", "84%", "17%", NA, "98%", "97%", "100%"…
 #> $ superhost       <dbl> 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1,…
 #> $ n_listings      <dbl> 5, 2, 9, 13, 3, 40, 7, 4, 1, 2, 1, 1, 5, 1, 1, 1, 1, …
 ```
@@ -209,7 +212,7 @@ Anti joins are often a good way to sanity check your data when looking for compl
 For this exercise your goal is to identify the average price and availability of Airbnb rentals by host. Then plot
 
 
-- Read in the reviews dataset 
+- Load the reviews dataset from \{uitk\}
 - Count the total number of reviews by listing, create column `n_reviews`
 - join to listings
 - join that to host, name it `airbnb_full`. 
@@ -217,12 +220,7 @@ For this exercise your goal is to identify the average price and availability of
 
 
 ```r
-reviews <- read_csv("data/airbnb/reviews.csv")
-#> Parsed with column specification:
-#> cols(
-#>   listing_id = col_double(),
-#>   date = col_date(format = "")
-#> )
+reviews <- uitk::airbnb_reviews
 
 airbnb_full <- group_by(reviews, listing_id) %>% 
   summarise(n_reviews = n()) %>% 

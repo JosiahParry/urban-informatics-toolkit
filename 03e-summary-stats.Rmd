@@ -21,8 +21,9 @@ Let us revisit the `commute`, and specifically the rate of commuters who travel 
 
 ```{r message=FALSE}
 library(tidyverse)
+library(uitk)
 
-commute <- read_csv("data/gba_commute.csv")
+commute
 ```
 
 

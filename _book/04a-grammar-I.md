@@ -33,13 +33,12 @@ There are five high level components of the layered grammar[^wickham]. We will o
 
 ## Layers and defaults
 
-Let's first get some data into our environment. We will use the `commute` dataset again.
+Let's first set up our package environment. We will use the `commute` dataset again.
 
 
 ```r
 library(tidyverse)
-
-commute <- read_csv("data/gba_commute.csv")
+library(uitk)
 ```
 
 In the first chapter of this section we explored these principles but did not put a name to them. Recall that we can use `ggplot()` by itself and it returns a chart of nothing.

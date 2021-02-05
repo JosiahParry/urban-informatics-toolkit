@@ -13,13 +13,14 @@ To explore these statistics we will use data from Inside Airbnb. Of interest is 
 
 ## The data
 
-We will use data from both the `hosts` and `listings` datasets. The former contains superhost data while the later has both the price and room type information. First we will read in both of these datasets.  
+We will use data from both the `hosts` and `listings` datasets. The former contains superhost data while the later has both the price and room type information. 
 
 ```{r message=FALSE}
 library(tidyverse)
+library(uitk)
 
-listings <- read_csv("data/airbnb/listings.csv")
-hosts <- read_csv("data/airbnb/hosts.csv")
+listings <- airbnb_listings
+hosts <- airbnb_hosts
 
 glimpse(listings)
 glimpse(hosts)

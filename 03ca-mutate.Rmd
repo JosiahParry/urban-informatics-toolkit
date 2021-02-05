@@ -17,15 +17,15 @@ This poses some challenges for you. You know _what_ is being asked, just not nec
 
 ```{r message=FALSE, max.print=5}
 library(tidyverse)
+library(uitk)
 
-commute <- read_csv("data/gba_commute.csv")
 df <- select(commute, med_house_income, bach, master)
 
 df
 ```
 
 
-`mutate()` is a function that let's us create or modify variables. The arguments for `mutate()` are the same as those for `select()`—`.data` and `...`. In the case of `mutate()` dots works a littble bit differently. After indicating our data, we create columns by specifying a name-value pair. More simply the names of our arguments will be the name of the columns that we are creating. The value is any expression. For example we could use `mutate(df, one = 1)` to create a column called `one` with the value of 1. When using mutate, however, the result from the expression needs to be either only  _one_ value, or as many values as there are rows. 
+`mutate()` is a function that let's us create or modify variables. The arguments for `mutate()` are the same as those for `select()`—`.data` and `...`. In the case of `mutate()` dots works a little bit differently. After indicating our data, we create columns by specifying a name-value pair. More simply the names of our arguments will be the name of the columns that we are creating. The value is any expression. For example we could use `mutate(df, one = 1)` to create a column called `one` with the value of 1. When using mutate, however, the result from the expression needs to be either only  _one_ value, or as many values as there are rows. 
 
 If we take our `df`, we can add the columns `bach` and `master` together to create a new column called `edu_attain`. 
 

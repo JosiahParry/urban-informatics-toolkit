@@ -19,19 +19,20 @@ In most cases a data analysis will start with a visualization. And that visualiz
 
 Categorical and numeric have different are treated differently and thus lead to different kinds of visualizations. When we refer to categorical or character, we are often thinking of groups or a label. In the case where we don't have a quantifiable numeric value, we often count those variables.
 
-Throughout this chapter we will use another ACS data with variables focused towards housing. This file lives at `data/acs-housing.csv`.
+Throughout this chapter we will use another ACS dataset with variables focused towards housing. This file lives in the \{uitk\} package as the object `acs_housing`. 
 
 ```{r message=FALSE}
 library(tidyverse)
+library(uitk)
 
-acs <- read_csv("data/acs-housing.csv")
+acs_housing
 ```
 
 
   
 ## Univariate visualizations
 
-There is always a strong urge to begin creating epic graphs with facets, shapes, colors, and hell, maybe even three dimensions. But we must resist that urge! We _must_ understand the distributions of our data before we start visualizing them and drawing conlcusions. Who knows, we may find anomalies or errors in the data cleaning process or even collection process. We should always begin by studying the indivual variable characteristics with univariate visualizations. 
+There is always a strong urge to begin creating epic graphs with facets, shapes, colors, and hell, maybe even three dimensions. But we must resist that urge! We _must_ understand the distributions of our data before we start visualizing them and drawing conclusions. Who knows, we may find anomalies or errors in the data cleaning process or even collection process. We should always begin by studying the individual variable characteristics with univariate visualizations. 
 
 
 > Note that univariate visualizations are for numeric variables
@@ -67,7 +68,7 @@ Let's look at the distribution of the `med_yr_moved_inraw` column for an example
 * Create a histogram of `med_yr_moved_inraw` with 10 bins. 
 
 ```{r}
-ggplot(acs, aes(med_yr_moved_inraw)) +
+ggplot(acs_housing, aes(med_yr_moved_inraw)) +
   geom_histogram(bins = 10)
 ```
 
@@ -76,7 +77,7 @@ This histogram is rather informative! We can see that shortly after 2000, there 
 Now, if we do not specify the number of bins, we get a very different histogram. 
 
 ```{r message = FALSE}
-ggplot(acs, aes(med_yr_moved_inraw)) +
+ggplot(acs_housing, aes(med_yr_moved_inraw)) +
   geom_histogram()
 ```
 
@@ -85,7 +86,7 @@ The above histogram shows gaps in between buckets of the histogram. On a first g
 > Note: I am using the base R function `table()` to produce counts. This produces a class `table` object which is less friendly to work with. Using `table()` rather than count serves two purposes: 1) you get to learn another function and 2) the printing method is more friendly for a bookdown document. 
 
 ```{r}
-(moved_counts <- table(acs$med_yr_moved_inraw))
+(moved_counts <- table(acs_housing$med_yr_moved_inraw))
 
 glue::glue("There are {length(moved_counts)} unique values")
 ```
@@ -107,7 +108,7 @@ Like a histogram, we only provide a single variable to the aesthetic mappings. T
 * Create a density plot of `med_yr_moved_inraw`
 
 ```{r}
-ggplot(acs, aes(med_yr_moved_inraw)) +
+ggplot(acs_housing, aes(med_yr_moved_inraw)) +
   geom_density()
 ```
 
@@ -119,10 +120,10 @@ Now compare the histogram to the density plot.
 
 ```{r, echo=FALSE}
 library(patchwork)
-gd <- ggplot(acs, aes(med_yr_moved_inraw)) +
+gd <- ggplot(acs_housing, aes(med_yr_moved_inraw)) +
   geom_density()
 
-gh <- ggplot(acs, aes(med_yr_moved_inraw)) +
+gh <- ggplot(acs_housing, aes(med_yr_moved_inraw)) +
   geom_histogram(bins = 10)
 gd|gh
 ```
@@ -162,21 +163,19 @@ To create a boxplot we use the `geom_boxplot()` function.
 
 
 ```{r}
-ggplot(acs, aes(med_house_income)) +
+ggplot(acs_housing, aes(med_house_income)) +
   geom_boxplot() 
 ```
 
 From this boxplot, what can we tell about median household income in Massachusetts? 
 
+
 ### Empirical Cumulative Distribution Function (ECDF)
 
-
 ```{r}
-ggplot(acs, aes(med_house_income)) +
+ggplot(acs_housing, aes(med_house_income)) +
   geom_step(stat = "ecdf")
 ```
-
-
 
 
 ### Barchart
@@ -186,23 +185,23 @@ The last univariate chart we will touch on is the bar chart. When we are faced w
 To create a bar chart of categorical features we simply provide that feature to our aesthetic mapping and add `geom_bar()` layer
 
 ```{r}
-ggplot(acs, aes(county)) +
+ggplot(acs_housing, aes(county)) +
   geom_bar()
 ```
 
-I'm sure you're looking at this chart and thinking something along the lines of "I can't read a single label, this is awful." And yeah, you're totally right. In general when creating a bar chart it is better to to flip the axes. The main justification for fliping the axes is so that we can read the labels better. In addition to making the labels more legible, by flipping the axes, the comparisons between bars is perceivedly easier.  
+I'm sure you're looking at this chart and thinking something along the lines of "I can't read a single label, this is awful." And yeah, you're totally right. In general when creating a bar chart it is better to to flip the axes. The main justification for flipping the axes is so that we can read the labels better. In addition to making the labels more legible, by flipping the axes, the comparisons between bars is perceivably easier.  
 
 To flip the axes, we can map the `county` column to the `y` axis rather than `x` (which is done positionally).
 
 ```{r}
-ggplot(acs, aes(y = county)) +
+ggplot(acs_housing, aes(y = county)) +
   geom_bar()
 ```
 
 If you find yourself in the situation where you have variables mapped to both the x and y columns we can add a `coor_flip()` layer to the plot which will handle the flipping for us.
 
 ```{r}
-ggplot(acs, aes(county)) +
+ggplot(acs_housing, aes(county)) +
   geom_bar() +
   coord_flip()
 ```
@@ -234,7 +233,7 @@ Using a scatter plot, we can begin to answer this question! Notice how in the fo
 Recall that to plot a scatter plot we use the `geom_point()` layer with an x and y aesthetic mapped.
 
 ```{r}
-ggplot(acs, aes(fam_house_per, age_u18)) +
+ggplot(acs_housing, aes(fam_house_per, age_u18)) +
   geom_point()
 ```
 
@@ -247,14 +246,14 @@ To improve the visualization we have a few options. We can make each point more 
 To implement these stylistic enhancements we need to set some aesthetic arguments inside of the geom layer. In order to change the transparency of the layer we will change the `alpha` argument. `alpha` takes a value from 0 to 1 where 0 is entirely transparent and 1 is completely opaque. Try a few values and see what floats your boat!
 
 ```{r}
-ggplot(acs, aes(fam_house_per, age_u18)) +
+ggplot(acs_housing, aes(fam_house_per, age_u18)) +
   geom_point(alpha = 1/4)
 ```
 
 Alternatively, we can change the size (or even a combination of both) of our points. To do this, change the `size` argument inside of `geom_point()`. There is not a finite range of values that you can specify so experimentation is encouraged! 
 
 ```{r}
-ggplot(acs, aes(fam_house_per, age_u18)) +
+ggplot(acs_housing, aes(fam_house_per, age_u18)) +
   geom_point(size = 1/3)
 ```
 
@@ -276,13 +275,13 @@ The geoms to create these heatmaps are
 * Convert the above scatter plot into a heat map using both above geoms. 
 
 ```{r}
-ggplot(acs, aes(fam_house_per, age_u18)) +
+ggplot(acs_housing, aes(fam_house_per, age_u18)) +
   geom_bin2d()
 ```
 
 
 ```{r}
-ggplot(acs, aes(fam_house_per, age_u18)) +
+ggplot(acs_housing, aes(fam_house_per, age_u18)) +
   geom_hex()
 ```
 
@@ -292,7 +291,7 @@ Just like a histogram we can determine the number of bins that are used for aggr
 * Set the number of `bins` to 20 
 
 ```{r}
-ggplot(acs, aes(fam_house_per, age_u18)) +
+ggplot(acs_housing, aes(fam_house_per, age_u18)) +
   geom_hex(bins = 20)
 ```
 
@@ -304,7 +303,7 @@ The next type of bivariate relationship we will encounter is that between a nume
 As an example, imagine we are interested in evaluating the educational attainment rate by county in the Greater Boston Area. We can take the approach of ranking the educational attainment rate by the median or average. Or, we could also try and evaluate if the counties differ in the amount of variation.
 
 ```{r}
-gba_acs <- acs %>% 
+gba_acs <- acs_housing %>% 
   filter(toupper(county) %in% c("SUFFOLK COUNTY", "NORFOLK COUNTY", "MIDDLESEX COUNTY"))
 ```
 
@@ -374,7 +373,7 @@ We've already used the barchart to plot counts of categorical variables. But the
 For example, if we were to plot the number of observations per county we can use our knowledge of `summarise()` to recreate the values.
 
 ```{r max.print=5}
-county_counts <- acs %>% 
+county_counts <- acs_housing %>% 
   group_by(county) %>% 
   summarise(n = n())
 
@@ -410,7 +409,7 @@ This is a pattern that you will follow rather frequently—particularly when you
 * Create an ordered horizontal barchart of `avg_bach` by `county`.
 
 ```{r}
-acs %>% 
+acs_housing %>% 
   group_by(county) %>% 
   summarise(med_bach = median(bach)) %>% 
   mutate(county = fct_reorder(county, med_bach)) %>% 
@@ -429,7 +428,7 @@ The lollipop plot is the barchart's more fun cousin. Rather than a big thick bar
 We can copy our previous barplot code and only replace the geom to produce a lollipop plot! Since we are keeping `med_bach` in the x position we will need to specify `horizontal = TRUE` in `geom_lollipop()`. This is a quirk of the geom but an easy one to get past. I recommend setting `horizontal = FALSE` to get a firmer understanding of what is happening. There is nothing quite like purposefully breaking your code to figure out what is happening! 
 
 ```{r message=FALSE, warning=FALSE}
-acs %>% 
+acs_housing %>% 
   group_by(county) %>% 
   summarise(med_bach = median(bach)) %>% 
   mutate(county = fct_reorder(county, med_bach)) %>% 
@@ -442,9 +441,6 @@ acs %>%
 You've now built up a repetoire of different types of visualizations that you can use in your own analyses. You've built an intuition of what types of visualization are suitable given the types of variables at your disposal. 
 
 In the next chapter we will explore ways of improving upon the plots that we already know how to build. We will explore further the _Layered Grammar of Graphics_ how how to improve upon our charts using scales, and facets, and breifly touch upon coordinates. 
-
-
-
 
 [^wickham]: A Layered Grammar of Graphics. Hadley Wickham. https://vita.had.co.nz/papers/layered-grammar.pdf
 [^bin2d]: `geom_bin2d()`. https://ggplot2.tidyverse.org/reference/geom_bin2d.html

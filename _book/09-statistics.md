@@ -8,14 +8,15 @@ To explore these statistics we will use data from Inside Airbnb. Of interest is 
 
 ## The data
 
-We will use data from both the `hosts` and `listings` datasets. The former contains superhost data while the later has both the price and room type information. First we will read in both of these datasets.  
+We will use data from both the `hosts` and `listings` datasets. The former contains superhost data while the later has both the price and room type information. 
 
 
 ```r
 library(tidyverse)
+library(uitk)
 
-listings <- read_csv("data/airbnb/listings.csv")
-hosts <- read_csv("data/airbnb/hosts.csv")
+listings <- airbnb_listings
+hosts <- airbnb_hosts
 
 glimpse(listings)
 ```
@@ -45,7 +46,7 @@ glimpse(hosts)
 ## $ since_month     <chr> "12", "02", "07", "09", "06", "01", "02", "02", "03",…
 ## $ since_day       <chr> "03", "19", "22", "16", "24", "19", "24", "26", "23",…
 ## $ response_rate   <chr> "100%", "100%", "100%", "92%", "50%", "98%", "66%", "…
-## $ acceptance_rate <chr> "50%", "100%", "84%", "17%", "N/A", "98%", "97%", "10…
+## $ acceptance_rate <chr> "50%", "100%", "84%", "17%", NA, "98%", "97%", "100%"…
 ## $ superhost       <dbl> 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1,…
 ## $ n_listings      <dbl> 5, 2, 9, 13, 3, 40, 7, 4, 1, 2, 1, 1, 5, 1, 1, 1, 1, …
 ```

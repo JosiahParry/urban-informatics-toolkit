@@ -20,13 +20,28 @@ In general we can use the below mappings:
 
 ## Color
 
-Let us first take a look at the use of color. Color is, after position, the easiest visual cue for we humans to distinguish (that viz book on my coffee table) between. It is also a rather versatile visual cue as it can be used to address both continuous and discrete variables. We will first explore the use of color for discrete measurements. In this context, I do not necessarily mean discrete as in integers, but more or less groups. This is where there is not _necessarily_ an order or scale implied in the data. It _can_ however be indicative of order—think for example age groups. To explore the use of color for groups or discrete data, we will look at Boston ecometrics of social disorder as discussed previously (O'Brien 2015 CITE NEEDED). Ecometrics are stored in a file called `ecometrics.csv` the `data` directory. Read it in as `ecometrics`. 
+Let us first take a look at the use of color. Color is, after position, the easiest visual cue for we humans to distinguish (that viz book on my coffee table) between. It is also a rather versatile visual cue as it can be used to address both continuous and discrete variables. We will first explore the use of color for discrete measurements. In this context, I do not necessarily mean discrete as in integers, but more or less groups. This is where there is not _necessarily_ an order or scale implied in the data. It _can_ however be indicative of order—think for example age groups. To explore the use of color for groups or discrete data, we will look at Boston ecometrics of social disorder as discussed previously (O'Brien 2015 CITE NEEDED). Ecometrics are stored in the uitk package as the object `ecometrics`
 
 
 ```r
 library(tidyverse)
+library(uitk)
 
-ecometrics <- read_csv("data/ecometrics.csv")
+ecometrics
+#> # A tibble: 68 x 4
+#>    type                measure   year     n
+#>    <chr>               <chr>    <dbl> <dbl>
+#>  1 armed robbery       violence  2015   430
+#>  2 armed robbery       violence  2016   445
+#>  3 armed robbery       violence  2017   413
+#>  4 armed robbery       violence  2018   307
+#>  5 assault and battery guns      2015   122
+#>  6 assault and battery guns      2016   190
+#>  7 assault and battery guns      2017   162
+#>  8 assault and battery guns      2018   169
+#>  9 assault and battery violence  2015  5770
+#> 10 assault and battery violence  2016  6021
+#> # … with 58 more rows
 ```
 
 
@@ -182,15 +197,13 @@ To explore this in R, we will return to the commute data set we created from BAR
 
 Create the visualization following the below steps. 
 
-* Read in `data/gba_commute.csv`
+* Use the object `commute`
 * Plot `med_house_income` against (on the y axis) `by_auto`
 * Color the plot by `bach`
 * Add the appropriate geometry
 
 
 ```r
-commute <- read_csv("data/gba_commute.csv")
-
 (p <- ggplot(commute, aes(by_auto, med_house_income, color = bach)) +
   geom_point())
 ```
@@ -360,26 +373,14 @@ We spent a fair amount of time looking at a number of the ways that color can be
 
 Shape is another useful way to visualize groups or categories in our data. In general we should use shape only if color is not an option for us. Variations in shapes can be more difficult to discern—particularly when the number of groups to be visualized reaches beyond ~4. Moreover, shapes, depending on choice and intricacy can become overly distracting and can detract from the visualization as a whole. As a heuristic, do not map both shape and color to the same variable. 
 
-To illustrate the use of shape we will use data from Inside Airbnb [^insideairbnb]. This dataset contains Airbnb listings for Boston as well. The dataset can be found at  `data/airbnb/airbnb.csv`. We will go into the dataset in more depth in the chapter on spatial analysis. 
+To illustrate the use of shape we will use data from Inside Airbnb [^insideairbnb]. This dataset contains Airbnb listings for Boston as well. The dataset can be found in the object `airbnb`. We will go into the dataset in more depth in the chapter on spatial analysis. 
 
-For this visualization we will read in the dataset, filter it down to just `"Back Bay"`, and then plot ponts based on their place in space—aka latitude and longitude. We will also map shape to the `room_type`. Doing this will show us the spatial distribution of Airbnbs as well as the different kinds.
+For this visualization we will read in the dataset, filter it down to just `"Back Bay"`, and then plot points based on their place in space—aka latitude and longitude. We will also map shape to the `room_type`. Doing this will show us the spatial distribution of Airbnbs as well as the different kinds.
 
-> Note that while we normally say "latitude and longitude", that actually is saying "y and x" respectively. So be sure to put the latitude in the y aesthetic position and _not_ longitude.
+> Note that while we normally say "latitude and longitude", they represent the y and x axes respectively. So be sure to put the latitude in the y aesthetic position and _not_ longitude.
 
 
 ```r
-# read in data
-airbnb <- read_csv("data/airbnb/airbnb.csv")
-#> Parsed with column specification:
-#> cols(
-#>   id = col_double(),
-#>   neighborhood = col_character(),
-#>   room_type = col_character(),
-#>   price = col_double(),
-#>   longitude = col_double(),
-#>   latitude = col_double()
-#> )
-
 # filter to backbay
 bb <- airbnb %>% 
   filter(neighborhood == "Back Bay") 
@@ -393,7 +394,7 @@ ggplot(bb,  aes(longitude, latitude, shape = room_type)) +
 
 By changing each point's shape by their associated room type we can get a somewhat better idea of the spatial distribution by type. 
 
-What can we tell from this visualization? It looks like most Airbnbs are overwhelmingly the entire home or appartment. We can infer from this that most Airbnbs _are not_being used as additional revenue for residents. But rather that each Airbnb might be a unit of housing that is no longer available to Boston residents. Could this be increasing demand for housing? Is the rise in Airbnbs creating a shortage of housing and can it be one of the factors behind the rising Boston rents? 
+What can we tell from this visualization? It looks like most Airbnbs are overwhelmingly the entire home or apartment. We can infer from this that most Airbnbs _are not_being used as additional revenue for residents. But rather that each Airbnb might be a unit of housing that is no longer available to Boston residents. Could this be increasing demand for housing? Is the rise in Airbnbs creating a shortage of housing and can it be one of the factors behind the rising Boston rents? 
 
 The above visualization is good, but lets compare that with the use of color.
 
@@ -410,13 +411,11 @@ This visualization will use data from Analyze Boston's legacy database. Analyze 
 
 > Bigbelly's contain compactors which crush waste within their waste bins in order to reduce the volume required to store the waste deposited into the Bigbelly.  The compactors are able provide an average compaction ratio of 5:1, meaning a Bigbelly can store the equivalent of 150G (gallons) of uncompactedwaste within a standard 30G waste bin.  The compactor in a Bigbelly will run when it has detected that waste within the bin has reached a certain level.  After a compaction cycle the waste will be crushed to occupy a smaller amount of space within the waste bin.  These cycles are repeated as more waste is added to the Bigbelly.  After approximately 150G of uncompacted waste has been added to the Bigbelly the compactor will not be able to compress the waste further, this condition is detected and thewaste bin is considered to be full.
 
-For the sake of example, I have created an aggregate count of signals from all Big Belly receptacles for 2014. This file can be found at `data/downtown-big-belly.csv`.
+For the sake of example, I have created an aggregate count of signals from all Big Belly receptacles for 2014. This can be found in the object `big_belly`.
 
 
 
 ```r
-big_belly <- read_csv("data/downtown-big-belly.csv")
-
 glimpse(big_belly)
 #> Rows: 147
 #> Columns: 4

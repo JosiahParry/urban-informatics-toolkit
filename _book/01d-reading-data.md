@@ -66,7 +66,8 @@ Now, read the `acs_edu.csv` file!
 
 ```r
 read_csv(file = "data/acs_edu.csv") 
-#> Parsed with column specification:
+#> 
+#> ── Column specification ────────────────────────────────────────────────────────
 #> cols(
 #>   med_house_income = col_double(),
 #>   less_than_hs = col_double(),

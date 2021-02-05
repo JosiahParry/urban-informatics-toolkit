@@ -77,8 +77,9 @@ In the chapter on filtering data we began by reading in the data, selecting colu
 
 ```r
 library(tidyverse)
+library(uitk)
 
-low_inc_or_walk <- read_csv("data/ACS_1317_TRACT.csv") %>% 
+low_inc_or_walk <- acs_raw %>% 
   select(
     county,
     starts_with("commute"),
@@ -89,6 +90,7 @@ low_inc_or_walk <- read_csv("data/ACS_1317_TRACT.csv") %>%
     by_walk > by_auto,
     med_house_income < 40000
   )
+
 glimpse(low_inc_or_walk)
 #> Rows: 11
 #> Columns: 11
@@ -111,13 +113,13 @@ Not only does the pipe aid in the manipulation of data, it also has a lot of uti
 
 The following sections will use the pipe operator in favor of the above listed alternatives. 
 
+<!--
 ## Revisiting our scenario
 
-Now that we have the pipe operator at our fingertips, we ought to think about how we can incorporate it into our previous work. In our earlier scenario we 
+Now that we have the pipe operator at our fingertips, we ought to think about how we can incorporate it into our previous work. 
 
 
 ```r
-acs_raw <- read_csv("data/ACS_1317_TRACT.csv")
 
 commute <- select(acs_raw,
        county,
@@ -128,7 +130,7 @@ commute <- select(acs_raw,
   filter(county %in% c("SUFFOLK", "NORFOLK", "MIDDLESEX"))
 ```
 
-
+-->
 
 
 [^tidytuesday]: Tidy Tuesday is a weekly online community event in which useRs across the world analyse the same dataset and share their visualizations online. Get involved on twitter with `#TidyTuesday`. 

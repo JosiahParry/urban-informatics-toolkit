@@ -8,13 +8,12 @@ Now that we have a basic understanding of how to manipulate our dataset, summari
 
 We have already reviewed what constitutes a summary statistic and how to create them working with vectors. But we have not done so within the context of the tidyverse. We have figured out how to select, filter, mutate and all within a chain of functions. But we have not followed this to its natural next step, the `group_by()` and `summarise()` functions. 
 
-dplyr incluides a wonderful helper function called `count()`. It does just what it says it does. It counts the number of observations in a tibble. Let's recreate the `commute` tibble and see it for ourselves. 
+dplyr includes a wonderful helper function called `count()`. It does just what it says it does. It counts the number of observations in a tibble. Let's explore this! 
 
 
 ```r
 library(tidyverse)
-
-commute <- read_csv("data/gba_commute.csv") 
+library(uitk)
 
 count(commute)
 #> # A tibble: 1 x 1

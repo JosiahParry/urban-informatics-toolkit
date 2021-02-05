@@ -15,8 +15,25 @@ Let us revisit the `commute`, and specifically the rate of commuters who travel 
 
 ```r
 library(tidyverse)
+library(uitk)
 
-commute <- read_csv("data/gba_commute.csv")
+commute
+#> # A tibble: 648 x 14
+#>    county hs_grad  bach master commute_less10 commute1030 commute3060
+#>    <chr>    <dbl> <dbl>  <dbl>          <dbl>       <dbl>       <dbl>
+#>  1 MIDDL…   0.389 0.188 0.100          0.0916       0.357       0.375
+#>  2 MIDDL…   0.167 0.400 0.130          0.0948       0.445       0.344
+#>  3 MIDDL…   0.184 0.317 0.139          0.0720       0.404       0.382
+#>  4 MIDDL…   0.258 0.322 0.144          0.0983       0.390       0.379
+#>  5 MIDDL…   0.301 0.177 0.0742         0.0670       0.379       0.365
+#>  6 MIDDL…   0.159 0.310 0.207          0.0573       0.453       0.352
+#>  7 MIDDL…   0.268 0.247 0.149          0.0791       0.475       0.368
+#>  8 MIDDL…   0.261 0.300 0.126          0.137        0.450       0.337
+#>  9 MIDDL…   0.315 0.198 0.140          0.0752       0.478       0.329
+#> 10 MIDDL…   0.151 0.348 0.151          0.0830       0.474       0.322
+#> # … with 638 more rows, and 7 more variables: commute6090 <dbl>,
+#> #   commute_over90 <dbl>, by_auto <dbl>, by_pub_trans <dbl>, by_bike <dbl>,
+#> #   by_walk <dbl>, med_house_income <dbl>
 ```
 
 

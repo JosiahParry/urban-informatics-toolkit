@@ -98,12 +98,14 @@
 <span class="header-section-number">26.3</span> Creating simple features from a tibble<a class="anchor" aria-label="anchor" href="#creating-simple-features-from-a-tibble"><i class="fas fa-link"></i></a>
 </h2>
 <p>Begin by installing the <code>sf</code> (simple-features) package and loading the <code>locations</code> Airbnb dataset.</p>
-<div class="sourceCode" id="cb329"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb328"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># install.packages("sf")</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://r-spatial.github.io/sf/">sf</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">uitk</span><span class="op">)</span>
 
-<span class="va">locations</span> <span class="op">&lt;-</span> <span class="fu">read_csv</span><span class="op">(</span><span class="st">"data/airbnb/locations.csv"</span><span class="op">)</span>
+<span class="co"># rename for simplicity :) </span>
+<span class="va">locations</span> <span class="op">&lt;-</span> <span class="va">airbnb_locations</span>
 
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">locations</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 6 x 3
@@ -121,7 +123,7 @@
 <p>Note that we are likely used to saying <em>lat, long</em>, but that actually maps to <em>y, x</em>. This is something that trips everyone up! Just make sure you put longitude in the x spot and latitude in the y spot.</p>
 </blockquote>
 <p>To convert the <code>locations</code> data frame to a simple feature we will use <code><a href="https://r-spatial.github.io/sf/reference/st_as_sf.html">st_as_sf()</a></code> and set the <code>coords</code> argument to <code><a href="https://rdrr.io/r/base/c.html">c("longitude", "latitude")</a></code>.</p>
-<div class="sourceCode" id="cb331"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb330"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_as_sf.html">st_as_sf</a></span><span class="op">(</span><span class="va">locations</span>,
          coords <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"longitude"</span>, <span class="st">"latitude"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>## Simple feature collection with 3799 features and 1 field
@@ -153,7 +155,7 @@
 <p>To ensure that our data are properly represented in space, we need to provide the CRS in the creation of our simple features. We do this by specifying the <code>crs</code> argument. <code>crs</code> will accept a number that indicates what projection you are using. There are too many CRS identifiers to commit to memory. This information is usually recorded in the original data source. Be sure to confirm the spatial dimensions! For WGS84, the CRS identifier is <code>4326</code>. This is probably worth committing to memory.</p>
 <p><a href="https://confluence.qps.nl/qinsy/latest/en/world-geodetic-system-1984-wgs84-182618391.html#id-.WorldGeodeticSystem1984(WGS84)v9.1-WGS84definitions" class="uri">https://confluence.qps.nl/qinsy/latest/en/world-geodetic-system-1984-wgs84-182618391.html#id-.WorldGeodeticSystem1984(WGS84)v9.1-WGS84definitions</a></p>
 <p>We will now create an object called <code>loc_sf</code> using <code><a href="https://r-spatial.github.io/sf/reference/st_as_sf.html">st_as_sf()</a></code> and providing both the <code>coords</code> and the <code>crs</code>.</p>
-<div class="sourceCode" id="cb333"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb332"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">loc_sf</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_as_sf.html">st_as_sf</a></span><span class="op">(</span><span class="va">locations</span>,
          coords <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"longitude"</span>, <span class="st">"latitude"</span><span class="op">)</span>,
          crs <span class="op">=</span> <span class="fl">4326</span><span class="op">)</span>
@@ -179,8 +181,9 @@
 ## 10 22195  (-71.0793 42.34558)
 ## # … with 3,789 more rows</code></pre>
 <p>Since an sf object is also a data frame we are able to perform all of the operations that we may with a normal tibble such as selecting columns, joining, mutating etc.</p>
-<div class="sourceCode" id="cb335"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb334"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">loc_sf</span><span class="op">)</span></code></pre></div>
+<pre><code>## although coordinates are longitude/latitude, st_union assumes that they are planar</code></pre>
 <pre><code>## Simple feature collection with 1 feature and 1 field
 ## geometry type:  MULTIPOINT
 ## dimension:      XY
@@ -324,9 +327,212 @@
 ## # … with 3,804 more rows</code></pre>
 <p>Notice that there are 3,814 rows! That is well over the original 193 tracts. If we tried plotting this right away we may overwork R. What we need to do is <em>count</em> the number of observations per fips code first.</p>
 <div class="sourceCode" id="cb353"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">tract_listings</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">polygon_join</span>, <span class="va">fips</span><span class="op">)</span>
-
-<span class="va">tract_listings</span></code></pre></div>
+<code class="sourceCode R"><span class="va">tract_listings</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">polygon_join</span>, <span class="va">fips</span><span class="op">)</span></code></pre></div>
+<pre><code>## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar
+## although coordinates are longitude/latitude, st_union assumes that they are planar</code></pre>
+<div class="sourceCode" id="cb355"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">tract_listings</span></code></pre></div>
 <pre><code>## Simple feature collection with 203 features and 2 fields
 ## geometry type:  MULTIPOLYGON
 ## dimension:      XY
@@ -348,7 +554,7 @@
 ## # … with 193 more rows</code></pre>
 <p>After counting we now have our original 203 rows. This is the spatial equivalent of summarizing our data where all of the geometries of the aggregated rows (<code>fips</code>) are <strong>dissolved</strong>. Dissolving combines all of the geometries of by a shared attribute—it is <code>fips</code> in our case—into a single geometry. Since each <code>fips</code> has the same geometry,the resultant geometries are unaffected. But be aware of the behavior when grouping and summarizing sf objects!</p>
 <p>Let’s try plotting these counts now.</p>
-<div class="sourceCode" id="cb355"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb357"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span><span class="va">tract_listings</span>, <span class="fu">aes</span><span class="op">(</span>fill <span class="op">=</span> <span class="va">n</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">geom_sf</span><span class="op">(</span>lwd <span class="op">=</span> <span class="fl">0.25</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure"><img src="10-spatial-analysis_files/figure-html/unnamed-chunk-17-1.png" width="100%"></div>
@@ -479,7 +685,7 @@
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Urban Informatics Toolkit</strong>" was written by Josiah Parry. It was last built on 2021-01-23.</p>
+    <p>"<strong>Urban Informatics Toolkit</strong>" was written by Josiah Parry. It was last built on 2021-02-04.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

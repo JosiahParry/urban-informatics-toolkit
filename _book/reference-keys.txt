@@ -67,7 +67,6 @@ defining-the-greater-boston-area
 writing-data
 the-pipe
 applying-the-pipe
-revisiting-our-scenario
 creating-new-measures
 data-structures
 atomic-vectors

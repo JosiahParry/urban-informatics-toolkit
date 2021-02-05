@@ -118,8 +118,9 @@ new_col_tbl &lt;- mutate(smaller_tbl, ...)</code></pre>
 <p>In the chapter on filtering data we began by reading in the data, selecting columns, and then filtered data. Here we will recreate the <code>low_inc_or_walk</code> object which identified Census Tracts that have a higher rate of commuters who walk than drive or have a median household income below $40,000.</p>
 <div class="sourceCode" id="cb117"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">uitk</span><span class="op">)</span>
 
-<span class="va">low_inc_or_walk</span> <span class="op">&lt;-</span> <span class="fu">read_csv</span><span class="op">(</span><span class="st">"data/ACS_1317_TRACT.csv"</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+<span class="va">low_inc_or_walk</span> <span class="op">&lt;-</span> <span class="va">acs_raw</span> <span class="op">%&gt;%</span> 
   <span class="fu">select</span><span class="op">(</span>
     <span class="va">county</span>,
     <span class="fu">starts_with</span><span class="op">(</span><span class="st">"commute"</span><span class="op">)</span>,
@@ -130,6 +131,7 @@ new_col_tbl &lt;- mutate(smaller_tbl, ...)</code></pre>
     <span class="va">by_walk</span> <span class="op">&gt;</span> <span class="va">by_auto</span>,
     <span class="va">med_house_income</span> <span class="op">&lt;</span> <span class="fl">40000</span>
   <span class="op">)</span>
+
 <span class="fu">glimpse</span><span class="op">(</span><span class="va">low_inc_or_walk</span><span class="op">)</span>
 <span class="co">#&gt; Rows: 11</span>
 <span class="co">#&gt; Columns: 11</span>
@@ -147,22 +149,24 @@ new_col_tbl &lt;- mutate(smaller_tbl, ...)</code></pre>
 <p>The reason this pipe works is because the output of each function call is yet another tibble and the pipe operator is passing that resultant tibble as the first argument to the next function.</p>
 <p>Not only does the pipe aid in the manipulation of data, it also has a lot of utility in crafting ggplots. By piping your tibble into a ggplot call, this allows you to quickly iterate on the input data from either filtering down your data to creating new variables for visualization purposes.</p>
 <p>The following sections will use the pipe operator in favor of the above listed alternatives.</p>
-</div>
-<div id="revisiting-our-scenario" class="section level2" number="12.2">
-<h2>
-<span class="header-section-number">12.2</span> Revisiting our scenario<a class="anchor" aria-label="anchor" href="#revisiting-our-scenario"><i class="fas fa-link"></i></a>
-</h2>
-<p>Now that we have the pipe operator at our fingertips, we ought to think about how we can incorporate it into our previous work. In our earlier scenario we</p>
-<div class="sourceCode" id="cb118"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">acs_raw</span> <span class="op">&lt;-</span> <span class="fu">read_csv</span><span class="op">(</span><span class="st">"data/ACS_1317_TRACT.csv"</span><span class="op">)</span>
+<!--
+## Revisiting our scenario
 
-<span class="va">commute</span> <span class="op">&lt;-</span> <span class="fu">select</span><span class="op">(</span><span class="va">acs_raw</span>,
-       <span class="va">county</span>,
-       <span class="va">hs_grad</span>, <span class="va">bach</span>, <span class="va">master</span>,
-       <span class="fu">starts_with</span><span class="op">(</span><span class="st">"commute"</span><span class="op">)</span>,
-       <span class="fu">starts_with</span><span class="op">(</span><span class="st">"by"</span><span class="op">)</span>,
-       <span class="va">med_house_income</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">county</span> <span class="op">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"SUFFOLK"</span>, <span class="st">"NORFOLK"</span>, <span class="st">"MIDDLESEX"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+Now that we have the pipe operator at our fingertips, we ought to think about how we can incorporate it into our previous work. 
+
+
+```r
+
+commute <- select(acs_raw,
+       county,
+       hs_grad, bach, master,
+       starts_with("commute"),
+       starts_with("by"),
+       med_house_income) %>% 
+  filter(county %in% c("SUFFOLK", "NORFOLK", "MIDDLESEX"))
+```
+
+-->
 
 </div>
 </div>
@@ -175,7 +179,6 @@ new_col_tbl &lt;- mutate(smaller_tbl, ...)</code></pre>
       <ul class="nav navbar-nav">
 <li><a class="nav-link" href="#the-pipe"><span class="header-section-number">12</span> The pipe %&gt;%</a></li>
 <li><a class="nav-link" href="#applying-the-pipe"><span class="header-section-number">12.1</span> Applying the pipe</a></li>
-<li><a class="nav-link" href="#revisiting-our-scenario"><span class="header-section-number">12.2</span> Revisiting our scenario</a></li>
 </ul>
 
       <div class="book-extra">
@@ -192,7 +195,7 @@ new_col_tbl &lt;- mutate(smaller_tbl, ...)</code></pre>
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Urban Informatics Toolkit</strong>" was written by Josiah Parry. It was last built on 2021-01-23.</p>
+    <p>"<strong>Urban Informatics Toolkit</strong>" was written by Josiah Parry. It was last built on 2021-02-04.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

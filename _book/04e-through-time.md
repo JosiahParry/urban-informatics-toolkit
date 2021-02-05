@@ -8,14 +8,14 @@ For this section we will work with the 2014 Big Belly data again. Our goal will 
 
 ## Working with dates
 
-The file that we will use is located at `data/big-belly-2014.csv`. Read in the dataset and assign it to the tibble `big_belly` and then preview it with `glimpse()`.
-
+The tibble `big_belly_raw` contains the data we will work with. Assign `big_belly_raw` to the tibble `big_belly` and then preview it with `glimpse()`.
 
 
 ```r
 library(tidyverse)
+library(uitk)
 
-big_belly <- read_csv("data/big-belly-2014.csv")
+big_belly <- big_belly_raw
 
 glimpse(big_belly)
 ```
